@@ -4,17 +4,14 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="shortcut icon" href="./images/index/webIcon.png" type="image/x-icon" />
-        <link rel="stylesheet" href="./css/membership.css" />
+        <link rel="stylesheet" href="../dist/css/05_membership.css" />
         <script src="./node_modules/jquery/dist/jquery.js"></script>
         <script src="./node_modules/tw-city-selector/dist/tw-city-selector.js"></script>
         <script src="./js/membership.js"></script>
         <title>會員系統</title>
     </head>
     <body>
-        <header>
-            <h1></h1>
-            <nav></nav>
-        </header>
+            @@include('layout/nav.html')
         <main>
             <!-- 側邊欄 -->
             <div id="side">
@@ -383,8 +380,6 @@
                 </div>
             </div>
         </main>
-        <footer> ®偵茶者TEA SEARCHER CORPORATION. ALL RIGHTS RESERVED.2020 </footer>
-        <div class="pagetop"></div>
-        <div class="pagetop is-hidden"></div>
+        @@include('layout/footer.html')
     </body>
 </html>
