@@ -1,0 +1,252 @@
+@import "default/_common.scss";
+
+
+body{
+    font-family: 'Noto Serif TC';
+    @include forDiscussAndVote;
+}
+
+main{
+    text-align: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 10px;
+    // border: 1px solid black;
+
+
+    .all{
+        padding: 20px 10px 10px 10px;
+        display: flex;
+        justify-content: space-around;
+        margin-top: 50px;
+        background-color: #feffe4;
+        // background-color: white;
+        border-radius: $border-radius-med;
+      
+        .garden{
+            display: inline-block;
+            font-size: 0;
+            .gpic{
+                width: 500px;
+                border-radius: $border-radius-sml;
+            }
+        }
+
+        .ginfo{
+            text-align: left;
+            padding-top: 10px ;
+            width: 50%;
+
+            .s1{
+                display: flex;
+                justify-content:space-between;
+                .p1{
+                    font-size: $h4;
+                    color: #7baa17;
+                    font-weight: bold;
+                }
+            }
+
+            .allscore{
+                font-size: 18px;
+                margin: 10px 0;
+                display: flex;
+                align-items: center;
+
+                .score{
+                    color: #7baa17;
+                }
+                
+                .vue-star-rating-rating-text[data-v-34cbeed1]{
+                    margin-top: 0;
+                }
+            }
+
+            p{
+                line-height: 28px;
+
+                .tt{
+                    color: #7baa17;
+                }
+            }
+            
+
+            .p5{
+                // line-height: 24px;
+                margin-bottom: 30px;
+            }
+
+            .btwrap{
+                   display: flex;
+                   justify-content: flex-end;
+
+                   .bt{
+                        @include btn3;
+                        margin: 15px 0 15px 0;
+                   }
+            }
+        }
+    }
+
+    h3{
+        margin-top:60px ;
+        text-align: left;
+        font-size: $h3;
+        color: #7baa17 ;
+        font-weight: bold;
+    }
+
+    
+      
+    .tour_browse_block{
+        margin-top: 20px;
+
+        .tour_block {
+            text-align: center;
+            width: 310px;
+            display: inline-block;
+            margin: 40px 20px;
+            padding: 10px;
+            position: relative;
+            background: -webkit-gradient(linear, 0% 20%, 0% 92%, from(#f3f3f3), to(#fff), color-stop(.1, #f3f3f3));
+            // border-top: 1px solid white;
+            // border-right: 1px solid #ccc;
+            -webkit-border-bottom-right-radius: 60px 60px;
+            box-shadow: -1px 2px 2px rgb(235, 232, 232);
+
+            .tour_text{
+                h3{
+                    font-size: 16px;
+                }
+            }
+
+            .tour_img {
+
+                padding: 10px;
+            }
+
+            .love_share {
+                display: flex;
+                justify-content: flex-end;
+                padding-right: 10px;
+                // border: 1px solid black;
+
+
+
+                .love {
+                    width: 30px;
+                    margin-right: 10px;
+                }
+
+                .fb-share-button {
+  
+                }
+            }
+
+            .tour_text {
+                width: 280px;
+                margin: 0 auto;
+
+                h3 {
+                    margin: 0;
+                    width: 130px;
+                    padding: 5px;
+                    color: $secondary-typo-color;
+
+                }
+
+                p {
+                    margin: 0;
+                    padding: 5px;
+                    width: 130px;
+                }
+            }
+
+            .tourBtn {
+                text-align: center;
+
+                button {
+                    @include btn3;
+
+
+                }
+            }
+        }
+
+        .tour_block::after {
+            content: '';
+            z-index: -1;
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            -webkit-box-shadow: 20px 20px 8px rgba(0, 0, 0, 0.2);
+            -webkit-transform: rotate(0deg) translate(-45px, -20px) skew(20deg);
+        }
+        
+        .tour_block::before {
+            content: '';
+            width: 25px;
+            height: 20px;
+            background: white;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background: -webkit-gradient(linear, 0% 20%, 50% 40%, from(#fff), to(#eee), color-stop(.1, #fff));
+            -webkit-border-bottom-right-radius: 30px;
+            border-bottom-right-radius: 30px;
+            -webkit-box-shadow: -2px -2px 5px rgba(0, 0, 0, 0.3);
+            box-shadow: -2px -2px 5px rgba(0, 0, 0, 0.3);
+            -webkit-transform: rotate(-20deg) skew(-40deg, -3deg) translate(-13px, -13px);
+            transform: rotate(-20deg) skew(-40deg, -3deg) translate(-13px, -13px);
+        }
+        
+        .box11_ribbon {
+            position: absolute;
+            top: -25px;
+            left: 30%;
+            width: 130px;
+            height: 40px;
+            background: -webkit-gradient(linear, 555% 20%, 0% 92%, from(rgba(0, 0, 0, 0.1)), to(rgba(0, 0, 0, 0.0)), color-stop(.1, rgba(0, 0, 0, 0.2)));
+            border-left: 1px dashed rgba(0, 0, 0, 0.1);
+            border-right: 1px dashed rgba(0, 0, 0, 0.1);
+            box-shadow: -1px 2px 2px rgb(235, 232, 232);
+        }
+    }
+}
+
+
+@media screen and (max-width:1200px){
+    main{
+        .all{
+            .ginfo{
+                padding-left:10px;
+            }
+        }
+    }
+}
+
+@media screen  and (max-width:768px){
+    main{
+        .all{
+            flex-wrap: wrap;
+            margin: 50px 10px;
+            padding: 0;
+
+            .garden{
+                .gpic{
+                    width: 100%;
+                    border-radius: 20px 20px 0 0;
+                }
+            }
+
+            .ginfo{
+                width: 100%;
+                padding: 20px 10px 10px 10px;
+            }
+        }
+    }
+}

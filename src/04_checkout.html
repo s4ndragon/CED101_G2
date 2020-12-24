@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>訂單明細</title>
+    <link rel="stylesheet" href="./css/checkout.css">
+    <script src="./js/checkout.js"></script>
+</head>
+
+<body>
+    <h2 class="title">訂單明細</h2>
+    <form action="">
+        <div class="main">
+            訂單內容:
+            <ul id="items">
+            </ul>
+            <table>
+                <tr>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>商品總額:</td>
+                    <td><input type="number" name="" id="" disabled value="6790"></td>
+                </tr>
+                <tr>
+                    <td>折扣金額:</td>
+                    <td><input type="number" name="" id="" disabled value="290"></td>
+                </tr>
+                <tr>
+                    <td>應付金額:</td>
+                    <td><input type="number" name="" id="" disabled value="6500"></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>寄送方式:</td>
+                    <td>宅配</td>
+                </tr>
+                <tr>
+                    <td>收件地址:</td>
+                    <td><input type="text" name="" id="" disabled value="桃園市XX路"></td>
+                </tr>
+                <tr>
+                    <td>收件人:</td>
+                    <td><input type="text" name="" id="" disabled value="楊OO"></td>
+                </tr>
+                <tr>
+                    <td>收件人電話:</td>
+                    <td><input type="number" name="" id="" disabled value="091234567"></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>付款方式:</td>
+                    <td>ATM轉帳</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="btn">
+                        <input type="button" value="取消訂單"
+                            onClick="if (confirm('確定取消？'))location.href= './04_shopping.html';return false;">
+                        <input type="submit" value="送出訂單"
+                            onClick="if (confirm('是否確認提交？'))location.href= './04_orders.html';return false;">
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </form>
+</body>
+
+</html>

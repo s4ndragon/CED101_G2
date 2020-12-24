@@ -1,0 +1,150 @@
+@import "default/_common.scss";
+
+body{
+    @include forTourAndShop;
+    font-family: 'Noto Serif TC';
+}
+
+main{
+    text-align: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 10px 50px;
+    // border: 1px solid black;
+
+    .all{
+        // border: 1px solid red;
+        display: flex;
+        justify-content: space-around;
+        margin-top: 50px;
+        padding: 20px 10px 10px 10px;
+        border-radius: $border-radius-med;
+        background-color: white;
+      
+        .tour{
+            // display: inline-block;
+            font-size: 0;
+            .tpic{
+                width: 500px;
+                border-radius: $border-radius-med;
+            }
+        }
+
+        .tinfo{
+            text-align: left;
+            // border: 1px solid blue;
+            width: 50%;
+            position: relative;
+
+            .t1{
+                display: flex;
+                justify-content:space-between;
+                
+                .pp1{
+                    font-size: $h4;
+                    margin-bottom: 10px;
+                    color: #7baa17 ;
+                    font-weight: bold;
+                }
+
+                .social{
+                    display: flex;
+                    .love{
+                        width:30px;
+                        margin-right: 10px;
+                    }
+                }
+            }
+
+            .green{
+                color: #7baa17 ;
+            }
+            
+
+           .btwrap{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+               .bt{
+                    @include btn3;
+                    margin: 25px 0 15px 0;
+               }
+
+               .date{
+                   color: gray;
+               }
+           }
+        }
+    }
+
+    h3{
+        margin-top: 60px;
+        text-align: left;
+        font-size: $h3;
+    }
+
+    .all2{
+        border: 1px solid green;
+        text-align: left;
+
+        .ht{
+            font-size: $h4;
+            margin: 0 0 10px;
+        }
+
+        .eat{
+            margin-top: 25px;
+        }
+
+        .hotel_container{
+
+            .hotel{
+                box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+                display: inline-block;
+                border-radius: 5px;
+
+                .hpic{
+                    width: 300px;
+                    border-radius: 5px 5px 0 0;
+                }
+
+                .hname{
+                    text-align: center;
+                    margin: 5px 0;
+                }
+            }
+        }
+    }
+
+   
+}
+
+@media screen  and (max-width:1200px) and (min-width:769px){
+    main{
+        .all{
+            .tinfo{
+                padding-left:10px;
+            }
+        }
+    }
+}
+
+@media screen  and (max-width:768px){
+    main{
+        .all{
+            flex-wrap: wrap;
+            margin: 0 10px;
+
+            .tour{
+                .tpic{
+                    width: 100%;
+                }
+            }
+
+            .tinfo{
+                width: 100%;
+            }
+        }
+    }
+}

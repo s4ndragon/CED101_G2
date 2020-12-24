@@ -1,0 +1,143 @@
+@import "./default/common";
+@import "_discuss_article";
+@import "_discuss_pub";
+
+// ==========共用=========
+
+body {
+    @include forTourAndShop;
+}
+
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+// =========以上是共用========
+
+#big_title {
+    text-align: center;
+    font-size: 60px;
+    margin: 30px 0;
+
+}
+
+.list {
+    cursor: pointer;
+}
+
+.allthing {
+    display: flex;
+    width: 80%;
+    margin: 0 auto;
+    justify-content: center;
+
+    #articles {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        h2 {
+            text-align: center;
+            font-size: $h2;
+            margin: 0 auto;
+        }
+
+        #filter {
+            display: flex;
+
+            .cate {
+                margin-right: 30px;
+                padding: 20px;
+                font-weight: bolder;
+                border-radius: 50%;
+                transition: all 0.5s ease;
+
+                &:hover {
+                    background-color: $secondary-typo-color;
+                    color: white;
+                    border-radius: 50%;
+                }
+            }
+        }
+    }
+}
+
+.fit {
+    background-color: $secondary-typo-color;
+    padding: 10px;
+    color: white;
+    font-weight: bolder;
+}
+
+.article {
+    margin-top: 20px;
+    background-color: white;
+    border-radius: 30px;
+    overflow: hidden;
+}
+
+#content {
+    display: flex;
+}
+
+
+.contenttext {
+    padding: 50px 80px;
+
+    img {
+        width: 30px;
+        margin: 20px 0 0 10px;
+    }
+
+    p {
+        text-align: right;
+    }
+
+    div {
+        margin-top: 25px;
+        display: flex;
+
+        img {
+            margin-left: 15px;
+        }
+
+        .btn {
+            margin-left: auto;
+        }
+    }
+}
+
+
+
+#loco {
+    width: 40px;
+    margin-top: 10px;
+}
+
+
+main {
+    position: relative;
+
+    .addtour {
+        position: fixed;
+        right: 10%;
+        bottom: 10%;
+        background-color: green;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        color: white;
+        font-weight: bolder;
+        font-size: $h5;
+        outline: none;
+    }
+}
+
+.btn {
+    @include btn;
+}

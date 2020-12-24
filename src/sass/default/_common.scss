@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC&display=swap');
+@import 'variables';
+@import 'reset';
+@import 'footer';
+@import 'bground_style';
+@import 'btn';
+@import 'input_textarea';
+@import 'header';
+
+img {
+    max-width: $img-max-width;
+}
+
+
+body {
+    font-family: 'Noto Serif TC';
+    line-height: 28px;
+}

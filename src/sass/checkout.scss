@@ -1,0 +1,122 @@
+@import './default/_variables.scss';
+@import './default/btn';
+@import './shop.scss';
+
+h2.title {
+    width: max-content;
+    margin: 20px auto;
+    background-color: $titleBgColor;
+    padding: 5px 15px;
+    border-radius: 5px;
+}
+
+body {
+    margin: 0;
+
+    form {
+        width: $mainWidth*0.7;
+        margin: 0 auto;
+        background-color: #e3ffe6;
+        padding: 30px 40px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+
+        >h3 {
+            text-align: center;
+        }
+
+        .main {
+            >table {
+                margin: 0 auto;
+
+
+
+                td.btn {
+                    text-align: center;
+
+                    input {
+                        @include btn3;
+                    }
+
+                    input[type=button] {
+                        @include smallbtn4;
+                    }
+                }
+            }
+
+            ul#items {
+                list-style: none;
+                padding: 20px;
+                background-color: #fff;
+                border-radius: 5px;
+
+                li {
+                    border-bottom: 1px solid;
+                    padding: 10px;
+
+                    table {
+                        display: inline-block;
+                        vertical-align: middle;
+                        margin-left: 20px;
+
+                        td {
+                            line-height: 30px;
+
+                        }
+
+                        @media all and (max-width :$small) {
+
+                            td.prodtitle {
+                                display: -webkit-box;
+                                -webkit-box-orient: vertical;
+                                -webkit-line-clamp: 2;
+                                overflow: hidden;
+                            }
+                        }
+                    }
+
+
+                    a {
+                        text-decoration: none;
+                    }
+
+                    img {
+                        max-width: 100%;
+                    }
+
+                    div.img {
+                        width: 150px;
+                        display: inline-block;
+                        vertical-align: middle;
+
+                    }
+
+                    @media all and (max-width :$small) {
+                        div.img {
+                            width: 70px;
+                        }
+                    }
+
+                }
+
+
+                li:first-of-type {
+                    border-top: 1px solid;
+                }
+
+            }
+
+
+        }
+
+        >table {
+            margin: 0 auto;
+
+            input {
+                @include smallbtn3;
+            }
+        }
+    }
+
+
+}

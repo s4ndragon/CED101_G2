@@ -1,0 +1,249 @@
+//============ import ===========//
+@import "./default/common";
+//============= var ============//
+$main-width: 80%;
+
+img {
+    width: 100%;
+}
+
+//==============================//
+body {
+    @include forTourAndShop;
+    font-family: 'Noto Serif TC';
+}
+
+
+
+* {
+    box-sizing: $box-sizing;
+}
+
+main {
+    h1 {
+        text-align: center;
+        font-size: $h1;
+        margin: 20px;
+    }
+
+    .preview_title {
+        text-align: center;
+        padding-top: 10px;
+    }
+
+    .tourCreate_header {
+        display: flex;
+        justify-content: space-evenly;
+        flex-direction: column;
+        align-content: space-around;
+        width: $main-width;
+        margin: 50px auto;
+        // border: 1px solid black;
+
+        .step_title {
+            display: flex;
+
+            .step_block {
+                // border: 1px solid black;
+                width: calc(100% / 3);
+
+                .step {
+                    width: 100px;
+                    height: 100px;
+                    text-align: center;
+                    line-height: 100px;
+                    margin: 0 auto;
+
+                    @media only screen and (max-width: 576px) {
+                        width: 50px;
+                        height: 50px;
+                        font-size: $h4;
+                        line-height: 50px;
+                    }
+                }
+            }
+
+            .arrow {
+                // border: 1px solid black;
+                margin: auto;
+            }
+        }
+
+        .step_content {
+            display: flex;
+            justify-content: space-around;
+
+            p {
+                font-size: $h3;
+                text-align: center;
+                padding: 30px;
+
+                @media only screen and (max-width: 576px) {
+                    font-size: $h4;
+                    padding: 20px;
+                }
+            }
+        }
+    }
+
+    .tourCreate_main {
+        border: 1px solid black;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+
+        .preview_container {
+            border: 1px solid red;
+            width: $main-width;
+            display: flex;
+            flex-direction: column;
+
+            .preview_title {
+                text-align: center;
+                margin: 20px;
+            }
+
+            .preview_content {
+                display: flex;
+
+                @media only screen and (max-width: 576px) {
+                    flex-direction: column;
+                }
+
+                .preview_left {
+                    width: 50%;
+                    padding-right: 5%;
+
+                    @media only screen and (max-width: 576px) {
+                        width: 100%;
+                        padding: 0;
+                    }
+
+                    img {
+                        width: 100%;
+                    }
+                }
+
+                .preview_right {
+                    width: 50%;
+                    padding-left: 5%;
+
+                    @media only screen and (max-width: 576px) {
+                        width: 100%;
+                        padding: 0;
+                    }
+                }
+            }
+        }
+
+        .garden_info_container {
+            width: 100%;
+
+            .info_title {
+                text-align: center;
+                margin: 20px;
+            }
+
+            .info_content {
+                display: flex;
+
+                @media only screen and (max-width: 576px) {
+                    flex-direction: column;
+                }
+
+                .info_left {
+                    width: 50%;
+                    padding-right: 5%;
+
+                    @media only screen and (max-width: 576px) {
+                        width: 100%;
+                        padding: 0;
+                    }
+
+                    img {
+                        width: 100%;
+                    }
+                }
+
+                .info_right {
+                    width: 50%;
+                    padding-left: 5%;
+
+                    @media only screen and (max-width: 576px) {
+                        width: 100%;
+                        padding: 0;
+                    }
+                }
+            }
+        }
+
+        .activity {
+            width: 100%;
+
+            .activity_title {
+                text-align: center;
+                margin: 20px;
+            }
+
+            .activity_content {
+                display: flex;
+
+                @media only screen and (max-width: 576px) {
+                    flex-direction: column;
+                }
+            }
+
+            .tea_plucking,
+            .tea_making,
+            .tea_drinking {
+                border: 1px solid red;
+                width: calc(100% / 3);
+                padding: 1%;
+                text-align: center;
+
+                @media only screen and (max-width: 576px) {
+                    width: 100%;
+                    padding: 0 0 10px;
+                }
+
+                img {
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    .btn {
+        border: 1px solid black;
+        // width: 30%;
+        display: flex;
+        justify-content: space-between;
+        align-self: center;
+
+        .prev,
+        .next {
+            margin: 10px 0;
+            @include btn;
+
+        }
+    }
+}
+
+.title {
+    font-size: $h4;
+    padding: 5px 0;
+    font-weight: bold;
+
+    @media only screen and (max-width: 576px) {
+        // text-align: center;
+    }
+}
+
+.content {
+    padding: 5px 0 10px;
+    font-size: $h5;
+
+    @media only screen and (max-width: 576px) {
+        // text-align: center;
+    }
+}

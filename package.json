@@ -1,0 +1,43 @@
+{
+  "name": "ced101_g2",
+  "version": "1.0.0",
+  "description": "哈囉  不要上傳自己的分支喔，謝謝，如果對github怎麼上傳及下載有問題的可以去看aqua wonderland的github，   裡面的readme有很清楚的講解，還是不瞭解的話再發問討論。   https://github.com/a123789226/ED103-G1/tree/dev",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/s4ndragon/CED101_G2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/s4ndragon/CED101_G2/issues"
+  },
+  "homepage": "https://github.com/s4ndragon/CED101_G2#readme",
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "browser-sync": "^2.26.13",
+    "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-imagemin": "^7.1.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^4.1.0",
+    "gulp-uglify": "^3.0.2"
+  },
+  "dependencies": {
+    "bootstrap": "^4.5.3",
+    "bootstrap-scss": "^4.5.3",
+    "gsap": "^3.5.1",
+    "gulp-file-include": "^2.3.0",
+    "jquery": "^3.5.1",
+    "scrollmagic": "^2.0.8",
+    "scrollmagic-plugin-gsap": "^1.0.4",
+    "tw-city-selector": "^2.1.1",
+    "vue": "^2.6.12",
+    "vue-star-rating": "^1.7.0"
+  }
+}

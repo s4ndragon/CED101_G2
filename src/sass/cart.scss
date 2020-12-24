@@ -1,0 +1,106 @@
+@import './default/_variables.scss';
+@import './shop.scss';
+@import './sass/default/btn';
+
+h2.title {
+    width: max-content;
+    margin: 20px auto;
+    background-color: $titleBgColor;
+    padding: 5px 15px;
+    border-radius: 5px;
+}
+
+
+div.cart_content {
+    width: $mainWidth*0.7;
+    margin: 0 auto;
+    $itemBR: 5px;
+    padding: 20px 30px;
+    border-radius: 5px;
+    background-color: #e3ffe6;
+
+    .item {
+        position: relative;
+        background-color: #fff;
+        margin-bottom: 15px;
+        padding: 5px;
+        border-radius: $itemBR;
+
+        span.close {
+            position: absolute;
+            right: 15px;
+            font-size: 45px;
+            cursor: pointer;
+            color: #BF0060;
+            font-weight: bold;
+        }
+
+        div.img {
+            width: 200px;
+            height: max-content;
+            font-size: 0;
+            border-radius: $itemBR;
+            overflow: hidden;
+
+            img {
+                max-width: 100%;
+            }
+        }
+
+        div.img,
+        div.aside {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        div.aside {
+            margin-left: 15px;
+
+            h3 {
+                margin-top: 0;
+                width: 450px;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 2;
+                overflow: hidden;
+            }
+
+            input[type=number] {
+                width: 100px;
+            }
+
+            input[type=number]:first-of-type {
+                width: 30px;
+            }
+        }
+    }
+
+    .item:last-of-type {
+        margin-bottom: 0;
+    }
+}
+
+div.function {
+    $functionFS: 20px;
+    font-size: $functionFS;
+    text-align: center;
+    margin: 50px auto;
+
+    a {
+        text-decoration: none;
+        border-radius: 5px;
+    }
+
+    input[type=submit] {
+        @include btn3;
+    }
+
+    #backShop {
+        @include smallbtn2;
+    }
+
+    input[type=number] {
+        font-size: $functionFS;
+        width: 150px;
+    }
+}

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="./images/index/webIcon.png" type="image/x-icon" />
+    <link rel="stylesheet" href="./css/tour.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+        integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+    <title>瀏覽揪團</title>
+</head>
+
+<body>
+    <div class="choice_block">
+        <div class="flex">
+            <div class="twMap">
+                <div class="twMap_img">
+                    <img src="./images/tour/twMap.png" alt="">
+                </div>
+                <button id="allLocal">全部地區</button>
+                <button id="nLocal">北部地區</button>
+                <button id="cLocal">中部地區</button>
+                <button id="sLocal">南部地區</button>
+                <div class="location1">
+                    <img src="./images/common/location.png" alt="">
+                </div>
+                <div class="location2">
+                    <img src="./images/common/location.png" alt="">
+                </div>
+                <div class="location3">
+                    <img src="./images/common/location.png" alt="">
+                </div>
+                <div class="location4">
+                    <img src="./images/common/location.png" alt="">
+                </div>
+                <div class="location5">
+                    <img src="./images/common/location.png" alt="">
+                </div>
+                <div class="location6">
+                    <img src="./images/common/location.png" alt="">
+                </div>
+                <div class="location7">
+                    <img src="./images/common/location.png" alt="">
+                </div>
+                <div class="location8">
+                    <img src="./images/common/location.png" alt="">
+                </div>
+                <div class="location9">
+                    <img src="./images/common/location.png" alt="">
+                </div>
+                <div class="location10">
+                    <img src="./images/common/location.png" alt="">
+                </div>
+            </div>
+            <!-- <img src="../images/index/notuse/8355.png" alt=""> -->
+        </div>
+        <div class="tour_center_img">
+            <img src="./images/tour/bg-project-map-illust.png" alt="">
+        </div>
+        <div class="tour_center_img2">
+            <img src="./images/tour/bg-ground-top.png" alt="">
+        </div>
+
+    </div>
+    <div class="main_body">
+        <div class="choice_list">
+            <ul>
+                <li class="mini_choice">
+                    <h2>揪團地區 <i class="fas fa-angle-down" fa-4x></i></h2>
+                    <ul>
+                        <li>全部地區</li>
+                        <li>北部</li>
+                        <li>中部</li>
+                        <li>南部</li>
+                    </ul>
+                </li>
+                <li>
+                    <h2>茶園類型 <i class="fas fa-angle-down" fa-4x></i></h2>
+                    <ul>
+                        <li>觀光型</li>
+                        <li>體驗型</li>
+                    </ul>
+                </li>
+                <li>
+                    <h2>茶園茶種 <i class="fas fa-angle-down" fa-4x></i></h2>
+                    <ul>
+                        <li>綠茶</li>
+                        <li>紅茶</li>
+                        <li>烏龍茶</li>
+                    </ul>
+                </li>
+                <li>
+                    <h2>預估費用 <i class="fas fa-angle-down" fa-4x></i></h2>
+                    <ul>
+                        <li>5000以下</li>
+                        <li>5000 - 10000</li>
+                        <li>10000以上</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="tour_browse">
+            <h1>瀏覽揪團</h1>
+            <div class="tour_browse_block" id="tourBrowseBlock"></div>
+        </div>
+    </div>
+
+
+
+    <div class="createTour">
+        <p>我要開團</p>
+        <img src="./images/tour/createTourCar.png" alt="">
+    </div>
+    <script>
+        window.addEventListener("load", function () {
+            let tourNum = 9;
+            let tourBlock = document.getElementById("tourBrowseBlock");
+            for (var i = 0; i < tourNum; i++) {
+                let newTour = document.createElement('div');
+                tourBlock.appendChild(newTour);
+                newTour.setAttribute('class', 'tour_block');
+                newTour.innerHTML = `
+                <div class="tour_img">
+                            <img src="./images/tour/tour1.jpg" alt="">
+                    </div>
+                            <div class="love_share">
+                                <div class="love">
+                                    <img class="like" src="./images/common/heart.png" title="加入收藏" alt="">
+                        </div>
+                                    <div class="share">
+                                        <img src="./images/common/shareBlue.png" alt="">
+                        </div>
+                                    </div>
+                                    <div class="tour_text">
+                                        <h3>活動名稱</h3>
+                                        <p>一定打斷你鼻樑</p>
+                                        <h3>活動日期</h3>
+                                        <p>2020/12/30</p>
+                                        <h3>截止揪團日期</h3>
+                                        <p>2020/12/25</p>
+                                       
+                                        <h3>預估費用</h3>
+                                        <p>$7800NT</p>
+                                        <div class="ink">
+                                          <div class="inkText">
+                                             <h3>剩餘名額</h3>
+                                             <p>14/16</p>
+                                             </div>
+                                         </div>
+                                    </div>
+                                    <div class="tourBtn">
+                                        <button type="button"> 立即報名</button>
+                                    </div>
+                                    <div class="box11_ribbon"></div>  
+                `;
+
+            }
+
+            let like = document.getElementsByClassName('like');
+            for (var i = 0; i < like.length; i++) {
+                like[i].addEventListener("click", changeHeart)
+
+            }
+            function changeHeart() {
+                if (this.title == "加入收藏") {
+                    this.title = "取消收藏";
+                    this.src = "./images/common/like.png";
+                } else {
+                    this.title = "加入收藏";
+                    this.src = "./images/common/heart.png";
+
+                }
+            }
+
+
+        })
+
+
+
+    </script>
+</body>
+
+</html>

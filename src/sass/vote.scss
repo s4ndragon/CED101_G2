@@ -1,0 +1,219 @@
+@import "default/_common.scss";
+
+
+
+
+body{
+    font-family: 'Noto Serif TC';
+    @include forDiscussAndVote;
+}
+
+main{
+    text-align: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    h2{
+        font-size: $h3;
+        margin: 50px 0;
+    }
+    .block1{
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        padding: 10px 0;
+        display: flex;
+        margin: 60px 37px;
+        justify-content: center;
+        border-radius: 10px;
+        // align-items: center;
+        position: relative;
+        background-color: white;
+        
+        // width: 80%;
+    
+        .pic{
+            width: 500px;
+            font-size: 0;
+            
+            .tea{
+                width: 100%;
+                z-index: 1;
+                border-radius: 10px;
+            }
+
+            .m1{
+                width: 95px;
+                position: absolute;
+                top:-20px;
+                left: -40px;
+                z-index: 2;
+            }
+        }
+        
+        .info{
+           
+            width:600px;
+            text-align: left;
+            padding:10px;
+            position: relative;
+            padding: 20px 20px 20px 25px;
+           
+            p{
+                line-height: 28px;
+            }
+            
+            .s1{
+                font-size: 25px;
+                margin-top: 1%;
+                display:flex;
+                justify-content: space-between;
+
+                .p1{
+                    color: #7baa17;
+                    font-weight: bold;
+                }
+
+            }
+
+            .allscore{
+                font-size: 18px;
+                margin: 10px 0;
+                display: flex;
+                align-items: center;
+                
+                .vue-star-rating-rating-text[data-v-34cbeed1]{
+                    margin-top: 0;
+                }
+
+                .score{
+                    color:#7baa17;
+                }
+            }
+
+            .btwrap{
+                display: flex;
+                display: flex;
+                justify-content: flex-end;
+                margin-top: 50px;
+                
+                .bt{
+                    @include btn;
+                }
+            }
+        }
+    }
+
+    .ht{
+        margin-top: 72px;
+    }
+
+    table{
+        // border: 1px solid black;
+        margin: 0 auto 30px;
+        width: 80%;
+        background-color: #b7d40036;
+        
+        .title{
+            font-size: 20px;
+            background-color: #b7d400b0;
+        }
+
+        tr{
+            border-bottom: 1px solid#b7d4005e;
+        
+            td{
+                padding: 30px 10px;
+
+                .vue-star-rating[data-v-34cbeed1]{
+                    display: inline-block;
+                }
+            }  
+
+            .resize{
+                width: 290px;
+            }
+            
+        }
+
+        tr:hover{
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; 
+            cursor: pointer;
+            transition: all 0.5s ease;
+        }
+
+    }
+}
+
+
+
+@media screen  and (max-width:1200px){
+    main{
+        .block1{
+            .pic{
+                margin-top: 23px;
+                padding-left: 10px;
+            }
+        }
+        
+    }
+}
+
+@media screen  and (max-width:960px){
+    main{
+        .block1{
+            .pic{
+                width:570px;
+            }
+        }
+        
+    }
+}
+
+@media screen  and (max-width:768px){
+    main{
+        .block1{
+            flex-wrap: wrap;
+
+            .pic{
+                width: 100%;
+                margin-top: -10px;
+                padding-left: 0px;
+
+                .tea{
+                    border-radius: 10px 10px 0 0;
+                }
+            }
+
+            .info{
+                width: 100%;
+            }
+        }
+
+        table{
+            width: 95%;
+        }
+    }
+}
+
+@media screen  and (max-width:574px){
+    main{
+        table{
+            tr{
+                .resize{
+                    width: 181px;
+                }
+            }
+        }
+    }
+}
+
+
+@media screen  and (max-width:330px){
+    main{
+        table{
+            tr{
+                .resize{
+                    width: 143px;
+                }
+            }
+        }
+    }
+}
