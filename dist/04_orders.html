@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>訂單明細</title>
+    <link rel="stylesheet" href="./css/checkout.css">
+    <script src="./js/checkout.js"></script>
+    <script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
+</head>
+
+<body>
+    <h2 class="title">訂單明細</h2>
+    <form action="">
+        <div class="main" id='main'>
+            <h3>訂單編號 : <input type="number" name="" id="" disabled value="123456790"></h3>
+            訂單內容:
+            <ul id="items">
+            </ul>
+            <table>
+                <tr>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>商品總額:</td>
+                    <td><input type="number" name="" id="" disabled value="6790"></td>
+                </tr>
+                <tr>
+                    <td>折扣金額:</td>
+                    <td><input type="number" name="" id="" disabled value="290"></td>
+                </tr>
+                <tr>
+                    <td>應付金額:</td>
+                    <td><input type="number" name="" id="" disabled value="6500"></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                </tr>
+
+                <tr>
+                    <td>寄送狀態:</td>
+                    <td><input type="text" name="" id="" disabled value="未出貨"></td>
+                </tr>
+                <tr>
+                    <td>寄送方式:</td>
+                    <td>宅配</td>
+                </tr>
+                <tr>
+                    <td>收件地址:</td>
+                    <td><input type="text" name="" id="" disabled value="桃園市XX路"></td>
+                </tr>
+                <tr>
+                    <td>收件人:</td>
+                    <td><input type="text" name="" id="" disabled value="楊OO"></td>
+                </tr>
+                <tr>
+                    <td>收件人電話:</td>
+                    <td><input type="number" name="" id="" disabled value="091234567"></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>付款方式:</td>
+                    <td>ATM轉帳</td>
+                </tr>
+                <tr>
+                    <td>轉帳帳號:</td>
+                    <td><input type=" number" name="" id="" disabled value="0041234567">
+                    </td>
+                </tr>
+                <tr>
+                    <td>付款狀態:</td>
+                    <td><input type="text" name="" id="" disabled value="未付款"></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                </tr>
+            </table>
+        </div>
+        <table>
+            <tr>
+                <td colspan=" 2" class="btn">
+                    <input type="button" value="列印訂單明細" onclick='window.print()'>
+                    <input type="button" value="生成PDF"
+                        onClick="if (confirm('是否確認提交？'))location.href= 'orders.html';return false;">
+                    <input type="submit" value="回商城首頁" onClick="location.href= './04_shopping.html';return false;">
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+
+</html>

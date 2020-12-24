@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>茶園票選</title>
+	<link rel="stylesheet" href="css/vote.css">
+	<script src="https://unpkg.com/vue-star-rating@1.5.1/dist/star-rating.min.js"></script>
+	<script src="node_modules/vue/dist/vue.js"></script>
+</head>
+<body>
+
+	<main>
+		<h2>熱門茶園 TOP3</h2>
+		<div class="block1">
+			<div class="pic">
+				<img class="tea" src="images/vote/tea5.jpg">
+				<img class="m1" src="images/vote/medal.png">
+			</div>
+			<div class="info">
+				<div class="s1">
+					<p class="p1">舞鶴茶園</p>
+					<div class="fb-share-button" data-href="http://127.0.0.1:5501/07_vote_more.html" data-layout="button" data-size="small">
+                        <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5501%2F07_vote_more.html&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
+                            分享
+                        </a>
+                    </div>
+				</div>
+				
+				<div class="allscore">
+					<span class="score">
+						總分:&ensp; 
+					</span>
+					<div id="app">
+						<star-rating  :rating="4.7" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
+					</div>
+				</div>
+
+				<p class="p3">水尾，依山傍水，瑞穗的舊稱，暗藏在鳥語花香的花東縱谷，得天獨厚，擁有天然美景與純淨水資源，是台灣少有的淨土，油亮碧綠的寬廣草原，宛若仙境，雲霧繚繞，這裡是孕育極品茶的世外桃花源-吉林茶園。</p>
+				
+				<div class="btwrap">
+					<button class="bt">
+						<a class="btn" href="02_vote_more.html">
+							More
+						</a>
+					</button>
+				</div>
+			</div>
+		</div>
+
+		<div class="block1">
+			<div class="pic">
+				<img class="tea" src="images/vote/tea5.jpg">
+				<img class="m1" src="images/vote/medal2.png">
+			</div>
+			<div class="info">
+				<div class="s1">
+					<p class="p1">舞鶴茶園</p>
+					<div class="fb-share-button" data-href="http://127.0.0.1:5501/07_vote_more.html" data-layout="button" data-size="small">
+                        <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5501%2F07_vote_more.html&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
+                            分享
+                        </a>
+                    </div>
+				</div>
+				
+				<div class="allscore">
+					<span class="score">
+						總分:&ensp; 
+					</span>
+					<div id="app2">
+						<star-rating  :rating="4.3" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
+					</div>
+				</div>
+				<p class="p3">水尾，依山傍水，瑞穗的舊稱，暗藏在鳥語花香的花東縱谷，得天獨厚，擁有天然美景與純淨水資源，是台灣少有的淨土，油亮碧綠的寬廣草原，宛若仙境，雲霧繚繞，這裡是孕育極品茶的世外桃花源-吉林茶園。</p>
+				<div class="btwrap">
+					<button class="bt">
+						<a href="02_vote_more.html">
+							More
+						</a>
+					</button>
+				</div>
+			</div>
+		</div>
+
+		<div class="block1">
+			<div class="pic">
+				<img class="tea" src="images/vote/tea5.jpg">
+				<img class="m1" src="images/vote/medal3.png">
+			</div>
+			<div class="info">
+				<div class="s1">
+					<p class="p1">舞鶴茶園</p>
+					<div class="fb-share-button" data-href="http://127.0.0.1:5501/07_vote_more.html" data-layout="button" data-size="small">
+                        <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5501%2F07_vote_more.html&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
+                            分享
+                        </a>
+                    </div>
+				</div>
+				
+				<div class="allscore">
+					<span class="score">
+						總分:&ensp; 
+					</span>
+					<div id="app3">
+						<star-rating  :rating="3.8" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
+					</div>
+				</div>
+				<p class="p3">水尾，依山傍水，瑞穗的舊稱，暗藏在鳥語花香的花東縱谷，得天獨厚，擁有天然美景與純淨水資源，是台灣少有的淨土，油亮碧綠的寬廣草原，宛若仙境，雲霧繚繞，這裡是孕育極品茶的世外桃花源-吉林茶園。</p>
+				<div class="btwrap">
+					<button class="bt">
+						<a href="02_vote_more.html">
+							More
+						</a>
+					</button>
+				</div>
+			</div>
+		</div>
+
+		<h2 class="ht">茶園排行</h2>
+
+		<table id="app4">
+			<tr class="title">
+				<td>排名</td>
+				<td>茶園名稱</td>
+				<td>總分</td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>舞鶴茶園</td>
+				<td class="resize">
+					<star-rating  :rating="4.7" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
+				</td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>茶園名稱</td>
+				<td class="resize">
+					<star-rating  :rating="4.3" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
+				</td>
+			</tr>
+			<tr>
+				<td>3</td>
+				<td>茶園名稱</td>
+				<td class="resize">
+					<star-rating  :rating="3.8" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
+				</td>
+			</tr>
+			<tr></tr>
+				<td>4</td>
+				<td>茶園名稱</td>
+				<td class="resize">
+					<star-rating  :rating="3.7" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
+				</td>
+			</tr><tr>
+				<td>5</td>
+				<td>茶園名稱</td>
+				<td class="resize">
+					<star-rating  :rating="3.5" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
+				</td>
+			</tr>
+			<tr>
+				<td>6</td>
+				<td>茶園名稱</td>
+				<td class="resize">
+					<star-rating  :rating="3.3" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
+				</td>
+			</tr><tr>
+				<td>7</td>
+				<td>茶園名稱</td>
+				<td class="resize">
+					<star-rating  :rating="3.2" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
+				</td>
+			</tr>
+			<tr>
+				<td>8</td>
+				<td>茶園名稱</td>
+				<td class="resize">
+					<star-rating  :rating="3.1" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
+				</td>
+			</tr>
+			<tr>
+				<td>9</td>
+				<td>茶園名稱</td>
+				<td class="resize">
+					<star-rating  :rating="3.0" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
+				</td>
+			<tr>
+				<td>10</td>
+				<td>茶園名稱</td>
+				<td class="resize">
+					<star-rating  :rating="2.7" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
+				</td>
+			</tr>
+		</table>
+
+	</main>
+
+	<footer> ®偵茶者TEA SEARCHER CORPORATION. ALL RIGHTS RESERVED.2020 </footer>
+	<div class="pagetop"></div>
+	<div class="pagetop is-hidden"></div>
+
+
+	<script>
+		Vue.component("star-rating", VueStarRating.default,{
+			methods: {
+				setRating: function(rating) {
+					this.rating = "You have Selected: " + rating + " stars";
+				},
+				showCurrentRating: function(rating) {
+					this.currentRating =
+						rating === 0
+							? this.currentSelectedRating
+							: "Click to select " + rating + " stars";
+				},
+				setCurrentSelectedRating: function(rating) {
+					this.currentSelectedRating =
+						"You have Selected: " + rating + " stars";
+				}
+			},
+			data: {
+				rating: "No Rating Selected",
+				currentRating: "No Rating",
+				currentSelectedRating: "No Current Rating",
+				boundRating: 3
+			}
+		});
+
+		new Vue({
+			el: "#app",
+		});
+
+		new Vue({
+			el: "#app2",
+		});
+
+		new Vue({
+			el: "#app3",
+		});
+
+		new Vue({
+			el: "#app4",
+		});
+
+	</script>
+
+	<div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v9.0" nonce="WuFFSzIJ"></script>
+</body>
+</html>
