@@ -208,6 +208,7 @@ img {
                 padding: 0px;
                 position: absolute;
                 left: 30px;
+
                 background-color: $search-bar-bgColor;
 
 
@@ -278,9 +279,10 @@ img {
         }
 
         .love_share {
-            text-align: right;
-            padding-right: 30px;
+            vertical-align: top;
+            // padding-right: 30px;
             // border: 1px solid black;
+            display: inline-block;
 
 
 
@@ -299,12 +301,14 @@ img {
         }
 
         .tour_text {
-            width: 280px;
-            margin: 0 auto;
+            width: 180px;
+            display: inline-block;
+            // border: 1px solid black;
+            text-align: left;
+
 
             h3 {
                 margin: 0;
-                width: 130px;
                 padding: 5px;
                 color: $secondary-typo-color;
 
@@ -313,35 +317,40 @@ img {
             p {
                 margin: 0;
                 padding: 5px;
-                width: 130px;
+
             }
 
             .ink {
-                border: 5px solid deeppink;
-                border-radius: 50%;
+
                 position: absolute;
-                right: -10%;
-                top: 60%;
-                padding: 2px;
-                text-align: center;
-                transform: rotate(30deg);
-                z-index: 2;
+                right: 2%;
+                top: 58%;
+                // border: 1px solid black;
+
+                .ink_bg {
+                    width: 150px;
+                }
+
 
                 .inkText {
-                    padding: 20px;
-                    border: 1px solid red;
-                    border-radius: 50%;
-                    line-height: 40px;
+                    position: absolute;
+                    top: 60%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+
 
                     h3 {
-                        font-size: $h3;
-                        color: red;
+                        font-size: $h4;
+                        color: #F75000;
+                        white-space: nowrap;
+
 
                     }
 
                     p {
-                        color: red;
-                        font-size: $h4;
+                        color: #F75000;
+                        font-size: $h5;
+                        text-align: center;
 
 
 
