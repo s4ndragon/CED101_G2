@@ -15,9 +15,9 @@ const fileinclude = require("gulp-file-include");
 function move() {
     //有return就不用cb
     // return src("a").pipe(dest("b")); 從a搬到b
-    return src("src/*.html").pipe(dest("dist/"));
+    return src("src/images/*.*").pipe(dest("dist/"));
 }
-exports.copyHTML = move; //原檔案若做修改，再做執行時會覆蓋掉目的地的檔案（更新）
+exports.copyImg = move; //原檔案若做修改，再做執行時會覆蓋掉目的地的檔案（更新）
 
 //合併檔案
 function concatCss() {
@@ -42,7 +42,7 @@ exports.renameCss = change;
 
 //uglify 壓縮
 function ugjs() {
-    return src("js/*.js").pipe(uglify()).pipe(dest("dist/js"));
+    return src("src/js/*.js").pipe(uglify()).pipe(dest("dist/js"));
 }
 exports.ugjs = ugjs;
 
@@ -84,6 +84,16 @@ function clearHtml() {
 }
 exports.cleanHTML = clearHtml;
 
+function clearImg() {
+    //src  檔案路徑
+    return src("dist/images/*.*", {
+        read: false, //避免 gulp 去讀取檔案內容，讓刪除效能變好
+        force: true, //強制刪除
+        allowEmpty: true,
+    }).pipe(clean());
+}
+exports.cleanImg = clearImg;
+
 //html template
 function includeHTML() {
     return src("src/*.html")
@@ -123,12 +133,20 @@ exports.jsbabel = babels;
 //     done();
 // }
 exports.wholehtml = includeHTML;
-exports.html = series(clearHtml, includeHTML);
+// exports.html = series(clearHtml, includeHTML);
+
+function zipImg() {
+    return src("src/images/*.*") //
+        .pipe(imagemin())
+        .pipe(dest("dist/images"));
+}
+exports.imagemin = zipImg;
 
 //watch
 function watchFile() {
     watch("src/sass/*.scss", series(clearCss, sassStyle)); //control z停止watch
     watch("src/js/*.js", ugjs);
     watch(["src/*.html", "src/nav.html", "src/footer.html"], series(clearHtml, includeHTML));
+    // watch("src/images/*.*"), series(clearImg, zipImg)
 }
 exports.watch = watchFile;
