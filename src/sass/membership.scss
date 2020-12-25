@@ -5,6 +5,7 @@ $bgc: lighten($bg-color, 10%);
 $side: 25%;
 $main: 100% - $side;
 $btn-dark: darken($btn-color, 5%);
+$darker: darken($primary-typo-color, 7%);
 $lighter: lighten($success-sign, 15%);
 $main-width: 80%;
 //==============================//
@@ -14,9 +15,8 @@ $main-width: 80%;
 }
 
 body {
-    background-color: $bg-color;
-    color: $primary-typo-color;
-    font-family: $font-family;
+    @include forTourAndShop;
+
     h1 {
         font-size: $h1;
     }
@@ -71,7 +71,7 @@ main {
             justify-content: space-around;
         }
         #avatar {
-            border: 1px solid black;
+            // border: 1px solid black;
             align-self: center;
             border-radius: 50%;
             width: 200px;
@@ -123,7 +123,13 @@ main {
                 }
             }
             .bg-color {
+                background-color: $primary-typo-color;
+                color: $lighter;
+                border-radius: 5px 5px 0 0;
+            }
+            .select-color {
                 background-color: $lighter;
+                color: $primary-typo-color;
                 border-radius: 5px 5px 0 0;
             }
         }
@@ -133,7 +139,7 @@ main {
             width: $main-width;
             display: flex;
             flex-direction: column;
-            border-radius: 0 5px 5px;
+            border-radius: 0 0 5px 5px;
             @media only screen and (min-width: 769px) and (max-width: 1200px) {
             }
             @media only screen and (max-width: 768px) {
@@ -141,9 +147,11 @@ main {
             }
             #mine_tour,
             #i_join {
-                // border: 1px solid black;
+                border: 5px dashed $secondary-typo-color;
+                background-color: white;
                 width: 100%;
-                padding: 20px 0;
+                padding: 10px 0;
+                margin: 10px 0;
                 h3 {
                     padding: 10px;
                     font-size: $h3;
@@ -228,6 +236,13 @@ main {
                             }
                         }
                     }
+                    .outdated {
+                        background-color: $search-bar-bgColor;
+                        &:hover {
+                            background-color: darken($search-bar-bgColor, 5%);
+                            color: darken($primary-typo-color, 5%);
+                        }
+                    }
                 }
             }
         }
@@ -247,7 +262,7 @@ main {
                 justify-self: center;
                 position: absolute;
                 // left: 50%;
-                padding: 5px 5px 5px 15px;
+                padding: 15px 5px 5px 15px;
                 @media only screen and (min-width: 993px) and (max-width: 1200px) {
                     width: 30%;
                 }
@@ -260,21 +275,27 @@ main {
                 h4 {
                     font-size: $h4;
                 }
-                .fav_tour {
-                    cursor: pointer;
-                }
-                .fav_article {
-                    cursor: pointer;
-                }
+                .fav_tour,
+                .fav_article,
                 .fav_product {
                     cursor: pointer;
+                    width: calc(100% / 3);
+                    text-align: center;
+                    padding: 5px 0;
                 }
+                // .fav_tour {
+                //     background-color: $darker;
+                //     color: $lighter;
+                //     border-radius: $br;
+                // }
             }
             #fav_container {
                 // border: 1px solid green;
                 background-color: $lighter;
-                border-radius: 5px;
-                padding-bottom: 30px;
+                border-radius: 0 0 5px 5px;
+                padding: 30px 10px;
+                // padding: 10px 0;
+                // margin: 10px 0;
                 #fav_tour {
                     display: flex;
                     #tour_list {
@@ -284,6 +305,7 @@ main {
                 }
                 #fav_article {
                     display: none;
+
                     #article_list {
                         display: flex;
                         flex-wrap: wrap;
@@ -308,7 +330,15 @@ main {
                 display: flex;
                 flex-direction: column;
                 background-color: $lighter;
-                border-radius: 5px;
+                border-radius: 0 0 5px 5px;
+                padding: 10px 0;
+                // margin: 10px 0;
+                #list_title {
+                    h5 {
+                        color: $darker;
+                        font-weight: $bold;
+                    }
+                }
                 #list_title,
                 #order {
                     display: flex;
@@ -364,7 +394,7 @@ main {
             }
             .article_brief {
                 background-color: $lighter;
-                border-radius: 5px;
+                border-radius: 0 0 5px 5px;
                 padding: 10px 0px;
                 .article_detail {
                     margin: 10px;
@@ -406,12 +436,13 @@ main {
             #profile {
                 // border: 1px solid $primary-typo-color;
                 background-color: $lighter;
-                border-radius: 5px 0 5px;
+                border-radius: 0 0 5px 5px;
                 width: 100%;
                 display: flex;
                 flex-direction: column;
                 position: relative;
                 align-items: center;
+                padding-top: 20px;
                 .field-wrap {
                     display: flex;
                     flex-direction: column;
@@ -458,29 +489,30 @@ main {
                 }
                 .address {
                     label {
-                        transform: translateY(200%);
+                        transform: translateY(120%);
                     }
                 }
                 .button {
-                    border: 0;
-                    outline: none;
-                    border-radius: 0;
-                    padding: 5px 10px;
-                    font-size: $h3;
-                    font-weight: bold;
-                    text-transform: uppercase;
-                    letter-spacing: 0.1em;
-                    background: $primary-typo-color;
-                    color: $btn-color;
-                    transition: all.5s ease;
-                    -webkit-appearance: none;
-                    width: 300px;
-                    cursor: pointer;
-                    &:hover,
-                    &:focus {
-                        background: darken($primary-typo-color, 5%);
-                        padding: 5px 10px;
-                    }
+                    @include btn4 // border: 0;
+                        // outline: none;
+                        // border-radius: 0;
+                        // padding: 5px 10px;
+                        // font-size: $h3;
+                        // font-weight: bold;
+                        // text-transform: uppercase;
+                        // letter-spacing: 0.1em;
+                        // background: $primary-typo-color;
+                        // color: $btn-color;
+                        // transition: all.5s ease;
+                        // -webkit-appearance: none;
+                        // width: 300px;
+                        // cursor: pointer;
+                        // &:hover,
+                        // &:focus {
+                        //     background: darken($primary-typo-color, 5%);
+                        //     padding: 5px 10px;
+                        // }
+;
                 }
             }
         }
@@ -511,4 +543,9 @@ main {
         font-size: $h6;
         padding: 5px 0;
     }
+}
+.colored {
+    background-color: $darker;
+    color: $lighter;
+    border-radius: $br;
 }
