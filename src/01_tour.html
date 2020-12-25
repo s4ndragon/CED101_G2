@@ -23,35 +23,35 @@
                 <button id="nLocal">北部地區</button>
                 <button id="cLocal">中部地區</button>
                 <button id="sLocal">南部地區</button>
-                <div class="location1">
-                    <img src="./images/common/location.png" alt="">
+                <div class="location1 location">
+                    <img class="locationImg" src="./images/common/location.png" alt="">
                 </div>
-                <div class="location2">
-                    <img src="./images/common/location.png" alt="">
+                <div class="location2 location">
+                    <img class="locationImg" src="./images/common/location.png" alt="">
                 </div>
-                <div class="location3">
-                    <img src="./images/common/location.png" alt="">
+                <div class="location3 location">
+                    <img class="locationImg" src="./images/common/location.png" alt="">
                 </div>
-                <div class="location4">
-                    <img src="./images/common/location.png" alt="">
+                <div class="location4 location">
+                    <img class="locationImg" src="./images/common/location.png" alt="">
                 </div>
-                <div class="location5">
-                    <img src="./images/common/location.png" alt="">
+                <div class="location5 location">
+                    <img class="locationImg" src="./images/common/location.png" alt="">
                 </div>
-                <div class="location6">
-                    <img src="./images/common/location.png" alt="">
+                <div class="location6 location">
+                    <img class="locationImg" src="./images/common/location.png" alt="">
                 </div>
-                <div class="location7">
-                    <img src="./images/common/location.png" alt="">
+                <div class="location7 location">
+                    <img class="locationImg" src="./images/common/location.png" alt="">
                 </div>
-                <div class="location8">
-                    <img src="./images/common/location.png" alt="">
+                <div class="location8 location">
+                    <img class="locationImg" src="./images/common/location.png" alt="">
                 </div>
-                <div class="location9">
-                    <img src="./images/common/location.png" alt="">
+                <div class="location9 location">
+                    <img class="locationImg" src="./images/common/location.png" alt="">
                 </div>
-                <div class="location10">
-                    <img src="./images/common/location.png" alt="">
+                <div class="location10 location">
+                    <img class="locationImg" src="./images/common/location.png" alt="">
                 </div>
             </div>
             <!-- <img src="../images/index/notuse/8355.png" alt=""> -->
@@ -125,16 +125,14 @@
                 newTour.innerHTML = `
                 <div class="tour_img">
                             <img src="./images/tour/tour1.jpg" alt="">
-                    </div>
-                            
+                    </div>                          
                                     <div class="tour_text">
                                         <h3>活動名稱</h3>
                                         <p>一定打斷你鼻樑</p>
                                         <h3>活動日期</h3>
                                         <p>2020/12/30</p>
                                         <h3>截止揪團日期</h3>
-                                        <p>2020/12/25</p>
-                                       
+                                        <p>2020/12/25</p>                                      
                                         <h3>預估費用</h3>
                                         <p>$7800NT</p>
                                         <div class="ink">
@@ -173,10 +171,11 @@
                     this.src = "./images/common/heart.png";
                 }
             }
-        })
+        });
+        let location1 = document.getElementsByClassName("location1")[0];
+        let locationImg = document.getElementsByClassName("locationImg");
 
-
-
+        location1.addEventListener("mouseover",)
     </script>
 </body>
 
