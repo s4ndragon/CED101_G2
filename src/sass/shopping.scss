@@ -1,8 +1,4 @@
-@import './default/_variables.scss';
-@import './default/bground_style';
-@import './default/btn';
-
-
+@import './default/common';
 
 body {
     margin: 0;
@@ -17,6 +13,7 @@ body {
         height: 30px;
         margin: 15px;
         vertical-align: middle;
+        cursor: pointer;
     }
 
     #classifyBtn {
@@ -82,17 +79,13 @@ div.recommend {
 }
 
 div.product {
-    padding: 5px;
-    border-radius: 5px;
-    overflow: hidden;
-    background-color: #CCFF80;
-    margin: 5px 5px;
     transition-duration: .2s;
     text-align: center;
     padding-bottom: 15px;
     outline: none;
-    padding: 5px;
-
+    // padding: 0 15px;
+    padding-right: 5px;
+    // margin: 0 5px;
 
 
     div.img {
@@ -121,12 +114,21 @@ div.product {
         -webkit-line-clamp: 2;
         overflow: hidden;
     }
+
+    >div {
+        overflow: hidden;
+        background-color: #CCFF80;
+        padding: 5px;
+        border-radius: 5px;
+    }
+
+    &:hover>div {
+        transform: translate(1px, 1px);
+        box-shadow: 1px 0px 5px 0px #467401;
+
+    }
 }
 
-div.product:hover {
-    transform: translate(1px, 1px);
-    box-shadow: 3px 5px 9px 3px #467401;
-}
 
 div.search {
     margin: 0px auto 0px auto;

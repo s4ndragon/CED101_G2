@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
+///
 
 <head>
     <meta charset="UTF-8">
@@ -7,6 +8,7 @@
     <title>購物車</title>
     <link rel="stylesheet" href="./js/slick-1.8.1/slick/slick.css">
     <link rel="stylesheet" href="./js/slick-1.8.1/slick/slick-theme.css">
+    <link rel="stylesheet" href="./css/shopping.css">
     <link rel="stylesheet" href="./css/cart.css">
 
     <!-- 推薦廣告用 -->
@@ -20,9 +22,12 @@
 <body>
     <form action="./04_check.html">
         <h2 class="title">購物車</h2>
-        <div class="cart_content" id="cart_content"></div>
+        <div class="cart_content" id="cart_content">
+            <div id="amount">
+                <span>總計: </span><input type="number" name="" id="totalAmount" disabled value="0">
+            </div>
+        </div>
         <div class="function">
-            <span>總計: </span><input type="number" name="" id="totalAmount" disabled value="0"><br><br>
             <button id="backShop">
                 <a href="./04_shopping.html">繼續購物</a>
             </button>

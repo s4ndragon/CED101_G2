@@ -3,9 +3,25 @@
 @import "_discuss_pub";
 
 // ==========共用=========
+@keyframes roll {
+    from {
+        background-position: 0px 0px;
+    }
+
+    to {
+        background-position: 0px 18000px;
+    }
+}
+
 
 body {
-    @include forTourAndShop;
+    @include forDiscussAndVote;
+    background-image: url(../images/common/bg.png);
+    background-size: contain;
+    background-position: 0px 0px;
+    background-repeat: repeat-x;
+    animation: roll 5000s linear infinite;
+    background-repeat: repeat-y;
 }
 
 a {
@@ -21,7 +37,9 @@ li {
 #big_title {
     text-align: center;
     font-size: 60px;
-    margin: 30px 0;
+    margin: 0 0 30px 0;
+    padding: 150px;
+    background-color: $secondary-typo-color;
 
 }
 
@@ -29,39 +47,28 @@ li {
     cursor: pointer;
 }
 
-.allthing {
+
+
+#articles {
     display: flex;
-    width: 80%;
-    margin: 0 auto;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
 
-    #articles {
+    #filter {
         display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
 
-        h2 {
-            text-align: center;
-            font-size: $h2;
-            margin: 0 auto;
-        }
+        .cate {
+            margin-right: 30px;
+            padding: 20px;
+            font-weight: bolder;
+            border-radius: 50%;
+            transition: all 0.5s ease;
 
-        #filter {
-            display: flex;
-
-            .cate {
-                margin-right: 30px;
-                padding: 20px;
-                font-weight: bolder;
+            &:hover {
+                background-color: $secondary-typo-color;
+                color: white;
                 border-radius: 50%;
-                transition: all 0.5s ease;
-
-                &:hover {
-                    background-color: $secondary-typo-color;
-                    color: white;
-                    border-radius: 50%;
-                }
             }
         }
     }
@@ -74,43 +81,7 @@ li {
     font-weight: bolder;
 }
 
-.article {
-    margin-top: 20px;
-    background-color: white;
-    border-radius: 30px;
-    overflow: hidden;
-}
 
-#content {
-    display: flex;
-}
-
-
-.contenttext {
-    padding: 50px 80px;
-
-    img {
-        width: 30px;
-        margin: 20px 0 0 10px;
-    }
-
-    p {
-        text-align: right;
-    }
-
-    div {
-        margin-top: 25px;
-        display: flex;
-
-        img {
-            margin-left: 15px;
-        }
-
-        .btn {
-            margin-left: auto;
-        }
-    }
-}
 
 
 
@@ -138,6 +109,100 @@ main {
     }
 }
 
+
+
+
+
+// =======單篇文章樣式======
+
+#all_articles {
+    width: 90%;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 0 auto;
+}
+
+.article {
+    width: 360px;
+    height: 470px;
+    border-radius: 10px;
+    background-color: white;
+    overflow: hidden;
+    margin-top: 50px;
+}
+
+.ar_rimg {
+    width: 100%;
+    height: 220px;
+}
+
+.ar_img {
+    position: relative;
+}
+
+.ar_title {
+    position: absolute;
+    top: 0%;
+    color: white;
+    font-size: 22px;
+    margin: 5px;
+    font-weight: bolder;
+}
+
+.art_memicon {
+    position: absolute;
+    top: 82%;
+    color: white;
+    font-weight: bold;
+}
+
+.memi {
+    width: 30px;
+    height: 30px;
+    margin: 0 10px;
+}
+
+.ar_innertext {
+
+    padding: 20px;
+}
+
+.btncontainer {
+    text-align: right;
+}
+
+
 .btn {
-    @include btn;
+    @include smallbtn;
+    text-align: center;
+    padding: 0;
+}
+
+
+
+.pub_time {
+    padding: 3px;
+    font-size: $h6;
+    background-color: $secondary-typo-color;
+
+    span {
+        margin-left: 10px;
+    }
+}
+
+.art_icons {
+    position: relative;
+
+    .fb_iframe_widget {
+        position: absolute;
+        margin-left: 20px;
+    }
+}
+
+
+
+.com_num {
+    margin-left: -10px;
+    vertical-align: top;
 }
