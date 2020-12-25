@@ -9,6 +9,7 @@ function doFirst() {
         recommend_products.appendChild(newproduct);
         newproduct.setAttribute('class', 'product');
         newproduct.innerHTML = `
+        <div>
                                 <div class="img">
                                     <a href="./04_product.html">
                                         <img src="./images/shopping/product2.jpg" alt="">
@@ -24,6 +25,7 @@ function doFirst() {
                                     <input type="button" value="加入購物車" class="add_cart">
                                     <input type="hidden" name="" value='s1123${i}|【原藝坊】悠然愜意 青瓷鯉魚茶壺套組精湛工藝，功夫淳厚，手感極佳，品茶必備|550|1|0' class='productInfo'>
                                     </div>
+                                </div>
                                 </div>
                             `;
     }
