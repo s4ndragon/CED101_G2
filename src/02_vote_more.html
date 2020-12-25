@@ -31,12 +31,12 @@
                     </div>
                 </div>
 
-                <div class="allscore" id="app">
+                <div class="allscore app">
 					<span class="score">
 						總分:&ensp; 
 					</span>
 					<div>
-						<star-rating  :rating="4.7" :read-only="false" :increment="0.01" :star-size="25"></star-rating>
+						<star-rating  :rating="4.7" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
 					</div>
                 </div>
                 
@@ -57,9 +57,9 @@
                     <div class="modal" v-if="showModal">
                         <button class="close" @click="showModal = false">╳</button>
                         <p class="welcome">歡迎評分</p>
-                        <div id="app3">
+                        <div class="app">
                             <div class="star">
-                                <star-rating></star-rating>
+                                <star-rating :increment="0.5" :star-size="35"></star-rating>
                             </div>
                         </div>
                         <button>送出</button>
@@ -101,12 +101,12 @@
 		});
 
 		new Vue({
-			el: "#app",
+			el: ".app",
         });
 
-        new Vue({
-			el: "#app3",
-        });
+        // new Vue({
+		// 	el: "#app3",
+        // });
         
         //燈箱
         new Vue({
