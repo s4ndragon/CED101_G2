@@ -171,11 +171,30 @@
                     this.src = "./images/common/heart.png";
                 }
             }
-        });
-        let location1 = document.getElementsByClassName("location1")[0];
-        let locationImg = document.getElementsByClassName("locationImg");
 
-        location1.addEventListener("mouseover",)
+
+            let locationPoint = document.getElementsByClassName("location");
+            let locationImg = document.getElementsByClassName("locationImg");
+            // console.log(locationPoint[2]);
+            for (var i = 0; i < locationImg.length; i++) {
+                locationImg[i].addEventListener("mouseover", changeImage);
+            };
+            function changeImage() {
+
+                this.src = `./images/tour/tour1.jpg`;
+                this.addEventListener("mouseout", removeChangeImage);
+            };
+            function removeChangeImage() {
+                this.src = "./images/common/location.png";
+                this.addEventListener("mouseover", changeImage);
+            };
+        });
+
+
+
+
+
+
     </script>
 </body>
 
