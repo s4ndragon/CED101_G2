@@ -88,8 +88,6 @@ function loadFavorite() {
     for (let i = 0; i < FavoriteBtn.length; i++) {
         itemValueBtn = FavoriteBtn[i].nextElementSibling.nextElementSibling;
         let f = itemValueBtn.value.split('|')[4];
-        console.log(f)
-        console.log(FavoriteBtn[i])
         if (f == 0) {
             FavoriteBtn[i].src = "./images/common/heart.png";
         } else if (f == 1) {
