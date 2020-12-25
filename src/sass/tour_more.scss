@@ -82,19 +82,29 @@ main{
         margin-top: 60px;
         text-align: left;
         font-size: $h3;
+        color: #7baa17;
+        font-weight: bold;
     }
 
     .all2{
         border: 1px solid green;
         text-align: left;
+        margin-top: 20px;
+        display: flex;
 
         .ht{
             font-size: $h4;
-            margin: 0 0 10px;
+            margin-bottom: 10px;
         }
 
-        .eat{
-            margin-top: 25px;
+        .first{
+            margin-right: 30px;
+        }
+
+        .sec{
+            .hotel{
+                margin: 0 7px;
+            }
         }
 
         .hotel_container{
@@ -103,9 +113,10 @@ main{
                 box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
                 display: inline-block;
                 border-radius: 5px;
+                background-color: white;
 
                 .hpic{
-                    width: 300px;
+                    width: 270px;
                     border-radius: 5px 5px 0 0;
                 }
 
@@ -125,6 +136,12 @@ main{
         .all{
             .tinfo{
                 padding-left:10px;
+            }
+        }
+
+        .hotel_container{
+            .hotel{
+                width: 30%;
             }
         }
     }
