@@ -20,16 +20,15 @@ body {
 }
 
 main {
+    padding-top: 100px;
+
     h1 {
         text-align: center;
         font-size: $h1;
         margin: 20px;
     }
 
-    .preview_title {
-        text-align: center;
-        padding-top: 10px;
-    }
+
 
     .tourCreate_header {
         display: flex;

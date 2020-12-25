@@ -10,7 +10,7 @@ window.addEventListener('load', () => {
             <div class="img"><img src="./images/shopping/product.jpg" alt=""></div>
             </td>
             <td class="prodtitle">
-            不鏽鋼琺瑯真空保溫瓶-玫瑰粉(360ml)-
+            不鏽琺瑯真空保溫瓶-玫瑰粉(360ml)-
             </td>
         </tr>
         <tr>
