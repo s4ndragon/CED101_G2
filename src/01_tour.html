@@ -12,6 +12,7 @@
 </head>
 
 <body>
+    @@include('layout/nav.html')
     <div class="choice_block">
         <div class="flex">
             <div class="twMap">
@@ -106,10 +107,12 @@
             <div class="tour_browse_block" id="tourBrowseBlock"></div>
         </div>
     </div>
+    @@include('layout/footer.html')
 
-    <div class="createTour">
-        <p>我開團</p>
-        <img src="./images/tour/createTourCar.png" alt="">
+    <div class="createTour"><a href="./01_tourCreate.html">
+            <p>我要開團</p>
+            <img src="./images/tour/createTourCar.png" alt="">
+        </a>
     </div>
     <script>
         window.addEventListener("load", function () {

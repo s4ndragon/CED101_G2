@@ -12,6 +12,10 @@ img {
 
 $main-width: 80%;
 
+.header_block {
+    padding-top: 100px;
+}
+
 h1 {
     text-align: center;
     font-size: $h1;
@@ -26,6 +30,7 @@ h1 {
     align-content: space-around;
     width: $main-width;
     margin: 50px auto;
+
 
 
     .step_title {
@@ -352,6 +357,7 @@ h1 {
     position: fixed;
     right: 20px;
     bottom: 20px;
+    z-index: 2;
 
     .help_text {
         background-color: #fff;
