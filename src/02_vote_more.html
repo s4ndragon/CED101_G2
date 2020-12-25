@@ -34,7 +34,7 @@
 						總分:&ensp; 
 					</span>
 					<div>
-						<star-rating  :rating="4.7" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
+						<star-rating  :rating="4.7" :read-only="false" :increment="0.01" :star-size="25"></star-rating>
 					</div>
                 </div>
                 
@@ -53,9 +53,14 @@
                     <div class="overlay" v-if="showModal" @click="showModal = true"></div>
                     <!-- modal -->
                     <div class="modal" v-if="showModal">
-                        <button class="close" @click="showModal = false">x</button>
-                        <h3>Title</h3>
-                        <p>Description</p>
+                        <button class="close" @click="showModal = false">╳</button>
+                        <p class="welcome">歡迎評分</p>
+                        <div id="app3">
+                            <div class="star">
+                                <star-rating   :read-only="false" :increment="0.5" :star-size="25"></star-rating>
+                            </div>
+                        </div>
+                        <button>送出</button>
                     </div>
 				</div>
             </div>
@@ -90,15 +95,18 @@
 				currentRating: "No Rating",
 				currentSelectedRating: "No Current Rating",
                 boundRating: 3,
-                
-                showModal: false
 			}
 		});
 
 		new Vue({
 			el: "#app",
         });
+
+        new Vue({
+			el: "#app3",
+        });
         
+        //燈箱
         new Vue({
             el: '#app2',
             data: { showModal: false }
