@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>茶園票選</title>
-    <link rel="stylesheet" href="css/vote_more.css">
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.js"></script> -->
+    <link rel="stylesheet" href="../css/vote_more.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.js"></script>
     <script src="https://unpkg.com/vue-star-rating@1.5.1/dist/star-rating.min.js"></script>
     <script src="node_modules/vue/dist/vue.js"></script>
     <script src="./js/newtour.js"></script>
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
     
@@ -29,11 +29,11 @@
                     </div>
                 </div>
 
-                <div class="allscore">
+                <div class="allscore" id="app">
 					<span class="score">
 						總分:&ensp; 
 					</span>
-					<div id="app">
+					<div>
 						<star-rating  :rating="4.7" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
 					</div>
                 </div>
@@ -44,10 +44,19 @@
                 </p>
                 <p class="p5">海拔100至300公尺的舞鶴台地，依傍高聳的中央山脈，隨風拂來秀姑巒溪與紅葉溪的濕潤水氣，宜人的氣候適合茶樹生長，是天鶴茶的產地，也是小葉綠蟬生長的天堂，經由小葉綠蟬吸吮而製成的蜜香紅茶，微帶淡淡的果香與蜜香，口感溫潤生津，獨特的風味聞名全臺，成為旅人來訪瑞穗必帶的伴手禮之一。
                 </p>
-                <div class="btwrap">
-					<button class="bt">
+                <div class="btwrap" id="app2">
+					<button class="bt" @click="showModal = true">
 						我要評分
-					</button>
+                    </button>
+
+                    <!-- overlay -->
+                    <div class="overlay" v-if="showModal" @click="showModal = true"></div>
+                    <!-- modal -->
+                    <div class="modal" v-if="showModal">
+                        <button class="close" @click="showModal = false">x</button>
+                        <h3>Title</h3>
+                        <p>Description</p>
+                    </div>
 				</div>
             </div>
         </div>
@@ -56,15 +65,6 @@
 
         <h3>相關揪團</h3>
         <div class="tour_browse_block" id="tourBrowseBlock"></div>
-
-        <div class="overlay">
-            <article>
-              <h1>這是 Modal 裡的標題</h1>
-              <p>這是 Modal 段落</p>
-              <button type="button" class="btn_modal_close">關閉</button>
-            </article>
-          </div>
-
     </main>
 
     
@@ -89,15 +89,23 @@
 				rating: "No Rating Selected",
 				currentRating: "No Rating",
 				currentSelectedRating: "No Current Rating",
-				boundRating: 3
+                boundRating: 3,
+                
+                showModal: false
 			}
 		});
 
 		new Vue({
 			el: "#app",
-		});
-	</script>
+        });
+        
+        new Vue({
+            el: '#app2',
+            data: { showModal: false }
+        });
 
+    </script>
+    
     <div id="fb-root"></div>
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v9.0" nonce="WuFFSzIJ"></script>
 </body>
