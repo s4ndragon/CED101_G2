@@ -22,7 +22,7 @@ window.addEventListener("load", function () {
                   
                             <div class="tour_text">
                                 <h3>活動名稱</h3>
-                                <p>一定打斷你鼻樑</p>
+                                <p>舞鶴茶園一日遊</p>
                                 <h3>活動日期</h3>
                                 <p>2020/12/30</p>
                                 <h3>截止揪團日期</h3>
