@@ -1,7 +1,13 @@
 //開始開發時，請在終端機中寫 "gulp watch"
 //最終生成的檔案都在dist中！
 
-const { src, dest, series, parallel, watch } = require("gulp"); //src=來源, dest=目的地, 引入套件
+const {
+    src,
+    dest,
+    series,
+    parallel,
+    watch
+} = require("gulp"); //src=來源, dest=目的地, 引入套件
 const concat = require("gulp-concat");
 const rename = require("gulp-rename");
 const uglify = require("gulp-uglify");
@@ -15,19 +21,13 @@ const fileinclude = require("gulp-file-include");
 function moveImg() {
     return src("src/images/**/*.*").pipe(dest("dist/images/"));
 }
-exports.moveImg = moveImg; 
+exports.moveImg = moveImg;
 
 //搬運js（src->dist）
 function moveJs() {
     return src("src/js/*.js").pipe(dest("dist/js/"));
 }
-exports.moveJs = moveJs; 
-//搬運套件
-function moveVendors(){
-    return src("src/vendors/**/**/**").pipe(dest("dist/vendors/"));
-}
-exports.moveVendors = moveVendors; 
-
+exports.moveJs = moveJs;
 
 //將css合併成一隻檔案
 function concatCss() {
@@ -56,9 +56,10 @@ function ugjs() {
 }
 exports.ugjs = ugjs;
 
+const sourcemaps = require('gulp-sourcemaps'); //追溯css的sass
 //sass轉css
 function sassStyle() {
-    return src("src/sass/*.scss").pipe(sass().on("error", sass.logError)).pipe(dest("dist/css"));
+    return src("src/sass/*.scss").pipe(sourcemaps.init()).pipe(sass().on("error", sass.logError)).pipe(sourcemaps.write()).pipe(dest("dist/css"));
 }
 exports.sass = sassStyle;
 
@@ -75,8 +76,8 @@ exports.sass = sassStyle;
 // }
 // exports.imagemin = img;
 
-//刪除所有
-function cleanAll(){
+//刪除css
+function cleanAll() {
     return src('dist', {
         read: false,
         force: true,
@@ -163,7 +164,7 @@ exports.imagemin = zipImg;
 
 //watch
 function watchFile() {
-    watch("src/sass/*.scss", series(clearCss, sassStyle)); 
+    watch("src/sass/*.scss", series(clearCss, sassStyle));
     watch("src/js/*.js", moveJs);
     watch(["src/*.html", "src/nav.html", "src/footer.html"], series(clearHtml, includeHTML));
     watch("src/images/**/*.*", series(clearImg, moveImg));
@@ -174,7 +175,7 @@ exports.watch = watchFile;
 
 //上線版
 function uploadFile() {
-    watch("src/sass/*.scss", series(clearCss, sassStyle)); 
+    watch("src/sass/*.scss", series(clearCss, sassStyle));
     watch("src/js/*.js", ugjs);
     watch(["src/*.html", "src/layout/*.html"], series(clearHtml, includeHTML));
     watch("src/images/**/*.*", series(clearImg, zipImg));

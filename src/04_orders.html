@@ -7,10 +7,10 @@
     <title>訂單明細</title>
     <link rel="stylesheet" href="./css/checkout.css">
     <script src="./js/checkout.js"></script>
-    <script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
 </head>
 
 <body>
+    @@include('layout/nav.html')
     <h2 class="title">訂單明細</h2>
     <form action="">
         <div class="main" id='main'>
@@ -82,14 +82,13 @@
         <table>
             <tr>
                 <td colspan=" 2" class="btn">
-                    <input type="button" value="列印訂單明細" onclick='window.print()'>
-                    <input type="button" value="生成PDF"
-                        onClick="if (confirm('是否確認提交？'))location.href= 'orders.html';return false;">
+                    <input type="button" value="列印或另存" onclick='window.print()'>
                     <input type="submit" value="回商城首頁" onClick="location.href= './04_shopping.html';return false;">
                 </td>
             </tr>
         </table>
     </form>
+    @@include('layout/footer.html')
 </body>
 
 </html>

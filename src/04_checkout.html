@@ -5,11 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>訂單明細</title>
+    <link rel="stylesheet" href="./css/shopping.css">
     <link rel="stylesheet" href="./css/checkout.css">
     <script src="./js/checkout.js"></script>
 </head>
 
 <body>
+    @@include('layout/nav.html')
     <h2 class="title">訂單明細</h2>
     <form action="">
         <div class="main">
@@ -72,6 +74,7 @@
             </table>
         </div>
     </form>
+    @@include('layout/footer.html')
 </body>
 
 </html>
