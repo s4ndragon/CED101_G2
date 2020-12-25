@@ -133,7 +133,8 @@ function calcAmount() {
             } else if (priceValue.split('|')[3] >= 100 && priceValue.split('|')[3] < 1000) {
                 c = priceValue.substring(0, priceValue.length - 5)
             }
-            pricebtn.value = `${c}${num}|${h}`
+            pricebtn.value = `${c}${num}|${h}`;
+            storage[priceValue.split('|')[0]] = pricebtn.value;
             total += (price * num);
         }
     }
@@ -143,8 +144,22 @@ function calcAmount() {
     }
 }
 
-function changeNum() {
-
+function changeNum(e) {
+    let pricebtn = e.target.querySelectorAll('input[type=hidden]')[0];
+    console.log(e.target)
+    let priceValue = pricebtn.value;
+    let num = pricebtn.previousElementSibling.previousElementSibling.value,
+        h = priceValue.split('|')[4],
+        c;
+    if (priceValue.split('|')[3] < 10) {
+        c = priceValue.substring(0, priceValue.length - 3)
+    } else if (priceValue.split('|')[3] >= 10 && priceValue.split('|')[3] < 100) {
+        c = priceValue.substring(0, priceValue.length - 4)
+    } else if (priceValue.split('|')[3] >= 100 && priceValue.split('|')[3] < 1000) {
+        c = priceValue.substring(0, priceValue.length - 5)
+    }
+    pricebtn.value = `${c}${num}|${h}`;
+    storage[priceValue.split('|')[0]] = pricebtn.value;
 }
 
 function dropitem(e) {
