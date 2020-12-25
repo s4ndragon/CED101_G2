@@ -168,7 +168,7 @@ function watchFile() {
     watch("src/js/*.js", moveJs);
     watch(["src/*.html", "src/nav.html", "src/footer.html"], series(clearHtml, includeHTML));
     watch("src/images/**/*.*", series(clearImg, moveImg));
-    watch("src/vendors/**/**/**", series(clearVendors, moveVendors))
+    // watch("src/vendors/**/**/**", series(clearVendors, moveVendors))
 }
 exports.watch = watchFile;
 
