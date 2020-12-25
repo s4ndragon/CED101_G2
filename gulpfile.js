@@ -86,7 +86,7 @@ function cleanAll() {
 }
 exports.cleanAll = cleanAll;
 
-
+//刪除css
 function clearCss() {
     return src("dist/css", {
         read: false,
@@ -117,6 +117,17 @@ function clearImg() {
     }).pipe(clean());
 }
 exports.cleanImg = clearImg;
+
+//刪除vendors
+function clearVendors() {
+    //src  檔案路徑
+    return src("dist/vendors", {
+        read: false, //避免 gulp 去讀取檔案內容，讓刪除效能變好
+        force: true, //強制刪除
+        allowEmpty: true,
+    }).pipe(clean());
+}
+exports.clearVendors = clearVendors;
 
 //html template
 function includeHTML() {
@@ -156,7 +167,8 @@ function watchFile() {
     watch("src/sass/*.scss", series(clearCss, sassStyle));
     watch("src/js/*.js", moveJs);
     watch(["src/*.html", "src/nav.html", "src/footer.html"], series(clearHtml, includeHTML));
-    watch("src/images/**/*.*", series(clearImg, moveImg))
+    watch("src/images/**/*.*", series(clearImg, moveImg));
+    watch("src/vendors/**/**/**", series(clearVendors, moveVendors))
 }
 exports.watch = watchFile;
 
@@ -166,6 +178,7 @@ function uploadFile() {
     watch("src/sass/*.scss", series(clearCss, sassStyle));
     watch("src/js/*.js", ugjs);
     watch(["src/*.html", "src/layout/*.html"], series(clearHtml, includeHTML));
-    watch("src/images/**/*.*", series(clearImg, zipImg))
+    watch("src/images/**/*.*", series(clearImg, zipImg));
+    watch("src/vendors/**/**/**", series(clearVendors, moveVendors))
 }
 exports.upload = uploadFile;
