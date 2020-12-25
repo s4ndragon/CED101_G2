@@ -1,112 +1,112 @@
-@import './default/common';
+@import '../sass/default/common';
 
 * {
     box-sizing: border-box;
 }
 
-body {
-    @include forTourAndShop;
-}
+// body {
+//     @include forIndex;
+// }
 
-html,
-body,
-div,
-span,
-applet,
-object,
-iframe,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-pre,
-a,
-abbr,
-acronym,
-address,
-big,
-cite,
-code,
-del,
-dfn,
-em,
-img,
-ins,
-kbd,
-q,
-s,
-samp,
-small,
-strike,
-strong,
-sub,
-sup,
-tt,
-var,
-b,
-u,
-i,
-center,
-dl,
-dt,
-dd,
-ol,
-ul,
-li,
-fieldset,
-form,
-label,
-legend,
-table,
-caption,
-tbody,
-tfoot,
-thead,
-tr,
-th,
-td,
-article,
-aside,
-canvas,
-details,
-embed,
-figure,
-figcaption,
-footer,
-header,
-hgroup,
-menu,
-nav,
-output,
-ruby,
-section,
-summary,
-time,
-mark,
-audio,
-video {
-    color: #fff;
-    font-size: 100%;
-    line-height: 1.4;
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    vertical-align: baseline;
-}
+// html,
+// body,
+// div,
+// span,
+// applet,
+// object,
+// iframe,
+// h1,
+// h2,
+// h3,
+// h4,
+// h5,
+// h6,
+// p,
+// blockquote,
+// pre,
+// a,
+// abbr,
+// acronym,
+// address,
+// big,
+// cite,
+// code,
+// del,
+// dfn,
+// em,
+// img,
+// ins,
+// kbd,
+// q,
+// s,
+// samp,
+// small,
+// strike,
+// strong,
+// sub,
+// sup,
+// tt,
+// var,
+// b,
+// u,
+// i,
+// center,
+// dl,
+// dt,
+// dd,
+// ol,
+// ul,
+// li,
+// fieldset,
+// form,
+// label,
+// legend,
+// table,
+// caption,
+// tbody,
+// tfoot,
+// thead,
+// tr,
+// th,
+// td,
+// article,
+// aside,
+// canvas,
+// details,
+// embed,
+// figure,
+// figcaption,
+// footer,
+// header,
+// hgroup,
+// menu,
+// nav,
+// output,
+// ruby,
+// section,
+// summary,
+// time,
+// mark,
+// audio,
+// video {
+//     color: #fff;
+//     font-size: 100%;
+//     line-height: 1.4;
+//     margin: 0;
+//     padding: 0;
+//     border: 0;
+//     font-size: 100%;
+//     vertical-align: baseline;
+// }
 
-audio,
-canvas,
-iframe,
-img,
-svg,
-video {
-    vertical-align: middle;
-}
+// audio,
+// canvas,
+// iframe,
+// img,
+// svg,
+// video {
+//     vertical-align: middle;
+// }
 
 // .pjax-contents-wrapper {
 //     opacity: 1;
@@ -134,7 +134,8 @@ video {
     position: relative;
     padding: 70px 0 140px;
     text-align: center;
-    _background-image: url(../images/index/img_bg_yg_pc.jpg);
+    background-image: url(../../src/images/index/bg_linear.png);
+    // background-image: url(../../src/images/index/img_bg_yg_pc.jpg);
     background-size: 100% auto;
     z-index: 1;
 }
@@ -295,7 +296,7 @@ video {
     display: block;
 }
 
-.about-list li+li {
+.about-list li + li {
     margin-left: 20px;
 }
 
@@ -421,7 +422,7 @@ video {
     display: block;
     width: 100%;
     height: 30px;
-    _background-image: url(../images/index/bg-green-bottom.png);
+    background-image: url(../images/index/bg-green-bottom.png);
     background-position: center top;
     background-size: 100% auto;
     background-repeat: no-repeat;
@@ -464,7 +465,7 @@ video {
 .hdg-3 .year {
     display: block;
     width: 185px;
-    margin: 5px auto 0;
+    margin: 25px auto 0;
     color: #eff2c7;
     font-size: 1.5rem;
     background-color: #859904;
@@ -479,7 +480,7 @@ video {
     vertical-align: top;
 }
 
-.action-list li+li {
+.action-list li + li {
     margin-left: 30px;
 }
 
@@ -494,9 +495,12 @@ video {
     display: block;
     width: 100%;
     padding-top: 100%;
-    background-color: #fff;
+    // background-color: #fff;
     border-radius: 50%;
     overflow: hidden;
+    background-image: url(../../src/images/index/ill_cup.png);
+    background-position: center;
+    border: 1px solid red;
 }
 
 .action-list li a .img {
@@ -611,7 +615,7 @@ video {
     display: block;
     width: 100%;
     height: 30px;
-    _background-image: url(../images/index/bg-green-top.png);
+    background-image: url(../images/index/bg-green-top.png);
     background-position: center bottom;
     background-size: 100% auto;
     background-repeat: no-repeat;
@@ -620,7 +624,7 @@ video {
 .project {
     position: relative;
     padding: 230px 0 80px;
-    _background-image: url(../images/index/img_bg_yg_pc.jpg);
+    background-image: url(../../src/images/index/img_bg_yg_pc.jpg);
     background-size: 100% auto;
 }
 
@@ -851,7 +855,7 @@ video {
     -webkit-transform: translateY(-50%);
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
-    _background-image: url(../images/index/ntd.png);
+    background-image: url(../images/index/ntd.png);
     background-size: contain;
     background-repeat: no-repeat;
 }
@@ -981,7 +985,7 @@ video {
     padding: 0 5px;
 }
 
-.project-list li .txt-area .company>span {
+.project-list li .txt-area .company > span {
     display: inline-block;
     font-size: 0.75rem;
     color: #fff;
@@ -1008,7 +1012,7 @@ video {
     margin: 0 -5px 5px;
 }
 
-.project-list li.is-category-05 .company>span {
+.project-list li.is-category-05 .company > span {
     background-color: #f69d85;
 }
 
@@ -1042,11 +1046,11 @@ video {
     padding: 0 5px;
 }
 
-.project-list li.is-category-02 .company>span {
+.project-list li.is-category-02 .company > span {
     background-color: #ffb541;
 }
 
-.project-list li.is-category-01 .company>span {
+.project-list li.is-category-01 .company > span {
     background-color: #3293cb;
 }
 
@@ -1156,7 +1160,8 @@ video {
 
 .info {
     position: relative;
-    padding: 70px 0 30px;
+    padding-top: 70px;
+    // padding: 70px 0 30px;
     font-size: 0;
     background-color: #eff2c7;
 }
@@ -1219,7 +1224,7 @@ video {
 //   width: 100%;
 //   max-width: 1000px;
 //   padding: 55px 85px;
-//   _background-image: url(../images/index/bg-info-pdf.jpg);
+//   background-image: url(../images/index/bg-info-pdf.jpg);
 //   background-size: cover;
 //   background-position: center top;
 //   border-radius: 30px;
@@ -1237,7 +1242,7 @@ video {
     background-position: center;
     background-repeat: repeat;
     overflow: hidden;
-    _background-image: url(../images/index/img_bg_yg_pc.jpg);
+    background-image: url(../images/index/img_bg_yg_pc.jpg);
 }
 
 .spinning {
@@ -1294,7 +1299,7 @@ video {
         text-align: center;
     }
 
-    .about-list li+li {
+    .about-list li + li {
         margin-left: 0px;
     }
 
