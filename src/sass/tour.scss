@@ -32,6 +32,7 @@ img {
 .choice_block {
     position: relative;
     padding: 50px 0;
+    padding-top: 100px;
     // border: 2px solid blue;
 
     .tour_center_img {
@@ -325,7 +326,13 @@ img {
                 position: absolute;
                 right: 2%;
                 top: 58%;
+
                 // border: 1px solid black;
+                @media screen and (max-width: 575px) {
+                    right: -15%;
+                    top: 50%;
+
+                }
 
                 .ink_bg {
                     width: 150px;
@@ -604,35 +611,7 @@ img {
             margin: 20px 5px;
 
 
-            .ink {
-                border: 5px solid red;
-                border-radius: 50%;
-                position: absolute;
-                padding: 2px;
-                text-align: center;
-                transform: rotate(30deg);
 
-                .inkText {
-                    padding: 20px;
-                    border: 1px solid red;
-                    border-radius: 50%;
-                    line-height: 40px;
-
-                    h3 {
-                        font-size: $h3;
-                        color: red;
-
-                    }
-
-                    p {
-                        color: red;
-                        font-size: $h4;
-
-
-
-                    }
-                }
-            }
         }
 
     }

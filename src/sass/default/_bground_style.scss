@@ -39,7 +39,11 @@
 
 @mixin forDiscussAndVote {
     background-color: #eff2c7;
+<<<<<<< HEAD
     background-image: url(../../images/discuss/bg.png);
+=======
+    background-image: url(../../src/images/discuss/bg.png);
+>>>>>>> 2517b18d2add03769a1dce7a3405d9ef48bcd4a2
     background-position: center center;
     background-size: contain;
     background-repeat-y: repeat;

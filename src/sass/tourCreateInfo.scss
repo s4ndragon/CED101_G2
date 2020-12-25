@@ -21,6 +21,10 @@ h1 {
     margin: 20px;
 }
 
+.header_block {
+    padding-top: 100px;
+}
+
 
 .tourCreate_header {
     display: flex;
@@ -80,10 +84,12 @@ h1 {
 
 .info_main {
     width: $main-width;
-    margin: 0 auto;
-    overflow: hidden;
+    margin: 0 auto 50px auto;
 
+    @media only screen and (max-width: 576px) {
+        overflow: hidden;
 
+    }
 
     .formBtn {
         text-align: right;

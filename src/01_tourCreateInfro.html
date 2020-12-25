@@ -12,6 +12,7 @@
 </head>
 
 <body>
+    @@include('layout/nav.html')
     <div class="header_block">
         <h1>創造屬於你的專屬</h1>
         <div class="tourCreate_header">
@@ -50,91 +51,87 @@
                 <p>預覽建立揪團</p>
             </div>
         </div>
-        <div class="info_main">
-            <h1>輸入揪團資訊</h1>
-            <div class="formBtn">
-                <button><a href="./01_tourCreate.html"> 上一步</a></button>
-                <button><a href="./01_tour_preview.html"> 下一步</a></button>
-            </div>
-            <form action="">
-                <div class="form_leftside">
-                    <h2>上傳屬於你的揪團圖片</h2>
-                    <div class="holder">
-                        <div class="bullet"></div>
-                        <div class="line_one"></div>
-                        <div class="line_two"></div>
-                        <div class="pholder_one"></div>
-                    </div>
-                    <div class="img_add">
-                        <div class="img_block">
-                            <img id="image" src="./images/tour/tour1.jpg">
-                        </div>
-                        <input type="file" id="theFile">
-                    </div>
-
-                </div>
-                <div class="form_rightside">
-
-
-                    <div class="tour_info">
-                        <label for="">揪團名稱:</label>
-                        <input type=" text" name="" id="">
-                    </div>
-                    <div class="tour_info">
-                        <label for="">上限人數:</label>
-                        <input type=" text" name="" id="">
-                    </div>
-                    <div class="tour_info">
-                        <label for="todaydate">發起日期:</label>
-                        <input id="todayDate" name="todaydate" type="date" value="2016-03-01" disabled="disabled">
-                    </div>
-                    <div class="tour_info">
-                        <label for="stopdate">截止日期:</label>
-                        <input id="stopDate" type="date" name="stopdate" id="">
-                    </div>
-                    <div class="tour_info">
-                        <label for="activedate">出團日期:</label>
-                        <input id="activeDate" type="date" name="activedate" id="">
-                    </div>
-                    <div class="tour_info">
-                        <label for="leader">導遊需求:</label>
-                        <input id="option1" name="leader" type="radio"><label for="option1">需要</label>
-                        <input id="option2" name="leader" type="radio"><label for="option2">不需要</label>
-                    </div>
-                    <div class="textarea">揪團簡介:</div>
-                    <div class="tour_info">
-                        <textarea name="" id="" cols="30" rows="10" placeholder="介紹一下你的揪團吧!!(限50字)"></textarea>
-                    </div>
-                    <div class="textarea">備註:</div>
-                    <div class="tour_info">
-                        <textarea name="" id="" cols="30" rows="10" placeholder="請註明集合地點與當日出發時間!"></textarea>
-                    </div>
-                </div>
-
-
-
-
-
-            </form>
+    </div>
+    <div class="info_main">
+        <h1>輸入揪團資訊</h1>
+        <div class="formBtn">
+            <button><a href="./01_tourCreate.html"> 上一步</a></button>
+            <button><a href="./01_tour_preview.html"> 下一步</a></button>
         </div>
-        <script>
-            function doFirst() {
-                document.getElementById('theFile').onchange = fileChange;
-            }
-            function fileChange() {
-                let file = document.getElementById('theFile').files[0];
-                let readFile = new FileReader();
-                readFile.readAsDataURL(file);
-                readFile.addEventListener('load', function () {
-                    let image = document.getElementById('image');
-                    image.src = readFile.result;
-                    image.style.maxWidth = '500px';
-                    image.style.maxHeight = '400px';
-                });
-            }
-            window.addEventListener('load', doFirst);
+        <form action="">
+            <div class="form_leftside">
+                <h2>上傳屬於你的揪團圖片</h2>
+                <div class="holder">
+                    <div class="bullet"></div>
+                    <div class="line_one"></div>
+                    <div class="line_two"></div>
+                    <div class="pholder_one"></div>
+                </div>
+                <div class="img_add">
+                    <div class="img_block">
+                        <img id="image" src="./images/tour/tour1.jpg">
+                    </div>
+                    <input type="file" id="theFile">
+                </div>
 
-        </script>
+            </div>
+            <div class="form_rightside">
+
+
+                <div class="tour_info">
+                    <label for="">揪團名稱:</label>
+                    <input type=" text" name="" id="">
+                </div>
+                <div class="tour_info">
+                    <label for="">上限人數:</label>
+                    <input type=" text" name="" id="">
+                </div>
+                <div class="tour_info">
+                    <label for="todaydate">發起日期:</label>
+                    <input id="todayDate" name="todaydate" type="date" value="2016-03-01" disabled="disabled">
+                </div>
+                <div class="tour_info">
+                    <label for="stopdate">截止日期:</label>
+                    <input id="stopDate" type="date" name="stopdate" id="">
+                </div>
+                <div class="tour_info">
+                    <label for="activedate">出團日期:</label>
+                    <input id="activeDate" type="date" name="activedate" id="">
+                </div>
+                <div class="tour_info">
+                    <label for="leader">導遊需求:</label>
+                    <input id="option1" name="leader" type="radio"><label for="option1">需要</label>
+                    <input id="option2" name="leader" type="radio"><label for="option2">不需要</label>
+                </div>
+                <div class="textarea">揪團簡介:</div>
+                <div class="tour_info">
+                    <textarea name="" id="" cols="30" rows="10" placeholder="介紹一下你的揪團吧!!(限50字)"></textarea>
+                </div>
+                <div class="textarea">備註:</div>
+                <div class="tour_info">
+                    <textarea name="" id="" cols="30" rows="10" placeholder="請註明集合地點與當日出發時間!"></textarea>
+                </div>
+            </div>
+        </form>
+    </div>
+    @@include('layout/footer.html')
+    <script>
+        function doFirst() {
+            document.getElementById('theFile').onchange = fileChange;
+        }
+        function fileChange() {
+            let file = document.getElementById('theFile').files[0];
+            let readFile = new FileReader();
+            readFile.readAsDataURL(file);
+            readFile.addEventListener('load', function () {
+                let image = document.getElementById('image');
+                image.src = readFile.result;
+                image.style.maxWidth = '500px';
+                image.style.maxHeight = '400px';
+            });
+        }
+        window.addEventListener('load', doFirst);
+    </script>
 
 </body>
 
