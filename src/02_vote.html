@@ -12,8 +12,10 @@
 </head>
 <body>
 
+	<!-- @@include('layout/nav.html') -->
+
 	<main>
-		<h2>熱門茶園 TOP3</h2>
+		<h2>🌄熱門茶園 TOP3</h2>
 		<div class="block1">
 			<div class="pic">
 				<img class="tea" src="images/vote/tea5.jpg">
@@ -164,7 +166,7 @@
 				<td>6</td>
 				<td>茶園名稱</td>
 				<td class="resize">
-					<star-ratingss  :rating="3.3" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
+					<star-rating  :rating="3.3" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
 				</td>
 			</tr><tr>
 				<td>7</td>
@@ -197,11 +199,7 @@
 
 	</main>
 
-	<footer> ®偵茶者TEA SEARCHER CORPORATION. ALL RIGHTS RESERVED.2020 </footer>
-	<div class="pagetop"></div>
-	<div class="pagetop is-hidden"></div>
-
-
+	
 	<script>
 		Vue.component("star-rating", VueStarRating.default,{
 			methods: {
