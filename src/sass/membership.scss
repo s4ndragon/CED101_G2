@@ -42,9 +42,13 @@ body {
     background-color: $lighter;
 }
 //==============================//
+.banner {
+    height: 300px;
+}
 main {
     // border: 1px solid red;
-    // top: ;
+    position: relative;
+    // top: 300px;
     display: flex;
     @media only screen and (max-width: 768px) {
         flex-direction: column;
@@ -436,7 +440,7 @@ main {
                     }
                     label {
                         position: absolute;
-                        transform: translateY(75%);
+                        transform: translateY(15%);
                         left: 5%;
                         transition: all 0.25s ease;
                         // -webkit-backface-visibility: hidden;
@@ -444,7 +448,7 @@ main {
                         // font-size: 22px;
                     }
                     label.active {
-                        transform: translateY(-15px);
+                        transform: translateY(-25px);
                         left: 10px;
                         font-size: $h6;
                     }
