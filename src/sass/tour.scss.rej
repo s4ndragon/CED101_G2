@@ -1,9 +1,0 @@
-diff a/src/sass/tour.scss b/src/sass/tour.scss	(rejected hunks)
-@@ -110,6 +110,7 @@
-     right: 30%;
-     width: 60px;
- 
-+    transition-duration: 1s;
- 
- 
- }
