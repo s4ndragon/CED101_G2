@@ -8,13 +8,23 @@ body{
     @include forDiscussAndVote;
 }
 
+.banner{
+    background-color: #69994e;
+    width: 100%;
+    height: 300px;
+}
+
 main{
     text-align: center;
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 30px auto 0;
+
+    
+   
     h2{
-        font-size: $h3;
+        font-size: $h2;
         margin: 50px 0;
+        font-weight: bold;
     }
     .block1{
         box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
