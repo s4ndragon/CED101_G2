@@ -1,6 +1,6 @@
 @import './default/_variables.scss';
 @import './shop.scss';
-@import './default/btn';
+@import './sass/default/btn';
 
 h2.title {
     width: max-content;
@@ -26,7 +26,7 @@ div.cart_content {
         padding: 5px;
         border-radius: $itemBR;
 
-        span.close {
+        span.drop {
             position: absolute;
             right: 15px;
             font-size: 45px;
@@ -103,4 +103,12 @@ div.function {
         font-size: $functionFS;
         width: 150px;
     }
+}
+
+div#amount {
+    background-color: #e3ffe6;
+    width: max-content;
+    margin: 0px auto;
+    border-radius: 5px;
+    padding: 10px 5px;
 }
