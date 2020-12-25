@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>茶園票選</title>
-    <link rel="stylesheet" href="./css/vote_more.css">
+    <link rel="stylesheet" href="../css/vote_more.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.js"></script>
     <script src="https://unpkg.com/vue-star-rating@1.5.1/dist/star-rating.min.js"></script>
     <script src="node_modules/vue/dist/vue.js"></script>
@@ -78,25 +78,26 @@
     <script>
 		Vue.component("star-rating", VueStarRating.default,{
 			methods: {
-				setRating: function(rating) {
-					this.rating = "You have Selected: " + rating + " stars";
-				},
-				showCurrentRating: function(rating) {
-					this.currentRating =
-						rating === 0
-							? this.currentSelectedRating
-							: "Click to select " + rating + " stars";
-				},
-				setCurrentSelectedRating: function(rating) {
-					this.currentSelectedRating =
-						"You have Selected: " + rating + " stars";
-				}
+				// setRating: function(rating) {
+				// 	this.rating = "You have Selected: " + rating + " stars";
+				// },
+				// showCurrentRating: function(rating) {
+				// 	this.currentRating =
+				// 		rating === 0
+				// 			? this.currentSelectedRating
+				// 			: "Click to select " + rating + " stars";
+				// },
+				// setCurrentSelectedRating: function(rating) {
+				// 	this.currentSelectedRating =
+				// 		"You have Selected: " + rating + " stars";
+				// }
 			},
 			data: {
-				rating: "No Rating Selected",
-				currentRating: "No Rating",
-				currentSelectedRating: "No Current Rating",
-                boundRating: 3,
+				// rating: "No Rating Selected",
+				// currentRating: "No Rating",
+				// currentSelectedRating: "No Current Rating",
+                // boundRating: 3,
+                showModal: false,
 			}
 		});
 
