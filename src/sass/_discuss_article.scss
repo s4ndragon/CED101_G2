@@ -1,7 +1,16 @@
 .allthings {
-    border: solid black 5px;
     width: 70%;
     margin: 0 auto;
+}
+
+#art_information {
+    display: flex;
+    align-items: center;
+
+    h2 {
+        font-size: $h3;
+        font-weight: bolder;
+    }
 }
 
 .nameall {
@@ -24,39 +33,36 @@
 }
 
 
-main {
-    position: relative;
-
-    .addtour {
-        position: fixed;
-        right: 10%;
-        bottom: 10%;
-        background-color: green;
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-        color: white;
-        font-weight: bolder;
-        outline: none;
-    }
-}
-
 #commandall {
+    border-bottom: 1px solid gray;
+
     .command {
         display: flex;
         justify-content: center;
         margin: 20px;
 
         .command_text {
-            border: 2px solid black;
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
             border-radius: 20px;
             width: 70%;
             padding: 10px;
+            display: flex;
+            flex-direction: column;
+            background-color: white;
 
-            .pub_time {
+            .com_pub_time {
                 text-align: right;
+                margin-top: auto;
             }
         }
+    }
+
+    .com_title {
+        margin: 30px;
+        text-align: left;
+        font-size: 28px;
+        color: #7baa17;
+        font-weight: bold;
     }
 }
 
@@ -67,14 +73,47 @@ main {
     border-bottom: 1px solid gray;
 }
 
+.ar_excl,
 .excl {
     width: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 20px
+    margin: 0 20px;
 }
+
 
 #pub_title {
     margin: 20px 0 0 20px;
+}
+
+
+
+
+.input_container {
+    h2 {
+        margin: 30px 0px;
+        text-align: left;
+        font-size: 28px;
+        color: #7baa17;
+        font-weight: bold;
+    }
+
+    .create_command_container {
+        text-align: center;
+
+        .create_command {
+            width: 800px;
+            height: 100px;
+            margin: 0 auto;
+        }
+
+        .com_btn_countainer {
+
+            .inner_btn {
+                @include smallbtn
+            }
+        }
+    }
+
 }

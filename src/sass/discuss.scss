@@ -17,11 +17,11 @@
 body {
     @include forDiscussAndVote;
     background-image: url(../images/common/bg.png);
-    background-size: contain;
     background-position: 0px 0px;
     background-repeat: repeat-x;
     animation: roll 5000s linear infinite;
     background-repeat: repeat-y;
+    background-size: auto;
 }
 
 a {
@@ -32,13 +32,58 @@ li {
     list-style: none;
 }
 
+
+
+main {
+    position: relative;
+
+    .addtour {
+        position: fixed;
+        right: 5%;
+        bottom: 10%;
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background-color: #f6ffe0;
+        font-weight: bolder;
+        font-size: $h5;
+        outline: none;
+        z-index: 500;
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        border: 0px;
+
+        a {
+            color: $secondary-typo-color;
+            height: 100%;
+            width: 100%;
+            display: inline-block;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            &:hover {
+                background-color: #7baa17;
+                color: white;
+
+            }
+        }
+
+
+
+    }
+}
+
+
 // =========以上是共用========
 
 #big_title {
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 60px;
     margin: 0 0 30px 0;
-    padding: 150px;
+    height: 300px;
     background-color: $secondary-typo-color;
 
 }
@@ -60,15 +105,15 @@ li {
 
         .cate {
             margin-right: 30px;
-            padding: 20px;
+            padding: 10px 20px;
             font-weight: bolder;
-            border-radius: 50%;
+            border-radius: $border-radius-sml;
             transition: all 0.5s ease;
 
             &:hover {
                 background-color: $secondary-typo-color;
                 color: white;
-                border-radius: 50%;
+                border-radius: $border-radius-sml;
             }
         }
     }
@@ -91,23 +136,6 @@ li {
 }
 
 
-main {
-    position: relative;
-
-    .addtour {
-        position: fixed;
-        right: 10%;
-        bottom: 10%;
-        background-color: green;
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-        color: white;
-        font-weight: bolder;
-        font-size: $h5;
-        outline: none;
-    }
-}
 
 
 
@@ -124,6 +152,7 @@ main {
 }
 
 .article {
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     width: 360px;
     height: 470px;
     border-radius: 10px;
@@ -155,6 +184,7 @@ main {
     top: 82%;
     color: white;
     font-weight: bold;
+    display: flex;
 }
 
 .memi {
@@ -205,4 +235,8 @@ main {
 .com_num {
     margin-left: -10px;
     vertical-align: top;
+}
+
+.fil_none {
+    display: none;
 }
