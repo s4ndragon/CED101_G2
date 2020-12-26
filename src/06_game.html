@@ -1,9 +1,87 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
-    </head>
-    <body></body>
+	<head>
+		<meta charset="UTF-8" />
+        <title>茶園保衛戰</title>
+		<link rel="stylesheet" href="../dist/css/game.css">
+		<link rel="stylesheet" href="../dist/css/flex.css">
+		<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+	</head>
+	<body>
+		@@include('layout/nav.html')
+		<div id="map">
+<div class="gameover">
+	<article><div style="top: 107px;
+    position: relative;
+    font-size: 28px;left: 200px;">
+		<span>計分：</span>
+		<span id="score-over">0</span>
+	</div>
+	<div class="y-flex a_c"style="position: relative;
+    top: 120px;">
+		<p style="font-size:28px;color:red;">蟲子跑進了茶園</p>
+<img src="./images/game/200_d.gif" alt="" style="width: 300px;">
+<img src="./images/game/tea_2.png" alt="" style="width: 300px;position: relative;
+    left: 12%;
+    top: -36px;">
+	</div>		
+		<div id="return"><img src="./images/game/return.png" alt="再玩一次"><span style="font-size:28px;color:red;">再玩一次</span></div>
+</article>
+</div>
+<div class="gamewin">
+	<article>
+		<div class="y-flex  a_c"style="position:relative;top:225px">
+<img src="./images/game/org.TeaGarden.kaiXinChaYuanWxy_Screenshot_2020.12.20_21.37.12.jpeg" alt=""
+style="width:300px;
+">
+<span style="color:red;font-size:28px;line-height: 1.5;">恭喜您獲得採茶姑娘的青睞</span>
+<p style="position: relative;
+color: brown;
+font-size: 28px;line-height: 1.5;
+"><span >得分：</span>
+<span id="score-win">0</span>
+</p>
+
+
+	</div>
+</article>
+</div>
+			<div class="overlay -on">
+	  <article>
+			<img src="./images/game/title.png" class="title">
+			<div style="color:#FFF;padding-left:10px;font-size:18px;border:solid 1px #FFF">
+				<p>遊戲說明：</p>
+				<p>左上方：計分板</p>
+		<p>左方是茶園：喝茶休息可以暫停，茶百科可以瀏覽茶的知識。</p>
+		<p>左下方：守衛角色可放置到四條道路上，會發射子彈。</p>
+		<p>右方：有蟲子向進攻，千萬不要放蟲子到茶園裡。</p>
+			</div>
+
+			
+			<div class="button2 flex a_c j_c" id="go" ><span style="color:#FFF;">開始驅蟲</span></div>
+	  </article>
+	</div>
+			<button type="button" class="btn_modal">開啟 Modal 彈跳視窗</button><button type="button" id="gameover">遊戲結束測試</button>
+			<div><span style="color:#000;font-size:20px;">得分:</span><span id="score">0</span></div>
+			<div id="way1" class="road"></div>
+			<div id="road"></div>
+			<div id="way2" class="road"></div>
+			<div id="way3" class="road"></div>
+			<ul id="props">
+				<li><img src="./images/game/4.gif" data-star=25 data-hps=50 data-hp=50 data-defense=20 data-damage=10 data-speed=2 class="plant" /><span>25</span></li>
+				<li><img src="./images/game/Wallnut_body.png" data-star=50 data-defense=90 data-hps=100 data-hp=100 data-damage=0 data-speed=0 class="plant" /><span>50</span></li>
+				<li><img src="./images/game/TallNut.gif" data-star=75 data-defense=90 data-hps=150 data-hp=150 data-damage=0 data-speed=0 class="plant"><span>75</span></li>
+			</ul>
+			<div id="star-number">25</div><br>
+			<section id="leftbar" class="y-flex">
+				<abbr title="暫停"><img src="./images/game/teacup2.png"id="pause" alt="rest" width="90" style="background-color: azure;"></abbr>
+				<img src="./images/game/tea_ency.png" style="background-color: azure;" alt=""width="90">
+			</section>
+		</div>
+		
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js" ></script>
+		<script src="./js/game (1).js"></script>
+		<script src="./js/game (3).js"></script>
+		@@include('layout/footer.html')
+	</body>
 </html>
