@@ -128,18 +128,10 @@ main {
 
 
 
-
-
 #loco {
     width: 40px;
     margin-top: 10px;
 }
-
-
-
-
-
-
 
 // =======單篇文章樣式======
 
@@ -231,7 +223,6 @@ main {
 }
 
 
-
 .com_num {
     margin-left: -10px;
     vertical-align: top;
@@ -239,4 +230,21 @@ main {
 
 .fil_none {
     display: none;
+}
+
+
+@media screen and (max-width: 700px) {
+    #filter {
+        width: 50%;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .ar_innertext {
+        padding: 7px 20px;
+    }
+
+    .article {
+        width: 300px;
+    }
 }
