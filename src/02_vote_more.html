@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>茶園票選</title>
-    <link rel="stylesheet" href="../css/vote_more.css">
+    <link rel="stylesheet" href="./css/vote_more.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.js"></script>
     <script src="https://unpkg.com/vue-star-rating@1.5.1/dist/star-rating.min.js"></script>
     <script src="node_modules/vue/dist/vue.js"></script>
@@ -12,8 +12,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
-    
+    @@include('layout/nav.html')
+
     <main>
+        <div class="banner"></div>
         
         <div class="all">
             <div class="garden">
@@ -29,12 +31,12 @@
                     </div>
                 </div>
 
-                <div class="allscore" id="app">
+                <div class="allscore app">
 					<span class="score">
 						總分:&ensp; 
 					</span>
 					<div>
-						<star-rating  :rating="4.7" :read-only="false" :increment="0.01" :star-size="25"></star-rating>
+						<star-rating  :rating="4.7" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
 					</div>
                 </div>
                 
@@ -55,9 +57,9 @@
                     <div class="modal" v-if="showModal">
                         <button class="close" @click="showModal = false">╳</button>
                         <p class="welcome">歡迎評分</p>
-                        <div id="app3">
+                        <div class="app">
                             <div class="star">
-                                <star-rating   :read-only="false" :increment="0.5" :star-size="25"></star-rating>
+                                <star-rating :increment="0.5" :star-size="35"></star-rating>
                             </div>
                         </div>
                         <button>送出</button>
@@ -99,12 +101,12 @@
 		});
 
 		new Vue({
-			el: "#app",
+			el: ".app",
         });
 
-        new Vue({
-			el: "#app3",
-        });
+        // new Vue({
+		// 	el: "#app3",
+        // });
         
         //燈箱
         new Vue({

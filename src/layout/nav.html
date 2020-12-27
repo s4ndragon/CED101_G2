@@ -1,3 +1,5 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <nav>
     <!-- logo放置區 -->
     <a href="./index.html">
@@ -8,7 +10,7 @@
         <img class="memicon" src="images/index/nav1.png" alt="">
     </a>
     <!-- 購物車icon放置區 -->
-    <a href="./index.html">
+    <a href="./04_cart.html">
         <img class="caricon" src="images/index/nav1.png" alt="">
     </a>
     <div class="menu-wrap">
@@ -45,7 +47,7 @@
         $(window).scroll(function () {
             if ($(window).scrollTop() >= 300) {
                 $('nav').addClass('upup');
-                $('.menu a').css("color", "green");
+                $('.menu a').css("color", "#7baa17");
                 $('.menu a').addClass('gr');
                 $('.hamburger>div').css('background', 'black');
             } else {

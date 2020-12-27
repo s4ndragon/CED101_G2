@@ -26,33 +26,37 @@
                 <div class="location1 location">
                     <img class="locationImg" src="./images/common/location.png" alt="">
                 </div>
-                <div class="location2 location">
-                    <img class="locationImg" src="./images/common/location.png" alt="">
-                </div>
-                <div class="location3 location">
-                    <img class="locationImg" src="./images/common/location.png" alt="">
-                </div>
-                <div class="location4 location">
-                    <img class="locationImg" src="./images/common/location.png" alt="">
-                </div>
-                <div class="location5 location">
-                    <img class="locationImg" src="./images/common/location.png" alt="">
-                </div>
-                <div class="location6 location">
+                <div class="location10 location">
                     <img class="locationImg" src="./images/common/location.png" alt="">
                 </div>
                 <div class="location7 location">
                     <img class="locationImg" src="./images/common/location.png" alt="">
                 </div>
-                <div class="location8 location">
+                <div class="location6 location">
+                    <img class="locationImg" src="./images/common/location.png" alt="">
+                </div>
+                <div class="location5 location">
                     <img class="locationImg" src="./images/common/location.png" alt="">
                 </div>
                 <div class="location9 location">
                     <img class="locationImg" src="./images/common/location.png" alt="">
                 </div>
-                <div class="location10 location">
+                <div class="location2 location">
                     <img class="locationImg" src="./images/common/location.png" alt="">
                 </div>
+
+                <div class="location4 location">
+                    <img class="locationImg" src="./images/common/location.png" alt="">
+                </div>
+                <div class="location3 location">
+                    <img class="locationImg" src="./images/common/location.png" alt="">
+                </div>
+
+                <div class="location8 location">
+                    <img class="locationImg" src="./images/common/location.png" alt="">
+                </div>
+
+
             </div>
             <!-- <img src="../images/index/notuse/8355.png" alt=""> -->
         </div>
@@ -171,12 +175,33 @@
                     this.src = "./images/common/heart.png";
                 }
             }
-        });
-        let location1 = document.getElementsByClassName("location1")[0];
-        let locationImg = document.getElementsByClassName("locationImg");
 
-        location1.addEventListener("mouseover",)
+
+            let locationPoint = document.getElementsByClassName("location");
+            let locationImg = document.getElementsByClassName("locationImg");
+            // console.log(locationPoint[2]);
+            for (var i = 0; i < locationImg.length; i++) {
+                locationImg[i].addEventListener("mouseover", changeImage);
+            };
+            function changeImage() {
+
+                this.src = `./images/tour/tour1.jpg`;
+                this.addEventListener("mouseout", removeChangeImage);
+            };
+            function removeChangeImage() {
+                this.src = "./images/common/location.png";
+                this.addEventListener("mouseover", changeImage);
+            };
+        });
+
+
+
+
+
+
     </script>
+
+
 </body>
 
 </html>

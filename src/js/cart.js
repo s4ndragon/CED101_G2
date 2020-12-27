@@ -23,6 +23,7 @@ function doFirst() {
     if (productNum) {
         productNum.addEventListener('change', changeNum)
     }
+    loadFavorite()
 }
 
 function additem(e) {
@@ -71,13 +72,29 @@ function addFavorite(e) {
         e.target.src = './images/common/like.png';
         itemValueBtn.value = itemValue.substring(0, itemValue.length - 1);
         itemValueBtn.value += '1';
+        // alert('已加入我的最愛');
     } else {
         e.target.src = "./images/common/heart.png";
         itemValueBtn.value = itemValue.substring(0, itemValue.length - 1);
         itemValueBtn.value += '0';
+    };
+    if (storage[itemValue.split('|')[0]]) {
+        storage[itemValue.split('|')[0]] = itemValueBtn.value;
     }
 }
 
+function loadFavorite() {
+    let FavoriteBtn = document.getElementsByClassName('addFavorite');
+    for (let i = 0; i < FavoriteBtn.length; i++) {
+        itemValueBtn = FavoriteBtn[i].nextElementSibling.nextElementSibling;
+        let f = itemValueBtn.value.split('|')[4];
+        if (f == 0) {
+            FavoriteBtn[i].src = "./images/common/heart.png";
+        } else if (f == 1) {
+            FavoriteBtn[i].src = "./images/common/like.png";
+        }
+    }
+}
 
 function loadcart() {
     let cartContent = document.getElementById('cart_content');
@@ -133,7 +150,8 @@ function calcAmount() {
             } else if (priceValue.split('|')[3] >= 100 && priceValue.split('|')[3] < 1000) {
                 c = priceValue.substring(0, priceValue.length - 5)
             }
-            pricebtn.value = `${c}${num}|${h}`
+            pricebtn.value = `${c}${num}|${h}`;
+            storage[priceValue.split('|')[0]] = pricebtn.value;
             total += (price * num);
         }
     }
@@ -143,8 +161,23 @@ function calcAmount() {
     }
 }
 
-function changeNum() {
-
+function changeNum(e) {
+    let pricebtn = e.target.parentNode.parentNode.querySelectorAll('input[type=hidden]')[0];
+    let priceValue = pricebtn.value;
+    let num = e.target.value,
+        h = priceValue.split('|')[4],
+        c;
+    if (priceValue.split('|')[3] < 10) {
+        c = priceValue.substring(0, priceValue.length - 3)
+    } else if (priceValue.split('|')[3] >= 10 && priceValue.split('|')[3] < 100) {
+        c = priceValue.substring(0, priceValue.length - 4)
+    } else if (priceValue.split('|')[3] >= 100 && priceValue.split('|')[3] < 1000) {
+        c = priceValue.substring(0, priceValue.length - 5)
+    }
+    pricebtn.value = `${c}${num}|${h}`;
+    if (storage[priceValue.split('|')[0]]) {
+        storage[priceValue.split('|')[0]] = pricebtn.value;
+    }
 }
 
 function dropitem(e) {

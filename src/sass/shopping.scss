@@ -202,12 +202,13 @@ div.products {
 
 
     div.page {
-        width: 100%;
+        width: max-content;
         text-align: center;
         $pageColor: brown;
         $pageBgColor: #69994e;
         $pageHoverColor: #FFF;
         $pageBgHoverColor: rgb(22, 224, 4);
+        margin-bottom: 20px;
 
         ul {
             list-style: none;
@@ -229,6 +230,7 @@ div.products {
             li:hover a {
                 color: #69994e;
                 box-shadow: 0 0 0 5px #69994e inset, 0 0 0 150px white inset;
+                display: inline-block;
             }
         }
     }
