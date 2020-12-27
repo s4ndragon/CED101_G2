@@ -9,18 +9,10 @@ $(function () {
         }, 750);
     });
 
-    //偵測滾輪事件 下滑超過300導覽列就變色
-    $(window).scroll(function () {
-        if ($(window).scrollTop() >= 300) {
-            $('nav').addClass('upup');
-            $('.menu a').css("color", "green");
-            $('.menu a').addClass('gr');
-            $('.hamburger>div').css('background', 'black');
-        } else {
-            $('nav').removeClass('upup');
-            $('.menu a').css("color", "white");
-            $('.menu a').removeClass('gr');
-            $('.hamburger>div').css('background', 'white');
-        }
+
+});
+
+$(window).on('load', function () {
+    parallaxInstance = new Parallax(document.getElementById("index_background"), {
     });
 });

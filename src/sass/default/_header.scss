@@ -247,38 +247,6 @@
 
         /* -----------animaiton */
 
-        @keyframes circle {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
-        @keyframes myfirst {
-            0% {
-                background: #70D6BF;
-            }
-
-            20% {
-                background: #FDB54D;
-            }
-
-            50% {
-                background: #174769;
-            }
-
-            80% {
-                background: rgb(37, 37, 37);
-            }
-
-            100% {
-                background: #70D6BF;
-            }
-        }
-
         .upup {
             background-color: white;
         }
@@ -333,3 +301,139 @@
             background-position: center center;
             height: 100vh;
         }
+
+
+
+
+
+
+
+
+
+        // ============以下第一頻===========
+
+        * {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+
+        @keyframes myfirst {
+            0% {
+                background: #b3ecdf;
+            }
+
+            40% {
+                background: #6db2e4;
+            }
+
+            60% {
+                background: rgb(37, 37, 37);
+            }
+
+            80% {
+                background: rgb(37, 37, 37);
+            }
+
+            100% {
+                background: #b3ecdf;
+            }
+        }
+
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(720deg);
+            }
+        }
+
+        @keyframes roll {
+            from {
+                background-position: -100% 0px;
+            }
+
+            to {
+                background-position: 0px 0px;
+            }
+        }
+
+        @keyframes bigger {
+            from {
+                transform: scale(0);
+            }
+
+            to {
+                transform: scale(1);
+            }
+        }
+
+
+        #index_background {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            overflow: hidden;
+            animation: myfirst 20s infinite;
+        }
+
+        .green_ear {
+            position: relative;
+            margin-top: -20%;
+            z-index: 35;
+        }
+
+        #green_earth {
+            width: 100%;
+            animation: rotate 120s infinite 1s, bigger 1s ease-out;
+        }
+
+
+        /* ======四座山====== */
+        .bg_garden {
+            position: absolute;
+            bottom: 0;
+            width: 120%;
+            right: 5%;
+        }
+
+        .bg_gar {
+            position: absolute;
+            bottom: 0;
+            width: 120%;
+            right: 5%;
+        }
+
+        .ga1 {
+            z-index: 50;
+            bottom: -13%;
+        }
+
+        .ga2 {
+            z-index: 40;
+            bottom: -11%;
+            opacity: 0.97;
+        }
+
+        .ga3 {
+            z-index: 30;
+            opacity: 0.8;
+            bottom: -15%;
+        }
+
+        .ga4 {
+            z-index: 20;
+            bottom: 5%;
+            opacity: 0.45;
+
+        }
+
+        .ga5 {
+            z-index: 38;
+        }
+
+
+        // ============以上第一頻===========
