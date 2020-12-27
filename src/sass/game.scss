@@ -123,7 +123,24 @@ div.gameover,div.gamewin{
   transition: opacity 1s;
  opacity: 0;
 }
-
+.tea_en{
+	position: absolute;
+	top: 0;
+  left: 0;
+  width: 100%;
+  z-index: -1;
+  transition: opacity 1s;
+ opacity: 0;
+ section{
+	 background-image: url('../images/game/tea_en.png');
+	 background-size: contain;
+	 background-position: left;
+	 background-repeat: no-repeat;
+	 width:1000px;
+	 height:600px;
+  
+ }
+}
 div.gameover>article{
   background-image: url('../images/game/gameovre.png');
   background-repeat: no-repeat;
