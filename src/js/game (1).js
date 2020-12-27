@@ -282,8 +282,9 @@ function wormState(index, worm, wormArr) {
     kill(index,worm,wormArr);
   }
 }
-document.getElementById("go").onclick=function(){
-  document.getElementById("go").style.display='none';
+$(function() {
+  $('.go').on('click', function () {
+      // document.getElementById("go").style.display='none';
       sp_= setInterval("sp()", starTimer);//降落茶葉
   		time_b_=	setInterval("time_b()", 9000);//產生子彈
       bb__=setInterval("bb_()", 20);//移動子彈
@@ -293,7 +294,26 @@ document.getElementById("go").onclick=function(){
       init_Bullet=setInterval("Bullet_init()",9000);//生子彈
       init_shot=setInterval("shot()",20);//移動子彈
       init_worm=setInterval("wrom_init()",10000);//生蟲
-      init_walk=setInterval("walk()",60);//蟲子走路
+    init_walk = setInterval("walk()", 60);//蟲子走路
+    $('#pause').removeClass("none");
+      $("div.overlay").addClass("-opacity-zero");
+    // 設定隔一秒後，移除相關 class
+    setTimeout(function(){
+      $("div.overlay").removeClass("-on -opacity-zero");
+    }, 1000); // 關閉 Modal
+  });
+  document.getElementById('gotxt').innerText = `繼續驅蟲`;
+  $('#pause').on('click', function () {
+    gamestop();
+  tween.pause();
+    $("div.overlay").addClass("-on");
+    $(this).addClass("none");
+  })
+});
+document.getElementById("pause").onclick=function(){
+  // document.getElementById("go").style.display='';
+
+
 }
 function gamestop(){
   document.getElementById('score-over').innerText = score;
@@ -315,24 +335,9 @@ function gamestop(){
   tween.pause();
   // tm.pause();
 }
-document.getElementById("pause").onclick=function(){
-  document.getElementById("go").style.display='';
-gamestop();
-tween.play();
-}
-$(function(){			  // 開啟 Modal 彈跳視窗
-  $("button.btn_modal").on("click", function(){
-    $("div.overlay").addClass("-on");
-  });
-  // 關閉 Modal
-  $(".btn_modal_close").on("click", function(){
-    $("div.overlay").addClass("-opacity-zero");
-    // 設定隔一秒後，移除相關 class
-    setTimeout(function(){
-      $("div.overlay").removeClass("-on -opacity-zero");
-    }, 1000);
-  });
-});
+// 開啟 Modal 彈跳視窗
+
+
 //時間到開啟通關燈箱
 var tween = TweenLite.to(demo,300,{
   score:300,

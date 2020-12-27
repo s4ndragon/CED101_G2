@@ -25,7 +25,7 @@ zarr()改成worm_init(){addworm();}
 var path={plantArr:[[],[],[]],bullet:[[],[],[]],wormArr:[[],[],[]]
 },
 way=document.getElementsByClassName('road'),
-random = gsap.utils.random([0,1,2,3], true);
+// random = gsap.utils.random([0,1,2,3], true);
 //三個道路放置植物
 for(let k=0;k<3;k++){
   way[k].onclick=function(event){
@@ -120,7 +120,7 @@ function shot(){
 function addworm(damage, defense, hp, speed,o){
   var img = document.createElement("img");
   img.className = 'createZombies';
-  img.src = '../images/game/worm.gif';
+  img.src = '../dist/images/game/worm.gif';
   img.dataset.damage = damage;
   img.dataset.defense = defense;
   img.dataset.speed = speed;

@@ -257,7 +257,9 @@ div.gamewin>article{
 				font-weight: 900;
 				font-size: 20px;
       }
-      
+      #pause.none{
+        display:none;
+      }
 			/*降落星星*/
 			.star {
 				position: absolute;
@@ -272,6 +274,6 @@ div.gamewin>article{
       }
       #score-over{
         position:relative;
-        left:75px;
+        left:55px;
         color:#FFF;
       }
