@@ -22,13 +22,14 @@ createworm()改成addworm(){}
 增加蟲子外函式
 zarr()改成worm_init(){addworm();}
 */
-var path={plantArr:[[],[],[]],bullet:[[],[],[]],wormArr:[[],[],[]]
+var path = {
+  plantArr: [[], [], []], bullet: [[], [], []], wormArr: [[], [], []]
 },
-way=document.getElementsByClassName('road'),
+  way = document.getElementsByClassName('road');
 // random = gsap.utils.random([0,1,2,3], true);
 //三個道路放置植物
-for(let k=0;k<3;k++){
-  way[k].onclick=function(event){
+  [].forEach.call(document.getElementsByClassName('road'), function (el, k) {
+      way[k].onclick=function(event){
       //植物可擺放的區間
       if(event.offsetX > 25 && event.offsetX + 50 < this.offsetWidth) {
         if(!!plant && event.target.className !== "action plant") {
@@ -51,7 +52,8 @@ for(let k=0;k<3;k++){
         }
       }
   }
-}
+});
+
 //產生新子彈，本身不加上for(){}
 function addBullet(speed, damage, left,o) {
   /*   * speed 射速   * damage 傷害   */
