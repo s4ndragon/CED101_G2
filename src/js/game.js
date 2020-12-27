@@ -284,7 +284,6 @@ function wormState(index, worm, wormArr) {
 }
 $(function() {
   $('.go').on('click', function () {
-      // document.getElementById("go").style.display='none';
       sp_= setInterval("sp()", starTimer);//降落茶葉
   		time_b_=	setInterval("time_b()", 9000);//產生子彈
       bb__=setInterval("bb_()", 20);//移動子彈
@@ -301,8 +300,8 @@ $(function() {
     setTimeout(function(){
       $("div.overlay").removeClass("-on -opacity-zero");
     }, 1000); // 關閉 Modal
+    document.getElementById('gotxt').innerText = `繼續驅蟲`;
   });
-  document.getElementById('gotxt').innerText = `繼續驅蟲`;
   $('#pause').on('click', function () {
     gamestop();
   tween.pause();
@@ -310,11 +309,7 @@ $(function() {
     $(this).addClass("none");
   })
 });
-document.getElementById("pause").onclick=function(){
-  // document.getElementById("go").style.display='';
 
-
-}
 function gamestop(){
   document.getElementById('score-over').innerText = score;
   document.getElementById('score-win').innerText = score+1000;

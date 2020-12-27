@@ -28,7 +28,7 @@ var path = {
   way = document.getElementsByClassName('road');
 // random = gsap.utils.random([0,1,2,3], true);
 //三個道路放置植物
-  [].forEach.call(document.getElementsByClassName('road'), function (el, k) {
+  [...way].forEach(function (el, k) {
       way[k].onclick=function(event){
       //植物可擺放的區間
       if(event.offsetX > 25 && event.offsetX + 50 < this.offsetWidth) {
@@ -68,7 +68,7 @@ function addBullet(speed, damage, left,o) {
   //o換上way[k];
   return img;
 }
-//init要加上for(){}
+//init包了for(){}
 function Bullet_init(){
   for(var k=0;k<3;k++){
     for(var i = 0; i < path.plantArr[k].length; i++) {
