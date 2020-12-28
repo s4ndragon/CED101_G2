@@ -172,6 +172,7 @@
     border-radius: 72px;
     background-repeat: no-repeat;
 }
+
 .tour-list li {
     position: relative;
     padding: 80px 30px 0;
@@ -214,7 +215,7 @@
     display: block;
 }
 
-.tour-list li + li {
+.tour-list li+li {
     margin-left: 20px;
 }
 
@@ -324,7 +325,7 @@
     vertical-align: top;
 }
 
-.vote-list li + li {
+.vote-list li+li {
     margin-left: 30px;
 }
 
@@ -547,6 +548,7 @@
 .shop .shopping {
     color: #eff2c7;
 }
+
 .shop-list .shop-newest {
     margin-top: 30px;
     color: #eff2c7;
@@ -728,7 +730,7 @@
     padding: 0 5px;
 }
 
-.shop-list li .txt-area .company > span {
+.shop-list li .txt-area .company>span {
     display: inline-block;
     font-size: 0.75rem;
     color: #fff;
@@ -999,7 +1001,7 @@
         text-align: center;
     }
 
-    .tour-list li + li {
+    .tour-list li+li {
         margin-left: 0px;
     }
 
