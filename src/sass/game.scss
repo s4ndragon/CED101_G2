@@ -1,4 +1,7 @@
 @import "./default/common";
+*{
+	box-sizing: border-box;
+}
 .title{
 position: relative;
 left:calc(50% - 180px);
@@ -12,7 +15,6 @@ top:-40px;
   width:250px;
   height:85px;
   background-size: 100%;
-
   position:absolute;
   left:calc(50% - 125px);
   bottom:20px;
@@ -20,7 +22,7 @@ top:-40px;
 .road{
   position: absolute;
   z-index: 2;
-  left: 250px;
+left:calc(-310px + 40%);
   background: url(../images/game/8.png);
   width: 755px;
   height: 110px;
@@ -123,15 +125,27 @@ div.gameover,div.gamewin{
   transition: opacity 1s;
  opacity: 0;
 }
+.tea-top{
+	width:100%;
+	height:300px;
+	background-image: url("../images/game/sunm.jpg");
+	background-repeat: repeat-x;
+	section{
+		width:100%;
+		height:100%;
+		display:block;
+		background: linear-gradient(#e6646550, #9198e502);
+	}
+}
 .tea_en{
-	position: absolute;
-	top: 0;
-  left: 0;
-  width: 100%;
-  z-index: -1;
-  transition: opacity 1s;
- opacity: 0;
- section{
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+z-index: -1;
+transition: opacity 1s;
+opacity: 0;
+section{
 	 background-image: url('../images/game/tea_en.png');
 	 background-size: contain;
 	 background-position: left;
@@ -173,20 +187,27 @@ div.gamewin>article{
 			}
 			/*地圖*/
 			#map {
+				margin-top:300px;
 				position: relative;
 				width: 1400px;
+				max-width:100vw;
 				height: 600px;
-        background: url(../images/game/1.jpg);
-        margin-top:300px;
+				background: url(../images/game/1.jpg);
+				background-position-x:40% ;
+				background-size: cover;
+		
 			}
-
 			/*路*/
 			#road {
+				
 				position: absolute;
 				z-index: 2;
-				left: 250px;
+				// left: 250px;
+				left:calc(-310px + 40%);
 				top: 200px;
 				background: url(../images/game/8.png);
+				background-clip: border-box;
+				background-origin: content-box;
 				width: 755px;
 				height: 110px;
 				z-index: 10;
@@ -257,32 +278,45 @@ div.gamewin>article{
 			#props li img.action {
 				border: 3px solid green;
       }
-      #leftbar{
-        margin-top:50px;
-      }
+      #botbar{
+		//   line-height: 2.5;
+		position:absolute;
+		bottom:0px;
+		right:100px;
+		// margin-top:50px;
+		
+	  }
+	  .star-back{
+		  
+				background: url(../images/game/tea-ej04.png);
+				background-size: contain;
+				background-repeat: no-repeat;
+				width: 70px;
+	  }
 			/*星星數量*/
 			#star-number {
+
 				position: absolute;
-				z-index: 900;
+				z-index: 500;
 				height: 50px;
 				width: 50px;
-				border-radius: 50px;
+				// border-radius: 50px;
 				text-align: center;
 				line-height: 50px;
-				background: gold;
+				// background: gold;
 				color: white;
 				font-weight: 900;
 				font-size: 20px;
-      }
-      #pause.none{
-        display:none;
-      }
+      			}
+      			#pause.none{
+        		display:none;
+      			}
 			/*降落星星*/
 			.star {
 				position: absolute;
-				width: 50px;
-				height: 50px;
-				z-index: 900;
+				width: 70px;
+				height: 70px;
+				z-index: 300;
 			}
 			#return{
 				position:absolute;
@@ -293,4 +327,20 @@ div.gamewin>article{
         position:relative;
         left:55px;
         color:#FFF;
-      }
+	  }
+	  .back{
+		  background-image: url(../images/game/1.jpg);
+		  background-position-x:40% ;
+		  background-clip: border-box;
+		  background-origin: border-box;
+		  background-position-y: 0%;
+		  background-size: 1000px 600px;
+		background-repeat: no-repeat;
+		  max-width: 100vw;
+		  width:100%;
+		  height:600px;
+
+	  }
+@media screen and (max-width:768px){
+	max-width: 100vw;
+} 

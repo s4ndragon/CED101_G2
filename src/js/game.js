@@ -139,9 +139,7 @@ function sp(){				//創建一个img標籤
         map.appendChild(img);
         //随機生成img的水平位置 而且不能超出地圖
         img.style.left = Math.random() * (map.offsetWidth - img.offsetWidth) + 'px';
-
         // leaf_i++;
-
         leaf[leaf.length]=setInterval(function(){
           let objs = document.querySelectorAll('img[src="../dist/images/game/giphy.webp"]');
           for(var img of objs){
