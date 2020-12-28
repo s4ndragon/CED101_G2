@@ -190,7 +190,8 @@ img {
     100% {
         -webkit-transform:
             translate3d(-350px, 1000px, 0) rotate(90deg);
-
+        opacity: 0;
+        display: none;
 
 
         @media screen and (max-width: 575px) {
@@ -198,8 +199,7 @@ img {
                 translate3d(0px, 1000px, 0) rotate(90deg);
         }
 
-        opacity: 0;
-        display: none;
+
     }
 }
 
@@ -217,6 +217,8 @@ img {
     100% {
         -webkit-transform:
             translate3d(-230px, 940px, 0) rotate(-70deg);
+        opacity: 0;
+        display: none;
 
         @media screen and (max-width: 575px) {
             -webkit-transform:
@@ -225,8 +227,7 @@ img {
 
         }
 
-        opacity: 0;
-        display: none;
+
     }
 }
 
