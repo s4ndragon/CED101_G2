@@ -69,8 +69,8 @@ function itemInnerhtml(newdiv, itemNo, itemName, itemNum, itemPrice) {
     <div class="aside">
         <a href="./04_product.html"><h3>${itemName}</h3></a>
         <div class="content">
-            <div>數量: <input type="number" name="" id="" value="${itemNum}" min='0' max='999' onchange='calcAmount()'></div>
-            <div class='price'>價格: </span><input type="number" name="" id="" disabled value="${itemPrice}" ></div>
+            <div>數量: <input type="number" name=""  value="${itemNum}" min='0' max='999' onchange='calcAmount()'></div>
+            <div class='price'>價格: </span><input type="number" name=""  disabled value="${itemPrice}" ></div>
             <input type="hidden" name="" value='${storage[`${itemNo}`]}' class='productInfo'>
         </div>
     </div>
@@ -150,7 +150,8 @@ function calcAmount() {
     }
     let totalAmount = document.getElementById('totalAmount');
     if (totalAmount) {
-        totalAmount.value = total
+        // totalAmount.value = total
+        totalAmount.setAttribute('value', `${total}`);
     }
 }
 
