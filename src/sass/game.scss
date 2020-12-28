@@ -1,6 +1,21 @@
 @import "./default/common";
+// 茶百科按鈕名稱tea_ency.png 燈箱介面名稱tea_en.png，
+.w100{
+	width:100%;
+}
+.v100w{
+	width:100vw;
+}
+.size60{
+	font-size:60px;
+}
 *{
 	box-sizing: border-box;
+}
+#title{
+
+	height:300px;
+	background-color: #ead779;
 }
 .title{
 position: relative;
@@ -89,14 +104,14 @@ width: 100%;
 z-index: -1;
 transition: opacity 1s;
 }
-div.overlay.-on,div.gameover.-on,div.gamewin.-on{
+div.overlay.-on,div.gameover.-on,div.gamewin.-on,.tea_en.-on{
 /* 加上 -on 之後，Modal 漸漸出現，因為有設定 transition */
 opacity: 1;
 z-index: 200;
 display:block;
 }
 
-div.overlay.-opacity-zero,div.gameover.-opacity-zero,div.gamewin.-opacity-zero{
+div.overlay.-opacity-zero,div.gameover.-opacity-zero,div.gamewin.-opacity-zero,.tea_en.-opacity-zero{
 /* 關閉 Modal 時，先讓 opacity設定0，就會慢慢變成完全透明，但這時會擋到後面的元素，所以要再移除 -on 及 -opacity-zero 這兩個 class */
 opacity: 0;
 }
@@ -139,9 +154,14 @@ section{
 	 background-position: left;
 	 background-repeat: no-repeat;
 	 width:1000px;
-	 height:600px;
-  
+	 height:600px;  
+	 position: relative;
+     left: calc(-390px + 40%);
  }
+}
+
+.tea_en.-opacity-zero{
+	opacity:0;
 }
 div.gameover>article{
   background-image: url('../images/game/gameovre.png');
@@ -175,7 +195,6 @@ div.gamewin>article{
 			}
 			/*地圖*/
 			#map {
-				margin-top:300px;
 				position: relative;
 				width: 1400px;
 				max-width:100vw;
@@ -246,16 +265,15 @@ div.gamewin>article{
 				width: 50px;
 			}
 			#props li span {
-        position: absolute;
-        width:27px;
-        height:27px;
+        	position: absolute;
+        	width:27px;
+        	height:27px;
 				padding: 0;
 				right: 0;
 				top: -12px;
 				border-radius: 50%;
 				background: gold;
 			}
-
 			#props li img {
 				border: 2px solid gray;
 				height: 100%;
@@ -272,32 +290,29 @@ div.gamewin>article{
 		bottom:0px;
 		right:210px;
 		background-color: yellowgreen;
-	  }
+		}
 	  .tea_ency{
 		background: url("../images/game/tea_ency.png");
 		background-size: contain;
 		background-repeat: no-repeat;
 		width: 70px;
-		height:65px;
+		height:70px;
 	  }
 	  .star-back{
-		  
+		  	width: 70px;
+		height:70px;
 				background: url("../images/game/tea-ej04.png");
 				background-size: contain;
-				background-repeat: no-repeat;
-				width: 70px;
+				background-repeat: no-repeat;			
 	  }
 			/*星星數量*/
 			#star-number {
-
 				position: absolute;
 				z-index: 500;
 				height: 50px;
 				width: 50px;
-				// border-radius: 50px;
 				text-align: center;
 				line-height: 50px;
-				// background: gold;
 				color: white;
 				font-weight: 900;
 				font-size: 20px;
@@ -339,6 +354,6 @@ div.gamewin>article{
 		  height:600px;
 
 	  }
-@media screen and (max-width:768px){
-	max-width: 100vw;
-} 
+// @media screen and (max-width:768px){
+// 	max-width: 100vw;
+// } 

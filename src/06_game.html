@@ -9,8 +9,9 @@
 	</head>
 	<body>
 		@@include('layout/nav.html')
+		<div id="title" class="flex a_c j_c v100w size60"><h2>小遊戲-茶園保衛戰</h2></div>
 		<div id="map">
-			<div class="tea_en flex a_c j_c" style="z-index: -1;">
+			<div class="tea_en flex a_c j_c">
 				<section></section>
 			</div>
 <div class="gameover">
@@ -51,7 +52,7 @@ font-size: 28px;line-height: 1.5;
 			<img src="./images/game/title.png" class="title">
 			<div style="color:#FFF;padding-left:10px;font-size:18px;border:solid 1px #FFF">
 				<p>遊戲說明：</p>
-				<p>左上方：計分板</p>
+
 		<p>下方控制面板：喝茶休息可以暫停，茶百科可以瀏覽茶的知識。</p>
 		<p>左下方：守衛角色可放置到四條道路上，會發射子彈。</p>
 		<p>右方：有蟲子向進攻，千萬不要放蟲子到茶園裡。</p>
@@ -60,7 +61,7 @@ font-size: 28px;line-height: 1.5;
 			<div class="go button2 flex a_c j_c"  ><span style="color:#FFF;" id="gotxt">開始驅蟲</span></div>
 	  </article>
 	</div>			
-			<div><span style="color:#000;font-size:20px;">得分:</span><span id="score">0</span></div>
+			
 			<div id="way1" class="road"></div>
 			<div id="road"></div>
 			<div id="way2" class="road"></div>
@@ -73,16 +74,17 @@ font-size: 28px;line-height: 1.5;
 			<section id="botbar" class="flex">
 			<!-- <img src="./images/game/tea_ency.png" style="background-color: azure;" height="70"> -->
 			<div class="tea_ency"></div>
-			<div class="star-back" style="line-height: 2;">
+			<div class="star-back y-flex a_sb" style="line-height: 2;">
 			<div id="star-number">25</div><br>
-			<div class="" style="color:#FFF;">茶能量</div>				
+			<div class="" style="color:#FFF;position: relative;
+    top: 10px;">茶能量</div>				
 			</div>
 				<abbr title="暫停">
 					<img src="./images/game/teacup2.png" id="pause" alt="rest"class="none"  >
-				</abbr>				
+				</abbr>	
+				<div><span style="color:#000;font-size:20px;">得分:</span><span id="score">0</span></div>			
 			</section>
-		</div>
-		
+		</div>		
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js" ></script>
 		<script src="./js/game (1).js"></script>
 		<script src="./js/game2.js"></script>
