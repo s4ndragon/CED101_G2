@@ -399,6 +399,11 @@ img {
     width: 1140px;
     margin: 0 auto;
     padding-top: 100px;
+
+    @media screen and (max-width: 575px) {
+        padding-top: 0px;
+    }
+
     // border: 1px solid black;
 
     h1 {
@@ -555,6 +560,10 @@ img {
     animation-duration: 5s;
     z-index: 2;
 
+    @media screen and (max-width: 575px) {
+        width: 200px;
+    }
+
     p {
         cursor: pointer;
         text-align: center;
@@ -565,6 +574,12 @@ img {
         border-radius: 50%;
         font-size: $h5;
         background-color: #ffffff;
+
+        @media screen and (max-width: 575px) {
+            bottom: 90%;
+            right: 18%;
+
+        }
     }
 
     img {

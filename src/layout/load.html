@@ -1,0 +1,16 @@
+<div id="load">
+    <div class="loading">
+        <img src="./images/index/fear.png" alt="">
+    </div>
+</div>
+
+<script>
+    window.addEventListener("load", function () {
+        setTimeout(removeLoad, 5000);
+    });
+    function removeLoad() {
+        let loading = document.getElementById("load");
+        loading.setAttribute("style", "display:none");
+    };
+
+</script>
