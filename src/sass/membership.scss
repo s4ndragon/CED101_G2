@@ -16,6 +16,7 @@ $main-width: 80%;
 
 body {
     @include forTourAndShop;
+    position: relative;
 
     h1 {
         font-size: $h1;
@@ -44,6 +45,12 @@ body {
 //==============================//
 .banner {
     height: 300px;
+    width: 100%;
+    background-color: #ead779;
+    font-size: $h2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 main {
     // border: 1px solid red;
@@ -185,6 +192,7 @@ main {
                         }
                         .tour_attendency {
                             width: 20%;
+                            cursor: pointer;
                             @media only screen and (max-width: 992px) {
                                 display: none;
                             }
@@ -282,6 +290,8 @@ main {
                     width: calc(100% / 3);
                     text-align: center;
                     padding: 5px 0;
+                    // background-color: $lighter;
+                    // border-radius: 5px;
                 }
                 // .fav_tour {
                 //     background-color: $darker;
@@ -294,8 +304,7 @@ main {
                 background-color: $lighter;
                 border-radius: 0 0 5px 5px;
                 padding: 30px 10px;
-                // padding: 10px 0;
-                // margin: 10px 0;
+                background-color: $lighter;
                 #fav_tour {
                     display: flex;
                     #tour_list {
@@ -389,13 +398,14 @@ main {
         #mine_article {
             display: none;
             width: $main-width;
+            background-color: $lighter;
             @media only screen and (max-width: 768px) {
                 width: 100%;
             }
             .article_brief {
-                background-color: $lighter;
+                // background-color: $lighter;
                 border-radius: 0 0 5px 5px;
-                padding: 10px 0px;
+                // padding: 10px 0px;
                 .article_detail {
                     margin: 10px;
                     border: 1px solid $primary-typo-color;
@@ -521,6 +531,7 @@ main {
 
 .blog_container {
     // border: 1px solid black;
+    background-color: $search-bar-bgColor;
     position: relative;
     top: 30px;
     width: 25%;
@@ -545,7 +556,60 @@ main {
     }
 }
 .colored {
-    background-color: $darker;
-    color: $lighter;
+    background-color: $primary-typo-color;
+    color: $search-bar-bgColor;
     border-radius: $br;
+}
+
+// lightbox
+.num_attendency {
+    border: 1px solid red;
+    // width: $main;
+    display: none;
+    // display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    //close btn
+    .close {
+        color: #fff;
+        background: $secondary-typo-color;
+        align-self: flex-end;
+        border-radius: 0px;
+        display: block;
+        margin: 20px;
+        height: 24px;
+        width: 24px;
+        position: relative;
+        &:after {
+            content: "\2715";
+            position: absolute;
+            top: 2px;
+            right: 5px;
+            line-height: 1;
+            font-size: 18px;
+        }
+        &:hover {
+            background: #3f3f3f;
+            cursor: pointer;
+        }
+        &:active {
+            background: #2f2f2f;
+            cursor: pointer;
+        }
+    }
+    .group {
+        display: flex;
+        align-items: center;
+    }
+    .icon {
+        width: 100px;
+        height: 100px;
+        padding-right: 5px;
+    }
+    .id {
+        width: 100px;
+        font-size: $h4;
+        padding-left: 5px;
+    }
 }

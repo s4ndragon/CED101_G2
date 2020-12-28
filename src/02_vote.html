@@ -3,21 +3,20 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>茶園票選</title>
+	<title>茶園排行</title>
 	<link rel="stylesheet" href="./css/vote.css">
 	<script src="https://unpkg.com/vue-star-rating@1.5.1/dist/star-rating.min.js"></script>
-	<script src="node_modules/vue/dist/vue.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
 	@@include('layout/nav.html')
 	<div class="banner">
-		<h2>茶園票選</h2>
+		<h2>茶園排行</h2>
 	</div>
 
 	<main>
-		<h2>🌄熱門茶園 TOP3</h2>
+		<h2>熱門茶園 TOP3</h2>
 		<div class="block1">
 			<div class="pic">
 				<img class="tea" src="images/vote/tea5.jpg">
@@ -200,6 +199,8 @@
 		</table>
 
 	</main>
+
+	@@include('layout/footer.html')
 
 	
 	<script>

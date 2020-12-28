@@ -6,12 +6,14 @@
     <title>茶園揪團</title>
     <link rel="stylesheet" href="./css/tour_more.css">
     <script src="./js/like.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.js"></script>
+
 </head>
 <body>
     @@include('layout/nav.html')
     <div class="banner"></div>
     
-    <main>
+    <main id="app">
         <div class="all">
             <div class="tour">
                 <img class="tpic" src="images/vote/tea5.jpg">
@@ -85,7 +87,7 @@
             
 
             <div class="hotel_container first">
-                <p class="ht">旅館🏩</p>
+                <p class="ht">旅館</p>
                 <div class="hotel">
                     <img class="hpic" src="images/vote/hotel.jpg">
                     <p class="hname">瑞穗天合國際觀光酒店</p>
@@ -95,18 +97,21 @@
 
             
             <div class="hotel_container sec">
-                <p class="ht eat">餐廳🍽️</p>
+                <p class="ht eat">餐廳</p>
                 <div class="hotel">
-                    <img class="hpic" src="images/vote/hotel.jpg">
+                    <img class="hpic" src="images/vote/cafe.jpg">
                     <p class="hname">好茶咖啡工作室</p>
+                    <p class="hinfo">Ba han han non - 阿美族語何不休息一下，品茗伴隨陣陣咖啡香，一同品味蜜香紅茶與迦納咖啡的風味。</p>
                 </div>
                 <div class="hotel">
-                    <img class="hpic" src="images/vote/hotel.jpg">
-                    <p class="hname">瑞穗張綠茶肉圓</p>
+                    <img class="hpic" src="images/vote/sweet.jpg">
+                    <p class="hname">瑞穗鮮奶豆花冰店</p>
+                    <p class="hinfo">純手工製作的鮮奶豆花綿密醇濃，除了鮮奶豆花外，也有販售季節水果剉冰、古早味黑糖剉冰、冬季甜湯系列。</p>
                 </div>
                 <div class="hotel">
-                    <img class="hpic" src="images/vote/hotel.jpg">
-                    <p class="hname">豆腐西施甜品坊</p>
+                    <img class="hpic" src="images/vote/steak.jpg">
+                    <p class="hname">PRIME ONE 牛排館</p>
+                    <p class="hinfo">獲得2018年台北米其林指南「餐盤推薦」殊榮，以濕式熟成來呈現牛排風味，完整呈現出高級牛排館及NEW CUISINE料理。</p>
                 </div>
             </div>
         </div>
@@ -114,7 +119,8 @@
         <h3 class="jt">揪團留言</h3>
 
         <div id="commandall">
-            
+            <h3 class="t1">茶園留言</h2>
+        <!--       留言重複開始         -->
             <div class="command">
                 <div class="nameall">
                     <div class="mem_photo"><img class="mem_photo" src="./images/common/mem_photo1.png" alt=""></div>
@@ -125,8 +131,59 @@
                         <div class="pub_text">哈囉，還好吧還好吧還好吧還好吧還好吧，我也要去。</div>
                         <div class="com_pub_time">發表於2012-03-20 12:20:30</div>
                     </div>
-                    <div class="excl">
-                        <img class="excl" src="./images/common/852019_exclamation_512x512.png" alt="">
+                    <div class="excl ">
+                        <button class="repobt" @click="showModal2 = true">
+                            <img class="excl" src="./images/common/852019_exclamation_512x512.png" alt="">
+                        </button>
+                        
+                        <!-- overlay -->
+                        <div class="overlay" v-if="showModal2" @click="showModal2 = true"></div>
+                        <!-- modal -->
+                        <div class="modal" v-if="showModal2">
+                            <form>
+                                <div class="close" @click="showModal2 = false">
+                                    <img class="cancel" src="images/vote/cancel.png">
+                                </div>
+                                <p class="welcome">請輸入檢舉理由</p>
+                                <textarea class="repoinfo" cols="30" rows="10"></textarea>
+                        
+                                <button class="go">送出</button>
+                            </form>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="command">
+                <div class="nameall">
+                    <div class="mem_photo"><img class="mem_photo" src="./images/common/mem_photo1.png" alt=""></div>
+                    <span class="pub_mem_name">翰婷</span>
+                </div>
+                <div class="text_excl ">
+                    <div class="command_text">
+                        <div class="pub_text">哈囉，還好吧還好吧還好吧還好吧還好吧，我也要去。</div>
+                        <div class="com_pub_time">發表於2012-03-20 12:20:30</div>
+                    </div>
+                    <div class="excl ">
+                        <button class="repobt" @click="showModal2 = true">
+                            <img class="excl" src="./images/common/852019_exclamation_512x512.png" alt="">
+                        </button>
+                        
+                        <!-- overlay -->
+                        <div class="overlay" v-if="showModal2" @click="showModal2 = true"></div>
+                        <!-- modal -->
+                        <div class="modal" v-if="showModal2">
+                            <form>
+                                <div class="close" @click="showModal2 = false">
+                                    <img class="cancel" src="images/vote/cancel.png">
+                                </div>
+                                <p class="welcome">請輸入檢舉理由</p>
+                                <textarea class="repoinfo" cols="30" rows="10"></textarea>
+                        
+                                <button class="go">送出</button>
+                            </form>
+                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -140,23 +197,26 @@
                         <div class="pub_text">哈囉，還好吧還好吧還好吧還好吧還好吧，我也要去。</div>
                         <div class="com_pub_time">發表於2012-03-20 12:20:30</div>
                     </div>
-                    <div class="excl">
-                        <img class="excl" src="./images/common/852019_exclamation_512x512.png" alt="">
-                    </div>
-                </div>
-            </div>
-            <div class="command">
-                <div class="nameall">
-                    <div class="mem_photo"><img class="mem_photo" src="./images/common/mem_photo1.png" alt=""></div>
-                    <span class="pub_mem_name">翰婷</span>
-                </div>
-                <div class="text_excl">
-                    <div class="command_text">
-                        <div class="pub_text">哈囉，還好吧還好吧還好吧還好吧還好吧，我也要去。</div>
-                        <div class="com_pub_time">發表於2012-03-20 12:20:30</div>
-                    </div>
-                    <div class="excl">
-                        <img class="excl" src="./images/common/852019_exclamation_512x512.png" alt="">
+                    <div class="excl ">
+                        <button class="repobt" @click="showModal2 = true">
+                            <img class="excl" src="./images/common/852019_exclamation_512x512.png" alt="">
+                        </button>
+                        
+                        <!-- overlay -->
+                        <div class="overlay" v-if="showModal2" @click="showModal2 = true"></div>
+                        <!-- modal -->
+                        <div class="modal" v-if="showModal2">
+                            <form>
+                                <div class="close" @click="showModal2 = false">
+                                    <img class="cancel" src="images/vote/cancel.png">
+                                </div>
+                                <p class="welcome">請輸入檢舉理由</p>
+                                <textarea class="repoinfo" cols="30" rows="10"></textarea>
+                        
+                                <button class="go">送出</button>
+                            </form>
+                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -165,7 +225,7 @@
 
         <form action="">
             <div class="input_container">
-                <h3 class="jt">新增留言</h3>
+                <h3>新增留言</h3>
                 <div class="create_command_container">
                     <textarea class="create_command"></textarea>
                     <div class="com_btn_countainer">
@@ -177,15 +237,21 @@
             </div>
 
         </form>
-
-            
-
-
        
     </main>
 
-    
+    @@include('layout/footer.html')
 
+    
+    <script>
+    new Vue({
+            el: "#app",
+            data:{
+                
+                showModal2:false,
+            }
+        });
+    </script>
 
     <div id="fb-root"></div>
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v9.0" nonce="WuFFSzIJ"></script>
