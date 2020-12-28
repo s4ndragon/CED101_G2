@@ -1,7 +1,3 @@
-body {
-    background-color: #70D6BF;
-}
-
 img {
     width: 100%;
 }
@@ -9,13 +5,16 @@ img {
 /* leaf animations */
 
 #leaves {
-    position: absolute;
+    position: fixed;
     top: -350px;
     width: 100%;
     text-align: right;
     height: 300vh;
     overflow: hidden;
+    z-index: 5;
+
 }
+
 
 #leaves i {
     display: inline-block;
