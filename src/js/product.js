@@ -14,7 +14,7 @@ window.addEventListener('load', () => {
                 </a>
             </div>
             <div class="content">
-                <a href="./product.html">
+                <a href="./04_product.html">
                     <h4>【原藝坊】悠然愜意 青瓷鯉魚茶壺套組精湛工藝，功夫淳厚，手感極佳，品茶必備</h4>
                     <div class="price">NT<span>550</span></div>
                 </a>
