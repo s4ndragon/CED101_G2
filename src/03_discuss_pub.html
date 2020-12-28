@@ -18,7 +18,12 @@
         </div>
         <h2 id="pub_new">發表新文章</h2>
         <form id="pub_article" action="">
-            <div class="input_container">
+            <div class="pub_input_container">
+                <label class="input_type upimg_text">文章圖片：</label>
+                <label id="preview_con" for="upimg"><img id="preview"></label>
+                <input id="upimg" type="file">
+            </div>
+            <div class="pub_input_container">
                 <label class="input_type">文章類別：</label>
                 <select class="slt" name="article_cate">
                     　<option value="">揪團心得</option>
@@ -26,15 +31,11 @@
                     　<option value="">茶知識</option>
                 </select>
             </div>
-            <div class="input_container">
+            <div class="pub_input_container">
                 <label class="input_type">文章標題：</label>
                 <input type="text">
             </div>
-            <div class="input_container">
-                <label class="input_type">文章圖片：</label>
-                <input id="upimg" type="file">
-            </div>
-            <div class="input_container">
+            <div class="pub_input_container">
                 <label class="input_type">文章內文：</label>
                 <textarea></textarea>
             </div>
@@ -48,7 +49,29 @@
             </div>
         </form>
     </main>
-    <footer></footer>
+    @@include('layout/footer.html')
+
+    <script>
+        let upload = document.getElementById("upimg");
+
+        upload.addEventListener("change", hand, false);
+
+        function hand() {
+            readURL(this);
+        }
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                let reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById("preview").src = e.target.result;
+                };
+                reader.readAsDataURL(input.files[0])
+            }
+        }
+
+
+    </script>
 </body>
 
 </html>

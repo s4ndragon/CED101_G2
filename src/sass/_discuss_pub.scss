@@ -1,10 +1,7 @@
 #pub_new {
-    background-color: $secondary-typo-color;
-    padding: 25px;
-    margin: 0;
-    border-radius: 30px 30px 0 0;
-    width: 50%;
-    margin: 0 auto;
+    @include form_title;
+    font-size: $h3;
+    color: white;
 }
 
 #pub_article {
@@ -16,7 +13,7 @@
 }
 
 
-.input_container {
+.pub_input_container {
     margin: 30px;
 
     .input_type {
@@ -51,7 +48,26 @@ input {
 }
 
 
+// =========新增
 
 .btn_countainer {
     text-align: center;
+}
+
+#upimg {
+    display: none;
+}
+
+.upimg_text {
+    vertical-align: top;
+}
+
+#preview {
+    // background-image: url();
+    width: 300px;
+    height: 200px;
+}
+
+textarea {
+    padding: 13px;
 }

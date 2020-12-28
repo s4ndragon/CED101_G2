@@ -12,6 +12,12 @@ img {
 
 $main-width: 80%;
 
+.banner {
+    background-color: #69994e;
+    width: 100%;
+    height: 300px;
+}
+
 .header_block {
     padding-top: 100px;
 }
@@ -20,6 +26,7 @@ h1 {
     text-align: center;
     font-size: $h1;
     margin: 20px;
+    
 }
 
 

@@ -1,16 +1,26 @@
 .allthings {
-    border: solid black 5px;
     width: 70%;
     margin: 0 auto;
 }
 
+#art_information {
+    display: flex;
+    align-items: center;
+
+    h2 {
+        font-size: $h3;
+        font-weight: bolder;
+    }
+}
+
+// ==========會員頭相框======
 .nameall {
 
-    width: 10%;
+    width: 100px;
     text-align: center;
     margin: 5px 30px;
 
-    .man {
+    .mem_photo {
         width: 100px;
         height: 100px;
         border-radius: 50%;
@@ -23,43 +33,67 @@
 
 }
 
+.nameall2 {
+    width: 100px;
+    text-align: center;
+    margin: 5px 30px;
 
-main {
-    position: relative;
-
-    .addtour {
-        position: fixed;
-        right: 10%;
-        bottom: 10%;
-        background-color: green;
+    .mem_photo {
         width: 100px;
         height: 100px;
         border-radius: 50%;
-        color: white;
-        font-weight: bolder;
-        outline: none;
+        background-color: black;
     }
+
+    span {
+        text-align: center;
+    }
+
 }
 
+// ==========以上是會員頭相框======
+
 #commandall {
+    border-bottom: 1px solid gray;
+
     .command {
         display: flex;
         justify-content: center;
         margin: 20px;
 
         .command_text {
-            border: 2px solid black;
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
             border-radius: 20px;
-            width: 70%;
+            width: 700px;
             padding: 10px;
+            display: flex;
+            flex-direction: column;
+            background-color: white;
 
-            .pub_time {
+            .com_pub_time {
                 text-align: right;
+                margin-top: auto;
+                font-size: 14px;
             }
         }
     }
+
+    .text_excl {
+        display: flex;
+    }
+
+    .com_title {
+        margin: 30px 0px;
+        text-align: left;
+        font-size: 28px;
+        color: #7baa17;
+        font-weight: bold;
+    }
 }
 
+.pub_mem_name {
+    width: 20px;
+}
 
 
 #article_text {
@@ -67,14 +101,150 @@ main {
     border-bottom: 1px solid gray;
 }
 
+.ar_excl,
 .excl {
     width: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 20px
+    margin: 0 20px;
+    cursor: pointer;
 }
+
 
 #pub_title {
     margin: 20px 0 0 20px;
+}
+
+
+.input_container {
+    h2 {
+        margin: 30px 0px;
+        text-align: left;
+        font-size: 28px;
+        color: #7baa17;
+        font-weight: bold;
+    }
+
+    .create_command_container {
+        text-align: center;
+
+        .create_command {
+            width: 800px;
+            height: 100px;
+            margin: 0 auto;
+            resize: none;
+            border-radius: $border-radius-sml;
+            outline: none;
+        }
+
+        .com_btn_countainer {
+
+            .inner_btn {
+                @include smallbtn
+            }
+        }
+    }
+
+}
+
+
+.text_excl {
+    display: flex;
+    justify-content: center;
+}
+
+
+
+
+
+@media screen and (max-width: 1100px) {
+    .create_command {
+        width: 500px !important;
+    }
+
+    .command_text {
+        width: 450px !important
+    }
+
+    .text_excl {
+        margin: 15px 0;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    #art_information {
+        flex-direction: column;
+    }
+
+    .allthings {
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    .create_command {
+        width: 300px !important;
+    }
+
+    #article_text {
+        padding: 10px 20px 10px;
+        border-bottom: 1px solid gray;
+    }
+
+    .com_title {
+        margin: 30px 0px !important;
+    }
+
+    .command {
+        margin: 20px 0px !important;
+        flex-direction: column;
+    }
+
+    .nameall2 {
+        margin: 5px 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 200px;
+
+        .pub_mem_name {
+            width: 50px;
+        }
+
+        .mem_photo {
+            width: 40px;
+            height: 40px;
+        }
+
+    }
+
+    .nameall {
+        margin: 5px 5px;
+        display: flex;
+        align-items: center;
+        width: 200px;
+
+
+        .pub_mem_name {
+            width: 50px;
+        }
+
+        .mem_photo {
+            width: 40px;
+            height: 40px;
+        }
+    }
+
+    .com_pub_time {
+        font-size: 8px;
+    }
+
+
+    .command_text {
+        width: 350px !important
+    }
+
+    .excl {
+        margin: 0 5px;
+    }
 }

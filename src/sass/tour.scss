@@ -15,18 +15,10 @@ img {
     width: 100%;
 }
 
-@keyframes cloud {
-    0% {
-        top: 10%;
-    }
-
-    50% {
-        top: 5%;
-    }
-
-    100% {
-        top: 10%;
-    }
+.banner {
+    background-color: #69994e;
+    width: 100%;
+    height: 300px;
 }
 
 .choice_block {
@@ -104,12 +96,16 @@ img {
     }
 }
 
+.location {
+    cursor: pointer;
+}
+
 .location1 {
     position: absolute;
     top: 10%;
     right: 30%;
     width: 60px;
-    transition-duration: 1s;
+    transition-duration: .5s;
 }
 
 .location1:hover {
@@ -118,8 +114,9 @@ img {
     border: 5px solid #fff;
     border-radius: 50%;
     overflow: hidden;
-    top: 0%;
-    right: 30%;
+    top: 5%;
+    right: 25%;
+    z-index: 2;
 
     img {
         height: 150px;
@@ -131,7 +128,7 @@ img {
     top: 40%;
     right: 30%;
     width: 60px;
-    transition-duration: 1s;
+    transition-duration: .5s;
 }
 
 .location2:hover {
@@ -140,8 +137,9 @@ img {
     border: 5px solid #fff;
     border-radius: 50%;
     overflow: hidden;
-    top: 40%;
-    right: 10%;
+    top: 35%;
+    right: 25%;
+    z-index: 2;
 
     img {
         height: 150px;
@@ -153,7 +151,7 @@ img {
     top: 70%;
     right: 50%;
     width: 60px;
-    transition-duration: 1s;
+    transition-duration: .5s;
 }
 
 .location3:hover {
@@ -163,7 +161,8 @@ img {
     border-radius: 50%;
     overflow: hidden;
     top: 65%;
-    right: 55%;
+    right: 45%;
+    z-index: 2;
 
     img {
         height: 150px;
@@ -175,7 +174,7 @@ img {
     top: 60%;
     right: 40%;
     width: 60px;
-    transition-duration: 1s;
+    transition-duration: .5s;
 }
 
 .location4:hover {
@@ -184,8 +183,9 @@ img {
     border: 5px solid #fff;
     border-radius: 50%;
     overflow: hidden;
-    top: 60%;
-    right: 20%;
+    top: 55%;
+    right: 35%;
+    z-index: 2;
 
     img {
         height: 150px;
@@ -197,7 +197,7 @@ img {
     top: 30%;
     right: 30%;
     width: 60px;
-    transition-duration: 1s;
+    transition-duration: .5s;
 }
 
 .location5:hover {
@@ -207,7 +207,8 @@ img {
     border-radius: 50%;
     overflow: hidden;
     top: 25%;
-    right: 5%;
+    right: 25%;
+    z-index: 2;
 
     img {
         height: 150px;
@@ -219,7 +220,7 @@ img {
     top: 30%;
     right: 70%;
     width: 60px;
-    transition-duration: 1s;
+    transition-duration: .5s;
 }
 
 .location6:hover {
@@ -228,8 +229,9 @@ img {
     border: 5px solid #fff;
     border-radius: 50%;
     overflow: hidden;
-    top: 20%;
-    right: 70%;
+    top: 25%;
+    right: 65%;
+    z-index: 2;
 
     img {
         height: 150px;
@@ -241,7 +243,7 @@ img {
     top: 20%;
     right: 40%;
     width: 60px;
-    transition-duration: 1s;
+    transition-duration: .5s;
 }
 
 .location7:hover {
@@ -250,8 +252,9 @@ img {
     border: 5px solid #fff;
     border-radius: 50%;
     overflow: hidden;
-    top: 20%;
-    right: 40%;
+    top: 15%;
+    right: 35%;
+    z-index: 2;
 
     img {
         height: 150px;
@@ -263,7 +266,7 @@ img {
     top: 80%;
     right: 50%;
     width: 60px;
-    transition-duration: 1s;
+    transition-duration: .5s;
 }
 
 .location8:hover {
@@ -272,8 +275,9 @@ img {
     border: 5px solid #fff;
     border-radius: 50%;
     overflow: hidden;
-    top: 80%;
-    right: 50%;
+    top: 75%;
+    right: 45%;
+    z-index: 2;
 
     img {
         height: 150px;
@@ -285,7 +289,7 @@ img {
     top: 40%;
     right: 65%;
     width: 60px;
-    transition-duration: 1s;
+    transition-duration: .5s;
 }
 
 .location9:hover {
@@ -294,8 +298,9 @@ img {
     border: 5px solid #fff;
     border-radius: 50%;
     overflow: hidden;
-    top: 40%;
-    right: 65%;
+    top: 35%;
+    right: 60%;
+    z-index: 2;
 
     img {
         height: 150px;
@@ -307,7 +312,7 @@ img {
     top: 15%;
     right: 10%;
     width: 60px;
-    transition-duration: 1s;
+    transition-duration: .5s;
 }
 
 .location10:hover {
@@ -316,8 +321,9 @@ img {
     border: 5px solid #fff;
     border-radius: 50%;
     overflow: hidden;
-    top: 15%;
-    right: 0%;
+    top: 10%;
+    right: 5%;
+    z-index: 2;
 
     img {
         height: 150px;
@@ -334,9 +340,7 @@ img {
     ul {
         padding: 0;
 
-        li.mini_choice {
-            display: none;
-        }
+
 
         li {
             display: inline-block;
