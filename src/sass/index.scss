@@ -33,7 +33,7 @@
     position: relative;
     padding: 70px 0 140px;
     text-align: center;
-    background-image: url(../../src/images/index/img_bg_yg_pc4.png);
+    background-image: url(../../dist/images/index/img_bg_yg_pc4.png);
     background-size: 100% auto;
     z-index: 1;
 }
@@ -179,20 +179,12 @@
     width: calc(33.3333% - 13.33333px);
     min-height: 270px;
     background-color: #dfe0c2;
-    // background-image: url(../../src/images/index/ill_cup.png);
-    // background-image: url(../../src/images/index/teabag.png);
     border-radius: 10px;
     vertical-align: top;
     box-shadow: 5px 6px 10px rgba(0, 0, 0, 0.2);
     background-position: center center;
     background-size: cover;
 }
-
-// .tour-list li p.head span {
-//     display: inline-block;
-//     vertical-align: middle;
-//     border: 1px soild red;
-// }
 
 .tour-list li .txt {
     color: #000;
@@ -261,7 +253,7 @@
     display: block;
     width: 100%;
     height: 30px;
-    background-image: url(../../src/images/index/bg-green-bottom.png);
+    background-image: url(../../dist/images/index/bg-green-bottom.png);
     background-position: center top;
     background-size: 100% auto;
     background-repeat: no-repeat;
@@ -271,12 +263,11 @@
     position: relative;
     padding: 90px 0 100px;
     background-color: #eff2c7;
-    // background-image: url(../../src/images/index/img_bg_yg_pc1.jpg);
 }
 
 .vote-img-back {
     position: absolute;
-    top: 30%;
+    top: 32%;
     transform: translateX(-50%);
     width: 30%;
     left: 10%;
@@ -331,17 +322,16 @@
 .vote-list {
     font-size: 0;
     text-align: center;
-    // padding-bottom: 100px;
 }
 
 .vote-list li a .circle {
     position: relative;
     display: block;
-    width: 100%;
+    width: 94%;
     padding-top: 100%;
     overflow: hidden;
-    background-image: url(../../src/images/index/ill_cup.png);
-    background-position: center;
+    background-image: url(../../dist/images/index/ill_cup.png);
+    background-position: top;
     background-size: contain;
     background-repeat: no-repeat;
 }
@@ -350,24 +340,18 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     margin-top: -8px;
     width: 100%;
     text-align: center;
 }
 
-.vote-list li.vote-icon-01 a .img img {
-    width: 80%;
-}
-
 .vote-list li a .img img {
-    -webkit-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
+    width: 70% !important;
 }
 
-.vote-list li a .txt-btm {
+.vote-list li a .txt {
     position: relative;
     padding: 15px 0 10px;
     margin-top: -40px;
@@ -378,15 +362,12 @@
     background-color: #eff2c7;
 }
 
-.vote-list li a .txt-btm:after {
+.vote-list li a .txt:after {
     content: '>';
     display: inline-block;
     margin-left: 10px;
-    -webkit-transform: translate(0, -1px);
-    -ms-transform: translate(0, -1px);
     transform: translate(0, -1px);
     font-family: 'FontAwesome';
-    -webkit-transition: all 0.3s ease-in;
     transition: all 0.3s ease-in;
 }
 
@@ -399,38 +380,50 @@
     height: 100%;
     background-size: 100%;
     transform-origin: center;
-    -webkit-transform: scale(0);
     transform: scale(0);
     transition: all 0.3s ease-in-out;
-    background-image: url(../../src/images/index/ill_cup.png);
+    background-image: url(../../dist/images/index/ill_cup.png);
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
 }
 
-.vote-list .vote-icon-01 a .bg {
-    background-color: #3293cb;
-}
-
-.vote-list .vote-icon-02 a .bg {
-    background-color: #ffb541;
-}
-
-.vote-list .vote-icon-03 a .bg {
-    background-color: #c3cc2d;
-}
-
-.vote-list .vote-icon-04 a .bg {
-    background-color: #87e0db;
-}
-
-.vote-list .vote-icon-05 a .bg {
-    background-color: #f69d85;
-}
-
 .vote-list li a:hover .bg {
     transform: scale(1);
+    background-image: url(../../dist/images/index/ill_cup_gr.png);
+    background-position: top;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
+
+// .vote-list .vote-icon-01 a .bg:hover {
+//     background-color: #3293cb;
+//     transform: scale(1);
+//     background-image: url(../../dist/images/index/ill_cup_db.png);
+//     background-position: top;
+//     background-size: contain;
+//     background-repeat: no-repeat;
+// }
+
+// .vote-list .vote-icon-02 a .bg {
+//     // background-color: #ffb541;
+//     background-image: url(../../dist/images/index/ill_cup_.png);
+//     background-position: top;
+//     background-size: contain;
+//     background-repeat: no-repeat;
+// }
+
+// .vote-list .vote-icon-03 a .bg {
+//     background-color: #c3cc2d;
+// }
+
+// .vote-list .vote-icon-04 a .bg {
+//     background-color: #87e0db;
+// }
+
+// .vote-list .vote-icon-05 a .bg {
+//     background-color: #f69d85;
+// }
 
 .container-main * {
     transition: opacity 0.5s;
@@ -455,7 +448,7 @@
     display: block;
     width: 100%;
     height: 30px;
-    background-image: url(../../src/images/index/bg-green-top.png);
+    background-image: url(../../dist/images/index/bg-green-top.png);
     background-position: center bottom;
     background-size: 100% auto;
     background-repeat: no-repeat;
@@ -464,7 +457,7 @@
 .shop {
     position: relative;
     padding-top: 90px;
-    background-image: url(../../src/images/index/img_bg_yg_pc4.png);
+    background-image: url(../../dist/images/index/img_bg_yg_pc4.png);
     background-size: 100% auto;
 }
 
@@ -640,7 +633,7 @@
     -webkit-transform: translateY(-50%);
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
-    background-image: url(../../src/images/index/ntd.png);
+    background-image: url(../../dist/images/index/ntd.png);
     background-size: contain;
     background-repeat: no-repeat;
 }
@@ -714,7 +707,7 @@
 }
 
 .shop-list li .label {
-    background-image: url(../../src/images/index/tealabel.png);
+    background-image: url(../../dist/images/index/tealabel.png);
     background-position: left;
     background-size: cover;
     background-repeat: no-repeat;
@@ -753,7 +746,7 @@
 
 .shop-list li .txt-area .wrap-company {
     margin: 0 -5px 5px;
-    background-image: url(../../src/images/index/company.png);
+    background-image: url(../../dist/images/index/company.png);
     background-position: left;
     background-size: contain;
     background-repeat: no-repeat;
@@ -767,10 +760,14 @@
 
 // 結束第四屏:商城 =====================
 // 第五屏:討論區 =====================
+.discuss .container {
+    max-width: 1000px;
+    text-align: center;
+}
 
 .discuss:before {
     top: 0;
-    background-image: url(../../src/images/index/bg-green-bottom.png);
+    background-image: url(../../dist/images/index/bg-green-bottom.png);
     background-position: center top;
 }
 
@@ -788,7 +785,7 @@
 
 .dis-img-top {
     position: absolute;
-    top: -10%;
+    top: -12%;
     right: 0;
 }
 
@@ -800,11 +797,18 @@
 
 .discuss .dis-box-info {
     display: inline-block;
-    max-width: calc(90% / 3 - 20px);
+    max-width: calc(100% / 3 - 20px);
     width: 100%;
-    margin-bottom: 25px;
+    // margin-bottom: 25px;
     background-color: #fff;
     border-radius: 10px;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+.discuss .container:nth-child(3) {
+    margin-right: 0 !important;
+    border: 1px solid red;
 }
 
 .discuss .dis-box-info .txt-area {
@@ -890,12 +894,6 @@
     background-color: #eff2c7;
 }
 
-.discuss .container {
-    max-width: 100%;
-    /* 1000px */
-    text-align: center;
-}
-
 .discuss .container:nth-child(3n) {
     margin-right: 20px;
 }
@@ -907,10 +905,6 @@
 
 .discuss .dis-box-info .txt-area .lg-btn:after {
     color: #fff;
-}
-
-.discuss .dis-box-info {
-    margin-left: 20px;
 }
 
 .discuss .dis-box-info .txt-area .txt {
@@ -933,37 +927,21 @@
 
 // 結束第五屏:討論區 =====================
 
-// 第六屏:小遊戲(待確認) =====================
-//  .box-game {
-//   background-color: #eff2c7;
-//   position: absolute;
-//   left: 50%;
-//   bottom: 0;
-//    transform: translate(-50%, 50%);
-//   width: 100%;
-//   max-width: 1000px;
-//   padding: 55px 85px;
-//   background-image: url(../images/index/bg-info-pdf.jpg);
-//   background-size: cover;
-//   background-position: center top;
-//   border-radius: 30px;
-//   z-index: 1;
-// }
-// 結束第六屏:小遊戲 =====================
-// 第七屏:旋轉=====================
+// 第六屏:結束=====================
 
 .ending {
-    // width: 100%;
+    background: #709b5e;
+    width: 100%;
     margin: 0 auto;
     height: 70vh;
     background-attachment: fixed;
     background-size: 70%;
     background-position: bottom;
     background-repeat: no-repeat;
-    background-image: url(../../src/images/index/ending.png);
+    background-image: url(../../dist/images/index/ending.png);
 }
 
-// 結束第七屏:旋轉 =====================
+// 結束第六屏 =====================
 // RWD開始  =====================
 @media only screen and (min-width: 769px) {
     .act-rwd {
@@ -1001,6 +979,7 @@
 
     .tour-list li + li {
         margin-left: 0px;
+        margin-bottom: 0;
     }
 
     .tour-list .tour-list-line,
@@ -1016,6 +995,10 @@
     .discuss .dis-box-info .txt-area {
         padding: 20px;
         min-height: 0;
+    }
+
+    .discuss {
+        padding-top: 40px;
     }
 
     .dis-img-btm {
@@ -1040,7 +1023,8 @@
     }
 
     .shop {
-        padding-top: 100px;
+        padding-top: 20px;
+        padding-bottom: 20px;
     }
 
     .shop .shop-banner .shop-banner-promo {
@@ -1084,6 +1068,10 @@
         top: 0%;
     }
 
+    .dis-img-top {
+        top: -3.6%;
+    }
+
     .illust-discuss-next {
         top: 4.2%;
     }
@@ -1099,7 +1087,20 @@
     }
 
     .vote {
-        padding-bottom: 0;
+        padding-bottom: 20px;
+    }
+
+    .vote-img-back {
+        top: 73%;
+    }
+
+    .vote-list li a .txt {
+        margin-top: 0;
+        font-size: 0.8rem;
+    }
+
+    .vote-list li a .txt:after {
+        content: '';
     }
 
     .illust-discuss {
@@ -1110,8 +1111,14 @@
         height: 125px;
     }
 
+    .tour {
+        padding-bottom: 30px;
+    }
+
     .tour .tour_title {
-        padding: 0px 70px 0px;
+        padding: 0;
+        margin: 0;
+        font-size: 1.45rem;
     }
 
     .tour .tour_txt {
