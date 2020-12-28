@@ -313,7 +313,6 @@ $('#pause').on('click', function () {
   tween.pause();
   $("div.overlay").addClass("-on");
   $(this).addClass("none");
-
 });
 $('div.tea_ency').on('click', function () {
   $('.tea_en').addClass('-on');
