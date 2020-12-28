@@ -123,4 +123,16 @@ $(document).ready(function () {
                 }
             }
         });
+    //lightbox
+    $(".tour_attendency").click(function () {
+        // console.log("hi");
+        $(".num_attendency").css({
+            display: "flex",
+        });
+    });
+    $(".close").click(function () {
+        $(".num_attendency").css({
+            display: "none",
+        });
+    });
 });
