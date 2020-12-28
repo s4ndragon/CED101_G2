@@ -26,43 +26,7 @@ function doFirst() {
     loadFavorite()
 }
 
-function additem(e) {
-    let itemValue = e.target.nextElementSibling.value;
-    let itemNo = itemValue.split('|')[0],
-        itemName = itemValue.split('|')[1],
-        itemPrice = itemValue.split('|')[2],
-        itemNum = itemValue.split('|')[3];
-    if (storage[`${itemNo}`]) {
-        alert('已經在購物車內囉。')
-    } else {
-        storage[`${itemNo}`] = itemValue;
-        storage['addItemList'] += itemNo + ',';
-        itemValue = itemValue.split('|');
-        itemName = itemValue[1];
-        itemPrice = itemValue[2];
-        itemNum = itemValue[3];
-        let newdiv = document.createElement('div');
-        newdiv.setAttribute('class', 'item');
-        newdiv.innerHTML = `
-            <span class="drop">×</span>
-            <div class="img">
-                <img src="./images/shopping/product2.jpg" alt="">
-            </div>
-            <div class="aside">
-                <h3>${itemName}</h3>
-                <div class="content">
-                    數量:<input type="number" name="" id="" value="${itemNum}" min='0' max='999' onchange='calcAmount()'>
-                    價格: <input type="number" name="" id="" disabled value="${itemPrice}" >
-                    <input type="hidden" name="" value='${storage[`${itemNo}`]}' class='productInfo'>
-                </div>
-            </div>
-            `
-        let cart_content = document.getElementById('cart_content');
-        cart_content.insertBefore(newdiv, amount);
-        calcAmount();
-        newdiv.querySelectorAll('.drop')[0].addEventListener('click', dropitem);
-    }
-}
+
 
 function addFavorite(e) {
     let itemValueBtn = e.target.nextElementSibling.nextElementSibling,
@@ -96,6 +60,48 @@ function loadFavorite() {
     }
 }
 
+function itemInnerhtml(newdiv, itemNo, itemName, itemNum, itemPrice) {
+    newdiv.innerHTML = `
+    <div class="drop">×</div>
+    <div class="img">
+        <img src="./images/shopping/product2.jpg" alt="">
+    </div>
+    <div class="aside">
+        <a href="./04_product.html"><h3>${itemName}</h3></a>
+        <div class="content">
+            <div>數量: <input type="number" name="" id="" value="${itemNum}" min='0' max='999' onchange='calcAmount()'></div>
+            <div class='price'>價格: </span><input type="number" name="" id="" disabled value="${itemPrice}" ></div>
+            <input type="hidden" name="" value='${storage[`${itemNo}`]}' class='productInfo'>
+        </div>
+    </div>
+    `
+}
+
+function additem(e) {
+    let itemValue = e.target.nextElementSibling.value;
+    let itemNo = itemValue.split('|')[0],
+        itemName = itemValue.split('|')[1],
+        itemPrice = itemValue.split('|')[2],
+        itemNum = itemValue.split('|')[3];
+    if (storage[`${itemNo}`]) {
+        alert('已經在購物車內囉。')
+    } else {
+        storage[`${itemNo}`] = itemValue;
+        storage['addItemList'] += itemNo + ',';
+        itemValue = itemValue.split('|');
+        itemName = itemValue[1];
+        itemPrice = itemValue[2];
+        itemNum = itemValue[3];
+        let newdiv = document.createElement('div');
+        newdiv.setAttribute('class', 'item');
+        itemInnerhtml(newdiv, itemNo, itemName, itemNum, itemPrice);
+        let cart_content = document.getElementById('cart_content');
+        cart_content.insertBefore(newdiv, amount);
+        calcAmount();
+        newdiv.querySelectorAll('.drop')[0].addEventListener('click', dropitem);
+    }
+}
+
 function loadcart() {
     let cartContent = document.getElementById('cart_content');
     if (cartContent) {
@@ -109,20 +115,7 @@ function loadcart() {
             itemNum = itemValue[3];
             let newdiv = document.createElement('div');
             newdiv.setAttribute('class', 'item');
-            newdiv.innerHTML = `
-                <span class="drop">×</span>
-                <div class="img">
-                    <img src="./images/shopping/product2.jpg" alt="">
-                </div>
-                <div class="aside">
-                    <h3>${itemName}</h3>
-                    <div class="content">
-                        數量:<input type="number" name="" id="" value="${itemNum}" min='0' max='999' onchange='calcAmount()'>
-                        價格: <input type="number" name="" id="" disabled value="${itemPrice}" >
-                        <input type="hidden" name="" value='${storage[itemlist[i]]}' class='productInfo'>
-                    </div>
-                </div>
-                `
+            itemInnerhtml(newdiv, itemlist[i], itemName, itemNum, itemPrice);
             cart_content.insertBefore(newdiv, amount);
         }
     };
@@ -140,7 +133,7 @@ function calcAmount() {
             let pricebtn = items[i].querySelectorAll('input[type=hidden]')[0],
                 priceValue = pricebtn.value;
             let price = priceValue.split('|')[2],
-                num = pricebtn.previousElementSibling.previousElementSibling.value,
+                num = pricebtn.previousElementSibling.previousElementSibling.getElementsByTagName('input')[0].value,
                 h = priceValue.split('|')[4],
                 c;
             if (priceValue.split('|')[3] < 10) {
