@@ -282,6 +282,8 @@ main {
                     width: calc(100% / 3);
                     text-align: center;
                     padding: 5px 0;
+                    // background-color: $lighter;
+                    // border-radius: 5px;
                 }
                 // .fav_tour {
                 //     background-color: $darker;
@@ -294,8 +296,7 @@ main {
                 background-color: $lighter;
                 border-radius: 0 0 5px 5px;
                 padding: 30px 10px;
-                // padding: 10px 0;
-                // margin: 10px 0;
+                background-color: $lighter;
                 #fav_tour {
                     display: flex;
                     #tour_list {
@@ -521,6 +522,7 @@ main {
 
 .blog_container {
     // border: 1px solid black;
+    background-color: $search-bar-bgColor;
     position: relative;
     top: 30px;
     width: 25%;
@@ -545,7 +547,7 @@ main {
     }
 }
 .colored {
-    background-color: $darker;
-    color: $lighter;
+    background-color: $primary-typo-color;
+    color: $search-bar-bgColor;
     border-radius: $br;
 }
