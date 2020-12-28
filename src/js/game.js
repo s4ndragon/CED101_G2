@@ -29,7 +29,6 @@ var star = 25,
   plantArr = [],
   bullet = [],
   wormArr = [],
-
   leaf_i=-1
   leaf=[],
   demo = {score:0}
@@ -186,16 +185,16 @@ function bb_(){
                 calcDamage(wormArr[j], bullet[i], '../dist/images/game/11.gif');
                 //受傷狀態的
                 wormState(j, wormArr[j], wormArr);
-                //从地圖中删除
+                //從地圖中删除
                 road.removeChild(bullet[i]);
-                //从數组中删除
+                //從數组中删除
                 bullet.splice(i, 1);
                 break;
               }
               //打到地圖外 删除子彈
               if(bullet[i].offsetLeft + bullet[i].offsetWidth > road.offsetWidth) {
                 bullet[i].parentNode.removeChild(bullet[i]);
-                //从數组中删除
+                //從數组中删除
                 bullet.splice(i, 1);
               }
             }
@@ -443,23 +442,22 @@ function shot(){
                   calcDamage(path.wormArr[k][j], path.bullet[k][i]);
                   //受傷狀態的
                   wormState(j, path.wormArr[k][j], path.wormArr[k]);
-                  //从地圖中删除
+                  //從地圖中删除
                   way[k].removeChild(path.bullet[k][i]);
-                  //从數组中删除
+                  //從數组中删除
                   path.bullet[k].splice(i, 1);
                   break;
                 }
                 //打到地圖外 删除子彈
-                if(path.bullet[k][i].offsetLeft + path.bullet[k][i].offsetWidth > road.offsetWidth) {
+                if(path.bullet[k][i].offsetLeft + path.bullet[k][i].offsetWidth > way[k].offsetWidth) {
                   path.bullet[k][i].parentNode.removeChild(path.bullet[k][i]);
-                  //从數组中删除
+                  //從數组中删除
                   path.bullet[k].splice(i, 1);
                 }
               }
             }
           }
   }
-
 }
 function addworm(damage, defense, hp, speed,o){
   var img = document.createElement("img");
