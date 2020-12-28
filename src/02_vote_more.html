@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,10 +12,11 @@
     <script src="./js/newtour.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
+
 <body>
     @@include('layout/nav.html')
     <div class="banner"></div>
-        
+
     <main>
         <div class="all">
             <div class="garden">
@@ -23,31 +25,35 @@
             <div class="ginfo">
                 <div class="s1">
                     <p class="p1">舞鶴茶園</p>
-                    <div class="fb-share-button" data-href="http://127.0.0.1:5501/07_vote_more.html" data-layout="button" data-size="small">
-                        <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5501%2F07_vote_more.html&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
+                    <div class="fb-share-button" data-href="http://127.0.0.1:5501/07_vote_more.html"
+                        data-layout="button" data-size="small">
+                        <a target="_blank"
+                            href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5501%2F07_vote_more.html&amp;src=sdkpreparse"
+                            class="fb-xfbml-parse-ignore">
                             分享
                         </a>
                     </div>
                 </div>
 
                 <div class="allscore app">
-					<span class="score">
-						總分:&ensp; 
-					</span>
-					<div>
-						<star-rating  :rating="4.7" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
-					</div>
+                    <span class="score">
+                        總分:&ensp;
+                    </span>
+                    <div>
+                        <star-rating :rating="4.7" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
+                    </div>
                 </div>
-                
+
                 <p class="p3"><span class="tt">評分次數:</span> 7</p>
                 <p class="p4">
                     <span class="tt">茶園地址:</span> 花蓮縣瑞穗鄉舞鶴村
                 </p>
-                <p class="p5">海拔100至300公尺的舞鶴台地，依傍高聳的中央山脈，隨風拂來秀姑巒溪與紅葉溪的濕潤水氣，宜人的氣候適合茶樹生長，是天鶴茶的產地，也是小葉綠蟬生長的天堂，經由小葉綠蟬吸吮而製成的蜜香紅茶，微帶淡淡的果香與蜜香，口感溫潤生津，獨特的風味聞名全臺，成為旅人來訪瑞穗必帶的伴手禮之一。
+                <p class="p5">
+                    海拔100至300公尺的舞鶴台地，依傍高聳的中央山脈，隨風拂來秀姑巒溪與紅葉溪的濕潤水氣，宜人的氣候適合茶樹生長，是天鶴茶的產地，也是小葉綠蟬生長的天堂，經由小葉綠蟬吸吮而製成的蜜香紅茶，微帶淡淡的果香與蜜香，口感溫潤生津，獨特的風味聞名全臺，成為旅人來訪瑞穗必帶的伴手禮之一。
                 </p>
                 <div class="btwrap" id="app2">
-					<button class="bt" @click="showModal = true">
-						我要評分
+                    <button class="bt" @click="showModal = true">
+                        我要評分
                     </button>
 
                     <!-- overlay -->
@@ -67,14 +73,14 @@
                             <button class="go">送出</button>
                         </form>
                     </div>
-				</div>
+                </div>
             </div>
         </div>
 
-        
 
-            <div id="commandall">
-                <h3 class="t1">茶園留言</h2>
+
+        <div id="commandall">
+            <h3 class="t1">茶園留言</h2>
                 <div class="command">
                     <div class="nameall">
                         <div class="mem_photo"><img class="mem_photo" src="./images/common/mem_photo1.png" alt=""></div>
@@ -121,61 +127,61 @@
                     </div>
                 </div>
 
+        </div>
+
+        <form action="">
+            <div class="input_container">
+                <h3>新增留言</h3>
+                <div class="create_command_container">
+                    <textarea class="create_command"></textarea>
+                    <div class="com_btn_countainer">
+                        <button class="inner_btn">
+                            <a href="03_discuss.html">送出</a>
+                        </button>
+                    </div>
+                </div>
             </div>
 
-            <form action="">
-                <div class="input_container">
-                    <h3>新增留言</h3>
-                    <div class="create_command_container">
-                        <textarea class="create_command"></textarea>
-                        <div class="com_btn_countainer">
-                            <button class="inner_btn">
-                                <a href="03_discuss.html">送出</a>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-            </form>
+        </form>
 
         <h3>相關揪團</h3>
         <div class="tour_browse_block" id="tourBrowseBlock"></div>
     </main>
 
-    
-    <script>
-		Vue.component("star-rating", VueStarRating.default,{
-			methods: {
-				setRating: function(rating) {
-					this.rating = "You have Selected: " + rating + " stars";
-				},
-				showCurrentRating: function(rating) {
-					this.currentRating =
-						rating === 0
-							? this.currentSelectedRating
-							: "Click to select " + rating + " stars";
-				},
-				setCurrentSelectedRating: function(rating) {
-					this.currentSelectedRating =
-						"You have Selected: " + rating + " stars";
-				}
-			},
-			data: {
-				rating: "No Rating Selected",
-				currentRating: "No Rating",
-				currentSelectedRating: "No Current Rating",
-                boundRating: 3,
-			}
-		});
 
-		new Vue({
-			el: ".app",
+    <script>
+        Vue.component("star-rating", VueStarRating.default, {
+            methods: {
+                setRating: function (rating) {
+                    this.rating = "You have Selected: " + rating + " stars";
+                },
+                showCurrentRating: function (rating) {
+                    this.currentRating =
+                        rating === 0
+                            ? this.currentSelectedRating
+                            : "Click to select " + rating + " stars";
+                },
+                setCurrentSelectedRating: function (rating) {
+                    this.currentSelectedRating =
+                        "You have Selected: " + rating + " stars";
+                }
+            },
+            data: {
+                rating: "No Rating Selected",
+                currentRating: "No Rating",
+                currentSelectedRating: "No Current Rating",
+                boundRating: 3,
+            }
+        });
+
+        new Vue({
+            el: ".app",
         });
 
         // new Vue({
-		// 	el: "#app3",
+        // 	el: "#app3",
         // });
-        
+
         //燈箱
         new Vue({
             el: '#app2',
@@ -183,8 +189,10 @@
         });
 
     </script>
-    
+
     <div id="fb-root"></div>
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v9.0" nonce="WuFFSzIJ"></script>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v9.0"
+        nonce="WuFFSzIJ"></script>
 </body>
+
 </html>
