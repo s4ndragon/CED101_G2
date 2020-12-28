@@ -195,13 +195,18 @@ function bb_(){
                 break;
               }
               //打到地圖外 删除子彈
-              if(bullet[i].offsetLeft + bullet[i].offsetWidth > road.offsetWidth) {
+              // if(bullet[i].offsetLeft + bullet[i].offsetWidth > road.offsetWidth) {
+              //   bullet[i].parentNode.removeChild(bullet[i]);
+              //   //从數组中删除
+              //   bullet.splice(i, 1);
+              // }
+            }
+    }
+                  if(bullet[i].offsetLeft + bullet[i].offsetWidth > road.offsetWidth) {
                 bullet[i].parentNode.removeChild(bullet[i]);
                 //从數组中删除
                 bullet.splice(i, 1);
               }
-            }
-          }
         }}
 //tweenMax要求：產生蟲子後啟動動畫，觸發後刪除tweenMax
 //產生→走路動畫→onUpdate(){if(wormArr[i].offsetLeft + wormArr[i].offsetWidth < 0){偵測}}→刪除
