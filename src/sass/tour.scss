@@ -16,9 +16,14 @@ img {
 }
 
 .banner {
-    background-color: #69994e;
+    background-color: #ead779;
     width: 100%;
     height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 60px;
+    margin: 0 0 30px 0;
 }
 
 .choice_block {
@@ -529,9 +534,7 @@ img {
             text-align: center;
 
             button {
-                @include btn3;
-
-
+                @include btn;
             }
         }
     }
@@ -574,6 +577,7 @@ img {
         border-radius: 50%;
         font-size: $h5;
         background-color: #ffffff;
+        color: $secondary-typo-color;
 
         @media screen and (max-width: 575px) {
             bottom: 90%;

@@ -12,7 +12,7 @@ $(function () {
 
 });
 
-$(window).on('load', function () {
+$(window).on("DOMContentLoaded", function () {
     parallaxInstance = new Parallax(document.getElementById("index_background"), {
     });
 });
