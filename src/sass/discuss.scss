@@ -14,6 +14,7 @@
 }
 
 
+
 body {
     @include forDiscussAndVote;
     background-image: url(../images/common/bg.png);
@@ -68,10 +69,11 @@ main {
 
             }
         }
-
-
-
     }
+}
+
+footer {
+    margin-top: 40px;
 }
 
 
@@ -131,6 +133,10 @@ main {
 #loco {
     width: 40px;
     margin-top: 10px;
+}
+
+.addheart {
+    cursor: pointer;
 }
 
 // =======單篇文章樣式======

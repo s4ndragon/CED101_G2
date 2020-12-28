@@ -197,7 +197,7 @@
     display: block;
 }
 
-.about-list li + li {
+.about-list li+li {
     margin-left: 20px;
 }
 
@@ -381,7 +381,7 @@
     vertical-align: top;
 }
 
-.action-list li + li {
+.action-list li+li {
     margin-left: 30px;
 }
 
@@ -886,7 +886,7 @@
     padding: 0 5px;
 }
 
-.project-list li .txt-area .company > span {
+.project-list li .txt-area .company>span {
     display: inline-block;
     font-size: 0.75rem;
     color: #fff;
@@ -913,7 +913,7 @@
     margin: 0 -5px 5px;
 }
 
-.project-list li.is-category-05 .company > span {
+.project-list li.is-category-05 .company>span {
     background-color: #f69d85;
 }
 
@@ -947,11 +947,11 @@
     padding: 0 5px;
 }
 
-.project-list li.is-category-02 .company > span {
+.project-list li.is-category-02 .company>span {
     background-color: #ffb541;
 }
 
-.project-list li.is-category-01 .company > span {
+.project-list li.is-category-01 .company>span {
     background-color: #3293cb;
 }
 
@@ -1200,7 +1200,7 @@
         text-align: center;
     }
 
-    .about-list li + li {
+    .about-list li+li {
         margin-left: 0px;
     }
 
@@ -1305,5 +1305,6 @@
         top: 220px;
     }
 }
+
 
 // RWD結束  =====================
