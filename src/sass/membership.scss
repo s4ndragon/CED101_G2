@@ -16,6 +16,7 @@ $main-width: 80%;
 
 body {
     @include forTourAndShop;
+    position: relative;
 
     h1 {
         font-size: $h1;
@@ -44,6 +45,12 @@ body {
 //==============================//
 .banner {
     height: 300px;
+    width: 100%;
+    background-color: #ead779;
+    font-size: $h2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 main {
     // border: 1px solid red;
@@ -391,13 +398,14 @@ main {
         #mine_article {
             display: none;
             width: $main-width;
+            background-color: $lighter;
             @media only screen and (max-width: 768px) {
                 width: 100%;
             }
             .article_brief {
-                background-color: $lighter;
+                // background-color: $lighter;
                 border-radius: 0 0 5px 5px;
-                padding: 10px 0px;
+                // padding: 10px 0px;
                 .article_detail {
                     margin: 10px;
                     border: 1px solid $primary-typo-color;
