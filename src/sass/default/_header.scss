@@ -382,7 +382,7 @@
 
         .green_ear {
             position: relative;
-            margin-top: -13%;
+            margin-top: 0%;
             z-index: 35;
         }
 
@@ -442,8 +442,12 @@
         .ga6 {
             z-index: 70;
             width: 50%;
-            bottom: 20%;
-            right: -26%;
+            bottom: 15%;
+            right: -23%;
+
+            @media only screen and (max-width: 576px) {
+                bottom: 25%;
+            }
         }
 
 

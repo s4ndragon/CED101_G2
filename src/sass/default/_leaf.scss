@@ -11,7 +11,9 @@ img {
     text-align: right;
     height: 300vh;
     overflow: hidden;
-    z-index: 5;
+    z-index: 999999;
+
+
 
 }
 
@@ -36,16 +38,69 @@ img {
 #leaves i:nth-of-type(n) {
     width: 50px;
 
+    @media screen and (max-width: 1199px) {
+        width: 40px;
+    }
+
+    @media screen and (max-width: 992px) {
+        width: 30px;
+    }
+
+    @media screen and (max-width: 768px) {
+        width: 20px;
+    }
+
+    @media screen and (max-width: 575px) {
+        width: 15px;
+
+    }
 }
+
+
 
 #leaves i:nth-of-type(2n+1) {
     width: 100px;
+
+    @media screen and (max-width: 1199px) {
+        width: 90px;
+    }
+
+    @media screen and (max-width: 992px) {
+        width: 80px;
+    }
+
+    @media screen and (max-width: 768px) {
+        width: 60px;
+    }
+
+    @media screen and (max-width: 575px) {
+        width: 40px;
+
+    }
 
 }
 
 
 #leaves i:nth-of-type(3n+2) {
     width: 60px;
+
+    @media screen and (max-width: 1199px) {
+        width: 50px;
+    }
+
+    @media screen and (max-width: 992px) {
+        width: 40px;
+    }
+
+    @media screen and (max-width: 768px) {
+        width: 30px;
+    }
+
+
+    @media screen and (max-width: 575px) {
+        width: 15px;
+
+    }
 
 }
 
@@ -123,6 +178,7 @@ img {
 @-webkit-keyframes falling {
 
     0% {
+
         -webkit-transform:
             translate3d(300, 0, 0) rotate(0deg);
     }
@@ -136,11 +192,20 @@ img {
             translate3d(-350px, 1000px, 0) rotate(90deg);
         opacity: 0;
         display: none;
+
+
+        @media screen and (max-width: 575px) {
+            -webkit-transform:
+                translate3d(0px, 1000px, 0) rotate(90deg);
+        }
+
+
     }
 }
 
 @-webkit-keyframes falling3 {
     0% {
+
         -webkit-transform:
             translate3d(0, 0, 0) rotate(-20deg);
     }
@@ -154,11 +219,21 @@ img {
             translate3d(-230px, 940px, 0) rotate(-70deg);
         opacity: 0;
         display: none;
+
+        @media screen and (max-width: 575px) {
+            -webkit-transform:
+                translate3d(10px, 1000px, 0) rotate(90deg);
+
+
+        }
+
+
     }
 }
 
 @-webkit-keyframes falling2 {
     0% {
+
         -webkit-transform:
             translate3d(0, 0, 0) rotate(90deg);
     }

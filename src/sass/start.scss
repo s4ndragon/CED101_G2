@@ -1,0 +1,19 @@
+.title {
+  position: relative;
+  left: calc(50% - 180px);
+  top: -40px;
+}
+
+.button2 {
+  font-size: 32px;
+  text-align: center;
+  vertical-align: middle;
+  background-image: url(../button2.png);
+  width: 250px;
+  height: 85px;
+  background-size: 100%;
+  background-color: #FFF;
+  position: absolute;
+  left: calc(50% - 125px);
+  bottom: 20px;
+}
