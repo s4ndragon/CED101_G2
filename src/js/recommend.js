@@ -28,27 +28,29 @@ function doFirst() {
                                 </div>
                                 </div>
                             `;
-    }
-    $('.recommend_products').slick({ //啟動slick
-        infinite: true,
-        slidesToShow: 3,
-        slidesToScroll: 3,
-        responsive: [{
-                breakpoint: 721,
-                settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 2,
+    };
+    $('.slick').ready(function () {
+        $('.slick').slick({ //啟動slick
+            infinite: true,
+            slidesToShow: 3,
+            slidesToScroll: 3,
+            responsive: [{
+                    breakpoint: 721,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 2,
+                    }
+                },
+                {
+                    breakpoint: 377,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                    }
                 }
-            },
-            {
-                breakpoint: 377,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                }
-            }
-        ],
-    });
+            ],
+        });
+    })
     let classifyBtn = document.getElementById("classifyBtn");
     let classifyTable = document.getElementById("classifyTable");
     if (classifyTable) { //啟動classifyBtn事件
@@ -63,4 +65,5 @@ function doFirst() {
             classifyTable.setAttribute('style', 'display:none;');
         });
     }
+
 }
