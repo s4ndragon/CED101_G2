@@ -17,6 +17,7 @@ const clean = require("gulp-clean");
 const babel = require("gulp-babel");
 const fileinclude = require("gulp-file-include");
 
+//const connectPHP = require('gulp-connect-php'); // 結合 PHP
 //搬運圖片（src->dist）
 function moveImg() {
     return src("src/images/**/*.*").pipe(dest("dist/images/"));
@@ -182,3 +183,18 @@ function uploadFile() {
     watch("src/vendors/**/**/**", series(clearVendors, moveVendors))
 }
 exports.upload = uploadFile;
+// PHP定義相關環境變數
+// var php_bin = './php-5.6.36-nts-Win32-VC11-x64/php.exe';
+// var php_ini = './php-5.6.36-nts-Win32-VC11-x64/php.ini'; // 手動產生
+// var web_host = '0.0.0.0';
+// var web_port = '8080';
+// var web_home = './www';
+// gulp.task('connect-php', function() {
+//   connectPHP.server({
+//     hostname: web_host,
+//     bin: php_bin,
+//     ini: php_ini,
+//     port: web_port,
+//     base: web_home
+//   });
+// });
