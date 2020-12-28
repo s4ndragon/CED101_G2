@@ -9,9 +9,6 @@
 	</head>
 	<body>
 		@@include('layout/nav.html')
-		<!-- <div class="tea-top">
-			<section></section>
-		</div> -->
 		<div id="map">
 			<div class="tea_en flex a_c j_c" style="z-index: -1;">
 				<section></section>
@@ -55,9 +52,10 @@ font-size: 28px;line-height: 1.5;
 			<div style="color:#FFF;padding-left:10px;font-size:18px;border:solid 1px #FFF">
 				<p>遊戲說明：</p>
 				<p>左上方：計分板</p>
-		<p>左方是茶園：喝茶休息可以暫停，茶百科可以瀏覽茶的知識。</p>
+		<p>下方控制面板：喝茶休息可以暫停，茶百科可以瀏覽茶的知識。</p>
 		<p>左下方：守衛角色可放置到四條道路上，會發射子彈。</p>
 		<p>右方：有蟲子向進攻，千萬不要放蟲子到茶園裡。</p>
+		<p>茶能量：守衛放置道路上需要能量，能量不足可是請不動守衛的呦。</p>
 			</div>			
 			<div class="go button2 flex a_c j_c"  ><span style="color:#FFF;" id="gotxt">開始驅蟲</span></div>
 	  </article>
@@ -72,28 +70,23 @@ font-size: 28px;line-height: 1.5;
 				<li><img src="./images/game/Wallnut_body.png" data-star=50 data-defense=90 data-hps=100 data-hp=100 data-damage=0 data-speed=0 class="plant" /><span>50</span></li>
 				<li><img src="./images/game/TallNut.gif" data-star=75 data-defense=90 data-hps=150 data-hp=150 data-damage=0 data-speed=0 class="plant"><span>75</span></li>
 			</ul>
-
-
 			<section id="botbar" class="flex">
-			<img src="./images/game/tea_ency.png" style="background-color: azure;" height="70">
-			
+			<!-- <img src="./images/game/tea_ency.png" style="background-color: azure;" height="70"> -->
+			<div class="tea_ency"></div>
 			<div class="star-back" style="line-height: 2;">
-			
 			<div id="star-number">25</div><br>
-			<div class="" style="color:#FFF;">茶能量</div>
-				
+			<div class="" style="color:#FFF;">茶能量</div>				
 			</div>
 				<abbr title="暫停">
-					<img src="./images/game/teacup2.png" id="pause" alt="rest"class="none" width="90" style="background-color: azure;">
-				</abbr>
-				
+					<img src="./images/game/teacup2.png" id="pause" alt="rest"class="none"  >
+				</abbr>				
 			</section>
 		</div>
 		
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js" ></script>
-		<!-- <script src="./js/game (1).js"></script> -->
-		<!-- <script src="./js/game2.js"></script> -->
-		<script src="./js/game.js"></script>
+		<script src="./js/game (1).js"></script>
+		<script src="./js/game2.js"></script>
+		<!-- <script src="./js/game.js"></script> -->
 		@@include('layout/footer.html')
 	</body>
 </html>

@@ -13,7 +13,7 @@ body{
     font-size: 60px;
     margin: 0 0 30px 0;
     height: 300px;
-    background-color: #69994e;
+    background-color: #ead779;
 }
 
 main{
@@ -202,31 +202,34 @@ main{
             display: flex;
             justify-content: center;
             margin: 20px;
-    
-            .command_text {
-                box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-                border-radius: 20px;
-                width: 805px;
-                padding: 10px;
+            
+            .text_excl {
                 display: flex;
-                flex-direction: column;
-                background-color: white;
 
-                .pub_text{
-                    text-align: left;
-                }
+                .command_text {
+                    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+                    border-radius: 20px;
+                    width: 805px;
+                    padding: 10px;
+                    display: flex;
+                    flex-direction: column;
+                    background-color: white;
     
-                .com_pub_time {
-                    text-align: right;
-                    margin-top: auto;
-                    font-size: 14px;
+                    .pub_text{
+                        text-align: left;
+                    }
+        
+                    .com_pub_time {
+                        text-align: right;
+                        margin-top: auto;
+                        font-size: 14px;
+                    }
                 }
             }
+            
         }
     
-        .text_excl {
-            display: flex;
-        }
+        
     }
     
     .pub_mem_name {
@@ -240,6 +243,68 @@ main{
         align-items: center;
         margin: 0 20px;
         cursor: pointer;
+
+        .repobt{
+            border: none;
+            background-color: transparent;
+            outline: none;
+        }
+
+       .overlay {
+        position: fixed;
+        z-index: 9998;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, .2);
+      }
+
+      .modal {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 300px;
+        z-index: 9999;
+        margin: 0 auto;
+        padding: 30px 30px;
+        background-color: #fff;
+        text-align: center;
+        border-radius: $border-radius-sml;
+        
+        .close{
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            outline: none;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+            .cancel{
+                width: 20px;
+            }
+          }
+
+          .welcome{
+            font-size: 24px;
+            color: #7baa17;
+            font-weight: bold;
+            margin-bottom: 30px;
+            margin-top: 20px;
+          }
+
+          .go{
+            @include btn3;
+            width: 80px;
+            padding: 10px 3px;
+          }
+
+          .repoinfo{
+              resize: none;
+              outline: none;
+          }
+      }
     }
     
     
