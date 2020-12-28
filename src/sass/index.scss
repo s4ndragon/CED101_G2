@@ -214,11 +214,7 @@
     display: block;
 }
 
-<<<<<<< HEAD
-.about-list li+li {
-=======
 .tour-list li + li {
->>>>>>> Ting's
     margin-left: 20px;
 }
 
@@ -328,11 +324,7 @@
     vertical-align: top;
 }
 
-<<<<<<< HEAD
-.action-list li+li {
-=======
 .vote-list li + li {
->>>>>>> Ting's
     margin-left: 30px;
 }
 
@@ -736,11 +728,7 @@
     padding: 0 5px;
 }
 
-<<<<<<< HEAD
-.project-list li .txt-area .company>span {
-=======
 .shop-list li .txt-area .company > span {
->>>>>>> Ting's
     display: inline-block;
     font-size: 0.75rem;
     color: #fff;
@@ -763,39 +751,7 @@
     letter-spacing: 0.05rem;
 }
 
-<<<<<<< HEAD
-.project-list li .txt-area .wrap-company {
-    margin: 0 -5px 5px;
-}
-
-.project-list li.is-category-05 .company>span {
-    background-color: #f69d85;
-}
-
-.project-list li.is-category-02 .label .ribon:before {
-    border-color: #ffb541 transparent transparent transparent;
-}
-
-.project-list li.is-category-02 .label .ribon:after {
-    border-color: transparent transparent transparent #ffb541;
-}
-
-.project-list li.is-category-01 .label .ribon:before {
-    border-color: #3293cb transparent transparent transparent;
-}
-
-.project-list li.is-category-01 .label .ribon:after {
-    border-color: transparent transparent transparent #3293cb;
-}
-
-.project-list li.is-category-02 .category-name {
-    color: #ffb541;
-}
-
-.project-list li .txt-area .wrap-company {
-=======
 .shop-list li .txt-area .wrap-company {
->>>>>>> Ting's
     margin: 0 -5px 5px;
     background-image: url(../../src/images/index/company.png);
     background-position: left;
@@ -809,14 +765,6 @@
     padding: 0 5px;
 }
 
-<<<<<<< HEAD
-.project-list li.is-category-02 .company>span {
-    background-color: #ffb541;
-}
-
-.project-list li.is-category-01 .company>span {
-    background-color: #3293cb;
-=======
 // 結束第四屏:商城 =====================
 // 第五屏:討論區 =====================
 
@@ -824,7 +772,6 @@
     top: 0;
     background-image: url(../../src/images/index/bg-green-bottom.png);
     background-position: center top;
->>>>>>> Ting's
 }
 
 .discuss:before,
@@ -1052,11 +999,7 @@
         text-align: center;
     }
 
-<<<<<<< HEAD
-    .about-list li+li {
-=======
     .tour-list li + li {
->>>>>>> Ting's
         margin-left: 0px;
     }
 
@@ -1179,6 +1122,5 @@
         top: 220px;
     }
 }
-
 
 // RWD結束  =====================
