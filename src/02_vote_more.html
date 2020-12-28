@@ -13,10 +13,9 @@
 </head>
 <body>
     @@include('layout/nav.html')
-
-    <main>
-        <div class="banner"></div>
+    <div class="banner"></div>
         
+    <main>
         <div class="all">
             <div class="garden">
                 <img class="gpic" src="images/vote/tea5.jpg">
@@ -55,20 +54,89 @@
                     <div class="overlay" v-if="showModal" @click="showModal = true"></div>
                     <!-- modal -->
                     <div class="modal" v-if="showModal">
-                        <button class="close" @click="showModal = false">╳</button>
-                        <p class="welcome">歡迎評分</p>
-                        <div class="app">
-                            <div class="star">
-                                <star-rating :increment="0.5" :star-size="35"></star-rating>
+                        <form>
+                            <button class="close" @click="showModal = false">
+                                <img class="cancel" src="images/vote/cancel.png">
+                            </button>
+                            <p class="welcome">歡迎評分</p>
+                            <div class="app">
+                                <div class="star">
+                                    <star-rating :increment="0.5" :star-size="35"></star-rating>
+                                </div>
                             </div>
-                        </div>
-                        <button>送出</button>
+                            <button class="go">送出</button>
+                        </form>
                     </div>
 				</div>
             </div>
         </div>
 
-        <h3 class="t1">茶園留言</h2>
+        
+
+            <div id="commandall">
+                <h3 class="t1">茶園留言</h2>
+                <div class="command">
+                    <div class="nameall">
+                        <div class="mem_photo"><img class="mem_photo" src="./images/common/mem_photo1.png" alt=""></div>
+                        <span class="pub_mem_name">翰婷</span>
+                    </div>
+                    <div class="text_excl">
+                        <div class="command_text">
+                            <div class="pub_text">哈囉，還好吧還好吧還好吧還好吧還好吧，我也要去。</div>
+                            <div class="com_pub_time">發表於2012-03-20 12:20:30</div>
+                        </div>
+                        <div class="excl">
+                            <img class="excl" src="./images/common/852019_exclamation_512x512.png" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="command">
+                    <div class="nameall">
+                        <div class="mem_photo"><img class="mem_photo" src="./images/common/mem_photo1.png" alt=""></div>
+                        <span class="pub_mem_name">翰婷</span>
+                    </div>
+                    <div class="text_excl">
+                        <div class="command_text">
+                            <div class="pub_text">哈囉，還好吧還好吧還好吧還好吧還好吧，我也要去。</div>
+                            <div class="com_pub_time">發表於2012-03-20 12:20:30</div>
+                        </div>
+                        <div class="excl">
+                            <img class="excl" src="./images/common/852019_exclamation_512x512.png" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="command">
+                    <div class="nameall">
+                        <div class="mem_photo"><img class="mem_photo" src="./images/common/mem_photo1.png" alt=""></div>
+                        <span class="pub_mem_name">翰婷</span>
+                    </div>
+                    <div class="text_excl">
+                        <div class="command_text">
+                            <div class="pub_text">哈囉，還好吧還好吧還好吧還好吧還好吧，我也要去。</div>
+                            <div class="com_pub_time">發表於2012-03-20 12:20:30</div>
+                        </div>
+                        <div class="excl">
+                            <img class="excl" src="./images/common/852019_exclamation_512x512.png" alt="">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <form action="">
+                <div class="input_container">
+                    <h3>新增留言</h3>
+                    <div class="create_command_container">
+                        <textarea class="create_command"></textarea>
+                        <div class="com_btn_countainer">
+                            <button class="inner_btn">
+                                <a href="03_discuss.html">送出</a>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
 
         <h3>相關揪團</h3>
         <div class="tour_browse_block" id="tourBrowseBlock"></div>
