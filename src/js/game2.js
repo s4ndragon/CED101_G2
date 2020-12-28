@@ -107,14 +107,21 @@ function shot(){
                   path.bullet[k].splice(i, 1);
                   break;
                 }
+                console.log('left', path.bullet[k][i].offsetLeft);
+                
                 //打到地圖外 删除子彈
-                if(path.bullet[k][i].offsetLeft + path.bullet[k][i].offsetWidth > road.offsetWidth) {
+                // if(path.bullet[k][i].offsetLeft + path.bullet[k][i].offsetWidth > road.offsetWidth){
+                //   path.bullet[k][i].parentNode.removeChild(path.bullet[k][i]);
+                //   //从數组中删除
+                //   path.bullet[k].splice(i, 1);
+                // }
+              }
+      }
+      if(path.bullet[k][i].offsetLeft + path.bullet[k][i].offsetWidth > way[k].offsetWidth){
                   path.bullet[k][i].parentNode.removeChild(path.bullet[k][i]);
                   //从數组中删除
                   path.bullet[k].splice(i, 1);
                 }
-              }
-            }
           }
   }
 

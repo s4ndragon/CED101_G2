@@ -125,18 +125,6 @@ div.gameover,div.gamewin{
   transition: opacity 1s;
  opacity: 0;
 }
-.tea-top{
-	width:100%;
-	height:300px;
-	background-image: url("../images/game/sunm.jpg");
-	background-repeat: repeat-x;
-	section{
-		width:100%;
-		height:100%;
-		display:block;
-		background: linear-gradient(#e6646550, #9198e502);
-	}
-}
 .tea_en{
 position: absolute;
 top: 0;
@@ -282,13 +270,19 @@ div.gamewin>article{
 		//   line-height: 2.5;
 		position:absolute;
 		bottom:0px;
-		right:100px;
-		// margin-top:50px;
-		
+		right:210px;
+		background-color: yellowgreen;
+	  }
+	  .tea_ency{
+		background: url("../images/game/tea_ency.png");
+		background-size: contain;
+		background-repeat: no-repeat;
+		width: 70px;
+		height:65px;
 	  }
 	  .star-back{
 		  
-				background: url(../images/game/tea-ej04.png);
+				background: url("../images/game/tea-ej04.png");
 				background-size: contain;
 				background-repeat: no-repeat;
 				width: 70px;
@@ -307,7 +301,11 @@ div.gamewin>article{
 				color: white;
 				font-weight: 900;
 				font-size: 20px;
-      			}
+				  }
+				#pause{
+					height:70px;
+					width:70px;
+				}  
       			#pause.none{
         		display:none;
       			}
