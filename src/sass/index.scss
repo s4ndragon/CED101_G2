@@ -59,18 +59,18 @@
     position: absolute;
     top: -160px;
     z-index: -1;
-    transform: rotate(210deg);
-    right: -10px;
-    height: 30vh;
+    transform: rotate(180deg);
+    right: 20px;
+    width: 60%;
 }
 
 .tour-list-line3 {
     position: absolute;
     top: -150px;
     z-index: -1;
-    transform: rotate(50deg);
-    right: 110px;
-    height: 10vh;
+    transform: rotate(120deg);
+    right: 90px;
+    width: 60%;
 }
 
 .tour-list li p.head {
@@ -464,7 +464,7 @@
 
 .shop {
     position: relative;
-    padding: 90px 0 80px;
+    padding-top: 90px;
     background-image: url(../../src/images/index/img_bg_yg_pc4.png);
     background-size: 100% auto;
 }
@@ -1042,7 +1042,7 @@
     }
 
     .shop {
-        padding: 100px 0 80px;
+        padding-top: 100px;
     }
 
     .shop .shop-banner .shop-banner-promo {
@@ -1081,7 +1081,7 @@
         font-size: 0.875rem;
     }
 
-    .illust-discuss-btm {
+    .dis-img-btm {
         width: 20%;
         top: 0%;
     }
