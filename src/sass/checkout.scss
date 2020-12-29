@@ -50,6 +50,11 @@ body {
 
                     input[type=button] {
                         @include smallbtn4;
+
+                        @media all and (max-width :$small) {
+                            margin: 0;
+                        }
+
                     }
                 }
             }

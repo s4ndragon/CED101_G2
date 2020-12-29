@@ -18,9 +18,8 @@
 
 <body>
     @@include('layout/nav.html')
-    @@include('layout/margin_top.html')
+    @@include('layout/title.html',{'title':'購物車'})
     <form action="./04_check.html">
-        <h2 class="title">購物車</h2>
         <div class="cart_content" id="cart_content">
             <div id="amount">
                 <span>總計: </span><input type="number" name="" id="totalAmount" disabled value="0">

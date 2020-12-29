@@ -1,14 +1,6 @@
 @import './cart.scss';
 @import './shopping.scss';
 
-h2.title {
-    width: max-content;
-    margin: 20px auto;
-    background-color: $titleBgColor;
-    padding: 5px 15px;
-    border-radius: 5px;
-}
-
 form {
     width: $mainWidth;
     margin: 20px auto;

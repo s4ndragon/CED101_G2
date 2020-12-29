@@ -1,14 +1,5 @@
 @import './default/common';
 
-h2.title {
-    width: max-content;
-    margin: 20px auto;
-    background-color: $titleBgColor;
-    padding: 5px 15px;
-    border-radius: 5px;
-}
-
-
 div.cart_content {
     width: $mainWidth*0.9;
     margin: 0 auto;
@@ -18,7 +9,7 @@ div.cart_content {
     background-color: #e3ffe6;
 
     @media screen and (max-width:400px) {
-        width: 100%;
+        width: 95%;
     }
 
     input {
