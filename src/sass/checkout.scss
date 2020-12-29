@@ -18,7 +18,7 @@ body {
         background-color: #e3ffe6;
         padding: 30px 40px;
         border-radius: 5px;
-        margin-bottom: 20px;
+        margin-bottom: 50px;
 
         @media all and (max-width :$small) {
             width: $mainWidth
@@ -50,6 +50,11 @@ body {
 
                     input[type=button] {
                         @include smallbtn4;
+
+                        @media all and (max-width :$small) {
+                            margin: 0;
+                        }
+
                     }
                 }
             }
@@ -115,7 +120,11 @@ body {
         }
     }
 
-
+    .btn {
+        input {
+            margin: 0;
+        }
+    }
 }
 
 @media print {

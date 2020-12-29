@@ -123,16 +123,48 @@ $(document).ready(function () {
                 }
             }
         });
-    //lightbox
+    //顯示人數
     $(".tour_attendency").click(function () {
         // console.log("hi");
-        $(".num_attendency").css({
-            display: "flex",
-        });
+        $("#num_attendency")
+            .css({
+                display: "flex",
+            })
+            .addClass("num_attendency");
+        // $("main").css({
+        //     backgroundColor: "rgba(46, 44, 39, 0.9)",
+        // });
     });
     $(".close").click(function () {
-        $(".num_attendency").css({
+        $("#num_attendency")
+            .css({
+                display: "none",
+            })
+            .removeClass("num_attendency");
+    });
+
+    //文章刪除
+    $(".article_check").click(function () {
+        $("#delete_confirm")
+            .css({
+                display: "flex",
+            })
+            .addClass("delete_confirm");
+    });
+    //確定刪除
+    $("#btn_confirm").click(function () {
+        $("#delete_confirm").css({
             display: "none",
         });
+        $("#article_brief").css({
+            display: "none",
+        });
+    });
+    //取消刪除
+    $("#btn_cancel").click(function () {
+        $("#delete_confirm").css({
+            display: "none",
+        });
+        $("#delete_confirm").removeClass("delete_confirm");
     });
 });

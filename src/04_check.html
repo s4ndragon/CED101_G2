@@ -7,7 +7,7 @@
     <title>結帳</title>
     <link rel="stylesheet" href="./vendors/slick-1.8.1/slick/slick.css">
     <link rel="stylesheet" href="./vendors/slick-1.8.1/slick/slick-theme.css">
-    <link rel="stylesheet" href="./css/shopping.css">
+    <!-- <link rel="stylesheet" href="./css/shopping.css"> -->
     <link rel="stylesheet" href="./css/check.css">
 
     <!-- 推薦廣告用 -->
@@ -15,13 +15,12 @@
 
     <script src="./js/recommend.js"></script>
     <script src="./js/cart.js"></script>
-    <script src="./js/check.js"></script>
 </head>
 
 <body>
     @@include('layout/nav.html')
+    @@include('layout/title.html',{'title':'結帳'})
     <form action="./checkout.html">
-        <h2 class="title">結帳明細</h2>
         <div class="main">
             <div class="cart_content" id="cart_content">
                 <h3>購買清單</h3>
@@ -79,7 +78,7 @@
                                 </tr>
                                 <tr>
                                     <td>使用優惠點數:</td>
-                                    <td><input type="number" name="" id="costPoint" value="0" min="0"></td>
+                                    <td><input type="text" name="" id="costPoint" value="0"></td>
                                 </tr>
                                 <tr>
                                     <td>折抵費用:</td>
@@ -96,7 +95,7 @@
                     </tr>
                     <tr>
                         <td colspan="2" id="total" style="text-align: center;">
-                            <span>總計: </span><input type="number" name="" id="total" disabled value="0">
+                            <span>總計: </span><input type="number" name="" id="totalBtn" disabled value="0">
                         </td>
                     </tr>
                 </table>
