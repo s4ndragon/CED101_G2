@@ -24,6 +24,7 @@ function doFirst() {
         productNum.addEventListener('change', changeNum)
     }
     loadFavorite()
+    dicountBtn()
 }
 
 
@@ -150,8 +151,11 @@ function calcAmount() {
     }
     let totalAmount = document.getElementById('totalAmount');
     if (totalAmount) {
-        // totalAmount.value = total
-        totalAmount.setAttribute('value', `${total}`);
+        totalAmount.setAttribute('value', total);
+    }
+    let totalBtn = document.getElementById('totalBtn');
+    if (totalBtn) {
+        dealDisPoint()
     }
 }
 
@@ -187,4 +191,57 @@ function dropitem(e) {
     addItemList = addItemList.toString() + ',';
     addItemList = addItemList.substring(0, addItemList.length - 1);
     storage['addItemList'] = addItemList;
+}
+
+
+
+
+
+
+function dealDisPoint() {
+    let costPoint = document.getElementById('costPoint'),
+        myPoint = document.getElementById('myPoint'),
+        discountprice = document.getElementById('discountprice'),
+        maxPoint,
+        price,
+        discount = document.getElementById('discount');
+    //設定優惠點數的使用上限
+    if (parseInt(totalAmount.value) < parseInt(myPoint.value)) {
+        maxPoint = totalAmount.value;
+    } else {
+        maxPoint = myPoint.value
+    }
+    costPoint.setAttribute('max', maxPoint);
+    costPoint.addEventListener('change', () => {
+        costPoint.setAttribute('value', costPoint.value);
+        console.log(parseInt(costPoint.value) > parseInt(maxPoint))
+        if (parseInt(costPoint.value) > parseInt(maxPoint)) {
+            costPoint.setAttribute('value', maxPoint);
+            costPoint.value = maxPoint;
+        }
+        discountprice.setAttribute('value', costPoint.value);
+    })
+
+    usePoint = document.getElementById('usePoint');
+    usePoint.addEventListener('click', () => {
+        document.getElementById('pointTable').setAttribute('style', 'display:block');
+    });
+    price = parseInt(totalAmount.value) - parseInt(discount.value);
+    console.log(price)
+    document.getElementById('totalBtn').setAttribute('value', price)
+};
+
+function dicountBtn() {
+    usePointbtn = document.getElementById('usePointbtn');
+    usePointbtn.addEventListener('click', () => {
+        if (confirm('使用優惠點數?')) {
+            document.getElementById('pointTable').setAttribute('style', 'display:none');
+            let dis = document.getElementById('discountprice').value;
+            discount.setAttribute('value', dis);
+            dealDisPoint()
+        } else {}
+    })
+    document.getElementById('cancel').addEventListener('click', () => {
+        document.getElementById('pointTable').setAttribute('style', 'display:none');
+    })
 }

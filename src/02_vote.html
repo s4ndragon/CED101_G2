@@ -10,6 +10,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
+	@@include('layout/leaf.html')
 	@@include('layout/nav.html')
 	<div class="banner">
 		<h2>茶園排行</h2>
@@ -25,7 +26,7 @@
 			<div class="info">
 				<div class="s1">
 					<p class="p1">舞鶴茶園</p>
-					<div class="fb-share-button" data-href="http://127.0.0.1:5501/07_vote_more.html" data-layout="button" data-size="small">
+					<div class="fb-share-button" data-href="https://tw.yahoo.com/" data-layout="button" data-size="small">
                         <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5501%2F07_vote_more.html&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
                             分享
                         </a>
@@ -41,7 +42,7 @@
 					</div>
 				</div>
 
-				<p class="p3">水尾，依山傍水，瑞穗的舊稱，暗藏在鳥語花香的花東縱谷，得天獨厚，擁有天然美景與純淨水資源，是台灣少有的淨土，油亮碧綠的寬廣草原，宛若仙境，雲霧繚繞，這裡是孕育極品茶的世外桃花源-吉林茶園。</p>
+				<p class="p3">水尾，依山傍水，瑞穗的舊稱，暗藏在鳥語花香的花東縱谷，得天獨厚，擁有天然美景與純淨水資源，是台灣少有的淨土，油亮碧綠的寬廣草原，宛若仙境，雲霧繚繞，這裡是孕育極品茶的世外桃花源-舞鶴茶園。</p>
 				
 				<div class="btwrap">
 					<button class="bt">
@@ -55,13 +56,13 @@
 
 		<div class="block1">
 			<div class="pic">
-				<img class="tea" src="images/vote/tea5.jpg">
+				<img class="tea" src="images/vote/tea6.jpg">
 				<img class="m1" src="images/vote/medal2.png">
 			</div>
 			<div class="info">
 				<div class="s1">
-					<p class="p1">舞鶴茶園</p>
-					<div class="fb-share-button" data-href="http://127.0.0.1:5501/07_vote_more.html" data-layout="button" data-size="small">
+					<p class="p1">晴天茶園</p>
+					<div class="fb-share-button" data-href="https://tw.yahoo.com/" data-layout="button" data-size="small">
                         <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5501%2F07_vote_more.html&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
                             分享
                         </a>
@@ -76,7 +77,8 @@
 						<star-rating  :rating="4.3" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
 					</div>
 				</div>
-				<p class="p3">水尾，依山傍水，瑞穗的舊稱，暗藏在鳥語花香的花東縱谷，得天獨厚，擁有天然美景與純淨水資源，是台灣少有的淨土，油亮碧綠的寬廣草原，宛若仙境，雲霧繚繞，這裡是孕育極品茶的世外桃花源-吉林茶園。</p>
+				<p class="p3">晴天鹿谷，台灣水鹿群聚之鄉，也是聞名世界台灣烏龍茶發源地，單一茶區鹿谷出發，
+					嚴選台灣經典茶種青心烏龍與台茶十二號金萱，日光、淨泉、山嵐、沃土，涵養涓滴回甘的好茶。</p>
 				<div class="btwrap">
 					<button class="bt">
 						<a href="02_vote_more.html">
@@ -89,13 +91,13 @@
 
 		<div class="block1">
 			<div class="pic">
-				<img class="tea" src="images/vote/tea5.jpg">
+				<img class="tea" src="images/vote/tea7.jpg">
 				<img class="m1" src="images/vote/medal3.png">
 			</div>
 			<div class="info">
 				<div class="s1">
-					<p class="p1">舞鶴茶園</p>
-					<div class="fb-share-button" data-href="http://127.0.0.1:5501/07_vote_more.html" data-layout="button" data-size="small">
+					<p class="p1">坪林茶園</p>
+					<div class="fb-share-button" data-href="https://tw.yahoo.com/" data-layout="button" data-size="small">
                         <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5501%2F07_vote_more.html&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
                             分享
                         </a>
@@ -121,7 +123,12 @@
 			</div>
 		</div>
 
-		<h2 class="ht">茶園排行</h2>
+		<div class="sectionchart">
+			<h2 class="ht">茶園排行</h2>
+			<div class="fall">
+				<img class="leaf" src="images/index/leafs-l.png">
+			</div>
+		</div>
 
 		<table id="app4">
 			<tr class="title">
@@ -138,65 +145,66 @@
 			</tr>
 			<tr>
 				<td>2</td>
-				<td>茶園名稱</td>
+				<td>晴天茶園</td>
 				<td class="resize">
 					<star-rating  :rating="4.3" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
 				</td>
 			</tr>
 			<tr>
 				<td>3</td>
-				<td>茶園名稱</td>
+				<td>坪林茶園</td>
 				<td class="resize">
 					<star-rating  :rating="3.8" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
 				</td>
 			</tr>
 			<tr></tr>
 				<td>4</td>
-				<td>茶園名稱</td>
+				<td>石碇八卦茶園</td>
 				<td class="resize">
 					<star-rating  :rating="3.7" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
 				</td>
 			</tr><tr>
 				<td>5</td>
-				<td>茶園名稱</td>
+				<td>春陽茶園</td>
 				<td class="resize">
 					<star-rating  :rating="3.5" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
 				</td>
 			</tr>
 			<tr>
 				<td>6</td>
-				<td>茶園名稱</td>
+				<td>三峽熊空茶園</td>
 				<td class="resize">
 					<star-rating  :rating="3.3" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
 				</td>
 			</tr><tr>
 				<td>7</td>
-				<td>茶園名稱</td>
+				<td>武界台興茶園</td>
 				<td class="resize">
 					<star-rating  :rating="3.2" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
 				</td>
 			</tr>
 			<tr>
 				<td>8</td>
-				<td>茶園名稱</td>
+				<td>同心雙圓茶園</td>
 				<td class="resize">
 					<star-rating  :rating="3.1" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
 				</td>
 			</tr>
 			<tr>
 				<td>9</td>
-				<td>茶園名稱</td>
+				<td>二尖山茶園</td>
 				<td class="resize">
 					<star-rating  :rating="3.0" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
 				</td>
 			<tr>
 				<td>10</td>
-				<td>茶園名稱</td>
+				<td>阿薩姆茶園</td>
 				<td class="resize">
 					<star-rating  :rating="2.7" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
 				</td>
 			</tr>
 		</table>
+		<img class="deco" src="images/index/img-about-list-illust-front.png">
 
 	</main>
 
