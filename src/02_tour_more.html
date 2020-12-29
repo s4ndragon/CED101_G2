@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.js"></script>
 
 </head>
+
 <body>
     @@include('layout/leaf.html')
     @@include('layout/nav.html')
@@ -43,13 +45,13 @@
                 <p>
                     <span class="green">揪團簡介:</span> 位於花東縱谷山線海拔100至300公尺的舞鶴茶園，著名的公主蜜香紅茶在此誕生，一起來趟放鬆的茶園之旅吧！
                 </p>
-                
+
                 <p>
                     <span class="green">出團日期:</span> 2020/12/31
                 </p>
-                
+
                 <p>
-                    <span class="green">參加人數:</span> 15/20 人 
+                    <span class="green">參加人數:</span> 15/20 人
                 </p>
 
                 <p>
@@ -65,10 +67,10 @@
                 <p><span class="green">備註:</span> 無</p>
 
                 <div class="btwrap">
-					<button class="bt">
-						我要參加
+                    <button class="bt">
+                        我要參加
                     </button>
-                    
+
                     <div class="date">
                         <p>
                             發起日期: 2020/12/15
@@ -77,9 +79,9 @@
                             截止日期: 2020/12/26
                         </p>
                     </div>
-				</div>
+                </div>
 
-                
+
             </div>
         </div>
 
@@ -87,7 +89,7 @@
 
         <div class="all2">
 
-            
+
 
             <div class="hotel_container first">
                 <p class="ht">旅館</p>
@@ -98,7 +100,7 @@
                 </div>
             </div>
 
-            
+
             <div class="hotel_container sec">
                 <p class="ht eat">餐廳</p>
                 <div class="hotel">
@@ -133,95 +135,100 @@
                         <div class="pub_text">哈囉，還好吧還好吧還好吧還好吧還好吧，我也要去。</div>
                         <div class="com_pub_time">發表於2012-03-20 12:20:30</div>
                     </div>
-                    <div class="excl ">
-                        <button class="repobt" @click="showModal2 = true">
-                            <img class="excl" src="./images/common/852019_exclamation_512x512.png" alt="">
-                        </button>
-                        
-                        <!-- overlay -->
-                        <div class="overlay" v-if="showModal2" @click="showModal2 = true"></div>
-                        <!-- modal -->
-                        <div class="modal" v-if="showModal2">
-                            <form>
-                                <div class="close" @click="showModal2 = false">
-                                    <img class="cancel" src="images/vote/cancel.png">
-                                </div>
-                                <p class="welcome">請輸入檢舉理由</p>
-                                <textarea class="repoinfo" cols="30" rows="10"></textarea>
-                        
-                                <button class="go">送出</button>
-                            </form>
+                    <div class="text_excl">
+                        <div class="command_text">
+                            <div class="pub_text">哈囉，還好吧還好吧還好吧還好吧還好吧，我也要去。</div>
+                            <div class="com_pub_time">發表於2012-03-20 12:20:30</div>
                         </div>
-                        
-                    </div>
-                </div>
-            </div>
-            <div class="command">
-                <div class="nameall">
-                    <div class="mem_photo"><img class="mem_photo" src="./images/common/mem_photo1.png" alt=""></div>
-                    <span class="pub_mem_name">翰婷</span>
-                </div>
-                <div class="text_excl ">
-                    <div class="command_text">
-                        <div class="pub_text">哈囉，還好吧還好吧還好吧還好吧還好吧，我也要去。</div>
-                        <div class="com_pub_time">發表於2012-03-20 12:20:30</div>
-                    </div>
-                    <div class="excl ">
-                        <button class="repobt" @click="showModal2 = true">
-                            <img class="excl" src="./images/common/852019_exclamation_512x512.png" alt="">
-                        </button>
-                        
-                        <!-- overlay -->
-                        <div class="overlay" v-if="showModal2" @click="showModal2 = true"></div>
-                        <!-- modal -->
-                        <div class="modal" v-if="showModal2">
-                            <form>
-                                <div class="close" @click="showModal2 = false">
-                                    <img class="cancel" src="images/vote/cancel.png">
-                                </div>
-                                <p class="welcome">請輸入檢舉理由</p>
-                                <textarea class="repoinfo" cols="30" rows="10"></textarea>
-                        
-                                <button class="go">送出</button>
-                            </form>
+                        <div class="excl ">
+                            <button class="repobt" @click="showModal2 = true">
+                                <img class="excl" src="./images/common/852019_exclamation_512x512.png" alt="">
+                            </button>
+
+                            <!-- overlay -->
+                            <div class="overlay" v-if="showModal2" @click="showModal2 = true"></div>
+                            <!-- modal -->
+                            <div class="modal" v-if="showModal2">
+                                <form>
+                                    <div class="close" @click="showModal2 = false">
+                                        <img class="cancel" src="images/vote/cancel.png">
+                                    </div>
+                                    <p class="welcome">請輸入檢舉理由</p>
+                                    <textarea class="repoinfo" cols="30" rows="10"></textarea>
+
+                                    <button class="go">送出</button>
+                                </form>
+                            </div>
+
                         </div>
-                        
                     </div>
                 </div>
-            </div>
-            <div class="command">
-                <div class="nameall">
-                    <div class="mem_photo"><img class="mem_photo" src="./images/common/mem_photo1.png" alt=""></div>
-                    <span class="pub_mem_name">翰婷</span>
-                </div>
-                <div class="text_excl">
-                    <div class="command_text">
-                        <div class="pub_text">哈囉，還好吧還好吧還好吧還好吧還好吧，我也要去。</div>
-                        <div class="com_pub_time">發表於2012-03-20 12:20:30</div>
+                <div class="command">
+                    <div class="nameall">
+                        <div class="mem_photo"><img class="mem_photo" src="./images/common/mem_photo1.png" alt=""></div>
+                        <span class="pub_mem_name">翰婷</span>
                     </div>
-                    <div class="excl ">
-                        <button class="repobt" @click="showModal2 = true">
-                            <img class="excl" src="./images/common/852019_exclamation_512x512.png" alt="">
-                        </button>
-                        
-                        <!-- overlay -->
-                        <div class="overlay" v-if="showModal2" @click="showModal2 = true"></div>
-                        <!-- modal -->
-                        <div class="modal" v-if="showModal2">
-                            <form>
-                                <div class="close" @click="showModal2 = false">
-                                    <img class="cancel" src="images/vote/cancel.png">
-                                </div>
-                                <p class="welcome">請輸入檢舉理由</p>
-                                <textarea class="repoinfo" cols="30" rows="10"></textarea>
-                        
-                                <button class="go">送出</button>
-                            </form>
+                    <div class="text_excl ">
+                        <div class="command_text">
+                            <div class="pub_text">哈囉，還好吧還好吧還好吧還好吧還好吧，我也要去。</div>
+                            <div class="com_pub_time">發表於2012-03-20 12:20:30</div>
                         </div>
-                        
+                        <div class="excl ">
+                            <button class="repobt" @click="showModal2 = true">
+                                <img class="excl" src="./images/common/852019_exclamation_512x512.png" alt="">
+                            </button>
+
+                            <!-- overlay -->
+                            <div class="overlay" v-if="showModal2" @click="showModal2 = true"></div>
+                            <!-- modal -->
+                            <div class="modal" v-if="showModal2">
+                                <form>
+                                    <div class="close" @click="showModal2 = false">
+                                        <img class="cancel" src="images/vote/cancel.png">
+                                    </div>
+                                    <p class="welcome">請輸入檢舉理由</p>
+                                    <textarea class="repoinfo" cols="30" rows="10"></textarea>
+
+                                    <button class="go">送出</button>
+                                </form>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
-            </div>
+                <div class="command">
+                    <div class="nameall">
+                        <div class="mem_photo"><img class="mem_photo" src="./images/common/mem_photo1.png" alt=""></div>
+                        <span class="pub_mem_name">翰婷</span>
+                    </div>
+                    <div class="text_excl">
+                        <div class="command_text">
+                            <div class="pub_text">哈囉，還好吧還好吧還好吧還好吧還好吧，我也要去。</div>
+                            <div class="com_pub_time">發表於2012-03-20 12:20:30</div>
+                        </div>
+                        <div class="excl ">
+                            <button class="repobt" @click="showModal2 = true">
+                                <img class="excl" src="./images/common/852019_exclamation_512x512.png" alt="">
+                            </button>
+
+                            <!-- overlay -->
+                            <div class="overlay" v-if="showModal2" @click="showModal2 = true"></div>
+                            <!-- modal -->
+                            <div class="modal" v-if="showModal2">
+                                <form>
+                                    <div class="close" @click="showModal2 = false">
+                                        <img class="cancel" src="images/vote/cancel.png">
+                                    </div>
+                                    <p class="welcome">請輸入檢舉理由</p>
+                                    <textarea class="repoinfo" cols="30" rows="10"></textarea>
+
+                                    <button class="go">送出</button>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
 
         </div>
 
@@ -239,24 +246,26 @@
             </div>
 
         </form>
-       
+
     </main>
 
     @@include('layout/footer.html')
 
-    
+
     <script>
-    new Vue({
+        new Vue({
             el: "#app",
-            data:{
-                
-                showModal2:false,
+            data: {
+
+                showModal2: false,
             }
         });
     </script>
 
     <div id="fb-root"></div>
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v9.0" nonce="WuFFSzIJ"></script>
-    
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v9.0"
+        nonce="WuFFSzIJ"></script>
+
 </body>
+
 </html>

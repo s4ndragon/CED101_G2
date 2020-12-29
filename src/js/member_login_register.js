@@ -46,5 +46,11 @@ $(document).ready(function () {
         $(target).fadeIn(600);
     });
 
-    let memId = $()
+    let memId = $("#memId").value;
+    let memPw = $("memPw").value;
+    $(".btn").click(function () {
+        if (memId == "ming" && memPs == 123) {
+            $("").click();
+        }
+    });
 });

@@ -4,7 +4,6 @@ body {
 
     margin: 0;
     @include forTourAndShop;
-    padding-top: 100px;
 
     input[type=button] {
         @include smallbtn3;

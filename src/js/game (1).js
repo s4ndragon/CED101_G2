@@ -208,8 +208,7 @@ function bb_(){
                 bullet.splice(i, 1);
               }
         }}
-//tweenMax要求：產生蟲子後啟動動畫，觸發後刪除tweenMax
-//產生→走路動畫→onUpdate(){if(wormArr[i].offsetLeft + wormArr[i].offsetWidth < 0){偵測}}→刪除
+
 //用onUpdate(){}當watch監控偵測
 // 蟲子走路
 function zom(){
@@ -288,7 +287,8 @@ function wormState(index, worm, wormArr) {
   }
 }
 
-  $('.go').on('click', function () {
+$('.go').on('click', function () {
+    document.getElementById('gotxt').innerText = `繼續驅蟲`;
       // document.getElementById("go").style.display='none';
       sp_= setInterval("sp()", starTimer);//降落茶葉
   		time_b_=	setInterval("time_b()", 9000);//產生子彈
@@ -307,7 +307,7 @@ function wormState(index, worm, wormArr) {
       $("div.overlay").removeClass("-on -opacity-zero");
     }, 1000); // 關閉 Modal
   });
-  document.getElementById('gotxt').innerText = `繼續驅蟲`;
+  
 $('#pause').on('click', function () {
   gamestop();
   tween.pause();
@@ -315,7 +315,9 @@ $('#pause').on('click', function () {
   $(this).addClass("none");
 
 });
-
+$('div.tea_ency').on('click', function () {
+  $('.tea_en').addClass('-on');
+})
 function gamestop(){
   document.getElementById('score-over').innerText = score;
   document.getElementById('score-win').innerText = score+1000;

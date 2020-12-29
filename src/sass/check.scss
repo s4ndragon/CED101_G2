@@ -1,5 +1,5 @@
-@import './default/common';
 @import './cart.scss';
+@import './shopping.scss';
 
 h2.title {
     width: max-content;
@@ -85,6 +85,10 @@ form {
 
             input[type=button] {
                 @include smallbtn3;
+            }
+
+            #cancel {
+                @include smallbtn4
             }
         }
     }
