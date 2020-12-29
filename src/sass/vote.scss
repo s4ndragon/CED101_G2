@@ -135,7 +135,9 @@ main{
             border-bottom: 1px solid#b7d4005e;
         
             td{
-                padding: 30px 10px;
+                padding: 20px;
+                width: 277px;
+                vertical-align: middle;
 
                 .vue-star-rating[data-v-34cbeed1]{
                     display: inline-block;
@@ -269,6 +271,14 @@ main{
                 }
             }
         }
+
+        .fall{
+            top:-26px;
+            left: 0px;
+            .leaf{
+                width: 90px;
+            }
+        }
     }
 }
 
@@ -276,9 +286,17 @@ main{
 @media screen  and (max-width:330px){
     main{
         table{
+            font-size: 14px;
+            .title{
+                font-size: 15px;
+            }
             tr{
                 .resize{
                     width: 143px;
+                }
+
+                td{
+                    padding: 10px;
                 }
             }
         }
