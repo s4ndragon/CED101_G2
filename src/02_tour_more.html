@@ -10,8 +10,11 @@
 
 </head>
 <body>
+    @@include('layout/leaf.html')
     @@include('layout/nav.html')
-    <div class="banner"></div>
+    <div class="banner">
+        <h2>茶園揪團</h2>
+    </div>
     
     <main id="app">
         <div class="all">
@@ -28,7 +31,7 @@
                         <div class="love">
                             <img class="like" src="./images/common/heart.png" title="加入收藏" alt="">
                         </div>
-                        <div class="fb-share-button" data-href="http://127.0.0.1:5501/07_vote_more.html" data-layout="button" data-size="small">
+                        <div class="fb-share-button" data-href="https://tw.yahoo.com/" data-layout="button" data-size="small">
                             <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5501%2F07_vote_more.html&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
                                 分享
                             </a>
@@ -119,7 +122,6 @@
         <h3 class="jt">揪團留言</h3>
 
         <div id="commandall">
-            <h3 class="t1">茶園留言</h2>
         <!--       留言重複開始         -->
             <div class="command">
                 <div class="nameall">

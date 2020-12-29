@@ -9,13 +9,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.js"></script>
     <script src="https://unpkg.com/vue-star-rating@1.5.1/dist/star-rating.min.js"></script>
     <script src="../node_modules/vue/dist/vue.js"></script>
-    <script src="./js/newtour.js"></script>
+    <script src="./js/like.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 
 <body>
+    @@include('layout/leaf.html')
     @@include('layout/nav.html')
-    <div class="banner"></div>
+    <div class="banner">
+        <h2>茶園排行</h2>
+    </div>
         
     <main id="app">
         <div class="all">
@@ -25,7 +28,7 @@
             <div class="ginfo">
                 <div class="s1">
                     <p class="p1">舞鶴茶園</p>
-                    <div class="fb-share-button" data-href="http://127.0.0.1:5501/07_vote_more.html"
+                    <div class="fb-share-button" data-href="https://tw.yahoo.com/"
                         data-layout="button" data-size="small">
                         <a target="_blank"
                             href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5501%2F07_vote_more.html&amp;src=sdkpreparse"
@@ -200,6 +203,124 @@
 
         <h3>相關熱門揪團</h3>
         <div class="tour_browse_block" id="tourBrowseBlock"></div>
+
+        <div class="toursection">
+            <div class="tourwrap">
+                <img class="tourpic" src="images/tour/tour1.jpg">
+                <div class="tourinfo">
+                    <div class="social">
+                        <div class="love">
+                            <img class="like" src="./images/common/heart.png" title="加入收藏" alt="">
+                        </div>
+                        <div class="fb-share-button" data-href="https://tw.yahoo.com/" data-layout="button" data-size="small">
+                            <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5501%2F07_vote_more.html&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
+                                分享
+                            </a>
+                        </div>
+                    </div>
+                    <p>
+                        <span class="green">活動名稱:</span>&ensp;舞鶴茶園一日遊
+                    </p>
+                    <p>
+                        <span class="green">活動日期:</span>&ensp;2020/12/31
+                    </p>
+                    <p>
+                        <span class="green">截止揪團日期:</span>&ensp;2020/12/25 
+                    </p>
+                    <p>
+                        <span class="green">預估費用:</span>&ensp; $800
+                    </p>
+                    <p>
+                        <span class="green">參加人數:</span>&ensp; 15/20 人 
+                    </p>
+                </div>
+                <button class="bt">
+                    <a href="02_tour_more.html">
+                        立即報名
+                    </a>
+                </button>
+            </div>
+
+            <div class="tourwrap">
+                <img class="tourpic" src="images/tour/tour1.jpg">
+                <div class="tourinfo">
+                    <div class="social">
+                        <div class="love">
+                            <img class="like" src="./images/common/heart.png" title="加入收藏" alt="">
+                        </div>
+                        <div class="fb-share-button" data-href="https://tw.yahoo.com/" data-layout="button" data-size="small">
+                            <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5501%2F07_vote_more.html&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
+                                分享
+                            </a>
+                        </div>
+                    </div>
+                    <p>
+                        <span class="green">活動名稱:</span>&ensp;舞鶴茶園一日遊
+                    </p>
+                    <p>
+                        <span class="green">活動日期:</span>&ensp;2020/12/31
+                    </p>
+                    <p>
+                        <span class="green">截止揪團日期:</span>&ensp;2020/12/25 
+                    </p>
+                    <p>
+                        <span class="green">預估費用:</span>&ensp; $800
+                    </p>
+                    <p>
+                        <span class="green">參加人數:</span>&ensp; 15/20 人 
+                    </p>
+                </div>
+                <button class="bt">
+                    <a href="02_tour_more.html">
+                        立即報名
+                    </a>
+                </button>
+            </div>
+
+            <div class="tourwrap">
+                <img class="tourpic" src="images/tour/tour1.jpg">
+                <div class="tourinfo">
+                    <div class="social">
+                        <div class="love">
+                            <img class="like" src="./images/common/heart.png" title="加入收藏" alt="">
+                        </div>
+                        <div class="fb-share-button" data-href="https://tw.yahoo.com/" data-layout="button" data-size="small">
+                            <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5501%2F07_vote_more.html&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
+                                分享
+                            </a>
+                        </div>
+                    </div>
+                    <p>
+                        <span class="green">活動名稱:</span>&ensp;舞鶴茶園一日遊
+                    </p>
+                    <p>
+                        <span class="green">活動日期:</span>&ensp;2020/12/31
+                    </p>
+                    <p>
+                        <span class="green">截止揪團日期:</span>&ensp;2020/12/25 
+                    </p>
+                    <p>
+                        <span class="green">預估費用:</span>&ensp; $800
+                    </p>
+                    <p>
+                        <span class="green">參加人數:</span>&ensp; 15/20 人 
+                    </p>
+                </div>
+                <button class="bt">
+                    <a href="02_tour_more.html">
+                        立即報名
+                    </a>
+                </button>
+            </div>
+        </div>
+
+        <div class="btwrap">
+            <button class="bt">
+                <a href="01_tour.html">
+                    瀏覽更多揪團
+                </a>
+            </button>
+        </div>
     </main>
 
     @@include('layout/footer.html')

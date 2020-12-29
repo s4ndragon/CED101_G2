@@ -1,5 +1,4 @@
 window.addEventListener("load", function () {
-    
     let like = document.getElementsByClassName('like');
     for (var i = 0; i < like.length; i++) {
         like[i].addEventListener("click", changeHeart)
@@ -15,6 +14,5 @@ window.addEventListener("load", function () {
 
         }
     }
-
 
 })
