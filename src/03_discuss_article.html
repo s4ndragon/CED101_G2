@@ -6,14 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="./images/index/webIcon.png" type="image/x-icon" />
     <link rel="stylesheet" href="css/discuss.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.js"></script>
     <title>討論區</title>
 </head>
 
 <body>
     @@include('layout/nav.html')
-    <main>
+    <main id="app">
         <div id="big_title">
-            <h2></h2>
+            <h2>文章內容</h2>
         </div>
         <div class="allthings">
             <button class="addtour"><a href="03_discuss_pub.html">我要發文</a></button>
@@ -24,8 +25,22 @@
                 </div>
                 <div class="text_excl">
                     <h2>【揪團心得】今天去當採茶婦好快樂啊</h2>
-                    <div class="excl">
+                    <div class="excl" @click="showModal2 = true">
                         <img class="excl" src="./images/common/852019_exclamation_512x512.png" alt="">
+                    </div>
+                    <!-- overlay -->
+                    <div class="overlay" v-if="showModal2" @click="showModal2 = true"></div>
+                    <!-- modal -->
+                    <div class="modal" v-if="showModal2">
+                        <form>
+                            <div class="close" @click="showModal2 = false">
+                                <img class="cancel" src="images/vote/cancel.png">
+                            </div>
+                            <p class="welcome">請輸入檢舉理由</p>
+                            <textarea class="repoinfo" cols="30" rows="10"></textarea>
+
+                            <button class="go">送出</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -49,11 +64,25 @@
                     </div>
                     <div class="text_excl">
                         <div class="command_text">
-                            <div class="pub_text">哈囉，還好吧還好吧還好吧還好吧還好吧，我也要去。</div>
+                            <div class="pub_text">感覺不錯耶，我下次也要去</div>
                             <div class="com_pub_time">發表於2012-03-20 12:20:30</div>
                         </div>
-                        <div class="excl">
+                        <div class="excl" @click="showModal2 = true">
                             <img class="excl" src="./images/common/852019_exclamation_512x512.png" alt="">
+                        </div>
+                        <!-- overlay -->
+                        <div class="overlay" v-if="showModal2" @click="showModal2 = true"></div>
+                        <!-- modal -->
+                        <div class="modal" v-if="showModal2">
+                            <form>
+                                <div class="close" @click="showModal2 = false">
+                                    <img class="cancel" src="images/vote/cancel.png">
+                                </div>
+                                <p class="welcome">請輸入檢舉理由</p>
+                                <textarea class="repoinfo" cols="30" rows="10"></textarea>
+
+                                <button class="go">送出</button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -79,11 +108,25 @@
                     </div>
                     <div class="text_excl">
                         <div class="command_text">
-                            <div class="pub_text">哈囉，還好吧還好吧還好吧還好吧還好吧，我也要去。</div>
+                            <div class="pub_text">想知道這個茶園要怎麼去??</div>
                             <div class="com_pub_time">發表於2012-03-20 12:20:30</div>
                         </div>
                         <div class="excl">
                             <img class="excl" src="./images/common/852019_exclamation_512x512.png" alt="">
+                        </div>
+                        <!-- overlay -->
+                        <div class="overlay" v-if="showModal2" @click="showModal2 = true"></div>
+                        <!-- modal -->
+                        <div class="modal" v-if="showModal2">
+                            <form>
+                                <div class="close" @click="showModal2 = false">
+                                    <img class="cancel" src="images/vote/cancel.png">
+                                </div>
+                                <p class="welcome">請輸入檢舉理由</p>
+                                <textarea class="repoinfo" cols="30" rows="10"></textarea>
+
+                                <button class="go">送出</button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -102,8 +145,19 @@
                     </div>
                 </div>
             </form>
+
     </main>
     @@include('layout/footer.html')
+
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                showModal: false,
+                showModal2: false,
+            }
+        });
+    </script>
 </body>
 
 </html>

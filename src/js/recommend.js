@@ -29,26 +29,18 @@ function doFirst() {
                                 </div>
                             `;
     };
-    $('.slick').ready(function () {
-        $('.slick').slick({ //啟動slick
+    $('.recommend_products').ready(function () {
+        $('.recommend_products').slick({ //啟動slick
             infinite: true,
             slidesToShow: 3,
             slidesToScroll: 3,
             responsive: [{
-                    breakpoint: 721,
-                    settings: {
-                        slidesToShow: 2,
-                        slidesToScroll: 2,
-                    }
-                },
-                {
-                    breakpoint: 377,
-                    settings: {
-                        slidesToShow: 1,
-                        slidesToScroll: 1,
-                    }
+                breakpoint: 721,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
                 }
-            ],
+            }],
         });
     })
     let classifyBtn = document.getElementById("classifyBtn");

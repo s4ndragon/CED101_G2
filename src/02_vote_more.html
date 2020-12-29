@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,15 +8,19 @@
     <link rel="stylesheet" href="./css/vote_more.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.js"></script>
     <script src="https://unpkg.com/vue-star-rating@1.5.1/dist/star-rating.min.js"></script>
-    <script src="node_modules/vue/dist/vue.js"></script>
-    <script src="./js/newtour.js"></script>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script src="./js/like.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
+
 <body>
+    @@include('layout/leaf.html')
     @@include('layout/nav.html')
-    <div class="banner"></div>
+    <div class="banner">
+        <h2>茶園排行</h2>
+    </div>
         
-    <main>
+    <main id="app">
         <div class="all">
             <div class="garden">
                 <img class="gpic" src="images/vote/tea5.jpg">
@@ -23,8 +28,11 @@
             <div class="ginfo">
                 <div class="s1">
                     <p class="p1">舞鶴茶園</p>
-                    <div class="fb-share-button" data-href="http://127.0.0.1:5501/07_vote_more.html" data-layout="button" data-size="small">
-                        <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5501%2F07_vote_more.html&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
+                    <div class="fb-share-button" data-href="https://tw.yahoo.com/"
+                        data-layout="button" data-size="small">
+                        <a target="_blank"
+                            href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5501%2F07_vote_more.html&amp;src=sdkpreparse"
+                            class="fb-xfbml-parse-ignore">
                             分享
                         </a>
                     </div>
@@ -36,16 +44,17 @@
 					</span>
 					<div>
 						<star-rating  :rating="4.7" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
-					</div>
+                    </div>
                 </div>
-                
+
                 <p class="p3"><span class="tt">評分次數:</span> 7</p>
                 <p class="p4">
                     <span class="tt">茶園地址:</span> 花蓮縣瑞穗鄉舞鶴村
                 </p>
-                <p class="p5">海拔100至300公尺的舞鶴台地，依傍高聳的中央山脈，隨風拂來秀姑巒溪與紅葉溪的濕潤水氣，宜人的氣候適合茶樹生長，是天鶴茶的產地，也是小葉綠蟬生長的天堂，經由小葉綠蟬吸吮而製成的蜜香紅茶，微帶淡淡的果香與蜜香，口感溫潤生津，獨特的風味聞名全臺，成為旅人來訪瑞穗必帶的伴手禮之一。
+                <p class="p5">
+                    海拔100至300公尺的舞鶴台地，依傍高聳的中央山脈，隨風拂來秀姑巒溪與紅葉溪的濕潤水氣，宜人的氣候適合茶樹生長，是天鶴茶的產地，也是小葉綠蟬生長的天堂，經由小葉綠蟬吸吮而製成的蜜香紅茶，微帶淡淡的果香與蜜香，口感溫潤生津，獨特的風味聞名全臺，成為旅人來訪瑞穗必帶的伴手禮之一。
                 </p>
-                <div class="btwrap" id="app2">
+                <div class="btwrap app2">
 					<button class="bt" @click="showModal = true">
 						我要評分
                     </button>
@@ -55,9 +64,9 @@
                     <!-- modal -->
                     <div class="modal" v-if="showModal">
                         <form>
-                            <button class="close" @click="showModal = false">
+                            <div class="close" @click="showModal = false">
                                 <img class="cancel" src="images/vote/cancel.png">
-                            </button>
+                            </div>
                             <p class="welcome">歡迎評分</p>
                             <div class="app">
                                 <div class="star">
@@ -67,14 +76,14 @@
                             <button class="go">送出</button>
                         </form>
                     </div>
-				</div>
+                </div>
             </div>
         </div>
 
-        
 
-            <div id="commandall">
+        <div id="commandall">
                 <h3 class="t1">茶園留言</h2>
+            <!--       留言重複開始         -->
                 <div class="command">
                     <div class="nameall">
                         <div class="mem_photo"><img class="mem_photo" src="./images/common/mem_photo1.png" alt=""></div>
@@ -85,8 +94,59 @@
                             <div class="pub_text">哈囉，還好吧還好吧還好吧還好吧還好吧，我也要去。</div>
                             <div class="com_pub_time">發表於2012-03-20 12:20:30</div>
                         </div>
-                        <div class="excl">
-                            <img class="excl" src="./images/common/852019_exclamation_512x512.png" alt="">
+                        <div class="excl ">
+                            <button class="repobt" @click="showModal2 = true">
+                                <img class="excl" src="./images/common/852019_exclamation_512x512.png" alt="">
+                            </button>
+                            
+                            <!-- overlay -->
+                            <div class="overlay" v-if="showModal2" @click="showModal2 = true"></div>
+                            <!-- modal -->
+                            <div class="modal" v-if="showModal2">
+                                <form>
+                                    <div class="close" @click="showModal2 = false">
+                                        <img class="cancel" src="images/vote/cancel.png">
+                                    </div>
+                                    <p class="welcome">請輸入檢舉理由</p>
+                                    <textarea class="repoinfo" cols="30" rows="10"></textarea>
+                            
+                                    <button class="go">送出</button>
+                                </form>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="command">
+                    <div class="nameall">
+                        <div class="mem_photo"><img class="mem_photo" src="./images/common/mem_photo1.png" alt=""></div>
+                        <span class="pub_mem_name">翰婷</span>
+                    </div>
+                    <div class="text_excl ">
+                        <div class="command_text">
+                            <div class="pub_text">哈囉，還好吧還好吧還好吧還好吧還好吧，我也要去。</div>
+                            <div class="com_pub_time">發表於2012-03-20 12:20:30</div>
+                        </div>
+                        <div class="excl ">
+                            <button class="repobt" @click="showModal2 = true">
+                                <img class="excl" src="./images/common/852019_exclamation_512x512.png" alt="">
+                            </button>
+                            
+                            <!-- overlay -->
+                            <div class="overlay" v-if="showModal2" @click="showModal2 = true"></div>
+                            <!-- modal -->
+                            <div class="modal" v-if="showModal2">
+                                <form>
+                                    <div class="close" @click="showModal2 = false">
+                                        <img class="cancel" src="images/vote/cancel.png">
+                                    </div>
+                                    <p class="welcome">請輸入檢舉理由</p>
+                                    <textarea class="repoinfo" cols="30" rows="10"></textarea>
+                            
+                                    <button class="go">送出</button>
+                                </form>
+                            </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -100,91 +160,230 @@
                             <div class="pub_text">哈囉，還好吧還好吧還好吧還好吧還好吧，我也要去。</div>
                             <div class="com_pub_time">發表於2012-03-20 12:20:30</div>
                         </div>
-                        <div class="excl">
-                            <img class="excl" src="./images/common/852019_exclamation_512x512.png" alt="">
-                        </div>
-                    </div>
-                </div>
-                <div class="command">
-                    <div class="nameall">
-                        <div class="mem_photo"><img class="mem_photo" src="./images/common/mem_photo1.png" alt=""></div>
-                        <span class="pub_mem_name">翰婷</span>
-                    </div>
-                    <div class="text_excl">
-                        <div class="command_text">
-                            <div class="pub_text">哈囉，還好吧還好吧還好吧還好吧還好吧，我也要去。</div>
-                            <div class="com_pub_time">發表於2012-03-20 12:20:30</div>
-                        </div>
-                        <div class="excl">
-                            <img class="excl" src="./images/common/852019_exclamation_512x512.png" alt="">
+                        <div class="excl ">
+                            <button class="repobt" @click="showModal2 = true">
+                                <img class="excl" src="./images/common/852019_exclamation_512x512.png" alt="">
+                            </button>
+                            
+                            <!-- overlay -->
+                            <div class="overlay" v-if="showModal2" @click="showModal2 = true"></div>
+                            <!-- modal -->
+                            <div class="modal" v-if="showModal2">
+                                <form>
+                                    <div class="close" @click="showModal2 = false">
+                                        <img class="cancel" src="images/vote/cancel.png">
+                                    </div>
+                                    <p class="welcome">請輸入檢舉理由</p>
+                                    <textarea class="repoinfo" cols="30" rows="10"></textarea>
+                            
+                                    <button class="go">送出</button>
+                                </form>
+                            </div>
+                            
                         </div>
                     </div>
                 </div>
 
+        </div>
+
+        <form action="">
+            <div class="input_container">
+                <h3>新增留言</h3>
+                <div class="create_command_container">
+                    <textarea class="create_command"></textarea>
+                    <div class="com_btn_countainer">
+                        <button class="inner_btn">
+                            <a href="03_discuss.html">送出</a>
+                        </button>
+                    </div>
+                </div>
             </div>
 
-            <form action="">
-                <div class="input_container">
-                    <h3>新增留言</h3>
-                    <div class="create_command_container">
-                        <textarea class="create_command"></textarea>
-                        <div class="com_btn_countainer">
-                            <button class="inner_btn">
-                                <a href="03_discuss.html">送出</a>
-                            </button>
+        </form>
+
+        <h3>相關熱門揪團</h3>
+        <div class="tour_browse_block" id="tourBrowseBlock"></div>
+
+        <div class="toursection">
+            <div class="tourwrap">
+                <img class="tourpic" src="images/tour/tour1.jpg">
+                <div class="tourinfo">
+                    <div class="social">
+                        <div class="love">
+                            <img class="like" src="./images/common/heart.png" title="加入收藏" alt="">
+                        </div>
+                        <div class="fb-share-button" data-href="https://tw.yahoo.com/" data-layout="button" data-size="small">
+                            <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5501%2F07_vote_more.html&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
+                                分享
+                            </a>
                         </div>
                     </div>
+                    <p>
+                        <span class="green">活動名稱:</span>&ensp;舞鶴茶園一日遊
+                    </p>
+                    <p>
+                        <span class="green">活動日期:</span>&ensp;2020/12/31
+                    </p>
+                    <p>
+                        <span class="green">截止揪團日期:</span>&ensp;2020/12/25 
+                    </p>
+                    <p>
+                        <span class="green">預估費用:</span>&ensp; $800
+                    </p>
+                    <p>
+                        <span class="green">參加人數:</span>&ensp; 15/20 人 
+                    </p>
                 </div>
+                <button class="bt">
+                    <a href="02_tour_more.html">
+                        立即報名
+                    </a>
+                </button>
+            </div>
 
-            </form>
+            <div class="tourwrap">
+                <img class="tourpic" src="images/tour/tour1.jpg">
+                <div class="tourinfo">
+                    <div class="social">
+                        <div class="love">
+                            <img class="like" src="./images/common/heart.png" title="加入收藏" alt="">
+                        </div>
+                        <div class="fb-share-button" data-href="https://tw.yahoo.com/" data-layout="button" data-size="small">
+                            <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5501%2F07_vote_more.html&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
+                                分享
+                            </a>
+                        </div>
+                    </div>
+                    <p>
+                        <span class="green">活動名稱:</span>&ensp;舞鶴茶園一日遊
+                    </p>
+                    <p>
+                        <span class="green">活動日期:</span>&ensp;2020/12/31
+                    </p>
+                    <p>
+                        <span class="green">截止揪團日期:</span>&ensp;2020/12/25 
+                    </p>
+                    <p>
+                        <span class="green">預估費用:</span>&ensp; $800
+                    </p>
+                    <p>
+                        <span class="green">參加人數:</span>&ensp; 15/20 人 
+                    </p>
+                </div>
+                <button class="bt">
+                    <a href="02_tour_more.html">
+                        立即報名
+                    </a>
+                </button>
+            </div>
 
-        <h3>相關揪團</h3>
-        <div class="tour_browse_block" id="tourBrowseBlock"></div>
+            <div class="tourwrap">
+                <img class="tourpic" src="images/tour/tour1.jpg">
+                <div class="tourinfo">
+                    <div class="social">
+                        <div class="love">
+                            <img class="like" src="./images/common/heart.png" title="加入收藏" alt="">
+                        </div>
+                        <div class="fb-share-button" data-href="https://tw.yahoo.com/" data-layout="button" data-size="small">
+                            <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5501%2F07_vote_more.html&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
+                                分享
+                            </a>
+                        </div>
+                    </div>
+                    <p>
+                        <span class="green">活動名稱:</span>&ensp;舞鶴茶園一日遊
+                    </p>
+                    <p>
+                        <span class="green">活動日期:</span>&ensp;2020/12/31
+                    </p>
+                    <p>
+                        <span class="green">截止揪團日期:</span>&ensp;2020/12/25 
+                    </p>
+                    <p>
+                        <span class="green">預估費用:</span>&ensp; $800
+                    </p>
+                    <p>
+                        <span class="green">參加人數:</span>&ensp; 15/20 人 
+                    </p>
+                </div>
+                <button class="bt">
+                    <a href="02_tour_more.html">
+                        立即報名
+                    </a>
+                </button>
+            </div>
+        </div>
+
+        <div class="btwrap">
+            <button class="bt">
+                <a href="01_tour.html">
+                    瀏覽更多揪團
+                </a>
+            </button>
+        </div>
     </main>
+
+    @@include('layout/footer.html')
 
     
     <script>
-		Vue.component("star-rating", VueStarRating.default,{
-			methods: {
-				setRating: function(rating) {
-					this.rating = "You have Selected: " + rating + " stars";
-				},
-				showCurrentRating: function(rating) {
-					this.currentRating =
-						rating === 0
-							? this.currentSelectedRating
-							: "Click to select " + rating + " stars";
-				},
-				setCurrentSelectedRating: function(rating) {
-					this.currentSelectedRating =
-						"You have Selected: " + rating + " stars";
-				}
-			},
-			data: {
-				rating: "No Rating Selected",
-				currentRating: "No Rating",
-				currentSelectedRating: "No Current Rating",
+        Vue.component("star-rating", VueStarRating.default, {
+            methods: {
+                setRating: function (rating) {
+                    this.rating = "You have Selected: " + rating + " stars";
+                },
+                showCurrentRating: function (rating) {
+                    this.currentRating =
+                        rating === 0
+                            ? this.currentSelectedRating
+                            : "Click to select " + rating + " stars";
+                },
+                setCurrentSelectedRating: function (rating) {
+                    this.currentSelectedRating =
+                        "You have Selected: " + rating + " stars";
+                }
+            },
+            data: {
+                rating: "No Rating Selected",
+                currentRating: "No Rating",
+                currentSelectedRating: "No Current Rating",
                 boundRating: 3,
-			}
-		});
-
-		new Vue({
-			el: ".app",
+            }
         });
 
+        
+
+        new Vue({
+            el: "#app",
+            data:{
+                showModal:false,
+                showModal2:false,
+            }
+        });
+		
         // new Vue({
-		// 	el: "#app3",
+		// 	el: ".app3",
         // });
         
-        //燈箱
-        new Vue({
-            el: '#app2',
-            data: { showModal: false }
-        });
+        // 燈箱
+        // new Vue({
+        //     el: '.app2',
+        //     data: { showModal: false }
+
+        // });
+
+        // new Vue({
+        //     el: '.app3',
+        //     data: { showModal: false }
+        // });
+
+        
 
     </script>
-    
+
     <div id="fb-root"></div>
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v9.0" nonce="WuFFSzIJ"></script>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v9.0"
+        nonce="WuFFSzIJ"></script>
 </body>
+
 </html>

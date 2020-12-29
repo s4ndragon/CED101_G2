@@ -24,45 +24,13 @@ function doFirst() {
         productNum.addEventListener('change', changeNum)
     }
     loadFavorite()
-}
-
-function additem(e) {
-    let itemValue = e.target.nextElementSibling.value;
-    let itemNo = itemValue.split('|')[0],
-        itemName = itemValue.split('|')[1],
-        itemPrice = itemValue.split('|')[2],
-        itemNum = itemValue.split('|')[3];
-    if (storage[`${itemNo}`]) {
-        alert('已經在購物車內囉。')
-    } else {
-        storage[`${itemNo}`] = itemValue;
-        storage['addItemList'] += itemNo + ',';
-        itemValue = itemValue.split('|');
-        itemName = itemValue[1];
-        itemPrice = itemValue[2];
-        itemNum = itemValue[3];
-        let newdiv = document.createElement('div');
-        newdiv.setAttribute('class', 'item');
-        newdiv.innerHTML = `
-            <span class="drop">×</span>
-            <div class="img">
-                <img src="./images/shopping/product2.jpg" alt="">
-            </div>
-            <div class="aside">
-                <h3>${itemName}</h3>
-                <div class="content">
-                    數量:<input type="number" name="" id="" value="${itemNum}" min='0' max='999' onchange='calcAmount()'>
-                    價格: <input type="number" name="" id="" disabled value="${itemPrice}" >
-                    <input type="hidden" name="" value='${storage[`${itemNo}`]}' class='productInfo'>
-                </div>
-            </div>
-            `
-        let cart_content = document.getElementById('cart_content');
-        cart_content.insertBefore(newdiv, amount);
-        calcAmount();
-        newdiv.querySelectorAll('.drop')[0].addEventListener('click', dropitem);
+    let totalBtn = document.getElementById('totalBtn');
+    if (totalBtn) {
+        dicountBtn()
     }
 }
+
+
 
 function addFavorite(e) {
     let itemValueBtn = e.target.nextElementSibling.nextElementSibling,
@@ -96,6 +64,48 @@ function loadFavorite() {
     }
 }
 
+function itemInnerhtml(newdiv, itemNo, itemName, itemNum, itemPrice) {
+    newdiv.innerHTML = `
+    <div class="drop">×</div>
+    <div class="img">
+        <img src="./images/shopping/product2.jpg" alt="">
+    </div>
+    <div class="aside">
+        <a href="./04_product.html"><h3>${itemName}</h3></a>
+        <div class="content">
+            <div>數量: <input type="number" name=""  value="${itemNum}" min='0' max='999' onchange='calcAmount()'></div>
+            <div class='price'>價格: </span><input type="number" name=""  disabled value="${itemPrice}" ></div>
+            <input type="hidden" name="" value='${storage[`${itemNo}`]}' class='productInfo'>
+        </div>
+    </div>
+    `
+}
+
+function additem(e) {
+    let itemValue = e.target.nextElementSibling.value;
+    let itemNo = itemValue.split('|')[0],
+        itemName = itemValue.split('|')[1],
+        itemPrice = itemValue.split('|')[2],
+        itemNum = itemValue.split('|')[3];
+    if (storage[`${itemNo}`]) {
+        alert('已經在購物車內囉。')
+    } else {
+        storage[`${itemNo}`] = itemValue;
+        storage['addItemList'] += itemNo + ',';
+        itemValue = itemValue.split('|');
+        itemName = itemValue[1];
+        itemPrice = itemValue[2];
+        itemNum = itemValue[3];
+        let newdiv = document.createElement('div');
+        newdiv.setAttribute('class', 'item');
+        itemInnerhtml(newdiv, itemNo, itemName, itemNum, itemPrice);
+        let cart_content = document.getElementById('cart_content');
+        cart_content.insertBefore(newdiv, amount);
+        calcAmount();
+        newdiv.querySelectorAll('.drop')[0].addEventListener('click', dropitem);
+    }
+}
+
 function loadcart() {
     let cartContent = document.getElementById('cart_content');
     if (cartContent) {
@@ -109,20 +119,7 @@ function loadcart() {
             itemNum = itemValue[3];
             let newdiv = document.createElement('div');
             newdiv.setAttribute('class', 'item');
-            newdiv.innerHTML = `
-                <span class="drop">×</span>
-                <div class="img">
-                    <img src="./images/shopping/product2.jpg" alt="">
-                </div>
-                <div class="aside">
-                    <h3>${itemName}</h3>
-                    <div class="content">
-                        數量:<input type="number" name="" id="" value="${itemNum}" min='0' max='999' onchange='calcAmount()'>
-                        價格: <input type="number" name="" id="" disabled value="${itemPrice}" >
-                        <input type="hidden" name="" value='${storage[itemlist[i]]}' class='productInfo'>
-                    </div>
-                </div>
-                `
+            itemInnerhtml(newdiv, itemlist[i], itemName, itemNum, itemPrice);
             cart_content.insertBefore(newdiv, amount);
         }
     };
@@ -132,7 +129,9 @@ function loadcart() {
     }
 }
 
+
 function calcAmount() {
+    var totalAmount = document.getElementById('totalAmount');
     let total = 0,
         items = document.querySelectorAll('.item');
     if (items) {
@@ -140,7 +139,7 @@ function calcAmount() {
             let pricebtn = items[i].querySelectorAll('input[type=hidden]')[0],
                 priceValue = pricebtn.value;
             let price = priceValue.split('|')[2],
-                num = pricebtn.previousElementSibling.previousElementSibling.value,
+                num = pricebtn.previousElementSibling.previousElementSibling.getElementsByTagName('input')[0].value,
                 h = priceValue.split('|')[4],
                 c;
             if (priceValue.split('|')[3] < 10) {
@@ -155,9 +154,14 @@ function calcAmount() {
             total += (price * num);
         }
     }
-    let totalAmount = document.getElementById('totalAmount');
+
     if (totalAmount) {
-        totalAmount.value = total
+        totalAmount.setAttribute('value', total);
+    }
+    let totalBtn = document.getElementById('totalBtn');
+    if (totalBtn) {
+        dealDisPoint()
+        maxDis()
     }
 }
 
@@ -193,4 +197,61 @@ function dropitem(e) {
     addItemList = addItemList.toString() + ',';
     addItemList = addItemList.substring(0, addItemList.length - 1);
     storage['addItemList'] = addItemList;
+}
+
+function dealDisPoint() {
+    var costPoint = document.getElementById('costPoint'),
+        price,
+        discount = document.getElementById('discount');
+    //設定優惠點數的使用上限
+    costPoint.addEventListener('change', maxDis);
+    price = parseInt(totalAmount.value) - parseInt(discount.value);
+    document.getElementById('totalBtn').setAttribute('value', price);
+};
+
+function maxDis() {
+    let totalAmount = document.getElementById('totalAmount'),
+        costPoint = document.getElementById('costPoint'),
+        myPoint = document.getElementById('myPoint'),
+        dis = document.getElementById('discountprice');
+    if (parseInt(totalAmount.value) < parseInt(myPoint.value)) {
+        maxPoint = totalAmount.value;
+    } else {
+        maxPoint = myPoint.value
+    }
+    costPoint.setAttribute('value', costPoint.value);
+    if (parseInt(costPoint.value) > parseInt(maxPoint)) {
+        costPoint.setAttribute('value', maxPoint);
+        costPoint.value = maxPoint;
+    }
+    discountprice.setAttribute('value', costPoint.value);
+    if (parseInt(totalAmount.value) < parseInt(costPoint.value)) {
+        document.getElementById('pointTable').setAttribute('style', 'display:none');
+        calcAmount();
+    }
+    let discount = document.getElementById('discount'),
+        totalBtn = document.getElementById('totalBtn');
+    if (parseInt(totalBtn.value) < 0) {
+        discount.setAttribute('value', maxPoint);
+        calcAmount();
+    }
+}
+
+function dicountBtn() {
+    usePoint = document.getElementById('usePoint');
+    usePoint.addEventListener('click', () => {
+        document.getElementById('pointTable').setAttribute('style', 'display:block');
+    });
+    usePointbtn = document.getElementById('usePointbtn');
+    usePointbtn.addEventListener('click', () => {
+        if (confirm('使用優惠點數?')) {
+            document.getElementById('pointTable').setAttribute('style', 'display:none');
+            let dis = document.getElementById('discountprice').value;
+            discount.setAttribute('value', dis);
+            calcAmount();
+        }
+    })
+    document.getElementById('cancel').addEventListener('click', () => {
+        document.getElementById('pointTable').setAttribute('style', 'display:none');
+    })
 }

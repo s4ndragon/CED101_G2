@@ -1,74 +1,94 @@
 @import './default/common';
 
-h2.title {
-    width: max-content;
-    margin: 20px auto;
-    background-color: $titleBgColor;
-    padding: 5px 15px;
-    border-radius: 5px;
-}
-
-
 div.cart_content {
-    width: $mainWidth*0.7;
+    width: $mainWidth*0.9;
     margin: 0 auto;
     $itemBR: 5px;
     padding: 20px 30px;
     border-radius: 5px;
     background-color: #e3ffe6;
 
+    @media screen and (max-width:400px) {
+        width: 95%;
+    }
+
+    input {
+        text-align: center;
+    }
+
     .item {
+        display: grid;
+        grid-template-columns: 30% 65%;
+        align-items: center;
         position: relative;
         background-color: #fff;
         margin-bottom: 15px;
         padding: 5px;
         border-radius: $itemBR;
 
-        span.drop {
+
+        .drop {
             position: absolute;
-            right: 15px;
+            top: 1%;
+            right: 1%;
             font-size: 45px;
             cursor: pointer;
             color: #BF0060;
             font-weight: bold;
+
+            @media screen and (max-width:400px) {
+                font-size: 25px;
+            }
         }
 
         div.img {
-            width: 200px;
-            height: max-content;
+            display: flex;
+            align-items: center;
             font-size: 0;
             border-radius: $itemBR;
             overflow: hidden;
+
 
             img {
                 max-width: 100%;
             }
         }
 
-        div.img,
-        div.aside {
-            display: inline-block;
-            vertical-align: middle;
-        }
-
         div.aside {
             margin-left: 15px;
+            padding: 25px 0;
 
             h3 {
                 margin-top: 0;
-                width: 450px;
                 display: -webkit-box;
                 -webkit-box-orient: vertical;
                 -webkit-line-clamp: 2;
                 overflow: hidden;
             }
 
-            input[type=number] {
-                width: 100px;
-            }
+            div.content {
+                display: grid;
+                grid-template-columns: max-content max-content;
 
-            input[type=number]:first-of-type {
-                width: 30px;
+                &:first-of-type input {
+                    width: 45px;
+                }
+
+                div.price {
+                    margin-left: 15px;
+
+                    input {
+                        width: 100px;
+                    }
+                }
+
+                @media screen and (max-width:750px) {
+                    grid-template-columns: max-content;
+
+                    div.price {
+                        margin-left: 0px;
+                    }
+                }
             }
         }
     }

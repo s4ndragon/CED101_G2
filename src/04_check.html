@@ -5,24 +5,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>結帳</title>
-    <link rel="stylesheet" href="./js/slick-1.8.1/slick/slick.css">
-    <link rel="stylesheet" href="./js/slick-1.8.1/slick/slick-theme.css">
-    <link rel="stylesheet" href="./css/shopping.css">
+    <link rel="stylesheet" href="./vendors/slick-1.8.1/slick/slick.css">
+    <link rel="stylesheet" href="./vendors/slick-1.8.1/slick/slick-theme.css">
+    <!-- <link rel="stylesheet" href="./css/shopping.css"> -->
     <link rel="stylesheet" href="./css/check.css">
 
     <!-- 推薦廣告用 -->
 
-    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="./js/slick-1.8.1/slick/slick.min.js"></script>
-    <script src="./js/cart.js"></script>
+
     <script src="./js/recommend.js"></script>
-    <script src="./js/check.js"></script>
+    <script src="./js/cart.js"></script>
 </head>
 
 <body>
     @@include('layout/nav.html')
+    @@include('layout/title.html',{'title':'結帳'})
     <form action="./checkout.html">
-        <h2 class="title">結帳明細</h2>
         <div class="main">
             <div class="cart_content" id="cart_content">
                 <h3>購買清單</h3>
@@ -36,7 +34,7 @@
                     <tr>
                         <td>寄件方式:</td>
                         <td>
-                            <select name="" id="">
+                            <select name="">
                                 <option value="">宅配</option>
                                 <option value="">7-11店到店</option>
                             </select>
@@ -44,15 +42,15 @@
                     </tr>
                     <tr>
                         <td>收件人:</td>
-                        <td><input type="text" name="" id=""></td>
+                        <td><input type="text" name=""></td>
                     </tr>
                     <tr>
                         <td>收件地址:</td>
-                        <td><input type="text" name="" id=""></td>
+                        <td><input type="text" name=""></td>
                     </tr>
                     <tr>
                         <td>電話:</td>
-                        <td><input type="text" name="" id=""></td>
+                        <td><input type="text" name=""></td>
                     </tr>
                     <tr>
                         <td>&nbsp;</td>
@@ -60,7 +58,7 @@
                     <tr>
                         <td>付款方式:</td>
                         <td>
-                            <select name="" id="">
+                            <select name="">
                                 <option value="">貨到付款</option>
                                 <option value="">ATM付款</option>
                             </select>
@@ -76,18 +74,19 @@
                             <table id='pointTable'>
                                 <tr>
                                     <td>我的優惠點數:</td>
-                                    <td><input type="number" name="" id="" disabled value="2000"></td>
+                                    <td><input type="number" name="" id="myPoint" disabled value="2000"></td>
                                 </tr>
                                 <tr>
                                     <td>使用優惠點數:</td>
-                                    <td><input type="number" name="" id="" value="0" min="0"></td>
+                                    <td><input type="text" name="" id="costPoint" value="0"></td>
                                 </tr>
                                 <tr>
                                     <td>折抵費用:</td>
-                                    <td><input type="number" name="" id="" disabled value="0"></td>
+                                    <td><input type="number" name="" id="discountprice" disabled value="0"></td>
                                 </tr>
                                 <tr>
                                     <td colspan="2" style="text-align: center;">
+                                        <input type="button" value="取消" id="cancel">
                                         <input type="button" value="確認折抵" id="usePointbtn">
                                     </td>
                                 </tr>
@@ -96,7 +95,7 @@
                     </tr>
                     <tr>
                         <td colspan="2" id="total" style="text-align: center;">
-                            <span>總計: </span><input type="number" name="" id="totalAmount" disabled value="0">
+                            <span>總計: </span><input type="number" name="" id="totalBtn" disabled value="0">
                         </td>
                     </tr>
                 </table>

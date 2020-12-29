@@ -1,13 +1,5 @@
-@import './default/common';
 @import './cart.scss';
-
-h2.title {
-    width: max-content;
-    margin: 20px auto;
-    background-color: $titleBgColor;
-    padding: 5px 15px;
-    border-radius: 5px;
-}
+@import './shopping.scss';
 
 form {
     width: $mainWidth;
@@ -40,12 +32,19 @@ form {
         background-color: #e3ffe6;
         border-radius: 5px;
 
+        @media screen and (max-width:400px) {
+            width: 100%;
+        }
+
         input[type=button] {
             @include btn3;
         }
 
         #usePoint {
-            width: 150px;
+            width: min-content;
+            font-size: 10px;
+            padding: 5px 10px;
+            text-align: center
         }
 
         input.back {
@@ -85,6 +84,10 @@ form {
 
             input[type=button] {
                 @include smallbtn3;
+            }
+
+            #cancel {
+                @include smallbtn4
             }
         }
     }
