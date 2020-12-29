@@ -17,6 +17,10 @@ div.cart_content {
     border-radius: 5px;
     background-color: #e3ffe6;
 
+    @media screen and (max-width:400px) {
+        width: 100%;
+    }
+
     input {
         text-align: center;
     }
@@ -31,6 +35,7 @@ div.cart_content {
         padding: 5px;
         border-radius: $itemBR;
 
+
         .drop {
             position: absolute;
             top: 1%;
@@ -39,6 +44,10 @@ div.cart_content {
             cursor: pointer;
             color: #BF0060;
             font-weight: bold;
+
+            @media screen and (max-width:400px) {
+                font-size: 25px;
+            }
         }
 
         div.img {
