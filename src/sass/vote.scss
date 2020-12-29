@@ -160,11 +160,40 @@ main{
         margin-top: -68px;
     }
 
+
+    .sectionchart{
+        position: relative;
+    }
+
     .fall{
-        width: 120px;
+        display: inline-flex;
+        position: absolute;
+        left: 46px;
+        top: -5px;
+        animation-name: move;
+        animation-duration: 1s;
+        animation-timing-function: steps(4);
+        animation-iteration-count: infinite;
+        
+        .leaf{
+            width: 120px;
+        }
     }
 }
 
+@keyframes move{
+    0% {
+        transform: scale(1) rotate(0);
+    }
+
+    25%{
+        transform: scale(1) rotate(-3deg);
+    }
+
+    50% {
+        transform: scale(1) rotate(-5deg);
+    }
+}
 
 
 @media screen  and (max-width:1200px){
@@ -184,6 +213,13 @@ main{
         .block1{
             .pic{
                 width:570px;
+            }
+        }
+
+        .fall{
+            left: 0px;
+            .leaf{
+                width: 90px;
             }
         }
         
@@ -207,6 +243,14 @@ main{
 
             .info{
                 width: 100%;
+            }
+        }
+
+        .fall{
+            top:-12px;
+            left: 0px;
+            .leaf{
+                width: 90px;
             }
         }
 
