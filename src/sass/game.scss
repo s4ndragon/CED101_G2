@@ -79,7 +79,6 @@ left:calc(-310px + 40%);
   margin: auto 0px;
   z-index: 200;
 }
-/* 注意background-image路徑!! url(./) */
 .button1{
   background-image: url('../images/game/Button.png');
   background-size: cover;
@@ -130,7 +129,6 @@ top: 300px;
 left: 50%;
 transform: translate(-50%, -50%);
 }
-
 div.gameover,div.gamewin{
   position: fixed;
   top: 0;
@@ -156,12 +154,38 @@ section{
 	 width:1000px;
 	 height:600px;  
 	 position: relative;
-     left: calc(-390px + 40%);
+	 left: calc(-390px + 40%);
+	 article{
+		 position: relative;
+		 left:95px;
+		 top:90px;
+	 }
  }
 }
-
-.tea_en.-opacity-zero{
-	opacity:0;
+.teatxt{
+	padding:10px;
+	border:rgba(116, 128, 10, 0.568) 2px solid;
+	width:400px;
+	height:400px;
+	overflow-x: auto;
+}
+.teatxt::-webkit-scrollbar{
+	width: 10px;
+	background-color: #F5F5F5;
+}
+.teatxt::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+}
+.teatxt::-webkit-scrollbar-thumb {
+	background-color: #F90;	
+	background-image: -webkit-linear-gradient(45deg,rgba(255, 255, 255, .2) 25%,
+											  transparent 25%,
+											  transparent 50%,
+											  rgba(255, 255, 255, .2) 50%,
+											  rgba(255, 255, 255, .2) 75%,
+											  transparent 75%,
+											  transparent);
 }
 div.gameover>article{
   background-image: url('../images/game/gameovre.png');
@@ -285,10 +309,9 @@ div.gamewin>article{
 				border: 3px solid green;
       }
       #botbar{
-		//   line-height: 2.5;
 		position:absolute;
-		bottom:0px;
-		right:210px;
+		top:10px;
+		left:calc(50% - 180px);
 		background-color: yellowgreen;
 		}
 	  .tea_ency{

@@ -255,9 +255,10 @@ function calcDamage(keep, attack) {
 function kill(index,role,roleArr){
   //如果生命值hp歸零，則刪除陣列中以及地圖上的角色，角色有plant、worm。
   if(parseInt(role.dataset.hp) <= 0) {
-    if(!role.classList.contains("plant")){
+    if (!role.classList.contains("plant")) {
+      //只要不是植物plant的列入擊殺得分
       score+=role.dataset.HP*1;
-      console.log(score);
+      document.getElementById('score').innerText = score;
     }
     roleArr.splice(index, 1);
     role.parentNode.removeChild(role);
@@ -316,8 +317,16 @@ $('#pause').on('click', function () {
 });
 $('div.tea_ency').on('click', function () {
   $('.tea_en').addClass('-on');
+});
+$('#teatxt-bar1').on('click', function () {
+        $("div.tea_en").addClass("-opacity-zero");
+    // 設定隔一秒後，移除相關 class
+    setTimeout(function(){
+      $("div.tea_en").removeClass("-on -opacity-zero");
+    }, 1000); // 關閉 Modal
 })
-function gamestop(){
+function gamestop() {
+  
   document.getElementById('score-over').innerText = score;
   document.getElementById('score-win').innerText = score+1000;
   clearInterval(sp_);

@@ -34,9 +34,11 @@
     "gulp-sass": "^4.1.0",
     "gulp-sourcemaps": "^3.0.0",
     "gulp-uglify": "^3.0.2",
-    "node-sass": "^5.0.0"
+    "node-sass": "^5.0.0",
+    "vue-devtools": "^5.1.4"
   },
   "dependencies": {
+    "autoprefixer": "^10.1.0",
     "bootstrap": "^4.5.3",
     "bootstrap-scss": "^4.5.3",
     "gsap": "^3.5.1",
