@@ -2,17 +2,52 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-        <title>茶園保衛戰</title>
-		<link rel="stylesheet" href="../dist/css/game.css">
-		<link rel="stylesheet" href="../dist/css/flex.css">
+		<title>茶園保衛戰</title>
+		<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.css"> -->
+		<link rel="stylesheet" href="./css/game.css">
+		<link rel="stylesheet" href="./css/flex.css">
+		<link href="https://unpkg.com/vuetify/dist/vuetify.min.css" rel="stylesheet">
+<script src="https://unpkg.com/vuetify/dist/vuetify.js"></script>
 		<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+
 	</head>
 	<body>
 		@@include('layout/nav.html')
 		<div id="title" class="flex a_c j_c v100w size60"><h2>小遊戲-茶園保衛戰</h2></div>
 		<div id="map">
 			<div class="tea_en flex a_c j_c">
-				<section></section>
+				<section >
+					<article class="flex">
+					<div class="teatxt">
+						<h2>目錄</h2>
+						<p>概要：茶文化、茶葉知識、茶具知識、品茶用水、茶藝基礎、科學飲茶</p>
+						<p>綠茶：綠茶簡介、黃山毛峰、洞庭碧螺春、西湖龍井、日照綠茶、太平猴魁</p>
+						<p>紅茶：紅茶簡介、功夫紅茶、正山小種、祁門紅茶、金駿眉、大吉嶺茶</p>
+						<p>黃茶：黃茶簡介、君山銀針</p>
+						<p>白茶：白茶簡介、白毫銀針、白牡丹</p>
+						<p>黑茶：黑茶簡介、普洱茶、安化黑茶</p>
+						<p>烏龍茶：烏龍茶簡介、大紅袍、鳳凰單、凍頂烏龍、黃金桂、鐵觀音</p>
+						<p>花茶：花茶簡介、茉莉花茶、玳玳花茶、白蘭花茶、珠蘭花茶</p>
+						<p></p>
+					</div>
+					<div class="teatxt">
+						<h2>總綱：茶文化</h2>
+						<p>中國用茶的淵源</p>
+						<p>茶在中國的應用過程可以分為三個相承後的階段：藥用、食用、引用。三者之間有承先啟後的關係，但是三者又不可能進行絕對劃分，現在只要是以品飲為主，但同時又有茶的藥用和食用。在我國茶用早期，藥用和食用難於進行明確劃分，古人有"藥食同源"之說，可見不過相對而言，人們最早知識的還是藥用而已，因而不可將三者完全孤立開來看。</p>
+						<p>藥用：中國古代有大量記載茶作為藥用的書籍。</p>
+						<p>《神農本草》東漢華佗的《食論》，明代顧元慶的《茶譜》，唐代陸羽的《茶經》，李時珍的《本草綱目》，宋代吳淑的《茶賦》等都有茶葉功效的記載。</p>
+						<p>現在茶的藥用功能對中國少數民族而言更為突出，在少數民族地區，流傳著"寧可三日不吃糧，不可一日不喝茶"的諺語。這是因為像藏族、蒙古族、維吾爾族等小數民族因為都是居住在高寒地區，日常主食都是牛羊等肉類食品，不易消化，而茶的消脂去膩、促進消化功能對於他們而言，重要性不言而喻的了。</p>
+					</div>
+					<div class="teatxt-bar y-flex a_end j_c" style="border:solid 2px #000;width: 100px;    position: relative;
+    top: 26px;">
+						<div id="teatxt-bar1" style="border:solid 2px #000;    height: 100px;
+    width: 50px;cursor: pointer;"></div>
+						<div id="teatxt-bar2" style="border:solid 2px #000;    height: 100px;
+    width: 50px;    position: relative;
+    top: 30px;"></div>
+					</div>
+					</article>					
+				</section>
 			</div>
 <div class="gameover">
 	<article><div style="top: 107px;
@@ -52,8 +87,7 @@ font-size: 28px;line-height: 1.5;
 			<img src="./images/game/title.png" class="title">
 			<div style="color:#FFF;padding-left:10px;font-size:18px;border:solid 1px #FFF">
 				<p>遊戲說明：</p>
-
-		<p>下方控制面板：喝茶休息可以暫停，茶百科可以瀏覽茶的知識。</p>
+		<p>上方控制面板：喝茶休息可以暫停，茶百科可以瀏覽茶的知識、計分板顯示分數。</p>
 		<p>左下方：守衛角色可放置到四條道路上，會發射子彈。</p>
 		<p>右方：有蟲子向進攻，千萬不要放蟲子到茶園裡。</p>
 		<p>茶能量：守衛放置道路上需要能量，能量不足可是請不動守衛的呦。</p>
@@ -72,17 +106,17 @@ font-size: 28px;line-height: 1.5;
 				<li><img src="./images/game/TallNut.gif" data-star=75 data-defense=90 data-hps=150 data-hp=150 data-damage=0 data-speed=0 class="plant"><span>75</span></li>
 			</ul>
 			<section id="botbar" class="flex">
-			<!-- <img src="./images/game/tea_ency.png" style="background-color: azure;" height="70"> -->
+			<div><span style="color:#000;font-size:20px;">計分:</span><span id="score">0</span></div>
+
 			<div class="tea_ency"></div>
 			<div class="star-back y-flex a_sb" style="line-height: 2;">
 			<div id="star-number">25</div><br>
 			<div class="" style="color:#FFF;position: relative;
     top: 10px;">茶能量</div>				
 			</div>
-				<abbr title="暫停">
+					<abbr title="暫停">
 					<img src="./images/game/teacup2.png" id="pause" alt="rest"class="none"  >
-				</abbr>	
-				<div><span style="color:#000;font-size:20px;">得分:</span><span id="score">0</span></div>			
+				</abbr>								
 			</section>
 		</div>		
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js" ></script>
