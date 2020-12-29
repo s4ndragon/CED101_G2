@@ -127,9 +127,13 @@ main {
                 @media only screen and (min-width: 993px) and (max-width: 1200px) {
                     font-size: $h4;
                 }
-                @media only screen and (max-width: 992px) {
+                @media only screen and (min-width: 577) and (max-width: 992px) {
                     font-size: $h3;
                     width: 100px;
+                }
+                @media only screen and (max-width: 576) {
+                    font-size: $h6;
+                    // width: 100px;
                 }
             }
             .bg-color {
@@ -191,7 +195,11 @@ main {
                         }
                         .tour_title,
                         .tour_date {
+                            // border: 1px solid red;
                             width: 20%;
+                            @media only screen and (max-width: 576px) {
+                                width: calc(100% / 3);
+                            }
                         }
                         .tour_attendency {
                             width: 20%;
@@ -217,16 +225,19 @@ main {
                                 }
                             }
                             .arrow {
-                                border: 1px solid red;
+                                // border: 1px solid red;
                                 display: none;
                                 @media only screen and (max-width: 576px) {
                                     display: block;
                                 }
                             }
                             .down {
-                                border: 1px solid blue;
+                                // border: 1px solid blue;
                                 width: 0;
                                 height: 0;
+                                position: relative;
+                                top: 8px;
+                                right: -10px;
                                 border-left: 10px solid transparent;
                                 border-right: 10px solid transparent;
                                 border-top: 10px solid $primary-typo-color;
@@ -427,7 +438,7 @@ main {
                     }
                     .article_status_bar {
                         // border: 1px solid black;
-                        width: calc(100% / 3);
+                        width: calc(100% / 8);
                         display: flex;
                         justify-content: space-between;
                         .article_status,
