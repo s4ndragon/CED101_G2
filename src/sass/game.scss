@@ -129,7 +129,6 @@ top: 300px;
 left: 50%;
 transform: translate(-50%, -50%);
 }
-
 div.gameover,div.gamewin{
   position: fixed;
   top: 0;
@@ -312,7 +311,7 @@ div.gamewin>article{
       #botbar{
 		position:absolute;
 		top:10px;
-		left:10px;
+		left:calc(50% - 180px);
 		background-color: yellowgreen;
 		}
 	  .tea_ency{

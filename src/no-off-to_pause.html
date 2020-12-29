@@ -5,19 +5,20 @@
     <title>css滑块开关</title>
     <style>
         .checke{
+            font-size: larger;
             position: relative;
             -webkit-appearance: none;
             width:90px;
             height: 44px;
-            line-height: 44px;
-            background: #eee;
-            border-radius: 30px;
+            /* line-height: 44px; */
+            /* background: #eee; */
+            /* border-radius: 30px; */
             outline: none;
         }
         .checke:before{
             position: absolute;
             left: 0;
-            content: '';
+            content: '⏸';
             width: 44px;
             height: 44px;
             border-radius: 50%;
@@ -27,15 +28,19 @@
         }
  
         .checke:checked{
-           background: #18ff0a;
+           /* background: #18ff0a; */
         }
         .checke:checked:before{
-            left: 45px;
-            transition: all 0.2s linear;
+            content: '▶';
+            /* left: 45px; */
+            /* transition: all 0.2s linear; */
         }
     </style>
 </head>
 <body>
-<input type="checkbox" class="checke">
+<input type="checkbox" class="checke" id="checkbox">
+<div>⏸</div><div>▶</div>
+<i class="fad fa-play-circle"></i>
+<i class="fad fa-pause-circle"></i>
 </body>
 </html>　　
