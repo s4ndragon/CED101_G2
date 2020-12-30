@@ -93,7 +93,7 @@ main {
         }
         .side_content {
             .mine_profile {
-                @include smallbtn;
+                @include smallbtn3;
                 @media only screen and (min-width: 768px) {
                     display: none;
                 }
@@ -102,12 +102,16 @@ main {
     }
     #main_container {
         // border: 1px solid green;
+        // border-right: 2px solid $primary-typo-color;
         width: $main;
         display: flex;
         flex-direction: column;
         #sub_menu {
             // border: 1px solid black;
-            display: flex;
+            overflow: auto;
+            white-space: nowrap;
+            background-color: $lighter;
+            // display: flex;
             width: $main-width;
             justify-content: space-between;
             text-align: center;
@@ -121,15 +125,17 @@ main {
                 }
             }
             h3 {
+                display: inline-block;
                 // border: 1px solid red;
                 font-size: $h3;
-                padding: 10px;
+                padding: 15px;
                 @media only screen and (min-width: 993px) and (max-width: 1200px) {
                     font-size: $h4;
+                    // width: 100px;
                 }
                 @media only screen and (min-width: 577) and (max-width: 992px) {
                     font-size: $h3;
-                    width: 100px;
+                    // width: 100px;
                 }
                 @media only screen and (max-width: 576) {
                     font-size: $h6;
@@ -137,14 +143,24 @@ main {
                 }
             }
             .bg-color {
-                background-color: $primary-typo-color;
-                color: $lighter;
-                border-radius: 5px 5px 0 0;
+                // border: 1px solid red;
+                border-bottom: 3px solid $primary-typo-color;
+                color: $primary-typo-color;
+                transition-duration: 0.2s;
+                // border-radius: 5px 5px 0 0;
             }
             .select-color {
+                // border: 1px solid green;
+                // border-bottom: 1px solid grey;
                 background-color: $lighter;
-                color: $primary-typo-color;
-                border-radius: 5px 5px 0 0;
+                color: grey;
+                // border-radius: 5px 5px 0 0;
+                transition-duration: 0.2s;
+                &:hover {
+                    // border-bottom: 3px solid $primary-typo-color;
+                    background-color: rgba($primary-typo-color, 0.3);
+                    color: $primary-typo-color;
+                }
             }
         }
         #tour {
@@ -161,14 +177,17 @@ main {
             }
             #mine_tour,
             #i_join {
-                border: 5px dashed $secondary-typo-color;
+                border: 2px solid rgba($primary-typo-color, 0.3);
+                box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
                 background-color: white;
-                width: 100%;
-                padding: 10px 0;
-                margin: 10px 0;
+                border-radius: 5px;
+                width: calc(100%-40px);
+                padding: 10px;
+                margin: 20px;
                 h3 {
                     padding: 10px;
                     font-size: $h3;
+                    color: $btn-color;
                 }
                 #mine_on_going,
                 #mine_out_of_date,
@@ -187,10 +206,10 @@ main {
                         justify-content: space-between;
                         padding: 10px;
                         &:hover {
-                            color: $btn-color;
-                            background-color: $primary-typo-color;
+                            color: $primary-typo-color;
+                            background-color: rgba($primary-typo-color, 0.3);
                             .down {
-                                border-top: 10px solid $lighter;
+                                // border-top: 10px solid $lighter;
                             }
                         }
                         .tour_title,
@@ -198,7 +217,12 @@ main {
                             // border: 1px solid red;
                             width: 20%;
                             @media only screen and (max-width: 576px) {
-                                width: calc(100% / 3);
+                                width: 80%;
+                            }
+                        }
+                        .tour_date {
+                            @media only screen and (max-width: 540px) {
+                                display: none;
                             }
                         }
                         .tour_attendency {
@@ -242,9 +266,9 @@ main {
                                 border-right: 10px solid transparent;
                                 border-top: 10px solid $primary-typo-color;
                                 cursor: pointer;
-                                &:hover {
-                                    border-top: 10px solid $lighter;
-                                }
+                                // &:hover {
+                                //     border-top: 10px solid $lighter;
+                                // }
                                 @media only screen and (max-width: 576px) {
                                     display: block;
                                 }
@@ -260,9 +284,10 @@ main {
                     }
                     .outdated {
                         background-color: $search-bar-bgColor;
+                        color: grey;
                         &:hover {
                             background-color: darken($search-bar-bgColor, 5%);
-                            color: darken($primary-typo-color, 5%);
+                            color: darken(grey, 5%);
                         }
                     }
                 }
@@ -279,20 +304,19 @@ main {
             #mine_fav_bar {
                 // border: 1px solid black;
                 display: flex;
-                width: 25%;
+                width: 100%;
                 justify-content: space-between;
                 justify-self: center;
                 position: absolute;
+                background-color: $lighter;
                 // left: 50%;
-                padding: 15px 5px 5px 15px;
+                padding: 15px 0px;
+                color: grey;
                 @media only screen and (min-width: 993px) and (max-width: 1200px) {
-                    width: 30%;
+                    width: 100%;
                 }
-                @media only screen and (min-width: 577px) and (max-width: 992px) {
-                    width: 40%;
-                }
-                @media only screen and (max-width: 576px) {
-                    width: 50%;
+                @media only screen and (max-width: 993px) {
+                    width: 100%;
                 }
                 h4 {
                     font-size: $h4;
@@ -304,8 +328,16 @@ main {
                     width: calc(100% / 3);
                     text-align: center;
                     padding: 5px 0;
-                    // background-color: $lighter;
-                    // border-radius: 5px;
+                }
+                .colored {
+                    border-bottom: 3px solid $primary-typo-color;
+                    color: $primary-typo-color;
+                }
+                .unselected {
+                    &:hover {
+                        background-color: rgba($primary-typo-color, 0.3);
+                        color: $primary-typo-color;
+                    }
                 }
                 // .fav_tour {
                 //     background-color: $darker;
@@ -317,10 +349,15 @@ main {
                 // border: 1px solid green;
                 background-color: $lighter;
                 border-radius: 0 0 5px 5px;
-                padding: 30px 10px;
+                // padding: 30px 10px;
                 background-color: $lighter;
                 #fav_tour {
+                    // position: relative;
+                    // top: 30px;
+                    // border: 1px solid red;
                     display: flex;
+                    padding: 10px 5px;
+                    margin: 20px 0;
                     #tour_list {
                         display: flex;
                         flex-wrap: wrap;
@@ -328,7 +365,8 @@ main {
                 }
                 #fav_article {
                     display: none;
-
+                    padding: 10px 5px;
+                    margin: 20px 0;
                     #article_list {
                         display: flex;
                         flex-wrap: wrap;
@@ -336,6 +374,8 @@ main {
                 }
                 #fav_product {
                     display: none;
+                    padding: 10px 5px;
+                    margin: 20px 0;
                     #product_list {
                         display: flex;
                         flex-wrap: wrap;
@@ -350,13 +390,22 @@ main {
                 width: 100%;
             }
             #list {
+                border: 1px solid $primary-typo-color;
+                width: 100%;
                 display: flex;
                 flex-direction: column;
                 background-color: $lighter;
                 border-radius: 0 0 5px 5px;
-                padding: 10px 0;
-                // margin: 10px 0;
+                // padding: 10px;
+                // margin: 20px;
+                box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
                 #list_title {
+                    // border-right: 2px solid $primary-typo-color;
+                    // border-top: 2px solid grey;
+                    // border-left: 2px solid $primary-typo-color;
+                    width: 100%;
+
+                    // margin: 5px;
                     h5 {
                         color: $darker;
                         font-weight: $bold;
@@ -367,7 +416,7 @@ main {
                     display: flex;
                     width: 100%;
                     padding: 10px 0px;
-                    justify-content: space-between;
+                    justify-content: space-evenly;
                     #order_no,
                     #order_status,
                     #order_total {
@@ -378,7 +427,12 @@ main {
                             width: 25%;
                         }
                         @media only screen and (max-width: 576px) {
-                            width: 33%;
+                            width: 50%;
+                        }
+                    }
+                    #order_total {
+                        @media only screen and (max-width: 576px) {
+                            display: none;
                         }
                     }
                     #order_payment {
@@ -404,8 +458,8 @@ main {
                     cursor: pointer;
                 }
                 #order:nth-child(even) {
-                    background-color: $primary-typo-color;
-                    color: $btn-color;
+                    background-color: rgba($primary-typo-color, 0.3);
+                    color: $primary-typo-color;
                 }
             }
         }
@@ -413,38 +467,54 @@ main {
             display: none;
             width: $main-width;
             background-color: $lighter;
+            border-radius: 0 0 5px 5px;
             @media only screen and (max-width: 768px) {
                 width: 100%;
             }
             .article_brief {
-                // background-color: $lighter;
                 border-radius: 0 0 5px 5px;
                 // padding: 10px 0px;
                 .article_detail {
-                    margin: 10px;
-                    border: 1px solid $primary-typo-color;
+                    background-color: white;
+                    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+                    margin: 20px;
+                    text-align: center;
                     border-radius: 10px;
                     display: flex;
                     justify-content: space-between;
                     padding: 10px;
                     &:hover {
-                        color: $btn-color;
-                        background-color: $primary-typo-color;
+                        background-color: rgba($primary-typo-color, 0.3);
+                        color: $primary-typo-color;
                     }
                     .article_title,
                     .article_date {
                         // border: 1px solid black;
                         width: calc(100% / 3);
+                        @media only screen and (max-width: 576px) {
+                            width: calc(100% / 3 * 2);
+                        }
+                    }
+                    .article_date {
+                        @media only screen and (max-width: 576px) {
+                            display: none;
+                        }
                     }
                     .article_status_bar {
                         // border: 1px solid black;
-                        width: calc(100% / 8);
+                        // width: calc(100% / 6);
                         display: flex;
-                        justify-content: space-between;
+                        justify-content: space-evenly;
                         .article_status,
                         .article_join,
                         .article_check {
                             cursor: pointer;
+                        }
+                        @media only screen and (min-width: 576px) and (max-width: 992px) {
+                            width: calc(100% / 4);
+                        }
+                        @media only screen and (max-width: 576px) {
+                            width: calc(100% / 2);
                         }
                     }
                 }
@@ -475,6 +545,9 @@ main {
                     color: $primary-typo-color;
                     padding: 0px 10px;
                     width: 300px;
+                    @media only screen and (max-width: 576px) {
+                        width: 80%;
+                    }
                     input,
                     textarea {
                         font-size: $h4;
@@ -495,8 +568,8 @@ main {
                     }
                     label {
                         position: absolute;
-                        transform: translateY(15%);
-                        left: 5%;
+                        transform: translateY(17%);
+                        left: 20px;
                         transition: all 0.25s ease;
                         // -webkit-backface-visibility: hidden;
                         pointer-events: none;
@@ -511,11 +584,11 @@ main {
                         color: $btn-color;
                     }
                 }
-                .address {
-                    label {
-                        transform: translateY(120%);
-                    }
-                }
+                // .address {
+                //     label {
+                //         transform: translateY(120%);
+                //     }
+                // }
                 .button {
                     @include btn4 // border: 0;
                         // outline: none;
@@ -544,18 +617,22 @@ main {
 }
 
 .blog_container {
-    // border: 1px solid black;
-    background-color: $search-bar-bgColor;
+    // border: 1px solid $secondary-typo-color;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    background-color: white;
     position: relative;
     top: 30px;
-    width: 25%;
+    width: 43%;
     padding: 10px;
+    margin: 20px;
+    border-radius: 10px;
+    // margin: calc((20%-100px) / 10);
     &:hover {
-        color: $btn-color;
-        background-color: $primary-typo-color;
+        background-color: rgba($primary-typo-color, 0.3);
+        color: $primary-typo-color;
     }
     @media only screen and (max-width: 992px) {
-        width: 50%;
+        width: 100%;
     }
     img {
         width: 100%;
@@ -568,11 +645,6 @@ main {
         font-size: $h6;
         padding: 5px 0;
     }
-}
-.colored {
-    background-color: $primary-typo-color;
-    color: $search-bar-bgColor;
-    border-radius: $br;
 }
 
 // lightbox
