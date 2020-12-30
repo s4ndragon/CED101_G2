@@ -1,53 +1,19 @@
 // 請在自己的檔案內貼上
 // body {
-//     @include 看你是哪個單元;
+//     @include bg;
 // }
 
-// (下面是給首頁)=============================================================
-@mixin forIndex {
-    background-color: #d6d65b;
-    background-image: url(../../images/index/illust2.png);
-    background-position: center center;
-    background-size: contain;
-    background-repeat-y: repeat;
-    width: 100%;
-    height: 100%;
-    z-index: 2;
+@mixin bg {
+    background-image: url(../images/index/img_bg_yg_pc4.png);
+    background-size: 100% auto;
 }
-
-// body {
-//     @include forIndex;
-// }
-
-//(下面是給揪團跟商城)=============================================================
 
 @mixin forTourAndShop {
-    background-color: #e4f2bf;
-    background-image: url(../../src/images/common/bg.png);
-    background-position: center center;
-    background-size: contain;
-    background-repeat-y: repeat;
-    width: 100%;
-    height: 100%;
+    background-image: url(../images/index/img_bg_yg_pc4.png);
+    background-size: 100% auto;
 }
-
-// body {
-//     @include forTourAndShop;
-// }
-
-//(下面是給討論區跟投票)=============================================================
 
 @mixin forDiscussAndVote {
-    background-color: #eff2c7;
-    background-image: url(../../src/images/discuss/bg.png);
-    background-position: center center;
-    background-size: contain;
-    background-repeat-y: repeat;
-    width: 100%;
-    height: 100%;
+    background-image: url(../images/index/img_bg_yg_pc4.png);
+    background-size: 100% auto;
 }
-
-// body {
-//     @include forDiscussAndVote;
-// }
-// }
