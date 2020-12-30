@@ -31,7 +31,7 @@
 
 .tour {
     position: relative;
-    padding: 70px 0 140px;
+    padding: 70px 0 70px;
     text-align: center;
     background-image: url(../images/index/img_bg_yg_pc4.png);
     background-size: 100% auto;
@@ -126,6 +126,7 @@
     text-decoration: none;
     background-color: #fff;
     border-radius: 25px;
+    margin-top: 60px;
 }
 
 .lg-btn:after {
@@ -459,6 +460,7 @@
     padding-top: 90px;
     background-image: url(../images/index/img_bg_yg_pc4.png);
     background-size: 100% auto;
+    padding: 70px 0 70px;
 }
 
 // .shop .shop-img-front {
@@ -889,8 +891,7 @@
 
 .discuss {
     position: relative;
-    padding-top: 70px;
-    // padding: 70px 0 30px;
+    padding: 70px 0 70px;
     font-size: 0;
     background-color: #eff2c7;
 }
