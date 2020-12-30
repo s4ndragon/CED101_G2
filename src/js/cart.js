@@ -1,5 +1,5 @@
 window.addEventListener('load', doFirst);
-let storage = sessionStorage;
+var storage = sessionStorage;
 
 
 
@@ -96,13 +96,15 @@ function additem(e) {
         itemName = itemValue[1];
         itemPrice = itemValue[2];
         itemNum = itemValue[3];
-        let newdiv = document.createElement('div');
-        newdiv.setAttribute('class', 'item');
-        itemInnerhtml(newdiv, itemNo, itemName, itemNum, itemPrice);
         let cart_content = document.getElementById('cart_content');
-        cart_content.insertBefore(newdiv, amount);
-        calcAmount();
-        newdiv.querySelectorAll('.drop')[0].addEventListener('click', dropitem);
+        if (cart_content) {
+            let newdiv = document.createElement('div');
+            newdiv.setAttribute('class', 'item');
+            itemInnerhtml(newdiv, itemNo, itemName, itemNum, itemPrice);
+            cart_content.insertBefore(newdiv, amount);
+            calcAmount();
+            newdiv.querySelectorAll('.drop')[0].addEventListener('click', dropitem);
+        }
     }
 }
 

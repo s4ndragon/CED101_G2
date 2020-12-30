@@ -1,9 +1,9 @@
 @import './default/common';
 
-body {
+$maxWidth:1000px;
 
-    margin: 0;
-    @include forTourAndShop;
+
+body {
 
     input[type=button] {
         @include smallbtn3;
@@ -42,7 +42,7 @@ a {
 div.shop_adv {
     position: relative;
     width: 100%;
-    max-width: max-content;
+    max-width: $maxWidth;
     overflow: hidden;
     margin: 0 auto;
 
@@ -63,6 +63,7 @@ div.shop_adv {
 }
 
 div.recommend {
+    max-width: $maxWidth;
     width: $mainWidth;
     margin: 0 auto;
     margin-bottom: 20px;
@@ -187,6 +188,7 @@ div.products {
     width: $mainWidth;
     margin: 0 auto;
     justify-content: space-around;
+    max-width: $maxWidth;
 
     @media all and (max-width: $small) {
         width: 95%;
@@ -216,7 +218,7 @@ div.products {
         $pageBgColor: #69994e;
         $pageHoverColor: #FFF;
         $pageBgHoverColor: rgb(22, 224, 4);
-        margin-bottom: 20px;
+        margin: 20px 0;
 
         ul {
             list-style: none;
