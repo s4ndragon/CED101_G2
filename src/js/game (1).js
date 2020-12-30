@@ -289,7 +289,7 @@ function wormState(index, worm, wormArr) {
 }
 
 $('.go').on('click', function () {
-    document.getElementById('gotxt').innerText = `繼續驅蟲`;
+    // document.getElementById('gotxt').innerText = `繼續驅蟲`;
       // document.getElementById("go").style.display='none';
       sp_= setInterval("sp()", starTimer);//降落茶葉
   		time_b_=	setInterval("time_b()", 9000);//產生子彈
@@ -301,7 +301,7 @@ $('.go').on('click', function () {
       init_shot=setInterval("shot()",20);//移動子彈
       init_worm=setInterval("wrom_init()",10000);//生蟲
     init_walk = setInterval("walk()", 60);//蟲子走路
-    $('#pause').removeClass("none");
+
       $("div.overlay").addClass("-opacity-zero");
     // 設定隔一秒後，移除相關 class
     setTimeout(function(){
@@ -309,12 +309,11 @@ $('.go').on('click', function () {
     }, 1000); // 關閉 Modal
   });
   
-$('#pause').on('click', function () {
-  gamestop();
-  tween.pause();
-  $("div.overlay").addClass("-on");
-  $(this).addClass("none");
-});
+// $('#pause').on('click', function () {
+
+//   $("div.overlay").addClass("-on");
+//   $(this).addClass("none");
+// });
 $('div.tea_ency').on('click', function () {
   $('.tea_en').addClass('-on');
 });
@@ -325,6 +324,25 @@ $('#teatxt-bar1').on('click', function () {
       $("div.tea_en").removeClass("-on -opacity-zero");
     }, 1000); // 關閉 Modal
 })
+var pause = document.getElementById('checkbox');
+$('#checkbox').on('click', function(){
+  if (pause.checked === true) {
+    console.log('開始');
+      gamestop();
+  tween.pause();
+  } else {
+          sp_= setInterval("sp()", starTimer);//降落茶葉
+  		time_b_=	setInterval("time_b()", 9000);//產生子彈
+      bb__=setInterval("bb_()", 20);//移動子彈
+      zom_=setInterval("zom()", 60);//生蟲
+      zarr_ = setInterval("zarr()", 10000);//蟲子走路
+      tween.play();
+      init_Bullet=setInterval("Bullet_init()",9000);//生子彈
+      init_shot=setInterval("shot()",20);//移動子彈
+      init_worm=setInterval("wrom_init()",10000);//生蟲
+    init_walk = setInterval("walk()", 60);//蟲子走路
+  }
+});
 function gamestop() {
   
   document.getElementById('score-over').innerText = score;
