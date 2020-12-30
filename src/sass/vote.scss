@@ -1,4 +1,5 @@
 @import "default/_common.scss";
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@700&display=swap');
 
 
 
@@ -29,7 +30,7 @@ main{
         font-size: $h2;
         margin: 80px 0 50px;
         font-weight: bold;
-        color: #7baa17;
+        color: white;
     }
     .block1{
         box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
@@ -119,20 +120,24 @@ main{
     
 
     table{
-        // border: 1px solid black;
         margin: 0 auto 30px;
-        // width: 80%;
         text-align: left;
+        background-color: #eff2c7;
+        width: 56%;
+        border-radius: 10px;
+        color: #90a30b;
         
 
 
         tr{
-            border-bottom: 1px solid#b7d4005e;
-        
+            border-bottom: 4px solid #739f60;
+            
             td{
-                padding: 20px;
+                padding: 30px;
                 width: 277px;
                 vertical-align: middle;
+                position: relative;
+        
 
                 .vue-star-rating[data-v-34cbeed1]{
                     display: inline-block;
@@ -141,27 +146,53 @@ main{
 
             td:nth-child(1){
                 width:90px;
-                font-size: 25px;
-                font-weight: bolder;
+                font-size: 35px;
+                font-family: 'Kanit';
+                color: white;
+                color: #90a30b;
+                text-align: center;
+            }
+
+            td:nth-child(1)::before {
+                content: "";
+                border-left: 2px solid #90a30b;
+                height: 90px;
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                right: -3px;
             }
 
             td:nth-child(2){
-                width:300px;
-                font-size: 18px;
+                width:332px;
+                color: #90a30b;
+                font-family: 'Noto sans TC';
+                letter-spacing: 2.5px;
+                font-weight: 500;
+                font-size: 23px;
+                padding-left: 35px;
 
                 .chartpic{
-                    width: 160px;
+                    width: 100px;
+                    height: 100px;
                     border-radius: 10px;
                     vertical-align: middle;
+                    margin-right: 10px;
                 }
             }
 
             td:nth-child(3){
-                width:200px;
+                width:235px;
             }
 
             .resize{
                 width: 290px;
+
+                .vue-star-rating-rating-text[data-v-34cbeed1]{
+                    letter-spacing: 2.5px;
+                    font-weight: 500;
+                    font-size: 24px;
+                }
             }
             
         }
