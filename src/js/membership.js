@@ -74,24 +74,24 @@ $(document).ready(function () {
     //收藏內分頁
     $(".fav_tour").click(function () {
         $(this).addClass("colored");
-        $(".fav_article").removeClass("colored");
-        $(".fav_product").removeClass("colored");
+        $(".fav_article").removeClass("colored").addClass('unselected');
+        $(".fav_product").removeClass("colored").addClass('unselected');
         $("#fav_tour").show();
         $("#fav_article").hide();
         $("#fav_product").hide();
     });
     $(".fav_article").click(function () {
         $(this).addClass("colored");
-        $(".fav_tour").removeClass("colored");
-        $(".fav_product").removeClass("colored");
+        $(".fav_tour").removeClass("colored").addClass('unselected');
+        $(".fav_product").removeClass("colored").addClass('unselected');
         $("#fav_tour").hide();
         $("#fav_article").show();
         $("#fav_product").hide();
     });
     $(".fav_product").click(function () {
         $(this).addClass("colored");
-        $(".fav_tour").removeClass("colored");
-        $(".fav_article").removeClass("colored");
+        $(".fav_tour").removeClass("colored").addClass('unselected');
+        $(".fav_article").removeClass("colored").addClass('unselected');
         $("#fav_tour").hide();
         $("#fav_article").hide();
         $("#fav_product").show();

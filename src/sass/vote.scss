@@ -116,9 +116,7 @@ main{
         }
     }
 
-    .ht{
-        margin-top: 72px;
-    }
+    
 
     table{
         // border: 1px solid black;
@@ -165,22 +163,28 @@ main{
 
     .sectionchart{
         position: relative;
-    }
 
-    .fall{
-        display: inline-flex;
-        position: absolute;
-        left: 46px;
-        top: -5px;
-        animation-name: move;
-        animation-duration: 1s;
-        animation-timing-function: steps(4);
-        animation-iteration-count: infinite;
-        
-        .leaf{
-            width: 120px;
+        .ht{
+            margin-top: 72px;
+        }
+
+        .fall{
+            display: inline-flex;
+            position: absolute;
+            left: 46px;
+            top: -5px;
+            animation-name: move;
+            animation-duration: 1s;
+            animation-timing-function: steps(4);
+            animation-iteration-count: infinite;
+            
+            .leaf{
+                width: 120px;
+            }
         }
     }
+
+    
 }
 
 @keyframes move{

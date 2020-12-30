@@ -24,7 +24,10 @@ function doFirst() {
         productNum.addEventListener('change', changeNum)
     }
     loadFavorite()
-    dicountBtn()
+    let totalBtn = document.getElementById('totalBtn');
+    if (totalBtn) {
+        dicountBtn()
+    }
 }
 
 
@@ -126,7 +129,9 @@ function loadcart() {
     }
 }
 
+
 function calcAmount() {
+    var totalAmount = document.getElementById('totalAmount');
     let total = 0,
         items = document.querySelectorAll('.item');
     if (items) {
@@ -149,13 +154,14 @@ function calcAmount() {
             total += (price * num);
         }
     }
-    let totalAmount = document.getElementById('totalAmount');
+
     if (totalAmount) {
         totalAmount.setAttribute('value', total);
     }
     let totalBtn = document.getElementById('totalBtn');
     if (totalBtn) {
         dealDisPoint()
+        maxDis()
     }
 }
 
@@ -193,53 +199,57 @@ function dropitem(e) {
     storage['addItemList'] = addItemList;
 }
 
-
-
-
-
-
 function dealDisPoint() {
-    let costPoint = document.getElementById('costPoint'),
-        myPoint = document.getElementById('myPoint'),
-        discountprice = document.getElementById('discountprice'),
-        maxPoint,
+    var costPoint = document.getElementById('costPoint'),
         price,
         discount = document.getElementById('discount');
     //設定優惠點數的使用上限
+    costPoint.addEventListener('change', maxDis);
+    price = parseInt(totalAmount.value) - parseInt(discount.value);
+    document.getElementById('totalBtn').setAttribute('value', price);
+};
+
+function maxDis() {
+    let totalAmount = document.getElementById('totalAmount'),
+        costPoint = document.getElementById('costPoint'),
+        myPoint = document.getElementById('myPoint'),
+        dis = document.getElementById('discountprice');
     if (parseInt(totalAmount.value) < parseInt(myPoint.value)) {
         maxPoint = totalAmount.value;
     } else {
         maxPoint = myPoint.value
     }
-    costPoint.setAttribute('max', maxPoint);
-    costPoint.addEventListener('change', () => {
-        costPoint.setAttribute('value', costPoint.value);
-        console.log(parseInt(costPoint.value) > parseInt(maxPoint))
-        if (parseInt(costPoint.value) > parseInt(maxPoint)) {
-            costPoint.setAttribute('value', maxPoint);
-            costPoint.value = maxPoint;
-        }
-        discountprice.setAttribute('value', costPoint.value);
-    })
+    costPoint.setAttribute('value', costPoint.value);
+    if (parseInt(costPoint.value) > parseInt(maxPoint)) {
+        costPoint.setAttribute('value', maxPoint);
+        costPoint.value = maxPoint;
+    }
+    discountprice.setAttribute('value', costPoint.value);
+    if (parseInt(totalAmount.value) < parseInt(costPoint.value)) {
+        document.getElementById('pointTable').setAttribute('style', 'display:none');
+        calcAmount();
+    }
+    let discount = document.getElementById('discount'),
+        totalBtn = document.getElementById('totalBtn');
+    if (parseInt(totalBtn.value) < 0) {
+        discount.setAttribute('value', maxPoint);
+        calcAmount();
+    }
+}
 
+function dicountBtn() {
     usePoint = document.getElementById('usePoint');
     usePoint.addEventListener('click', () => {
         document.getElementById('pointTable').setAttribute('style', 'display:block');
     });
-    price = parseInt(totalAmount.value) - parseInt(discount.value);
-    console.log(price)
-    document.getElementById('totalBtn').setAttribute('value', price)
-};
-
-function dicountBtn() {
     usePointbtn = document.getElementById('usePointbtn');
     usePointbtn.addEventListener('click', () => {
         if (confirm('使用優惠點數?')) {
             document.getElementById('pointTable').setAttribute('style', 'display:none');
             let dis = document.getElementById('discountprice').value;
             discount.setAttribute('value', dis);
-            dealDisPoint()
-        } else {}
+            calcAmount();
+        }
     })
     document.getElementById('cancel').addEventListener('click', () => {
         document.getElementById('pointTable').setAttribute('style', 'display:none');
