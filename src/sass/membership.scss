@@ -1,7 +1,7 @@
 @import "./default/common";
 
 //============= var ============//
-$bgc: lighten($bg-color, 10%);
+// $bgc: lighten($bg-color, 10%);
 $side: 25%;
 $main: 100% - $side;
 $btn-dark: darken($btn-color, 5%);
@@ -93,7 +93,7 @@ main {
         }
         .side_content {
             .mine_profile {
-                @include smallbtn3;
+                @include smallbtn4;
                 @media only screen and (min-width: 768px) {
                     display: none;
                 }
