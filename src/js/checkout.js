@@ -1,13 +1,21 @@
 window.addEventListener('load', init)
 
-function init() {
-    let storage = sessionStorage;
-    if (storage['addItemList'] != "") {
-        loadcart();
-    }
+var storage = sessionStorage;
 
-    function loadcart() {
-        let items = document.getElementById('items');
+function $id(id) { //尋找id
+    return document.getElementById(`${id}`);
+}
+
+function init() {
+    if (storage['addItemList'] != "") {
+        loaditems();
+    }
+    loadinfo();
+}
+
+function loaditems() {
+    let items = document.getElementById('items');
+    if (items) {
         let itemlist = storage['addItemList'];
         itemlist = itemlist.split(',');
         let itemlistLenght = itemlist.length - 1;
@@ -31,9 +39,15 @@ function init() {
                 `
             items.appendChild(newdiv);
         };
-
     }
+}
 
-
-
+function loadinfo() {
+    let infoList = document.getElementsByClassName('info');
+    for (let i = 0; i < infoList.length; i++) {
+        if (storage[infoList[i].name]) {
+            infoList[i].setAttribute('value', `${storage[infoList[i].name]}`);
+        }
+    }
+    $id('total').value = parseInt($id('amount').value) - parseInt($id('discount').value);
 }

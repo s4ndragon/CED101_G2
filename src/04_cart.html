@@ -19,20 +19,22 @@
 <body>
     @@include('layout/nav.html')
     @@include('layout/title.html',{'title':'購物車'})
-    <form action="./04_check.html">
-        <div class="cart_content" id="cart_content">
-            <div id="amount">
-                <span>總計: </span><input type="number" name="" id="totalAmount" disabled value="0">
+    <div class="main">
+        <form action="./04_check.html">
+            <div class="cart_content" id="cart_content">
+                <div id="amount">
+                    <span>總計: </span><input type="number" name="" id="totalAmount" disabled value="0">
+                </div>
             </div>
-        </div>
-        <div class="function">
-            <button id="backShop">
-                <a href="./04_shopping.html">繼續購物</a>
-            </button>
-            <input type="submit" value="結帳">
+            <div class="function">
+                <button id="backShop">
+                    <a href="./04_shopping.html">繼續購物</a>
+                </button>
+                <input type="submit" value="結帳">
 
-        </div>
-    </form>
+            </div>
+        </form>
+    </div>
     <div class="recommend">
         <h2>推薦商品</h2>
         <div class="recommend_products">

@@ -24,9 +24,6 @@ $main-width: 80%;
 }
 
 
-.header_block {
-    padding-top: 100px;
-}
 
 h1 {
     text-align: center;
@@ -43,8 +40,7 @@ h1 {
     align-content: space-around;
     width: $main-width;
     margin: 50px auto;
-
-
+    // border: 1px solid black;
 
     .step_title {
         display: flex;
@@ -54,7 +50,6 @@ h1 {
             width: calc(100% / 3);
 
             .step {
-
                 width: 100px;
                 height: 100px;
                 text-align: center;
@@ -98,34 +93,32 @@ h1 {
     margin: 0 auto;
     position: relative;
 
-    @media only screen and (max-width: 1199px) {
-        width: 960px;
+    @media only screen and (max-width: 576px) {
+        width: 100%;
     }
 
 
-    @media only screen and (max-width: 991px) {
-        width: $main-width;
-
-    }
 
     // border: 1px solid black;
 
     .tourCreate_leftside {
+        position: sticky;
+        top: 90px;
         width: 320px;
         vertical-align: top;
         display: inline-block;
 
-        @media only screen and (max-width: 991px) {
+        @media only screen and (max-width: 576px) {
             width: 100%;
-            text-align: center;
             display: block;
+            position: relative;
+            top: 0px;
         }
 
 
 
+
         .tourCreate_choice {
-
-
 
             button {
                 @include smallbtn3;
@@ -133,86 +126,47 @@ h1 {
                 margin: 2px;
                 cursor: pointer;
 
+                @media only screen and (max-width: 576px) {
+                    width: 80px;
+
+                }
             }
 
 
         }
 
         .tourCreate_item_block {
-            @media only screen and (max-width: 991px) {
-                display: flex;
-                flex-wrap: wrap;
+
+            @media only screen and (max-width: 576px) {
+                overflow-x: scroll;
+                white-space: nowrap;
             }
 
-
-
-            .tourCreate_active {
-                @media only screen and (max-width: 991px) {
-                    display: flex;
-                    flex-wrap: wrap;
-                }
-            }
-
-            .tourCreate_item,
-            .tourCreate_active_one {
+            .tourCreate_item {
                 margin: 20px auto;
                 width: 300px;
                 padding: 20px;
-                background-color: #F0F0F0;
+                background-color: #fffeed;
+                box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+                border-radius: 10px;
 
-                @media only screen and (max-width: 991px) {
-                    width: 200px;
+                @media only screen and (max-width: 576px) {
+                    display: inline-block;
+                    margin: 20px 10px;
                 }
 
-                /*box-shadow*/
-                box-shadow: 0 2px 5px hsla(0, 0%, 0%, .4),
-                inset 0 1px 0 #ccc,
-                inset 1px 0 0 #aaa,
-                inset 0 -1px 0 #ccc,
-                inset -1px 0 0 #aaa,
-                inset 0 2px 0 #c6c6c6,
-                inset 2px 0 0 #a6a6a6,
-                inset 0 -2px 0 #c6c6c6,
-                inset -2px 0 0 #a6a6a6,
-                inset 0 3px 0 #c0c0c0,
-                inset 3px 0 0 #a0a0a0,
-                inset 0 -3px 0 #c0c0c0,
-                inset -3px 0 0 #a0a0a0,
-                inset 0 4px 0 #b9b9b9,
-                inset 4px 0 0 #999,
-                inset 0 -4px 0 #b9b9b9,
-                inset -4px 0 0 #999,
-                inset 0 5px 0 #b6b6b6,
-                inset 5px 0 0 #969696,
-                inset 0 -5px 0 #b6b6b6,
-                inset -5px 0 0 #969696,
-                inset 0 6px 0 #b0b0b0,
-                inset 6px 0 0 #909090,
-                inset 0 -6px 0 #b0b0b0,
-                inset -6px 0 0 #909090,
-                inset 0 7px 0 #a9a9a9,
-                inset 7px 0 0 #898989,
-                inset 0 -7px 0 #a9a9a9,
-                inset -7px 0 0 #898989,
-                inset 0 8px 0 #a6a6a6,
-                inset 8px 0 0 #868686,
-                inset 0 -8px 0 #a6a6a6,
-                inset -8px 0 0 #868686,
-                inset 0 9px 0 #a0a0a0,
-                inset 9px 0 0 #808080,
-                inset 0 -9px 0 #a0a0a0,
-                inset -9px 0 0 #808080,
-                inset 0 10px 0 #888,
-                inset 10px 0 0 #666,
-                inset 0 -10px 0 #888,
-                inset -10px 0 0 #666,
-                inset 0 0 10px 10px hsla(0, 0%, 0%, .5),
-                inset 0 0 50px hsla(0, 0%, 0%, .5);
-                border: 1px solid #eee;
 
-                /*border-radius*/
+                img {
+                    border-radius: 10px;
+                }
 
-                border-radius: 3px;
+                p {
+                    text-align: center;
+                    font-size: $h4;
+                }
+
+
+
                 cursor: pointer;
             }
         }
@@ -225,141 +179,151 @@ h1 {
         width: 790px;
         // border: 1px solid black;
         position: sticky;
-        top: 0px;
+        top: 90px;
         padding: 10px;
-        text-align: center;
+        margin-top: 80px;
 
-        @media only screen and (max-width: 1199px) {
-            width: 600px;
-        }
-
-        @media only screen and (max-width: 991px) {
+        @media only screen and (max-width: 576px) {
             width: 100%;
             display: block;
+            margin-top: 0px;
         }
-    }
 
 
 
-    .local_rightside_img,
-    .hotel_rightside_img,
-    .rest_rightside_img,
-    .active_rightside_img {
-        display: inline-block;
-        vertical-align: top;
-
-        .local_block,
-        .active_block,
-        .hotel_block,
-        .rest_block {
-            width: 300px;
-            padding: 10px;
-            margin: 30px;
-            position: relative;
-            background: -webkit-gradient(linear, 100% 100%, 50% 10%, from(#fff), to(#f3f3f3), color-stop(.1, #fff));
-            border: 1px solid #ccc;
-            box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
-            border-bottom-right-radius: 60px 5px;
-            display: inline-block;
-            cursor: pointer;
-
-            @media only screen and (max-width: 576px) {
-                width: 80%;
-                margin: 0px;
-                margin-top: 40px;
-            }
-        }
-    }
-
-    h2 {
-        font-size: $h2;
-        padding: 10px;
-        font-weight: bold;
-        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-    }
-
-    p {
-        text-align: center;
-        font-size: $h5;
-        padding: 10px;
-    }
-
-    .nextBtn {
-        text-align: right;
-
-        button {
-            @include btn;
-            margin: 0;
-
-        }
     }
 
 }
-
 
 .tourCreate_item {
     padding: 10px;
 
     p {
-        text-align: center;
+        // text-align: center;
         font-size: $h3;
     }
 }
 
-.tourCreate_active_one {
-    padding: 10px;
+.tourCreate_rightside {
+    @media only screen and (max-width: 576px) {}
+
+
 }
 
-.local_block::before,
-.active_block::before,
-.hotel_block::before,
-.rest_block::before {
-    content: '';
-    width: 98%;
-    z-index: -1;
-    height: 100%;
-    padding: 0 0 1px 0;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    background: -webkit-gradient(linear, 0% 20%, 0% 92%, from(#fff), to(#f9f9f9), color-stop(.1, #fff));
-    border: 1px solid #ccc;
-    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.1);
-    border-bottom-right-radius: 60px 5px;
-    transform: skew(2deg, 2deg) translate(3px, 8px)
+.local_block {
+    // border: 1px solid rgb(240, 10, 10);
+    padding: 20px;
+    border-radius: 10px;
+    position: relative;
+    background-color: #fffeed;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    margin-bottom: 20px;
+
+    @media only screen and (max-width: 576px) {
+        width: 100%;
+    }
+
+    .local_img {
+        display: inline-block;
+        width: 300px;
+        margin-right: 10px;
+        border-radius: 10px;
+
+        @media only screen and (max-width: 576px) {
+            display: block;
+            width: 100%;
+        }
+
+
+        img {
+            border-radius: 10px;
+        }
+    }
+
+    .local_text {
+        display: inline-block;
+        width: 400px;
+        vertical-align: top;
+        margin-top: 10px;
+        position: relative;
+
+        @media only screen and (max-width: 576px) {
+            display: block;
+            width: 100%;
+        }
+
+
+        h2 {
+            font-size: $h4;
+        }
+
+        span {
+            font-size: $h5;
+            padding: 2px 5px;
+            color: white;
+            border-radius: 5px;
+        }
+
+        .t1 {
+            background-color: $secondary-typo-color;
+        }
+
+        .t2 {
+            background-color: deepskyblue;
+        }
+
+        .t3 {
+            background-color: orange;
+        }
+
+        .t4 {
+            background-color: deeppink;
+        }
+
+
+
+        p {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 5;
+            text-align: left;
+        }
+
+    }
+
+    button {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 30px;
+        height: 30px;
+        font-size: 26px;
+        border: none;
+        background-color: rgba($color: #000000, $alpha: 0);
+        cursor: pointer;
+    }
 }
 
-.local_block::after,
-.active_block::after,
-.hotel_block::after,
-.rest_block::after {
-    content: '';
-    width: 98%;
-    z-index: -1;
-    height: 98%;
-    padding: 0 0 1px 0;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    background: -webkit-gradient(linear, 0% 20%, 0% 100%, from(#f3f3f3), to(#f6f6f6), color-stop(.1, #fff));
-    border: 1px solid #ccc;
-    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
-    transform: skew(2deg, 2deg) translate(-1px, 2px)
+#greenline {
+    border: 7px dashed green;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: none;
 }
 
-.block_ribbon {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 130px;
-    height: 40px;
-    background: -webkit-gradient(linear, 555% 20%, 0% 92%, from(rgba(0, 0, 0, 0.1)), to(rgba(0, 0, 0, 0.0)), color-stop(.1, rgba(0, 0, 0, 0.2)));
-    border-left: 1px dashed rgba(0, 0, 0, 0.1);
-    border-right: 1px dashed rgba(0, 0, 0, 0.1);
-    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.2);
-    transform: rotate(-30deg) skew(0, 0) translate(-30px, -20px);
+.nextBtn {
+    text-align: center;
+
+    button {
+        @include btn;
+
+
+    }
 }
 
+// ===================helper========================
 @keyframes play {
     100% {
         background-position: -3150px;
@@ -372,11 +336,14 @@ h1 {
     bottom: 20px;
     z-index: 2;
 
+    @media only screen and (max-width: 576px) {
+        display: none;
+    }
+
     .help_text {
         background-color: #fff;
         padding: 40px;
         white-space: nowrap;
-
         border-radius: 50%;
         text-align: center;
         position: absolute;
