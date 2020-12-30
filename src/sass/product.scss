@@ -78,15 +78,23 @@ div.product_detail {
             background-color: #FFF;
             padding: 5px 10px;
             cursor: pointer;
-            margin: 0 1px;
+            color: #69994e;
+            border: 3px solid #69994e;
+            transition-duration: .2s;
         }
 
         li:hover {
             background-color: #69994e;
+            color: #fff;
+            border: 3px solid #fff;
+            vertical-align: bottom;
         }
 
         li.selected {
             background-color: #69994e;
+            color: #fff;
+            border: 3px solid #fff;
+            vertical-align: bottom;
         }
     }
 
