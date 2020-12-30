@@ -2,15 +2,19 @@
 @import './shopping.scss';
 
 div.main {
-    width: $maxWidth;
+    width: $mainWidth;
+    max-width: $maxWidth;
     margin: 40px auto;
-}
 
-div.cart_content {
-    $itemBR: 5px;
     padding: 20px 30px;
     border-radius: 5px;
     background-color: #e3ffe6;
+}
+
+$itemBR: 5px;
+
+div.cart_content {
+
 
     @media screen and (max-width:400px) {
         width: 95%;

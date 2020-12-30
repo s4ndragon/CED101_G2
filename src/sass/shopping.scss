@@ -1,6 +1,7 @@
 @import './default/common';
 
 $maxWidth:1000px;
+$cardBG:#fff;
 
 
 body {
@@ -123,7 +124,7 @@ div.product {
 
     >div {
         overflow: hidden;
-        background-color: #CCFF80;
+        background-color: $cardBG;
         padding: 5px;
         border-radius: 5px;
     }
@@ -228,19 +229,21 @@ div.products {
                 display: inline;
 
                 a {
-                    color: #fff;
+                    color: #69994e;
                     text-decoration: none;
+                    transition: 0.2s;
                     padding: 10px 15px;
-                    background-color: $pageBgColor;
+                    margin: 5px;
                     border-radius: 2px;
-                    transition: all 0.5s ease;
+                    display: inline-block;
+                    width: max-content;
+                    background-color: #fff;
                 }
             }
 
-            li:hover a {
-                color: #69994e;
-                box-shadow: 0 0 0 5px #69994e inset, 0 0 0 150px white inset;
-                display: inline-block;
+            a:hover {
+                margin: 0;
+                transform: scale(1.1);
             }
         }
     }
