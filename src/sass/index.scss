@@ -33,7 +33,7 @@
     position: relative;
     padding: 70px 0 140px;
     text-align: center;
-    background-image: url(../../dist/images/index/img_bg_yg_pc4.png);
+    background-image: url(../images/index/img_bg_yg_pc4.png);
     background-size: 100% auto;
     z-index: 1;
 }
@@ -253,7 +253,7 @@
     display: block;
     width: 100%;
     height: 30px;
-    background-image: url(../../dist/images/index/bg-green-bottom.png);
+    background-image: url(..//images/index/bg-green-bottom.png);
     background-position: center top;
     background-size: 100% auto;
     background-repeat: no-repeat;
@@ -330,7 +330,7 @@
     width: 94%;
     padding-top: 100%;
     overflow: hidden;
-    background-image: url(../../dist/images/index/ill_cup.png);
+    background-image: url(..//images/index/ill_cup.png);
     background-position: top;
     background-size: contain;
     background-repeat: no-repeat;
@@ -382,7 +382,7 @@
     transform-origin: center;
     transform: scale(0);
     transition: all 0.3s ease-in-out;
-    background-image: url(../../dist/images/index/ill_cup.png);
+    background-image: url(../images/index/ill_cup.png);
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
@@ -390,7 +390,7 @@
 
 .vote-list li a:hover .bg {
     transform: scale(1);
-    background-image: url(../../dist/images/index/ill_cup_gr.png);
+    background-image: url(../images/index/ill_cup_gr.png);
     background-position: top;
     background-size: contain;
     background-repeat: no-repeat;
@@ -399,7 +399,7 @@
 // .vote-list .vote-icon-01 a .bg:hover {
 //     background-color: #3293cb;
 //     transform: scale(1);
-//     background-image: url(../../dist/images/index/ill_cup_db.png);
+//     : url(..//images/index/ill_cup_db.png);
 //     background-position: top;
 //     background-size: contain;
 //     background-repeat: no-repeat;
@@ -407,7 +407,7 @@
 
 // .vote-list .vote-icon-02 a .bg {
 //     // background-color: #ffb541;
-//     background-image: url(../../dist/images/index/ill_cup_.png);
+//     : url(../images/index/ill_cup_.png);
 //     background-position: top;
 //     background-size: contain;
 //     background-repeat: no-repeat;
@@ -448,7 +448,7 @@
     display: block;
     width: 100%;
     height: 30px;
-    background-image: url(../../dist/images/index/bg-green-top.png);
+    background-image: url(../images/index/bg-green-top.png);
     background-position: center bottom;
     background-size: 100% auto;
     background-repeat: no-repeat;
@@ -457,7 +457,7 @@
 .shop {
     position: relative;
     padding-top: 90px;
-    background-image: url(../../dist/images/index/img_bg_yg_pc4.png);
+    background-image: url(../images/index/img_bg_yg_pc4.png);
     background-size: 100% auto;
 }
 
@@ -633,7 +633,7 @@
     -webkit-transform: translateY(-50%);
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
-    background-image: url(../../dist/images/index/ntd.png);
+    background-image: url(../images/index/ntd.png);
     background-size: contain;
     background-repeat: no-repeat;
 }
@@ -707,7 +707,7 @@
 }
 
 .shop-list li .label {
-    background-image: url(../../dist/images/index/tealabel.png);
+    background-image: url(../images/index/tealabel.png);
     background-position: left;
     background-size: cover;
     background-repeat: no-repeat;
@@ -746,7 +746,7 @@
 
 .shop-list li .txt-area .wrap-company {
     margin: 0 -5px 5px;
-    background-image: url(../../dist/images/index/company.png);
+    background-image: url(../images/index/company.png);
     background-position: left;
     background-size: contain;
     background-repeat: no-repeat;
@@ -767,7 +767,7 @@
 
 .discuss:before {
     top: 0;
-    background-image: url(../../dist/images/index/bg-green-bottom.png);
+    background-image: url(../images/index/bg-green-bottom.png);
     background-position: center top;
 }
 
