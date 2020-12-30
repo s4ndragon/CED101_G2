@@ -2,9 +2,7 @@
 
 
 
-body {
-    background-color: #70D6BF;
-}
+
 
 .main_body {
     @include forTourAndShop;
@@ -30,6 +28,7 @@ img {
     position: relative;
     padding: 50px 0;
     padding-top: 100px;
+    background-color: #70D6BF;
     // border: 2px solid blue;
 
     .tour_center_img {
@@ -38,7 +37,7 @@ img {
         width: 100%;
         top: 20%;
         left: 0%;
-        z-index: -2;
+        z-index: 1;
 
 
     }
