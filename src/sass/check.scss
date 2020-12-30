@@ -3,7 +3,8 @@
 
 form {
     width: $mainWidth;
-    margin: 20px auto;
+    margin: 40px auto;
+    max-width: $maxWidth;
 
     div.cart_content {
         >h3 {
@@ -25,7 +26,6 @@ form {
     }
 
     div.check_content {
-        width: $mainWidth*0.7;
         margin: 40px auto;
         text-align: center;
         padding: 20px;
@@ -36,7 +36,7 @@ form {
             width: 100%;
         }
 
-        input[type=button] {
+        input[type=submit] {
             @include btn3;
         }
 

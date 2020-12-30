@@ -12,6 +12,7 @@ $mainWidth: 90%;
     margin: 50px auto;
     background-color: #fff;
     padding: 5px 15px;
+    max-width: $maxWidth;
 
     img.addFavorite {
         position: absolute;
@@ -59,7 +60,6 @@ $mainWidth: 90%;
                 }
             }
 
-            input[type=button] {}
         }
     }
 }
@@ -96,7 +96,7 @@ div.product_detail {
         padding: 20px 0;
         display: none;
         width: 90%;
-        max-width: 1000px;
+        max-width: $maxWidth;
         margin: 0 auto;
         padding: 10px;
 

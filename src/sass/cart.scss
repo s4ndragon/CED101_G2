@@ -1,8 +1,12 @@
 @import './default/common';
+@import './shopping.scss';
+
+div.main {
+    width: $maxWidth;
+    margin: 40px auto;
+}
 
 div.cart_content {
-    width: $mainWidth*0.9;
-    margin: 0 auto;
     $itemBR: 5px;
     padding: 20px 30px;
     border-radius: 5px;

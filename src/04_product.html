@@ -35,56 +35,57 @@
                 <input type="button" value="直接購買" onclick="location.href='./04_cart.html'">
             </div>
         </div>
-        <div class="product_detail">
-            <ul>
-                <li class="displayBtn selected" value='0'>商品特色</li>
-                <li class="displayBtn" value='1'>商品細節</li>
-            </ul>
-            <div class="content">
-                <img src="./images/shopping/product_info.jpg" alt="">
-                <img src="./images/shopping/product_info2.jpg" alt="">
-                <img src="./images/shopping/product_info3.jpg" alt="">
-            </div>
-            <div class="content">
-                <pre>
+    </div>
+    <div class="product_detail">
+        <ul>
+            <li class="displayBtn selected" value='0'>商品特色</li>
+            <li class="displayBtn" value='1'>商品細節</li>
+        </ul>
+        <div class="content">
+            <img src="./images/shopping/product_info.jpg" alt="">
+            <img src="./images/shopping/product_info2.jpg" alt="">
+            <img src="./images/shopping/product_info3.jpg" alt="">
+        </div>
+        <div class="content">
+            <pre>
 產品內容：瓶 x 1
 規格說明：
 商品容量：360ml
 單品重量：320g
 包　　裝：原廠紙盒
 備　　註：
-        </pre>
-            </div>
+                </pre>
         </div>
-        <script>
-            window.addEventListener('load', () => {
-                let productDetail = document.getElementsByClassName('product_detail')[0];
-                let displayBtn = productDetail.querySelectorAll('li.displayBtn');
-                for (let i in displayBtn) {
-                    displayBtn[i].onclick = (e) => {
-                        let discontent = productDetail.getElementsByClassName('content');
-                        for (let j = 0; j < discontent.length; j++) {
-                            discontent[j].setAttribute('style', 'display:none');
-                        }
-                        let t = document.querySelectorAll('li.displayBtn');
-                        for (let k = 0; k < t.length; k++) {
-                            t[k].setAttribute('class', 'displayBtn');
-                        }
-                        discontent[e.target.value].setAttribute('style', 'display:block');
-                        e.target.setAttribute('class', 'displayBtn selected');
+    </div>
+    <script>
+        window.addEventListener('load', () => {
+            let productDetail = document.getElementsByClassName('product_detail')[0];
+            let displayBtn = productDetail.querySelectorAll('li.displayBtn');
+            for (let i in displayBtn) {
+                displayBtn[i].onclick = (e) => {
+                    let discontent = productDetail.getElementsByClassName('content');
+                    for (let j = 0; j < discontent.length; j++) {
+                        discontent[j].setAttribute('style', 'display:none');
                     }
+                    let t = document.querySelectorAll('li.displayBtn');
+                    for (let k = 0; k < t.length; k++) {
+                        t[k].setAttribute('class', 'displayBtn');
+                    }
+                    discontent[e.target.value].setAttribute('style', 'display:block');
+                    e.target.setAttribute('class', 'displayBtn selected');
                 }
-            })
-        </script>
-        <div class="recommend">
-            <h2>推薦商品</h2>
-            <div class="recommend_products">
-            </div>
+            }
+        })
+    </script>
+    <div class="recommend">
+        <h2>推薦商品</h2>
+        <div class="recommend_products">
         </div>
-        <div class="back">
-            <button><a href="./04_shopping.html">回商城</a></button>
-        </div>
-        @@include('layout/footer.html')
+    </div>
+    <div class="back">
+        <button><a href="./04_shopping.html">回商城</a></button>
+    </div>
+    @@include('layout/footer.html')
 </body>
 
 </html>
