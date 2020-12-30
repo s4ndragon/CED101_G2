@@ -121,13 +121,10 @@ main{
     table{
         // border: 1px solid black;
         margin: 0 auto 30px;
-        width: 80%;
-        background-color: #b7d40036;
+        // width: 80%;
+        text-align: left;
         
-        .title{
-            font-size: 20px;
-            background-color: #b7d400b0;
-        }
+
 
         tr{
             border-bottom: 1px solid#b7d4005e;
@@ -141,6 +138,27 @@ main{
                     display: inline-block;
                 }
             }  
+
+            td:nth-child(1){
+                width:90px;
+                font-size: 25px;
+                font-weight: bolder;
+            }
+
+            td:nth-child(2){
+                width:300px;
+                font-size: 18px;
+
+                .chartpic{
+                    width: 160px;
+                    border-radius: 10px;
+                    vertical-align: middle;
+                }
+            }
+
+            td:nth-child(3){
+                width:200px;
+            }
 
             .resize{
                 width: 290px;
