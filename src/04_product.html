@@ -16,7 +16,7 @@
 
 <body>
     @@include('layout/nav.html')
-    @@include('layout/margin_top.html')
+    @@include('layout/title.html',{'title':'產品介紹'})
     <div class="product_info">
         <div class="product_img">
             <img src="./images/shopping/product.jpg" alt="">
@@ -27,40 +27,26 @@
                 <div class="price">NT<span>1280</span></div>
                 <div class="num">數量:
                     <input type="number" value="1" max='99' min='0' id="productNum">
-                    <!-- <select name="productNum" >
-                    </select> -->
                 </div><br><br>
                 <img class='addFavorite' src="./images/common/heart.png" alt="">
                 <input type="button" value="加入購物車" class="add_cart">
                 <input type="hidden" name="" value='s11230|【原藝坊】悠然愜意 青瓷鯉魚茶壺套組精湛工藝，功夫淳厚，手感極佳，品茶必備|550|1|1'
                     class='productInfo'>
                 <input type="button" value="直接購買" onclick="location.href='./04_cart.html'">
-                <!-- <script>
-                    window.addEventListener('load', () => {
-                        let num = document.getElementById('productNum');
-                        for (let i = 0; i < 11; i++) {
-                            let option = document.createElement('option');
-                            option.innerText = i;
-                            option.value = i;
-                            num.appendChild(option);
-                        }
-                    })
-                </script> -->
             </div>
         </div>
-    </div>
-    <div class="product_detail">
-        <ul>
-            <li class="displayBtn selected" value='0'>商品特色</li>
-            <li class="displayBtn" value='1'>商品細節</li>
-        </ul>
-        <div class="content">
-            <img src="./images/shopping/product_info.jpg" alt="">
-            <img src="./images/shopping/product_info2.jpg" alt="">
-            <img src="./images/shopping/product_info3.jpg" alt="">
-        </div>
-        <div class="content">
-            <pre>
+        <div class="product_detail">
+            <ul>
+                <li class="displayBtn selected" value='0'>商品特色</li>
+                <li class="displayBtn" value='1'>商品細節</li>
+            </ul>
+            <div class="content">
+                <img src="./images/shopping/product_info.jpg" alt="">
+                <img src="./images/shopping/product_info2.jpg" alt="">
+                <img src="./images/shopping/product_info3.jpg" alt="">
+            </div>
+            <div class="content">
+                <pre>
 產品內容：瓶 x 1
 規格說明：
 商品容量：360ml
@@ -68,37 +54,37 @@
 包　　裝：原廠紙盒
 備　　註：
         </pre>
+            </div>
         </div>
-    </div>
-    <script>
-        window.addEventListener('load', () => {
-            let productDetail = document.getElementsByClassName('product_detail')[0];
-            let displayBtn = productDetail.querySelectorAll('li.displayBtn');
-            for (let i in displayBtn) {
-                displayBtn[i].onclick = (e) => {
-                    let discontent = productDetail.getElementsByClassName('content');
-                    for (let j = 0; j < discontent.length; j++) {
-                        discontent[j].setAttribute('style', 'display:none');
+        <script>
+            window.addEventListener('load', () => {
+                let productDetail = document.getElementsByClassName('product_detail')[0];
+                let displayBtn = productDetail.querySelectorAll('li.displayBtn');
+                for (let i in displayBtn) {
+                    displayBtn[i].onclick = (e) => {
+                        let discontent = productDetail.getElementsByClassName('content');
+                        for (let j = 0; j < discontent.length; j++) {
+                            discontent[j].setAttribute('style', 'display:none');
+                        }
+                        let t = document.querySelectorAll('li.displayBtn');
+                        for (let k = 0; k < t.length; k++) {
+                            t[k].setAttribute('class', 'displayBtn');
+                        }
+                        discontent[e.target.value].setAttribute('style', 'display:block');
+                        e.target.setAttribute('class', 'displayBtn selected');
                     }
-                    let t = document.querySelectorAll('li.displayBtn');
-                    for (let k = 0; k < t.length; k++) {
-                        t[k].setAttribute('class', 'displayBtn');
-                    }
-                    discontent[e.target.value].setAttribute('style', 'display:block');
-                    e.target.setAttribute('class', 'displayBtn selected');
                 }
-            }
-        })
-    </script>
-    <div class="recommend">
-        <h2>推薦商品</h2>
-        <div class="recommend_products">
+            })
+        </script>
+        <div class="recommend">
+            <h2>推薦商品</h2>
+            <div class="recommend_products">
+            </div>
         </div>
-    </div>
-    <div class="back">
-        <button><a href="./04_shopping.html">回商城</a></button>
-    </div>
-    @@include('layout/footer.html')
+        <div class="back">
+            <button><a href="./04_shopping.html">回商城</a></button>
+        </div>
+        @@include('layout/footer.html')
 </body>
 
 </html>
