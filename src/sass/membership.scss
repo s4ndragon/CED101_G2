@@ -1,7 +1,7 @@
-@import "./default/common";
+@import './default/common';
 
 //============= var ============//
-$bgc: lighten($bg-color, 10%);
+// $bgc: lighten($bg-color, 10%);
 $side: 25%;
 $main: 100% - $side;
 $btn-dark: darken($btn-color, 5%);
@@ -696,7 +696,7 @@ main {
         width: 24px;
         position: relative;
         &:after {
-            content: "\2715";
+            content: '\2715';
             position: absolute;
             top: 2px;
             right: 5px;

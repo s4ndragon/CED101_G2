@@ -130,7 +130,7 @@
 }
 
 .lg-btn:after {
-    content: '>>';
+    content: '';
     position: absolute;
     top: 50%;
     right: 20px;
@@ -364,7 +364,7 @@
 }
 
 .vote-list li a .txt:after {
-    content: '>';
+    content: '';
     display: inline-block;
     margin-left: 10px;
     transform: translate(0, -1px);
