@@ -399,9 +399,6 @@ main {
                 // padding: 10px;
                 // margin: 20px;
                 box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-
-                // margin: 0 5px;
-                // margin: 10px 0;
                 #list_title {
                     // border-right: 2px solid $primary-typo-color;
                     // border-top: 2px solid grey;
@@ -419,7 +416,7 @@ main {
                     display: flex;
                     width: 100%;
                     padding: 10px 0px;
-                    justify-content: space-between;
+                    justify-content: space-evenly;
                     #order_no,
                     #order_status,
                     #order_total {
@@ -430,7 +427,12 @@ main {
                             width: 25%;
                         }
                         @media only screen and (max-width: 576px) {
-                            width: 33%;
+                            width: 50%;
+                        }
+                    }
+                    #order_total {
+                        @media only screen and (max-width: 576px) {
+                            display: none;
                         }
                     }
                     #order_payment {
@@ -476,7 +478,7 @@ main {
                     background-color: white;
                     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
                     margin: 20px;
-                    // border: 1px solid $primary-typo-color;
+                    text-align: center;
                     border-radius: 10px;
                     display: flex;
                     justify-content: space-between;
@@ -489,6 +491,14 @@ main {
                     .article_date {
                         // border: 1px solid black;
                         width: calc(100% / 3);
+                        @media only screen and (max-width: 576px) {
+                            width: calc(100% / 3 * 2);
+                        }
+                    }
+                    .article_date {
+                        @media only screen and (max-width: 576px) {
+                            display: none;
+                        }
                     }
                     .article_status_bar {
                         // border: 1px solid black;
@@ -504,7 +514,7 @@ main {
                             width: calc(100% / 4);
                         }
                         @media only screen and (max-width: 576px) {
-                            width: calc(100% / 3);
+                            width: calc(100% / 2);
                         }
                     }
                 }
@@ -535,6 +545,9 @@ main {
                     color: $primary-typo-color;
                     padding: 0px 10px;
                     width: 300px;
+                    @media only screen and (max-width: 576px) {
+                        width: 80%;
+                    }
                     input,
                     textarea {
                         font-size: $h4;
@@ -555,8 +568,8 @@ main {
                     }
                     label {
                         position: absolute;
-                        transform: translateY(15%);
-                        left: 5%;
+                        transform: translateY(17%);
+                        left: 20px;
                         transition: all 0.25s ease;
                         // -webkit-backface-visibility: hidden;
                         pointer-events: none;
