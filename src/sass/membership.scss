@@ -1,7 +1,7 @@
 @import "./default/common";
 
 //============= var ============//
-$bgc: lighten($bg-color, 10%);
+// $bgc: lighten($bg-color, 10%);
 $side: 25%;
 $main: 100% - $side;
 $btn-dark: darken($btn-color, 5%);
@@ -21,18 +21,23 @@ body {
     h1 {
         font-size: $h1;
     }
+
     h2 {
         font-size: $h2;
     }
+
     h3 {
         font-size: $h3;
     }
+
     h4 {
         font-size: $h4;
     }
+
     h5 {
         font-size: $h5;
     }
+
     h6 {
         font-size: $h6;
     }
@@ -42,6 +47,7 @@ body {
 .bg-color {
     background-color: $lighter;
 }
+
 //==============================//
 .banner {
     height: 300px;
@@ -53,32 +59,38 @@ body {
     justify-content: center;
     margin-bottom: 20px; //=======//
 }
+
 main {
     // border: 1px solid red;
     position: relative;
     // top: 50px;
     display: flex;
     margin-bottom: 20px; //=======//
+
     @media only screen and (max-width: 768px) {
         flex-direction: column;
         justify-content: center;
         align-items: center;
     }
+
     #side {
         // border: 1px solid blue;
         width: $side;
         text-align: center;
         display: flex;
         flex-direction: column;
+
         @media only screen and (max-width: 992px) {
             width: 250px;
         }
+
         @media only screen and (max-width: 768px) {
             width: $main-width;
             flex-direction: row;
             align-items: center;
             justify-content: space-around;
         }
+
         #avatar {
             // border: 1px solid black;
             align-self: center;
@@ -86,26 +98,31 @@ main {
             width: 200px;
             height: 200px;
             margin: 5px;
+
             @media only screen and (max-width: 768px) {
                 width: 150px;
                 height: 150px;
             }
         }
+
         .side_content {
             .mine_profile {
                 @include smallbtn3;
+
                 @media only screen and (min-width: 768px) {
                     display: none;
                 }
             }
         }
     }
+
     #main_container {
         // border: 1px solid green;
         // border-right: 2px solid $primary-typo-color;
         width: $main;
         display: flex;
         flex-direction: column;
+
         #sub_menu {
             // border: 1px solid black;
             overflow: auto;
@@ -116,32 +133,39 @@ main {
             justify-content: space-between;
             text-align: center;
             cursor: pointer;
+
             @media only screen and (max-width: 767px) {
                 width: 100%;
             }
+
             .mine_profile {
                 @media only screen and (max-width: 768px) {
                     display: none;
                 }
             }
+
             h3 {
                 display: inline-block;
                 // border: 1px solid red;
                 font-size: $h3;
                 padding: 15px;
+
                 @media only screen and (min-width: 993px) and (max-width: 1200px) {
                     font-size: $h4;
                     // width: 100px;
                 }
+
                 @media only screen and (min-width: 577) and (max-width: 992px) {
                     font-size: $h3;
                     // width: 100px;
                 }
+
                 @media only screen and (max-width: 576) {
                     font-size: $h6;
                     // width: 100px;
                 }
             }
+
             .bg-color {
                 // border: 1px solid red;
                 border-bottom: 3px solid $primary-typo-color;
@@ -149,6 +173,7 @@ main {
                 transition-duration: 0.2s;
                 // border-radius: 5px 5px 0 0;
             }
+
             .select-color {
                 // border: 1px solid green;
                 // border-bottom: 1px solid grey;
@@ -156,6 +181,7 @@ main {
                 color: grey;
                 // border-radius: 5px 5px 0 0;
                 transition-duration: 0.2s;
+
                 &:hover {
                     // border-bottom: 3px solid $primary-typo-color;
                     background-color: rgba($primary-typo-color, 0.3);
@@ -163,6 +189,7 @@ main {
                 }
             }
         }
+
         #tour {
             // border: 1px solid red;
             background-color: $lighter;
@@ -170,11 +197,13 @@ main {
             display: flex;
             flex-direction: column;
             border-radius: 0 0 5px 5px;
-            @media only screen and (min-width: 769px) and (max-width: 1200px) {
-            }
+
+            @media only screen and (min-width: 769px) and (max-width: 1200px) {}
+
             @media only screen and (max-width: 768px) {
                 width: 100%;
             }
+
             #mine_tour,
             #i_join {
                 border: 2px solid rgba($primary-typo-color, 0.3);
@@ -184,20 +213,24 @@ main {
                 width: calc(100%-40px);
                 padding: 10px;
                 margin: 20px;
+
                 h3 {
                     padding: 10px;
                     font-size: $h3;
                     color: $btn-color;
                 }
+
                 #mine_on_going,
                 #mine_out_of_date,
                 #join_on_going,
                 #join_out_of_date {
+
                     // border: 1px solid purple;
                     h4 {
                         font-size: $h4;
                         padding: 10px;
                     }
+
                     .tour_detail {
                         margin: 10px;
                         border: 1px solid $primary-typo-color;
@@ -205,56 +238,70 @@ main {
                         display: flex;
                         justify-content: space-between;
                         padding: 10px;
+
                         &:hover {
                             color: $primary-typo-color;
                             background-color: rgba($primary-typo-color, 0.3);
+
                             .down {
                                 // border-top: 10px solid $lighter;
                             }
                         }
+
                         .tour_title,
                         .tour_date {
                             // border: 1px solid red;
                             width: 20%;
+
                             @media only screen and (max-width: 576px) {
                                 width: 80%;
                             }
                         }
+
                         .tour_date {
                             @media only screen and (max-width: 540px) {
                                 display: none;
                             }
                         }
+
                         .tour_attendency {
                             width: 20%;
                             cursor: pointer;
+
                             @media only screen and (max-width: 992px) {
                                 display: none;
                             }
                         }
+
                         .tour_status_bar {
                             width: 20%;
                             display: flex;
                             justify-content: space-between;
+
                             .tour_join,
                             .tour_check {
                                 cursor: pointer;
+
                                 @media only screen and (max-width: 576px) {
                                     display: none;
                                 }
                             }
+
                             .tour_status {
                                 @media only screen and (max-width: 1200px) {
                                     display: none;
                                 }
                             }
+
                             .arrow {
                                 // border: 1px solid red;
                                 display: none;
+
                                 @media only screen and (max-width: 576px) {
                                     display: block;
                                 }
                             }
+
                             .down {
                                 // border: 1px solid blue;
                                 width: 0;
@@ -266,6 +313,7 @@ main {
                                 border-right: 10px solid transparent;
                                 border-top: 10px solid $primary-typo-color;
                                 cursor: pointer;
+
                                 // &:hover {
                                 //     border-top: 10px solid $lighter;
                                 // }
@@ -273,6 +321,7 @@ main {
                                     display: block;
                                 }
                             }
+
                             .up {
                                 width: 0;
                                 height: 0;
@@ -282,9 +331,11 @@ main {
                             }
                         }
                     }
+
                     .outdated {
                         background-color: $search-bar-bgColor;
                         color: grey;
+
                         &:hover {
                             background-color: darken($search-bar-bgColor, 5%);
                             color: darken(grey, 5%);
@@ -293,14 +344,17 @@ main {
                 }
             }
         }
+
         #mine_fav {
             // border: 1px solid red;
             width: $main-width;
             display: none;
             position: relative;
+
             @media only screen and (max-width: 768px) {
                 width: 100%;
             }
+
             #mine_fav_bar {
                 // border: 1px solid black;
                 display: flex;
@@ -312,15 +366,19 @@ main {
                 // left: 50%;
                 padding: 15px 0px;
                 color: grey;
+
                 @media only screen and (min-width: 993px) and (max-width: 1200px) {
                     width: 100%;
                 }
+
                 @media only screen and (max-width: 993px) {
                     width: 100%;
                 }
+
                 h4 {
                     font-size: $h4;
                 }
+
                 .fav_tour,
                 .fav_article,
                 .fav_product {
@@ -329,28 +387,33 @@ main {
                     text-align: center;
                     padding: 5px 0;
                 }
+
                 .colored {
                     border-bottom: 3px solid $primary-typo-color;
                     color: $primary-typo-color;
                 }
+
                 .unselected {
                     &:hover {
                         background-color: rgba($primary-typo-color, 0.3);
                         color: $primary-typo-color;
                     }
                 }
+
                 // .fav_tour {
                 //     background-color: $darker;
                 //     color: $lighter;
                 //     border-radius: $br;
                 // }
             }
+
             #fav_container {
                 // border: 1px solid green;
                 background-color: $lighter;
                 border-radius: 0 0 5px 5px;
                 // padding: 30px 10px;
                 background-color: $lighter;
+
                 #fav_tour {
                     // position: relative;
                     // top: 30px;
@@ -358,24 +421,29 @@ main {
                     display: flex;
                     padding: 10px 5px;
                     margin: 20px 0;
+
                     #tour_list {
                         display: flex;
                         flex-wrap: wrap;
                     }
                 }
+
                 #fav_article {
                     display: none;
                     padding: 10px 5px;
                     margin: 20px 0;
+
                     #article_list {
                         display: flex;
                         flex-wrap: wrap;
                     }
                 }
+
                 #fav_product {
                     display: none;
                     padding: 10px 5px;
                     margin: 20px 0;
+
                     #product_list {
                         display: flex;
                         flex-wrap: wrap;
@@ -383,12 +451,15 @@ main {
                 }
             }
         }
+
         #mine_order {
             display: none;
             width: $main-width;
+
             @media only screen and (max-width: 768px) {
                 width: 100%;
             }
+
             #list {
                 border: 1px solid $primary-typo-color;
                 width: 100%;
@@ -399,6 +470,7 @@ main {
                 // padding: 10px;
                 // margin: 20px;
                 box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
                 #list_title {
                     // border-right: 2px solid $primary-typo-color;
                     // border-top: 2px solid grey;
@@ -411,68 +483,84 @@ main {
                         font-weight: $bold;
                     }
                 }
+
                 #list_title,
                 #order {
                     display: flex;
                     width: 100%;
                     padding: 10px 0px;
                     justify-content: space-evenly;
+
                     #order_no,
                     #order_status,
                     #order_total {
                         // border: 1px solid black;
                         width: 20%;
                         text-align: center;
+
                         @media only screen and (max-width: 992px) {
                             width: 25%;
                         }
+
                         @media only screen and (max-width: 576px) {
                             width: 50%;
                         }
                     }
+
                     #order_total {
                         @media only screen and (max-width: 576px) {
                             display: none;
                         }
                     }
+
                     #order_payment {
                         width: 20%;
                         text-align: center;
+
                         @media only screen and (max-width: 992px) {
                             width: 25%;
                         }
+
                         @media only screen and (max-width: 576px) {
                             display: none;
                         }
                     }
+
                     #order_date {
                         // border: 1px solid black;
                         width: 20%;
                         text-align: center;
+
                         @media only screen and (max-width: 992px) {
                             display: none;
                         }
                     }
                 }
+
                 #order {
                     cursor: pointer;
                 }
+
                 #order:nth-child(even) {
                     background-color: rgba($primary-typo-color, 0.3);
                     color: $primary-typo-color;
                 }
             }
         }
+
         #mine_article {
             display: none;
             width: $main-width;
             background-color: $lighter;
             border-radius: 0 0 5px 5px;
+
             @media only screen and (max-width: 768px) {
                 width: 100%;
             }
+
             .article_brief {
                 border-radius: 0 0 5px 5px;
+
                 // padding: 10px 0px;
                 .article_detail {
                     background-color: white;
@@ -483,36 +571,44 @@ main {
                     display: flex;
                     justify-content: space-between;
                     padding: 10px;
+
                     &:hover {
                         background-color: rgba($primary-typo-color, 0.3);
                         color: $primary-typo-color;
                     }
+
                     .article_title,
                     .article_date {
                         // border: 1px solid black;
                         width: calc(100% / 3);
+
                         @media only screen and (max-width: 576px) {
                             width: calc(100% / 3 * 2);
                         }
                     }
+
                     .article_date {
                         @media only screen and (max-width: 576px) {
                             display: none;
                         }
                     }
+
                     .article_status_bar {
                         // border: 1px solid black;
                         // width: calc(100% / 6);
                         display: flex;
                         justify-content: space-evenly;
+
                         .article_status,
                         .article_join,
                         .article_check {
                             cursor: pointer;
                         }
+
                         @media only screen and (min-width: 576px) and (max-width: 992px) {
                             width: calc(100% / 4);
                         }
+
                         @media only screen and (max-width: 576px) {
                             width: calc(100% / 2);
                         }
@@ -520,13 +616,16 @@ main {
                 }
             }
         }
+
         #mine_profile {
             display: none;
             width: $main-width;
             flex-direction: row;
+
             @media only screen and (max-width: 768px) {
                 width: 100%;
             }
+
             #profile {
                 // border: 1px solid $primary-typo-color;
                 background-color: $lighter;
@@ -537,6 +636,7 @@ main {
                 position: relative;
                 align-items: center;
                 padding-top: 20px;
+
                 .field-wrap {
                     display: flex;
                     flex-direction: column;
@@ -545,9 +645,11 @@ main {
                     color: $primary-typo-color;
                     padding: 0px 10px;
                     width: 300px;
+
                     @media only screen and (max-width: 576px) {
                         width: 80%;
                     }
+
                     input,
                     textarea {
                         font-size: $h4;
@@ -561,11 +663,13 @@ main {
                         color: $primary-typo-color;
                         border-radius: 0;
                         transition: border-color 0.25s ease, box-shadow 0.25s ease;
+
                         &:focus {
                             outline: 0;
                             border-color: $btn-color;
                         }
                     }
+
                     label {
                         position: absolute;
                         transform: translateY(17%);
@@ -575,15 +679,18 @@ main {
                         pointer-events: none;
                         // font-size: 22px;
                     }
+
                     label.active {
                         transform: translateY(-25px);
                         left: 10px;
                         font-size: $h6;
                     }
+
                     label.highlight {
                         color: $btn-color;
                     }
                 }
+
                 // .address {
                 //     label {
                 //         transform: translateY(120%);
@@ -591,25 +698,25 @@ main {
                 // }
                 .button {
                     @include btn4 // border: 0;
-                        // outline: none;
-                        // border-radius: 0;
-                        // padding: 5px 10px;
-                        // font-size: $h3;
-                        // font-weight: bold;
-                        // text-transform: uppercase;
-                        // letter-spacing: 0.1em;
-                        // background: $primary-typo-color;
-                        // color: $btn-color;
-                        // transition: all.5s ease;
-                        // -webkit-appearance: none;
-                        // width: 300px;
-                        // cursor: pointer;
-                        // &:hover,
-                        // &:focus {
-                        //     background: darken($primary-typo-color, 5%);
-                        //     padding: 5px 10px;
-                        // }
-;
+                    // outline: none;
+                    // border-radius: 0;
+                    // padding: 5px 10px;
+                    // font-size: $h3;
+                    // font-weight: bold;
+                    // text-transform: uppercase;
+                    // letter-spacing: 0.1em;
+                    // background: $primary-typo-color;
+                    // color: $btn-color;
+                    // transition: all.5s ease;
+                    // -webkit-appearance: none;
+                    // width: 300px;
+                    // cursor: pointer;
+                    // &:hover,
+                    // &:focus {
+                    //     background: darken($primary-typo-color, 5%);
+                    //     padding: 5px 10px;
+                    // }
+                    ;
                 }
             }
         }
@@ -626,21 +733,26 @@ main {
     padding: 10px;
     margin: 20px;
     border-radius: 10px;
+
     // margin: calc((20%-100px) / 10);
     &:hover {
         background-color: rgba($primary-typo-color, 0.3);
         color: $primary-typo-color;
     }
+
     @media only screen and (max-width: 992px) {
         width: 100%;
     }
+
     img {
         width: 100%;
     }
+
     .blog_title {
         font-size: $h5;
         padding: 5px 0;
     }
+
     .blog_content {
         font-size: $h6;
         padding: 5px 0;
@@ -651,6 +763,7 @@ main {
 #num_attendency {
     display: none;
 }
+
 .num_attendency {
     border: 1px solid red;
     // width: $main;
@@ -676,14 +789,17 @@ main {
     animation-iteration-count: 1;
     animation-timing-function: ease-in;
     animation-duration: 0.5s;
+
     @keyframes fadeInOpacity {
         0% {
             opacity: 0;
         }
+
         100% {
             opacity: 1;
         }
     }
+
     //close btn
     .close {
         color: #fff;
@@ -695,6 +811,7 @@ main {
         height: 24px;
         width: 24px;
         position: relative;
+
         &:after {
             content: "\2715";
             position: absolute;
@@ -703,25 +820,30 @@ main {
             line-height: 1;
             font-size: 18px;
         }
+
         &:hover {
             background: #3f3f3f;
             cursor: pointer;
         }
+
         &:active {
             background: #2f2f2f;
             cursor: pointer;
         }
     }
+
     .group {
         display: flex;
         align-items: center;
     }
+
     .icon {
         // border: 1px solid red;
         width: 100px;
         height: 100px;
         padding-right: 5px;
     }
+
     .id {
         // border: 1px solid red;
         width: 100px;
@@ -734,6 +856,7 @@ main {
 #delete_confirm {
     display: none;
 }
+
 .delete_confirm {
     // border: 1px solid black;
     position: relative;
@@ -757,19 +880,23 @@ main {
     animation-iteration-count: 1;
     animation-timing-function: ease-in;
     animation-duration: 0.5s;
+
     @keyframes fadeInOpacity {
         0% {
             opacity: 0;
         }
+
         100% {
             opacity: 1;
         }
     }
+
     .btn {
         // border: 1px solid black;
         display: flex;
         justify-content: space-between;
         width: 50%;
+
         input {
             width: 40%;
         }
