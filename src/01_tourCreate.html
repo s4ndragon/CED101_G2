@@ -9,16 +9,16 @@
     <link rel="stylesheet" href="./css/tourCreate.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
         integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+
 </head>
 
 <body>
 
     @@include('layout/nav.html')
     <div class="banner">
-        <h2>建立揪團</h2>
+        <h2>創造屬於你的專屬</h2>
     </div>
     <div class="header_block">
-        <h1>創造屬於你的專屬</h1>
         <div class="tourCreate_header">
             <div class="step_title">
                 <div class="step_block">
@@ -60,12 +60,12 @@
     <div class="tourCreate_main">
 
         <div class="tourCreate_leftside">
+            <img src="./images/tour/down.gif" alt="">
             <div class="tourCreate_choice">
                 <button id="local">地點</button>
                 <button id="hotel">住宿</button>
                 <button id="restaurant">餐廳</button>
                 <button id="active">活動</button>
-
             </div>
             <div class="tourCreate_item_block">
 
@@ -73,350 +73,23 @@
 
         </div>
         <div class="tourCreate_rightside_block">
-            <div class="nextBtn"><button><a href="./01_tourCreateInfro.html">下一步</a></button></div>
             <div class="tourCreate_rightside">
                 <div class="local_rightside_img"></div>
+                <div id="greenline"></div>
                 <div class="hotel_rightside_img"></div>
-                <div class="active_rightside_img"></div>
                 <div class="rest_rightside_img"></div>
+                <div class="active_rightside_img"></div>
             </div>
         </div>
     </div>
+    <div class="nextBtn"><button><a href="./01_tourCreateInfro.html">下一步</a></button></div>
     <div class="help">
         <div class="help_text" id="help_text"></div>
         <div class="help_img"><img src="./images/tour/tea.gif" alt=""></div>
-
     </div>
     @@include('layout/footer.html')
 
-
-    <script>
-        let tourBlock = document.getElementsByClassName("tourCreate_item_block")[0];
-        let helpText = document.getElementById("help_text");
-        let getRightsideLocal = document.getElementsByClassName('local_rightside_img')[0];
-        let getRightsideHotel = document.getElementsByClassName('hotel_rightside_img')[0];
-        let getRightsideRest = document.getElementsByClassName('rest_rightside_img')[0];
-        let getRightsideActive = document.getElementsByClassName('active_rightside_img')[0];
-
-        window.addEventListener("load", function () {
-            let localNum = 9;
-            for (let i = 0; i < localNum; i++) {
-                let newitem = document.createElement('div');
-                tourBlock.appendChild(newitem);
-                newitem.setAttribute('class', 'tourCreate_item');
-                newitem.innerHTML = `
-                     <div class="tourCreate_item_img">
-                        <img src="./images/vote/tea.jpg" alt="">
-                     </div>
-                   <p>八卦山茶園</p>
-                `
-                let localChoice = document.getElementsByClassName('tourCreate_item')[i];
-                localChoice.addEventListener('click', addLocal);
-                // ==================changeBtn==============================
-                local.style.color = "#69994e";
-                local.style.backgroundColor = "#fff";
-                hotel.style.visibility = "hidden";
-                rest.style.visibility = "hidden";
-                active.style.visibility = "hidden";
-                local.setAttribute('disabled', 'daisabled');
-
-                helpText.innerText = "請選擇要去的茶園!!";
-            }
-        })
-        function addLocal() {
-            if (getRightsideLocal.childNodes.length < 1) {
-                let newLocal = document.createElement('div');
-                getRightsideLocal.appendChild(newLocal);
-                newLocal.setAttribute('class', 'local_block');
-                newLocal.innerHTML = `
-                <h2>茶園</h2>
-                    <img src="./images/vote/tea.jpg" alt="">
-                        <p>八卦山</p>
-                        <p>好茶園</p>
-                        <div class="block_ribbon"></div>
-                    `;
-                newLocal.addEventListener("click", removeNewLocal);
-                hotel.style.visibility = "visible";
-                rest.style.visibility = "visible";
-                active.style.visibility = "visible";
-            };
-        }
-        function removeNewLocal() {
-            getRightsideLocal.innerHTML = "";
-            getRightsideHotel.innerHTML = "";
-            getRightsideRest.innerHTML = "";
-            getRightsideActive.innerHTML = "";
-            showLocal();
-            hotel.style.visibility = "hidden";
-            rest.style.visibility = "hidden";
-            active.style.visibility = "hidden";
-        };
-
-
-
-        // ==================================localBtn=============================================
-        let local = document.getElementById('local');
-        local.addEventListener('click', showLocal);
-        function showLocal() {
-            tourBlock.innerHTML = "";
-            let localNum = 8;
-            for (let i = 0; i < localNum; i++) {
-                let newitem = document.createElement('div');
-                tourBlock.appendChild(newitem);
-                newitem.setAttribute('class', 'tourCreate_item');
-                newitem.innerHTML = `
-                <div class="tourCreate_item_img">
-                        <img src="./images/vote/tea.jpg" alt="">
-                    </div>
-                    <p>八卦山茶園</p>
-                    
-                `;
-                let localChoice = document.getElementsByClassName('tourCreate_item')[i];
-                localChoice.addEventListener('click', addLocal);
-                // ==================changeBtn==============================
-                local.style.color = "#69994e";
-                local.style.backgroundColor = "#fff";
-                hotel.removeAttribute('style');
-                active.removeAttribute('style');
-                rest.removeAttribute('style');
-                local.setAttribute('disabled', 'daisabled');
-
-
-
-
-                // ==================change helper text=====================
-                helpText.innerText = "請選擇要去的茶園!!"
-            }
-        };
-
-        // =================================hotelBtn============================================
-        let hotel = document.getElementById('hotel');
-        hotel.addEventListener('click', showHotel);
-        function showHotel() {
-            tourBlock.innerHTML = "";
-            let hotelNum = 2;
-            for (let i = 0; i < hotelNum; i++) {
-                let newitem = document.createElement('div');
-                tourBlock.appendChild(newitem);
-                newitem.setAttribute('class', 'tourCreate_item');
-                newitem.innerHTML = `
-                <div class="tourCreate_item_img">
-                        <img src="./images/tour/hotel1.jpg" alt="">
-                    </div>
-                    <p>伊豆溫泉旅館</p>
-                `;
-                let hotelChoice = document.getElementsByClassName('tourCreate_item')[i];
-                hotelChoice.addEventListener('click', addhotel);
-
-                // ==================changeBtn==============================
-                this.style.color = "#69994e";
-                this.style.backgroundColor = "#fff";
-                local.removeAttribute('style');
-                active.removeAttribute('style');
-                rest.removeAttribute('style');
-                local.removeAttribute('disabled');
-
-                // ==================change helper text=====================
-
-                helpText.innerText = "請選擇要住的旅館!! (限一個)"
-            }
-        };
-
-        function addhotel() {
-
-            console.log(getRightsideHotel);
-            console.log(getRightsideHotel.childNodes.length);
-            if (getRightsideHotel.childNodes.length < 1) {
-                let newHotel = document.createElement('div');
-                getRightsideHotel.appendChild(newHotel);
-                newHotel.setAttribute('class', 'local_block');
-                newHotel.innerHTML = `
-                <h2>旅館</h2>
-                    <img src="./images/tour/hotel1.jpg" alt="">
-                        <p >伊豆溫泉旅館</p>
-                        <p>好茶園</p>
-                        <div class="block_ribbon"></div>
-                    `;
-                newHotel.addEventListener("click", removeNewHotel);
-                function removeNewHotel() {
-                    getRightsideHotel.removeChild(newHotel);
-                };
-            }
-        }
-
-
-
-        // =================================restaurantBtn========================================
-        let rest = document.getElementById('restaurant');
-        rest.addEventListener('click', showRest);
-        function showRest() {
-            tourBlock.innerHTML = "";
-            let restNum = 6;
-            for (let i = 0; i < restNum; i++) {
-                let newitem = document.createElement('div');
-                tourBlock.appendChild(newitem);
-                newitem.setAttribute('class', 'tourCreate_item');
-                newitem.innerHTML = `
-                <div class="tourCreate_item_img">
-                        <img src="./images/tour/restaurant1.jpg" alt="">
-                    </div>
-                    <p>好吃餐廳</p>
-                `;
-                let restChoice = document.getElementsByClassName('tourCreate_item')[i];
-                restChoice.addEventListener('click', addRest);
-
-                // ==================changeBtn==============================
-                this.style.color = "#69994e";
-                this.style.backgroundColor = "#fff";
-                local.removeAttribute('style');
-                active.removeAttribute('style');
-                hotel.removeAttribute('style');
-                local.removeAttribute('disabled');
-                // ==================change helper text=====================
-
-                helpText.innerText = "請選擇用餐的餐廳!! (最多三個)"
-            }
-        };
-        function addRest() {
-
-            console.log(getRightsideRest);
-            console.log(getRightsideRest.childNodes.length);
-            if (getRightsideRest.childNodes.length < 3) {
-                let newRest = document.createElement('div');
-                getRightsideRest.appendChild(newRest);
-                newRest.setAttribute('class', 'rest_block');
-                newRest.innerHTML = `
-                <h2>餐廳</h2>
-                    <img src="./images/tour/restaurant1.jpg" alt="">
-                        <p >好吃餐廳</p>
-                        <p>好茶園</p>
-                        <div class="block_ribbon"></div>
-                    `;
-                newRest.addEventListener("click", removeNewRest);
-                function removeNewRest() {
-                    getRightsideRest.removeChild(newRest);
-                };
-            }
-        }
-
-        // ========================active=================================================
-        let active = document.getElementById('active');
-        active.addEventListener('click', showActive);
-        function showActive() {
-            tourBlock.innerHTML = "";
-
-            let newitem = document.createElement('div');
-            tourBlock.appendChild(newitem);
-            newitem.setAttribute('class', 'tourCreate_active');
-            newitem.innerHTML = `
-            <div class= "tourCreate_active_one">
-                <div class="tourCreate_item_img">
-                        <img src="./images/tour/maktea1.jpg" alt="">
-                    </div>
-                    <p>傳統手工採茶</p>
-                    
-            </div>
-            <div class= "tourCreate_active_one">
-                <div class="tourCreate_item_img">
-                        <img src="./images/tour/maktea2.jpg" alt="">
-                    </div>
-                    <p>製茶技法教學</p>
-            </div>
-            <div class= "tourCreate_active_one">
-                <div class="tourCreate_item_img">
-                        <img src="./images/tour/maktea3.jpg" alt="">
-                    </div>
-                    <p>專業品茶體驗</p>
-            </div>
-                `;
-            let activeChoice = document.getElementsByClassName('tourCreate_active_one')[0];
-            let activeChoice1 = document.getElementsByClassName('tourCreate_active_one')[1];
-            let activeChoice2 = document.getElementsByClassName('tourCreate_active_one')[2];
-            activeChoice.addEventListener('click', addActive);
-            activeChoice1.addEventListener('click', addActive1);
-            activeChoice2.addEventListener('click', addActive2);
-
-            // ==================changeBtn==============================
-            this.style.color = "#69994e";
-            this.style.backgroundColor = "#fff";
-            local.removeAttribute('style');
-            hotel.removeAttribute('style');
-            rest.removeAttribute('style');
-            local.removeAttribute('disabled');
-
-            // ==================change helper text=====================
-            helpText.innerText = "請選擇想參加的活動!! (三擇一)"
-
-            function addActive() {
-
-                console.log(getRightsideActive);
-                console.log(getRightsideActive.childNodes.length);
-                if (getRightsideActive.childNodes.length < 1) {
-                    let newActive = document.createElement('div');
-                    getRightsideActive.appendChild(newActive);
-                    newActive.setAttribute('class', 'active_block');
-                    newActive.innerHTML = `
-                    <h2>活動</h2>
-                    <img src="./images/tour/maktea1.jpg" alt="">
-                        <p>傳統手工採茶</p>
-                        <p>好茶園</p>
-                        <div class="block_ribbon"></div>
-                    `;
-                    newActive.addEventListener("click", removeNewActive);
-                    function removeNewActive() {
-                        getRightsideActive.removeChild(newActive);
-                    };
-                }
-            }
-
-            function addActive1() {
-                let getRightsideActive = document.getElementsByClassName('active_rightside_img')[0];
-                console.log(getRightsideActive);
-                console.log(getRightsideActive.childNodes.length);
-                if (getRightsideActive.childNodes.length < 1) {
-                    let newActive = document.createElement('div');
-                    getRightsideActive.appendChild(newActive);
-                    newActive.setAttribute('class', 'active_block');
-                    newActive.innerHTML = `
-                    <h2>活動</h2>
-                    <img src="./images/tour/maktea2.jpg" alt="">
-                        <p>製茶技法教學</p>
-                        <p>好茶園</p>
-                        <div class="block_ribbon"></div>
-                    `;
-                    newActive.addEventListener("click", removeNewActive);
-                    function removeNewActive() {
-                        getRightsideActive.removeChild(newActive);
-                    };
-                }
-            }
-
-            function addActive2() {
-                let getRightsideActive = document.getElementsByClassName('active_rightside_img')[0];
-                console.log(getRightsideActive);
-                console.log(getRightsideActive.childNodes.length);
-                if (getRightsideActive.childNodes.length < 1) {
-                    let newActive = document.createElement('div');
-                    getRightsideActive.appendChild(newActive);
-                    newActive.setAttribute('class', 'active_block');
-                    newActive.innerHTML = `
-                    <h2>活動</h2>
-                    <img src="./images/tour/maktea3.jpg" alt="">
-                        <p>專業品茶體驗</p>
-                        <p>好茶園</p>
-                        <div class="block_ribbon"></div>
-                    `;
-                    newActive.addEventListener("click", removeNewActive);
-                    function removeNewActive() {
-                        getRightsideActive.removeChild(newActive);
-                    };
-                }
-            }
-        };
-
-    </script>
-
-
+    <script src="./js/01_tourCreate_addItem.js"></script>
 
 </body>
 
