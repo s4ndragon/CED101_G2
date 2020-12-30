@@ -1,88 +1,93 @@
 /* 注意background-image路徑!! url(./) */
-.button1{
-  background-image: url('../Button.png');
-  background-size: cover;
-  width:226px;
-  height:82px;
-  margin-left: auto;
-  margin-right:auto;
+.button1 {
+    background-image: url('../Button.png');
+    background-size: cover;
+    width: 226px;
+    height: 82px;
+    margin-left: auto;
+    margin-right: auto;
 }
-button.bin{
-  font-size: 50px;
-  width:339px;
-  height:123px;
-  background:url('../Button.png') 100% 100%;
+button.bin {
+    font-size: 50px;
+    width: 339px;
+    height: 123px;
+    background: url('../Button.png') 100% 100%;
 }
-div.overlay{
-position: fixed;
-top: 0;
-left: 0;
-width: 100%;
-/* background-image: url("./SeedChooser_Background.png"); */
-/* background-color: hsla(0, 0%, 0%, .5); */
-/* 預設：完全透明；設定 z-index: -1 會在整個頁面的後方，看不到，才不會擋到頁面元素。 */
-/* opacity: 0; */
-z-index: -1;
-transition: opacity 1s;
+div.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* background-image: url("./SeedChooser_Background.png"); */
+    /* background-color: hsla(0, 0%, 0%, .5); */
+    /* 預設：完全透明；設定 z-index: -1 會在整個頁面的後方，看不到，才不會擋到頁面元素。 */
+    /* opacity: 0; */
+    z-index: -1;
+    transition: opacity 1s;
 }
-div.overlay.-on,div.gameover.-on,div.gamewin.-on{
-/* 加上 -on 之後，Modal 漸漸出現，因為有設定 transition */
-opacity: 1;
-z-index: 200;
+div.overlay.-on,
+div.gameover.-on,
+div.gamewin.-on {
+    /* 加上 -on 之後，Modal 漸漸出現，因為有設定 transition */
+    opacity: 1;
+    z-index: 200;
 }
 
-div.overlay.-opacity-zero,div.gameover.-opacity-zero,div.gamewin.-opacity-zero{
-/* 關閉 Modal 時，先讓 opacity設定0，就會慢慢變成完全透明，但這時會擋到後面的元素，所以要再移除 -on 及 -opacity-zero 這兩個 class */
-opacity: 0;
+div.overlay.-opacity-zero,
+div.gameover.-opacity-zero,
+div.gamewin.-opacity-zero {
+    /* 關閉 Modal 時，先讓 opacity設定0，就會慢慢變成完全透明，但這時會擋到後面的元素，所以要再移除 -on 及 -opacity-zero 這兩個 class */
+    opacity: 0;
 }
 /* 元素 article 置中及基本樣式 */
-div.overlay > article{
-background-image: url("../SeedChooser_Background.png");
-background-repeat: no-repeat;
-background-color: white;
-width:465px;
-height:555px;
-border-radius: 10px;
-box-shadow: 0 0 10px #ddd;
-padding: 0px;
-position: absolute;
-top: 300px;
-left: 50%;
-transform: translate(-50%, -50%);
+div.overlay > article {
+    background-image: url('../SeedChooser_Background.png');
+    background-repeat: no-repeat;
+    background-color: white;
+    width: 465px;
+    height: 555px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #ddd;
+    padding: 0px;
+    position: absolute;
+    top: 300px;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
-div.gameover,div.gamewin{
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: -1;
-  transition: opacity 1s;
+div.gameover,
+div.gamewin {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: -1;
+    transition: opacity 1s;
 }
 
-div.gameover>article{
-  background-image: url('../gameovre.png');
-  background-repeat: no-repeat;
-  background-color: none;
-  width:405px;
-  height:499px;
-  /* border-radius: 30px; */
-  padding: 0px;
-  position: absolute;
-  top: 300px;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  }
-div.gamewin>article{
-  background-image: url('../youwin.png');
-  background-repeat: no-repeat;
+div.gameover > article {
+    background-image: url('../gameovre.png');
+    background-repeat: no-repeat;
+    background-color: none;
+    width: 405px;
+    height: 499px;
+    /* border-radius: 30px; */
+    padding: 0px;
+    position: absolute;
+    top: 300px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+div.gamewin > article {
+    background-image: url('../youwin.png');
+    background-repeat: no-repeat;
 
-  background-size: contain;
-  width:600px;
-  height:600px;
-  padding: 0px;
-  position: absolute;
-  top: 300px;
-  left: 50%;
-  transform: translate(-50%, -50%);
+    background-size: contain;
+    width: 600px;
+    height: 600px;
+    padding: 0px;
+    position: absolute;
+    top: 300px;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
