@@ -1,12 +1,8 @@
-@import '../sass/default/common';
+@import './default/common';
 
 * {
-    box-sizing: border-box;
+    box-sizing: $box-sizing;
 }
-
-// body {
-// @include forIndex;
-// }
 
 .nav {
     padding-top: 300px;
@@ -130,7 +126,7 @@
 }
 
 .lg-btn:after {
-    content: '>>';
+    content: '';
     position: absolute;
     top: 50%;
     right: 20px;
@@ -264,6 +260,7 @@
     position: relative;
     padding: 90px 0 100px;
     background-color: #eff2c7;
+    text-align: center;
 }
 
 .vote-img-back {
@@ -364,7 +361,7 @@
 }
 
 .vote-list li a .txt:after {
-    content: '>';
+    content: '';
     display: inline-block;
     margin-left: 10px;
     transform: translate(0, -1px);
@@ -748,7 +745,7 @@
 
 .shop-list li .txt-area .wrap-company {
     margin: 0 -5px 5px;
-    background-image: url(../images/index/company.png);
+    background-image: url(../images/index/company5.png);
     background-position: left;
     background-size: contain;
     background-repeat: no-repeat;
@@ -815,7 +812,7 @@
 }
 
 .discuss .dis-box-info .txt-area {
-    padding: 20px 35px 0;
+    padding: 35px;
     min-height: 230px;
     text-align: center;
 }
@@ -894,6 +891,7 @@
     padding: 70px 0 70px;
     font-size: 0;
     background-color: #eff2c7;
+    text-align: center;
 }
 
 .discuss .container:nth-child(3n) {
@@ -931,7 +929,16 @@
 
 // 第六屏:結束=====================
 
+// .ending-outer {
+//     background: #fff;
+//     opacity: 0.3;
+//     width: 60%;
+//     font-size: $h1;
+//     font-weight: lighter;
+// }
+
 .ending {
+    text-align: center;
     background: #709b5e;
     width: 100%;
     margin: 0 auto;
@@ -940,7 +947,13 @@
     background-size: 70%;
     background-position: bottom;
     background-repeat: no-repeat;
-    background-image: url(../../dist/images/index/ending.png);
+    background-image: url(../images/index/ending.png);
+}
+
+.ending .ending-txt {
+    border: 1px solid red;
+
+    // position: absolute;
 }
 
 // 結束第六屏 =====================
@@ -994,15 +1007,6 @@
         top: 50px;
     }
 
-    .discuss .dis-box-info .txt-area {
-        padding: 20px;
-        min-height: 0;
-    }
-
-    .discuss {
-        padding-top: 40px;
-    }
-
     .dis-img-btm {
         display: none;
     }
@@ -1050,11 +1054,6 @@
     .discuss .dis-box-info {
         width: 100%;
         margin-bottom: 15px;
-    }
-
-    .discuss .dis-box-info .txt-area {
-        padding: 20px;
-        min-height: 0;
     }
 
     .discuss .dis-box-info .txt-area .txt-title {

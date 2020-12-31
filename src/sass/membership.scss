@@ -47,17 +47,15 @@ body {
 .bg-color {
     background-color: $lighter;
 }
-
 //==============================//
 .banner {
     height: 300px;
     width: 100%;
     background-color: #ead779;
-    font-size: $h2;
+    @include banner-1st-title;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 20px; //=======//
 }
 
 main {
@@ -198,7 +196,8 @@ main {
             flex-direction: column;
             border-radius: 0 0 5px 5px;
 
-            @media only screen and (min-width: 769px) and (max-width: 1200px) {}
+            @media only screen and (min-width: 769px) and (max-width: 1200px) {
+            }
 
             @media only screen and (max-width: 768px) {
                 width: 100%;
@@ -224,7 +223,6 @@ main {
                 #mine_out_of_date,
                 #join_on_going,
                 #join_out_of_date {
-
                     // border: 1px solid purple;
                     h4 {
                         font-size: $h4;
@@ -243,9 +241,9 @@ main {
                             color: $primary-typo-color;
                             background-color: rgba($primary-typo-color, 0.3);
 
-                            .down {
-                                // border-top: 10px solid $lighter;
-                            }
+                            // .down {
+                            //     // border-top: 10px solid $lighter;
+                            // }
                         }
 
                         .tour_title,
@@ -678,6 +676,7 @@ main {
                         // -webkit-backface-visibility: hidden;
                         pointer-events: none;
                         // font-size: 22px;
+                        // color: black;
                     }
 
                     label.active {
@@ -698,25 +697,25 @@ main {
                 // }
                 .button {
                     @include btn4 // border: 0;
-                    // outline: none;
-                    // border-radius: 0;
-                    // padding: 5px 10px;
-                    // font-size: $h3;
-                    // font-weight: bold;
-                    // text-transform: uppercase;
-                    // letter-spacing: 0.1em;
-                    // background: $primary-typo-color;
-                    // color: $btn-color;
-                    // transition: all.5s ease;
-                    // -webkit-appearance: none;
-                    // width: 300px;
-                    // cursor: pointer;
-                    // &:hover,
-                    // &:focus {
-                    //     background: darken($primary-typo-color, 5%);
-                    //     padding: 5px 10px;
-                    // }
-                    ;
+                        // outline: none;
+                        // border-radius: 0;
+                        // padding: 5px 10px;
+                        // font-size: $h3;
+                        // font-weight: bold;
+                        // text-transform: uppercase;
+                        // letter-spacing: 0.1em;
+                        // background: $primary-typo-color;
+                        // color: $btn-color;
+                        // transition: all.5s ease;
+                        // -webkit-appearance: none;
+                        // width: 300px;
+                        // cursor: pointer;
+                        // &:hover,
+                        // &:focus {
+                        //     background: darken($primary-typo-color, 5%);
+                        //     padding: 5px 10px;
+                        // }
+;
                 }
             }
         }

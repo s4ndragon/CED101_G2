@@ -1,0 +1,76 @@
+<div id="form">
+    <ul class="tab-group">
+      <li class="tab active"><a href="#login">登入</a></li>
+      <li class="tab"><a href="#signup">註冊</a></li>
+    </ul>
+    <div class="tab-content">
+        <div id="login">   
+            <h2>歡迎回來！</h2>
+            <form action="/" method="post">
+                <div class="field-wrap">
+                    <label for="memId">
+                        帳號<span class="req">*</span>
+                    </label>
+                    <input type="text"required autocomplete="off" id="memId" name="memId"/>
+                </div>
+                <div class="field-wrap">
+                    <label for="memPw">
+                        密碼<span class="req">*</span>
+                    </label>
+                    <input type="password"required autocomplete="off" id="memPw" name="memPw"/>
+                </div>
+                <p class="forgot"><a href="#">忘記密碼？</a></p>
+                <div class="btn_container">
+                    <button class="btn"/>登入</button>
+                </div>
+            </form>
+        </div>
+        <div id="forget_pw">
+            <h2>找回密碼</h2>
+            <form action="/" method="post">
+                <div class="field-wrap">
+                    <label for="email">
+                        信箱<span class="req">*</span>
+                    </label>
+                    <input type="email"required autocomplete="off" id="email" name="email"/>
+                </div>
+                <div class="btn_container">
+                    <button class="btn"/>取回密碼</button>
+                </div>
+                
+            </form>
+        </div>        
+        <div id="signup">   
+            <h2>註冊會員</h2>
+            <form action="/" method="post">
+                <div class="field-wrap">
+                    <label for="email">
+                    信箱<span class="req">*</span>
+                    </label>
+                <input type="email"required autocomplete="off" id="email" name="email"/>
+                </div>
+                <div class="field-wrap">
+                    <label for="memId">
+                    帳號<span class="req">*</span>
+                    </label>
+                    <input type="text"required autocomplete="off" id="memId" name="memId"/>
+                </div>
+                <div class="field-wrap">
+                    <label for="memPw">
+                    密碼<span class="req">*</span>
+                    </label>
+                    <input type="password"required autocomplete="off" id="memPw" name="memPw"/>
+                </div>
+                <div class="field-wrap">
+                    <label for="re_memPw">
+                    重複輸入密碼<span class="req">*</span>
+                    </label>
+                    <input type="password"required autocomplete="off" id="re_memPw" name="re_memPw"/>
+                </div>
+                <div class="btn_container">
+                    <button type="submit" class="btn"/>註冊</button>
+                </div>
+            </form>
+        </div>  
+    </div><!-- tab-content -->  
+</div> 

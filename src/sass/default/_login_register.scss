@@ -1,98 +1,52 @@
-@import './default/reset';
-@import './default/common';
-
-//============= var ============//
-
-$main: #a7c957;
-$main-light: lighten($main, 5%);
-$main-dark: darken($main, 5%);
-
-$gray-light: #a0b3b0;
-$gray: #ddd;
-
-$thin: 300;
-$normal: 400;
-$bold: 600;
-$br: 5px;
-//==============================//
-
-* {
-    box-sizing: border-box;
-}
-
-html {
-    overflow-y: scroll;
-}
-
-body {
-    // background: $bg-color;
-    // font-family: $font-family;
-}
-
-a {
-    text-decoration: none;
-    color: $main;
-    transition: 0.5s ease;
-
-    &:hover {
-        color: $main-dark;
-    }
-}
-
-.form {
+#form {
+    display: none;
     background: rgba($primary-typo-color, 0.9);
     padding: 40px;
     max-width: 600px;
     margin: 40px auto;
     border-radius: $border-radius-sml;
     box-shadow: 0 4px 10px 4px rgba($primary-typo-color, 0.3);
-}
-
-.tab-group {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 40px 0;
-
-    &:after {
-        content: '';
-        display: table;
-        clear: both;
-    }
-
-    li a {
-        display: block;
-        text-decoration: none;
-        padding: 15px;
-        background: rgba($gray-light, 0.25);
-        color: $gray-light;
-        font-size: 20px;
-        float: left;
-        width: 50%;
-        text-align: center;
-        cursor: pointer;
-        transition: 0.5s ease;
-
-        &:hover {
-            background: $main-dark;
+    .tab-group {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 40px 0;
+        &:after {
+            content: '';
+            display: table;
+            clear: both;
+        }
+        li a {
+            display: block;
+            text-decoration: none;
+            padding: 15px;
+            // background: rgba($gray-light, 0.25);
+            // color: $gray-light;
+            font-size: 20px;
+            float: left;
+            width: 50%;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.5s ease;
+            &:hover {
+                // background: $main-dark;
+                color: $search-bar-bgColor;
+            }
+        }
+        .active a {
+            // background: $main;
             color: $search-bar-bgColor;
         }
     }
-
-    .active a {
-        background: $main;
-        color: $search-bar-bgColor;
+    .tab-content > div:last-child {
+        display: none;
     }
-}
-
-.tab-content>div:last-child {
-    display: none;
 }
 
 h2 {
     text-align: center;
     color: $search-bar-bgColor;
     font-size: $h2;
-    font-weight: $bold;
+    // font-weight: $bold;
     margin: 0 0 40px;
 }
 
@@ -102,10 +56,9 @@ label {
     left: 13px;
     color: rgba($search-bar-bgColor, 0.5);
     transition: all 0.25s ease;
-    -webkit-backface-visibility: hidden;
+    // -webkit-backface-visibility: hidden;
     pointer-events: none;
     font-size: 22px;
-
     .req {
         margin: 2px;
         color: $warning-sign;
@@ -116,7 +69,6 @@ label.active {
     transform: translateY(-25px);
     left: 2px;
     font-size: 14px;
-
     .req {
         opacity: 0;
     }
@@ -135,19 +87,18 @@ textarea {
     padding: 5px 10px;
     background: none;
     background-image: none;
-    border: 1px solid $gray-light;
+    // border: 1px solid $gray-light;
     color: $search-bar-bgColor;
     border-radius: 0;
     transition: border-color 0.25s ease, box-shadow 0.25s ease;
-
     &:focus {
         outline: 0;
-        border-color: $main;
+        // border-color: $main;
     }
 }
 
 textarea {
-    border: 2px solid $gray-light;
+    // border: 2px solid $gray-light;
     resize: vertical;
 }
 
@@ -163,11 +114,10 @@ textarea {
         clear: both;
     }
 
-    >div {
+    > div {
         float: left;
         width: 48%;
         margin-right: 4%;
-
         &:last-child {
             margin: 0;
         }
@@ -177,24 +127,22 @@ textarea {
 #forget_pw {
     display: none;
 }
-
 .button {
     border: 0;
     outline: none;
     border-radius: 0;
     padding: 15px 0;
     font-size: 2rem;
-    font-weight: $bold;
+    // font-weight: $bold;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    background: $main;
+    // background: $main;
     color: $search-bar-bgColor;
     transition: all.5s ease;
     -webkit-appearance: none;
-
     &:hover,
     &:focus {
-        background: $main-dark;
+        // background: $main-dark;
     }
 }
 
@@ -209,7 +157,7 @@ textarea {
 }
 
 .btn {
-    @include btn4;
+    // @include btn4;
     display: block;
 }
 

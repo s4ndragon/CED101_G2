@@ -1,0 +1,19 @@
+@import "./default/common";
+@import "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css";
+/* 代替main.css */
+.hidden {
+  display: none;
+}
+#page-right  {
+  float:right;
+  margin: 0;
+  display: inline
+}
+td a{
+  padding: 5px
+}
+table.game1{
+input[type="text"]{
+    width:65px !important;
+}
+}

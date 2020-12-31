@@ -1,5 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200&display=swap');
+//內容有變數的麻煩放在最上面
+
 @import 'variables';
+@import 'login_register';
 @import 'reset';
 @import 'header';
 // @import 'nav';
@@ -8,14 +10,19 @@
 @import 'btn';
 @import 'form';
 @import 'leaf';
+@import 'font';
+@import 'login_register';
+@import 'leaf';
 // @import 'load';
+@import 'filter';
+@import 'banner';
 
 img {
     max-width: $img-max-width;
 }
 
 body {
-    font-family: 'Noto Serif TC';
+    font-family: 'Noto Sans TC';
     line-height: 28px;
     background-image: url(../images/index/img_bg_yg_pc4.png);
     background-size: 100% auto;

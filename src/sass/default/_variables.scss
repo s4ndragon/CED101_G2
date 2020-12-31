@@ -1,14 +1,10 @@
-$box-sizing: border-box;
-$font-family: Noto Serif TC;
-$font-weight: bold;
-// $bg-color: #f2e8cf;
-$btn-color: #a7c957;
-$primary-typo-color: #386641;
-$secondary-typo-color: #69994e;
-$success-sign: #a7c957;
-$info-sign: #386641;
-$warning-sign: #fa7b53;
-$search-bar-bgColor: #dfe6cf;
+////字型
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap');
+
+//for banner標題字距
+$letter-spacing: 3px;
+
+//for 字級
 $para: 16px;
 $h1: 48px;
 $h2: 36px;
@@ -16,12 +12,37 @@ $h3: 28px;
 $h4: 24px;
 $h5: 18px;
 $h6: 14px;
-$hover-color: #fff;
-$a-text-decoration: none;
+
+//for 字重
+$font-weight: bold;
+
+//網站內常用的變數 - 綜合類
+$box-sizing: border-box;
+$cusor-pointer: pointer;
+$txt-align-center: center;
 $img-max-width: 100%;
-$body-margin: 0;
-$body-padding: 0;
-$ul-list-style: none;
+$btn-color: #a7c957; //本預計要讓大家統一使用btn.scss 因還有同學沿用 故先不移除
+$hover-color: #fff;
+
+//網站主背景
+$bground-color: #74a061; //背景底圖的色碼
+$bg-images: url(../images/index/img_bg_yg_pc4.png); //全站背景底圖 (和首頁同)
+
+//網站主色系 持續調整優化
+$primary-typo-color: #386641;
+$secondary-typo-color: #69994e;
+$success-sign: #a7c957;
+$info-sign: #386641;
+$warning-sign: #fa7b53;
+$search-bar-bgColor: #dfe6cf;
+
+//大中小border-radius (12/23新增)
+
+$border-radius-sml: 10px;
+$border-radius-med: 20px;
+$border-radius-lg: 30px;
+
+//大家新增的
 $mainWidth: 90%;
 $webBclolor: #64a600;
 
@@ -31,9 +52,3 @@ $desktop: 1300px;
 $medium: 1024px;
 $small: 721px;
 $tinny: 377px;
-
-//12/23新增 大中小border-radius
-
-$border-radius-sml: 10px;
-$border-radius-med: 20px;
-$border-radius-lg: 30px;
