@@ -1,0 +1,48 @@
+//filter下無子選單
+@mixin filter-no-more {
+    font-size: $para; //16px
+    padding: 10px 45px;
+    border: 1px solid #fff;
+    cursor: $cusor-pointer;
+    width: 150px;
+    color: white;
+
+    &:hover {
+        color: #386641;
+        background-color: white;
+    }
+}
+
+// filter下有子選單
+@mixin filter-more {
+    font-size: $para; //16px
+    padding: 10px 55px;
+    border: 1px solid #fff;
+    cursor: $cusor-pointer;
+    width: 170px;
+    color: white;
+
+    &:hover {
+        color: #386641;
+        background-color: white;
+    }
+}
+// filter下的子選單樣式
+@mixin filter-sub-menu {
+    text-align: center;
+    padding: 10px 55px; //父選單跟子選單一樣寬
+    border-bottom: 1px solid #a7c957;
+    font-size: $para; //16px
+    color: #69994e;
+    white-space: nowrap;
+    cursor: $cusor-pointer;
+
+    &:hover {
+        background-color: #fff;
+    }
+}
+
+//filter與他上下元素的距離
+@mixin filter-margin {
+    margin: 70px 0;
+}

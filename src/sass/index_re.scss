@@ -3,3 +3,19 @@
 body {
     @include bg;
 }
+
+.section1 {
+    @include banner-1st-title;
+}
+
+.section1-txt {
+    @include banner-txt;
+}
+
+.sub-title {
+    @include banner-2nd-title;
+}
+
+.filter li {
+    @include filter-more;
+}
