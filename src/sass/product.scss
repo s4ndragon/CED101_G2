@@ -11,8 +11,10 @@ $mainWidth: 90%;
     width: $mainWidth;
     margin: 50px auto;
     background-color: #fff;
-    padding: 5px 15px;
+    padding: 20px;
     max-width: $maxWidth;
+    border-radius: $border-radius-med;
+    margin-top: 0;
 
     img.addFavorite {
         position: absolute;
@@ -40,6 +42,8 @@ $mainWidth: 90%;
 
         >h2 {
             margin-top: 0;
+            font-size: $h5;
+            font-weight: bolder;
         }
 
         .info_content {
