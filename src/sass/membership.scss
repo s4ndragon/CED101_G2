@@ -1,4 +1,4 @@
-@import './default/common';
+@import "./default/common";
 
 //============= var ============//
 // $bgc: lighten($bg-color, 10%);
@@ -52,11 +52,10 @@ body {
     height: 300px;
     width: 100%;
     background-color: #ead779;
-    font-size: $h2;
+    @include banner-1st-title;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 20px; //=======//
 }
 
 main {
@@ -813,7 +812,7 @@ main {
         position: relative;
 
         &:after {
-            content: '\2715';
+            content: "\2715";
             position: absolute;
             top: 2px;
             right: 5px;
