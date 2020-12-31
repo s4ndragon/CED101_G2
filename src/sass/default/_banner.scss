@@ -1,0 +1,25 @@
+//導覽列下面的banner背景請和body背景同
+
+//導覽列下面的banner範圍內的主標題
+@mixin banner-1st-title {
+    font-size: $h1; //48px
+    letter-spacing: $letter-spacing; //3px
+    margin: 25px 0;
+    color: #fff;
+    text-align: $txt-align-center;
+}
+
+//banner內主標題下的內文
+@mixin banner-txt {
+    font-size: $h5; //18px
+    letter-spacing: $letter-spacing; //3px
+    text-align: $txt-align-center;
+}
+
+//banner次標 (第二層標題)
+
+@mixin banner-2nd-title {
+    font-size: $h2; //36px
+    letter-spacing: $letter-spacing; //3px
+    text-align: $txt-align-center;
+}
