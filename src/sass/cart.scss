@@ -8,7 +8,8 @@ div.main {
 
     padding: 20px 30px;
     border-radius: 5px;
-    background-color: #e3ffe6;
+    background-color: #eff2c7;
+    border-radius: $border-radius-med;
 }
 
 $itemBR: 5px;
@@ -26,7 +27,7 @@ div.cart_content {
 
     .item {
         display: grid;
-        grid-template-columns: 30% 65%;
+        grid-template-columns: 20% 70%;
         align-items: center;
         position: relative;
         background-color: #fff;
@@ -39,9 +40,9 @@ div.cart_content {
             position: absolute;
             top: 1%;
             right: 1%;
-            font-size: 45px;
+            font-size: 20px;
             cursor: pointer;
-            color: #BF0060;
+            color: black;
             font-weight: bold;
 
             @media screen and (max-width:400px) {
@@ -72,11 +73,15 @@ div.cart_content {
                 -webkit-box-orient: vertical;
                 -webkit-line-clamp: 2;
                 overflow: hidden;
+                font-size: $h5;
+                font-weight: bolder;
+                color: black;
             }
 
             div.content {
                 display: grid;
                 grid-template-columns: max-content max-content;
+                margin-top: 20px;
 
                 &:first-of-type input {
                     width: 45px;
@@ -132,9 +137,6 @@ div.function {
 }
 
 div#amount {
-    background-color: #e3ffe6;
-    width: max-content;
-    margin: 0px auto;
     border-radius: 5px;
-    padding: 10px 5px;
+    text-align: center;
 }
