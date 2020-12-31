@@ -66,17 +66,16 @@ footer {
 // =========以上是共用========
 
 #big_title {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: $h1;
-    height: 300px;
-    color: white;
-    font-weight: bold;
+    @include banner-1st-title;
+
+    h2 {
+        @include banner-txt;
+    }
 }
 
 .list {
     cursor: pointer;
+    @include filter-no-more;
 }
 
 
@@ -91,25 +90,22 @@ footer {
         display: flex;
 
         .cate {
-            margin-right: 30px;
             padding: 10px 20px;
             font-weight: bolder;
-            border-radius: $border-radius-sml;
             transition: all 0.5s ease;
 
             &:hover {
-                background-color: $secondary-typo-color;
-                color: white;
-                border-radius: $border-radius-sml;
+                background-color: white;
+                color: #386641;
             }
         }
     }
 }
 
 .fit {
-    background-color: $secondary-typo-color;
+    background-color: white;
     padding: 10px;
-    color: white;
+    color: #386641;
     font-weight: bolder;
 }
 
@@ -199,6 +195,7 @@ footer {
     background-color: $secondary-typo-color;
 
     span {
+        color: white;
         margin-left: 10px;
     }
 }

@@ -92,14 +92,14 @@
 }
 
 .lg-btn .lg-btn-style {
-    height: 100%;
-    overflow: hidden;
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: -3px;
-    right: -1px;
-    border-radius: 25px;
+    // height: 100%;
+    // overflow: hidden;
+    // position: absolute;
+    // top: 0;
+    // left: 0;
+    // bottom: -3px;
+    // right: -1px;
+    // border-radius: 25px;
 }
 
 .lg-btn .lg-btn_txt {
@@ -111,18 +111,19 @@
 }
 
 .lg-btn {
-    position: relative;
-    display: inline-block;
-    padding: 14px;
-    width: 260px;
-    font-size: 1rem;
-    font-weight: bold;
-    letter-spacing: 0.1rem;
-    text-align: center;
-    text-decoration: none;
-    background-color: #fff;
-    border-radius: 25px;
-    margin-top: 60px;
+    // position: relative;
+    // display: inline-block;
+    // padding: 14px;
+    // width: 260px;
+    // font-size: 1rem;
+    // font-weight: bold;
+    // letter-spacing: 0.1rem;
+    // text-align: center;
+    // text-decoration: none;
+    // background-color: #fff;
+    // border-radius: 25px;
+    // margin-top: 60px;
+    @include btn;
 }
 
 .lg-btn:after {
@@ -1012,9 +1013,10 @@
     }
 
     .lg-btn {
-        width: 168px;
-        padding: 10px;
-        font-size: 0.75rem;
+        // width: 168px;
+        // padding: 10px;
+        // font-size: 0.75rem;
+        @include btn;
     }
 
     .lg-btn:after {

@@ -16,7 +16,7 @@
 // filter下有子選單
 @mixin filter-more {
     font-size: $para; //16px
-    padding: 10px 55px;
+    padding: 10px 0;
     border: 1px solid #fff;
     cursor: $cusor-pointer;
     width: 170px;
@@ -27,6 +27,7 @@
         background-color: white;
     }
 }
+
 // filter下的子選單樣式
 @mixin filter-sub-menu {
     text-align: center;
