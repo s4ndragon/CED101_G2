@@ -10,7 +10,7 @@ img {
 //==============================//
 body {
     @include forTourAndShop;
-    font-family: 'Noto Serif TC';
+
 }
 
 
@@ -32,7 +32,11 @@ body {
 
 
 main {
-
+    h1 {
+        text-align: center;
+        font-size: $h1;
+        margin: 20px;
+    }
 
 
 
@@ -92,168 +96,266 @@ main {
     }
 
     .tourCreate_main {
-        // border: 1px solid black;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-
         .preview_container {
-            border: 1px solid black;
-            width: $main-width;
-            display: flex;
-            flex-direction: column;
+            width: 1200px;
+            margin: 0 auto;
+
+            @media only screen and (max-width: 576px) {
+                width: 100%;
+            }
 
             .preview_title {
-                font-size: $h1;
-                text-align: center;
-                margin: 20px;
+                margin-bottom: 30px;
 
                 h2 {
-                    margin: 20px;
+                    text-align: center;
+                    font-size: $h2;
                 }
             }
 
             .preview_content {
-                display: flex;
+                border-radius: 10px;
+                position: relative;
+                background-color: #fffeed;
+                box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 
                 @media only screen and (max-width: 576px) {
-                    flex-direction: column;
+                    width: 90%;
+                    margin: 0 auto;
                 }
 
                 .preview_left {
-                    width: 50%;
-                    padding-right: 5%;
+                    display: inline-block;
+                    width: 400px;
+                    padding: 20px;
 
                     @media only screen and (max-width: 576px) {
                         width: 100%;
-                        padding: 0;
                     }
 
                     img {
-                        width: 100%;
+                        border-radius: 10px;
                     }
+
+                    // .preview_left_img
                 }
 
                 .preview_right {
-                    width: 50%;
-                    padding-left: 5%;
+                    display: inline-block;
+                    width: 780px;
+                    vertical-align: top;
+                    position: relative;
+                    padding: 20px;
 
                     @media only screen and (max-width: 576px) {
                         width: 100%;
-                        padding: 0;
+                        padding-top: 0;
+                    }
+
+                    .tour_title {
+                        font-size: $h4;
+                    }
+
+                    .title {
+                        padding: 3px;
+
+                        span {
+                            font-size: $h5;
+                            padding-right: 5px;
+                        }
+                    }
+
+                    .rightDownDate {
+                        position: absolute;
+                        bottom: 0;
+                        right: 0;
+
+                        @media only screen and (max-width: 576px) {
+                            position: relative;
+                        }
+
+                        span {
+                            font-size: $h5;
+                        }
+
                     }
                 }
             }
-        }
 
-        .garden_info_container {
-            width: 100%;
-
-            .info_title {
-                text-align: center;
-                margin: 20px;
-            }
-
-            .info_content {
-                display: flex;
-
-                @media only screen and (max-width: 576px) {
-                    flex-direction: column;
-                }
-
-                .info_left {
-                    width: 50%;
-                    padding-right: 5%;
-
-                    @media only screen and (max-width: 576px) {
-                        width: 100%;
-                        padding: 0;
-                    }
-
-                    img {
-                        width: 100%;
-                    }
-                }
-
-                .info_right {
-                    width: 50%;
-                    padding-left: 5%;
-
-                    @media only screen and (max-width: 576px) {
-                        width: 100%;
-                        padding: 0;
-                    }
-                }
-            }
-        }
-
-        .activity {
-            width: 100%;
-
-            .activity_title {
-                text-align: center;
-                margin: 20px;
-            }
-
-            .activity_content {
-                display: flex;
-
-                @media only screen and (max-width: 576px) {
-                    flex-direction: column;
-                }
-            }
-
-            .tea_plucking,
-            .tea_making,
-            .tea_drinking {
-                // border: 1px solid red;
-                width: calc(100% / 3);
-                padding: 1%;
-                text-align: center;
+            .garden_info_container {
+                width: 1200px;
+                margin: 0 auto;
 
                 @media only screen and (max-width: 576px) {
                     width: 100%;
-                    padding: 0 0 10px;
                 }
 
-                img {
-                    width: 100%;
+                .info_title {
+                    margin: 30px 0;
+
+                    h2 {
+                        text-align: center;
+                        font-size: $h2;
+                    }
+                }
+
+                .info_content {
+                    border-radius: 10px;
+                    position: relative;
+                    background-color: #fffeed;
+                    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+                    @media only screen and (max-width: 576px) {
+                        width: 90%;
+                        margin: 0 auto;
+                    }
+
+                    .info_left {
+                        display: inline-block;
+                        width: 400px;
+                        padding: 20px;
+
+                        @media only screen and (max-width: 576px) {
+                            width: 100%;
+                        }
+
+                        img {
+                            border-radius: 10px;
+                        }
+
+                    }
+
+                    .info_right {
+                        display: inline-block;
+                        width: 780px;
+                        vertical-align: top;
+                        position: relative;
+                        padding: 20px;
+
+                        @media only screen and (max-width: 576px) {
+                            width: 100%;
+                            padding-top: 0;
+                        }
+
+                        #garden_title {
+                            font-size: $h4;
+                        }
+
+                        .content,
+                        .title {
+                            padding: 3px;
+                        }
+
+                        .title {
+                            font-size: $h5;
+                        }
+                    }
                 }
             }
-        }
-    }
-
-    .btn {
-        // border: 1px solid black;
-        // width: 30%;
-        display: flex;
-        justify-content: space-between;
-        align-self: center;
-
-        .prev,
-        .next {
-            margin: 10px 0;
-            @include btn;
-
         }
     }
 }
 
-.title {
-    font-size: $h4;
-    padding: 5px 0;
-    font-weight: bold;
+.activity_title {
+    margin: 30px 0;
 
-    @media only screen and (max-width: 576px) {
-        // text-align: center;
+    h2 {
+        text-align: center;
+        font-size: $h2;
     }
 }
 
-.content {
-    padding: 5px 0 10px;
-    font-size: $h5;
+.activity_content {
+    text-align: center;
+}
+
+.local_block {
+    // border: 1px solid rgb(240, 10, 10);
+    padding: 20px;
+    border-radius: 10px;
+    position: relative;
+    background-color: #fffeed;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    margin: 20px;
+    width: 300px;
+    display: inline-block;
 
     @media only screen and (max-width: 576px) {
-        // text-align: center;
+        width: 90%;
+        margin: 20px 0;
+    }
+
+    .local_img {
+        margin-right: 10px;
+        border-radius: 10px;
+
+        @media only screen and (max-width: 576px) {
+            display: block;
+            width: 100%;
+        }
+
+
+        img {
+            border-radius: 10px;
+        }
+    }
+
+    .local_text {
+        vertical-align: top;
+        margin-top: 10px;
+        position: relative;
+
+        @media only screen and (max-width: 576px) {
+            display: block;
+            width: 100%;
+        }
+
+
+        h2 {
+            font-size: $h4;
+        }
+
+        span {
+            font-size: $h5;
+            padding: 2px 5px;
+            color: white;
+            border-radius: 5px;
+        }
+
+        .t1 {
+            background-color: $secondary-typo-color;
+        }
+
+        .t2 {
+            background-color: deepskyblue;
+        }
+
+        .t3 {
+            background-color: orange;
+        }
+
+        .t4 {
+            background-color: deeppink;
+        }
+
+
+
+        p {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 5;
+            text-align: left;
+        }
+
+    }
+}
+
+.btn {
+    text-align: center;
+
+    button {
+        @include btn;
     }
 }
