@@ -128,7 +128,7 @@ function shot(){
 }
 function addworm(damage, defense, hp, speed,o){
   var img = document.createElement("img");
-  img.className = 'createZombies';
+  img.className = 'createWorm';
   img.src = '../dist/images/game/worm.gif';
   img.dataset.damage = damage;
   img.dataset.defense = defense;
