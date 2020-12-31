@@ -5,18 +5,24 @@
 
 
 body{
-    font-family: 'Noto Serif TC';
+    font-family: 'Noto Sans TC';
     @include forDiscussAndVote;
 }
 
 .banner{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-size: 60px;
+    font-size: 48px;
     margin: 0 0 30px 0;
     height: 300px;
-    background-color: #ead779;
+    background-color: #729e5f;
+    @include banner-1st-title;
+
+    .sec{
+        @include banner-txt;
+    }
 }
 
 main{
@@ -31,7 +37,9 @@ main{
         margin: 80px 0 50px;
         font-weight: bold;
         color: white;
+        @include banner-2nd-title;
     }
+
     .block1{
         box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
         padding: 10px 0;

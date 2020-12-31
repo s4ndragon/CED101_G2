@@ -1,36 +1,26 @@
 @import "default/_common.scss";
 
-// ==========共用=========
-@keyframes roll {
-    from {
-        background-position: 0px 0px;
-    }
-
-    to {
-        background-position: 0px 18000px;
-    }
-}
 
 
 body{
-    @include forTourAndShop;
-    font-family: 'Noto Serif TC';
-    background-image: url(../images/common/bg.png);
-    background-position: 0px 0px;
-    background-repeat: repeat-x;
-    animation: roll 5000s linear infinite;
-    background-repeat: repeat-y;
-    background-size: auto;
+    @include forDiscussAndVote;
+    font-family: 'Noto Sans TC';
 }
 
 .banner{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-size: 60px;
+    font-size: 48px;
     margin: 0 0 30px 0;
     height: 300px;
-    background-color: #ead779;
+    background-color: #729e5f;
+    @include banner-1st-title;
+
+    .sec{
+        @include banner-txt;
+    }
 }
 
 main{
@@ -111,7 +101,7 @@ main{
         margin-top: 60px;
         text-align: left;
         font-size: $h3;
-        color: #7baa17;
+        color:white;
         font-weight: bold;
         margin-bottom: 30px;
     }
@@ -196,9 +186,8 @@ main{
     }
 
     #commandall {
-        border-bottom: 1px solid gray;
+        border-bottom: 1px solid white;
         width: 90%;
-        // border: 1px solid red;
         margin: 30px auto 0;
     
         .command {
@@ -272,12 +261,13 @@ main{
                 outline: none;
                 border: transparent;
                 box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+                background-color: white;
             }
     
             .com_btn_countainer {
     
                 .inner_btn {
-                    @include smallbtn
+                    @include smallbtn2;
                 }
             }
         }
