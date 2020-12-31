@@ -6,7 +6,7 @@
     cursor: $cusor-pointer;
     width: 150px;
     color: white;
-    text-align: center;
+    text-align: $txt-align-center;
 
     &:hover {
         color: #386641;
@@ -22,7 +22,7 @@
     cursor: $cusor-pointer;
     width: 170px;
     color: white;
-    text-align: center;
+    text-align: $txt-align-center;
 
     &:hover {
         color: #386641;
