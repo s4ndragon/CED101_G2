@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!--  -->
 <html>
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -217,6 +218,93 @@
               </div>
             </div>
           </div>
+        <div class="panel panel-default">
+            <form action="">
+                <table >
+                    <caption>遊戲系統參數</caption>
+                    <tr>
+                        <td width="20px">遊戲時間(秒)：</td><td width="20px"><input type="number"min="0"></td>
+                    </tr>
+                    <tr>
+                        <td>蟲子攻擊間隔(毫秒)：</td><td><input type="number"min="0"></td>
+                    </tr>
+                    <tr>
+                        <td>生蟲速度(毫秒)：</td><td><input type="number"min="0"></td>
+                    </tr>
+                    <tr>
+                        <td>蟲子步伐(毫秒)：</td><td><input type="number"min="0"></td>
+                    </tr>
+                    <tr>
+                        <td>蟲子攻擊間隔(毫秒)：</td><td><input type="number"min="0"></td>
+                    </tr>
+                </table>
+    <!-- <h4>時間參數</h4>
+    <label for="">遊戲時間(秒)：<input type="number"min="0"></label><br>
+    <label for="">生蟲速度(毫秒)：<input type="number"min="0"></label><br>
+    <label for="">蟲子步伐(毫秒)：<input type="number"min="0"></label><br>
+    <label for="">蟲子攻擊間隔(毫秒)：<input type="number"min="0"></label><br>
+    <label for="">守衛攻擊間隔(毫秒)：<input type="number" name="" id=""></label><br>
+    <label for="">落葉產生間隔(毫秒)：<input type="number" name="" id=""></label><br>
+    <label for="">落葉速度(毫秒)：<input type="number"min="0"></label><br> -->
+</form>
+            <div class="panel-heading">
+                <h4>遊戲參數管理</h4>
+                <div class="form-group">
+                <span>全選 <input type="checkbox"></span>
+                <button class="btn btn-success">保存</button>
+                <button class="btn btn-primary">增加</button>
+                <button class="btn btn-danger">移除</button>
+                <ul class="pagination visible-md visible-lg visible-sm" id="page-right">
+                  <li><a href="#">«</a></li>
+                  <li class="active"><a href="#">1</a></li>
+                  <li><a href="#">2</a></li>
+                  <li><a href="#">3</a></li>
+                  <li><a href="#">4</a></li>
+                  <li><a href="#">5</a></li>
+                  <li><a href="#">»</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="panel-body">
+                <table border="1" class="table game role" width="50%">
+                    <tr><th><input type="checkbox" name="" id=""></th>
+                        <th width="10%">角色名稱</th>
+                        <th width="60px">圖片檔名</th>
+                        <th width="50px">角色價錢</th>
+                        <th width="50px">生命總值</th>
+                        <th width="50">初始生命</th>
+                        <th>攻擊速度</th>
+                        <th>攻擊</th>
+                        <th>防禦</th>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" name="" id=""></td>
+                        <td width="60px"><input type="text" value="仙人掌" width="60px"></td>
+                        <td><input type="text" value="5.gif" width="50"></td>
+                        <td><input type="text" value="25" width="50"></td>
+                        <td><input type="text" value="50" width="50"></td>
+                        <td><input type="text" value="40"></td>
+                        <td><input type="text" value="10"></td>
+                        <td><input type="text" value="30"></td>
+                        <td><input type="text" value="20"></td>
+                    </tr>
+                </table>
+                <!-- <table class="table timer">
+                    <tr>
+                        <th><input type="checkbox" name="" id=""></th>
+                        <th width="50">落葉速度</th>
+                        <th width="60px">子彈速度</th>
+                        <th width="50">射擊間隔</th>
+                        <th width="50">蟲子步伐</th>
+                        <th width="50">生蟲速度</th>
+
+                    </tr>
+                </table> -->
+
+            </div>
+        </div>
+
+
         </div>
       </div>
     </div>
