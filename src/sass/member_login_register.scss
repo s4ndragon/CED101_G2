@@ -26,13 +26,14 @@ html {
 
 body {
     // background: $bg-color;
-    font-family: $font-family;
+    // font-family: $font-family;
 }
 
 a {
     text-decoration: none;
     color: $main;
     transition: 0.5s ease;
+
     &:hover {
         color: $main-dark;
     }
@@ -51,11 +52,13 @@ a {
     list-style: none;
     padding: 0;
     margin: 0 0 40px 0;
+
     &:after {
         content: "";
         display: table;
         clear: both;
     }
+
     li a {
         display: block;
         text-decoration: none;
@@ -68,18 +71,20 @@ a {
         text-align: center;
         cursor: pointer;
         transition: 0.5s ease;
+
         &:hover {
             background: $main-dark;
             color: $search-bar-bgColor;
         }
     }
+
     .active a {
         background: $main;
         color: $search-bar-bgColor;
     }
 }
 
-.tab-content > div:last-child {
+.tab-content>div:last-child {
     display: none;
 }
 
@@ -100,6 +105,7 @@ label {
     -webkit-backface-visibility: hidden;
     pointer-events: none;
     font-size: 22px;
+
     .req {
         margin: 2px;
         color: $warning-sign;
@@ -110,6 +116,7 @@ label.active {
     transform: translateY(-25px);
     left: 2px;
     font-size: 14px;
+
     .req {
         opacity: 0;
     }
@@ -132,6 +139,7 @@ textarea {
     color: $search-bar-bgColor;
     border-radius: 0;
     transition: border-color 0.25s ease, box-shadow 0.25s ease;
+
     &:focus {
         outline: 0;
         border-color: $main;
@@ -155,10 +163,11 @@ textarea {
         clear: both;
     }
 
-    > div {
+    >div {
         float: left;
         width: 48%;
         margin-right: 4%;
+
         &:last-child {
             margin: 0;
         }
@@ -168,6 +177,7 @@ textarea {
 #forget_pw {
     display: none;
 }
+
 .button {
     border: 0;
     outline: none;
@@ -181,6 +191,7 @@ textarea {
     color: $search-bar-bgColor;
     transition: all.5s ease;
     -webkit-appearance: none;
+
     &:hover,
     &:focus {
         background: $main-dark;
