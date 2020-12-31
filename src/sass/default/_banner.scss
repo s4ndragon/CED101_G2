@@ -16,12 +16,10 @@
 
     @media only screen and (max-width: 576px) {
         height: 300px;
-
     }
 }
 
 //導覽列下面的banner範圍內的主標題
-
 
 @mixin banner-1st-title {
     font-size: $h1; //48px
@@ -36,7 +34,7 @@
     font-size: $h5; //18px
     letter-spacing: $letter-spacing; //3px
     text-align: $txt-align-center;
-    color:black;
+    color: black;
 }
 
 //banner次標 (第二層標題)
