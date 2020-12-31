@@ -11,7 +11,7 @@
         padding: 0;
         margin: 0 0 40px 0;
         &:after {
-            content: "";
+            content: '';
             display: table;
             clear: both;
         }
@@ -19,8 +19,8 @@
             display: block;
             text-decoration: none;
             padding: 15px;
-            background: rgba($gray-light, 0.25);
-            color: $gray-light;
+            // background: rgba($gray-light, 0.25);
+            // color: $gray-light;
             font-size: 20px;
             float: left;
             width: 50%;
@@ -28,12 +28,12 @@
             cursor: pointer;
             transition: 0.5s ease;
             &:hover {
-                background: $main-dark;
+                // background: $main-dark;
                 color: $search-bar-bgColor;
             }
         }
         .active a {
-            background: $main;
+            // background: $main;
             color: $search-bar-bgColor;
         }
     }
@@ -46,7 +46,7 @@ h2 {
     text-align: center;
     color: $search-bar-bgColor;
     font-size: $h2;
-    font-weight: $bold;
+    // font-weight: $bold;
     margin: 0 0 40px;
 }
 
@@ -56,7 +56,7 @@ label {
     left: 13px;
     color: rgba($search-bar-bgColor, 0.5);
     transition: all 0.25s ease;
-    -webkit-backface-visibility: hidden;
+    // -webkit-backface-visibility: hidden;
     pointer-events: none;
     font-size: 22px;
     .req {
@@ -87,18 +87,18 @@ textarea {
     padding: 5px 10px;
     background: none;
     background-image: none;
-    border: 1px solid $gray-light;
+    // border: 1px solid $gray-light;
     color: $search-bar-bgColor;
     border-radius: 0;
     transition: border-color 0.25s ease, box-shadow 0.25s ease;
     &:focus {
         outline: 0;
-        border-color: $main;
+        // border-color: $main;
     }
 }
 
 textarea {
-    border: 2px solid $gray-light;
+    // border: 2px solid $gray-light;
     resize: vertical;
 }
 
@@ -109,7 +109,7 @@ textarea {
 
 .top-row {
     &:after {
-        content: "";
+        content: '';
         display: table;
         clear: both;
     }
@@ -133,16 +133,16 @@ textarea {
     border-radius: 0;
     padding: 15px 0;
     font-size: 2rem;
-    font-weight: $bold;
+    // font-weight: $bold;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    background: $main;
+    // background: $main;
     color: $search-bar-bgColor;
     transition: all.5s ease;
     -webkit-appearance: none;
     &:hover,
     &:focus {
-        background: $main-dark;
+        // background: $main-dark;
     }
 }
 
@@ -157,7 +157,7 @@ textarea {
 }
 
 .btn {
-    @include btn4;
+    // @include btn4;
     display: block;
 }
 
