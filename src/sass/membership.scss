@@ -1,4 +1,4 @@
-@import "./default/common";
+@import './default/common';
 
 //============= var ============//
 // $bgc: lighten($bg-color, 10%);
@@ -813,7 +813,7 @@ main {
         position: relative;
 
         &:after {
-            content: "\2715";
+            content: '\2715';
             position: absolute;
             top: 2px;
             right: 5px;
