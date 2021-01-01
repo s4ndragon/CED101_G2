@@ -115,6 +115,19 @@ h1 {
             top: 0px;
         }
 
+        .help_top {
+            position: relative;
+
+
+
+            #help_text {
+                position: absolute;
+                top: 25%;
+                left: 60%;
+                white-space: nowrap;
+            }
+
+        }
 
 
 
@@ -255,6 +268,9 @@ h1 {
 
         h2 {
             font-size: $h4;
+            margin: 0;
+            text-align: left;
+            color: $primary-typo-color;
         }
 
         span {
@@ -349,6 +365,7 @@ h1 {
         position: absolute;
         top: -120px;
         right: 30px;
+        box-shadow: 3px 3px 10px black;
     }
 
     .help_text::before {

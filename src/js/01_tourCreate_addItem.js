@@ -1,5 +1,5 @@
 let tourBlock = document.getElementsByClassName("tourCreate_item_block")[0];
-let helpText = document.getElementById("help_text");
+let helpText = document.getElementsByClassName("help_text");
 let getRightsideLocal = document.getElementsByClassName('local_rightside_img')[0];
 let getRightsideHotel = document.getElementsByClassName('hotel_rightside_img')[0];
 let getRightsideRest = document.getElementsByClassName('rest_rightside_img')[0];
@@ -28,7 +28,8 @@ window.addEventListener("load", function () {
         active.style.visibility = "hidden";
         local.setAttribute('disabled', 'daisabled');
 
-        helpText.innerText = "請選擇要去的茶園!!";
+        helpText[0].innerText = "請選擇要去的茶園!!";
+        helpText[1].innerText = "請選擇要去的茶園!!";
     }
 })
 function addLocal() {
@@ -54,7 +55,13 @@ function addLocal() {
         hotel.style.visibility = "visible";
         rest.style.visibility = "visible";
         active.style.visibility = "visible";
-        greenLine.setAttribute("style", "display:block")
+        greenLine.setAttribute("style", "display:block");
+
+        // ==================change helper text=====================
+
+        helpText[0].innerText = "請選擇要住的旅館!! (限一個)"
+        helpText[1].innerText = "請選擇要住的旅館!! (限一個)"
+
     };
 }
 function removeNewLocal() {
@@ -67,6 +74,7 @@ function removeNewLocal() {
     rest.style.visibility = "hidden";
     active.style.visibility = "hidden";
     greenLine.removeAttribute("style");
+
 };
 
 
@@ -102,7 +110,8 @@ function showLocal() {
 
 
         // ==================change helper text=====================
-        helpText.innerText = "請選擇要去的茶園!!"
+        helpText[0].innerText = "請選擇要去的茶園!!"
+        helpText[1].innerText = "請選擇要去的茶園!!"
     }
 };
 
@@ -133,9 +142,7 @@ function showHotel() {
         rest.removeAttribute('style');
         local.removeAttribute('disabled');
 
-        // ==================change helper text=====================
 
-        helpText.innerText = "請選擇要住的旅館!! (限一個)"
     }
 };
 
@@ -164,6 +171,10 @@ function addhotel() {
         function removeNewHotel() {
             getRightsideHotel.removeChild(newHotel);
         };
+        // ==================change helper text=====================
+
+        helpText[0].innerText = "請選擇用餐的餐廳!! (最多三個)";
+        helpText[1].innerText = "請選擇用餐的餐廳!! (最多三個)";
     }
 }
 
@@ -195,9 +206,7 @@ function showRest() {
         active.removeAttribute('style');
         hotel.removeAttribute('style');
         local.removeAttribute('disabled');
-        // ==================change helper text=====================
 
-        helpText.innerText = "請選擇用餐的餐廳!! (最多三個)"
     }
 };
 function addRest() {
@@ -225,6 +234,10 @@ function addRest() {
         function removeNewRest() {
             getRightsideRest.removeChild(newRest);
         };
+        // ==================change helper text=====================
+        helpText[0].innerText = "請選擇想參加的活動!! (三擇一)"
+        helpText[1].innerText = "請選擇想參加的活動!! (三擇一)"
+
     }
 }
 
@@ -263,8 +276,7 @@ function showActive() {
     rest.removeAttribute('style');
     local.removeAttribute('disabled');
 
-    // ==================change helper text=====================
-    helpText.innerText = "請選擇想參加的活動!! (三擇一)"
+
     newActive[0].addEventListener("click", addActive1);
     newActive[1].addEventListener("click", addActive2);
     newActive[2].addEventListener("click", addActive3);
