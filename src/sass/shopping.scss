@@ -18,9 +18,16 @@ body {
 
     }
 
+    h2 {
+        margin-top: 40px;
+        margin-bottom: 20px;
+    }
+
     input[type=button] {
         @include smallbtn3;
     }
+
+
 
     .addFavorite {
         width: 30px;
@@ -153,44 +160,70 @@ div.search {
     margin: 0px auto 0px auto;
     text-align: center;
     width: $mainWidth;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 
     .classify {
         display: inline-block;
         position: relative;
 
-        table {
-            background-color: #CCFF80;
-            border: 5px solid #69994e;
-            text-align: center;
-            display: none;
-            width: max-content;
-            position: absolute;
-            padding: 8px;
-            border-radius: 20px;
+        input.classifyBtn {
+            @include smallbtn4;
+            display: inline-block;
+        }
 
+        input.selected {
+            background-color: darkgreen;
+            color: #fff;
 
-
-            td {
-                background-color: #fff;
-                border: 2px solid #CCFF80;
-                padding: 8px;
-                border-radius: 15px;
-
-                a {
-                    color: #69994e;
-                    padding: 15px 5px;
-                }
+            &:hover {
+                box-shadow: none;
+                opacity: .8;
+                color: #fff;
             }
         }
+
+
+    }
+
+    .search_bar {
+        margin-top: 15px;
     }
 
     #searchBar {
-        @media all and (max-width: $small) {
+        width: 300px;
+        height: 30px;
+        border-radius: 15px 0 0 15px;
+        padding: 5px 15px;
+        border: none;
+        outline: none;
 
+        @media all and (max-width: $small) {
             width: 100px;
+        }
+    }
+
+    input[type=submit] {
+        width: 100px;
+        height: 30px;
+        border-radius: 0 15px 15px 0;
+        padding: 5px 15px;
+        border: none;
+        vertical-align: bottom;
+        background-color: darkgreen;
+        color: #fff;
+        outline: none;
+        cursor: pointer;
+    }
+
+    .orderby {
+        background-color: #fff;
+        margin: 30px auto;
+        width: max-content;
+        padding: 5px 15px;
+        border-radius: 20px;
+
+        input {
+            margin-left: 5px;
+            margin-right: 2px;
         }
     }
 }
@@ -259,4 +292,33 @@ div.products {
             }
         }
     }
+
+}
+
+#addcartLB {
+    background-color: #fff;
+    width: 300px;
+    height: 100px;
+    position: fixed;
+    top: 50%;
+    right: 50%;
+    transform: translate(50%, -50%);
+    z-index: 99;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    display: none;
+
+    #closeLB {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+    }
+
+    #addcartLBText {
+        color: #69994e;
+    }
+
 }

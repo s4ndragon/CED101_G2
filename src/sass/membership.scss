@@ -51,7 +51,7 @@ body {
 .banner {
     height: 300px;
     width: 100%;
-    background-color: #ead779;
+    // background-color: #ead779;
     @include banner-1st-title;
     display: flex;
     align-items: center;
@@ -105,7 +105,7 @@ main {
 
         .side_content {
             .mine_profile {
-                @include smallbtn3;
+                @include smallbtn4;
 
                 @media only screen and (min-width: 768px) {
                     display: none;
@@ -125,7 +125,7 @@ main {
             // border: 1px solid black;
             overflow: auto;
             white-space: nowrap;
-            background-color: $lighter;
+            background-color: #eff2c7;
             // display: flex;
             width: $main-width;
             justify-content: space-between;
@@ -137,7 +137,7 @@ main {
             }
 
             .mine_profile {
-                @media only screen and (max-width: 768px) {
+                @media only screen and (max-width: 767px) {
                     display: none;
                 }
             }
@@ -145,7 +145,7 @@ main {
             h3 {
                 display: inline-block;
                 // border: 1px solid red;
-                font-size: $h3;
+                font-size: $h4;
                 padding: 15px;
 
                 @media only screen and (min-width: 993px) and (max-width: 1200px) {
@@ -175,7 +175,7 @@ main {
             .select-color {
                 // border: 1px solid green;
                 // border-bottom: 1px solid grey;
-                background-color: $lighter;
+                background-color: #eff2c7;
                 color: grey;
                 // border-radius: 5px 5px 0 0;
                 transition-duration: 0.2s;
@@ -190,7 +190,7 @@ main {
 
         #tour {
             // border: 1px solid red;
-            background-color: $lighter;
+            background-color: #eff2c7;
             width: $main-width;
             display: flex;
             flex-direction: column;
@@ -217,6 +217,7 @@ main {
                     padding: 10px;
                     font-size: $h3;
                     color: $btn-color;
+                    font-weight: $font-weight;
                 }
 
                 #mine_on_going,
@@ -348,7 +349,6 @@ main {
             width: $main-width;
             display: none;
             position: relative;
-
             @media only screen and (max-width: 768px) {
                 width: 100%;
             }
@@ -360,18 +360,9 @@ main {
                 justify-content: space-between;
                 justify-self: center;
                 position: absolute;
-                background-color: $lighter;
-                // left: 50%;
+                background-color: #eff2c7;
                 padding: 15px 0px;
                 color: grey;
-
-                @media only screen and (min-width: 993px) and (max-width: 1200px) {
-                    width: 100%;
-                }
-
-                @media only screen and (max-width: 993px) {
-                    width: 100%;
-                }
 
                 h4 {
                     font-size: $h4;
@@ -407,10 +398,9 @@ main {
 
             #fav_container {
                 // border: 1px solid green;
-                background-color: $lighter;
+                background-color: #eff2c7;
                 border-radius: 0 0 5px 5px;
                 // padding: 30px 10px;
-                background-color: $lighter;
 
                 #fav_tour {
                     // position: relative;
@@ -423,6 +413,8 @@ main {
                     #tour_list {
                         display: flex;
                         flex-wrap: wrap;
+                        justify-content: center;
+                        align-items: center;
                     }
                 }
 
@@ -463,7 +455,7 @@ main {
                 width: 100%;
                 display: flex;
                 flex-direction: column;
-                background-color: $lighter;
+                background-color: #eff2c7;
                 border-radius: 0 0 5px 5px;
                 // padding: 10px;
                 // margin: 20px;
@@ -549,7 +541,7 @@ main {
         #mine_article {
             display: none;
             width: $main-width;
-            background-color: $lighter;
+            background-color: #eff2c7;
             border-radius: 0 0 5px 5px;
 
             @media only screen and (max-width: 768px) {
@@ -626,18 +618,20 @@ main {
 
             #profile {
                 // border: 1px solid $primary-typo-color;
-                background-color: $lighter;
+                background-color: #eff2c7;
                 border-radius: 0 0 5px 5px;
                 width: 100%;
                 display: flex;
-                flex-direction: column;
+                // flex-direction: column;
+                flex-wrap: wrap;
                 position: relative;
                 align-items: center;
+                justify-content: center;
                 padding-top: 20px;
 
                 .field-wrap {
-                    display: flex;
-                    flex-direction: column;
+                    // display: flex;
+                    // flex-direction: column;
                     position: relative;
                     margin: 20px 0;
                     color: $primary-typo-color;
@@ -661,6 +655,7 @@ main {
                         color: $primary-typo-color;
                         border-radius: 0;
                         transition: border-color 0.25s ease, box-shadow 0.25s ease;
+                        border-radius: 5px;
 
                         &:focus {
                             outline: 0;
@@ -676,7 +671,8 @@ main {
                         // -webkit-backface-visibility: hidden;
                         pointer-events: none;
                         // font-size: 22px;
-                        // color: black;
+                        color: $primary-typo-color;
+                        font-size: $h5;
                     }
 
                     label.active {
@@ -686,8 +682,14 @@ main {
                     }
 
                     label.highlight {
-                        color: $btn-color;
+                        color: $bground-color;
                     }
+                }
+                .btn_sent {
+                    // border: 1px solid black;
+                    width: 300px;
+                    text-align: center;
+                    margin-bottom: 15px;
                 }
 
                 // .address {
@@ -696,8 +698,8 @@ main {
                 //     }
                 // }
                 .button {
-                    @include btn4 // border: 0;
-                        // outline: none;
+                    @include btn3; // border: 0;
+                    margin: 0 auto // outline: none;
                         // border-radius: 0;
                         // padding: 5px 10px;
                         // font-size: $h3;
@@ -728,7 +730,7 @@ main {
     background-color: white;
     position: relative;
     top: 30px;
-    width: 43%;
+    width: calc(100% / 4);
     padding: 10px;
     margin: 20px;
     border-radius: 10px;
@@ -738,8 +740,14 @@ main {
         background-color: rgba($primary-typo-color, 0.3);
         color: $primary-typo-color;
     }
+    @media only screen and (min-width: 992px) and (max-width: 1200px) {
+        width: calc(100% / 3);
+    }
 
-    @media only screen and (max-width: 992px) {
+    @media only screen and (min-width: 767px) and (max-width: 992px) {
+        width: calc(100% / 3);
+    }
+    @media only screen and (max-width: 767px) {
         width: 100%;
     }
 

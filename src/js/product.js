@@ -26,5 +26,15 @@ window.addEventListener('load', () => {
             </div>
         </div>
                             `;
+    };
+    classifyBtns = document.getElementsByClassName('classifyBtn');
+    for (let i = 0; i < classifyBtns.length; i++) {
+        classifyBtns[i].addEventListener('click', (e) => {
+            for (let j = 0; j < classifyBtns.length; j++) {
+                classifyBtns[j].setAttribute('class', 'classifyBtn');
+            }
+            e.target.setAttribute('class', 'classifyBtn selected')
+        });
+
     }
 })
