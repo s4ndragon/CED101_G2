@@ -16,7 +16,8 @@ window.addEventListener('load', () => {
             <div class="content">
                 <a href="./04_product.html">
                     <h4>【原藝坊】悠然愜意 青瓷鯉魚茶壺套組精湛工藝，功夫淳厚，手感極佳，品茶必備</h4>
-                    <div class="price">NT<span>550</span></div>
+                    <div class="price"><span>550</span></div>
+                    <p>商品介紹商品介紹商品介紹商品介紹商品介紹商品介紹商品介紹商品介紹商品介紹</p>
                 </a>
                 <div class='btns'>
                 <img class='addFavorite' src="./images/common/heart.png" alt="">
