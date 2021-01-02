@@ -42,7 +42,7 @@
     }
 }
 
-.h2 {
+.title {
     text-align: center;
     color: $search-bar-bgColor;
     font-size: $h2;
@@ -77,34 +77,32 @@ label.active {
 label.highlight {
     color: $search-bar-bgColor;
 }
-
-input,
-textarea {
-    font-size: 22px;
-    display: block;
-    width: 100%;
-    height: 100%;
-    padding: 5px 10px;
-    background: none;
-    background-image: none;
-    // border: 1px solid $gray-light;
-    color: black;
-    border-radius: 0;
-    transition: border-color 0.25s ease, box-shadow 0.25s ease;
-    &:focus {
-        outline: 0;
-        // border-color: $main;
+.field-wrap {
+    position: relative;
+    margin-bottom: 40px;
+    input,
+    textarea {
+        font-size: 22px;
+        display: block;
+        width: 100%;
+        height: 100%;
+        padding: 5px 10px;
+        background: none;
+        background-image: none;
+        // border: 1px solid $gray-light;
+        color: black;
+        border-radius: 0;
+        transition: border-color 0.25s ease, box-shadow 0.25s ease;
+        &:focus {
+            outline: 0;
+            // border-color: $main;
+        }
     }
 }
 
 textarea {
     // border: 2px solid $gray-light;
     resize: vertical;
-}
-
-.field-wrap {
-    position: relative;
-    margin-bottom: 40px;
 }
 
 .top-row {

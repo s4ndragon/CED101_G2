@@ -1,25 +1,25 @@
-@import 'variables';
+@import "variables";
 // @import 'login_register';
-@import 'reset';
-@import 'header';
-@import 'footer';
-@import 'bground_style';
-@import 'btn';
-@import 'form';
-@import 'leaf';
-@import 'font';
-// @import 'login_register';
-@import 'leaf';
+@import "reset";
+@import "header";
+@import "footer";
+@import "bground_style";
+@import "btn";
+@import "form";
+@import "leaf";
+@import "font";
+@import "login_register";
+@import "leaf";
 // @import 'load';
-@import 'filter';
-@import 'banner';
+@import "filter";
+@import "banner";
 
 img {
     max-width: $img-max-width;
 }
 
 body {
-    font-family: 'Noto Sans TC';
+    font-family: "Noto Sans TC";
     line-height: 28px;
     background-image: url(../images/index/img_bg_yg_pc4.png);
     background-size: 100% auto;
