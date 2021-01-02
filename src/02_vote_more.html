@@ -17,10 +17,9 @@
     @@include('layout/leaf.html')
     @@include('layout/nav.html')
     <div class="banner">
-		<p class="fir">茶園排行</p>
-		<p class="sec">為心目中最棒的茶園評分吧！</p>
-	</div>
-        
+        <p class="fir">茶園排行</p>
+    </div>
+
     <main id="app">
         <div class="all">
             <div class="garden">
@@ -29,8 +28,8 @@
             <div class="ginfo">
                 <div class="s1">
                     <p class="p1">舞鶴茶園</p>
-                    <div class="fb-share-button" data-href="https://tw.yahoo.com/"
-                        data-layout="button" data-size="small">
+                    <div class="fb-share-button" data-href="https://tw.yahoo.com/" data-layout="button"
+                        data-size="small">
                         <a target="_blank"
                             href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5501%2F07_vote_more.html&amp;src=sdkpreparse"
                             class="fb-xfbml-parse-ignore">
@@ -40,11 +39,11 @@
                 </div>
 
                 <div class="allscore app">
-					<span class="score">
-						總分:&ensp; 
-					</span>
-					<div>
-						<star-rating  :rating="4.7" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
+                    <span class="score">
+                        總分:&ensp;
+                    </span>
+                    <div>
+                        <star-rating :rating="4.7" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
                     </div>
                 </div>
 
@@ -56,8 +55,8 @@
                     海拔100至300公尺的舞鶴台地，依傍高聳的中央山脈，隨風拂來秀姑巒溪與紅葉溪的濕潤水氣，宜人的氣候適合茶樹生長，是天鶴茶的產地，也是小葉綠蟬生長的天堂，經由小葉綠蟬吸吮而製成的蜜香紅茶，微帶淡淡的果香與蜜香，口感溫潤生津，獨特的風味聞名全臺，成為旅人來訪瑞穗必帶的伴手禮之一。
                 </p>
                 <div class="btwrap app2">
-					<button class="bt" @click="showModal = true">
-						我要評分
+                    <button class="bt" @click="showModal = true">
+                        我要評分
                     </button>
 
                     <!-- overlay -->
@@ -83,8 +82,8 @@
 
 
         <div id="commandall">
-                <h3 class="t1">茶園留言</h2>
-            <!--       留言重複開始         -->
+            <h3 class="t1">茶園留言</h2>
+                <!--       留言重複開始         -->
                 <div class="command">
                     <div class="nameall">
                         <div class="mem_photo"><img class="mem_photo" src="./images/common/mem_photo1.png" alt=""></div>
@@ -99,7 +98,7 @@
                             <button class="repobt" @click="showModal2 = true">
                                 <img class="excl" src="./images/common/852019_exclamation_512x512.png" alt="">
                             </button>
-                            
+
                             <!-- overlay -->
                             <div class="overlay" v-if="showModal2" @click="showModal2 = true"></div>
                             <!-- modal -->
@@ -110,11 +109,11 @@
                                     </div>
                                     <p class="welcome">請輸入檢舉理由</p>
                                     <textarea class="repoinfo" cols="30" rows="10"></textarea>
-                            
+
                                     <button class="go">送出</button>
                                 </form>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -132,7 +131,7 @@
                             <button class="repobt" @click="showModal2 = true">
                                 <img class="excl" src="./images/common/852019_exclamation_512x512.png" alt="">
                             </button>
-                            
+
                             <!-- overlay -->
                             <div class="overlay" v-if="showModal2" @click="showModal2 = true"></div>
                             <!-- modal -->
@@ -143,11 +142,11 @@
                                     </div>
                                     <p class="welcome">請輸入檢舉理由</p>
                                     <textarea class="repoinfo" cols="30" rows="10"></textarea>
-                            
+
                                     <button class="go">送出</button>
                                 </form>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -165,7 +164,7 @@
                             <button class="repobt" @click="showModal2 = true">
                                 <img class="excl" src="./images/common/852019_exclamation_512x512.png" alt="">
                             </button>
-                            
+
                             <!-- overlay -->
                             <div class="overlay" v-if="showModal2" @click="showModal2 = true"></div>
                             <!-- modal -->
@@ -176,11 +175,11 @@
                                     </div>
                                     <p class="welcome">請輸入檢舉理由</p>
                                     <textarea class="repoinfo" cols="30" rows="10"></textarea>
-                            
+
                                     <button class="go">送出</button>
                                 </form>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -213,8 +212,11 @@
                         <div class="love">
                             <img class="like" src="./images/common/heart.png" title="加入收藏" alt="">
                         </div>
-                        <div class="fb-share-button" data-href="https://tw.yahoo.com/" data-layout="button" data-size="small">
-                            <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5501%2F07_vote_more.html&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
+                        <div class="fb-share-button" data-href="https://tw.yahoo.com/" data-layout="button"
+                            data-size="small">
+                            <a target="_blank"
+                                href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5501%2F07_vote_more.html&amp;src=sdkpreparse"
+                                class="fb-xfbml-parse-ignore">
                                 分享
                             </a>
                         </div>
@@ -226,13 +228,13 @@
                         <span class="green">活動日期:</span>&ensp;2020/12/31
                     </p>
                     <p>
-                        <span class="green">截止揪團日期:</span>&ensp;2020/12/25 
+                        <span class="green">截止揪團日期:</span>&ensp;2020/12/25
                     </p>
                     <p>
                         <span class="green">預估費用:</span>&ensp; $800
                     </p>
                     <p>
-                        <span class="green">參加人數:</span>&ensp; 15/20 人 
+                        <span class="green">參加人數:</span>&ensp; 15/20 人
                     </p>
                 </div>
                 <button class="bt">
@@ -249,8 +251,11 @@
                         <div class="love">
                             <img class="like" src="./images/common/heart.png" title="加入收藏" alt="">
                         </div>
-                        <div class="fb-share-button" data-href="https://tw.yahoo.com/" data-layout="button" data-size="small">
-                            <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5501%2F07_vote_more.html&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
+                        <div class="fb-share-button" data-href="https://tw.yahoo.com/" data-layout="button"
+                            data-size="small">
+                            <a target="_blank"
+                                href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5501%2F07_vote_more.html&amp;src=sdkpreparse"
+                                class="fb-xfbml-parse-ignore">
                                 分享
                             </a>
                         </div>
@@ -262,13 +267,13 @@
                         <span class="green">活動日期:</span>&ensp;2020/12/31
                     </p>
                     <p>
-                        <span class="green">截止揪團日期:</span>&ensp;2020/12/25 
+                        <span class="green">截止揪團日期:</span>&ensp;2020/12/25
                     </p>
                     <p>
                         <span class="green">預估費用:</span>&ensp; $800
                     </p>
                     <p>
-                        <span class="green">參加人數:</span>&ensp; 15/20 人 
+                        <span class="green">參加人數:</span>&ensp; 15/20 人
                     </p>
                 </div>
                 <button class="bt">
@@ -285,8 +290,11 @@
                         <div class="love">
                             <img class="like" src="./images/common/heart.png" title="加入收藏" alt="">
                         </div>
-                        <div class="fb-share-button" data-href="https://tw.yahoo.com/" data-layout="button" data-size="small">
-                            <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5501%2F07_vote_more.html&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
+                        <div class="fb-share-button" data-href="https://tw.yahoo.com/" data-layout="button"
+                            data-size="small">
+                            <a target="_blank"
+                                href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5501%2F07_vote_more.html&amp;src=sdkpreparse"
+                                class="fb-xfbml-parse-ignore">
                                 分享
                             </a>
                         </div>
@@ -298,13 +306,13 @@
                         <span class="green">活動日期:</span>&ensp;2020/12/31
                     </p>
                     <p>
-                        <span class="green">截止揪團日期:</span>&ensp;2020/12/25 
+                        <span class="green">截止揪團日期:</span>&ensp;2020/12/25
                     </p>
                     <p>
                         <span class="green">預估費用:</span>&ensp; $800
                     </p>
                     <p>
-                        <span class="green">參加人數:</span>&ensp; 15/20 人 
+                        <span class="green">參加人數:</span>&ensp; 15/20 人
                     </p>
                 </div>
                 <button class="bt">
@@ -326,7 +334,7 @@
 
     @@include('layout/footer.html')
 
-    
+
     <script>
         Vue.component("star-rating", VueStarRating.default, {
             methods: {
@@ -352,20 +360,20 @@
             }
         });
 
-        
+
 
         new Vue({
             el: "#app",
-            data:{
-                showModal:false,
-                showModal2:false,
+            data: {
+                showModal: false,
+                showModal2: false,
             }
         });
-		
+
         // new Vue({
 		// 	el: ".app3",
         // });
-        
+
         // 燈箱
         // new Vue({
         //     el: '.app2',
@@ -378,7 +386,7 @@
         //     data: { showModal: false }
         // });
 
-        
+
 
     </script>
 
