@@ -7,21 +7,41 @@
         <link rel="stylesheet" href="./css/membership.css" />
         <script src="../node_modules/jquery/dist/jquery.js"></script>
         <script src="../node_modules/tw-city-selector/dist/tw-city-selector.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
         <script src="./js/membership.js"></script>
         <title>會員系統</title>
     </head>
     <body>
             @@include('layout/nav.html')
-            <div class="banner">會員中心</div>
+            <div class="banner">
+                <h1>會員中心</h1>
+                <h2>歡迎回來</h2>
+            </div>
         <main>
             <!-- 側邊欄 -->
-            <div id="side">
-                <img src="./images/member/Mr_Guo.jpg" id="avatar" />
+            <!-- <div id="side"> -->
+                <div class="card">
+                        <div class="card-body">
+                        <div class="profile-pic">
+                            <img class="rounded-circle" src="./images/member/Mr_Guo.jpg">
+                        </div>
+                        <h2>阿民</h2>
+                        <h6 class="memId">@ming</h6>
+                        <input type="text" class="input-profile" name="profile" value="熱愛程式及茶園的男子">
+                        </div>
+                    </div>
+                    <input type="file" id="profile_pic_input" name="profile_pic_input" accept="image/*" />
+                    
+                <!-- <input id="profile_picture_upload" type="file" accept=".jpg, .jpeg, .png, .gif" />
+
+                <div class="image-wrap"  data-change-label="Change" >
+                    <div id="image" style="background-image: url('./images/member/Mr_Guo.jpg')"></div>
+                </div>
                 <div class="side_content">
                     <h3>阿民</h3>
                     <button class="mine_profile">修改資料</button>
-                </div>
-            </div>
+                </div> -->
+            <!-- </div> -->
             <!-- 主要內容 -->
             <div id="main_container">
                 <!-- 主要內容的選單列 -->
@@ -486,7 +506,7 @@
                     <form action="" id="profile">
                         <div class="field-wrap">
                             <label for="email">電子信箱</label>
-                            <input type="text" name="email" class="email"/>
+                            <input type="email" name="email" class="email"/>
                         </div>
                         <div class="field-wrap">
                             <label for="my_id">帳號</label>
@@ -494,11 +514,11 @@
                         </div>
                         <div class="field-wrap">
                             <label for="pass_password">舊密碼</label>
-                            <input type="text" name="pass_password" class="pass_password" />
+                            <input type="password" name="pass_password" class="pass_password" />
                         </div>
                         <div class="field-wrap">
                             <label for="new_password">新密碼</label>
-                            <input type="text" name="new_password" class="new_password" />
+                            <input type="password" name="new_password" class="new_password" />
                         </div>
                         <div class="field-wrap">
                             <label for="confirm_new_password">確認新密碼</label>
