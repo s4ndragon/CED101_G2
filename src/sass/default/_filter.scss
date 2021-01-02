@@ -6,6 +6,8 @@
     cursor: $cusor-pointer;
     width: 150px;
     color: white;
+    text-align: $txt-align-center;
+    list-style: none;
 
     &:hover {
         color: #386641;
@@ -21,6 +23,8 @@
     cursor: $cusor-pointer;
     width: 170px;
     color: white;
+    text-align: $txt-align-center;
+    list-style: none;
 
     &:hover {
         color: #386641;
@@ -37,6 +41,7 @@
     color: #69994e;
     white-space: nowrap;
     cursor: $cusor-pointer;
+    list-style: none;
 
     &:hover {
         background-color: #fff;

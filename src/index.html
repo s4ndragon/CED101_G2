@@ -1,321 +1,323 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.2/ScrollMagic.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.2/plugins/animation.gsap.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>
+        <script src="js/index.js"></script>
+        <title>偵茶者 | TEA SEARCHER | 帶你找茶 喝茶 買茶</title>
+        <link rel="shortcut icon" href="./images/index/webIcon.png" type="image/x-icon" />
+        <link rel="stylesheet" href="./css/index.css" />
+    </head>
 
-<head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.2/ScrollMagic.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.2/plugins/animation.gsap.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>
-	<script src="js/index.js"></script>
-	<title>偵茶者 | TEA SEARCHER | 帶你找茶 喝茶 買茶</title>
-	<link rel="shortcut icon" href="./images/index/webIcon.png" type="image/x-icon" />
-	<link rel="stylesheet" href="./css/index.css" />
-</head>
+    <body>
+        @@include('layout/leaf.html') @@include('layout/nav.html')
+        <!-- 第一屏 -->
+        <div id="index_background">
+            <div class="green_ear" data-depth="0.1"><img id="green_earth" src="./images/index/fear.png" alt="" /></div>
+            <div class="bg_garden ga1" data-depth="1">
+                <img class="bg_gar ga1" src="./images/index/bgmt2.png" alt="" />
+            </div>
+            <div class="bg_garden ga2" data-depth="0.5">
+                <img class="bg_gar ga2" src="./images/index/bgmt3.png" alt="" />
+            </div>
+            <div class="bg_garden ga3" data-depth="0.3">
+                <img class="bg_gar ga3" src="./images/index/bgmt.png" alt="" />
+            </div>
+            <div class="bg_garden ga4" data-depth="0.2">
+                <img class="bg_gar ga4" src="./images/index/bgmt4.png" alt="" />
+            </div>
+            <div class="bg_garden ga5" data-depth="0.7">
+                <img class="bg_gar ga5" src="./images/index/bgtrunk.png" alt="" />
+            </div>
+            <div class="bg_garden ga6">
+                <img class="bg_gar ga6" src="./images/common/logo.png" alt="" />
+            </div>
+        </div>
+        <!-- 第二屏 -->
+        <div class="tour">
+            <img class="tour-head-img events-none" src="./images/index/all.png" alt="" />
+            <!-- <div class="scroll">SCROLL</div> -->
+            <h2 class="tour_title">讓台灣茶的美好重新回到⽣活中</h2>
+            <p class="tour_txt">
+                您知道台灣的烏⿓茶在世界居有領導地位嗎
+                <br />
+                跟著偵茶者喝遍全台茶園，帶您認識世界上最好的茶
+            </p>
+            <img class="tour-pouring events-none" src="./images/index/pouring.gif" alt="" />
 
-<body>
-	@@include('layout/leaf.html')
-	@@include('layout/nav.html')
-	<!-- 第一屏 -->
-	<div id="index_background">
-		<div class="green_ear" data-depth="0.1"><img id="green_earth" src="./images/index/fear.png" alt=""></div>
-		<div class="bg_garden ga1" data-depth="1">
-			<img class="bg_gar ga1" src="./images/index/bgmt2.png" alt="">
-		</div>
-		<div class="bg_garden ga2" data-depth="0.5">
-			<img class="bg_gar ga2" src="./images/index/bgmt3.png" alt="">
-		</div>
-		<div class="bg_garden ga3" data-depth="0.3">
-			<img class="bg_gar ga3" src="./images/index/bgmt.png" alt="">
-		</div>
-		<div class="bg_garden ga4" data-depth="0.2">
-			<img class="bg_gar ga4" src="./images/index/bgmt4.png" alt="">
-		</div>
-		<div class="bg_garden ga5" data-depth="0.7">
-			<img class="bg_gar ga5" src="./images/index/bgtrunk.png" alt="">
-		</div>
-		<div class="bg_garden ga6">
-			<img class="bg_gar ga6" src="./images/common/logo.png" alt="">
-		</div>
-	</div>
-	<!-- 第二屏 -->
-	<div class="tour">
-		<img class="tour-head-img events-none " src="./images/index/all.png" alt="" />
-		<!-- <div class="scroll">SCROLL</div> -->
-		<h2 class="tour_title">讓台灣茶的美好重新回到⽣活中</h2>
-		<p class="tour_txt">
-			您知道台灣的烏⿓茶在世界居有領導地位嗎
-			<br />
-			跟著偵茶者喝遍全台茶園，帶您認識世界上最好的茶
-		</p>
-		<img class="tour-pouring events-none" src="./images/index/pouring.gif" alt="" />
-		
-		<div class="tour-list">
-			<img class="img-back" src="./images/index/img-back.png" alt="" />
-			<ul>
-				<li>
-					<img class="tour-list-line events-none" src="./images/index/line.png" alt="" />
-					<p class="img"><img src="./images/index/tea1.png" alt="" /></p>
-					<p class="head"> <span>舞鶴茶園一日遊</span>
-						<span class="head-sub">熱烈報名中</span>
-					</p>
-					<p class="txt">才剛獲得世界冠軍花蓮舞鶴茶園一定不能錯過</p>
-					<!-- <img class="tour-list__illust is-bottom events-none act-rwd" src="#" alt="" /> -->
-				</li>
-				<li>
-					<!-- <img class="tour-list__illust events-none act-rwd" src="#" alt="" /> -->
-					<img class="tour-list-line2 events-none" src="./images/index/line2.png" alt="" />
-					<p class="img"><img src="./images/index/tea2.png" alt="" /></p>
-					<p class="head"> <span>坪林茶園兩天一夜</span>
-						<span class="head-sub">來坪林學製茶</span>
-					</p>
-					<p class="txt">緊鄰市中心的世外桃花源-坪林</p>
-				</li>
-				<li>
-					<!-- <img class="tour-list__illust events-none act-rwd" src="#" 	alt="" /> -->
-					<img class="tour-list-line3 events-none" src="./images/index/line3.png" alt="" />
-					<p class="img"><img src="./images/index/tea3.png" alt="" /></p>
-					<p class="head"> <span>三峽鐵觀音體驗</span>
-						<span class="head-sub">提供導覽</span>
-					</p>
-					<p class="txt">享譽盛名的三峽鐵觀音歡迎近距離認識</p>
-					<!-- <img class="tour-list__illust is-bottom events-none act-rwd" src="#" alt="" /> -->
-				</li>
-			</ul>
-				<img class="img-front events-none" src="./images/index/img-front.png" alt="" />
-		</div>
-		<a class="lg-btn" href="./01_tour.html">
-			<span class="lg-btn_txt">馬上參加揪團</span>
-		</a>
-	</div>
-	<!-- 第三屏 -->
-	<div class="vote">
-		<img class="vote-img-back events-none" src="./images/index/img-project-illust.png" alt="" />
-		<img class="vote-img-back-right events-none" src="./images/index/teabag.gif" alt="" />
-		<div class="container">
-			<h3 class="h3">茶園排行榜<span class="year">2020</span></h3>
-			<ul class="vote-list">
-				<li class="vote-icon-01">
-					<a href="./02_vote.html">
-						<div class="circle">
-							<div class="bg"></div>
-							<p class="img">
-								<img src="./images/index/notuse/vespa.png" alt="" />
-							</p>
-						</div>
-						<p class="txt">花蓮舞鶴茶園
-							<br class="act-rwd" />群山包圍的秘境
-						</p>
-					</a>
-				</li>
-				<li class="vote-icon-02">
-					<a href="./02_vote.html">
-						<div class="circle">
-							<div class="bg"></div>
-							<p class="img">
-								<img src="./images/index/notuse/vespa.png" alt="" />
-							</p>
-						</div>
-						<p class="txt">花蓮舞鶴茶園
-							<br class="act-rwd" />群山包圍的秘境
-						</p>
-					</a>
-				</li>
-				<li class="vote-icon-03">
-					<a href="./02_vote.html">
-						<div class="circle">
-							<div class="bg"></div>
-							<p class="img">
-								<img src="./images/index/notuse/vespa.png" alt="" />
-							</p>
+            <div class="tour-list">
+                <img class="img-back" src="./images/index/img-back.png" alt="" />
+                <ul>
+                    <li>
+                        <img class="tour-list-line events-none" src="./images/index/line.png" alt="" />
+                        <p class="img"><img src="./images/index/tea1.png" alt="" /></p>
+                        <p class="head">
+                            <span>舞鶴茶園一日遊</span>
+                            <span class="head-sub">熱烈報名中</span>
+                        </p>
+                        <p class="txt">才剛獲得世界冠軍花蓮舞鶴茶園一定不能錯過</p>
+                        <!-- <img class="tour-list__illust is-bottom events-none act-rwd" src="#" alt="" /> -->
+                    </li>
+                    <li>
+                        <!-- <img class="tour-list__illust events-none act-rwd" src="#" alt="" /> -->
+                        <img class="tour-list-line2 events-none" src="./images/index/line2.png" alt="" />
+                        <p class="img"><img src="./images/index/tea2.png" alt="" /></p>
+                        <p class="head">
+                            <span>坪林茶園兩天一夜</span>
+                            <span class="head-sub">來坪林學製茶</span>
+                        </p>
+                        <p class="txt">緊鄰市中心的世外桃花源-坪林</p>
+                    </li>
+                    <li>
+                        <!-- <img class="tour-list__illust events-none act-rwd" src="#" 	alt="" /> -->
+                        <img class="tour-list-line3 events-none" src="./images/index/line3.png" alt="" />
+                        <p class="img"><img src="./images/index/tea3.png" alt="" /></p>
+                        <p class="head">
+                            <span>三峽鐵觀音體驗</span>
+                            <span class="head-sub">提供導覽</span>
+                        </p>
+                        <p class="txt">享譽盛名的三峽鐵觀音歡迎近距離認識</p>
+                        <!-- <img class="tour-list__illust is-bottom events-none act-rwd" src="#" alt="" /> -->
+                    </li>
+                </ul>
+                <img class="img-front events-none" src="./images/index/img-front.png" alt="" />
+            </div>
+            <button class="lg-btn-tour">
+                <a href="./01_tour.html">馬上參加揪團</a>
+            </button>
+        </div>
+        <!-- 第三屏 -->
+        <div class="vote">
+            <img class="vote-img-back events-none" src="./images/index/img-project-illust.png" alt="" />
+            <img class="vote-img-back-right events-none" src="./images/index/teabag.gif" alt="" />
+            <div class="container">
+                <h3 class="h3">茶園排行榜<span class="year">2020</span></h3>
+                <ul class="vote-list">
+                    <li class="vote-icon-01">
+                        <a href="./02_vote.html">
+                            <div class="circle">
+                                <div class="bg"></div>
+                                <p class="img">
+                                    <img src="./images/index/tea5.png" alt="" />
+                                </p>
+                            </div>
+                            <p class="txt">#1 花蓮舞鶴茶園 <br />群山包圍的秘境</p>
+                        </a>
+                    </li>
+                    <li class="vote-icon-02">
+                        <a href="./02_vote.html">
+                            <div class="circle">
+                                <div class="bg"></div>
+                                <p class="img">
+                                    <img src="./images/index/tea6.png" alt="" />
+                                </p>
+                            </div>
+                            <p class="txt">#2 晴天茶園 <br />聞名世界台灣烏龍茶發源地</p>
+                        </a>
+                    </li>
+                    <li class="vote-icon-03">
+                        <a href="./02_vote.html">
+                            <div class="circle">
+                                <div class="bg"></div>
+                                <p class="img">
+                                    <img src="./images/index/tea7.png" alt="" />
+                                </p>
+                            </div>
+                            <p class="txt">#3 坪林茶園 <br />孕育極品茶的世外桃花源</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
 
-						</div>
-						<p class="txt">花蓮舞鶴茶園
-							<br class="act-rwd" />群山包圍的秘境
-						</p>
-					</a>
-				</li>
+            <button class="lg-btn-vote">
+                <a href="02_vote.html">立刻進入投票</a>
+            </button>
+        </div>
+        <!-- 第四屏 -->
+        <div class="shop">
+            <div class="container">
+                <!-- <img class="shop-img-begin events-none" src="../src/images/index/" alt="" /> -->
+                <div class="shop-banner-holder">
+                    <h3 class="h3 shopping">偵茶商城</h3>
+                    <!-- <img class="shop-img-back events-none "	src="../src/images/index/" />  -->
+                    <!-- <img class="shop-img-back events-none act-rwd" src="../src/images/index/" alt="" />  -->
 
-			</ul>
-		</div>
-		<a class="lg-btn" href="02_vote.html">
-			<span class="lg-btn_txt">立刻進入投票</span>
-		</a>
-	</div>
-	<!-- 第四屏 -->
-	<div class="shop">
+                    <a class="shop-banner shop-banner-promo" href="./04_shopping.html">
+                        <p class="img">
+                            <img src="https://source.unsplash.com/636x278/?product" alt="" />
+                        </p>
+                        <div class="shop-banner-txt">
+                            <p class="category-name">想得到更多購物優惠?</p>
+                            <p class="txt">馬上參加遊戲!</p>
+                        </div>
+                    </a>
+                    <img class="shop-img-front events-none" src="./images/index/img-project-illust-front.png" alt="" />
+                    <!-- <img class=".shop-img-front events-none act-rwd" src="../src/images/img-project-illust-front-sp.png" alt="" /> -->
+                </div>
 
-		<div class="container">
-			<!-- <img class="shop-img-begin events-none" src="../src/images/index/" alt="" /> -->
-			<div class="shop-banner-holder">
-				<h3 class="h3 shopping">偵茶商城</h3>
-				<!-- <img class="shop-img-back events-none "	src="../src/images/index/" />  -->
-				<!-- <img class="shop-img-back events-none act-rwd" src="../src/images/index/" alt="" />  -->
+                <div class="shop-list">
+                    <h4 class="h4 shop-newest">最新上架商品</h4>
+                    <!-- <div id="project-articlelists"></div> -->
+                    <div>
+                        <ul>
+                            <li class="shop-list-item1">
+                                <a href="./04_product.html">
+                                    <p class="img">
+                                        <img src="./images/index/shop1.png" alt="" />
+                                    </p>
 
+                                    <div class="txt-area">
+                                        <p class="label">
+                                            <span class="num">550<span class="small">元</span></span
+                                            ><span class="ribon"></span>
+                                        </p>
+                                        <p class="category-name">德國紅點設計獎</p>
+                                        <div class="wrap-company">
+                                            <img class="shop-leaf" src="./images/index/company5.png" alt="" />
+                                            <p class="company">白居易3入禮盒</p>
+                                            <p class="txt">
+                                                現代與傳統完美的結合，透過小巧玲瓏的茶具將東方文化以不同的樣貌展現給大眾。
+                                            </p>
+                                        </div>
+                                        <div class="shop-icon-wrapper">
+                                            <img class="addFavorite" src="./images/common/heart.png" alt="" />
+                                            <input type="button" value="加入購物車" class="add_cart" />
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="is-category-05">
+                                <a href="./04_product.html">
+                                    <p class="img">
+                                        <img src="./images/index/shop3.png" alt="" />
+                                    </p>
 
-				<a class="shop-banner shop-banner-promo  " href="./04_shopping.html">
-					<p class="img">
-						<img src="https://source.unsplash.com/636x278/?product" alt="" />
-					</p>
-					<div class="shop-banner-txt">
-						<p class="category-name">想得到更多購物優惠?</p>
-						<p class="txt">馬上參加遊戲!</p>
-					</div>
-				</a>
-				<img class="shop-img-front events-none " src="./images/index/img-project-illust-front.png"
-					alt="" />
-				<!-- <img class=".shop-img-front events-none act-rwd" src="../src/images/img-project-illust-front-sp.png" alt="" /> -->
-			</div>
+                                    <div class="txt-area">
+                                        <p class="label">
+                                            <span class="num">550<span class="small">元</span></span
+                                            ><span class="ribon"></span>
+                                        </p>
+                                        <p class="category-name">德國紅點設計獎</p>
+                                        <div class="wrap-company">
+                                            <img class="shop-leaf" src="./images/index/company5.png" alt="" />
+                                            <p class="company">白居易3入禮盒</p>
+                                            <p class="txt">
+                                                現代與傳統完美的結合，透過小巧玲瓏的茶具將東方文化以不同的樣貌展現給大眾。
+                                            </p>
+                                        </div>
+                                        <div class="shop-icon-wrapper">
+                                            <img class="addFavorite" src="./images/common/heart.png" alt="" />
+                                            <input type="button" value="加入購物車" class="add_cart" />
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="is-category-05">
+                                <a href="./04_product.html">
+                                    <p class="img">
+                                        <img src="./images/index/shop3.png" alt="" />
+                                    </p>
 
+                                    <div class="txt-area">
+                                        <p class="label">
+                                            <span class="num">550<span class="small">元</span></span
+                                            ><span class="ribon"></span>
+                                        </p>
+                                        <p class="category-name">德國紅點設計獎</p>
+                                        <div class="wrap-company">
+                                            <img class="shop-leaf" src="./images/index/company5.png" alt="" />
+                                            <p class="company">白居易3入禮盒</p>
+                                            <p class="txt">
+                                                現代與傳統完美的結合，透過小巧玲瓏的茶具將東方文化以不同的樣貌展現給大眾。
+                                            </p>
+                                        </div>
+                                        <div class="shop-icon-wrapper">
+                                            <img class="addFavorite" src="./images/common/heart.png" alt="" />
+                                            <input type="button" value="加入購物車" class="add_cart" />
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <button class="lg-btn-shop">
+                        <a href="./04_shopping.html">帶我逛商城</a>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- 第五屏 -->
+        <div class="discuss">
+            <div class="dis-img-top">
+                <img src="./images/index/img-project-illust-front-sp.png" alt="" />
+            </div>
+            <h3 class="h3">討論區</h3>
+            <div class="dis-img-right">
+                <img src="./images/index/img-about-list-illust-sp-01.png" alt="" />
+            </div>
 
-			<div class="shop-list">
-				<h4 class="h4  shop-newest">最新上架商品</h4>
-				<!-- <div id="project-articlelists"></div> -->
-				<div>
-					<ul>
-						<li class="shop-list-item1  ">
-							<a href="./04_product.html" style="height:  397.675px">
-								<p class="img">
-									<img src="https://source.unsplash.com/283x170/?product" alt="" />
-								</p>
+            <div class="container">
+                <div class="dis-box-info delay150">
+                    <p class="img">
+                        <img src="./images/index/discuss1.png" alt="" />
+                    </p>
+                    <div class="txt-area">
+                        <p class="txt-title">今天採茶好好玩</p>
+                        <p class="txt">
+                            茶園是網美好去處 <br />教你在茶園拍名模等級網美照!茶園是網美好去處茶園是網美好去處
+                        </p>
+                        <button class="lg-btn-dis">
+                            <a href="./03_discuss.html">馬上參加討論</a>
+                        </button>
+                    </div>
+                </div>
+                <div class="dis-box-info delay150">
+                    <p class="img">
+                        <img src="./images/index/discuss2.png" alt="" />
+                    </p>
+                    <div class="txt-area">
+                        <p class="txt-title">茶園網美好去處</p>
+                        <p class="txt">
+                            茶園是網美好去處
+                            <br />教你在茶園拍名模等級網美照!教你在茶園拍名模等級網美照教你在茶園拍名模等級網美照
+                        </p>
 
-								<div class="txt-area">
-									<p class="label"> <span class="num">600<span class="small">元</span></span><span
-											class="ribon"></span>
-									</p>
-									<p class="category-name">茶葉</p>
-									<div class="wrap-company">
-										<p class="company"><span>三峽碧螺春茶園</span></p>
-									</div>
-									<p class="txt">來自純淨高山的冠軍茶葉</p>
-								</div>
-							</a>
-						</li>
-						<li class="is-category-01">
-							<a href="./04_product.html" style="height:  397.675px">
-								<p class="img">
-									<img src="https://source.unsplash.com/283x170/?product" alt="" />
-								</p>
+                        <button class="lg-btn-dis">
+                            <a href="./03_discuss.html">馬上參加討論</a>
+                        </button>
+                    </div>
+                </div>
+                <div class="dis-box-info delay150">
+                    <p class="img">
+                        <img src="./images/index/discuss3.png" alt="" />
+                    </p>
+                    <div class="txt-area">
+                        <p class="txt-title">去茶園家族旅行</p>
+                        <p class="txt">
+                            去茶園家族旅行去茶園家族旅行 <br />老少咸宜!老少咸宜!老少咸宜!老少咸宜!老少咸宜!老少咸宜!
+                        </p>
+                        <button class="lg-btn-dis">
+                            <a href="./03_discuss.html">馬上參加討論</a>
+                        </button>
+                    </div>
+                </div>
+                <div class="dis-img-btm">
+                    <img src="./images/index/leafs-l.png" alt="" />
+                </div>
+            </div>
+        </div>
 
-								<div class="txt-area">
-									<p class="label"> <span class="num">1500<span class="small">元</span></span><span
-											class="ribon"></span>
-									</p>
-									<p class="category-name">茶托</p>
-									<div class="wrap-company">
-										<p class="company"><span>三峽碧螺春茶園</span></p>
-									</div>
-									<p class="txt">來自純淨高山的冠軍茶葉</p>
-								</div>
-							</a>
-						</li>
-						<li class="is-category-05">
-							<a href="./04_product.html" style="height: 397.675px">
-								<p class="img">
-									<img src="https://source.unsplash.com/283x170/?product" alt="" />
-								</p>
+        <!-- 第六屏-->
+        <div class="ending">
+            <span class="ending-txt">期待與你共襄盛舉 </span>
+        </div>
 
-								<div class="txt-area">
-									<p class="label"> <span class="num">700<span class="small">元</span></span><span
-											class="ribon"></span>
-									</p>
-									<p class="category-name">查模</p>
-									<div class="wrap-company">
-										<p class="company"><span>三峽碧螺春茶園</span></p>
-									</div>
-									<p class="txt">來自純淨高山的冠軍茶葉</p>
-								</div>
-							</a>
-						</li>
-											</ul>
-				</div> <a class="lg-btn  " href="./04_shopping.html">
-					<span class="lg-btn_txt">帶我逛商城</span>
-					<div class="lg-btn-style">
-						<div></div>
-						<div></div>
-						<div></div>
-					</div>
-				</a>
-				</li>
-				</ul>
-			</div>
-		</div>
-	</div>
-	<!-- 第五屏 -->
-	<div class="discuss">
-
-		<div class="dis-img-top">
-			<img src="./images/index/img-project-illust-front-sp.png" alt="">
-		</div>
-		<h3 class="h3">討論區</h3>
-		<div class="dis-img-right">
-			<img src="./images/index/img-about-list-illust-sp-01.png" alt="">
-		</div>
-
-
-		<div class="container">
-			<div class="dis-box-info   delay150">
-				<p class="img">
-					<img src="./images/index/discuss1.png" alt="" />
-				</p>
-				<div class="txt-area">
-					<p class="txt-title">今天採茶好好玩</p>
-					<p class="txt"> 茶園是網美好去處
-						<br />教你在茶園拍名模等級網美照!茶園是網美好去處茶園是網美好去處
-					</p> <a class="lg-btn" href="./03_discuss.html"><span class="lg-btn_txt">馬上參加討論</span>
-						<div class="lg-btn-style"></div>
-					</a>
-				</div>
-			</div>
-			<div class="dis-box-info   delay150">
-				<p class="img">
-					<img src="./images/index/discuss2.png" alt="" />
-				</p>
-				<div class="txt-area">
-					<p class="txt-title">茶園網美好去處</p>
-					<p class="txt"> 茶園是網美好去處
-						<br />教你在茶園拍名模等級網美照!教你在茶園拍名模等級網美照教你在茶園拍名模等級網美照
-					</p> <a class="lg-btn" href="./03_discuss.html"><span class="lg-btn_txt">馬上參加討論</span>
-						<div class="lg-btn-style">
-						</div>
-					</a>
-				</div>
-			</div>
-			<div class="dis-box-info   delay150">
-				<p class="img">
-					<img src="./images/index/discuss3.png" alt="" />
-				</p>
-				<div class="txt-area">
-					<p class="txt-title">去茶園家族旅行</p>
-					<p class="txt"> 去茶園家族旅行去茶園家族旅行
-						<br />老少咸宜!老少咸宜!老少咸宜!老少咸宜!老少咸宜!老少咸宜!
-					</p>
-					<a class="lg-btn" href="03_discuss.html"><span class="lg-btn_txt">馬上參加討論</span>
-						<div class="lg-btn-style"></div>
-					</a>
-				</div>
-			</div>
-			<div class="dis-img-btm">
-				<img src="./images/index/leafs-l.png" alt="">
-			</div>
-		</div>
-		<a class="lg-btn" href="03_tour.html">
-					<span class="lg-btn_txt">馬上參加討論</span>
-				</a>
-	</div>
-
-
-	<!-- 第六屏-->
-		<div class="ending">
-			<span class="ending-txt">期待與你共襄盛舉
-			</span>
-		</div>
-	
-	<!-- footer -->
-	@@include('layout/footer.html')
-
-</body>
-
+        <!-- footer -->
+        @@include('layout/footer.html')
+    </body>
 </html>

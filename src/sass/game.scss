@@ -1,12 +1,6 @@
 @import "./default/common";
 @import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css";
 // 茶百科按鈕名稱tea_ency.png 燈箱介面名稱tea_en.png，
-*{
-	box-sizing: border-box;
-}
-// body{
-// 	@include bg;
-// }
 .w100{
 	width:100%;
 }
@@ -16,10 +10,10 @@
 .size60{
 	font-size:60px;
 }
-
 #title{
 	height:300px;
 	background-color: #ead779;
+	@include banner-1st-title;
 }
 .title{
 position: relative;

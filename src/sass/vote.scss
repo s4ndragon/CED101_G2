@@ -6,22 +6,16 @@
 
 body{
     font-family: 'Noto Sans TC';
-    @include forDiscussAndVote;
+    // @include forDiscussAndVote;
+    background-image: url(../images/index/yay.png);
+    background-size: 100% auto;
 }
 
 .banner{
-    display: flex;
+    @include banner;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-size: 48px;
-    margin: 0 0 30px 0;
-    height: 300px;
-    background-color: #729e5f;
-    @include banner-1st-title;
-
-    .sec{
-        @include banner-txt;
+    .fir{
+        @include banner-1st-title;
     }
 }
 
@@ -131,7 +125,7 @@ main{
         margin: 0 auto 30px;
         text-align: left;
         background-color: #eff2c7;
-        width: 56%;
+        width: 700px;
         border-radius: 10px;
         color: #90a30b;
         
@@ -172,7 +166,7 @@ main{
             }
 
             td:nth-child(2){
-                width:332px;
+                width:377px;
                 color: #90a30b;
                 font-family: 'Noto sans TC';
                 letter-spacing: 2.5px;
@@ -190,7 +184,7 @@ main{
             }
 
             td:nth-child(3){
-                width:235px;
+                width:250px;
             }
 
             .resize{
@@ -319,6 +313,22 @@ main{
 
         table{
             width: 95%;
+
+            tr{
+                td:nth-child(1)::before{
+                    display: none;
+                }
+
+                td:nth-child(2){
+                    font-size: 18px;
+                }
+
+                .resize{
+                    .vue-star-rating-rating-text[data-v-34cbeed1]{
+                        font-size: 20px;
+                    }
+                }
+            }
         }
     }
 }
@@ -327,8 +337,25 @@ main{
     main{
         table{
             tr{
+                td:nth-child(1){
+                    font-size: 29px;
+                }
+
+                td:nth-child(2){
+                    font-size: 19px;
+                    padding: 0;
+                    
+                    .chartpic{
+                        width: 80px;
+                        height: 80px;
+                    }
+                }
+
                 .resize{
-                    width: 181px;
+                    
+                    .vue-star-rating-rating-text[data-v-34cbeed1]{
+                        // font-size: 17px;
+                    }
                 }
             }
         }
@@ -338,6 +365,18 @@ main{
             left: 0px;
             .leaf{
                 width: 90px;
+            }
+        }
+    }
+}
+
+@media screen  and (max-width:420px){
+    main{
+        table{
+            tr{
+                td:nth-child(1){
+                    padding-bottom: 57px;
+                }
             }
         }
     }

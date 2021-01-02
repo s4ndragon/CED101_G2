@@ -9,6 +9,19 @@ $(function () {
         }, 750);
     });
 
+    $(window).scroll(function () {
+        if ($(window).scrollTop() >= 300) {
+            $("nav").addClass("upup");
+            // $(".hamburger>div").css("background", "black");
+            $(".menu a").css("color", "#17581e");
+        } else {
+            $("nav").removeClass("upup");
+            $('nav').css("color", "transparent");
+            $(".menu a").css("color", "white");
+            // $(".hamburger>div").css("background", "white");
+        }
+    });
+
 
 });
 
@@ -16,3 +29,5 @@ $(window).on("DOMContentLoaded", function () {
     parallaxInstance = new Parallax(document.getElementById("index_background"), {
     });
 });
+
+

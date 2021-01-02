@@ -13,8 +13,10 @@
 <body>
     @@include('layout/nav.html')
     <main>
-        <div id="big_title">
-            <h2>找茶討論</h2>
+        <div class="banner">
+            <div>
+                <h1>找茶討論</h1>
+            </div>
         </div>
         <h2 id="pub_new">發表新文章</h2>
         <form id="pub_article" action="">
@@ -31,9 +33,8 @@
                     　<option value="">茶知識</option>
                 </select>
             </div>
-            <div class="pub_input_container">
-                <label class="input_type">文章標題：</label>
-                <input type="text">
+            <label class="input_type">文章標題：</label>
+            <input type="text">
             </div>
             <div class="pub_input_container">
                 <label class="input_type">文章內文：</label>
@@ -41,7 +42,7 @@
             </div>
             <div class="btn_countainer">
                 <button class="btn">
-                    <a href="03_discuss.html">確認送出</a>
+                    <a href="03_discuss.html">送出</a>
                 </button>
                 <button class="btn">
                     <a href="03_discuss.html">取消</a>

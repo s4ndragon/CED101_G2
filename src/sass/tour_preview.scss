@@ -106,14 +106,7 @@ main {
                 width: 100%;
             }
 
-            .preview_title {
-                margin-bottom: 30px;
 
-                h2 {
-                    text-align: center;
-                    font-size: $h2;
-                }
-            }
 
             .preview_content {
                 border-radius: 10px;
@@ -156,6 +149,8 @@ main {
 
                     .tour_title {
                         font-size: $h4;
+                        color: #7baa17;
+                        font-weight: bold;
                     }
 
                     .title {
@@ -164,6 +159,7 @@ main {
                         span {
                             font-size: $h5;
                             padding-right: 5px;
+                            color: #7baa17;
                         }
                     }
 
@@ -196,8 +192,9 @@ main {
                     margin: 30px 0;
 
                     h2 {
-                        text-align: center;
-                        font-size: $h2;
+
+                        @include banner-2nd-title;
+
                     }
                 }
 
@@ -241,15 +238,19 @@ main {
 
                         #garden_title {
                             font-size: $h4;
+                            color: #7baa17;
+                            font-weight: bold;
                         }
 
                         .content,
                         .title {
                             padding: 3px;
+
                         }
 
                         .title {
                             font-size: $h5;
+                            color: #7baa17;
                         }
                     }
                 }
@@ -262,8 +263,7 @@ main {
     margin: 30px 0;
 
     h2 {
-        text-align: center;
-        font-size: $h2;
+        @include banner-2nd-title
     }
 }
 
@@ -315,6 +315,8 @@ main {
 
         h2 {
             font-size: $h4;
+            color: #7baa17;
+            font-weight: bold;
         }
 
         span {
@@ -358,6 +360,6 @@ main {
     text-align: center;
 
     button {
-        @include btn;
+        @include btn2;
     }
 }

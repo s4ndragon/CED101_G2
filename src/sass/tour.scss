@@ -18,11 +18,39 @@ img {
 
 }
 
+@keyframes wave {
+    0% {
+        top: 20%;
+        left: -1%;
+    }
+
+    25% {
+        top: 19%;
+        left: 0%;
+    }
+
+    50% {
+        top: 20%;
+        left: 1%;
+    }
+
+    75% {
+        top: 21%;
+        left: 0;
+    }
+
+    100% {
+        top: 20%;
+        left: -1%;
+    }
+}
+
 .choice_block {
     position: relative;
     padding: 50px 0;
     padding-top: 100px;
     background-color: #70D6BF;
+    overflow: hidden;
     // border: 2px solid blue;
 
     .tour_center_img {
@@ -32,6 +60,11 @@ img {
         top: 20%;
         left: 0%;
         z-index: 1;
+        pointer-events: none;
+        animation-name: wave;
+        animation-duration: 4s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
 
 
     }
@@ -127,6 +160,7 @@ img {
     right: 30%;
     width: 60px;
     transition-duration: .5s;
+
 }
 
 .location2:hover {
@@ -150,6 +184,7 @@ img {
     right: 50%;
     width: 60px;
     transition-duration: .5s;
+
 }
 
 .location3:hover {
@@ -173,6 +208,7 @@ img {
     right: 40%;
     width: 60px;
     transition-duration: .5s;
+
 }
 
 .location4:hover {
@@ -196,6 +232,7 @@ img {
     right: 30%;
     width: 60px;
     transition-duration: .5s;
+
 }
 
 .location5:hover {
@@ -219,6 +256,7 @@ img {
     right: 70%;
     width: 60px;
     transition-duration: .5s;
+
 }
 
 .location6:hover {
@@ -242,6 +280,7 @@ img {
     right: 40%;
     width: 60px;
     transition-duration: .5s;
+
 }
 
 .location7:hover {
@@ -265,6 +304,7 @@ img {
     right: 50%;
     width: 60px;
     transition-duration: .5s;
+
 }
 
 .location8:hover {
@@ -288,6 +328,7 @@ img {
     right: 65%;
     width: 60px;
     transition-duration: .5s;
+
 }
 
 .location9:hover {
@@ -311,6 +352,7 @@ img {
     right: 10%;
     width: 60px;
     transition-duration: .5s;
+
 }
 
 .location10:hover {
@@ -331,9 +373,7 @@ img {
 .main_body {
 
     h1 {
-        text-align: center;
-        color: $primary-typo-color;
-        font-size: $h1;
+        @include banner-2nd-title;
         margin-top: 50px;
     }
 
@@ -414,105 +454,159 @@ img {
 
 }
 
-.tour_browse_block {
+
+
+
+.tour_block {
     text-align: center;
+    width: 350px;
+    display: inline-block;
+    margin: 40px 10px;
+    position: relative;
+    background: -webkit-gradient(linear, 0% 20%, 0% 92%, from(#f3f3f3), to(#fff), color-stop(0.1, #f3f3f3));
+    border-top: 1px solid white;
+    border-right: 1px solid #ccc;
+    -webkit-box-shadow: -1px 2px 2px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    border-radius: 10px;
 
+    @media screen and (max-width: 575px) {
+        margin: 10px auto;
+        display: block;
+    }
 
-    .tour_block {
-        width: 300px;
-        padding: 10px;
-        border-radius: 10px;
-        background-color: #fffeed;
-        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-        margin: 20px;
-        display: inline-block;
+    .tour_img {
         position: relative;
 
-        .tour_img {
-            border-radius: 10px;
-            overflow: hidden;
-            height: 190px;
-            margin-bottom: 10px;
+        p {
+            &:nth-child(1) {
+                position: absolute;
+                bottom: 55px;
+                left: 20px;
+                color: #fff;
+                font-size: 24px;
+                letter-spacing: 3px;
+            }
+
+            &:nth-child(2) {
+                position: absolute;
+                bottom: 22px;
+                left: 24px;
+                color: #fff;
+                font-size: 16px;
+                letter-spacing: 3px;
+            }
         }
 
-        .love_share {
+        img {
+            width: 100%;
+        }
+    }
+
+    .love_share {
+        position: absolute;
+        bottom: 105px;
+        right: 60px;
+
+        div {
+            display: inline-block;
+            width: 30px;
             vertical-align: top;
-            display: inline-block;
 
-            .love {
-                display: inline-block;
-                width: 30px;
-
-            }
-
-            .share {
-                display: inline-block;
-                width: 30px;
-
-            }
         }
+    }
 
-        .tour_text {
-            width: 180px;
-            display: inline-block;
-            // border: 1px solid black;
-            text-align: left;
+    .tour_text {
+        width: 88%;
+        display: flex;
+        justify-content: flex-start;
 
+        .deadline {
+            margin-left: 20px;
 
             h3 {
-
                 margin: 0;
-                color: $secondary-typo-color;
+                padding-top: 5px;
+                color: #69994e;
+                font-size: 14px;
+                letter-spacing: 2px;
+            }
 
+            p {
+                margin: 0;
+                font-size: 14px;
+                letter-spacing: 2px;
+            }
+        }
+
+        .price {
+            margin-left: 20px;
+            font-size: 14px;
+            letter-spacing: 2px;
+
+            h3 {
+                margin: 0;
+                padding-top: 5px;
+                color: #69994e;
+                font-size: 14px;
+                letter-spacing: 2px;
             }
 
             p {
                 margin: 0;
             }
+        }
 
-            .ink {
+        .ink {
+            position: absolute;
+            right: -4%;
+            top: -4%;
+            transform: scale(0.6);
+
+            .ink_bg {
+                width: 135px;
+                height: 135px;
+                background-color: #a7c957c4;
+                border-radius: 50%;
+            }
+
+            .inkText {
                 position: absolute;
-                right: 10%;
-                top: 60%;
+                top: 55%;
+                left: 50%;
+                transform: translate(-50%, -50%);
 
-                .ink_bg {
-                    width: 100px;
+                h3 {
+                    margin: 0;
+                    padding-top: 5px;
+                    letter-spacing: 2px;
+                    font-size: 24px;
+                    color: #ffffff;
+                    white-space: nowrap;
                 }
 
-
-                .inkText {
-                    position: absolute;
-                    top: 60%;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
-
-
-                    h3 {
-                        font-size: $h5;
-                        color: #F75000;
-                        white-space: nowrap;
-
-
-                    }
-
-                    p {
-                        color: #F75000;
-                        font-size: $h6;
-                        text-align: center;
-
-
-
-                    }
+                p {
+                    margin: 0;
+                    color: #ffffff;
+                    font-size: 20px;
+                    text-align: center;
+                    letter-spacing: 2px;
+                    line-height: 2;
                 }
             }
         }
 
-        .tourBtn {
-            text-align: center;
 
-            button {
-                @include btn;
-            }
+
+
+
+    }
+
+    .tourBtn {
+        text-align: right;
+
+        button {
+            @include btn;
         }
     }
 
@@ -573,17 +667,7 @@ img {
 
 
 
-.box11_ribbon {
-    position: absolute;
-    top: -25px;
-    left: 30%;
-    width: 130px;
-    height: 40px;
-    background: -webkit-gradient(linear, 555% 20%, 0% 92%, from(rgba(0, 0, 0, 0.1)), to(rgba(0, 0, 0, 0.0)), color-stop(.1, rgba(0, 0, 0, 0.2)));
-    border-left: 1px dashed rgba(0, 0, 0, 0.1);
-    border-right: 1px dashed rgba(0, 0, 0, 0.1);
-    -webkit-box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.2);
-}
+
 
 // =====================rwd==========================
 @media screen and (max-width: 1199px) {
@@ -592,21 +676,15 @@ img {
         width: 960px;
     }
 
-    .tour_browse_block {
-        text-align: center;
-
-        .tour_block {
-            width: 280px;
-            margin: 20px 5px;
-        }
-
-
-    }
-
 
 
 
 }
+
+
+
+
+
 
 @media screen and (max-width: 991px) {
     .choice_block {
@@ -624,11 +702,11 @@ img {
         padding-bottom: 200px;
     }
 
-
-
     .tour_browse {
-        width: 720px;
+        width: 760px;
     }
+
+
 
 
 
@@ -661,6 +739,9 @@ img {
 
         }
 
+        .tour_browse {
+            width: 540px;
+        }
 
 
     }
@@ -680,21 +761,7 @@ img {
         }
     }
 
-    .tour_browse {
-        .choice_block {
-            position: relative;
-            padding-bottom: 100px;
-        }
 
-        width: 540px;
-
-        .tour_block {
-            width: 320px;
-            margin: 20px 5px;
-
-        }
-
-    }
 }
 
 
@@ -724,12 +791,5 @@ img {
 
     .tour_browse {
         width: 100%;
-    }
-
-    .tour_browse_block {
-        .tour_block {
-            width: 300px;
-            margin: 20px 0px;
-        }
     }
 }

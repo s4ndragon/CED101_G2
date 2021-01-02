@@ -13,8 +13,10 @@
 <body>
     @@include('layout/nav.html')
     <main id="app">
-        <div id="big_title">
-            <h2>文章內容</h2>
+        <div class="banner">
+            <div>
+                <h1>找茶討論</h1>
+            </div>
         </div>
         <div class="allthings">
             <button class="addtour"><a href="03_discuss_pub.html">我要發文</a></button>
@@ -25,23 +27,6 @@
                 </div>
                 <div class="text_excl">
                     <h2>【揪團心得】今天去當採茶婦好快樂啊</h2>
-                    <div class="excl" @click="showModal2 = true">
-                        <img class="excl" src="./images/common/852019_exclamation_512x512.png" alt="">
-                    </div>
-                    <!-- overlay -->
-                    <div class="overlay" v-if="showModal2" @click="showModal2 = true"></div>
-                    <!-- modal -->
-                    <div class="modal" v-if="showModal2">
-                        <form>
-                            <div class="close" @click="showModal2 = false">
-                                <img class="cancel" src="images/vote/cancel.png">
-                            </div>
-                            <p class="welcome">請輸入檢舉理由</p>
-                            <textarea class="repoinfo" cols="30" rows="10"></textarea>
-
-                            <button class="go">送出</button>
-                        </form>
-                    </div>
                 </div>
             </div>
 

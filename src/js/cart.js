@@ -1,9 +1,11 @@
 window.addEventListener('load', doFirst);
 var storage = sessionStorage;
+var addcartLB = document.getElementById('addcartLB');
 
 
 
 function doFirst() {
+    addcartalert()
     if (storage['addItemList'] == null) {
         storage['addItemList'] = '';
     }
@@ -104,7 +106,9 @@ function additem(e) {
             cart_content.insertBefore(newdiv, amount);
             calcAmount();
             newdiv.querySelectorAll('.drop')[0].addEventListener('click', dropitem);
-        }
+        };
+        addcartLB = document.getElementById('addcartLB');
+        addcartLB.style.display = 'flex';
     }
 }
 
@@ -256,4 +260,19 @@ function dicountBtn() {
     document.getElementById('cancel').addEventListener('click', () => {
         document.getElementById('pointTable').setAttribute('style', 'display:none');
     })
+}
+
+function addcartalert() {
+    if (addcartLB) {} else {
+        let newdiv = document.createElement('div');
+        newdiv.setAttribute('id', 'addcartLB');
+        newdiv.innerHTML = `
+    <span id='closeLB'>×</span><h4 id="addcartLBText">已加入購物車</h4>
+        `;
+        let footer = document.getElementsByTagName('footer')[0];
+        document.getElementsByTagName('body')[0].insertBefore(newdiv, footer);
+        document.getElementById('closeLB').addEventListener('click', () => {
+            addcartLB.style.display = 'none';
+        })
+    }
 }

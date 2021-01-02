@@ -8,8 +8,12 @@
     <link rel="stylesheet" href="./css/tour.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
         integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v9.0"
+        nonce="2JLZxLTK"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.1/vue.min.js"></script>
     <title>瀏覽揪團</title>
+
 </head>
 
 <body>
@@ -112,9 +116,8 @@
             </ul>
         </div>
 
-        <div class="tour_browse">
+        <div class="tour_browse" id="tourBrowseBlock">
 
-            <div class="tour_browse_block" id="tourBrowseBlock"></div>
         </div>
     </div>
     @@include('layout/footer.html')
@@ -132,39 +135,50 @@
                 let newTour = document.createElement('div');
                 tourBlock.appendChild(newTour);
                 newTour.setAttribute('class', 'tour_block');
-                newTour.innerHTML = `
+                newTour.innerHTML = ` 
+             
                 <div class="tour_img">
-                            <img src="./images/tour/tour1.jpg" alt="">
-                    </div>                          
-                                    <div class="tour_text">
-                                        <h3>活動名稱</h3>
-                                        <p>一定打斷你鼻樑</p>
-                                        <h3>活動日期</h3>
-                                        <p>2020/12/30</p>
-                                        <h3>截止揪團日期</h3>
-                                        <p>2020/12/25</p>                                      
-                                        <h3>預估費用</h3>
-                                        <p>$7800NT</p>
-                                        <div class="ink">
-                                            <div class="ink_bg"> <img src="./images/tour/ink.png" alt=""></div>
-                                          <div class="inkText">
-                                             <h3>剩餘名額</h3>
-                                             <p>14/16</p>
-                                             </div>
-                                         </div>
-                                    </div>
-                                    <div class="love_share">
-                                <div class="love">
-                                    <img class="like" src="./images/common/heart.png" title="加入收藏" alt="">
+                    <p>茶葉揪揪團</p>
+                    <p>2020/12/30 開團</p>
+                    <!-- <img src="./images/tour/tour1.jpg" alt=""> -->
+                    <img src="https://tibamef2e.com/ced101/project/g2/images/tour/tour1.jpg" alt="">
+                </div>
+
+                <div class="love_share">
+                    <div class="love">
+                        <img class="like" src="./images/common/heart.png" title="加入收藏" alt="">
+                    </div>
+                    <div class="share">
+                        
+                        <div class="fb-share-button" data-href="http://127.0.0.1:5501/dist/01_tour.html" data-layout="button_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5501%2Fdist%2F01_tour.html&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">分享</a></div>
+                    </div>
+                </div>
+
+                <div class="tour_text">
+                    <div class="deadline">
+                        <h3>截止揪團日期</h3>
+                        <p>2020/12/25</p>
+                    </div>
+                    <div class="price">
+                        <h3>預估費用</h3>
+                        <p>$7800</p>
+                    </div>
+                    <div class="ink">
+                        <div class="ink_bg"></div>
+                        <div class="inkText">
+                            <h3>剩餘名額</h3>
+                            <p>14/16</p>
                         </div>
-                                    <div class="share">
-                                        <img src="./images/common/shareBlue.png" alt="">
-                        </div>
-                                    </div>
-                                    <div class="tourBtn">
-                                        <button type="button">  <a href="./02_tour_more.html"> 立即報名</a></button>
-                                    </div>
-                                    
+                    </div>
+                </div>
+
+                <div class="tourBtn">
+                    <button type="button">
+                        <a href="./02_tour_more.html"> 立即報名</a>
+                    </button>
+                </div>
+
+                                
                 `;
             }
 

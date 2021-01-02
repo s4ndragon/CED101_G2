@@ -6,19 +6,11 @@ body {
     @include forDiscussAndVote;
 }
 
-.banner {
-    display: flex;
+.banner{
+    @include banner;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-size: 48px;
-    margin: 0 0 30px 0;
-    height: 300px;
-    background-color: #729e5f;
-    @include banner-1st-title;
-
-    .sec{
-        @include banner-txt;
+    .fir{
+        @include banner-1st-title;
     }
 }
 
@@ -370,6 +362,158 @@ main {
 
     .toursection {
         margin-bottom: 30px;
+
+        .tour_block {
+            text-align: center;
+            width: 350px;
+            display: inline-block;
+            margin: 40px 10px;
+            position: relative;
+            background: -webkit-gradient(linear, 0% 20%, 0% 92%, from(#f3f3f3), to(#fff), color-stop(0.1, #f3f3f3));
+            border-top: 1px solid white;
+            border-right: 1px solid #ccc;
+            -webkit-box-shadow: -1px 2px 2px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            border-radius: 10px;
+        
+            @media screen and (max-width: 575px) {
+                margin: 10px auto;
+                display: block;
+            }
+        
+            .tour_img {
+                position: relative;
+        
+                p {
+                    &:nth-child(1) {
+                        position: absolute;
+                        bottom: 55px;
+                        left: 20px;
+                        color: #fff;
+                        font-size: 24px;
+                        letter-spacing: 3px;
+                    }
+        
+                    &:nth-child(2) {
+                        position: absolute;
+                        bottom: 22px;
+                        left: 24px;
+                        color: #fff;
+                        font-size: 16px;
+                        letter-spacing: 3px;
+                    }
+                }
+        
+                img {
+                    width: 100%;
+                }
+            }
+        
+            .love_share {
+                position: absolute;
+                bottom: 105px;
+                right: 38px;
+        
+                div {
+                    display: inline-block;
+                    width: 30px;
+                    vertical-align: top;
+                }
+
+                .love{
+                    margin-right: 5px;
+                }
+            }
+        
+            .tour_text {
+                width: 88%;
+                display: flex;
+                justify-content: flex-start;
+        
+                .deadline {
+                    margin-left: 20px;
+        
+                    h3 {
+                        margin: 0;
+                        padding-top: 5px;
+                        color: #69994e;
+                        font-size: 14px;
+                        letter-spacing: 2px;
+                    }
+        
+                    p {
+                        margin: 0;
+                        font-size: 14px;
+                        letter-spacing: 2px;
+                    }
+                }
+        
+                .price {
+                    margin-left: 20px;
+                    font-size: 14px;
+                    letter-spacing: 2px;
+        
+                    h3 {
+                        margin: 0;
+                        padding-top: 5px;
+                        color: #69994e;
+                        font-size: 14px;
+                        letter-spacing: 2px;
+                    }
+        
+                    p {
+                        margin: 0;
+                    }
+                }
+        
+                .ink {
+                    position: absolute;
+                    right: -4%;
+                    top: -4%;
+                    transform: scale(0.6);
+        
+                    .ink_bg {
+                        width: 135px;
+                        height: 135px;
+                        background-color: #a7c957c4;
+                        border-radius: 50%;
+                    }
+        
+                    .inkText {
+                        position: absolute;
+                        top: 55%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+        
+                        h3 {
+                            margin: 0;
+                            padding-top: 5px;
+                            letter-spacing: 2px;
+                            font-size: 24px;
+                            color: #ffffff;
+                            white-space: nowrap;
+                        }
+        
+                        p {
+                            margin: 0;
+                            color: #ffffff;
+                            font-size: 20px;
+                            text-align: center;
+                            letter-spacing: 2px;
+                            line-height: 2;
+                        }
+                    }
+                }
+            }
+        
+            .tourBtn {
+                text-align: right;
+        
+                button {
+                    @include btn;
+                }
+            }
+        }
 
         .tourwrap {
             width: 300px;
