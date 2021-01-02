@@ -8,10 +8,7 @@
     <link rel="stylesheet" href="./css/tour.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
         integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
-    <div id="fb-root"></div>
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v9.0"
-        nonce="2JLZxLTK"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.1/vue.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.js"></script>
     <title>瀏覽揪團</title>
 
 </head>
@@ -117,31 +114,11 @@
         </div>
 
         <div class="tour_browse" id="tourBrowseBlock">
-
-        </div>
-    </div>
-    @@include('layout/footer.html')
-
-    <div class="createTour"><a href="./01_tourCreate.html">
-            <p>我要開團</p>
-            <img src="./images/tour/createTourCar.png" alt="">
-        </a>
-    </div>
-    <script>
-        window.addEventListener("load", function () {
-            let tourNum = 9;
-            let tourBlock = document.getElementById("tourBrowseBlock");
-            for (var i = 0; i < tourNum; i++) {
-                let newTour = document.createElement('div');
-                tourBlock.appendChild(newTour);
-                newTour.setAttribute('class', 'tour_block');
-                newTour.innerHTML = ` 
-             
+            <div class="tour_block" id="tourBlock" v-for="tourRow in tourRows">
                 <div class="tour_img">
-                    <p>茶葉揪揪團</p>
-                    <p>2020/12/30 開團</p>
-                    <!-- <img src="./images/tour/tour1.jpg" alt=""> -->
-                    <img src="https://tibamef2e.com/ced101/project/g2/images/tour/tour1.jpg" alt="">
+                    <p>{{tourRow.TOUR_TITLE}}</p>
+                    <p>{{tourRow.TOUR_SETOFFTIME}} 開團</p>
+                    <img :src="tourRow.TOUR_IMG" alt="">
                 </div>
 
                 <div class="love_share">
@@ -149,15 +126,16 @@
                         <img class="like" src="./images/common/heart.png" title="加入收藏" alt="">
                     </div>
                     <div class="share">
-                        
-                        <div class="fb-share-button" data-href="http://127.0.0.1:5501/dist/01_tour.html" data-layout="button_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5501%2Fdist%2F01_tour.html&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">分享</a></div>
+                        <div class="fb-share-button" data-href="https://www.youtube.com/watch?v=HDhltQ4Jx0o"
+                            data-layout="button_count" data-size="small"><a target="_blank"
+                                href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DHDhltQ4Jx0o&amp;src=sdkpreparse"
+                                class="fb-xfbml-parse-ignore">分享</a></div>
                     </div>
                 </div>
-
                 <div class="tour_text">
                     <div class="deadline">
                         <h3>截止揪團日期</h3>
-                        <p>2020/12/25</p>
+                        <p>{{tourRow.DEADLINE_DATE}}</p>
                     </div>
                     <div class="price">
                         <h3>預估費用</h3>
@@ -167,93 +145,41 @@
                         <div class="ink_bg"></div>
                         <div class="inkText">
                             <h3>剩餘名額</h3>
-                            <p>14/16</p>
+                            <p>{{tourRow.NUM_OF_PARTICIPANTS}}/{{tourRow.TOUR_PEOPLE}}</p>
                         </div>
                     </div>
                 </div>
-
                 <div class="tourBtn">
                     <button type="button">
                         <a href="./02_tour_more.html"> 立即報名</a>
                     </button>
                 </div>
 
-                                
-                `;
-            }
+            </div>
+        </div>
+    </div>
+    @@include('layout/footer.html')
 
+    <div class="createTour"><a href="./01_tourCreate.html">
+            <p>我要開團</p>
+            <img src="./images/tour/createTourCar.png" alt="">
+        </a>
+    </div>
+    <div id="fb-root"></div>
 
-            let like = document.getElementsByClassName('like');
-            for (var i = 0; i < like.length; i++) {
-                like[i].addEventListener("click", changeHeart)
-
-            }
-            function changeHeart() {
-                if (this.title == "加入收藏") {
-                    this.title = "取消收藏";
-                    this.src = "./images/common/like.png";
-                } else {
-                    this.title = "加入收藏";
-                    this.src = "./images/common/heart.png";
-                }
-            }
-
-
-            let locationPoint = document.getElementsByClassName("location");
-            let locationImg = document.getElementsByClassName("locationImg");
-            // console.log(locationPoint[2]);
-            for (var i = 0; i < locationImg.length; i++) {
-                locationImg[i].addEventListener("mouseover", changeImage);
-            };
-            function changeImage() {
-
-                this.src = `./images/tour/tour1.jpg`;
-                this.addEventListener("mouseout", removeChangeImage);
-            };
-            function removeChangeImage() {
-                this.src = "./images/common/location.png";
-                this.addEventListener("mouseover", changeImage);
-            };
-        });
-        let locationArea = document.getElementsByClassName("location");
-        let allLocal = document.getElementById("allLocal");
-        let nLocal = document.getElementById("nLocal");
-        let cLocal = document.getElementById("cLocal");
-        let sLocal = document.getElementById("sLocal");
-        allLocal.addEventListener("click", removeStyle);
-        function removeStyle() {
-            for (var i = 0; i < locationArea.length; i++) {
-                locationArea[i].removeAttribute("style");
-            };
-        };
-
-        nLocal.addEventListener("click", function () {
-            removeStyle();
-            for (var i = 3; i < locationArea.length; i++) {
-                locationArea[i].style.display = "none";
-            };
-        });
-        cLocal.addEventListener("click", function () {
-            removeStyle();
-            for (var i = 0; i < 3; i++) {
-                locationArea[i].style.display = "none";
-            };
-            for (var i = 7; i < locationArea.length; i++) {
-                locationArea[i].style.display = "none";
-            };
-        });
-        sLocal.addEventListener("click", function () {
-            removeStyle();
-            for (var i = 0; i < 7; i++) {
-                locationArea[i].style.display = "none";
-            };
-        });
-
-
-
-
-
-
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v9.0"
+        nonce="2JLZxLTK"></script>
+    <script src="./js/like.js"></script>
+    <script src="./js/01_tour_topLocation.js"></script>
+    <script>
+        var jsonStr = '[{"TOUR_ID":"1","GARD_ID":"1","MEM_NO":"1","HOTEL_ID":"1","TOUR_PEOPLE":"30","NUM_OF_PARTICIPANTS":"16","SETUP_DATE":"2020/10/13","DEADLINE_DATE":"2020/10/31","TOUR_SETOFFTIME":"2020/11/4","TOUR_TITLE":"跨年前夕來採茶","TOUR_INFRO":"絕對好玩","TOUR_IMG":"./images/tour/tour1.jpg","TOUR_LEADER":"有","TOUR_ACTIVE":"傳統採茶活動","TOUR_PS":"記得多帶衣服"},{"TOUR_ID":"1","GARD_ID":"1","MEM_NO":"1","HOTEL_ID":"1","TOUR_PEOPLE":"30","NUM_OF_PARTICIPANTS":"16","SETUP_DATE":"2020/10/13","DEADLINE_DATE":"2020/10/31","TOUR_SETOFFTIME":"2020/11/4","TOUR_TITLE":"跨年前夕來採茶","TOUR_INFRO":"絕對好玩","TOUR_IMG":"./images/tour/tour1.jpg","TOUR_LEADER":"有","TOUR_ACTIVE":"傳統採茶活動","TOUR_PS":"記得多帶衣服"},{"TOUR_ID":"1","GARD_ID":"1","MEM_NO":"1","HOTEL_ID":"1","TOUR_PEOPLE":"30","NUM_OF_PARTICIPANTS":"16","SETUP_DATE":"2020/10/13","DEADLINE_DATE":"2020/10/31","TOUR_SETOFFTIME":"2020/11/4","TOUR_TITLE":"跨年前夕來採茶","TOUR_INFRO":"絕對好玩","TOUR_IMG":"./images/tour/tour1.jpg","TOUR_LEADER":"有","TOUR_ACTIVE":"傳統採茶活動","TOUR_PS":"記得多帶衣服"},{"TOUR_ID":"1","GARD_ID":"1","MEM_NO":"1","HOTEL_ID":"1","TOUR_PEOPLE":"30","NUM_OF_PARTICIPANTS":"16","SETUP_DATE":"2020/10/13","DEADLINE_DATE":"2020/10/31","TOUR_SETOFFTIME":"2020/11/4","TOUR_TITLE":"跨年前夕來採茶","TOUR_INFRO":"絕對好玩","TOUR_IMG":"./images/tour/tour1.jpg","TOUR_LEADER":"有","TOUR_ACTIVE":"傳統採茶活動","TOUR_PS":"記得多帶衣服"},{"TOUR_ID":"1","GARD_ID":"1","MEM_NO":"1","HOTEL_ID":"1","TOUR_PEOPLE":"30","NUM_OF_PARTICIPANTS":"16","SETUP_DATE":"2020/10/13","DEADLINE_DATE":"2020/10/31","TOUR_SETOFFTIME":"2020/11/4","TOUR_TITLE":"跨年前夕來採茶","TOUR_INFRO":"絕對好玩","TOUR_IMG":"./images/tour/tour1.jpg","TOUR_LEADER":"有","TOUR_ACTIVE":"傳統採茶活動","TOUR_PS":"記得多帶衣服"},{"TOUR_ID":"1","GARD_ID":"1","MEM_NO":"1","HOTEL_ID":"1","TOUR_PEOPLE":"30","NUM_OF_PARTICIPANTS":"16","SETUP_DATE":"2020/10/13","DEADLINE_DATE":"2020/10/31","TOUR_SETOFFTIME":"2020/11/4","TOUR_TITLE":"跨年前夕來採茶","TOUR_INFRO":"絕對好玩","TOUR_IMG":"./images/tour/tour1.jpg","TOUR_LEADER":"有","TOUR_ACTIVE":"傳統採茶活動","TOUR_PS":"記得多帶衣服"},{"TOUR_ID":"1","GARD_ID":"1","MEM_NO":"1","HOTEL_ID":"1","TOUR_PEOPLE":"30","NUM_OF_PARTICIPANTS":"16","SETUP_DATE":"2020/10/13","DEADLINE_DATE":"2020/10/31","TOUR_SETOFFTIME":"2020/11/4","TOUR_TITLE":"跨年前夕來採茶","TOUR_INFRO":"絕對好玩","TOUR_IMG":"./images/tour/tour1.jpg","TOUR_LEADER":"有","TOUR_ACTIVE":"傳統採茶活動","TOUR_PS":"記得多帶衣服"},{"TOUR_ID":"1","GARD_ID":"1","MEM_NO":"1","HOTEL_ID":"1","TOUR_PEOPLE":"30","NUM_OF_PARTICIPANTS":"16","SETUP_DATE":"2020/10/13","DEADLINE_DATE":"2020/10/31","TOUR_SETOFFTIME":"2020/11/4","TOUR_TITLE":"跨年前夕來採茶","TOUR_INFRO":"絕對好玩","TOUR_IMG":"./images/tour/tour1.jpg","TOUR_LEADER":"有","TOUR_ACTIVE":"傳統採茶活動","TOUR_PS":"記得多帶衣服"},{"TOUR_ID":"1","GARD_ID":"1","MEM_NO":"1","HOTEL_ID":"1","TOUR_PEOPLE":"30","NUM_OF_PARTICIPANTS":"16","SETUP_DATE":"2020/10/13","DEADLINE_DATE":"2020/10/31","TOUR_SETOFFTIME":"2020/11/4","TOUR_TITLE":"跨年前夕來採茶","TOUR_INFRO":"絕對好玩","TOUR_IMG":"./images/tour/tour1.jpg","TOUR_LEADER":"有","TOUR_ACTIVE":"傳統採茶活動","TOUR_PS":"記得多帶衣服"}]';
+        var app = new Vue({
+            el: "#tourBrowseBlock",
+            data: {
+                tourRows: JSON.parse(jsonStr)
+            },
+            methods: {}
+        })
 
 
     </script>

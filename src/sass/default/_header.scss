@@ -331,25 +331,20 @@ div.menu a {
     }
 }
 
-@keyframes rotate {
+@keyframes index_round {
     from {
         transform: rotate(0deg);
+        transform-origin: center;
     }
 
     to {
-        transform: rotate(720deg);
+        transform: rotate(1080deg);
+        transform-origin: center;
+
     }
 }
 
-@keyframes roll {
-    from {
-        background-position: -100% 0px;
-    }
 
-    to {
-        background-position: 0px 0px;
-    }
-}
 
 @keyframes bigger {
     from {
@@ -377,7 +372,7 @@ div.menu a {
 
 #green_earth {
     width: 100%;
-    animation: rotate 120s infinite 1s, bigger 1s ease-out;
+    animation: index_round 120s infinite 1s, bigger 1s ease-out;
 }
 
 /* ======四座山====== */

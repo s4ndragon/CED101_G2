@@ -5,47 +5,35 @@ let getRightsideHotel = document.getElementsByClassName('hotel_rightside_img')[0
 let getRightsideRest = document.getElementsByClassName('rest_rightside_img')[0];
 let getRightsideActive = document.getElementsByClassName('active_rightside_img')[0];
 let greenLine = document.getElementById("greenline");
+let storage = sessionStorage;
 
 window.addEventListener("load", function () {
-    let localNum = 9;
-    for (let i = 0; i < localNum; i++) {
-        let newitem = document.createElement('div');
-        tourBlock.appendChild(newitem);
-        newitem.setAttribute('class', 'tourCreate_item');
-        newitem.innerHTML = `
-                     <div class="tourCreate_item_img">
-                        <img src="./images/vote/tea.jpg" alt="">
-                     </div>
-                   <p>八卦山茶園</p>
-                `
-        let localChoice = document.getElementsByClassName('tourCreate_item')[i];
-        localChoice.addEventListener('click', addLocal);
-        // ==================changeBtn==============================
-        local.style.color = "#69994e";
-        local.style.backgroundColor = "lightyellow";
-        hotel.style.visibility = "hidden";
-        rest.style.visibility = "hidden";
-        active.style.visibility = "hidden";
-        local.setAttribute('disabled', 'daisabled');
-
-        helpText[0].innerText = "請選擇要去的茶園!!";
-        helpText[1].innerText = "請選擇要去的茶園!!";
-    }
+    showLocal();
 })
 function addLocal() {
     if (getRightsideLocal.childNodes.length < 1) {
+        // ====================storge=============================
+        let locationValue = document.querySelector(`#${this.id} input`).value;
+        storage['location'] = locationValue;
+        let locationInfo = storage.getItem('location')
+        let locationTitle = locationInfo.split('|')[1];
+        let locationIntro = locationInfo.split('|')[2];
+        let locationImg = locationInfo.split('|')[3];
+
+
+        // ========================================================
         let newLocal = document.createElement('div');
         getRightsideLocal.appendChild(newLocal);
         newLocal.setAttribute('class', 'local_block');
         newLocal.innerHTML = `
                 <div class="local_img">
-                            <img src="./images/vote/tea.jpg" alt="">
+                            <img src="${locationImg}" alt="">
                         </div>
                         <div class="local_text">
-                            <h2>舞鶴茶園
+                            <h2>${locationTitle}
                                 <span class="t1">茶園</span>
                             </h2>
-                            <p>海拔100至300公尺的舞鶴台地，依傍高聳的中央山脈，隨風拂來秀姑巒溪與紅葉溪的濕潤水氣，宜人的氣候適合茶樹生長，是天鶴茶的產地，也是小葉綠蟬生長的天堂，經由小葉綠蟬吸吮而製成的蜜香紅茶，微帶淡淡的果香與蜜香，口感溫潤生津，獨特的風味聞名全臺，成為旅人來訪瑞穗必帶的伴手禮之一。
+                            <p>${locationIntro}
                             </p>
                         </div>
                         <button id="removeNewLocal" >X</button>
@@ -74,6 +62,7 @@ function removeNewLocal() {
     rest.style.visibility = "hidden";
     active.style.visibility = "hidden";
     greenLine.removeAttribute("style");
+    storage.removeItem('location');
 
 };
 
@@ -89,7 +78,9 @@ function showLocal() {
         let newitem = document.createElement('div');
         tourBlock.appendChild(newitem);
         newitem.setAttribute('class', 'tourCreate_item');
+        newitem.setAttribute('id', "A" + i);
         newitem.innerHTML = `
+        <input type="hidden" name="" class="inputHidden" value='A${i}|舞鶴茶園|海拔100至300公尺的舞鶴台地，依傍高聳的中央山脈，隨風拂來秀姑巒溪與紅葉溪的濕潤水氣，宜人的氣候適合茶樹生長，是天鶴茶的產地，也是小葉綠蟬生長的天堂，經由小葉綠蟬吸吮而製成的蜜香紅茶，微帶淡淡的果香與蜜香，口感溫潤生津，獨特的風味聞名全臺，成為旅人來訪瑞穗必帶的伴手禮之一。|./images/vote/tea.jpg'>
                 <div class="tourCreate_item_img">
                         <img src="./images/vote/tea.jpg" alt="">
                     </div>
@@ -105,10 +96,6 @@ function showLocal() {
         active.removeAttribute('style');
         rest.removeAttribute('style');
         local.setAttribute('disabled', 'daisabled');
-
-
-
-
         // ==================change helper text=====================
         helpText[0].innerText = "請選擇要去的茶園!!"
         helpText[1].innerText = "請選擇要去的茶園!!"
