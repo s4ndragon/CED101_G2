@@ -373,9 +373,7 @@ img {
 .main_body {
 
     h1 {
-        text-align: center;
-        color: $primary-typo-color;
-        font-size: $h1;
+        @include banner-2nd-title;
         margin-top: 50px;
     }
 
@@ -508,16 +506,13 @@ img {
     .love_share {
         position: absolute;
         bottom: 105px;
-        right: 10px;
+        right: 60px;
 
         div {
             display: inline-block;
             width: 30px;
+            vertical-align: top;
 
-            i {
-                font-size: 24px;
-                color: #a7c957;
-            }
         }
     }
 
@@ -611,26 +606,7 @@ img {
         text-align: right;
 
         button {
-            width: 120px;
-            border-radius: 20px;
-            font-weight: bolder;
-            border: 2px;
-            transition: all 0.5s ease;
-            font-size: 14px;
-            outline: none;
-            cursor: pointer;
-            margin: 15px;
-            letter-spacing: 2px;
-            background-color: #69994e;
-
-            a {
-                width: 100%;
-                height: 100%;
-                display: inline-block;
-                color: white;
-                padding: 15px 5px;
-                text-decoration: none;
-            }
+            @include btn;
         }
     }
 

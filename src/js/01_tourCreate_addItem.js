@@ -22,7 +22,7 @@ window.addEventListener("load", function () {
         localChoice.addEventListener('click', addLocal);
         // ==================changeBtn==============================
         local.style.color = "#69994e";
-        local.style.backgroundColor = "#fff";
+        local.style.backgroundColor = "lightyellow";
         hotel.style.visibility = "hidden";
         rest.style.visibility = "hidden";
         active.style.visibility = "hidden";
@@ -100,7 +100,7 @@ function showLocal() {
         localChoice.addEventListener('click', addLocal);
         // ==================changeBtn==============================
         local.style.color = "#69994e";
-        local.style.backgroundColor = "#fff";
+        local.style.backgroundColor = "lightyellow";
         hotel.removeAttribute('style');
         active.removeAttribute('style');
         rest.removeAttribute('style');
@@ -136,7 +136,7 @@ function showHotel() {
 
         // ==================changeBtn==============================
         this.style.color = "#69994e";
-        this.style.backgroundColor = "#fff";
+        this.style.backgroundColor = "lightyellow";
         local.removeAttribute('style');
         active.removeAttribute('style');
         rest.removeAttribute('style');
@@ -201,7 +201,7 @@ function showRest() {
 
         // ==================changeBtn==============================
         this.style.color = "#69994e";
-        this.style.backgroundColor = "#fff";
+        this.style.backgroundColor = "lightyellow";
         local.removeAttribute('style');
         active.removeAttribute('style');
         hotel.removeAttribute('style');
@@ -270,7 +270,7 @@ function showActive() {
     `;
     // ==================changeBtn==============================
     this.style.color = "#69994e";
-    this.style.backgroundColor = "#fff";
+    this.style.backgroundColor = "lightyellow";
     local.removeAttribute('style');
     hotel.removeAttribute('style');
     rest.removeAttribute('style');
