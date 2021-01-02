@@ -12,12 +12,17 @@
 }
 #title{
 	height:300px;
-	background-color: #ead779;
 	@include banner-1st-title;
 }
-// .x-auto{
-// 	overflow-x:auto;
-// }
+.banner{
+	@include banner;
+}
+.banner-1st-title{
+	@include banner-1st-title;
+}
+.x-auto{
+	overflow-x:auto;
+}
 .title{
 position: relative;
 left: calc(50% - 232px);
