@@ -1,51 +1,11 @@
 #pub_new {
     @include form_title;
-    font-size: $h3;
-    color: white;
 }
 
 #pub_article {
-    width: 50%;
-    margin: 0 auto;
-    background-color: white;
-    padding: 25px;
-    border-radius: 0 0 30px 30px;
+    @include form_page;
 }
 
-
-.pub_input_container {
-    margin: 30px;
-
-    .input_type {
-        font-size: $h5;
-        font-weight: bolder;
-        color: $secondary-typo-color;
-    }
-
-    textarea {
-        width: 100%;
-        resize: none;
-        height: 200px;
-        border-radius: 10px;
-        outline: none;
-    }
-}
-
-input {
-    outline-style: none;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    padding: 13px;
-    width: 80%;
-    font-size: 14px;
-    font-weight: 700;
-}
-
-.slt {
-    height: 30px;
-    width: 180px;
-    border-radius: 5px;
-}
 
 
 // =========新增
@@ -66,8 +26,4 @@ input {
     // background-image: url();
     width: 300px;
     height: 200px;
-}
-
-.article_input {
-    padding: 13px;
 }

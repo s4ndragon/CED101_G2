@@ -71,25 +71,48 @@ $br: 5px;
     }
 }
 
+
+
 //頁面form規範
+// @@@@@@@@@@@@@@@@@@@@以下是form的mixin名稱跟說明，可參考討論區我要發文頁面
+
+// @mixin form_title  用在你form的大標表頭
+// @mixin form_page   用在你form標籤的屬性
+
+
+
+
+// @@@@@@@@@@@@@@@@@@@@// 以上是form的mixin名稱跟說明
+
 
 //= form的標題 =//
 @mixin form_title {
     background-color: $secondary-typo-color;
     padding: 25px;
-    margin: 0;
     border-radius: 30px 30px 0 0;
     width: 50%;
     margin: 0 auto;
+    font-weight: bold;
+    font-size: $h3;
+    color: white;
+
+    @media screen and (max-width: 700px) {
+        width: 85%;
+        font-size: $h4;
+    }
 }
 
-//= form的內容 =//
+//= form的內容大框 =// 
 @mixin form_page {
     width: 50%;
     margin: 0 auto;
     background-color: white;
     padding: 25px;
     border-radius: 0 0 30px 30px;
+
+    @media screen and (max-width: 700px) {
+        width: 85%;
+    }
 
     label {
         font-size: $h5;
@@ -98,7 +121,8 @@ $br: 5px;
         margin: 30px 0;
     }
 
-    input {
+    input,
+    select {
         outline-style: none;
         border: 1px solid #ccc;
         border-radius: 10px;
@@ -107,6 +131,19 @@ $br: 5px;
         font-size: 14px;
         font-weight: 700;
         margin: 30px 0;
+
+        @media screen and (max-width: 700px) {
+            margin: 10px 0;
+        }
+    }
+
+    select {
+        width: 40%;
+        vertical-align: middle;
+
+        option {
+            font-weight: bold;
+        }
     }
 
     // <<<<<<< HEAD
@@ -116,5 +153,7 @@ $br: 5px;
         height: 200px;
         border-radius: 10px;
         outline: none;
+        padding: 13px;
     }
+
 }
