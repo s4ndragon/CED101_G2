@@ -58,10 +58,6 @@ main {
     }
 }
 
-footer {
-    margin-top: 40px;
-}
-
 
 // =========以上是共用========
 
@@ -196,7 +192,7 @@ footer {
 
 
 .pub_time {
-    padding: 3px;
+    padding: 8px;
     font-size: $h6;
     background-color: $secondary-typo-color;
 
@@ -208,6 +204,7 @@ footer {
 
 .art_icons {
     position: relative;
+    display: flex;
 
     .fb_iframe_widget {
         position: absolute;

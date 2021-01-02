@@ -4,10 +4,12 @@
     box-sizing: $box-sizing;
 }
 
-.nav {
-    padding-top: 300px;
-    background-color: #3f7735;
-    width: 100%;
+nav {
+    background-color: transparent;
+}
+
+div.menu a {
+    color: white;
 }
 
 .main-title {
@@ -125,6 +127,7 @@
     border-radius: 72px;
     background-repeat: no-repeat;
 }
+
 .tour-list li {
     position: relative;
     padding: 80px 30px 0;
@@ -159,7 +162,7 @@
     display: block;
 }
 
-.tour-list li + li {
+.tour-list li+li {
     margin-left: 20px;
 }
 
@@ -269,7 +272,7 @@
     vertical-align: top;
 }
 
-.vote-list li + li {
+.vote-list li+li {
     margin-left: 30px;
 }
 
@@ -504,6 +507,7 @@
 .shop .shopping {
     color: #eff2c7;
 }
+
 .shop-list .shop-newest {
     margin-top: 30px;
     color: #eff2c7;
@@ -697,6 +701,7 @@
     justify-content: space-around;
     margin-top: 15%;
 }
+
 .shop-icon-wrapper .addFavorite {
     width: 30px;
     height: 30px;
@@ -986,7 +991,7 @@ input[type='button'] {
         text-align: center;
     }
 
-    .tour-list li + li {
+    .tour-list li+li {
         margin-left: 0px;
         margin-bottom: 0;
     }

@@ -90,7 +90,7 @@ function additem(e) {
         itemPrice = itemValue.split('|')[2],
         itemNum = itemValue.split('|')[3];
     if (storage[`${itemNo}`]) {
-        alert('已經在購物車內囉。')
+        alertLB('已經在購物車內囉。');
     } else {
         storage[`${itemNo}`] = itemValue;
         storage['addItemList'] += itemNo + ',';
@@ -107,8 +107,7 @@ function additem(e) {
             calcAmount();
             newdiv.querySelectorAll('.drop')[0].addEventListener('click', dropitem);
         };
-        addcartLB = document.getElementById('addcartLB');
-        addcartLB.style.display = 'flex';
+        alertLB('已加入購物車');
     }
 }
 
@@ -266,8 +265,9 @@ function addcartalert() {
     if (addcartLB) {} else {
         let newdiv = document.createElement('div');
         newdiv.setAttribute('id', 'addcartLB');
-        newdiv.innerHTML = `
-    <span id='closeLB'>×</span><h4 id="addcartLBText">已加入購物車</h4>
+        newdiv.innerHTML = `<div>
+        <span id='closeLB'>×</span><h4 id="addcartLBText">已加入購物車</h4>
+        </div>
         `;
         let footer = document.getElementsByTagName('footer')[0];
         document.getElementsByTagName('body')[0].insertBefore(newdiv, footer);
@@ -275,4 +275,11 @@ function addcartalert() {
             addcartLB.style.display = 'none';
         })
     }
+}
+
+function alertLB(text) {
+    document.getElementById('addcartLBText').innerText = text;
+    addcartLB = document.getElementById('addcartLB');
+    addcartLB.style.display = 'flex';
+
 }

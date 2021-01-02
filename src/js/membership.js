@@ -5,7 +5,109 @@ $(document).ready(function () {
     // }
 
     //地址二聯式下拉選單
-    new TwCitySelector();
+    // new TwCitySelector();
+
+    //change profile unfinished
+    $(".profile-pic").click(function () {
+        $("#profile_pic_input").trigger("click");
+    });
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                //animate profile picture
+                var profilePicTL = new TimelineMax();
+                profilePicTL
+                    .set(".profile-pic", {
+                        transformOrigin: "50% 50%",
+                    })
+                    .to(".profile-pic", 2, {
+                        transform: "rotate(-15deg)",
+                        ease: Elastic.easeOut,
+                    })
+                    .to(
+                        ".profile-pic",
+                        0.8,
+                        {
+                            transform: "translateY(650px) rotate(20deg)",
+                            ease: Back.easeIn,
+                            onComplete: function () {
+                                $(".profile-pic img").attr("src", e.target.result);
+                                $(".profile-pic").css("opacity", "0");
+                            },
+                        },
+                        "-=1.2"
+                    )
+                    .set(".profile-pic", {
+                        transform: "translateY(-200px) rotate(0)",
+                        transformOrigin: "50% 50%",
+                        onComplete: function () {
+                            $(".profile-pic").css("opacity", "1");
+                        },
+                    })
+                    .to(".profile-pic", 0.2, {
+                        transform: "translateY(0)",
+                        opacity: 1,
+                        ease: Power2.easeIn,
+                    })
+                    .set(".profile-pic", {
+                        transformOrigin: "50% 100%",
+                    })
+                    .to(".profile-pic", 0.1, {
+                        transform: "scaleX(1.6) scaleY(.3)",
+                        ease: Power4.easeOut,
+                    })
+                    .to(".profile-pic", 0.8, {
+                        transform: "scaleX(1) scaleY(1)",
+                        opacity: 1,
+                        ease: Elastic.easeOut,
+                    });
+
+                //animate card
+                var cardTL = new TimelineMax();
+
+                cardTL
+                    .set(".card", {
+                        transformOrigin: "100% 100%",
+                    })
+                    .to(".card", 0.7, {
+                        transform: "rotate(15deg) skew(0)",
+                        ease: Back.easeOut,
+                    })
+                    .to(".card", 0.2, {
+                        transform: "rotate(-5deg) skewY(-10deg)",
+                        ease: Back.easeIn,
+                    })
+                    .to(".card", 1, {
+                        transform: "rotate(0) skew(0)",
+                        ease: Elastic.easeOut,
+                    })
+                    .set(".card", {
+                        transformOrigin: "50% 100%",
+                    })
+                    .to(
+                        ".card",
+                        0.2,
+                        {
+                            transform: "scaleX(1.1) scaleY(.9)",
+                            delay: 0.9,
+                            ease: Power4.easeIn,
+                        },
+                        "-=.7"
+                    )
+                    .to(".card", 0.8, {
+                        transform: "scale(1)",
+                        ease: Elastic.easeOut,
+                    });
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#profile_pic_input").change(function () {
+        readURL(this);
+    });
 
     //sub menu分頁
     $(".tour").click(function () {

@@ -1,14 +1,11 @@
 //現在要做：分四路，四路都生蟲子進攻而且隨機產生，四路皆能放植物守衛防守//因此要做三維陣列
 //由上起算第二路有woromArr、plantArr
-//單字有path way road
 //降落星星茶葉打算用tweenMax下降以控制暫停pause(),繼續resume(),碰到邊界要自我刪除kill()
 //用var img = document.createElement("img");產生得來的可否能用tweenLiteMax(img,2,{y:9});
 /* 變數統一用k<3
 完成三個道路放置植物
-
 間隔一段時間生成子彈 time_b()包{createBullet()}
 createBullet()注意road.appendChild要把road改成要針對的物件
-
 改寫----
 讓子彈飛
 bb_()改成shot(){};for(var k=0;k<3;k++){};
