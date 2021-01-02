@@ -65,13 +65,19 @@ footer {
 
 // =========以上是共用========
 
-#big_title {
-    @include banner-1st-title;
+.banner {
+    @include banner;
+
+    h1 {
+        @include banner-1st-title;
+    }
 
     h2 {
         @include banner-txt;
     }
 }
+
+
 
 .list {
     cursor: pointer;
@@ -91,7 +97,6 @@ footer {
 
         .cate {
             padding: 10px 20px;
-            font-weight: bolder;
             transition: all 0.5s ease;
 
             &:hover {
@@ -177,7 +182,8 @@ footer {
 }
 
 .btncontainer {
-    text-align: right;
+    display: flex;
+    justify-content: flex-end;
 }
 
 
@@ -218,6 +224,7 @@ footer {
 .fil_none {
     display: none;
 }
+
 
 
 @media screen and (max-width: 700px) {
