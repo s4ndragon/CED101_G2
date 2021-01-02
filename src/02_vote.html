@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,11 +10,12 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
+
 <body>
-	@@include('layout/leaf.html')
+	<!-- @@include('layout/leaf.html') -->
 	@@include('layout/nav.html')
 	<div class="banner">
-		<h2>茶園排行</h2>
+		<p class="fir">茶園排行</p>
 	</div>
 
 	<main>
@@ -26,24 +28,28 @@
 			<div class="info">
 				<div class="s1">
 					<p class="p1">舞鶴茶園</p>
-					<div class="fb-share-button" data-href="https://tw.yahoo.com/" data-layout="button" data-size="small">
-                        <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5501%2F07_vote_more.html&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
-                            分享
-                        </a>
-                    </div>
-				</div>
-				
-				<div class="allscore">
-					<span class="score">
-						總分:&ensp; 
-					</span>
-					<div id="app">
-						<star-rating  :rating="4.7" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
+					<div class="fb-share-button" data-href="https://tw.yahoo.com/" data-layout="button"
+						data-size="small">
+						<a target="_blank"
+							href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5501%2F07_vote_more.html&amp;src=sdkpreparse"
+							class="fb-xfbml-parse-ignore">
+							分享
+						</a>
 					</div>
 				</div>
 
-				<p class="p3">水尾，依山傍水，瑞穗的舊稱，暗藏在鳥語花香的花東縱谷，得天獨厚，擁有天然美景與純淨水資源，是台灣少有的淨土，油亮碧綠的寬廣草原，宛若仙境，雲霧繚繞，這裡是孕育極品茶的世外桃花源-舞鶴茶園。</p>
-				
+				<div class="allscore">
+					<span class="score">
+						總分:&ensp;
+					</span>
+					<div id="app">
+						<star-rating :rating="4.7" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
+					</div>
+				</div>
+
+				<p class="p3">
+					水尾，依山傍水，瑞穗的舊稱，暗藏在鳥語花香的花東縱谷，得天獨厚，擁有天然美景與純淨水資源，是台灣少有的淨土，油亮碧綠的寬廣草原，宛若仙境，雲霧繚繞，這裡是孕育極品茶的世外桃花源-舞鶴茶園。</p>
+
 				<div class="btwrap">
 					<button class="bt">
 						<a class="btn" href="02_vote_more.html">
@@ -62,19 +68,22 @@
 			<div class="info">
 				<div class="s1">
 					<p class="p1">晴天茶園</p>
-					<div class="fb-share-button" data-href="https://tw.yahoo.com/" data-layout="button" data-size="small">
-                        <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5501%2F07_vote_more.html&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
-                            分享
-                        </a>
-                    </div>
+					<div class="fb-share-button" data-href="https://tw.yahoo.com/" data-layout="button"
+						data-size="small">
+						<a target="_blank"
+							href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5501%2F07_vote_more.html&amp;src=sdkpreparse"
+							class="fb-xfbml-parse-ignore">
+							分享
+						</a>
+					</div>
 				</div>
-				
+
 				<div class="allscore">
 					<span class="score">
-						總分:&ensp; 
+						總分:&ensp;
 					</span>
 					<div id="app2">
-						<star-rating  :rating="4.3" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
+						<star-rating :rating="4.3" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
 					</div>
 				</div>
 				<p class="p3">晴天鹿谷，台灣水鹿群聚之鄉，也是聞名世界台灣烏龍茶發源地，單一茶區鹿谷出發，
@@ -97,22 +106,26 @@
 			<div class="info">
 				<div class="s1">
 					<p class="p1">坪林茶園</p>
-					<div class="fb-share-button" data-href="https://tw.yahoo.com/" data-layout="button" data-size="small">
-                        <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5501%2F07_vote_more.html&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
-                            分享
-                        </a>
-                    </div>
-				</div>
-				
-				<div class="allscore">
-					<span class="score">
-						總分:&ensp; 
-					</span>
-					<div id="app3">
-						<star-rating  :rating="3.8" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
+					<div class="fb-share-button" data-href="https://tw.yahoo.com/" data-layout="button"
+						data-size="small">
+						<a target="_blank"
+							href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5501%2F07_vote_more.html&amp;src=sdkpreparse"
+							class="fb-xfbml-parse-ignore">
+							分享
+						</a>
 					</div>
 				</div>
-				<p class="p3">水尾，依山傍水，瑞穗的舊稱，暗藏在鳥語花香的花東縱谷，得天獨厚，擁有天然美景與純淨水資源，是台灣少有的淨土，油亮碧綠的寬廣草原，宛若仙境，雲霧繚繞，這裡是孕育極品茶的世外桃花源-吉林茶園。</p>
+
+				<div class="allscore">
+					<span class="score">
+						總分:&ensp;
+					</span>
+					<div id="app3">
+						<star-rating :rating="3.8" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
+					</div>
+				</div>
+				<p class="p3">
+					水尾，依山傍水，瑞穗的舊稱，暗藏在鳥語花香的花東縱谷，得天獨厚，擁有天然美景與純淨水資源，是台灣少有的淨土，油亮碧綠的寬廣草原，宛若仙境，雲霧繚繞，這裡是孕育極品茶的世外桃花源-吉林茶園。</p>
 				<div class="btwrap">
 					<button class="bt">
 						<a href="02_vote_more.html">
@@ -131,7 +144,7 @@
 		</div>
 
 		<table id="app4">
-			
+
 			<tr>
 				<td>1</td>
 				<td>
@@ -139,7 +152,7 @@
 					舞鶴茶園
 				</td>
 				<td class="resize">
-					<star-rating  :rating="4.7" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
+					<star-rating :rating="4.7" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
 				</td>
 			</tr>
 			<tr>
@@ -149,7 +162,7 @@
 					晴天茶園
 				</td>
 				<td class="resize">
-					<star-rating  :rating="4.3" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
+					<star-rating :rating="4.3" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
 				</td>
 			</tr>
 			<tr>
@@ -159,55 +172,57 @@
 					坪林茶園
 				</td>
 				<td class="resize">
-					<star-rating  :rating="3.8" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
+					<star-rating :rating="3.8" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
 				</td>
 			</tr>
 			<tr></tr>
-				<td>4</td>
-				<td>
-					<img class="chartpic" src="images/vote/tea7.jpg">
-					石碇八卦茶園
-				</td>
-				<td class="resize">
-					<star-rating  :rating="3.7" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
-				</td>
-			</tr><tr>
+			<td>4</td>
+			<td>
+				<img class="chartpic" src="images/vote/tea7.jpg">
+				八卦茶園
+			</td>
+			<td class="resize">
+				<star-rating :rating="3.7" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
+			</td>
+			</tr>
+			<tr>
 				<td>5</td>
 				<td>
 					<img class="chartpic" src="images/vote/tea7.jpg">
 					春陽茶園
 				</td>
 				<td class="resize">
-					<star-rating  :rating="3.5" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
+					<star-rating :rating="3.5" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
 				</td>
 			</tr>
 			<tr>
 				<td>6</td>
 				<td>
 					<img class="chartpic" src="images/vote/tea7.jpg">
-					三峽熊空茶園
+					熊空茶園
 				</td>
 				<td class="resize">
-					<star-rating  :rating="3.3" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
+					<star-rating :rating="3.3" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
 				</td>
-			</tr><tr>
+			</tr>
+			<tr>
 				<td>7</td>
 				<td>
 					<img class="chartpic" src="images/vote/tea7.jpg">
-					武界台興茶園
+					台興茶園
 				</td>
 				<td class="resize">
-					<star-rating  :rating="3.2" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
+					<star-rating :rating="3.2" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
 				</td>
 			</tr>
 			<tr>
 				<td>8</td>
 				<td>
 					<img class="chartpic" src="images/vote/tea7.jpg">
-					同心雙圓茶園
+					雙圓茶園
 				</td>
 				<td class="resize">
-					<star-rating  :rating="3.1" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
+					<star-rating :rating="3.1" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
 				</td>
 			</tr>
 			<tr>
@@ -217,7 +232,7 @@
 					二尖山茶園
 				</td>
 				<td class="resize">
-					<star-rating  :rating="3.0" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
+					<star-rating :rating="3.0" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
 				</td>
 			<tr>
 				<td>10</td>
@@ -226,7 +241,7 @@
 					阿薩姆茶園
 				</td>
 				<td class="resize">
-					<star-rating  :rating="2.7" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
+					<star-rating :rating="2.7" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
 				</td>
 			</tr>
 		</table>
@@ -236,20 +251,20 @@
 
 	@@include('layout/footer.html')
 
-	
+
 	<script>
-		Vue.component("star-rating", VueStarRating.default,{
+		Vue.component("star-rating", VueStarRating.default, {
 			methods: {
-				setRating: function(rating) {
+				setRating: function (rating) {
 					this.rating = "You have Selected: " + rating + " stars";
 				},
-				showCurrentRating: function(rating) {
+				showCurrentRating: function (rating) {
 					this.currentRating =
 						rating === 0
 							? this.currentSelectedRating
 							: "Click to select " + rating + " stars";
 				},
-				setCurrentSelectedRating: function(rating) {
+				setCurrentSelectedRating: function (rating) {
 					this.currentSelectedRating =
 						"You have Selected: " + rating + " stars";
 				}
@@ -281,6 +296,8 @@
 	</script>
 
 	<div id="fb-root"></div>
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v9.0" nonce="WuFFSzIJ"></script>
+	<script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v9.0"
+		nonce="WuFFSzIJ"></script>
 </body>
+
 </html>

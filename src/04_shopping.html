@@ -18,11 +18,11 @@
 <body>
     @@include('layout/nav.html')
     @@include('layout/title.html',{'title':'商城首頁'})
-    <a href="./04_product.html">
-        <div class="shop_adv">
+    <div class="shop_adv">
+        <a href="./04_product.html">
             <img src="./images/shopping/adv.jpg" alt="">
-        </div>
-    </a>
+        </a>
+    </div>
     <div class="recommend">
         <h2>推薦商品</h2>
         <div class="recommend_products">
@@ -32,35 +32,21 @@
         <h2>所有商品</h2>
         <div class="search">
             <div class="classify">
-                <input type="button" value="分類" id="classifyBtn">
-                <table id="classifyTable">
-                    <tr>
-                        <td><a href="./04_product.html">茶葉</a></td>
-                        <td><a href="">茶壺</a></td>
-                        <td><a href="">茶杯</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="">茶具</a></td>
-                        <td><a href="">燒水壺</a></td>
-                        <td><a href="">茶海</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="">茶乘</a></td>
-                        <td><a href="">茶罐</a></td>
-                        <td><a href="">杯墊</a></td>
-                    </tr>
-                </table>
+                <input type="button" value="茶葉" class="classifyBtn selected">
+                <input type="button" value="茶壺" class="classifyBtn">
+                <input type="button" value="茶具" class="classifyBtn">
+                <input type="button" value="茶杯" class="classifyBtn">
+                <input type="button" value="茶罐" class="classifyBtn">
             </div>
             <div class="search_bar">
-                <input type="search" name="" id="searchBar" placeholder="搜尋商品">
-                <input type="submit" value="搜尋">
+                <input type="search" name="" id="searchBar" placeholder="搜尋商品"><input type="submit" value="搜尋">
             </div>
-            <select name="" id="filter">
-                <option value="price">價格高->低</option>
-                <option value="price">價格低->高</option>
-                <option value="price">銷售排行</option>
-                <option value="price">新到貨</option>
-            </select>
+            <div class="orderby">
+                <input type="radio" name="order" id="new"><label for="new">新到貨</label>
+                <input type="radio" name="order" id="highP"><label for="highP">價格高&rarr;低</label>
+                <input type="radio" name="order" id="lowP"><label for="lowP">價格低&rarr;高</label>
+                <input type="radio" name="order" id="sales"><label for="sales">銷售排行</label>
+            </div>
         </div>
         <div class="page">
             <ul>

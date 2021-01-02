@@ -16,9 +16,13 @@
 
     @@include('layout/nav.html')
     <div class="banner">
-        <h2>創造屬於你的專屬</h2>
+        <div>
+            <h1>建立揪團</h1>
+        </div>
     </div>
+
     <div class="header_block">
+        <h1>選擇搭配行程</h1>
         <div class="tourCreate_header">
             <div class="step_title">
                 <div class="step_block">
@@ -56,11 +60,14 @@
             </div>
         </div>
     </div>
-    <h1>選擇搭配行程</h1>
+
     <div class="tourCreate_main">
 
         <div class="tourCreate_leftside">
-            <img src="./images/tour/down.gif" alt="">
+            <div class="help_top">
+                <img src="./images/tour/down.gif" alt="">
+                <div class="help_text" id="help_text"></div>
+            </div>
             <div class="tourCreate_choice">
                 <button id="local">地點</button>
                 <button id="hotel">住宿</button>
@@ -84,7 +91,7 @@
     </div>
     <div class="nextBtn"><button><a href="./01_tourCreateInfro.html">下一步</a></button></div>
     <div class="help">
-        <div class="help_text" id="help_text"></div>
+        <div class="help_text"></div>
         <div class="help_img"><img src="./images/tour/tea.gif" alt=""></div>
     </div>
     @@include('layout/footer.html')

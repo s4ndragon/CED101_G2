@@ -2,11 +2,12 @@ footer {
     position: relative;
     bottom: 0;
     width: 100%;
-    padding: 10px;
-    background-color: #fff;
+    padding: 50px;
+    background-image: url(../images/common/footer_ground.png);
     display: flex;
     justify-content: center;
     align-items: center;
+
     h5 {
         font-size: 0.8rem;
     }
