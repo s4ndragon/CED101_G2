@@ -1,8 +1,8 @@
 //導覽列下面的banner背景請和body背景同
 //HTML 請長這樣
-// <div class="banner"> //引用banner
+// <div class="banner"> //引用@mixin banner
 // <div>
-// <h1>建立揪團</h1> //引用banner-1st-title
+// <h1>建立揪團</h1> //引用@mixin banner-1st-title
 // </div>
 // </div>
 
@@ -15,10 +15,14 @@
     background-image: url(../images/common/header_bk.png);
     background-repeat: no-repeat;
     background-position: center center;
+    font-weight: bold;
 
     @media only screen and (max-width: 576px) {
         height: 300px;
+        background-size: contain;
+        margin: 30px 0px -80px 0px;
     }
+
 }
 
 //導覽列下面的banner範圍內的主標題
@@ -29,9 +33,19 @@
     margin: 0 0 25px;
     color: #fff;
     text-align: $txt-align-center;
+    font-weight: bold;
+
+    @media only screen and (max-width: 576px) {
+        font-size: $h2;
+    }
 }
 
-//banner內主標題下的內文
+
+
+
+//banner內主標題下的內文  這個不用了，只是怕關掉大家會報錯，所以先留著
+//banner內主標題下的內文  這個不用了，只是怕關掉大家會報錯，所以先留著
+//banner內主標題下的內文  這個不用了，只是怕關掉大家會報錯，所以先留著
 @mixin banner-txt {
     font-size: $h5; //18px
     letter-spacing: $letter-spacing; //3px
@@ -45,4 +59,6 @@
     font-size: $h2; //36px
     letter-spacing: $letter-spacing; //3px
     text-align: $txt-align-center;
+    font-weight: bold;
+    color: white;
 }
