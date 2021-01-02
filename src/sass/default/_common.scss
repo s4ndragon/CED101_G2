@@ -1,18 +1,17 @@
-@import "variables";
-// @import 'login_register';
-@import "reset";
-@import "header";
-@import "footer";
-@import "bground_style";
-@import "btn";
-@import "form";
-@import "leaf";
-@import "font";
-@import "login_register";
-@import "leaf";
-// @import 'load';
-@import "filter";
-@import "banner";
+@import 'variables';
+@import 'reset';
+@import 'header';
+@import 'footer';
+@import 'bground_style';
+@import 'btn';
+@import 'form';
+@import 'leaf';
+@import 'font';
+@import 'login_register';
+@import 'leaf';
+@import 'load';
+@import 'filter';
+@import 'banner';
 
 img {
     max-width: $img-max-width;

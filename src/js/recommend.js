@@ -18,7 +18,8 @@ function doFirst() {
                                 <div class="content">
                                     <a href="./04_product.html">
                                         <h4>戶外旅行便攜茶具8件組-黑陶款(贈不掉毛雙層吸水抹布4入)</h4>
-                                        <div class="price">NT<span>689</span></div>
+                                        <div class="price"><span>689</span></div>
+                                        <p>商品介紹商品介紹商品介紹商品介紹商品介紹商品介紹商品介紹商品介紹商品介紹商品介紹商品介紹</p>
                                     </a>
                                     <div class='btns'>
                                     <img class='addFavorite' src="./images/common/heart.png" alt="">
