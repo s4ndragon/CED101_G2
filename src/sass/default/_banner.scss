@@ -61,4 +61,8 @@
     text-align: $txt-align-center;
     font-weight: bold;
     color: white;
+
+    @media only screen and (max-width: 576px) {
+        font-size: $h3;
+    }
 }

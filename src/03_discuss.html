@@ -7,13 +7,14 @@
     <link rel="shortcut icon" href="./images/index/webIcon.png" type="image/x-icon" />
     <link rel="stylesheet" href="css/discuss.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.js"></script>
     <title>討論區2</title>
 </head>
 
 <body>
     @@include('layout/leaf.html')
     @@include('layout/nav.html')
-    <main>
+    <main id="app">
         <div class="banner">
             <div>
                 <h1>找茶討論</h1>
@@ -46,6 +47,23 @@
                             <img class="memi addheart" title="加入收藏" src="./images/common/heart.png" alt="">
                             <img class="memi" src="./images/common/messenger.png" alt="">
                             <span class="com_num">50</span>
+                            <div class="excl" @click="showModal2 = true">
+                                <img class="excl" src="./images/common/852019_exclamation_512x512.png" alt="">
+                            </div>
+                            <!-- overlay -->
+                            <div class="overlay" v-if="showModal2" @click="showModal2 = true"></div>
+                            <!-- modal -->
+                            <div class="modal" v-if="showModal2">
+                                <form>
+                                    <div class="close" @click="showModal2 = false">
+                                        <img class="cancel" src="images/vote/cancel.png">
+                                    </div>
+                                    <p class="welcome">請輸入檢舉理由</p>
+                                    <textarea class="repoinfo" cols="30" rows="10"></textarea>
+
+                                    <button class="go">送出</button>
+                                </form>
+                            </div>
                             <div class="fb-share-button" data-href="https://www.youtube.com/watch?v=HDhltQ4Jx0o"
                                 data-layout="button_count" data-size="small"><a target="_blank"
                                     href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DHDhltQ4Jx0o&amp;src=sdkpreparse"
@@ -461,6 +479,16 @@
                     this.src = "./images/common/heart.png";
                 }
             });
+        });
+    </script>
+
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                showModal: false,
+                showModal2: false,
+            }
         });
     </script>
 </body>

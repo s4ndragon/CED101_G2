@@ -9,17 +9,19 @@ $(function () {
         }, 750);
     });
 
-    if ($(window).scrollTop() >= 300) {
-        $("nav").addClass("upup");
-        $(".menu a").css("color", "#7baa17");
-        $(".menu a").addClass("gr");
-        $(".hamburger>div").css("background", "black");
-    } else {
-        $("nav").removeClass("upup");
-        $(".menu a").css("color", "white");
-        $(".menu a").removeClass("gr");
-        $(".hamburger>div").css("background", "white");
-    }
+    $(window).scroll(function () {
+        if ($(window).scrollTop() >= 300) {
+            $("nav").addClass("upup");
+            // $(".hamburger>div").css("background", "black");
+            $(".menu a").css("color", "#17581e");
+        } else {
+            $("nav").removeClass("upup");
+            $('nav').css("color", "transparent");
+            $(".menu a").css("color", "white");
+            // $(".hamburger>div").css("background", "white");
+        }
+    });
+
 
 });
 
