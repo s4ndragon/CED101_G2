@@ -6,10 +6,7 @@ $cardBG:#fff;
 
 body {
     .banner {
-        height: 300px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        @include banner;
 
         h2 {
             @include banner-1st-title;
