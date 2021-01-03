@@ -162,7 +162,7 @@ div.menu a {
     display: block;
 }
 
-.tour-list li+li {
+.tour-list li + li {
     margin-left: 20px;
 }
 
@@ -272,7 +272,7 @@ div.menu a {
     vertical-align: top;
 }
 
-.vote-list li+li {
+.vote-list li + li {
     margin-left: 30px;
 }
 
@@ -980,21 +980,20 @@ input[type='button'] {
     .tour-list li {
         padding: 75px 30px 30px;
         display: block;
-        width: 100%;
+        width: 90%;
         min-height: 0;
         box-shadow: none;
-        margin-bottom: 13%;
-        margin-top: 22%;
+        margin: 32% 20px 0 20px;
     }
 
     .tour-list li .txt-btm {
         text-align: center;
     }
 
-    .tour-list li+li {
-        margin-left: 0px;
-        margin-bottom: 0;
-    }
+    // .tour-list li + li {
+    //     margin-left: 0px;
+    //     margin-bottom: 0;
+    // }
 
     .tour-list .tour-list-line,
     .tour-list .tour-list-line2,
@@ -1032,6 +1031,13 @@ input[type='button'] {
         padding-top: 20px;
         padding-bottom: 20px;
     }
+    .shop .shop-img-front {
+        transform: translate(-50%, -100%);
+    }
+
+    .shop .shop-banner {
+        display: none;
+    }
 
     .shop .shop-banner .shop-banner-promo {
         top: 15px;
@@ -1041,14 +1047,33 @@ input[type='button'] {
         margin-top: 60px;
     }
 
+    .shop-list ul {
+        text-align: center;
+    }
+
     .shop-list li {
-        width: 100%;
-        margin-right: 0;
-        margin-bottom: 15px;
+        width: 90%;
+        margin: 0 auto;
+        margin-bottom: 20px;
     }
 
     .shop-list li .txt-area {
         padding: 15px;
+    }
+
+    .shop-list li .txt-area .category-name {
+        margin-top: 10px;
+    }
+    .shop-list li .txt-area .company {
+        transform: translate(20%, -184.4%);
+    }
+
+    .shop-list li .txt-area .txt {
+        width: 90%;
+    }
+
+    .shop-icon-wrapper {
+        margin-top: 0;
     }
 
     .discuss .dis-box-info {
@@ -1070,7 +1095,8 @@ input[type='button'] {
     }
 
     .dis-img-top {
-        top: -3.6%;
+        top: -5%;
+        width: 100%;
     }
 
     .illust-discuss-next {
@@ -1095,13 +1121,28 @@ input[type='button'] {
         top: 73%;
     }
 
+    // .vote-list {
+    //     display: grid;
+    // }
+
+    .vote-list li {
+        width: 90%;
+    }
+
+    .vote-list li + li {
+        margin-left: 0;
+    }
     .vote-list li a .txt {
         margin-top: 0;
-        font-size: 0.8rem;
+        font-size: $h4;
     }
 
     .vote-list li a .txt:after {
         content: '';
+    }
+
+    .vote-list li a .circle {
+        width: 100%;
     }
 
     .illust-discuss {
@@ -1128,6 +1169,19 @@ input[type='button'] {
 
     .tour .tour-head-img {
         top: 220px;
+    }
+
+    .dis-img-right {
+        top: 1.2%;
+        right: 1%;
+        width: 20%;
+    }
+    .discuss .container {
+        margin: 20px;
+    }
+
+    .ending-txt {
+        font-size: $h4;
     }
 }
 
