@@ -8,6 +8,7 @@
 		<link rel="stylesheet" href="./css/flex.css">
 		<!-- <link href="https://unpkg.com/vuetify/dist/vuetify.min.css" rel="stylesheet"> -->
 		<!-- <script src="https://unpkg.com/vuetify/dist/vuetify.js"></script> -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.js"></script>
 		<script src="../node_modules/jquery/dist/jquery.min.js"></script>
 	</head>
 	<body>
@@ -103,9 +104,13 @@ font-size: 28px;line-height: 1.5;
 			<div id="way2" class="road"></div>
 			<div id="way3" class="road"></div>
 			<ul id="props">
-				<li><img src="./images/game/4.gif" data-star=25 data-hps=50 data-hp=50 data-defense=20 data-damage=10 data-speed=2 class="plant" /><span>25</span></li>
+				<!-- <li><img src="./images/game/4.gif" data-star=25 data-hps=50 data-hp=50 data-defense=20 data-damage=10 data-speed=2 class="plant" /><span>25</span></li>
 				<li><img src="./images/game/Wallnut_body.png" data-star=50 data-defense=90 data-hps=100 data-hp=100 data-damage=0 data-speed=0 class="plant" /><span>50</span></li>
-				<li><img src="./images/game/TallNut.gif" data-star=75 data-defense=90 data-hps=150 data-hp=150 data-damage=0 data-speed=0 class="plant"><span>75</span></li>
+				<li><img src="./images/game/TallNut.gif" data-star=75 data-defense=90 data-hps=150 data-hp=150 data-damage=0 data-speed=0 class="plant"><span>75</span></li> -->
+				<li v-for="p in plant">
+					<img :src="'./images/game/'+p.pic" :data-star="p.star":data-hps="p.hps":data-hp="p.hp" :data-defense="p.defense" :data-damage="p.damage" :data-speed="p.speed">
+					<span>{{p.star}}</span>
+				</li>
 			</ul>
 			<section id="botbar" class="flex">
 			<div><span style="color:#000;font-size:20px;">計分:</span><span id="score">0</span></div>
@@ -119,18 +124,24 @@ font-size: 28px;line-height: 1.5;
 			<div>
 				<input type="checkbox" class="checke" id="checkbox" value="pause">
 			</div>
-					<!-- <abbr title="暫停">
-					<img src="./images/game/teacup2.png" id="pause" alt="rest"class="none"  >
-				</abbr>								 -->
+
 			</section>
 		</div>
-		</div>
-	
-				
+		</div>		
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js" ></script>
 		<script src="./js/game (1).js"></script>
 		<script src="./js/game2.js"></script>
 		<!-- <script src="./js/game.js"></script> -->
+		<script>
+			new Vue({
+				el:'#map',
+				data:{
+					plant:[{pic:'4.gif',star:25,hps:50,hp:50,defense:20,damage:10,speed:2},
+							{pic:'Wallnut_body.png',star:50,hps:100,hp:100,defense:90,damage:0,speed:0},
+							{pic:'TallNut.gif',star:75,hps:150,hp:150,defense:90,damage:0,speed:0}]
+				}
+			})
+		</script>
 		@@include('layout/footer.html')
 	</body>
 </html>
