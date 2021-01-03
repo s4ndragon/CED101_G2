@@ -1,0 +1,20 @@
+@import "./default/common";
+.w100{
+	width:100%;
+}
+.v100w{
+	width:100vw;
+}
+.h400px{
+    height:400px;
+}
+.size60{
+	font-size:60px;
+}
+
+.banner{
+	@include banner;
+}
+.banner-1st-title{
+	@include banner-1st-title;
+}
