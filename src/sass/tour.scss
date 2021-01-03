@@ -391,6 +391,9 @@ img {
         display: flex;
         justify-content: center;
 
+        @media screen and (max-width: 576px) {
+            margin: 0px 5px;
+        }
 
 
         li {
@@ -398,15 +401,13 @@ img {
             vertical-align: top;
             position: relative;
             @include filter-more;
-
-
-
             cursor: pointer;
+
+
 
             h2 {
                 margin: 0;
                 font-size: 16px;
-
             }
 
 
@@ -419,12 +420,9 @@ img {
 
                 background-color: $search-bar-bgColor;
 
-
-
-
                 li {
-                    display: block;
                     @include filter-sub-menu;
+                    margin: 0;
                 }
 
 
@@ -435,6 +433,20 @@ img {
             ul {
                 display: block;
                 z-index: 3;
+
+                @media screen and (max-width: 576px) {
+                    top: 49px;
+                    left: -6px;
+                    padding: 0px 0px;
+                    width: 92px;
+                }
+
+                li {
+                    @media screen and (max-width: 576px) {
+
+                        width: 92px;
+                    }
+                }
             }
         }
     }
@@ -470,7 +482,7 @@ img {
     overflow: hidden;
     border-radius: 10px;
 
-    @media screen and (max-width: 575px) {
+    @media screen and (max-width: 576px) {
         margin: 10px auto;
         display: block;
     }
@@ -727,15 +739,6 @@ img {
                 padding: 10px;
             }
 
-            ul {
-                padding: 0;
-
-                li {
-                    text-align: center;
-                    font-size: $h3;
-                    padding: 2px;
-                }
-            }
 
         }
 
@@ -747,19 +750,7 @@ img {
     }
 
 
-    .choice_list {
-        ul {
-            li {
-                margin: 0px 5px;
 
-                h2 {
-                    margin: 0;
-                    font-size: $h3;
-                    padding: 5px;
-                }
-            }
-        }
-    }
 
 
 }
@@ -772,22 +763,7 @@ img {
 
     }
 
-    .choice_list {
-        ul {
-            li.mini_choice {
-                display: block;
-            }
 
-            li {
-                display: block;
-
-                ul {
-                    position: relative;
-                    left: 0;
-                }
-            }
-        }
-    }
 
     .tour_browse {
         width: 100%;
