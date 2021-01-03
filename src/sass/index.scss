@@ -225,11 +225,10 @@ div.menu a {
 
 .vote-img-back {
     position: absolute;
-    top: 32%;
+    top: 12%;
     transform: translateX(-50%);
     width: 20%;
     left: 10%;
-    z-index: 1;
     opacity: 0.4;
 }
 
@@ -479,7 +478,7 @@ div.menu a {
 }
 
 .shop .shop-banner .txt {
-    margin-bottom: 15px;
+    margin-top: 15px;
     font-size: $h4;
     font-weight: bold;
     letter-spacing: 0.05rem;
@@ -897,6 +896,7 @@ input[type='button'] {
         transform: translate(-50%, 50%);
         bottom: 51%;
         color: #fff;
+        width: 100%;
     }
 }
 
@@ -1055,7 +1055,7 @@ input[type='button'] {
     }
 
     .vote-img-back {
-        top: 73%;
+        display: none;
     }
 
     .vote-list li {
@@ -1113,8 +1113,9 @@ input[type='button'] {
         margin: 20px;
     }
 
-    .ending-txt {
+    .ending .ending-txt {
         font-size: $h4;
+        bottom: 31%;
     }
 }
 
