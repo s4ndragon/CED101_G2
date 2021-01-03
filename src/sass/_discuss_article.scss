@@ -123,7 +123,7 @@
     h2 {
         margin: 30px 0px;
         text-align: left;
-        font-size: 28px;
+        font-size: $h3;
         color: white;
         font-weight: bold;
     }
@@ -176,6 +176,10 @@
 @media screen and (max-width: 700px) {
     #art_information {
         flex-direction: column;
+
+        h2 {
+            font-size: $h3;
+        }
     }
 
     .allthings {
@@ -189,7 +193,7 @@
 
     #article_text {
         padding: 10px 20px 10px;
-        border-bottom: 1px solid gray;
+        border-bottom: 1px solid #ebebeb;
         font-weight: 200;
     }
 
