@@ -414,7 +414,9 @@ main {
                         .tour_attendency {
                             width: 20%;
                             cursor: pointer;
-
+                            &:hover {
+                                text-shadow: 0.5px 0.5px $primary-typo-color;
+                            }
                             @media only screen and (max-width: 992px) {
                                 display: none;
                             }
@@ -935,7 +937,7 @@ main {
 }
 
 .num_attendency {
-    border: 1px solid red;
+    // border: 1px solid red;
     // width: $main;
     display: fixed;
     flex-direction: column;
@@ -959,6 +961,9 @@ main {
     animation-iteration-count: 1;
     animation-timing-function: ease-in;
     animation-duration: 0.5s;
+    border-radius: 25px;
+    padding: 12.7px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 
     @keyframes fadeInOpacity {
         0% {
@@ -981,6 +986,7 @@ main {
         height: 24px;
         width: 24px;
         position: relative;
+        border-radius: 50%;
 
         &:after {
             content: "\2715";
@@ -1044,6 +1050,9 @@ main {
     top: 50%;
     height: 150px;
     z-index: 10000;
+    border-radius: 25px;
+    padding: 12.7px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 
     //easy-in
     animation-name: fadeInOpacity;
@@ -1065,10 +1074,16 @@ main {
         // border: 1px solid black;
         display: flex;
         justify-content: space-between;
-        width: 50%;
-
+        // width: 50%;
+        // padding: 12.7px;
+        #btn_confirm {
+            @include smallbtn3;
+        }
+        #btn_cancel {
+            @include smallbtn3;
+        }
         input {
-            width: 40%;
+            // width: 40%;
         }
     }
 }
