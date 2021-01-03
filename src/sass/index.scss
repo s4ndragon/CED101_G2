@@ -109,11 +109,6 @@ div.menu a {
     margin-bottom: 30px;
 }
 
-.tour-list .img-front {
-    top: 210px;
-    width: 70%;
-}
-
 .tour-list li:before {
     content: '';
     display: block;
@@ -154,12 +149,18 @@ div.menu a {
     top: 25px;
 }
 
+.tour-list .img-front {
+    top: 90%;
+    width: 80%;
+    left: 51.1% !important;
+}
 .tour-list .img-back,
 .tour-list .img-front {
     position: absolute;
     left: 46%;
     transform: translateX(-46%);
     display: block;
+    opacity: 0.9;
 }
 
 .tour-list li + li {
@@ -226,8 +227,10 @@ div.menu a {
     position: absolute;
     top: 32%;
     transform: translateX(-50%);
-    width: 30%;
+    width: 20%;
     left: 10%;
+    z-index: 1;
+    opacity: 0.4;
 }
 
 .vote-img-back-right {
@@ -294,6 +297,29 @@ div.menu a {
     background-repeat: no-repeat;
 }
 
+.vote-list li a .circle-or {
+    position: relative;
+    display: block;
+    width: 94%;
+    padding-top: 100%;
+    overflow: hidden;
+    background-image: url(..//images/index/ill_cup_or.png);
+    background-position: top;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.vote-list li a .circle-bl {
+    position: relative;
+    display: block;
+    width: 94%;
+    padding-top: 100%;
+    overflow: hidden;
+    background-image: url(..//images/index/ill_cup_bl.png);
+    background-position: top;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
 .vote-list li a .img {
     position: absolute;
     top: 50%;
@@ -324,15 +350,6 @@ div.menu a {
     background-color: #eff2c7;
 }
 
-// .vote-list li a .txt:after {
-//     content: '';
-//     display: inline-block;
-//     margin-left: 10px;
-//     transform: translate(0, -1px);
-//     font-family: 'FontAwesome';
-//     transition: all 0.3s ease-in;
-// }
-
 .vote-list li a .bg {
     display: block;
     position: absolute;
@@ -358,38 +375,21 @@ div.menu a {
     background-repeat: no-repeat;
 }
 
-// .vote-list .vote-icon-01 a .bg:hover {
-//     background-color: #3293cb;
-//     transform: scale(1);
-//     : url(..//images/index/ill_cup_db.png);
-//     background-position: top;
-//     background-size: contain;
-//     background-repeat: no-repeat;
-// }
-
-// .vote-list .vote-icon-02 a .bg {
-//     // background-color: #ffb541;
-//     : url(../images/index/ill_cup_.png);
-//     background-position: top;
-//     background-size: contain;
-//     background-repeat: no-repeat;
-// }
-
-// .vote-list .vote-icon-03 a .bg {
-//     background-color: #c3cc2d;
-// }
-
-// .vote-list .vote-icon-04 a .bg {
-//     background-color: #87e0db;
-// }
-
-// .vote-list .vote-icon-05 a .bg {
-//     background-color: #f69d85;
-// }
-
-// .container-main * {
-//     transition: opacity 0.5s;
-// }
+.vote-list li .txt {
+    .txt-price {
+        font-size: $h3;
+        color: #ca4a50;
+    }
+    .txt-loc {
+        font-size: $h4;
+        color: $primary-typo-color;
+    }
+    .txt-intro {
+        font-size: $h6;
+        color: $success-sign;
+        font-weight: lighter;
+    }
+}
 
 .lg-btn-vote {
     @include btn;
@@ -428,16 +428,12 @@ div.menu a {
     padding: 70px 0 70px;
 }
 
-// .shop .shop-img-front {
-//     top: 380px;
-// }
-
-// .shop .shop-img-back,
 .shop .shop-img-front {
     position: absolute;
     transform: translate(-50%, -50%);
     left: 50%;
     width: 95%;
+    opacity: 0.9;
 }
 
 .shop .shop-banner {
@@ -479,11 +475,12 @@ div.menu a {
 
 .shop .shop-banner.shop-banner-promo .category-name {
     color: #87e0db;
+    font-size: $h3;
 }
 
 .shop .shop-banner .txt {
-    margin-bottom: 5px;
-    font-size: 1.125rem;
+    margin-bottom: 15px;
+    font-size: $h4;
     font-weight: bold;
     letter-spacing: 0.05rem;
 }
@@ -682,18 +679,7 @@ div.menu a {
     background-size: cover;
     background-repeat: no-repeat;
     width: 45%;
-    // background-color: #ffb541;
 }
-
-// .shop-list li .txt-area .company > span {
-//     display: inline-block;
-//     font-size: 16px;
-//     color: #fff;
-//     padding: 5px 20px;
-//     position: absolute;
-//     top: 39.2%;
-//     transform: translate(34.5%, -168.8%);
-// }
 
 .shop-icon-wrapper {
     display: flex;
@@ -712,6 +698,7 @@ div.menu a {
 
 input[type='button'] {
     @include smallbtn3;
+    z-index: 1;
 }
 
 .shop-list li .txt-area .txt {
@@ -730,10 +717,6 @@ input[type='button'] {
     letter-spacing: 0.05rem;
 }
 
-// .shop-list li .txt-area .wrap-company {
-//     margin: 0 -5px 5px;
-// }
-
 .shop-list li .txt-area .company {
     display: inline-block;
     font-size: 28px;
@@ -743,13 +726,6 @@ input[type='button'] {
     top: 39.2%;
     transform: translate(8.5%, -168.8%);
 }
-
-// .shop-list li .txt-area .company:after {
-//     background-image: url(../images/index/company5.png);
-//     background-position: left;
-//     background-size: contain;
-//     background-repeat: no-repeat;
-// }
 
 .lg-btn-shop {
     @include btn2;
@@ -832,33 +808,7 @@ input[type='button'] {
     text-align: left;
 }
 
-// .discuss .dis-box-info .txt-area .lg-btn {
-//     font-size: 0.8125rem;
-//     background-color: #7baa17;
-//     width: 100%;
-// }
-
-// .discuss .dis-box-info .txt-area .lg-btn .lg-btn_txt {
-//     color: #fff;
-// }
-
-// .lg-btn-style .lg-btn .lg-btn_txt {
-//     position: relative;
-//     color: #90a30b;
-//     z-index: 1;
-//     transition: color 0.3s;
-//     transition-delay: 0.2s;
-// }
-
 .lg-btn-dis {
-    // height: 100%;
-    // overflow: hidden;
-    // position: absolute;
-    // top: 0;
-    // left: 0;
-    // bottom: -3px;
-    // right: -1px;
-    // border-radius: 25px;
     @include btn;
 }
 
@@ -928,14 +878,6 @@ input[type='button'] {
 
 // 第六屏:結束=====================
 
-// .ending-outer {
-//     background: #fff;
-//     opacity: 0.3;
-//     width: 60%;
-//     font-size: $h1;
-//     font-weight: lighter;
-// }
-
 .ending {
     text-align: center;
     background: #709b5e;
@@ -947,12 +889,15 @@ input[type='button'] {
     background-position: bottom;
     background-repeat: no-repeat;
     background-image: url(../images/index/ending.png);
-}
+    position: relative;
 
-.ending .ending-txt {
-    border: 1px solid red;
-
-    // position: absolute;
+    .ending-txt {
+        font-size: 48px;
+        position: absolute;
+        transform: translate(-50%, 50%);
+        bottom: 51%;
+        color: #fff;
+    }
 }
 
 // 結束第六屏 =====================
@@ -990,11 +935,6 @@ input[type='button'] {
         text-align: center;
     }
 
-    // .tour-list li + li {
-    //     margin-left: 0px;
-    //     margin-bottom: 0;
-    // }
-
     .tour-list .tour-list-line,
     .tour-list .tour-list-line2,
     .tour-list .tour-list-line3 {
@@ -1010,9 +950,6 @@ input[type='button'] {
     }
 
     .lg-btn-style {
-        // width: 168px;
-        // padding: 10px;
-        // font-size: 0.75rem;
         @include btn2;
     }
 
@@ -1120,10 +1057,6 @@ input[type='button'] {
     .vote-img-back {
         top: 73%;
     }
-
-    // .vote-list {
-    //     display: grid;
-    // }
 
     .vote-list li {
         width: 90%;
