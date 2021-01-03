@@ -1,5 +1,4 @@
 @import 'variables';
-@import 'login_register';
 @import 'reset';
 @import 'header';
 @import 'footer';
@@ -19,7 +18,7 @@ img {
 }
 
 body {
-    font-family: 'Noto Sans TC';
+    font-family: "Noto Sans TC";
     line-height: 28px;
     background-image: url(../images/index/img_bg_yg_pc4.png);
     background-size: 100% auto;

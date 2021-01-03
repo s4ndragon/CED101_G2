@@ -1,23 +1,23 @@
-<div id="form">
+<div id="form-log">
     <ul class="tab-group">
-      <li class="tab active"><a href="#login">登入</a></li>
-      <li class="tab"><a href="#signup">註冊</a></li>
+        <li class="tab active"><a href="#login">登入</a></li>
+        <li class="tab"><a href="#signup">註冊</a></li>
     </ul>
     <div class="tab-content">
         <div id="login">   
-            <h2 class="h2">歡迎回來！</h2>
-            <form action="/" method="post">
+            <h2 class="title-log">歡迎回來！</h2>
+            <form class="form" action="/" method="post">
                 <div class="field-wrap">
-                    <label for="memId">
+                    <label for="memId-log">
                         帳號<span class="req">*</span>
                     </label>
-                    <input type="text"required autocomplete="off" id="memId" name="memId"/>
+                    <input type="text"required autocomplete="off" id="memId-log" name="memId-log"/>
                 </div>
                 <div class="field-wrap">
-                    <label for="memPw">
+                    <label for="memPw-log">
                         密碼<span class="req">*</span>
                     </label>
-                    <input type="password"required autocomplete="off" id="memPw" name="memPw"/>
+                    <input type="password"required autocomplete="off" id="memPw-log" name="memPw-log"/>
                 </div>
                 <p class="forgot"><a href="#">忘記密碼？</a></p>
                 <div class="btn_container">
@@ -26,13 +26,13 @@
             </form>
         </div>
         <div id="forget_pw">
-            <h2 class="h2">找回密碼</h2>
-            <form action="/" method="post">
+            <h2 class="title">找回密碼</h2>
+            <form class="form" action="/" method="post">
                 <div class="field-wrap">
-                    <label for="email">
+                    <label for="email-find">
                         信箱<span class="req">*</span>
                     </label>
-                    <input type="email"required autocomplete="off" id="email" name="email"/>
+                    <input type="email"required autocomplete="off" id="email-find" name="email-find"/>
                 </div>
                 <div class="btn_container">
                     <button class="btn"/>取回密碼</button>
@@ -41,25 +41,25 @@
             </form>
         </div>        
         <div id="signup">   
-            <h2 class="h2">註冊會員</h2>
-            <form action="/" method="post">
+            <h2 class="title">註冊會員</h2>
+            <form class="form" action="/" method="post">
                 <div class="field-wrap">
                     <label for="email">
                     信箱<span class="req">*</span>
                     </label>
-                <input type="email"required autocomplete="off" id="email" name="email"/>
+                <input type="email"required autocomplete="off" id="email-reg" name="email-reg"/>
                 </div>
                 <div class="field-wrap">
-                    <label for="memId">
+                    <label for="memId-reg">
                     帳號<span class="req">*</span>
                     </label>
-                    <input type="text"required autocomplete="off" id="memId" name="memId"/>
+                    <input type="text"required autocomplete="off" id="memId-reg" name="memId-reg"/>
                 </div>
                 <div class="field-wrap">
                     <label for="memPw">
                     密碼<span class="req">*</span>
                     </label>
-                    <input type="password"required autocomplete="off" id="memPw" name="memPw"/>
+                    <input type="password"required autocomplete="off" id="memPw-reg" name="memPw-reg"/>
                 </div>
                 <div class="field-wrap">
                     <label for="re_memPw">

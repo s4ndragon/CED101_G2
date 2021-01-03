@@ -1,10 +1,32 @@
-@import "./default/common";
-// @import "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css";
-// @import "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/js/bootstrap.min.js";
-/* 代替main.css */
-body{
-  @include banner-1st-title;
-}
+// @import 'variables';
+// // @import 'login_register';
+// @import 'reset';
+// @import 'header';
+// @import 'footer';
+// @import 'bground_style';
+// @import 'btn';
+// @import 'form';
+// @import 'leaf';
+// @import 'font';
+// // @import 'login_register';
+// @import 'leaf';
+// // @import 'load';
+// @import 'filter';
+// @import 'banner';
+
+// @import "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css";
+// img {
+//     max-width: $img-max-width;
+// }
+// body {
+//     font-family: 'Noto Sans TC';
+//     line-height: 28px;
+//     background-image: url(../images/index/img_bg_yg_pc4.png);
+//     background-size: 100% auto;
+    // }
+@import './default/common';
+@import "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css";
+
 .hidden {
   display: none;
 }
