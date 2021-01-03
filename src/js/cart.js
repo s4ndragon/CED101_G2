@@ -107,7 +107,7 @@ function additem(e) {
             calcAmount();
             newdiv.querySelectorAll('.drop')[0].addEventListener('click', dropitem);
         };
-        alertLB('已加入購物車');
+        alertLB('已加入購物車。');
     }
 }
 

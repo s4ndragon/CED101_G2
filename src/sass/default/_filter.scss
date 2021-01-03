@@ -1,18 +1,30 @@
 //filter下無子選單
-@mixin filter-no-more {
-    font-size: $para; //16px
-    padding: 10px 45px;
-    border: 1px solid #fff;
-    cursor: $cusor-pointer;
-    width: 150px;
-    color: white;
-    text-align: $txt-align-center;
-    list-style: none;
 
-    &:hover {
-        color: #386641;
-        background-color: white;
+// @@@@@@@@@引用此篩選器注意事項
+// 這個mixin結構須是ul包li
+
+@mixin filter-no-more {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    li {
+        font-size: $para; //16px
+        padding: 10px 45px;
+        border: 1px solid #fff;
+        cursor: $cusor-pointer;
+        color: white;
+        text-align: $txt-align-center;
+        list-style: none;
+        width: 160px;
+        transition: all ease 0.5s;
+
+        &:hover {
+            color: #386641;
+            background-color: white;
+        }
     }
+
 }
 
 // filter下有子選單

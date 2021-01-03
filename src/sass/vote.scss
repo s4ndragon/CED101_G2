@@ -6,9 +6,9 @@
 
 body{
     font-family: 'Noto Sans TC';
-    // @include forDiscussAndVote;
-    background-image: url(../images/index/yay.png);
-    background-size: 100% auto;
+    @include forDiscussAndVote;
+    // background-image: url(../images/index/yay.png);
+    // background-size: 100% auto;
 }
 
 .banner{
@@ -308,6 +308,7 @@ main{
             left: 0px;
             .leaf{
                 width: 90px;
+                display: none;
             }
         }
 

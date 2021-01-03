@@ -11,17 +11,30 @@ h2.title {
 body {
 
     form {
-        width: $mainWidth*0.7;
+        width: $mainWidth;
+        max-width: 1000px;
         margin: 0 auto;
         background-color: #eff2c7;
         padding: 30px 40px;
         border-radius: 5px;
         margin: 50px auto;
+        margin-top: 0;
 
         @media all and (max-width :$small) {
             width: $mainWidth
         }
 
+        .orderNo {
+            text-align: center;
+
+            input {
+                padding: 5px;
+                font-weight: bolder;
+                margin: 0px auto;
+                text-align: center;
+
+            }
+        }
 
         .main {
             h3 {
@@ -35,12 +48,38 @@ body {
             }
 
             >table {
-                margin: 0 auto;
+                margin: 30px auto;
 
+                tr {
+                    td:first-child {
+                        padding: 10px;
+                    }
+
+                    input {
+                        padding: 5px;
+                    }
+
+                    @media screen and (max-width:600px) {
+                        display: block;
+                        margin-bottom: 20px;
+
+                        td {
+
+                            text-align: center;
+                            display: block;
+                        }
+                    }
+
+                }
 
 
                 td.btn {
                     text-align: center;
+
+                    @media screen and (max-width:600px) {
+
+                        padding: 0 !important;
+                    }
 
                     input {
                         @include btn3;
@@ -95,6 +134,11 @@ body {
                             -webkit-box-orient: vertical;
                             -webkit-line-clamp: 2;
                             overflow: hidden;
+                        }
+
+                        >div,
+                        >h4 {
+                            padding: 5px 20px;
                         }
                     }
                 }

@@ -4,12 +4,13 @@
 form {
     width: $mainWidth;
     margin: 40px auto;
+    margin-top: 0;
     max-width: $maxWidth;
 
     div.cart_content {
         >h3 {
             text-align: center;
-            margin-top: 0;
+            margin-top: 20px;
         }
     }
 
@@ -26,13 +27,15 @@ form {
     }
 
     div.check_content {
-        margin: 40px auto;
+        margin: 0px auto;
         text-align: center;
         padding: 20px;
-        background-color: #e3ffe6;
+        background-color: #fff;
         border-radius: 5px;
+        width: 70%;
+        margin-bottom: 40px;
 
-        @media screen and (max-width:400px) {
+        @media screen and (max-width:600px) {
             width: 100%;
         }
 
@@ -44,7 +47,13 @@ form {
             width: min-content;
             font-size: 10px;
             padding: 5px 10px;
-            text-align: center
+            text-align: center;
+
+            @media screen and (max-width:600px) {
+                display: block;
+                margin: 0 auto;
+                margin-top: 10px;
+            }
         }
 
         input.back {
@@ -56,6 +65,30 @@ form {
 
             td {
                 text-align: left;
+
+
+
+                input,
+                select {
+                    padding: 5px;
+                }
+            }
+
+            tr {
+                @media screen and (max-width:600px) {
+                    display: block;
+                    margin-bottom: 20px;
+
+                    td {
+
+                        text-align: center;
+                        display: block;
+                    }
+                }
+            }
+
+            tr>td:first-child {
+                padding: 10px;
             }
         }
 
@@ -72,7 +105,7 @@ form {
         #pointTable {
             position: absolute;
             width: max-content;
-            background-color: #e3ffe6;
+            background-color: #fff;
             padding: 20px;
             transform: translate(-50%, -50%);
             left: 50%;
@@ -88,6 +121,21 @@ form {
 
             #cancel {
                 @include smallbtn4
+            }
+        }
+
+        #total {
+            span {
+                padding: 10px;
+            }
+
+            input {
+                padding: 5px;
+
+                @media screen and (max-width:600px) {
+                    display: block;
+                    margin-top: 10px;
+                }
             }
         }
     }

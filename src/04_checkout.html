@@ -15,13 +15,10 @@
     @@include('layout/title.html',{'title':'結帳'})
     <form action="">
         <div class="main">
-            訂單內容:
+            <h3 class="partTitle">訂單內容:</h3>
             <ul id="items">
             </ul>
             <table>
-                <tr>
-                    <td>&nbsp;</td>
-                </tr>
                 <tr>
                     <td>商品總額:</td>
                     <td><input type="number" name="amount" id="amount" disabled class="info"></td>
@@ -33,9 +30,6 @@
                 <tr>
                     <td>應付金額:</td>
                     <td><input type="number" id="total" disabled></td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td>寄送方式:</td>
@@ -54,14 +48,8 @@
                     <td><input type="number" name="phone" disabled class="info"></td>
                 </tr>
                 <tr>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr>
                     <td>付款方式:</td>
                     <td><input type="text" name="pay" class="info" disabled></td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td colspan="2" class="btn">

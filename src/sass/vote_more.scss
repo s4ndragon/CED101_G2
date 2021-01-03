@@ -118,17 +118,11 @@ main {
                     border-radius: $border-radius-sml;
 
                     .close {
+                        @include close-icon;
                         position: absolute;
-                        top: 10px;
-                        right: 10px;
-                        outline: none;
-                        border: none;
-                        background-color: transparent;
+                        top: -9px;
+                        right: -9px;
                         cursor: pointer;
-
-                        .cancel {
-                            width: 20px;
-                        }
                     }
 
                     .welcome {
@@ -275,17 +269,11 @@ main {
             border-radius: $border-radius-sml;
 
             .close {
+                @include close-icon;
                 position: absolute;
-                top: 10px;
-                right: 10px;
-                outline: none;
-                border: none;
-                background-color: transparent;
+                top: -9px;
+                right: -9px;
                 cursor: pointer;
-
-                .cancel {
-                    width: 20px;
-                }
             }
 
             .welcome {
@@ -337,6 +325,8 @@ main {
                 border: transparent;
                 box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
                 background-color: white;
+                font-size: 18px;
+                padding: 10px 20px;
             }
 
             .com_btn_countainer {

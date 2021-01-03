@@ -67,16 +67,11 @@ main {
     h1 {
         @include banner-1st-title;
     }
-
-    h2 {
-        @include banner-txt;
-    }
 }
 
 
 
-.list {
-    cursor: pointer;
+#discuss_filter {
     @include filter-no-more;
 }
 
@@ -87,26 +82,12 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
-    #filter {
-        display: flex;
-
-        .cate {
-            padding: 10px 20px;
-            transition: all 0.5s ease;
-
-            &:hover {
-                background-color: white;
-                color: #386641;
-            }
-        }
-    }
 }
 
 .fit {
     background-color: white;
     padding: 10px;
-    color: #386641;
+    color: #386641 !important;
     font-weight: bolder;
 }
 
@@ -208,7 +189,7 @@ main {
 
     .fb_iframe_widget {
         position: absolute;
-        margin-left: 20px;
+        margin-left: 70%;
     }
 }
 
@@ -225,11 +206,6 @@ main {
 
 
 @media screen and (max-width: 700px) {
-    #filter {
-        width: 50%;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
 
     .ar_innertext {
         padding: 7px 20px;

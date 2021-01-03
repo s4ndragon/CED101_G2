@@ -16,6 +16,7 @@
 </head>
 
 <body>
+    @@include('layout/leaf.html')
     @@include('layout/nav.html')
     @@include('layout/title.html',{'title':'商城首頁'})
     <div class="shop_adv">
@@ -31,13 +32,13 @@
     <div class="products">
         <h2>所有商品</h2>
         <div class="search">
-            <div class="classify">
-                <input type="button" value="茶葉" class="classifyBtn selected">
-                <input type="button" value="茶壺" class="classifyBtn">
-                <input type="button" value="茶具" class="classifyBtn">
-                <input type="button" value="茶杯" class="classifyBtn">
-                <input type="button" value="茶罐" class="classifyBtn">
-            </div>
+            <ul class="classify">
+                <li class="classifyBtn selected">茶葉</li>
+                <li class="classifyBtn">茶壺</li>
+                <li class="classifyBtn">茶具</li>
+                <li class="classifyBtn">茶杯</li>
+                <li class="classifyBtn">茶罐</li>
+            </ul>
             <div class="search_bar">
                 <input type="search" name="" id="searchBar" placeholder="搜尋商品"><input type="submit" value="搜尋">
             </div>
