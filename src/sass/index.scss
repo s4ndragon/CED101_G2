@@ -287,7 +287,7 @@ div.menu a {
 .vote-list li a .circle {
     position: relative;
     display: block;
-    width: 94%;
+    width: 100%;
     padding-top: 100%;
     overflow: hidden;
     background-image: url(..//images/index/ill_cup_gr.png);
@@ -299,7 +299,7 @@ div.menu a {
 .vote-list li a .circle-or {
     position: relative;
     display: block;
-    width: 94%;
+    width: 100%;
     padding-top: 100%;
     overflow: hidden;
     background-image: url(..//images/index/ill_cup_or.png);
@@ -311,7 +311,7 @@ div.menu a {
 .vote-list li a .circle-bl {
     position: relative;
     display: block;
-    width: 94%;
+    width: 100%;
     padding-top: 100%;
     overflow: hidden;
     background-image: url(..//images/index/ill_cup_bl.png);
@@ -341,7 +341,7 @@ div.menu a {
 .vote-list li a .txt {
     position: relative;
     padding: 15px 0 10px;
-    margin-top: -40px;
+    margin-top: 0px;
     color: #000;
     font-size: 1.125rem;
     font-weight: 500;
@@ -367,7 +367,7 @@ div.menu a {
 }
 
 .vote-list li a:hover .bg {
-    transform: scale(1);
+    transform: scale(0.95);
     background-image: url(../images/index/ill_cup.png);
     background-position: top;
     background-size: contain;
@@ -970,6 +970,8 @@ input[type='button'] {
     }
     .shop .shop-img-front {
         transform: translate(-50%, -100%);
+        bottom: -1628.9px;
+        z-index: 1;
     }
 
     .shop .shop-banner {
