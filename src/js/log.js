@@ -7,4 +7,13 @@
 // html5 + css3 + js 
 // vue + ajax
 // php + mysql
-// 
+// 要請教人
+//檔案名稱分為主檔名、副檔名用split()分割
+var filename='gicce.thtdtr.tcc';var filearr=filename.split('.');console.log(filearr);var lastname=filearr.pop();var firstname=filearr.join('.');
+console.log(firstname);
+console.log(lastname);
+// [...(document.querySelectorAll('.checkAll'))].foreach(function(obj){
+//     obj.onclick=function(){
+//         var check=this.prop('checked');
+//         $(obj).closest("table").find("tr").find("td").find(input:checkbox).first.prop('checked',check);
+//     }   }

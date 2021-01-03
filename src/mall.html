@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- 零件項目為了避免bootstrap 4.5.2跟_common.scss相衝突，只好使用個別編輯 -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -12,6 +11,7 @@
 <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
 <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script> -->
 <link rel="stylesheet" href="./css/backstage.css">
+<link rel="stylesheet" href="./css/mall.css">
 <!-- 問bundle是甚麼 -->
 <!-- 整體來說是要在原先的表格編輯，或者是要把資料拉到另外一個表格同時編輯與新增 -->
 <!-- 我的問題：我希望商品詳情跟商品特色內容較多的要折疊 -->
@@ -41,55 +41,24 @@ document.querySelectorAll('.checkAll').foreach(function(obj){
 <!-- 向許婷惠請教：
     我要在form勾選編輯上傳的項目，按下編輯時唯讀的項目變成可以修改，有select>option以及input:file以及input:checkbox等
     input:file上傳圖檔
-我要用js控制name="products[]"嗎
+我要用js控制name="products[]"嗎？我要把上傳的資料加上name="n[]"，然後不要上傳的就把name=""刪除這屬性
         <div class="col-12 col-sm-8 col-md-10 col-lg-10">
 <button><i class="fas fa-plus-square fa-3x"></i></button>
+按下編輯，勾選的地方要把readonly屬性刪除
+th checkAll打勾時是onclick，但是被更動到的checkbox是onchange事件嗎
+所以我統一→th裡用onclick，td裡用onchange
 -->
 <!-- 按下新增按鈕時會出現一行表格且input riquired ，按下送出 -->
-<style>
-    input:invalid {
-  background-color: pink;
-}
-    input[type=file]::file-selector-button{
-cursor: pointer!important;
-    }
-.custom-file-input {
-  color: transparent;
-}    
-    .custom-file-input::-webkit-file-upload-button {
-  visibility: hidden;
-  /* appearance: none; */
-}
-.custom-file-input::before {
-  content: '上傳圖片檔';
-  display: inline-block;
-  /* background: linear-gradient(top, #f9f9f9, #e3e3e3); */
-  background-color: black;
-  border: 1px solid #999;
-  border-radius: 3px;
-  padding: 5px 8px;
-  outline: none;
-  white-space: nowrap;
-  -webkit-user-select: none;
-  cursor: pointer;
-  text-shadow: 1px 1px #fff;
-  font-weight: 700;
-  font-size: 10pt;
-}
-.custom-file-input:hover::before {
-  border-color: black;
-}
-.custom-file-input:active::before {
-  background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
-}
-</style>
+<!-- 更改
+    新增按鈕在下方 -->
+<!-- 打勾編輯 -->
 </head>
 <body>
     @@include('layout/nav.html')
     <div class="header" style="margin-top:200px;"></div>
 <div class="container">
 <div class="row">
-<div class="col-12 col-sm-4 col-md-2 col-lg-2">
+<div class="col- col-sm-4 col-md-2 col-lg-2">
           <div class="list-group">
             <a href="#" class="list-group-item ">總覽</a>
             <a href="#" class="list-group-item ">客製化內容管理</a>
@@ -101,7 +70,7 @@ cursor: pointer!important;
             </div>
 </div>
 <!-- 右側排版 -->
-<div class="col-12 col-sm-8 col-md-10 col-lg-10">
+<div class="col- col-sm-8 col-md-10 col-lg-10">
     
 </div>
         <div class="container" data-item="商城">
@@ -143,12 +112,7 @@ cursor: pointer!important;
 </form> 
             </div>
             </div>
-            <div class="card">
-                <h5></h5>
-                <div class="card-header">
-                    
-                </div>
-            </div>
+
         </div>
 
 
@@ -203,15 +167,7 @@ var porduct=new Vue({
         products:[{PSN:4342234,NAME:`茶`,PRICE:'300',IMG:'tea.png',ONSALE:0,FEATURES:'我們的特色芳香可口',SOLD:3,DETAIL:'我們介紹您有更好的',TYPE:'青康茶'}]
     }
 });
-//檔案名稱分為主檔名、副檔名用split()分割
-var filename='gicce.thtdtr.tcc';var filearr=filename.split('.');console.log(filearr);var lastname=filearr.pop();var firstname=filearr.join('.');
-console.log(firstname);
-console.log(lastname);
-// [...(document.querySelectorAll('.checkAll'))].foreach(function(obj){
-//     obj.onclick=function(){
-//         var check=this.prop('checked');
-//         $(obj).closest("table").find("tr").find("td").find(input:checkbox).first.prop('checked',check);
-//     }   }
+
 </script>
 @@include('layout/footer.html')
 </body>

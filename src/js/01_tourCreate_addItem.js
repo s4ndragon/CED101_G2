@@ -9,37 +9,41 @@ let storage = sessionStorage;
 
 window.addEventListener("load", function () {
     showLocal();
-})
+    rightLocal();
+
+});
+
+function rightLocal() {
+    let locationInfo = storage.getItem('location')
+    let locationTitle = locationInfo.split('|')[1];
+    let locationIntro = locationInfo.split('|')[2];
+    let locationImg = locationInfo.split('|')[3];
+    let newLocal = document.createElement('div');
+    getRightsideLocal.appendChild(newLocal);
+    newLocal.setAttribute('class', 'local_block');
+    newLocal.innerHTML = `
+            <div class="local_img">
+                        <img src="${locationImg}" alt="">
+                    </div>
+                    <div class="local_text">
+                        <h2>${locationTitle}
+                            <span class="t1">茶園</span>
+                        </h2>
+                        <p>${locationIntro}
+                        </p>
+                    </div>
+                    <button id="removeNewLocal" >X</button>
+                `;
+    let removeLocal = document.getElementById("removeNewLocal");
+    removeLocal.addEventListener("click", removeNewLocal);
+    greenLine.setAttribute("style", "display:block");
+};
+
 function addLocal() {
     if (getRightsideLocal.childNodes.length < 1) {
-        // ====================storge=============================
         let locationValue = document.querySelector(`#${this.id} input`).value;
         storage['location'] = locationValue;
-        let locationInfo = storage.getItem('location')
-        let locationTitle = locationInfo.split('|')[1];
-        let locationIntro = locationInfo.split('|')[2];
-        let locationImg = locationInfo.split('|')[3];
-
-
-        // ========================================================
-        let newLocal = document.createElement('div');
-        getRightsideLocal.appendChild(newLocal);
-        newLocal.setAttribute('class', 'local_block');
-        newLocal.innerHTML = `
-                <div class="local_img">
-                            <img src="${locationImg}" alt="">
-                        </div>
-                        <div class="local_text">
-                            <h2>${locationTitle}
-                                <span class="t1">茶園</span>
-                            </h2>
-                            <p>${locationIntro}
-                            </p>
-                        </div>
-                        <button id="removeNewLocal" >X</button>
-                    `;
-        let removeLocal = document.getElementById("removeNewLocal");
-        removeLocal.addEventListener("click", removeNewLocal);
+        rightLocal();
         hotel.style.visibility = "visible";
         rest.style.visibility = "visible";
         active.style.visibility = "visible";

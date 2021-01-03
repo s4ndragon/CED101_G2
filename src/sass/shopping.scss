@@ -15,9 +15,17 @@ body {
 
     }
 
+    h3.partTitle {
+        font-size: 24px;
+        color: #7baa17;
+        margin: 30px;
+        text-align: center;
+    }
+
     h2 {
         margin-top: 40px;
         margin-bottom: 20px;
+        @include banner-2nd-title;
     }
 
     input[type=button] {
@@ -221,33 +229,25 @@ div.search {
     .classify {
         display: inline-block;
         position: relative;
+        @include filter-no-more;
 
-        input.classifyBtn {
-            @include smallbtn4;
-            display: inline-block;
-        }
 
-        input.selected {
-            background-color: darkgreen;
-            color: #fff;
+        .selected {
+            color: #386641;
+            background-color: white;
 
-            &:hover {
-                box-shadow: none;
-                opacity: .8;
-                color: #fff;
-            }
         }
 
 
     }
 
     .search_bar {
-        margin-top: 15px;
+        margin-top: 30px;
     }
 
     #searchBar {
         width: 300px;
-        height: 30px;
+        height: 45px;
         border-radius: 15px 0 0 15px;
         padding: 5px 15px;
         border: none;
@@ -260,13 +260,13 @@ div.search {
 
     input[type=submit] {
         width: 100px;
-        height: 30px;
+        height: 45px;
         border-radius: 0 15px 15px 0;
         padding: 5px 15px;
         border: none;
         vertical-align: bottom;
-        background-color: darkgreen;
-        color: #fff;
+        background-color: $success-sign;
+        color: $info-sign;
         outline: none;
         cursor: pointer;
     }
@@ -274,13 +274,15 @@ div.search {
     .orderby {
         background-color: #fff;
         margin: 30px auto;
-        width: max-content;
-        padding: 5px 15px;
+        width: 70%;
+        padding: 20px 0;
         border-radius: 20px;
 
+        color: $secondary-typo-color;
+
         input {
-            margin-left: 5px;
-            margin-right: 2px;
+            margin-left: 3%;
+            margin-right: 5px;
         }
     }
 }
@@ -333,15 +335,19 @@ div.products {
                 display: inline;
 
                 a {
+                    $pageindewW: 45px;
                     color: #69994e;
                     text-decoration: none;
                     transition: 0.2s;
-                    padding: 10px 15px;
                     margin: 5px;
                     border-radius: 2px;
                     display: inline-block;
                     width: max-content;
                     background-color: #fff;
+                    border-radius: 50%;
+                    width: $pageindewW;
+                    height: $pageindewW;
+                    line-height: $pageindewW;
                 }
             }
 
