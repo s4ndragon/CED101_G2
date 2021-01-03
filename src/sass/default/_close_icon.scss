@@ -1,0 +1,28 @@
+//燈箱的右上角 X icon
+//HTML 請長這樣
+//<div class="close"></div>
+//另也會在裡面使用到 ::after
+
+@mixin close-icon {
+    color: #fff;
+    background: #69994e;
+    align-self: flex-end;
+    border-radius: 25px;
+    display: block;
+    margin: 20px;
+    height: 24px;
+    width: 24px;
+    position: relative;
+    padding: 12.7px;
+
+    &:after {
+        content: '\2715';
+        position: absolute;
+        top: 2px;
+        right: 5px;
+        line-height: 1;
+        font-size: 18px;
+        // color: #fff;
+        // z-index: 1;
+    }
+}
