@@ -633,15 +633,15 @@ img {
     }
 
     100% {
-        right: 0;
+        right: 20px;
     }
 }
 
 .createTour {
     position: fixed;
     bottom: 0;
-    right: 0;
-    width: 350px;
+    right: 20px;
+    width: 300px;
     animation-name: move;
     animation-duration: 5s;
     z-index: 2;
@@ -656,6 +656,7 @@ img {
         // border: 1px solid black;
         position: absolute;
         right: 5%;
+        top: -40%;
         padding: 30px;
         border-radius: 50%;
         font-size: $h5;
@@ -663,8 +664,8 @@ img {
         color: $secondary-typo-color;
 
         @media screen and (max-width: 575px) {
-            bottom: 90%;
-            right: 18%;
+            right: 5%;
+            top: -70%;
 
         }
     }
