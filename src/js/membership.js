@@ -7,11 +7,10 @@ $(document).ready(function () {
     //地址二聯式下拉選單
     // new TwCitySelector();
 
-    //change profile unfinished
+    //change profile
     $(".profile-pic").click(function () {
         $("#profile_pic_input").trigger("click");
     });
-
     function readURL(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
@@ -63,10 +62,8 @@ $(document).ready(function () {
                         opacity: 1,
                         ease: Elastic.easeOut,
                     });
-
                 //animate card
                 var cardTL = new TimelineMax();
-
                 cardTL
                     .set(".card", {
                         transformOrigin: "100% 100%",
@@ -104,70 +101,39 @@ $(document).ready(function () {
             reader.readAsDataURL(input.files[0]);
         }
     }
-
     $("#profile_pic_input").change(function () {
         readURL(this);
     });
 
-    //sub menu分頁
+    //========  sub menu分頁
     $(".tour").click(function () {
-        $(".tour").addClass("bg-color").removeClass("select-color");
-        $(".mine_fav").removeClass("bg-color").addClass("select-color");
-        $(".mine_order").removeClass("bg-color").addClass("select-color");
-        $(".mine_article").removeClass("bg-color").addClass("select-color");
-        $(".mine_profile").removeClass("bg-color").addClass("select-color");
-        $("#tour").show();
-        $("#mine_fav").hide();
-        $("#mine_order").hide();
-        $("#mine_article").hide();
-        $("#mine_profile").hide();
+        $(this).addClass("bg-color").removeClass("select-color");
+        $(this).siblings().removeClass("bg-color").addClass("select-color");
+        $(this).parent("div").siblings("div").hide();
+        $(this).parent("div").siblings("#tour").show();
     });
     $(".mine_fav").click(function () {
-        $(".tour").removeClass("bg-color").addClass("select-color");
-        $(".mine_fav").addClass("bg-color").removeClass("select-color");
-        $(".mine_order").removeClass("bg-color").addClass("select-color");
-        $(".mine_article").removeClass("bg-color").addClass("select-color");
-        $(".mine_profile").removeClass("bg-color").addClass("select-color");
-        $("#tour").hide();
-        $("#mine_fav").show();
-        $("#mine_order").hide();
-        $("#mine_article").hide();
-        $("#mine_profile").hide();
+        $(this).addClass("bg-color").removeClass("select-color");
+        $(this).siblings().removeClass("bg-color").addClass("select-color");
+        $(this).parent("div").siblings("div").hide();
+        $(this).parent("div").siblings("#mine_fav").show();
     });
     $(".mine_order").click(function () {
-        $(".tour").removeClass("bg-color").addClass("select-color");
-        $(".mine_fav").removeClass("bg-color").addClass("select-color");
-        $(".mine_order").addClass("bg-color").removeClass("select-color");
-        $(".mine_article").removeClass("bg-color").addClass("select-color");
-        $(".mine_profile").removeClass("bg-color").addClass("select-color");
-        $("#tour").hide();
-        $("#mine_fav").hide();
-        $("#mine_order").show();
-        $("#mine_article").hide();
-        $("#mine_profile").hide();
+        $(this).addClass("bg-color").removeClass("select-color");
+        $(this).siblings().removeClass("bg-color").addClass("select-color");
+        $(this).parent("div").siblings("div").hide();
+        $(this).parent("div").siblings("#mine_order").show();
     });
     $(".mine_article").click(function () {
-        $(".tour").removeClass("bg-color").addClass("select-color");
-        $(".mine_fav").removeClass("bg-color").addClass("select-color");
-        $(".mine_order").removeClass("bg-color").addClass("select-color");
-        $(".mine_article").addClass("bg-color").removeClass("select-color");
-        $(".mine_profile").removeClass("bg-color").addClass("select-color");
-        $("#tour").hide();
-        $("#mine_fav").hide();
-        $("#mine_order").hide();
-        $("#mine_article").show();
-        $("#mine_profile").hide();
+        $(this).addClass("bg-color").removeClass("select-color");
+        $(this).siblings().removeClass("bg-color").addClass("select-color");
+        $(this).parent("div").siblings("div").hide();
+        $(this).parent("div").siblings("#mine_article").show();
     });
     $(".mine_profile").click(function () {
-        $(".tour").removeClass("bg-color").addClass("select-color");
-        $(".mine_fav").removeClass("bg-color").addClass("select-color");
-        $(".mine_order").removeClass("bg-color").addClass("select-color");
-        $(".mine_article").removeClass("bg-color").addClass("select-color");
-        $(".mine_profile").addClass("bg-color").removeClass("select-color");
-        $("#tour").hide();
-        $("#mine_fav").hide();
-        $("#mine_order").hide();
-        $("#mine_article").hide();
+        $(this).addClass("bg-color").removeClass("select-color");
+        $(this).siblings().removeClass("bg-color").addClass("select-color");
+        $(this).parent("div").siblings("div").hide();
         $("#mine_profile").css({
             display: "flex",
         });
@@ -175,28 +141,23 @@ $(document).ready(function () {
 
     //收藏內分頁
     $(".fav_tour").click(function () {
+        // console.log($(this).parent("#mine_fav_bar").siblings("#fav_container").children("#fav_tour"));
         $(this).addClass("colored").removeClass("unselected");
-        $(".fav_article").removeClass("colored").addClass("unselected");
-        $(".fav_product").removeClass("colored").addClass("unselected");
-        $("#fav_tour").show();
-        $("#fav_article").hide();
-        $("#fav_product").hide();
+        $(this).siblings().removeClass("colored").addClass("unselected");
+        $(this).parent("#mine_fav_bar").siblings("#fav_container").children().hide();
+        $(this).parent("#mine_fav_bar").siblings("#fav_container").children("#fav_tour").show();
     });
     $(".fav_article").click(function () {
         $(this).addClass("colored").removeClass("unselected");
-        $(".fav_tour").removeClass("colored").addClass("unselected");
-        $(".fav_product").removeClass("colored").addClass("unselected");
-        $("#fav_tour").hide();
-        $("#fav_article").show();
-        $("#fav_product").hide();
+        $(this).siblings().removeClass("colored").addClass("unselected");
+        $(this).parent("#mine_fav_bar").siblings("#fav_container").children().hide();
+        $(this).parent("#mine_fav_bar").siblings("#fav_container").children("#fav_article").show();
     });
     $(".fav_product").click(function () {
         $(this).addClass("colored").removeClass("unselected");
-        $(".fav_tour").removeClass("colored").addClass("unselected");
-        $(".fav_article").removeClass("colored").addClass("unselected");
-        $("#fav_tour").hide();
-        $("#fav_article").hide();
-        $("#fav_product").show();
+        $(this).siblings().removeClass("colored").addClass("unselected");
+        $(this).parent("#mine_fav_bar").siblings("#fav_container").children().hide();
+        $(this).parent("#mine_fav_bar").siblings("#fav_container").children("#fav_product").show();
     });
 
     //個人資料分頁
@@ -244,32 +205,6 @@ $(document).ready(function () {
             })
             .removeClass("num_attendency");
     });
-
-    //取消收藏
-    // $(".like").click(function () {
-    //     $("#cancel_confirm")
-    //         .css({
-    //             display: "flex",
-    //         })
-    //         .addClass("cancel_confirm");
-    // });
-    //確定取消收藏
-    // $("#cancel_confirm_btn").click(function () {
-    //     // console.log(this.parentNode.parentNode);
-    //     $("#cancel_confirm").css({
-    //         display: "none",
-    //     });
-    //     $(this.parentNode).css({
-    //         display: "none",
-    //     });
-    // });
-    //取消 取消收藏
-    // $("#recall_cancel").click(function () {
-    //     $("#cancel_confirm").css({
-    //         display: "none",
-    //     });
-    //     $("#cancel_confirm").removeClass("cancel_confirm");
-    // });
 
     //文章刪除
     $(".article_check").click(function () {
