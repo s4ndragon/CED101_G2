@@ -58,7 +58,18 @@ form {
 
         input.back {
             @include smallbtn4;
+
+
         }
+
+        @media screen and (max-width:600px) {
+
+            input.back,
+            #getinfo {
+                margin: 0
+            }
+        }
+
 
         table {
             margin: auto auto 20px auto;

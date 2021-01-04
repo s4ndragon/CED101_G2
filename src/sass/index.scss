@@ -3,15 +3,14 @@
 * {
     box-sizing: $box-sizing;
 }
-
 nav {
     background-color: transparent;
 }
-
-div.menu a {
-    color: white;
+div.menu {
+    a {
+        color: white;
+    }
 }
-
 .main-title {
     position: fixed;
     top: 0;
@@ -20,13 +19,13 @@ div.menu a {
     height: calc(320px + 100vh * 0.11458333);
     z-index: -1;
 }
-
-.container-main * {
-    transition: opacity 0.5s;
+.container-main {
+    * {
+        transition: opacity 0.5s;
+    }
 }
 
 // 第二屏:揪團  =====================
-
 .tour {
     position: relative;
     padding: 70px 0 70px;
@@ -34,25 +33,48 @@ div.menu a {
     background-image: url(../images/index/img_bg_yg_pc4.png);
     background-size: 100% auto;
     z-index: 1;
-}
+    .tour_title {
+        margin-top: 25px;
+        margin-bottom: 25px;
+        color: #fff;
+        font-size: 1.75rem;
+        font-weight: normal;
+        letter-spacing: 0.1rem;
+        text-align: center;
+    }
+    .tour_txt {
+        max-width: 700px;
+        margin: 0 auto 40px;
+        font-size: 1.125rem;
+        letter-spacing: 0.1rem;
+        line-height: 2.5;
+    }
+    .tour-head-img {
+        position: absolute;
+        top: 100px;
+        left: 50%;
+        transform: translate(-50%, -120px);
+        z-index: -1;
+    }
+    .tour-pouring {
+        display: block;
+        position: absolute;
+        right: 20%;
+        top: 40%;
+        transform: translate(-20%, -280px);
+        width: 10%;
+    }
 
-.tour .tour_title {
-    margin-top: 25px;
-    margin-bottom: 25px;
-    color: #fff;
-    font-size: 1.75rem;
-    font-weight: normal;
-    letter-spacing: 0.1rem;
-    text-align: center;
+    .lg-btn-tour {
+        @include btn2;
+    }
 }
-
 .tour-list-line {
     position: absolute;
     top: -200px;
     z-index: -1;
     transform: rotate(-400deg);
 }
-
 .tour-list-line2 {
     position: absolute;
     top: -160px;
@@ -61,7 +83,6 @@ div.menu a {
     right: 20px;
     width: 60%;
 }
-
 .tour-list-line3 {
     position: absolute;
     top: -150px;
@@ -70,133 +91,94 @@ div.menu a {
     right: 90px;
     width: 60%;
 }
-
-.tour-list li p.head {
-    margin-bottom: 15px;
-    color: #7d9a1a;
-    font-size: 1.5rem;
-    font-weight: bold;
-    letter-spacing: 0.1rem;
-}
-
-.tour-list li p.head span {
-    display: inline-block;
-    vertical-align: middle;
-}
-
-.tour .tour_txt {
-    max-width: 700px;
-    margin: 0 auto 40px;
-    font-size: 1.125rem;
-    letter-spacing: 0.1rem;
-    line-height: 2.5;
-    // text-align: left;
-}
-
-.lg-btn-tour {
-    @include btn2;
-}
-
 .tour-list {
+    li {
+        p.head {
+            margin-bottom: 15px;
+            color: #7d9a1a;
+            font-size: 1.5rem;
+            font-weight: bold;
+            letter-spacing: 0.1rem;
+            span {
+                display: inline-block;
+                vertical-align: middle;
+            }
+            span.head-sub {
+                color: #3f7735;
+            }
+        }
+        &:before {
+            content: '';
+            display: block;
+            width: 144px;
+            height: 144px;
+            position: absolute;
+            top: -3%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #dfe0c2;
+            border-radius: 72px;
+            background-repeat: no-repeat;
+        }
+        position: relative;
+        padding: 80px 30px 0;
+        display: inline-block;
+        width: calc(33.3333% - 13.33333px);
+        min-height: 270px;
+        background-color: #dfe0c2;
+        border-radius: 10px;
+        vertical-align: top;
+        box-shadow: 5px 6px 10px rgba(0, 0, 0, 0.2);
+        background-position: center center;
+        background-size: cover;
+        .txt {
+            color: #000;
+            font-size: 1rem;
+            letter-spacing: 0.05rem;
+            line-height: 1.8;
+            text-align: left;
+        }
+        + {
+            li {
+                margin-left: 20px;
+            }
+        }
+        .img {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
     position: relative;
     margin-top: 190px;
+    ul {
+        max-width: 1000px;
+        margin: 0 auto;
+        font-size: 0;
+        margin-bottom: 30px;
+    }
+    .img-back {
+        top: 25px;
+        position: absolute;
+        left: 46%;
+        transform: translateX(-46%);
+        display: block;
+        opacity: 0.9;
+    }
+    .img-front {
+        top: 90%;
+        width: 80%;
+        left: 51.1% !important;
+        position: absolute;
+        left: 46%;
+        transform: translateX(-46%);
+        display: block;
+        opacity: 0.9;
+    }
 }
-
-.tour-list ul {
-    max-width: 1000px;
-    margin: 0 auto;
-    font-size: 0;
-    margin-bottom: 30px;
-}
-
-.tour-list li:before {
-    content: '';
-    display: block;
-    width: 144px;
-    height: 144px;
-    position: absolute;
-    top: -3%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #dfe0c2;
-    border-radius: 72px;
-    background-repeat: no-repeat;
-}
-
-.tour-list li {
-    position: relative;
-    padding: 80px 30px 0;
-    display: inline-block;
-    width: calc(33.3333% - 13.33333px);
-    min-height: 270px;
-    background-color: #dfe0c2;
-    border-radius: 10px;
-    vertical-align: top;
-    box-shadow: 5px 6px 10px rgba(0, 0, 0, 0.2);
-    background-position: center center;
-    background-size: cover;
-}
-
-.tour-list li .txt {
-    color: #000;
-    font-size: 1rem;
-    letter-spacing: 0.05rem;
-    line-height: 1.8;
-    text-align: left;
-}
-
-.tour-list .img-back {
-    top: 25px;
-}
-
-.tour-list .img-front {
-    top: 90%;
-    width: 80%;
-    left: 51.1% !important;
-}
-.tour-list .img-back,
-.tour-list .img-front {
-    position: absolute;
-    left: 46%;
-    transform: translateX(-46%);
-    display: block;
-    opacity: 0.9;
-}
-
-.tour-list li + li {
-    margin-left: 20px;
-}
-
-.tour-list li .img {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.tour .tour-head-img {
-    position: absolute;
-    top: 100px;
-    left: 50%;
-    transform: translate(-50%, -120px);
-    z-index: -1;
-}
-
 .events-none {
     pointer-events: none;
-}
-
-.tour-list li p.head span.head-sub {
-    color: #3f7735;
-}
-
-.tour .tour-pouring {
-    display: block;
-    position: absolute;
-    right: 20%;
-    top: 40%;
-    transform: translate(-20%, -280px);
-    width: 10%;
 }
 
 // 第二屏:揪團結束  =====================
@@ -319,6 +301,7 @@ div.menu a {
     background-size: contain;
     background-repeat: no-repeat;
 }
+
 .vote-list li a .img {
     position: absolute;
     top: 50%;
@@ -379,10 +362,12 @@ div.menu a {
         font-size: $h3;
         color: #ca4a50;
     }
+
     .txt-loc {
         font-size: $h4;
         color: $primary-typo-color;
     }
+
     .txt-intro {
         font-size: $h6;
         color: $success-sign;
@@ -393,7 +378,6 @@ div.menu a {
 .lg-btn-vote {
     @include btn;
 }
-
 // 結束第三屏:茶園票選 =====================
 
 // 第四屏:商城 =====================
