@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>後台管理系統</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/backstage.css">
-    
-
   </head>
   <body>
       @@include('layout/nav.html')
+<div class="banner">
+  <h2 class="banner-1st-title">後台管理</h2>
+</div>
     <!--頁眉-->
-    <div class="header" style="margin-top:200px;">
+    <div class="header">
       <nav class="navbar navbar-default " role="navigation">
         <div class="container">
           <div class="navbar-header">
@@ -37,7 +38,7 @@
                 <div class="form-group">
                   <input type="text" class="form-control" placeholder="搜尋">
                 </div>
-                <button type="submit" class="btn btn-default hidden">Submit</button>
+                <button type="submit" class="btn btn-default d-none">Submit</button>
               </form>
               <li><a href="#">未讀訊息 <span class="badge">5</span></a></li>
               <li class="dropdown">
@@ -265,7 +266,7 @@
               </div>
             </div>
             <div class="panel-body">
-                <table border="1" class="table game role" width="50%">
+                <table border="1" class="table table-striped table-bordered table-responsive game role " width="50%">
                     <tr><th><input type="checkbox" name="" id=""></th>
                         <th width="10%">角色名稱</th>
                         <th width="60px">圖片檔名</th>
