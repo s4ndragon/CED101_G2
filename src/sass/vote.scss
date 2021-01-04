@@ -125,7 +125,7 @@ main{
         margin: 0 auto 30px;
         text-align: left;
         background-color: #eff2c7;
-        width: 700px;
+        width: 92%;
         border-radius: 10px;
         color: #90a30b;
         
@@ -172,7 +172,7 @@ main{
                 letter-spacing: 2.5px;
                 font-weight: 500;
                 font-size: 23px;
-                padding-left: 35px;
+                padding-left: 50px;
 
                 .chartpic{
                     width: 100px;
@@ -185,6 +185,14 @@ main{
 
             td:nth-child(3){
                 width:250px;
+            }
+
+            td:nth-child(4){
+                width:250px;
+            }
+
+            td:nth-child(5){
+                width:152px;
             }
 
             .resize{
@@ -201,7 +209,7 @@ main{
 
         tr:hover{
             box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; 
-            cursor: pointer;
+            // cursor: pointer;
             transition: all 0.5s ease;
         }
 
@@ -313,7 +321,7 @@ main{
         }
 
         table{
-            width: 95%;
+            width: 93%;
 
             tr{
                 td:nth-child(1)::before{
@@ -322,6 +330,14 @@ main{
 
                 td:nth-child(2){
                     font-size: 18px;
+                }
+
+                td:nth-child(3){
+                    display: none;
+                }
+
+                td:nth-child(5){
+                    display: none;
                 }
 
                 .resize{
