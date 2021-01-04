@@ -245,6 +245,32 @@ $(document).ready(function () {
             .removeClass("num_attendency");
     });
 
+    //取消收藏
+    // $(".like").click(function () {
+    //     $("#cancel_confirm")
+    //         .css({
+    //             display: "flex",
+    //         })
+    //         .addClass("cancel_confirm");
+    // });
+    //確定取消收藏
+    // $("#cancel_confirm_btn").click(function () {
+    //     // console.log(this.parentNode.parentNode);
+    //     $("#cancel_confirm").css({
+    //         display: "none",
+    //     });
+    //     $(this.parentNode).css({
+    //         display: "none",
+    //     });
+    // });
+    //取消 取消收藏
+    // $("#recall_cancel").click(function () {
+    //     $("#cancel_confirm").css({
+    //         display: "none",
+    //     });
+    //     $("#cancel_confirm").removeClass("cancel_confirm");
+    // });
+
     //文章刪除
     $(".article_check").click(function () {
         $("#delete_confirm")
@@ -269,4 +295,42 @@ $(document).ready(function () {
         });
         $("#delete_confirm").removeClass("delete_confirm");
     });
+
+    //like
+    let like = document.getElementsByClassName("like");
+    for (var i = 0; i < like.length; i++) {
+        like[i].addEventListener("click", changeHeart);
+    }
+    function changeHeart() {
+        if (this.title == "加入收藏") {
+            this.title = "取消收藏";
+            this.src = "./images/common/heart.png";
+
+            $(this).parent("div").parent("div").css({
+                display: "none",
+            });
+            // $(this).parent(".heart").parent("blog_container").css({
+            //     display: "none",
+            // });
+
+            // $("#cancel_confirm_btn").click(function () {
+            //     $("#cancel_confirm").css({
+            //         display: "none",
+            //     });
+            //     $(this).css({
+            //         display: "none",
+            //     });
+            // });
+            // $("#recall_cancel").click(function () {
+            //     $("#cancel_confirm").css({
+            //         display: "none",
+            //     });
+            //     $("#cancel_confirm").removeClass("cancel_confirm");
+            //     this.src = "./images/common/like.png";
+            // });
+        } else {
+            this.title = "加入收藏";
+            this.src = "./images/common/like.png";
+        }
+    }
 });
