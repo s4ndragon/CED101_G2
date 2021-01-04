@@ -73,7 +73,7 @@ div.shop_adv {
 
     a {
         margin: 0 auto;
-        width: max-content;
+        width: auto;
         display: block;
     }
 
@@ -310,7 +310,7 @@ div.products {
         margin-bottom: 15px;
 
         @media all and (max-width: $small) {
-            width: 50%;
+            width: 100%;
         }
 
 
