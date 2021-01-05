@@ -411,7 +411,9 @@ main {
         #mine_fav {
             // border: 1px solid red;
             width: $main-width;
-            display: none;
+            background-color: #eff2c7;
+
+            // display: none;
             position: relative;
             @media only screen and (max-width: 768px) {
                 width: 100%;
@@ -464,6 +466,7 @@ main {
                 // border: 1px solid green;
                 background-color: #eff2c7;
                 border-radius: 0 0 5px 5px;
+
                 // padding: 30px 10px;
 
                 #fav_tour {
@@ -514,7 +517,7 @@ main {
         }
 
         #mine_order {
-            display: none;
+            // display: none;
             width: $main-width;
 
             @media only screen and (max-width: 768px) {
@@ -610,7 +613,7 @@ main {
         }
 
         #mine_article {
-            display: none;
+            // display: none;
             width: $main-width;
             background-color: #eff2c7;
             border-radius: 0 0 5px 5px;
@@ -687,7 +690,7 @@ main {
         }
 
         #mine_profile {
-            display: none;
+            // display: none;
             width: $main-width;
             flex-direction: row;
 
@@ -769,6 +772,28 @@ main {
                     width: 300px;
                     text-align: center;
                     margin-bottom: 15px;
+                    .button {
+                        @include btn3; // border: 0;
+                        margin: 0 auto // outline: none;
+                            // border-radius: 0;
+                            // padding: 5px 10px;
+                            // font-size: $h3;
+                            // font-weight: bold;
+                            // text-transform: uppercase;
+                            // letter-spacing: 0.1em;
+                            // background: $primary-typo-color;
+                            // color: $btn-color;
+                            // transition: all.5s ease;
+                            // -webkit-appearance: none;
+                            // width: 300px;
+                            // cursor: pointer;
+                            // &:hover,
+                            // &:focus {
+                            //     background: darken($primary-typo-color, 5%);
+                            //     padding: 5px 10px;
+                            // }
+;
+                    }
                 }
 
                 // .address {
@@ -776,28 +801,6 @@ main {
                 //         transform: translateY(120%);
                 //     }
                 // }
-                .button {
-                    @include btn3; // border: 0;
-                    margin: 0 auto // outline: none;
-                        // border-radius: 0;
-                        // padding: 5px 10px;
-                        // font-size: $h3;
-                        // font-weight: bold;
-                        // text-transform: uppercase;
-                        // letter-spacing: 0.1em;
-                        // background: $primary-typo-color;
-                        // color: $btn-color;
-                        // transition: all.5s ease;
-                        // -webkit-appearance: none;
-                        // width: 300px;
-                        // cursor: pointer;
-                        // &:hover,
-                        // &:focus {
-                        //     background: darken($primary-typo-color, 5%);
-                        //     padding: 5px 10px;
-                        // }
-;
-                }
             }
         }
     }
