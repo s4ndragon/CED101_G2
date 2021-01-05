@@ -30,6 +30,12 @@ function moveJs() {
 }
 exports.moveJs = moveJs;
 
+//搬運vendors（src->dist）
+function moveVendors() {
+    return src("src/vendors/**/**/**/*.*").pipe(dest("dist/vendors/"));
+}
+exports.moveJs = moveVendors;
+
 //將css合併成一隻檔案
 function concatCss() {
     return src("dist/css/*.css") // '*.css'是所有的css檔案 '*.*'是所有檔案（不管類型）
@@ -169,7 +175,7 @@ function watchFile() {
     watch("src/js/*.js", moveJs);
     watch(["src/*.html", "src/nav.html", "src/footer.html"], series(clearHtml, includeHTML));
     watch("src/images/**/*.*", series(clearImg, moveImg));
-    // watch("src/vendors/**/**/**", series(clearVendors, moveVendors))
+    watch("src/vendors/**/**/**", series(clearVendors, moveVendors))
 }
 exports.watch = watchFile;
 

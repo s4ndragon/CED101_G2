@@ -94,6 +94,7 @@ main {
         }
         @media only screen and (max-width: 576px) {
             width: 75%;
+            margin: 10rem auto 1rem;
         }
     }
     .card-body {
@@ -286,6 +287,7 @@ main {
                         border: 1px solid $primary-typo-color;
                         border-radius: 10px;
                         display: flex;
+                        flex-wrap: wrap;
                         justify-content: space-between;
                         padding: 10px;
 
@@ -300,7 +302,7 @@ main {
 
                         .tour_title,
                         .tour_date {
-                            // border: 1px solid red;
+                            border: 1px solid green;
                             width: 20%;
 
                             @media only screen and (max-width: 576px) {
@@ -326,10 +328,13 @@ main {
                         }
 
                         .tour_status_bar {
+                            border: 1px solid red;
                             width: 20%;
                             display: flex;
                             justify-content: space-between;
-
+                            @media only screen and (max-width: 576px) {
+                                display: none;
+                            }
                             .tour_join,
                             .tour_check {
                                 cursor: pointer;
@@ -344,43 +349,49 @@ main {
                                     display: none;
                                 }
                             }
+                        }
+                        .arrow {
+                            // border: 1px solid red;
+                            display: none;
 
-                            .arrow {
-                                // border: 1px solid red;
-                                display: none;
-
-                                @media only screen and (max-width: 576px) {
-                                    display: block;
-                                }
+                            @media only screen and (max-width: 576px) {
+                                display: block;
                             }
+                        }
 
-                            .down {
-                                // border: 1px solid blue;
-                                width: 0;
-                                height: 0;
-                                position: relative;
-                                top: 8px;
-                                right: -10px;
-                                border-left: 10px solid transparent;
-                                border-right: 10px solid transparent;
-                                border-top: 10px solid $primary-typo-color;
-                                cursor: pointer;
+                        .down {
+                            // border: 1px solid blue;
+                            width: 0;
+                            height: 0;
+                            position: relative;
+                            top: 10px;
+                            right: 0px;
+                            border-left: 10px solid transparent;
+                            border-right: 10px solid transparent;
+                            border-top: 10px solid $primary-typo-color;
+                            cursor: pointer;
 
-                                // &:hover {
-                                //     border-top: 10px solid $lighter;
-                                // }
-                                @media only screen and (max-width: 576px) {
-                                    display: block;
-                                }
+                            // &:hover {
+                            //     border-top: 10px solid $lighter;
+                            // }
+                            @media only screen and (max-width: 576px) {
+                                display: block;
                             }
-
-                            .up {
-                                width: 0;
-                                height: 0;
-                                border-left: 5px solid transparent;
-                                border-right: 5px solid transparent;
-                                border-bottom: 5px solid black;
-                            }
+                        }
+                        .up {
+                            width: 0;
+                            height: 0;
+                            position: relative;
+                            top: -180px;
+                            right: 0px;
+                            cursor: pointer;
+                            border-left: 10px solid transparent;
+                            border-right: 10px solid transparent;
+                            border-bottom: 10px solid black;
+                            color: $primary-typo-color;
+                        }
+                        .extend {
+                            height: 200px;
                         }
                     }
 
@@ -1001,4 +1012,8 @@ main {
             @include smallbtn3;
         }
     }
+}
+
+.block {
+    display: block;
 }

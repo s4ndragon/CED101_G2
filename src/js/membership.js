@@ -105,9 +105,17 @@ $(document).ready(function () {
         readURL(this);
     });
 
+    //========  arrow up & down
+    $(".arrow").click(function () {
+        $(this).toggleClass("down").toggleClass("up").toggleClass("extend");
+        $(this).siblings().toggleClass('block');
+        // $().();
+
+    });
+
     //========  sub menu分頁
     $(".tour").click(function () {
-        $(this).addClass("bg-color").removeClass("select-color");
+        $(this).toggleClass("bg-color").toggleClass("select-color");
         $(this).siblings().removeClass("bg-color").addClass("select-color");
         $(this).parent("div").siblings("div").hide();
         $(this).parent("div").siblings("#tour").show();
@@ -133,10 +141,15 @@ $(document).ready(function () {
     $(".mine_profile").click(function () {
         $(this).addClass("bg-color").removeClass("select-color");
         $(this).siblings().removeClass("bg-color").addClass("select-color");
-        $(this).parent("div").siblings("div").hide();
-        $("#mine_profile").css({
-            display: "flex",
-        });
+        // $(this).parent("div").siblings("div").hide();
+        // $("#mine_profile").css({
+        //     display: "flex",
+        // });
+        $("#tour").hide();
+        $("#mine_fav").hide();
+        $("#mine_order").hide();
+        $("#mine_article").hide();
+        $("#mine_profile").show();
     });
 
     //收藏內分頁

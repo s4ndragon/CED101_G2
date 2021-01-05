@@ -6,9 +6,10 @@
         <link rel="shortcut icon" href="./images/index/webIcon.png" type="image/x-icon" />
         <link rel="stylesheet" href="./css/membership.css" />
         <script src="../node_modules/jquery/dist/jquery.js"></script>
-        <script src="../node_modules/tw-city-selector/dist/tw-city-selector.js"></script>
+        <script src="../node_modules/vue/dist/vue.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
         <script src="./js/membership.js"></script>
+        <script src="./js/membership_vue.js"></script>
         <title>會員系統</title>
     </head>
     <body>
@@ -17,34 +18,32 @@
                 <h1>會員中心</h1>
                 <!-- <h2>歡迎回來</h2> -->
             </div>
-        <main>
+        <main id="main">
             <!-- 側邊欄 -->
-            <!-- <div id="side"> -->
                 <div class="card">
                     <div class="card-body">
                         <div class="profile-pic">
-                            <img class="rounded-circle" src="./images/member/Mr_Guo.jpg">
+                            <img class="rounded-circle" src="./images/member/new_member.jpg">
                         </div>
                         <h2>阿民</h2>
                         <h6 class="memId">@ming</h6>
                         <!-- <input type="text" class="input-profile" name="profile" value="熱愛程式及茶園的男子"> -->
                         <button class="mine_profile">個人資料</button>
                     </div>
-                    
                 </div>
                 <input type="file" id="profile_pic_input" name="profile_pic_input" accept="image/*" />
             <!-- 主要內容 -->
             <div id="main_container">
                 <!-- 主要內容的選單列 -->
                 <div id="sub_menu">
-                    <h3 class="tour bg-color">揪團管理</h3>
-                    <h3 class="mine_fav select-color">我的收藏</h3>
+                    <h3 class="tour bg-color" v-model="tour">揪團管理</h3>
+                    <h3 class="mine_fav select-color" v-model="mine_fav">我的收藏</h3>
                     <h3 class="mine_order select-color">訂單查詢</h3>
                     <h3 class="mine_article select-color">我的文章</h3>
                     <h3 class="mine_profile select-color">個人資料</h3>
                 </div>
                 <!-- 揪團管理 -->
-                <div id="tour">
+                <div id="tour" v-if="tour">
                     <div id="mine_tour">
                         <h3>我主揪</h3>
                         <div id="mine_on_going">
@@ -56,19 +55,22 @@
                                 <div class="tour_status_bar">
                                     <div class="tour_status">未成團</div>
                                     <div class="tour_join">取消</div>
-                                    <div class="tour_check">查看</div>
+                                    <div class="tour_check">
+                                        <a href="">查看</a>
+                                    </div>
                                     <div class="arrow down"></div>
                                 </div>
                             </div>
                             <div class="tour_detail">
                                 <div class="tour_title">12月例行揪團</div>
+                                <div class="arrow down"></div>
                                 <div class="tour_date">2020/12/20</div>
                                 <div class="tour_attendency">人數：<span class="attend attend_1">10</span>／<span class="require require_1">10</span></div>
                                 <div class="tour_status_bar">
                                     <div class="tour_status">已成團</div>
                                     <div class="tour_join">取消</div>
                                     <div class="tour_check">查看</div>
-                                    <div class="arrow down"></div>
+                                    <!-- <div class="arrow down"></div> -->
                                 </div>
                             </div>
                         </div>
@@ -549,6 +551,10 @@
                 <div id="mine_profile">
                     <form action="" id="profile">
                         <div class="field-wrap">
+                            <label for="my_name">暱稱</label>
+                            <input type="text" name="my_name" class="my_name" />
+                        </div>
+                        <div class="field-wrap">
                             <label for="email">電子信箱</label>
                             <input type="email" name="email" class="email"/>
                         </div>
@@ -568,19 +574,15 @@
                             <label for="confirm_new_password">確認新密碼</label>
                             <input type="text" name="confirm_new_pw" class="confirm_new_pw" />
                         </div>
-                        <div class="field-wrap">
-                            <label for="my_name">收件人</label>
-                            <input type="text" name="my_name" class="my_name" />
-                        </div>
-                        <div class="field-wrap">
+                        <!-- <div class="field-wrap"> -->
                             <!-- <div role="tw-city-selector" class="add"></div> -->
-                            <label for="add">地址</label>
+                            <!-- <label for="add">地址</label>
                             <input type="text" name="add" class="add" />
                         </div>
                         <div class="field-wrap">
                             <label for="tel">電話</label>
                             <input type="text" name="add" class="add" />
-                        </div>
+                        </div> -->
                         <div class="btn_sent">
                             <button type="submit" class="button button-block"/>送出</button>
                         </div>
