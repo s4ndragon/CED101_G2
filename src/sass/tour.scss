@@ -1,5 +1,6 @@
 @import "./default/common";
 
+
 .main_body {
     @include forTourAndShop;
     // padding-top: 50px;
@@ -138,6 +139,8 @@ img {
     width: 60px;
     transition-duration: .5s;
 }
+
+
 
 .location1:hover {
     width: 150px;
