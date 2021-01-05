@@ -241,35 +241,7 @@ div.search {
 
     }
 
-    .search_bar {
-        margin-top: 30px;
-    }
 
-    #searchBar {
-        width: 300px;
-        height: 45px;
-        border-radius: 15px 0 0 15px;
-        padding: 5px 15px;
-        border: none;
-        outline: none;
-
-        @media all and (max-width: $small) {
-            width: 100px;
-        }
-    }
-
-    input[type=submit] {
-        width: 100px;
-        height: 45px;
-        border-radius: 0 15px 15px 0;
-        padding: 5px 15px;
-        border: none;
-        vertical-align: bottom;
-        background-color: $success-sign;
-        color: $info-sign;
-        outline: none;
-        cursor: pointer;
-    }
 
     .orderby {
         background-color: #fff;

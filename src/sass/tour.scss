@@ -1,5 +1,6 @@
 @import "./default/common";
 
+
 .main_body {
     @include forTourAndShop;
     // padding-top: 50px;
@@ -138,6 +139,8 @@ img {
     width: 60px;
     transition-duration: .5s;
 }
+
+
 
 .location1:hover {
     width: 150px;
@@ -627,54 +630,7 @@ img {
 
 }
 
-@keyframes move {
-    0% {
-        right: 100%;
-    }
 
-    100% {
-        right: 20px;
-    }
-}
-
-.createTour {
-    position: fixed;
-    bottom: 0;
-    right: 20px;
-    width: 300px;
-    animation-name: move;
-    animation-duration: 5s;
-    z-index: 2;
-
-    @media screen and (max-width: 575px) {
-        width: 200px;
-    }
-
-    p {
-        cursor: pointer;
-        text-align: center;
-        // border: 1px solid black;
-        position: absolute;
-        right: 5%;
-        top: -40%;
-        padding: 30px;
-        border-radius: 50%;
-        font-size: $h5;
-        background-color: #ffffff;
-        color: $secondary-typo-color;
-
-        @media screen and (max-width: 575px) {
-            right: 5%;
-            top: -70%;
-
-        }
-    }
-
-    img {
-        width: 100%;
-        cursor: pointer;
-    }
-}
 
 
 
