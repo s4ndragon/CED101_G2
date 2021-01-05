@@ -9,6 +9,7 @@
 	<script src="https://unpkg.com/vue-star-rating@1.5.1/dist/star-rating.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="./images/vote/awesome/css/all.css">
 </head>
 
 <body>
@@ -19,7 +20,7 @@
 	</div>
 
 	<main>
-		<h2>熱門茶園 TOP3</h2>
+		<h2>熱門茶園 TOP10</h2>
 		<div class="block1">
 			<div class="pic">
 				<img class="tea" src="images/vote/tea5.jpg">
@@ -136,54 +137,38 @@
 			</div>
 		</div>
 
-		<div class="sectionchart">
+		<!-- <div class="sectionchart">
 			<h2 class="ht">茶園排行</h2>
 			<div class="fall">
 				<img class="leaf" src="images/index/leafs-l.png">
 			</div>
-		</div>
+		</div> -->
 
 		<table id="app4">
 
 			<tr>
-				<td>1</td>
-				<td>
-					<img class="chartpic" src="images/vote/tea7.jpg">
-					舞鶴茶園
-				</td>
-				<td class="resize">
-					<star-rating :rating="4.7" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
-				</td>
-			</tr>
-			<tr>
-				<td>2</td>
-				<td>
-					<img class="chartpic" src="images/vote/tea7.jpg">
-					晴天茶園
-				</td>
-				<td class="resize">
-					<star-rating :rating="4.3" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
-				</td>
-			</tr>
-			<tr>
-				<td>3</td>
-				<td>
-					<img class="chartpic" src="images/vote/tea7.jpg">
-					坪林茶園
-				</td>
-				<td class="resize">
-					<star-rating :rating="3.8" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
-				</td>
-			</tr>
-			<tr></tr>
 			<td>4</td>
-			<td>
-				<img class="chartpic" src="images/vote/tea7.jpg">
-				八卦茶園
-			</td>
-			<td class="resize">
-				<star-rating :rating="3.7" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
-			</td>
+				<td>
+					<img class="chartpic" src="images/vote/tea7.jpg">
+					八卦茶園
+				</td>
+				<td>
+					<i class="fas fa-map-marker-alt"></i>&ensp;
+					花蓮縣瑞穗鄉舞鶴村
+				</td>
+				<td class="resize">
+					<star-rating :rating="3.7" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
+				</td>
+				<td>
+					<div class="fb-share-button" data-href="https://tw.yahoo.com/" data-layout="button"
+						data-size="small">
+						<a target="_blank"
+							href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5501%2F07_vote_more.html&amp;src=sdkpreparse"
+							class="fb-xfbml-parse-ignore">
+							分享
+						</a>
+					</div>
+				</td>
 			</tr>
 			<tr>
 				<td>5</td>
@@ -191,8 +176,22 @@
 					<img class="chartpic" src="images/vote/tea7.jpg">
 					春陽茶園
 				</td>
+				<td>
+					<i class="fas fa-map-marker-alt"></i>&ensp;
+					花蓮縣瑞穗鄉舞鶴村
+				</td>
 				<td class="resize">
 					<star-rating :rating="3.5" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
+				</td>
+				<td>
+					<div class="fb-share-button" data-href="https://tw.yahoo.com/" data-layout="button"
+						data-size="small">
+						<a target="_blank"
+							href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5501%2F07_vote_more.html&amp;src=sdkpreparse"
+							class="fb-xfbml-parse-ignore">
+							分享
+						</a>
+					</div>
 				</td>
 			</tr>
 			<tr>
@@ -201,8 +200,22 @@
 					<img class="chartpic" src="images/vote/tea7.jpg">
 					熊空茶園
 				</td>
+				<td>
+					<i class="fas fa-map-marker-alt"></i>&ensp;
+					花蓮縣瑞穗鄉舞鶴村
+				</td>
 				<td class="resize">
 					<star-rating :rating="3.3" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
+				</td>
+				<td>
+					<div class="fb-share-button" data-href="https://tw.yahoo.com/" data-layout="button"
+						data-size="small">
+						<a target="_blank"
+							href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5501%2F07_vote_more.html&amp;src=sdkpreparse"
+							class="fb-xfbml-parse-ignore">
+							分享
+						</a>
+					</div>
 				</td>
 			</tr>
 			<tr>
@@ -211,8 +224,22 @@
 					<img class="chartpic" src="images/vote/tea7.jpg">
 					台興茶園
 				</td>
+				<td>
+					<i class="fas fa-map-marker-alt"></i>&ensp;
+					花蓮縣瑞穗鄉舞鶴村
+				</td>
 				<td class="resize">
 					<star-rating :rating="3.2" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
+				</td>
+				<td>
+					<div class="fb-share-button" data-href="https://tw.yahoo.com/" data-layout="button"
+						data-size="small">
+						<a target="_blank"
+							href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5501%2F07_vote_more.html&amp;src=sdkpreparse"
+							class="fb-xfbml-parse-ignore">
+							分享
+						</a>
+					</div>
 				</td>
 			</tr>
 			<tr>
@@ -221,8 +248,22 @@
 					<img class="chartpic" src="images/vote/tea7.jpg">
 					雙圓茶園
 				</td>
+				<td>
+					<i class="fas fa-map-marker-alt"></i>&ensp;
+					花蓮縣瑞穗鄉舞鶴村
+				</td>
 				<td class="resize">
 					<star-rating :rating="3.1" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
+				</td>
+				<td>
+					<div class="fb-share-button" data-href="https://tw.yahoo.com/" data-layout="button"
+						data-size="small">
+						<a target="_blank"
+							href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5501%2F07_vote_more.html&amp;src=sdkpreparse"
+							class="fb-xfbml-parse-ignore">
+							分享
+						</a>
+					</div>
 				</td>
 			</tr>
 			<tr>
@@ -231,17 +272,46 @@
 					<img class="chartpic" src="images/vote/tea7.jpg">
 					二尖山茶園
 				</td>
+				<td>
+					<i class="fas fa-map-marker-alt"></i>&ensp;
+					花蓮縣瑞穗鄉舞鶴村
+				</td>
 				<td class="resize">
 					<star-rating :rating="3.0" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
 				</td>
+				<td>
+					<div class="fb-share-button" data-href="https://tw.yahoo.com/" data-layout="button"
+						data-size="small">
+						<a target="_blank"
+							href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5501%2F07_vote_more.html&amp;src=sdkpreparse"
+							class="fb-xfbml-parse-ignore">
+							分享
+						</a>
+					</div>
+				</td>
+			</tr>
 			<tr>
 				<td>10</td>
 				<td>
 					<img class="chartpic" src="images/vote/tea7.jpg">
 					阿薩姆茶園
 				</td>
+				<td>
+					<i class="fas fa-map-marker-alt"></i>&ensp;
+					花蓮縣瑞穗鄉舞鶴村
+				</td>
 				<td class="resize">
 					<star-rating :rating="2.7" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
+				</td>
+				<td>
+					<div class="fb-share-button" data-href="https://tw.yahoo.com/" data-layout="button"
+						data-size="small">
+						<a target="_blank"
+							href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5501%2F07_vote_more.html&amp;src=sdkpreparse"
+							class="fb-xfbml-parse-ignore">
+							分享
+						</a>
+					</div>
 				</td>
 			</tr>
 		</table>
