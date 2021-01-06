@@ -1,3 +1,4 @@
+//========== content ==========//
 Vue.component("tour", {
     template: `
     <div id="tour">
@@ -8,7 +9,7 @@ Vue.component("tour", {
             <div class="tour_detail">
                 <div class="tour_title">跨年茶園之旅</div>
                 <div class="tour_date">2020/12/31</div>
-                <div class="tour_attendency">人數：<span class="attend attend_1">15</span>／<span class="require require_1">30</span></div>
+                <div class="tour_attendency" @click="lightboxAttendency = true">人數：<span class="attend attend_1">15</span>／<span class="require require_1">30</span></div>
                 <div class="tour_status_bar">
                     <div class="tour_status">未成團</div>
                     <div class="tour_join">取消</div>
@@ -22,7 +23,7 @@ Vue.component("tour", {
                 <div class="tour_title">12月例行揪團</div>
                 <div class="arrow down"></div>
                 <div class="tour_date">2020/12/20</div>
-                <div class="tour_attendency">人數：<span class="attend attend_1">10</span>／<span class="require require_1">10</span></div>
+                <div class="tour_attendency" @click="lightboxAttendency = true">人數：<span class="attend attend_1">10</span>／<span class="require require_1">10</span></div>
                 <div class="tour_status_bar">
                     <div class="tour_status">已成團</div>
                     <div class="tour_join">取消</div>
@@ -36,7 +37,7 @@ Vue.component("tour", {
             <div class="tour_detail outdated">
                 <div class="tour_title">11月例行揪團</div>
                 <div class="tour_date">2020/11/20</div>
-                <div class="tour_attendency">人數：<span class="attend attend_1">10</span>／<span class="require require_1">10</span></div>
+                <div class="tour_attendency" @click="lightboxAttendency = true">人數：<span class="attend attend_1">10</span>／<span class="require require_1">10</span></div>
                 <div class="tour_status_bar">
                     <div class="tour_status">已過期</div>
                     <div class="tour_join"></div>
@@ -50,7 +51,7 @@ Vue.component("tour", {
             <div class="tour_detail outdated">
                 <div class="tour_title">10月例行揪團</div>
                 <div class="tour_date">2020/10/20</div>
-                <div class="tour_attendency">人數：<span class="attend attend_1">10</span>／<span class="require require_1">10</span></div>
+                <div class="tour_attendency" @click="lightboxAttendency = true">人數：<span class="attend attend_1">10</span>／<span class="require require_1">10</span></div>
                 <div class="tour_status_bar">
                     <div class="tour_status">已取消</div>
                     <div class="tour_join"></div>
@@ -564,14 +565,17 @@ Vue.component("mine_profile", {
     `,
 });
 
+//========== lightbox ==========//
+
 new Vue({
     el: "#app",
     data: {
         content: "tour",
+        lightboxAttendency: false,
     },
 });
 
-//========  sub menu分頁
+//==========  sub menu分頁  ==========//
 $(".tour").click(function () {
     $(this).toggleClass("bg-color").toggleClass("select-color");
     $(this).siblings().removeClass("bg-color").addClass("select-color");
@@ -591,10 +595,25 @@ $(".mine_article").click(function () {
 $(".mine_profile").click(function () {
     $(this).addClass("bg-color").removeClass("select-color");
     $(this).siblings().removeClass("bg-color").addClass("select-color");
-    $(this).parent().parent().siblings('#main_container').children('#sub_menu').children('h3').removeClass("bg-color")
-    $("#tour").hide();
-    $("#mine_fav").hide();
-    $("#mine_order").hide();
-    $("#mine_article").hide();
-    $("#mine_profile").show();
+    $(this).parent().parent().siblings("#main_container").children("#sub_menu").children("h3").removeClass("bg-color");
+    // $("#tour").hide();
+    // $("#mine_fav").hide();
+    // $("#mine_order").hide();
+    // $("#mine_article").hide();
+    // $("#mine_profile").show();
+});
+
+//收藏內分頁
+$(".fav_tour").click(function () {
+    console.log($(this).parent("#mine_fav_bar").siblings("#fav_container").children("#fav_tour"));
+    $(this).addClass("colored").removeClass("unselected");
+    $(this).siblings().removeClass("colored").addClass("unselected");
+});
+$(".fav_article").click(function () {
+    $(this).addClass("colored").removeClass("unselected");
+    $(this).siblings().removeClass("colored").addClass("unselected");
+});
+$(".fav_product").click(function () {
+    $(this).addClass("colored").removeClass("unselected");
+    $(this).siblings().removeClass("colored").addClass("unselected");
 });

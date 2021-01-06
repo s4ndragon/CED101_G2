@@ -22,10 +22,10 @@
             <div class="card">
                 <div class="card-body">
                     <div class="profile-pic">
-                        <img class="rounded-circle" src="./images/member/new_member.jpg" />
+                        <img id="MEM_IMG" class="rounded-circle" src="./images/member/new_member.jpg" />
                     </div>
-                    <h2>阿民</h2>
-                    <h6 class="memId">@ming</h6>
+                    <h2 id="MEM_NICKNAME">阿民</h2>
+                    <h6 id="MEM_ID" class="memId">@min</h6>
                     <!-- <input type="text" class="input-profile" name="profile" value="熱愛程式及茶園的男子"> -->
                     <button class="mine_profile" @click="content = 'mine_profile'">個人資料</button>
                 </div>
@@ -45,8 +45,10 @@
             </div>
         </main>
         <!-- 人數燈箱 -->
-        <div id="num_attendency">
-            <div class="close"></div>
+        <!-- <component :is="lightbox"></component> -->
+        <!-- <div class="bgd"  v-if="lightboxAttendency" @click="lightboxAttendency = true"> </div> -->
+        <div id="num_attendency" v-if="lightboxAttendency">
+            <div class="close" @click="lightboxAttendency = false"></div>
             <div class="num_1 group">
                 <div id="num_1_icon" class="icon">
                     <img src="./images/member/new_member.jpg" />
@@ -71,7 +73,6 @@
                 </div>
                 <div id="num_4_id" class="id">guan</div>
             </div>
-
             <div class="num_5 group">
                 <div id="num_5_icon" class="icon">
                     <img src="./images/member/new_member.jpg" />
@@ -79,6 +80,7 @@
                 <div id="num_5_id" class="id">chieh</div>
             </div>
         </div>
+
         <!-- 刪除燈箱 -->
         <div id="delete_confirm">
             是否確認刪除？
@@ -99,5 +101,6 @@
         <!-- <script src="../node_modules/vue/dist/vue.js"></script> -->
         <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
         <script src="./js/membership_vue.js"></script>
+        <script src="./js/membership.js"></script>
     </body>
 </html>

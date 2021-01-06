@@ -1,8 +1,4 @@
 $(document).ready(function () {
-    // console.log($(".attend_1").text());
-    // if ($(".attend_1").text() < $(".require_1").text()) {
-    //     $(".tour_status").text() = "未成團";
-    // }
 
     //地址二聯式下拉選單
     // new TwCitySelector();
