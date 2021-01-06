@@ -2,7 +2,7 @@
  
 try {
 	require_once("./connectBooks.php");
-	$sql = "select * from garden";
+	$sql = "select * , GARD_VOTE/GARD_CLICK 'GARD_AVG' from garden";
 	$products = $pdo->prepare($sql);
 	$products->execute();
 	$prodRows = $products->fetchAll(PDO::FETCH_ASSOC);
