@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="./css/tourCreate.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
         integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
-
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-star-rating@1.5.1/dist/star-rating.min.js"></script>
 </head>
 
 <body>
@@ -21,82 +22,303 @@
         </div>
     </div>
 
-    <div class="header_block">
-        <h1>選擇搭配行程</h1>
-        <div class="tourCreate_header">
-            <div class="step_title">
-                <div class="step_block">
-                    <div class="step">
-                        <div class="step1">
-                            <img src="./images/tour/LOGO.png" alt="">
+
+    <h1>選擇搭配行程</h1>
+    <div class="createStep">
+        <ul>
+            <li class="t1">地點</li>
+            <li class="a1"></li>
+            <li class="t2">住宿</li>
+            <li class="a2"></li>
+            <li class="t3">餐廳</li>
+            <li class="a3"></li>
+            <li class="t4">活動</li>
+        </ul>
+    </div>
+
+
+    <div id="tourCreate">
+        <div class="tourCreate_main">
+            <h2>選擇茶園</h2>
+            <div class="tourCreate_leftside" id="tourCreate">
+                <div class="tourCreate_item_block tea">
+                    <div class="tourCreate_item">
+                        <div class="tourCreate_item_img">
+                            <img src="images/vote/hotel.jpg" alt="">
                         </div>
+                        <div class="tourCreate_item_text">
+                            <h3>瑞穗天合國際觀光酒店</h3>
+                            <p>整體設計以南歐莊園風格為主，風光明媚的山水以及豐富的人文及自然生態，將花蓮瑞穗美景盡收眼底。</p>
+                            <div class="viewBtn">
+                                <button class="viewBtn">預覽</button>
+                            </div>
+                        </div>
+                        <div class="add" @click="storagelocation(inputVlaue)"><img src="./images/tour/add.png" alt="">
+                        </div>
+                        <input type="hidden" v-model="inputVlaue">
+                    </div>
+                    <div class="tourCreate_item">
+                        <div class="tourCreate_item_img">
+                            <img src="images/vote/hotel.jpg" alt="">
+                        </div>
+                        <div class="tourCreate_item_text">
+                            <h3>瑞穗天合國際觀光酒店</h3>
+                            <p>整體設計以南歐莊園風格為主，風光明媚的山水以及豐富的人文及自然生態，將花蓮瑞穗美景盡收眼底。</p>
+                            <div class="viewBtn">
+                                <button>預覽</button>
+                            </div>
+                        </div>
+                        <div class="add"><img src="./images/tour/add.png" alt=""></div>
+                    </div>
+                    <div class="tourCreate_item">
+                        <div class="tourCreate_item_img">
+                            <img src="images/vote/hotel.jpg" alt="">
+                        </div>
+                        <div class="tourCreate_item_text">
+                            <h3>瑞穗天合國際觀光酒店</h3>
+                            <p>整體設計以南歐莊園風格為主，風光明媚的山水以及豐富的人文及自然生態，將花蓮瑞穗美景盡收眼底。</p>
+                            <div class="viewBtn">
+                                <button>預覽</button>
+                            </div>
+                        </div>
+                        <div class="add"><img src="./images/tour/add.png" alt=""></div>
+                    </div>
+                    <div class="tourCreate_item">
+                        <div class="tourCreate_item_img">
+                            <img src="images/vote/hotel.jpg" alt="">
+                        </div>
+                        <div class="tourCreate_item_text">
+                            <h3>瑞穗天合國際觀光酒店</h3>
+                            <p>整體設計以南歐莊園風格為主，風光明媚的山水以及豐富的人文及自然生態，將花蓮瑞穗美景盡收眼底。</p>
+                            <div class="viewBtn">
+                                <button>預覽</button>
+                            </div>
+                        </div>
+                        <div class="add"><img src="./images/tour/add.png" alt=""></div>
+                    </div>
+                    <div class="tourCreate_item">
+                        <div class="tourCreate_item_img">
+                            <img src="images/vote/hotel.jpg" alt="">
+                        </div>
+                        <div class="tourCreate_item_text">
+                            <h3>瑞穗天合國際觀光酒店</h3>
+                            <p>整體設計以南歐莊園風格為主，風光明媚的山水以及豐富的人文及自然生態，將花蓮瑞穗美景盡收眼底。</p>
+                            <div class="viewBtn">
+                                <button>預覽</button>
+                            </div>
+                        </div>
+                        <div class="add"><img src="./images/tour/add.png" alt=""></div>
+                    </div>
+                    <div class="tourCreate_item">
+                        <div class="tourCreate_item_img">
+                            <img src="images/vote/hotel.jpg" alt="">
+                        </div>
+                        <div class="tourCreate_item_text">
+                            <h3>瑞穗天合國際觀光酒店</h3>
+                            <p>整體設計以南歐莊園風格為主，風光明媚的山水以及豐富的人文及自然生態，將花蓮瑞穗美景盡收眼底。</p>
+                            <div class="viewBtn">
+                                <button>預覽</button>
+                            </div>
+                        </div>
+                        <div class="add"><img src="./images/tour/add.png" alt=""></div>
                     </div>
                 </div>
-                <div class="arrow">
-                    <i class="fas fa-chevron-right fa-3x"></i>
-                </div>
-                <div class="step_block">
-                    <div class="step">
-                        <div class="step1">
-                            <img src="./images/tour/LOGO1.png" alt="">
+
+                <!-- =================hotel=================== -->
+                <div class="tourCreate_item_block hotel">
+                    <div class="tourCreate_item">
+                        <div class="tourCreate_item_img">
+                            <img src="images/vote/hotel.jpg" alt="">
                         </div>
+                        <div class="tourCreate_item_text">
+                            <h3>瑞穗天合國際觀光酒店</h3>
+                            <p>整體設計以南歐莊園風格為主，風光明媚的山水以及豐富的人文及自然生態，將花蓮瑞穗美景盡收眼底。</p>
+                            <div class="viewBtn">
+                                <button class="viewBtn">預覽</button>
+                            </div>
+                        </div>
+                        <div class="add"><img src="./images/tour/add.png" alt=""></div>
                     </div>
                 </div>
-                <div class="arrow">
-                    <i class="fas fa-chevron-right fa-3x"></i>
-                </div>
-                <div class="step_block">
-                    <div class="step">
-                        <div class="step1">
-                            <img src="./images/tour/LOGO1.png" alt="">
+                <!-- =================rest=================== -->
+                <div class="tourCreate_item_block rest">
+                    <div class="tourCreate_item">
+                        <div class="tourCreate_item_img">
+                            <img src="images/vote/hotel.jpg" alt="">
                         </div>
+                        <div class="tourCreate_item_text">
+                            <h3>餐廳餐廳</h3>
+                            <p>整體設計以南歐莊園風格為主，風光明媚的山水以及豐富的人文及自然生態，將花蓮瑞穗美景盡收眼底。</p>
+                            <div class="viewBtn">
+                                <button class="viewBtn">預覽</button>
+                            </div>
+                        </div>
+                        <div class="add"><img src="./images/tour/add.png" alt=""></div>
+                    </div>
+                </div>
+                <!-- =================active=================== -->
+                <div class="tourCreate_item_block active">
+                    <div class="tourCreate_item">
+                        <div class="tourCreate_item_img">
+                            <img src="images/vote/hotel.jpg" alt="">
+                        </div>
+                        <div class="tourCreate_item_text">
+                            <h3>傳統採茶體驗</h3>
+                            <p>整體設計以南歐莊園風格為主，風光明媚的山水以及豐富的人文及自然生態，將花蓮瑞穗美景盡收眼底。</p>
+                            <div class="viewBtn">
+                                <button class="viewBtn">預覽</button>
+                            </div>
+                        </div>
+                        <div class="add"><img src="./images/tour/add.png" alt=""></div>
                     </div>
                 </div>
             </div>
-            <div class="step_content">
-                <p>選擇搭配地點</p>
-                <p>輸入揪團資訊</p>
-                <p>預覽建立揪團</p>
+
+            <!-- =======================行程清單========================== -->
+            <div class="tourCreate_rightside_block">
+                <h3>行程明細</h3>
+                <div class="tourCreate_rightside">
+                    <div class="rightside">
+                        <h3>地點 <button @click="removeLocationStorage()">修改</button></h3>
+                        <input disabled v-model=locationList>
+                    </div>
+                    <div class="rightside">
+                        <h3>住宿 <button>修改</button></h3>
+                        <input disabled value="瑞穗天合國際觀光酒店">
+                    </div>
+                    <div class="rightside">
+                        <h3>餐廳 <button>修改</button></h3>
+                        <input disabled value="瑞穗天合國際觀光酒店">
+                    </div>
+                    <div class="rightside">
+                        <h3>活動 <button>修改</button></h3>
+                        <input disabled value="瑞穗天合國際觀光酒店">
+                    </div>
+                </div>
+                <div class="nextBtn"><button><a href="./01_tourCreateInfro.html">下一步</a></button></div>
             </div>
         </div>
     </div>
 
-    <div class="tourCreate_main">
+    <!-- =======================lightbox================================= -->
+    <div class="create_lightBox_mask" id="lightBox">
+        <div class="create_lightBox">
+            <div class="garden">
+                <img class="gpic" src="images/vote/tea5.jpg">
+            </div>
+            <div class="ginfo">
+                <div class="s1">
+                    <p class="p1">舞鶴茶園</p>
+                </div>
+                <div class="allscore app" id="app">
+                    <span class="score">
+                        總分:&ensp;
+                    </span>
+                    <div>
+                        <star-rating :rating="4.7" :read-only="true" :increment="0.01" :star-size="25">
+                        </star-rating>
+                    </div>
+                </div>
+                <p class="p4">
+                    <span class="tt">茶園地址:</span> 花蓮縣瑞穗鄉舞鶴村
+                </p>
+                <p class="p5">
+                    海拔100至300公尺的舞鶴台地，依傍高聳的中央山脈，隨風拂來秀姑巒溪與紅葉溪的濕潤水氣，宜人的氣候適合茶樹生長，是天鶴茶的產地，也是小葉綠蟬生長的天堂，經由小葉綠蟬吸吮而製成的蜜香紅茶，微帶淡淡的果香與蜜香，口感溫潤生津，獨特的風味聞名全臺，成為旅人來訪瑞穗必帶的伴手禮之一。
+                </p>
+                <div class="addActBtn">
+                    <button id="addAct">加入行程</button>
+                </div>
 
-        <div class="tourCreate_leftside">
-            <div class="help_top">
-                <img src="./images/tour/down.gif" alt="">
-                <div class="help_text" id="help_text"></div>
             </div>
-            <div class="tourCreate_choice">
-                <button id="local">地點</button>
-                <button id="hotel">住宿</button>
-                <button id="restaurant">餐廳</button>
-                <button id="active">活動</button>
-            </div>
-            <div class="tourCreate_item_block">
-
-            </div>
+            <button id="close_lightBox">X</button>
 
         </div>
-        <div class="tourCreate_rightside_block">
-            <div class="tourCreate_rightside">
-                <div class="local_rightside_img"></div>
-                <div id="greenline"></div>
-                <div class="hotel_rightside_img"></div>
-                <div class="rest_rightside_img"></div>
-                <div class="active_rightside_img"></div>
-            </div>
-        </div>
     </div>
-    <div class="nextBtn"><button><a href="./01_tourCreateInfro.html">下一步</a></button></div>
-    <div class="help">
-        <div class="help_text"></div>
-        <div class="help_img"><img src="./images/tour/tea.gif" alt=""></div>
-    </div>
+
+
+
     @@include('layout/footer.html')
+    <script>
 
-    <script src="./js/01_tourCreate_addItem.js"></script>
+
+    </script>
+    <script>
+        let storage = sessionStorage;
+        let viewBtn = document.getElementsByClassName("viewBtn");
+        let lightBox = document.getElementById("lightBox");
+        let closeLightBoxBtn = document.getElementById("close_lightBox");
+        let tourCreate = new Vue({
+            el: "#tourCreate",
+            data: {
+                inputVlaue: "瑞穗天合國際觀光酒店",
+                locationList: "",
+            },
+            methods: {
+                storagelocation(inputVlaue) {
+                    storage['location'] = inputVlaue;
+                    this.locationList = storage.getItem('location');
+                },
+                removeLocationStorage() {
+                    storage.removeItem('location');
+                    this.locationList = "";
+                }
+            },
+            mounted() {
+                this.locationList = storage.getItem('location');
+                for (var i = 0; i < viewBtn.length; i++) {
+                    viewBtn[i].addEventListener("click", openLightBox);
+                }
+                closeLightBoxBtn.addEventListener("click", closeLightBox);
+                function openLightBox() {
+                    lightBox.setAttribute("style", "display:block");
+                };
+                function closeLightBox() {
+                    lightBox.removeAttribute("style");
+                };
+            },
+        });
+    </script>
+
+
+
+
+
+
+    <script>
+        Vue.component("star-rating", VueStarRating.default, {
+            methods: {
+                setRating: function (rating) {
+                    this.rating = "You have Selected: " + rating + " stars";
+                },
+                showCurrentRating: function (rating) {
+                    this.currentRating =
+                        rating === 0
+                            ? this.currentSelectedRating
+                            : "Click to select " + rating + " stars";
+                },
+                setCurrentSelectedRating: function (rating) {
+                    this.currentSelectedRating =
+                        "You have Selected: " + rating + " stars";
+                }
+            },
+            data: {
+                rating: "No Rating Selected",
+                currentRating: "No Rating",
+                currentSelectedRating: "No Current Rating",
+                boundRating: 3,
+            }
+        });
+
+        let sart = new Vue({
+            el: "#app",
+            data: {
+                showModal: false,
+                showModal2: false,
+            }
+        });
+    </script>
+
+    <!-- <script src="./js/01_tourCreate_addItem.js"></script> -->
 
 </body>
 
