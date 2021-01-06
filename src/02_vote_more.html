@@ -55,14 +55,16 @@
                     海拔100至300公尺的舞鶴台地，依傍高聳的中央山脈，隨風拂來秀姑巒溪與紅葉溪的濕潤水氣，宜人的氣候適合茶樹生長，是天鶴茶的產地，也是小葉綠蟬生長的天堂，經由小葉綠蟬吸吮而製成的蜜香紅茶，微帶淡淡的果香與蜜香，口感溫潤生津，獨特的風味聞名全臺，成為旅人來訪瑞穗必帶的伴手禮之一。
                 </p>
                 <div class="btwrap app2">
-                    <button class="bt myBtn" id="myBtn">
+                    <button class="bt myBtn" id="myBtn" @click="showModal = true">
                         我要評分
                     </button>
 
-                    <!-- modal 燈箱開始 -->
-                    <div class="modal" id="myModal">
+                    <!-- overlay -->
+                    <div class="overlay" v-if="showModal" @click="showModal = true"></div>
+                    <!-- modal -->
+                    <div class="modal" v-if="showModal">
                         <form>
-                            <div class="close">
+                            <div class="close"  @click="showModal = false">
                                 
                             </div>
                             <p class="welcome">歡迎評分</p>
@@ -93,23 +95,25 @@
                             <div class="com_pub_time">發表於2012-03-20 12:20:30</div>
                         </div>
                         <div class="excl ">
-                            <button class="repobt myBtn">
+                            <button class="repobt" @click="showModal2 = true">
                                 <img class="excl" src="./images/common/852019_exclamation_512x512.png" alt="">
                             </button>
-
+    
+                            <!-- overlay -->
+                            <div class="overlay" v-if="showModal2" @click="showModal2 = true"></div>
                             <!-- modal -->
-                            <div class="modal">
+                            <div class="modal" v-if="showModal2">
                                 <form>
-                                    <div class="close">
-
+                                    <div class="close" @click="showModal2 = false">
+    
                                     </div>
                                     <p class="welcome">請輸入檢舉理由</p>
                                     <textarea class="repoinfo" cols="25" rows="10"></textarea>
-
+    
                                     <button class="go">送出</button>
                                 </form>
                             </div>
-
+    
                         </div>
                     </div>
                 </div>
@@ -124,23 +128,25 @@
                             <div class="com_pub_time">發表於2012-03-20 12:20:30</div>
                         </div>
                         <div class="excl ">
-                            <button class="repobt myBtn">
+                            <button class="repobt" @click="showModal2 = true">
                                 <img class="excl" src="./images/common/852019_exclamation_512x512.png" alt="">
                             </button>
-
+    
+                            <!-- overlay -->
+                            <div class="overlay" v-if="showModal2" @click="showModal2 = true"></div>
                             <!-- modal -->
-                            <div class="modal">
+                            <div class="modal" v-if="showModal2">
                                 <form>
-                                    <div class="close">
-
+                                    <div class="close" @click="showModal2 = false">
+                                        
                                     </div>
                                     <p class="welcome">請輸入檢舉理由</p>
                                     <textarea class="repoinfo" cols="25" rows="10"></textarea>
-
+    
                                     <button class="go">送出</button>
                                 </form>
                             </div>
-
+    
                         </div>
                     </div>
                 </div>
@@ -155,23 +161,25 @@
                             <div class="com_pub_time">發表於2012-03-20 12:20:30</div>
                         </div>
                         <div class="excl ">
-                            <button class="repobt myBtn">
+                            <button class="repobt" @click="showModal2 = true">
                                 <img class="excl" src="./images/common/852019_exclamation_512x512.png" alt="">
                             </button>
-
+    
+                            <!-- overlay -->
+                            <div class="overlay" v-if="showModal2" @click="showModal2 = true"></div>
                             <!-- modal -->
-                            <div class="modal">
+                            <div class="modal" v-if="showModal2">
                                 <form>
-                                    <div class="close">
+                                    <div class="close" @click="showModal2 = false">
                                         
                                     </div>
                                     <p class="welcome">請輸入檢舉理由</p>
                                     <textarea class="repoinfo" cols="25" rows="10"></textarea>
-
+    
                                     <button class="go">送出</button>
                                 </form>
                             </div>
-
+    
                         </div>
                     </div>
                 </div>
@@ -371,32 +379,7 @@
 
     </script>
 
-    <script>
-        // Get the modal
-        var modal = document.getElementsByClassName("modal")[0];
-
-        // Get the button that opens the modal
-        var btn = document.getElementsByClassName("myBtn")[0];
-
-        // Get the <span> element that closes the modal
-        var span = document.getElementsByClassName("close")[0];
-
-        // When the user clicks on the button, open the modal
-        btn.onclick = function() {
-        modal.style.display = "block";
-        }
-        // When the user clicks on <span> (x), close the modal
-        span.onclick = function() {
-        modal.style.display = "none";
-        }
-
-        // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function(event) {
-        if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
-    </script>
+    
 
     <div id="fb-root"></div>
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v9.0"

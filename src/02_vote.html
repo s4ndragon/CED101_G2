@@ -21,14 +21,14 @@
 
 	<main id="app">
 		<h2>熱門茶園 TOP10</h2>
-		<div v-for="gardenRow in gardenRows" class="block1">
+		<div v-for="gardenTop in gardenRowsTop" class="block1">
 			<div class="pic">
-				<img class="tea" :src="gardenRow.GARD_PIC">
-				<img class="m1" src="images/vote/medal.png">
+				<img class="tea" :src="gardenTop.GARD_PIC">
+				<div class="m1"></div>
 			</div>
 			<div class="info">
 				<div class="s1">
-					<p class="p1">{{gardenRow.GARD_NAME}}</p>
+					<p class="p1">{{gardenTop.GARD_NAME}}</p>
 					<div class="fb-share-button" data-href="https://tw.yahoo.com/" data-layout="button"
 						data-size="small">
 						<a target="_blank"
@@ -44,12 +44,12 @@
 						總分:&ensp;
 					</span>
 					<div>
-						<star-rating :rating="gardenRow.GARD_AVG" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
+						<star-rating :rating="gardenTop.GARD_AVG" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
 					</div>
 				</div>
 
 				<p class="p3">
-					{{gardenRow.GARD_CONTENT}}
+					{{gardenTop.GARD_CONTENT}}
 				</p>
 
 				<div class="btwrap">
@@ -142,19 +142,18 @@
 
 		<table>
 
-			<tr>
-			<td>4</td>
+			<tr v-for="(gardenEnd,index) in gardenRowsEnd">
+			<td>{{index+4}}</td>
 				<td>
-					<img class="chartpic" src="images/vote/tea7.jpg">
-					八卦茶園
+					<img class="chartpic" :src="gardenEnd.GARD_PIC">
+					{{gardenEnd.GARD_NAME}}
 				</td>
-				<td v-for="gardendRow in gardenRows">
+				<td>
 					<i class="fas fa-map-marker-alt"></i>&ensp;
-					花蓮縣瑞穗鄉舞鶴村
-					<!-- {{gardenRow.GARD_AVG}} -->
+					{{gardenEnd.GARD_ADDRESS}}
 				</td>
 				<td class="resize">
-					<star-rating :rating="3.7" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
+					<star-rating :rating="gardenEnd.GARD_AVG" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
 				</td>
 				<td>
 					<div class="fb-share-button" data-href="https://tw.yahoo.com/" data-layout="button"
@@ -167,7 +166,7 @@
 					</div>
 				</td>
 			</tr>
-			<tr>
+			<!-- <tr>
 				<td>5</td>
 				<td>
 					<img class="chartpic" src="images/vote/tea7.jpg">
@@ -310,7 +309,7 @@
 						</a>
 					</div>
 				</td>
-			</tr>
+			</tr> -->
 		</table>
 		<img class="deco" src="images/index/img-about-list-illust-front.png">
 
@@ -325,9 +324,11 @@
 			//============去server端拿資料
 			let xhr = new XMLHttpRequest();
 			xhr.onload = function(){  //step3
-				
 				app.gardenRows = JSON.parse(xhr.responseText); 
+				app.gardenRowsTop = app.gardenRows.slice(0,3);
+				app.gardenRowsEnd = app.gardenRows.slice(3);
 				console.log(app.gardenRows);
+				console.log(app.gardenRowsEnd);
 			}
 			xhr.open("get","./php/vote.php", true); //step1
 			xhr.send(null); //step2
@@ -350,35 +351,13 @@
 		var app = new Vue({
 			el: "#app",
 			data:{
-				books: [
-					{
-						psn: '3',
-						pname: 'PHP4+MySQL動態網頁入門實務',
-						price: '110',
-						author: '馬孝瑀',
-						pages: '600',
-						image: '1.gif',
-					},
-					{
-						psn: '2',
-						pname: 'Acess2000 程式設計',
-						price: '222',
-						author: '郭尚君',
-						pages: '1100',
-						image: '2.gif',
-					},
-				],
-
-				gardenRows:[],
-
+				gardenRowsTop:[],
+				gardenRowsEnd:[]
 			},
 			computed:{
 				// grade(){
 				// 	return this.books[0].psn;
 				// },
-				grade(){
-					return this.gardenRows[0].GARD_AVG;
-				},
 			}
 		});
 
