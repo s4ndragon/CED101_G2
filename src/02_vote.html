@@ -19,16 +19,16 @@
 		<p class="fir">茶園排行</p>
 	</div>
 
-	<main>
+	<main id="app">
 		<h2>熱門茶園 TOP10</h2>
-		<div class="block1">
+		<div v-for="gardenTop in gardenRowsTop" class="block1">
 			<div class="pic">
-				<img class="tea" src="images/vote/tea5.jpg">
-				<img class="m1" src="images/vote/medal.png">
+				<img class="tea" :src="gardenTop.GARD_PIC">
+				<div class="m1"></div>
 			</div>
 			<div class="info">
 				<div class="s1">
-					<p class="p1">舞鶴茶園</p>
+					<p class="p1">{{gardenTop.GARD_NAME}}</p>
 					<div class="fb-share-button" data-href="https://tw.yahoo.com/" data-layout="button"
 						data-size="small">
 						<a target="_blank"
@@ -43,13 +43,14 @@
 					<span class="score">
 						總分:&ensp;
 					</span>
-					<div id="app">
-						<star-rating :rating="4.7" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
+					<div>
+						<star-rating :rating="gardenTop.GARD_AVG" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
 					</div>
 				</div>
 
 				<p class="p3">
-					水尾，依山傍水，瑞穗的舊稱，暗藏在鳥語花香的花東縱谷，得天獨厚，擁有天然美景與純淨水資源，是台灣少有的淨土，油亮碧綠的寬廣草原，宛若仙境，雲霧繚繞，這裡是孕育極品茶的世外桃花源-舞鶴茶園。</p>
+					{{gardenTop.GARD_CONTENT}}
+				</p>
 
 				<div class="btwrap">
 					<button class="bt">
@@ -61,7 +62,7 @@
 			</div>
 		</div>
 
-		<div class="block1">
+		<!-- <div class="block1">
 			<div class="pic">
 				<img class="tea" src="images/vote/tea6.jpg">
 				<img class="m1" src="images/vote/medal2.png">
@@ -83,7 +84,7 @@
 					<span class="score">
 						總分:&ensp;
 					</span>
-					<div id="app2">
+					<div>
 						<star-rating :rating="4.3" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
 					</div>
 				</div>
@@ -121,12 +122,12 @@
 					<span class="score">
 						總分:&ensp;
 					</span>
-					<div id="app3">
+					<div>
 						<star-rating :rating="3.8" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
 					</div>
 				</div>
 				<p class="p3">
-					水尾，依山傍水，瑞穗的舊稱，暗藏在鳥語花香的花東縱谷，得天獨厚，擁有天然美景與純淨水資源，是台灣少有的淨土，油亮碧綠的寬廣草原，宛若仙境，雲霧繚繞，這裡是孕育極品茶的世外桃花源-坪林茶園。</p>
+					擁有百年歷史的靜謐山城，四面山脈綿延、雲霧繚繞，為茶樹生長最佳環境，並擁有世代相傳的百年製茶技術 ，邀您一同遨遊低海拔茶園仙境 ，這裡是文山包種茶的故鄉-坪林茶園。</p>
 				<div class="btwrap">
 					<button class="bt">
 						<a href="02_vote_more.html">
@@ -135,29 +136,24 @@
 					</button>
 				</div>
 			</div>
-		</div>
-
-		<!-- <div class="sectionchart">
-			<h2 class="ht">茶園排行</h2>
-			<div class="fall">
-				<img class="leaf" src="images/index/leafs-l.png">
-			</div>
 		</div> -->
 
-		<table id="app4">
+		<!-- 4 ~ 10 名排行區 -->
 
-			<tr>
-			<td>4</td>
+		<table>
+
+			<tr v-for="(gardenEnd,index) in gardenRowsEnd">
+			<td>{{index+4}}</td>
 				<td>
-					<img class="chartpic" src="images/vote/tea7.jpg">
-					八卦茶園
+					<img class="chartpic" :src="gardenEnd.GARD_PIC">
+					{{gardenEnd.GARD_NAME}}
 				</td>
 				<td>
 					<i class="fas fa-map-marker-alt"></i>&ensp;
-					花蓮縣瑞穗鄉舞鶴村
+					{{gardenEnd.GARD_ADDRESS}}
 				</td>
 				<td class="resize">
-					<star-rating :rating="3.7" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
+					<star-rating :rating="gardenEnd.GARD_AVG" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
 				</td>
 				<td>
 					<div class="fb-share-button" data-href="https://tw.yahoo.com/" data-layout="button"
@@ -170,11 +166,11 @@
 					</div>
 				</td>
 			</tr>
-			<tr>
+			<!-- <tr>
 				<td>5</td>
 				<td>
 					<img class="chartpic" src="images/vote/tea7.jpg">
-					春陽茶園
+					紅香茶園
 				</td>
 				<td>
 					<i class="fas fa-map-marker-alt"></i>&ensp;
@@ -222,7 +218,7 @@
 				<td>7</td>
 				<td>
 					<img class="chartpic" src="images/vote/tea7.jpg">
-					台興茶園
+					武界茶園
 				</td>
 				<td>
 					<i class="fas fa-map-marker-alt"></i>&ensp;
@@ -313,7 +309,7 @@
 						</a>
 					</div>
 				</td>
-			</tr>
+			</tr> -->
 		</table>
 		<img class="deco" src="images/index/img-about-list-illust-front.png">
 
@@ -323,45 +319,49 @@
 
 
 	<script>
+		window.addEventListener("load", function (){
+			let gardenRows;
+			//============去server端拿資料
+			let xhr = new XMLHttpRequest();
+			xhr.onload = function(){  //step3
+				app.gardenRows = JSON.parse(xhr.responseText); 
+				app.gardenRowsTop = app.gardenRows.slice(0,3);
+				app.gardenRowsEnd = app.gardenRows.slice(3);
+				console.log(app.gardenRows);
+				console.log(app.gardenRowsEnd);
+			}
+			xhr.open("get","./php/vote.php", true); //step1
+			xhr.send(null); //step2
+		});
+
 		Vue.component("star-rating", VueStarRating.default, {
 			methods: {
-				setRating: function (rating) {
-					this.rating = "You have Selected: " + rating + " stars";
-				},
-				showCurrentRating: function (rating) {
-					this.currentRating =
-						rating === 0
-							? this.currentSelectedRating
-							: "Click to select " + rating + " stars";
-				},
-				setCurrentSelectedRating: function (rating) {
-					this.currentSelectedRating =
-						"You have Selected: " + rating + " stars";
-				}
+				// grade: function(rating){
+				// 	this.books[0].psn = rating;
+				// }
 			},
 			data: {
 				rating: "No Rating Selected",
 				currentRating: "No Rating",
 				currentSelectedRating: "No Current Rating",
-				boundRating: 3
+				boundRating: 3,
 			}
 		});
 
-		new Vue({
+		var app = new Vue({
 			el: "#app",
+			data:{
+				gardenRowsTop:[],
+				gardenRowsEnd:[]
+			},
+			computed:{
+				// grade(){
+				// 	return this.books[0].psn;
+				// },
+			}
 		});
 
-		new Vue({
-			el: "#app2",
-		});
-
-		new Vue({
-			el: "#app3",
-		});
-
-		new Vue({
-			el: "#app4",
-		});
+		
 
 	</script>
 

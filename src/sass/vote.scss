@@ -34,7 +34,7 @@ main{
         @include banner-2nd-title;
     }
 
-    .block1{
+    .block1:nth-child(2){
         box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
         padding: 10px 0;
         display: flex;
@@ -47,7 +47,7 @@ main{
         
         // width: 80%;
     
-        .pic{
+        .pic:nth-child(1){
             width: 500px;
             font-size: 0;
             
@@ -59,10 +59,15 @@ main{
 
             .m1{
                 width: 95px;
+                height: 101px;
                 position: absolute;
                 top:-20px;
                 left: -40px;
                 z-index: 2;
+                background-image: url(../images/vote/medal.png);
+                background-size: cover;
+                background-position: center center;
+                background-repeat: no-repeat;
             }
         }
         
@@ -119,7 +124,186 @@ main{
         }
     }
 
+    .block1:nth-child(3){
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        padding: 10px 0;
+        display: flex;
+        margin: 60px 37px;
+        justify-content: center;
+        border-radius: 10px;
+        // align-items: center;
+        position: relative;
+        background-color: white;
+        
+        // width: 80%;
     
+        .pic:nth-child(1){
+            width: 500px;
+            font-size: 0;
+            
+            .tea{
+                width: 100%;
+                z-index: 1;
+                border-radius: 10px;
+            }
+
+            .m1{
+                width: 95px;
+                height: 101px;
+                position: absolute;
+                top:-20px;
+                left: -40px;
+                z-index: 2;
+                background-image: url(../images/vote/medal2.png);
+                background-size: cover;
+                background-position: center center;
+                background-repeat: no-repeat;
+            }
+        }
+        
+        .info{
+           
+            width:600px;
+            text-align: left;
+            padding:10px;
+            position: relative;
+            padding: 20px 20px 20px 25px;
+           
+            p{
+                line-height: 28px;
+            }
+            
+            .s1{
+                font-size: 25px;
+                margin-top: 1%;
+                display:flex;
+                justify-content: space-between;
+
+                .p1{
+                    color: #7baa17;
+                    font-weight: bold;
+                }
+
+            }
+
+            .allscore{
+                font-size: 18px;
+                margin: 10px 0;
+                display: flex;
+                align-items: center;
+                
+                .vue-star-rating-rating-text[data-v-34cbeed1]{
+                    margin-top: 0;
+                }
+
+                .score{
+                    color:#7baa17;
+                }
+            }
+
+            .btwrap{
+                display: flex;
+                display: flex;
+                justify-content: flex-end;
+                margin-top: 50px;
+                
+                .bt{
+                    @include btn;
+                }
+            }
+        }
+    }
+
+    .block1:nth-child(4){
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        padding: 10px 0;
+        display: flex;
+        margin: 60px 37px;
+        justify-content: center;
+        border-radius: 10px;
+        // align-items: center;
+        position: relative;
+        background-color: white;
+        
+        // width: 80%;
+    
+        .pic:nth-child(1){
+            width: 500px;
+            font-size: 0;
+            
+            .tea{
+                width: 100%;
+                z-index: 1;
+                border-radius: 10px;
+            }
+
+            .m1{
+                width: 95px;
+                height: 101px;
+                position: absolute;
+                top:-20px;
+                left: -40px;
+                z-index: 2;
+                background-image: url(../images/vote/medal3.png);
+                background-size: cover;
+                background-position: center center;
+                background-repeat: no-repeat;
+            }
+        }
+        
+        .info{
+           
+            width:600px;
+            text-align: left;
+            padding:10px;
+            position: relative;
+            padding: 20px 20px 20px 25px;
+           
+            p{
+                line-height: 28px;
+            }
+            
+            .s1{
+                font-size: 25px;
+                margin-top: 1%;
+                display:flex;
+                justify-content: space-between;
+
+                .p1{
+                    color: #7baa17;
+                    font-weight: bold;
+                }
+
+            }
+
+            .allscore{
+                font-size: 18px;
+                margin: 10px 0;
+                display: flex;
+                align-items: center;
+                
+                .vue-star-rating-rating-text[data-v-34cbeed1]{
+                    margin-top: 0;
+                }
+
+                .score{
+                    color:#7baa17;
+                }
+            }
+
+            .btwrap{
+                display: flex;
+                display: flex;
+                justify-content: flex-end;
+                margin-top: 50px;
+                
+                .bt{
+                    @include btn;
+                }
+            }
+        }
+    }
+
 
     table{
         margin: 0 auto 30px;
@@ -166,7 +350,7 @@ main{
             }
 
             td:nth-child(2){
-                width:377px;
+                width: 356px;
                 color: #90a30b;
                 font-family: 'Noto sans TC';
                 letter-spacing: 2.5px;
@@ -184,15 +368,16 @@ main{
             }
 
             td:nth-child(3){
-                width:250px;
+                width: 333px;
             }
 
             td:nth-child(4){
-                width:250px;
+                width: 273px;
             }
 
             td:nth-child(5){
-                width:152px;
+                width: 100px;
+                padding-right: 33px;
             }
 
             .resize{
@@ -359,7 +544,7 @@ main{
                 }
 
                 td:nth-child(2){
-                    font-size: 19px;
+                    font-size: 18px;
                     padding: 0;
                     
                     .chartpic{

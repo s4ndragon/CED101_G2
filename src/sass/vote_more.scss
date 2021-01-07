@@ -95,7 +95,6 @@ main {
                 }
 
                 .overlay {
-                    display: none;
                     position: fixed;
                     z-index: 9998;
                     top: 0;
@@ -106,7 +105,6 @@ main {
                 }
 
                 .modal {
-                    display: none;
                     position: fixed;
                     top: 50%;
                     left: 50%;
@@ -118,7 +116,6 @@ main {
                     background-color: #fff;
                     text-align: center;
                     border-radius: $border-radius-sml;
-                    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
 
                     .close {
                         @include close-icon;
@@ -259,7 +256,6 @@ main {
         }
 
         .modal {
-            display: none;
             position: fixed;
             top: 50%;
             left: 50%;
@@ -271,7 +267,6 @@ main {
             background-color: #fff;
             text-align: center;
             border-radius: $border-radius-sml;
-            box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
 
             .close {
                 @include close-icon;

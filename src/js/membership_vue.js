@@ -1,3 +1,4 @@
+//========== content ==========//
 Vue.component("tour", {
     template: `
     <div id="tour">
@@ -8,7 +9,7 @@ Vue.component("tour", {
             <div class="tour_detail">
                 <div class="tour_title">跨年茶園之旅</div>
                 <div class="tour_date">2020/12/31</div>
-                <div class="tour_attendency">人數：<span class="attend attend_1">15</span>／<span class="require require_1">30</span></div>
+                <div class="tour_attendency" @click="lightboxAttendency = true">人數：<span class="attend attend_1">15</span>／<span class="require require_1">30</span></div>
                 <div class="tour_status_bar">
                     <div class="tour_status">未成團</div>
                     <div class="tour_join">取消</div>
@@ -22,7 +23,7 @@ Vue.component("tour", {
                 <div class="tour_title">12月例行揪團</div>
                 <div class="arrow down"></div>
                 <div class="tour_date">2020/12/20</div>
-                <div class="tour_attendency">人數：<span class="attend attend_1">10</span>／<span class="require require_1">10</span></div>
+                <div class="tour_attendency" @click="lightboxAttendency = true">人數：<span class="attend attend_1">10</span>／<span class="require require_1">10</span></div>
                 <div class="tour_status_bar">
                     <div class="tour_status">已成團</div>
                     <div class="tour_join">取消</div>
@@ -36,7 +37,7 @@ Vue.component("tour", {
             <div class="tour_detail outdated">
                 <div class="tour_title">11月例行揪團</div>
                 <div class="tour_date">2020/11/20</div>
-                <div class="tour_attendency">人數：<span class="attend attend_1">10</span>／<span class="require require_1">10</span></div>
+                <div class="tour_attendency" @click="lightboxAttendency = true">人數：<span class="attend attend_1">10</span>／<span class="require require_1">10</span></div>
                 <div class="tour_status_bar">
                     <div class="tour_status">已過期</div>
                     <div class="tour_join"></div>
@@ -50,7 +51,7 @@ Vue.component("tour", {
             <div class="tour_detail outdated">
                 <div class="tour_title">10月例行揪團</div>
                 <div class="tour_date">2020/10/20</div>
-                <div class="tour_attendency">人數：<span class="attend attend_1">10</span>／<span class="require require_1">10</span></div>
+                <div class="tour_attendency" @click="lightboxAttendency = true">人數：<span class="attend attend_1">10</span>／<span class="require require_1">10</span></div>
                 <div class="tour_status_bar">
                     <div class="tour_status">已取消</div>
                     <div class="tour_join"></div>
@@ -132,6 +133,13 @@ Vue.component("tour", {
     </div>
 </div>
     `,
+    mounted() {
+        $(".arrow").click(function () {
+            $(this).toggleClass("down").toggleClass("up").toggleClass("extend");
+            $(this).siblings().toggleClass('block');
+            // $().();
+        });
+    },
 });
 Vue.component("mine_fav", {
     template: `
@@ -314,6 +322,47 @@ Vue.component("mine_fav", {
         </div>
     </div>
     `,
+    mounted() {
+        //分頁切換
+        $(".fav_tour").click(function () {
+            // console.log($(this).parent("#mine_fav_bar").siblings("#fav_container").children("#fav_tour"));
+            $(this).addClass("colored").removeClass("unselected");
+            $(this).siblings().removeClass("colored").addClass("unselected");
+            $(this).parent("#mine_fav_bar").siblings("#fav_container").children().hide();
+            $(this).parent("#mine_fav_bar").siblings("#fav_container").children("#fav_tour").show();
+        });
+        $(".fav_article").click(function () {
+            $(this).addClass("colored").removeClass("unselected");
+            $(this).siblings().removeClass("colored").addClass("unselected");
+            $(this).parent("#mine_fav_bar").siblings("#fav_container").children().hide();
+            $(this).parent("#mine_fav_bar").siblings("#fav_container").children("#fav_article").show();
+        });
+        $(".fav_product").click(function () {
+            $(this).addClass("colored").removeClass("unselected");
+            $(this).siblings().removeClass("colored").addClass("unselected");
+            $(this).parent("#mine_fav_bar").siblings("#fav_container").children().hide();
+            $(this).parent("#mine_fav_bar").siblings("#fav_container").children("#fav_product").show();
+        });
+
+        //like
+        let like = document.getElementsByClassName("like");
+        for (var i = 0; i < like.length; i++) {
+            like[i].addEventListener("click", changeHeart);
+        }
+        function changeHeart() {
+            if (this.title == "加入收藏") {
+                this.title = "取消收藏";
+                this.src = "./images/common/heart.png";
+
+                $(this).parent("div").parent("div").css({
+                    display: "none",
+                });
+            } else {
+                this.title = "加入收藏";
+                this.src = "./images/common/like.png";
+            }
+        }
+    },
 });
 
 Vue.component("mine_order", {
@@ -562,16 +611,47 @@ Vue.component("mine_profile", {
                     </form>
                 </div>
     `,
+    mounted() {
+        //個人資料分頁
+        $("form")
+            .find("input, textarea")
+            .on("keyup blur focus", function (e) {
+                var $this = $(this),
+                    label = $this.prev("label");
+                if (e.type === "keyup") {
+                    if ($this.val() === "") {
+                        label.removeClass("active highlight");
+                    } else {
+                        label.addClass("active highlight");
+                    }
+                } else if (e.type === "blur") {
+                    if ($this.val() === "") {
+                        label.removeClass("active highlight");
+                    } else {
+                        label.removeClass("highlight");
+                    }
+                } else if (e.type === "focus") {
+                    if ($this.val() === "") {
+                        label.removeClass("highlight");
+                    } else if ($this.val() !== "") {
+                        label.addClass("highlight");
+                    }
+                }
+            });
+    },
 });
+
+//========== lightbox ==========//
 
 new Vue({
     el: "#app",
     data: {
         content: "tour",
+        lightboxAttendency: false,
     },
 });
 
-//========  sub menu分頁
+//==========  sub menu分頁  ==========//
 $(".tour").click(function () {
     $(this).toggleClass("bg-color").toggleClass("select-color");
     $(this).siblings().removeClass("bg-color").addClass("select-color");
@@ -591,10 +671,5 @@ $(".mine_article").click(function () {
 $(".mine_profile").click(function () {
     $(this).addClass("bg-color").removeClass("select-color");
     $(this).siblings().removeClass("bg-color").addClass("select-color");
-    $(this).parent().parent().siblings('#main_container').children('#sub_menu').children('h3').removeClass("bg-color")
-    $("#tour").hide();
-    $("#mine_fav").hide();
-    $("#mine_order").hide();
-    $("#mine_article").hide();
-    $("#mine_profile").show();
+    $(this).parent().parent().siblings("#main_container").children("#sub_menu").children("h3").removeClass("bg-color");
 });

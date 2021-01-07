@@ -13,7 +13,7 @@
     <!-- 推薦廣告用 -->
 
     <script src="./js/recommend.js"></script>
-    <script src="./js/cart.js"></script>
+    <script src="./js/product.js"></script>
 </head>
 
 <body>
@@ -31,14 +31,14 @@
                 <button id="backShop">
                     <a href="./04_shopping.html">繼續購物</a>
                 </button>
-                <input type="submit" value="結帳">
+                <input type="submit" value="結帳" id='checkout'>
 
             </div>
         </form>
     </div>
     <div class="recommend">
         <h2>推薦商品</h2>
-        <div class="recommend_products">
+        <div class="recommend_products" id="recommends">
         </div>
     </div>
     @@include('layout/footer.html')

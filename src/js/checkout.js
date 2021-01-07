@@ -23,14 +23,15 @@ function loaditems() {
         for (let i = 0; i < itemlistLenght; i++) {
             itemValue = storage[itemlist[i]].split('|');
             itemName = itemValue[1];
-            itemPrice = itemValue[2];
-            itemNum = itemValue[3];
+            itemImg = itemValue[2];
+            itemPrice = itemValue[3];
+            itemNum = itemValue[4];
             itemPrice = itemPrice * itemNum;
             total += itemPrice;
             let newdiv = document.createElement('li');
             // newdiv.setAttribute('class', 'item');
             newdiv.innerHTML = `
-                <div class="img"><img src="./images/shopping/product2.jpg" alt=""></div>
+                <div class="img"><img src="./images/shopping/${itemImg}" alt=""></div>
                 <div class='aside'>
                 <h4 class="prodtitle">${itemName}</h4>
                 <div>數量:<span>${itemNum}</span></div>
