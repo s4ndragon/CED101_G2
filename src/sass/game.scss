@@ -43,7 +43,7 @@ top:-40px;
 .road{
   position: absolute;
   z-index: 2;
-left:calc(-310px + 40%);
+  left:calc(-310px + 40%);
   background: url(../images/game/8.png);
   width: 755px;
   height: 110px;
@@ -68,7 +68,7 @@ left:calc(-310px + 40%);
 }
 .road .createWorm {
   position: absolute;
-height: 90px;
+  height: 60px;
   width: 66px;
   top: 0px;
   bottom: 0px;
@@ -134,6 +134,13 @@ position: absolute;
 top: 300px;
 left: 50%;
 transform: translate(-50%, -50%);
+img.title{
+	position:relative;
+top:-20px;
+left: calc(94% - 417px);	
+width: 417px;
+height:128px;
+}
 }
 div.gameover,div.gamewin{
   position: fixed;
@@ -260,7 +267,7 @@ div.gamewin>article{
 			/*疆屍*/
 			#road .createWorm {
 				position: absolute;
-				height: 90px;
+				height: 50px;
 				width: 66px;
 				top: 0px;
 				bottom: 0px;
@@ -297,18 +304,18 @@ div.gamewin>article{
         	position: absolute;
         	width:27px;
         	height:27px;
-				padding: 0;
-				right: 0;
-				top: -12px;
-				border-radius: 50%;
-				background: gold;
+			padding: 0;
+			right: 0;
+			top: -12px;
+			border-radius: 50%;
+			background: gold;
 			}
 			#props li img {
 				border: 2px solid gray;
 				height: 100%;
 				width: 100%;
 				cursor: pointer;
-				background: gainsboro;
+				background: yellowgreen;
 			}
 			#props li img.action {
 				border: 3px solid green;
@@ -331,12 +338,16 @@ div.gamewin>article{
 		// height:70px;
 		cursor: pointer;
 	  }
+	  img[src="./images/game/62720191121071129866.png"]{
+		  width:40px;
+		  height:40px;
+		}
 	  .star-back{
 		//   	width: 70px;
 		// height:70px;
 				background: url("../images/game/62720191121071129866.png");
 				background-size: contain;
-				background-repeat: no-repeat;			
+				background-repeat: no-repeat;		
 	  }
 			/*星星數量*/
 			#star-number {
@@ -380,7 +391,7 @@ div.gamewin>article{
 				height: 70px;
 				z-index: 300;
 			}
-			#return{
+			#replay{
 				position:absolute;
 				left:30px;
 				bottom:25px;
