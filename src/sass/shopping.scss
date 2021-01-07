@@ -216,7 +216,7 @@ div.product {
     &:hover>div {
         transform: translate(1px, 1px);
         box-shadow: 1px 0px 5px 0px #467401;
-
+        border-radius: 30px;
     }
 }
 
@@ -291,13 +291,14 @@ div.products {
 
 
     div.page {
-        width: max-content;
+        width: 100%;
         text-align: center;
+        margin: 20px 0;
         $pageColor: brown;
         $pageBgColor: #69994e;
         $pageHoverColor: #FFF;
         $pageBgHoverColor: rgb(22, 224, 4);
-        margin: 20px 0;
+
 
         ul {
             list-style: none;

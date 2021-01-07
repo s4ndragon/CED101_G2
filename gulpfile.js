@@ -29,6 +29,11 @@ function moveJs() {
     return src("src/js/*.js").pipe(dest("dist/js/"));
 }
 exports.moveJs = moveJs;
+//搬運php（src->dist）
+function movePhp() {
+    return src("src/phps/*.php").pipe(dest("dist/phps/"));
+}
+exports.movePhp = movePhp;
 
 //將css合併成一隻檔案
 function concatCss() {
@@ -167,6 +172,7 @@ exports.imagemin = zipImg;
 function watchFile() {
     watch("src/sass/*.scss", series(clearCss, sassStyle));
     watch("src/js/*.js", moveJs);
+    watch("src/phps/*.php", movePhp);
     watch(["src/*.html", "src/nav.html", "src/footer.html"], series(clearHtml, includeHTML));
     watch("src/images/**/*.*", series(clearImg, moveImg));
     // watch("src/vendors/**/**/**", series(clearVendors, moveVendors))

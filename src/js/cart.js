@@ -5,22 +5,22 @@ var addcartLB = document.getElementById('addcartLB');
 
 
 function doFirst() {
-    addcartalert()
-    if (storage['addItemList'] == null) {
-        storage['addItemList'] = '';
-    }
-    let add_cart = document.querySelectorAll('.add_cart');
-    for (let i = 0; i < add_cart.length; i++) {
-        add_cart[i].addEventListener('click', additem);
-    }
-    let add_Favorite = document.querySelectorAll('.addFavorite');
-    for (let i = 0; i < add_Favorite.length; i++) {
-        add_Favorite[i].addEventListener('click', addFavorite);
-    }
-    if (storage['addItemList'] != "") {
-        loadcart();
-    }
-    calcAmount();
+    // addcartalert()
+    // if (storage['addItemList'] == null) {
+    //     storage['addItemList'] = '';
+    // }
+    // let add_cart = document.querySelectorAll('.add_cart');
+    // for (let i = 0; i < add_cart.length; i++) {
+    //     add_cart[i].addEventListener('click', additem);
+    // }
+    // let add_Favorite = document.querySelectorAll('.addFavorite');
+    // for (let i = 0; i < add_Favorite.length; i++) {
+    //     add_Favorite[i].addEventListener('click', addFavorite);
+    // }
+    // if (storage['addItemList'] != "") {
+    //     loadcart();
+    // }
+    // calcAmount();
     let productNum = document.getElementById('productNum')
     if (productNum) {
         productNum.addEventListener('change', changeNum)
@@ -57,6 +57,7 @@ function loadFavorite() {
     let FavoriteBtn = document.getElementsByClassName('addFavorite');
     for (let i = 0; i < FavoriteBtn.length; i++) {
         itemValueBtn = FavoriteBtn[i].nextElementSibling.nextElementSibling;
+        // console.log(itemValueBtn)
         let f = itemValueBtn.value.split('|')[4];
         if (f == 0) {
             FavoriteBtn[i].src = "./images/common/heart.png";
@@ -66,143 +67,141 @@ function loadFavorite() {
     }
 }
 
-function itemInnerhtml(newdiv, itemNo, itemName, itemNum, itemPrice) {
-    newdiv.innerHTML = `
-    <div class="drop">×</div>
-    <div class="img">
-        <img src="./images/shopping/product2.jpg" alt="">
-    </div>
-    <div class="aside">
-        <a href="./04_product.html"><h3>${itemName}</h3></a>
-        <div class="content">
-            <div>數量: <input type="number" name=""  value="${itemNum}" min='0' max='999' onchange='calcAmount()'></div>
-            <div class='price'>價格: </span><input type="number" name=""  disabled value="${itemPrice}" ></div>
-            <input type="hidden" name="" value='${storage[`${itemNo}`]}' class='productInfo'>
-        </div>
-    </div>
-    `
-}
+// function itemInnerhtml(newdiv, itemNo, itemName, itemImg, itemNum, itemPrice) {
+//     newdiv.innerHTML = `
+//     <div class="drop">×</div>
+//     <div class="img">
+//         <img src="./images/shopping/${itemImg}" alt="">
+//     </div>
+//     <div class="aside">
+//         <a href="./04_product.html"><h3>${itemName}</h3></a>
+//         <div class="content">
+//             <div>數量: <input type="number" name=""  value="${itemNum}" min='0' max='999' onchange='calcAmount()'></div>
+//             <div class='price'>價格: </span><input type="number" name=""  disabled value="${itemPrice}" ></div>
+//             <input type="hidden" name="" value='${storage[`${itemNo}`]}' class='productInfo'>
+//         </div>
+//     </div>
+//     `
+// }
 
-function additem(e) {
-    let itemValue = e.target.nextElementSibling.value;
-    let itemNo = itemValue.split('|')[0],
-        itemName = itemValue.split('|')[1],
-        itemPrice = itemValue.split('|')[2],
-        itemNum = itemValue.split('|')[3];
-    if (storage[`${itemNo}`]) {
-        alertLB('已經在購物車內囉。');
-    } else {
-        storage[`${itemNo}`] = itemValue;
-        storage['addItemList'] += itemNo + ',';
-        itemValue = itemValue.split('|');
-        itemName = itemValue[1];
-        itemPrice = itemValue[2];
-        itemNum = itemValue[3];
-        let cart_content = document.getElementById('cart_content');
-        if (cart_content) {
-            let newdiv = document.createElement('div');
-            newdiv.setAttribute('class', 'item');
-            itemInnerhtml(newdiv, itemNo, itemName, itemNum, itemPrice);
-            cart_content.insertBefore(newdiv, amount);
-            calcAmount();
-            newdiv.querySelectorAll('.drop')[0].addEventListener('click', dropitem);
-        };
-        alertLB('已加入購物車。');
-    }
-}
+// function additem(e) {
+//     let itemValue = e.target.nextElementSibling.value;
+//     let itemNo = itemValue.split('|')[0],
+//         itemName = itemValue.split('|')[1],
+//         itemImg = itemValue.split('|')[2],
+//         itemPrice = itemValue.split('|')[3],
+//         itemNum = itemValue.split('|')[4];
+//     if (storage[`${itemNo}`]) {
+//         alertLB('已經在購物車內囉。');
+//     } else {
+//         storage[`${itemNo}`] = itemValue;
+//         storage['addItemList'] += itemNo + ',';
+//         let cart_content = document.getElementById('cart_content');
+//         if (cart_content) {
+//             let newdiv = document.createElement('div');
+//             newdiv.setAttribute('class', 'item');
+//             itemInnerhtml(newdiv, itemNo, itemName, itemImg, itemNum, itemPrice);
+//             cart_content.insertBefore(newdiv, amount);
+//             calcAmount();
+//             newdiv.querySelectorAll('.drop')[0].addEventListener('click', dropitem);
+//         };
+//         alertLB('已加入購物車。');
+//     }
+// }
 
-function loadcart() {
-    let cartContent = document.getElementById('cart_content');
-    if (cartContent) {
-        let itemlist = storage['addItemList'];
-        itemlist = itemlist.split(',');
-        let itemlistLenght = itemlist.length - 1;
-        for (let i = 0; i < itemlistLenght; i++) {
-            itemValue = storage[itemlist[i]].split('|');
-            itemName = itemValue[1];
-            itemPrice = itemValue[2];
-            itemNum = itemValue[3];
-            let newdiv = document.createElement('div');
-            newdiv.setAttribute('class', 'item');
-            itemInnerhtml(newdiv, itemlist[i], itemName, itemNum, itemPrice);
-            cart_content.insertBefore(newdiv, amount);
-        }
-    };
-    let dropbtn = document.querySelectorAll('.drop');
-    for (let i = 0; i < dropbtn.length; i++) {
-        dropbtn[i].addEventListener('click', dropitem);
-    }
-}
+// function loadcart() {
+//     let cartContent = document.getElementById('cart_content');
+//     if (cartContent) {
+//         let itemlist = storage['addItemList'];
+//         itemlist = itemlist.split(',');
+//         let itemlistLenght = itemlist.length - 1;
+//         for (let i = 0; i < itemlistLenght; i++) {
+//             itemValue = storage[itemlist[i]].split('|');
+//             itemName = itemValue[1];
+//             itemImg = itemValue[2];
+//             itemPrice = itemValue[3];
+//             itemNum = itemValue[4];
+//             let newdiv = document.createElement('div');
+//             newdiv.setAttribute('class', 'item');
+//             itemInnerhtml(newdiv, itemlist[i], itemName, itemImg, itemNum, itemPrice);
+//             cart_content.insertBefore(newdiv, amount);
+//         }
+//     };
+//     let dropbtn = document.querySelectorAll('.drop');
+//     for (let i = 0; i < dropbtn.length; i++) {
+//         dropbtn[i].addEventListener('click', dropitem);
+//     }
+// }
 
 
-function calcAmount() {
-    var totalAmount = document.getElementById('totalAmount');
-    let total = 0,
-        items = document.querySelectorAll('.item');
-    if (items) {
-        for (let i = 0; i < items.length; i++) {
-            let pricebtn = items[i].querySelectorAll('input[type=hidden]')[0],
-                priceValue = pricebtn.value;
-            let price = priceValue.split('|')[2],
-                num = pricebtn.previousElementSibling.previousElementSibling.getElementsByTagName('input')[0].value,
-                h = priceValue.split('|')[4],
-                c;
-            if (priceValue.split('|')[3] < 10) {
-                c = priceValue.substring(0, priceValue.length - 3)
-            } else if (priceValue.split('|')[3] >= 10 && priceValue.split('|')[3] < 100) {
-                c = priceValue.substring(0, priceValue.length - 4)
-            } else if (priceValue.split('|')[3] >= 100 && priceValue.split('|')[3] < 1000) {
-                c = priceValue.substring(0, priceValue.length - 5)
-            }
-            pricebtn.value = `${c}${num}|${h}`;
-            storage[priceValue.split('|')[0]] = pricebtn.value;
-            total += (price * num);
-        }
-    }
+// function calcAmount() {
+//     var totalAmount = document.getElementById('totalAmount');
+//     let total = 0,
+//         items = document.querySelectorAll('.item');
+//     if (items) {
+//         for (let i = 0; i < items.length; i++) {
+//             let pricebtn = items[i].querySelectorAll('input[type=hidden]')[0],
+//                 priceValue = pricebtn.value;
+//             let price = priceValue.split('|')[2],
+//                 num = pricebtn.previousElementSibling.previousElementSibling.getElementsByTagName('input')[0].value,
+//                 h = priceValue.split('|')[4],
+//                 c;
+//             if (priceValue.split('|')[3] < 10) {
+//                 c = priceValue.substring(0, priceValue.length - 3)
+//             } else if (priceValue.split('|')[3] >= 10 && priceValue.split('|')[3] < 100) {
+//                 c = priceValue.substring(0, priceValue.length - 4)
+//             } else if (priceValue.split('|')[3] >= 100 && priceValue.split('|')[3] < 1000) {
+//                 c = priceValue.substring(0, priceValue.length - 5)
+//             }
+//             pricebtn.value = `${c}${num}|${h}`;
+//             storage[priceValue.split('|')[0]] = pricebtn.value;
+//             total += (price * num);
+//         }
+//     }
 
-    if (totalAmount) {
-        totalAmount.setAttribute('value', total);
-    }
-    let totalBtn = document.getElementById('totalBtn');
-    if (totalBtn) {
-        dealDisPoint()
-        maxDis()
-    }
-}
+//     if (totalAmount) {
+//         totalAmount.setAttribute('value', total);
+//     }
+//     let totalBtn = document.getElementById('totalBtn');
+//     if (totalBtn) {
+//         dealDisPoint()
+//         maxDis()
+//     }
+// }
 
-function changeNum(e) {
-    let pricebtn = e.target.parentNode.parentNode.querySelectorAll('input[type=hidden]')[0];
-    let priceValue = pricebtn.value;
-    let num = e.target.value,
-        h = priceValue.split('|')[4],
-        c;
-    if (priceValue.split('|')[3] < 10) {
-        c = priceValue.substring(0, priceValue.length - 3)
-    } else if (priceValue.split('|')[3] >= 10 && priceValue.split('|')[3] < 100) {
-        c = priceValue.substring(0, priceValue.length - 4)
-    } else if (priceValue.split('|')[3] >= 100 && priceValue.split('|')[3] < 1000) {
-        c = priceValue.substring(0, priceValue.length - 5)
-    }
-    pricebtn.value = `${c}${num}|${h}`;
-    if (storage[priceValue.split('|')[0]]) {
-        storage[priceValue.split('|')[0]] = pricebtn.value;
-    }
-}
+// function changeNum(e) {
+//     let pricebtn = e.target.parentNode.parentNode.querySelectorAll('input[type=hidden]')[0];
+//     let priceValue = pricebtn.value;
+//     let num = e.target.value,
+//         h = priceValue.split('|')[4],
+//         c;
+//     if (priceValue.split('|')[3] < 10) {
+//         c = priceValue.substring(0, priceValue.length - 3)
+//     } else if (priceValue.split('|')[3] >= 10 && priceValue.split('|')[3] < 100) {
+//         c = priceValue.substring(0, priceValue.length - 4)
+//     } else if (priceValue.split('|')[3] >= 100 && priceValue.split('|')[3] < 1000) {
+//         c = priceValue.substring(0, priceValue.length - 5)
+//     }
+//     pricebtn.value = `${c}${num}|${h}`;
+//     if (storage[priceValue.split('|')[0]]) {
+//         storage[priceValue.split('|')[0]] = pricebtn.value;
+//     }
+// }
 
-function dropitem(e) {
-    let addItemList = storage['addItemList'].split(','),
-        itemValueBtn = e.target.nextElementSibling.nextElementSibling.querySelectorAll('input[type=hidden]')[0],
-        itemNo = itemValueBtn.value.split('|')[0];
-    e.target.parentNode.remove();
-    calcAmount();
-    storage.removeItem(itemNo);
-    let index = addItemList.indexOf(itemNo);
-    addItemList.splice(index, 1);
-    //將陣列重組成字串
-    addItemList = addItemList.toString() + ',';
-    addItemList = addItemList.substring(0, addItemList.length - 1);
-    storage['addItemList'] = addItemList;
-}
+// function dropitem(e) {
+//     let addItemList = storage['addItemList'].split(','),
+//         itemValueBtn = e.target.nextElementSibling.nextElementSibling.querySelectorAll('input[type=hidden]')[0],
+//         itemNo = itemValueBtn.value.split('|')[0];
+//     e.target.parentNode.remove();
+//     calcAmount();
+//     storage.removeItem(itemNo);
+//     let index = addItemList.indexOf(itemNo);
+//     addItemList.splice(index, 1);
+//     //將陣列重組成字串
+//     addItemList = addItemList.toString() + ',';
+//     addItemList = addItemList.substring(0, addItemList.length - 1);
+//     storage['addItemList'] = addItemList;
+// }
 
 function dealDisPoint() {
     var costPoint = document.getElementById('costPoint'),
