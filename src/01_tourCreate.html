@@ -124,9 +124,16 @@
     </script>
     <script>
         let storage = sessionStorage;
-        let viewBtn = document.getElementsByClassName("viewBtn");
-        let lightBox = document.getElementById("lightBox");
-        let closeLightBoxBtn = document.getElementById("close_lightBox");
+        let prodRows;
+        //============去server端拿資料
+        let xhr = new XMLHttpRequest();
+        xhr.onload = function () {
+
+            app.prodRows = JSON.parse(xhr.responseText);
+            console.log(app.prodRows);
+        }
+        xhr.open("get", "./phps/getLocation.php", true);
+        xhr.send(null);
 
         Vue.component('tea', {
 
@@ -176,6 +183,9 @@
             </div>
         </div>
             `,
+            mounted() {
+
+            }
         });
         Vue.component('hotel', {
             data() {
@@ -289,18 +299,7 @@
                 </div>
                 </div>
             `,
-            mounted() {
-                let prodRows;
-                //============去server端拿資料
-                let xhr = new XMLHttpRequest();
-                xhr.onload = function () {
 
-                    app.prodRows = JSON.parse(xhr.responseText);
-                    console.log(app.prodRows);
-                }
-                xhr.open("get", "getLocation.php", true);
-                xhr.send(null);
-            }
         });
 
         Vue.component("star-rating", VueStarRating.default, {
