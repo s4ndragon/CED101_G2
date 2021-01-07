@@ -50,7 +50,6 @@ var path = {
       }
   }
 });
-
 //產生新子彈，本身不加上for(){}
 function addBullet(speed, damage, left,o) {
   /*   * speed 射速   * damage 傷害   */
@@ -148,10 +147,11 @@ function walk(){//蟲子走路
   for(let k=0;k<3;k++){
     for(var i = 0,th=path.wormArr[k].length; i < th; i++) {
     path.wormArr[k][i].style.left = path.wormArr[k][i].offsetLeft - parseInt(path.wormArr[k][i].dataset.speed) + "px";
-    if(path.wormArr[k][i].offsetLeft + path.wormArr[k][i].offsetWidth < 0) {
-  $("div.gameover").addClass("-on");
+      if (path.wormArr[k][i].offsetLeft + path.wormArr[k][i].offsetWidth < 0) {
+        document.querySelector("div.gameover").classList.add("-on");
+
   gamestop();
-      // location.reload();
+
     }
     for(var j = 0; j < path.plantArr[k].length; j++) {
       //蟲子和植物碰上了
