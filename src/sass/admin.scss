@@ -8,19 +8,6 @@ body {
     @include bg;
 }
 
-/* ==================== header 區域 ==================== */
-header.header {
-    border: 1px solid #0f470f;
-    width: 100%;
-    position: sticky;
-    top: 0;
-    height: var(--header-height);
-    background-color: lightgray;
-}
-header.header button.btn_hamburger {
-    display: none;
-}
-
 /* ==================== nav 區域 ==================== */
 .memicon {
     position: fixed !important;
@@ -101,8 +88,7 @@ main.main ul.item_list > li > a span.item_text {
 
 /* 整個頁籤及內容最外層區塊 */
 div.tab_container {
-    // border: 1px solid yellow;
-    margin-bottom: 20px;
+    margin: 80px 40px;
     display: none;
 }
 
@@ -197,7 +183,10 @@ th {
     padding: 10px;
     border: 1px solid #ccc;
     text-align: left;
-    font-size: 18px;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .form-group {
@@ -301,10 +290,6 @@ input:checked + .slider:before {
     }
     aside.aside.-on {
         transform: translateX(0%);
-    }
-    header.header button.btn_hamburger,
-    aside.aside button.btn_hamburger {
-        display: inline-block;
     }
 }
 
