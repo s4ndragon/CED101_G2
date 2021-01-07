@@ -19,17 +19,17 @@
 		 <!-- 如果來不及的話用jquery Ajax收發資料帶入角色資料，和timer資料 -->
 		<link rel="stylesheet" href="./css/game.css">
 		<link rel="stylesheet" href="./css/flex.css">
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.js"></script>
+		<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.js"></script> -->
 		<script src="../node_modules/jquery/dist/jquery.min.js"></script>
 	</head>
 	<body>
 		@@include('layout/nav.html')
 		<div id="title" class="banner"><h1 class="banner-1st-title">小遊戲-茶園保衛戰</h1></div>
-		<div class="w100 flex j_c x-auto">
+		<div class="w100 flex j_c ">
 		<div id="map">
 			<div class="tea_en flex a_c j_c">
-				<section >
-					<article class="flex">
+				<section style="overflow-x: hidden;">
+					<article class="flex" >
 					<div class="teatxt">
 						<h2>目錄</h2>
 						<p>概要：茶文化、茶葉知識、茶具知識、品茶用水、茶藝基礎、科學飲茶</p>
@@ -57,9 +57,7 @@
 			<span style="writing-mode: vertical-lr;
 			font-size: 20px;position:relative;top: 55%;left: 20%;color: #FFF;text-shadow: 0 0 3.2em #87E;">遊戲</span>
 			</div>
-						<div id="teatxt-bar2" style="height: 100px;
-    		width: 50px;    position: relative;
-    		top: 30px;"></div>
+						<div id="teatxt-bar2" style="height: 100px;width: 50px;position: relative;top: 30px;"></div>
 					</div>
 					</article>					
 				</section>
@@ -75,11 +73,9 @@
     	top:120px;">
 		<p style="font-size:28px;color:red;">蟲子跑進了茶園</p>
 <img src="./images/game/200_d.gif" alt="" style="width: 300px;">
-<img src="./images/game/tea_2.png" alt="" style="width: 300px;position: relative;
-    left: 12%;
-    top: -36px;">
+
 	</div>		
-		<div id="return" class="flex a_c"><img src="./images/game/return.png" alt="再玩一次"><span style="font-size:28px;color:red;">再玩一次</span></div>
+		<div id="replay" class="flex a_c" style="cursor: pointer;"><img src="./images/game/return.png" alt="再玩一次" ><span style="font-size:28px;color:red;">再玩一次</span></div>
 </article>
 </div>
 <div class="gamewin">
@@ -99,13 +95,20 @@ font-size: 28px;line-height: 1.5;
 </div>
 <div class="overlay -on">
 	<article>
-			<img src="./images/game/title.png" class="title">
+				<img src="./images/game/game_role.png" class="title">
 			<div style="color:#FFF;padding-left:10px;font-size:18px;border:solid 1px #FFF">
 			<p>遊戲說明：</p>
-			<p>上方控制面板：喝茶休息可以暫停，茶百科可以瀏覽茶的知識、計分板顯示分數。</p>
-			<p>左下方：守衛角色可放置到四條道路上，會發射子彈。</p>
-			<p>右方：有蟲子向進攻，千萬不要放蟲子到茶園裡。</p>
+			<div>開場會有落下茶葉，玩家可以點擊接住茶葉<img src="./images/game/giphy.webp" alt="" style="width:40px;height:40px">
+			</div>
+			<div class="flex">				
+				<span>落下的茶葉收到袋子裡→</span>
+				<img src="./images/game/62720191121071129866.png" alt="">
+				<span>用來購買守衛</span>
+				<img src="./images/game/4.gif" alt="" style="width:40px;height:40px;">
+			</div>
 			<p>茶能量：守衛放置道路上需要能量，能量不足可是請不動守衛的呦。</p>
+			<p>上方控制面板：暫停、繼續，茶百科可以瀏覽茶的知識、計分板顯示分數。</p>
+			<p>右方：有蟲子向進攻，千萬不要放蟲子到茶園裡。</p>			
 			</div>			
 			<div class="button2 flex a_c j_c" id='go' style="appearance: none;"><span style="color:#FFF;" id="gotxt">開始驅蟲</span></div>
 			
@@ -176,7 +179,6 @@ font-size: 28px;line-height: 1.5;
 					time_b_,
 					bb__,
 					zom_,zarr_
-					
 				},
 				motheds:{
 					clearStyle() {
