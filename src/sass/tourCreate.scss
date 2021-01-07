@@ -36,7 +36,7 @@ h1 {
 
 .createStep {
     text-align: center;
-    border: 1px solid black;
+
 
 
 
@@ -74,10 +74,10 @@ h1 {
 
         }
 
-        .t1 {
-            background-color: #FFF;
-            color: #4c6e39;
-        }
+        // .t1 {
+  //     background-color: #FFF;
+  //     color: #4c6e39;
+  // }
 
         .a1,
         .a2,
@@ -111,9 +111,10 @@ h1 {
 
 // border: 1px solid black;
 .tourCreate_rightside_block {
+    z-index: 999999;
     position: fixed;
     right: 0;
-    top: 200px;
+    top: 170px;
     width: 200px;
     // border: 1px solid black;
     border-radius: 10px 0 0 10px;
@@ -284,15 +285,11 @@ h1 {
         }
     }
 
-    .hotel,
-    .rest,
-    .active {
-        display: none;
-    }
+
 }
 
 .create_lightBox_mask {
-    display: none;
+
     z-index: 999999999;
     position: fixed;
     top: 0;
