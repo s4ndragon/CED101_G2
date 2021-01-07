@@ -20,9 +20,7 @@ $main-width: 80%;
         @include banner-1st-title;
     }
 
-    h2 {
-        @include banner-txt;
-    }
+
 }
 
 h1 {
@@ -31,62 +29,6 @@ h1 {
 }
 
 
-
-
-.tourCreate_header {
-    display: flex;
-    justify-content: space-evenly;
-    flex-direction: column;
-    align-content: space-around;
-    width: $main-width;
-    margin: 50px auto;
-
-
-    .step_title {
-        display: flex;
-
-        .step_block {
-            // border: 1px solid black;
-            width: calc(100% / 3);
-
-            .step {
-                width: 100px;
-                height: 100px;
-                text-align: center;
-                line-height: 100px;
-                margin: 0 auto;
-
-                @media only screen and (max-width: 576px) {
-                    width: 50px;
-                    height: 50px;
-                    font-size: $h4;
-                    line-height: 50px;
-                }
-            }
-        }
-
-        .arrow {
-            // border: 1px solid black;
-            margin: auto;
-        }
-    }
-
-    .step_content {
-        display: flex;
-        justify-content: space-around;
-
-        p {
-            font-size: $h3;
-            text-align: center;
-            padding: 30px;
-
-            @media only screen and (max-width: 576px) {
-                font-size: $h4;
-                padding: 20px;
-            }
-        }
-    }
-}
 
 .info_main {
 

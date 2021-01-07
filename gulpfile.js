@@ -30,6 +30,18 @@ function moveJs() {
 }
 exports.moveJs = moveJs;
 
+//搬運vendors（src->dist）
+function moveVendors() {
+    return src("src/vendors/**/**/**/*.*").pipe(dest("dist/vendors/"));
+}
+exports.moveJs = moveVendors;
+
+//搬運php（src->dist）
+function movePhp() {
+    return src("src/php/*.*").pipe(dest("dist/php/"));
+}
+exports.movePhp = movePhp;
+
 //將css合併成一隻檔案
 function concatCss() {
     return src("dist/css/*.css") // '*.css'是所有的css檔案 '*.*'是所有檔案（不管類型）
@@ -48,7 +60,7 @@ exports.concat = concatCss;
 //             })
 //         )
 //         .pipe(dest("css"));
-// }
+//}
 // exports.renameCss = change;
 
 //將js檔案壓縮至dist
@@ -77,7 +89,7 @@ exports.sass = sassStyle;
 // }
 // exports.imagemin = img;
 
-//刪除css
+//刪除all
 function cleanAll() {
     return src('dist', {
         read: false,
@@ -130,6 +142,17 @@ function clearVendors() {
 }
 exports.clearVendors = clearVendors;
 
+//刪除圖片
+function clearPhp() {
+    //src  檔案路徑
+    return src("dist/php", {
+        read: false, //避免 gulp 去讀取檔案內容，讓刪除效能變好
+        force: true, //強制刪除
+        allowEmpty: true,
+    }).pipe(clean());
+}
+exports.clearPhp = clearPhp;
+
 //html template
 function includeHTML() {
     return src("src/*.html")
@@ -169,7 +192,8 @@ function watchFile() {
     watch("src/js/*.js", moveJs);
     watch(["src/*.html", "src/nav.html", "src/footer.html"], series(clearHtml, includeHTML));
     watch("src/images/**/*.*", series(clearImg, moveImg));
-    // watch("src/vendors/**/**/**", series(clearVendors, moveVendors))
+    watch("src/vendors/**/**/**", series(clearVendors, moveVendors));
+    watch("src/php/*.*", series(clearPhp, movePhp));
 }
 exports.watch = watchFile;
 
@@ -181,6 +205,7 @@ function uploadFile() {
     watch(["src/*.html", "src/layout/*.html"], series(clearHtml, includeHTML));
     watch("src/images/**/*.*", series(clearImg, zipImg));
     watch("src/vendors/**/**/**", series(clearVendors, moveVendors))
+    watch("src/php/*.*", series(clearPhp, movePhp))
 }
 exports.upload = uploadFile;
 // PHP定義相關環境變數
