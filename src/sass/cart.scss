@@ -122,8 +122,9 @@ div.function {
         border-radius: 5px;
     }
 
-    input[type=submit] {
+    #checkout {
         @include btn3;
+        width: 150px;
     }
 
     #backShop {
