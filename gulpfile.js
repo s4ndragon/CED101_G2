@@ -199,7 +199,7 @@ function watchFile() {
     watch(["src/*.html", "src/nav.html", "src/footer.html"], series(clearHtml, includeHTML));
     watch("src/images/**/*.*", series(clearImg, moveImg));
     watch("src/vendors/**/**/**", series(clearVendors, moveVendors));
-    watch("src/php/*.*", series(clearPhp, movePhp));
+    watch("src/phps/*.*", series(clearPhp, movePhp));
 }
 exports.watch = watchFile;
 
@@ -211,7 +211,7 @@ function uploadFile() {
     watch(["src/*.html", "src/layout/*.html"], series(clearHtml, includeHTML));
     watch("src/images/**/*.*", series(clearImg, zipImg));
     watch("src/vendors/**/**/**", series(clearVendors, moveVendors))
-    watch("src/php/*.*", series(clearPhp, movePhp))
+    watch("src/phps/*.*", series(clearPhp, movePhp))
 }
 exports.upload = uploadFile;
 // PHP定義相關環境變數
