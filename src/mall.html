@@ -131,9 +131,8 @@ th checkAll打勾時是onclick，但是被更動到的checkbox是onchange事件�
             <td>{{o.MEMBER}}</td>
             <td>
                 <select v-model="o.STATE" >
-                <option v-for="(s,i) in state" :value="i" >{{s}}</option>
+                <option v-for="(s,i) in ostate" :value="i" >{{s}}</option>
                 </select>
-
             </td>
             <td>{{o.DATA}}</td>
             <td>{{o.DELIVERY}}</td>
@@ -157,7 +156,7 @@ var order=new Vue({
     el:'#orders',
     data:{
         order:[{ORDERS_NO:1345,MEMBER:434544,STATE:2,DATA:"2017-12-3",DELIVERY:'黑貓宅急便',PAY:'匯款',DISCOUNT:0,TOTAL:1023,RECIEVER_NAME:'陳小春',RECIEVER_ADDRESS:'北大路銀川巷',RECEIVER_TEL :'03-2205972'}],
-        state:['未付款','已付款','未出貨','已出貨']
+        ostate:['未付款','已付款','未出貨','已出貨']
     },
 });
 var porduct=new Vue({
