@@ -133,27 +133,29 @@ Vue.component("tour", {
     </div>
 </div>
     `,
-    mounted() {
-        $(".arrow").click(function () {
-            $(this).toggleClass("down").toggleClass("up").toggleClass("extend");
-            $(this).siblings().toggleClass('block');
-            // $().();
-        });
-    },
 });
+
 Vue.component("mine_fav", {
     template: `
     <!-- 收藏管理 -->
     <div id="mine_fav">
         <!-- 收藏管理選單列 -->
         <div id="mine_fav_bar">
-            <h4 class="fav_tour colored">揪團</h4>
-            <h4 class="fav_article unselected">文章</h4>
-            <h4 class="fav_product unselected">商品</h4>
+            <h4 class="fav_tour colored" @click="fav = 'tourM'">揪團</h4>
+            <h4 class="fav_article unselected"  @click="fav = 'articleM'">文章</h4>
+            <h4 class="fav_product unselected"  @click="fav = 'product'">商品</h4>
         </div>
         <!-- 收藏管理主內容 -->
         <div id="fav_container">
-            <!-- 收藏的揪團 -->
+            <component :is="fav"></component>
+        </div>
+    </div>
+    `,
+});
+
+Vue.component("tourM", {
+    template: `
+    <!-- 收藏的揪團 -->
             <div id="fav_tour">
                 <div id="tour_list" class="fav_content">
                     <div class="blog_container tour_blog">
@@ -189,7 +191,12 @@ Vue.component("mine_fav", {
                     
                 </div>
             </div>
-            <!-- 收藏的文章 -->
+    `,
+});
+
+Vue.component("articleM", {
+    template: `
+    <!-- 收藏的文章 -->
             <div id="fav_article">
                 <div id="article_list" class="fav_content">
                     <div class="blog_container article_blog">
@@ -254,115 +261,76 @@ Vue.component("mine_fav", {
                     </div>
                 </div>
             </div>
-            <!-- 收藏的商品 -->
-            <div id="fav_product">
-                <div id="product_list" class="fav_content">
-                    <div class="blog_container product_blog">
-                        <img src="./images/tour/tour1.jpg" alt="">
-                        <div class="heart">
-                            <img class="like" src="./images/common/like.png" title="加入收藏" alt="">
-                        </div>
-                        <div class="blog_content">
-                            <div class="blog_title">斗笠</div>
-                            <div class="blog_content">2020最佳出遊道具，過了這個村，沒了那個店</div>
-                        </div>
-                    </div>
-                    <div class="blog_container product_blog">
-                        <img src="./images/tour/tour1.jpg" alt="">
-                        <div class="heart">
-                            <img class="like" src="./images/common/like.png" title="加入收藏" alt="">
-                        </div>
-                        <div class="blog_content">
-                            <div class="blog_title">斗笠</div>
-                            <div class="blog_content">2020最佳出遊道具，過了這個村，沒了那個店</div>
-                        </div>
-                    </div>  
-                    <div class="blog_container product_blog">
-                        <img src="./images/tour/tour1.jpg" alt="">
-                        <div class="heart">
-                            <img class="like" src="./images/common/like.png" title="加入收藏" alt="">
-                        </div>
-                        <div class="blog_content">
-                            <div class="blog_title">斗笠</div>
-                            <div class="blog_content">2020最佳出遊道具，過了這個村，沒了那個店</div>
-                        </div>
-                    </div>
-                    <div class="blog_container product_blog">
-                        <img src="./images/tour/tour1.jpg" alt="">
-                        <div class="heart">
-                            <img class="like" src="./images/common/like.png" title="加入收藏" alt="">
-                        </div>
-                        <div class="blog_content">
-                            <div class="blog_title">斗笠</div>
-                            <div class="blog_content">2020最佳出遊道具，過了這個村，沒了那個店</div>
-                        </div>
-                    </div>  
-                    <div class="blog_container product_blog">
-                        <img src="./images/tour/tour1.jpg" alt="">
-                        <div class="heart">
-                            <img class="like" src="./images/common/like.png" title="加入收藏" alt="">
-                        </div>
-                        <div class="blog_content">
-                            <div class="blog_title">斗笠</div>
-                            <div class="blog_content">2020最佳出遊道具，過了這個村，沒了那個店</div>
-                        </div>
-                    </div>
-                    <div class="blog_container product_blog">
-                        <img src="./images/tour/tour1.jpg" alt="">
-                        <div class="heart">
-                            <img class="like" src="./images/common/like.png" title="加入收藏" alt="">
-                        </div>
-                        <div class="blog_content">
-                            <div class="blog_title">斗笠</div>
-                            <div class="blog_content">2020最佳出遊道具，過了這個村，沒了那個店</div>
-                        </div>
-                    </div>                                
+    `,
+});
+Vue.component("product", {
+    template: `
+    <!-- 收藏的商品 -->
+    <div id="fav_product">
+        <div id="product_list" class="fav_content">
+            <div class="blog_container product_blog">
+                <img src="./images/tour/tour1.jpg" alt="">
+                <div class="heart">
+                    <img class="like" src="./images/common/like.png" title="加入收藏" alt="">
+                </div>
+                <div class="blog_content">
+                    <div class="blog_title">斗笠</div>
+                    <div class="blog_content">2020最佳出遊道具，過了這個村，沒了那個店</div>
                 </div>
             </div>
+            <div class="blog_container product_blog">
+                <img src="./images/tour/tour1.jpg" alt="">
+                <div class="heart">
+                    <img class="like" src="./images/common/like.png" title="加入收藏" alt="">
+                </div>
+                <div class="blog_content">
+                    <div class="blog_title">斗笠</div>
+                    <div class="blog_content">2020最佳出遊道具，過了這個村，沒了那個店</div>
+                </div>
+            </div>  
+            <div class="blog_container product_blog">
+                <img src="./images/tour/tour1.jpg" alt="">
+                <div class="heart">
+                    <img class="like" src="./images/common/like.png" title="加入收藏" alt="">
+                </div>
+                <div class="blog_content">
+                    <div class="blog_title">斗笠</div>
+                    <div class="blog_content">2020最佳出遊道具，過了這個村，沒了那個店</div>
+                </div>
+            </div>
+            <div class="blog_container product_blog">
+                <img src="./images/tour/tour1.jpg" alt="">
+                <div class="heart">
+                    <img class="like" src="./images/common/like.png" title="加入收藏" alt="">
+                </div>
+                <div class="blog_content">
+                    <div class="blog_title">斗笠</div>
+                    <div class="blog_content">2020最佳出遊道具，過了這個村，沒了那個店</div>
+                </div>
+            </div>  
+            <div class="blog_container product_blog">
+                <img src="./images/tour/tour1.jpg" alt="">
+                <div class="heart">
+                    <img class="like" src="./images/common/like.png" title="加入收藏" alt="">
+                </div>
+                <div class="blog_content">
+                    <div class="blog_title">斗笠</div>
+                    <div class="blog_content">2020最佳出遊道具，過了這個村，沒了那個店</div>
+                </div>
+            </div>
+            <div class="blog_container product_blog">
+                <img src="./images/tour/tour1.jpg" alt="">
+                <div class="heart">
+                    <img class="like" src="./images/common/like.png" title="加入收藏" alt="">
+                </div>
+                <div class="blog_content">
+                    <div class="blog_title">斗笠</div>
+                    <div class="blog_content">2020最佳出遊道具，過了這個村，沒了那個店</div>
+                </div>
+            </div>                                
         </div>
     </div>
     `,
-    mounted() {
-        //分頁切換
-        $(".fav_tour").click(function () {
-            // console.log($(this).parent("#mine_fav_bar").siblings("#fav_container").children("#fav_tour"));
-            $(this).addClass("colored").removeClass("unselected");
-            $(this).siblings().removeClass("colored").addClass("unselected");
-            $(this).parent("#mine_fav_bar").siblings("#fav_container").children().hide();
-            $(this).parent("#mine_fav_bar").siblings("#fav_container").children("#fav_tour").show();
-        });
-        $(".fav_article").click(function () {
-            $(this).addClass("colored").removeClass("unselected");
-            $(this).siblings().removeClass("colored").addClass("unselected");
-            $(this).parent("#mine_fav_bar").siblings("#fav_container").children().hide();
-            $(this).parent("#mine_fav_bar").siblings("#fav_container").children("#fav_article").show();
-        });
-        $(".fav_product").click(function () {
-            $(this).addClass("colored").removeClass("unselected");
-            $(this).siblings().removeClass("colored").addClass("unselected");
-            $(this).parent("#mine_fav_bar").siblings("#fav_container").children().hide();
-            $(this).parent("#mine_fav_bar").siblings("#fav_container").children("#fav_product").show();
-        });
-
-        //like
-        let like = document.getElementsByClassName("like");
-        for (var i = 0; i < like.length; i++) {
-            like[i].addEventListener("click", changeHeart);
-        }
-        function changeHeart() {
-            if (this.title == "加入收藏") {
-                this.title = "取消收藏";
-                this.src = "./images/common/heart.png";
-
-                $(this).parent("div").parent("div").css({
-                    display: "none",
-                });
-            } else {
-                this.title = "加入收藏";
-                this.src = "./images/common/like.png";
-            }
-        }
-    },
 });
 
 Vue.component("mine_order", {
@@ -611,34 +579,6 @@ Vue.component("mine_profile", {
                     </form>
                 </div>
     `,
-    mounted() {
-        //個人資料分頁
-        $("form")
-            .find("input, textarea")
-            .on("keyup blur focus", function (e) {
-                var $this = $(this),
-                    label = $this.prev("label");
-                if (e.type === "keyup") {
-                    if ($this.val() === "") {
-                        label.removeClass("active highlight");
-                    } else {
-                        label.addClass("active highlight");
-                    }
-                } else if (e.type === "blur") {
-                    if ($this.val() === "") {
-                        label.removeClass("active highlight");
-                    } else {
-                        label.removeClass("highlight");
-                    }
-                } else if (e.type === "focus") {
-                    if ($this.val() === "") {
-                        label.removeClass("highlight");
-                    } else if ($this.val() !== "") {
-                        label.addClass("highlight");
-                    }
-                }
-            });
-    },
 });
 
 //========== lightbox ==========//
@@ -648,6 +588,7 @@ new Vue({
     data: {
         content: "tour",
         lightboxAttendency: false,
+        fav: "tourM",
     },
 });
 
@@ -672,4 +613,24 @@ $(".mine_profile").click(function () {
     $(this).addClass("bg-color").removeClass("select-color");
     $(this).siblings().removeClass("bg-color").addClass("select-color");
     $(this).parent().parent().siblings("#main_container").children("#sub_menu").children("h3").removeClass("bg-color");
+    // $("#tour").hide();
+    // $("#mine_fav").hide();
+    // $("#mine_order").hide();
+    // $("#mine_article").hide();
+    // $("#mine_profile").show();
+});
+
+//收藏內分頁
+$(".fav_tour").click(function () {
+    console.log($(this).parent("#mine_fav_bar").siblings("#fav_container").children("#fav_tour"));
+    $(this).addClass("colored").removeClass("unselected");
+    $(this).siblings().removeClass("colored").addClass("unselected");
+});
+$(".fav_article").click(function () {
+    $(this).addClass("colored").removeClass("unselected");
+    $(this).siblings().removeClass("colored").addClass("unselected");
+});
+$(".fav_product").click(function () {
+    $(this).addClass("colored").removeClass("unselected");
+    $(this).siblings().removeClass("colored").addClass("unselected");
 });
