@@ -17,7 +17,7 @@ function init() {
         addcartalert()
     };
     if ($id('recommends')) {
-        getRecommends(2)
+        getRecommends(1)
     }
     if ($id('cart_content')) {
         loadcart();
@@ -36,9 +36,7 @@ function getproducts() {
             let products = JSON.parse(xhr.responseText);
             let page = document.getElementsByClassName('page')[0];
             for (let i = 0; i < products.length; i++) {
-                document.getElementsByClassName('products')[0].insertBefore(addProduct(products[i]), inserTarget); //將div插入page前
-
-                ;
+                document.getElementsByClassName('products')[0].insertBefore(addProduct(products[i]), page); //將div插入page前
             };
         } else {
             alert(xhr.status);
@@ -284,54 +282,6 @@ function alertLB(text) {
 
 }
 
-function recommend() {
-
-    //寫入假的商品物件
-    let recommendList = '10003,10005,';
-    let recommends = $id('recommends');
-    recommends.addProduct(product, inserTarget)
-    for (let i = 0; i < productsnum; i++) {
-        let newproduct = document.createElement('div');
-        recommend_products.appendChild(newproduct);
-        newproduct.setAttribute('class', 'product');
-        newproduct.innerHTML = itemInnerhtml(itemNo);
-        //  `
-        //                       <div>
-        //                           <div class="img">
-        //                               <a href="./04_product.html">
-        //                                   <img src="./images/shopping/product2.jpg" alt="">
-        //                               </a>
-        //                           </div>
-        //                           <div class="content">
-        //                               <a href="./04_product.html">
-        //                                   <h4>戶外旅行便攜茶具8件組-黑陶款(贈不掉毛雙層吸水抹布4入)</h4>
-        //                                   <div class="price"><span>689</span></div>
-        //                                   <p>商品介紹商品介紹商品介紹商品介紹商品介紹商品介紹商品介紹商品介紹商品介紹商品介紹商品介紹</p>
-        //                               </a>
-        //                               <div class='btns'>
-        //                               <img class='addFavorite' src="./images/common/heart.png" alt="">
-        //                               <input type="button" value="加入購物車" class="add_cart">
-        //                               <input type="hidden" name="" value='s1123${i}|【原藝坊】悠然愜意 青瓷鯉魚茶壺套組精湛工藝，功夫淳厚，手感極佳，品茶必備|550|1|0' class='productInfo'>
-        //                               </div>
-        //                           </div>
-        //                           </div>
-        //                       `;
-    };
-    $('.recommend_products').ready(function () {
-        $('.recommend_products').slick({ //啟動slick
-            infinite: true,
-            slidesToShow: 3,
-            slidesToScroll: 3,
-            responsive: [{
-                breakpoint: 721,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                }
-            }],
-        });
-    })
-}
 
 function getRecommends(sold) {
     var xhr = new XMLHttpRequest();
@@ -339,10 +289,24 @@ function getRecommends(sold) {
         if (xhr.status == 200) {
             //modify here
             let products = JSON.parse(xhr.responseText);
-            let page = $id('recommends');
+            let recommends = $id('recommends');
             for (let i = 0; i < products.length; i++) {
-                addProduct(products[i]);
+                recommends.appendChild(addProduct(products[i]));
             };
+            recommends.addEventListener('load', function () {
+                $('#recommends').slick({ //啟動slick
+                    infinite: true,
+                    slidesToShow: 3,
+                    slidesToScroll: 3,
+                    responsive: [{
+                        breakpoint: 721,
+                        settings: {
+                            slidesToShow: 1,
+                            slidesToScroll: 1,
+                        }
+                    }],
+                })
+            });
         } else {
             alert(xhr.status);
         }
