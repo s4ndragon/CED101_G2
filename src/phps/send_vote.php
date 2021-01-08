@@ -2,9 +2,10 @@
  
 try {
 	require_once("./connectBooks.php");
-	$sql = "update garden set GARD_VOTE = GARD_VOTE + 6 where GARD_ID = 2";
+	$sql = "update garden set GARD_VOTE = GARD_VOTE + :GARD_VOTE, GARD_CLICK = GARD_CLICK + 1 where GARD_ID = :GARD_ID";
     $garden = $pdo->prepare($sql);
-    // $garden->bindValue(":GARD_VOTE", $_POST["GARD_VOTE"]);
+	$garden->bindValue(":GARD_VOTE", $_POST["GARD_VOTE"]);
+	$garden->bindValue(":GARD_ID", $_POST["GARD_ID"]);
 	$garden->execute();
 
 } catch (PDOException $e) {

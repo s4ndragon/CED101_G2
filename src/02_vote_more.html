@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,13 +22,13 @@
     </div>
 
     <main id="app">
-        <div class="all">
+        <div class="all" v-for="garitem in gardenTop">
             <div class="garden">
-                <img class="gpic" src="images/vote/tea5.jpg">
+                <img class="gpic" :src="garitem.GARD_PIC">
             </div>
             <div class="ginfo">
                 <div class="s1">
-                    <p class="p1">舞鶴茶園</p>
+                    <p class="p1">{{garitem.GARD_NAME}}</p>
                     <div class="fb-share-button" data-href="https://tw.yahoo.com/" data-layout="button"
                         data-size="small">
                         <a target="_blank"
@@ -43,28 +44,30 @@
                         總分:&ensp;
                     </span>
                     <div>
-                        <star-rating  :rating="4.7" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
+                        <star-rating  :rating="garitem.GARD_AVG" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
                     </div>
                 </div>
 
-                <p class="p3"><span class="tt">評分次數:</span> 7</p>
+                <p class="p3"><span class="tt">評分次數:</span> {{garitem.GARD_CLICK}}</p>
                 <p class="p4">
-                    <span class="tt">茶園地址:</span> 花蓮縣瑞穗鄉舞鶴村
+                    <span class="tt">茶園地址:</span> {{garitem.GARD_ADDRESS}}
                 </p>
                 <p class="p5">
-                    海拔100至300公尺的舞鶴台地，依傍高聳的中央山脈，隨風拂來秀姑巒溪與紅葉溪的濕潤水氣，宜人的氣候適合茶樹生長，是天鶴茶的產地，也是小葉綠蟬生長的天堂，經由小葉綠蟬吸吮而製成的蜜香紅茶，微帶淡淡的果香與蜜香，口感溫潤生津，獨特的風味聞名全臺，成為旅人來訪瑞穗必帶的伴手禮之一。
+                    {{garitem.GARD_CONTENT}}
                 </p>
                 <div class="btwrap app2">
-                    <button class="bt myBtn" id="myBtn" @click="showModal = true">
+                    
+                    <button class="bt myBtn" id="myBtn" @click="show_lightbox(garitem.GARD_ID)">
                         我要評分
                     </button>
 
                     <!-- overlay -->
-                    <div class="overlay" v-if="showModal" @click="showModal = true"></div>
+                    <div class="overlay" v-if="lightbox"></div>
                     <!-- modal -->
-                    <div class="modal" v-if="showModal">
+                    <div class="modal" v-if="lightbox">
                         <form>
-                            <div class="close"  @click="showModal = false">
+                            <input type="hidden" id="gardenId">
+                            <div class="close"  @click="lightbox = false">
                                 
                             </div>
                             <p class="welcome">歡迎評分</p>
@@ -73,7 +76,7 @@
                                     <star-rating :increment="0.5" :show-rating="false" @rating-selected="setRating"></star-rating>
                                     <div style="margin-top:10px;font-weight:bold;">{{rating}}</div>                                </div>
                                 </div>
-                            <button id="btnSendVote" class="go" onclick="sendScore()">送出</button>
+                            <button id="btnSendVote" class="go" @click="sendScore">送出</button>
                         </form>
                     </div>
                 </div>
@@ -349,9 +352,11 @@
 			let xhr = new XMLHttpRequest();
 			xhr.onload = function(){  //step3
 				app.gardenRows = JSON.parse(xhr.responseText); 
-				// console.log(app.gardenRows);
+                console.log(app.gardenRows);
+                app.gardenTop = app.gardenRows.slice(1,2);
+                console.log(gardenTop);
 			}
-			xhr.open("get","./php/vote_more.php", true); //step1
+			xhr.open("get","./phps/vote_more.php", true); //step1
             xhr.send(null); //step2
 
             //====================================送出評分
@@ -359,78 +364,51 @@
                 return document.getElementById(id);
             }	
 
-            // function sendScore(){  
-            //     console.log(1);
-            //     console.log(app.sendRating);
-            //     //產生XMLHttpRequest物件
-            //     let xhr = new XMLHttpRequest();
-
-            //     //註冊callback function 
-            //     xhr.onload = function(){
-            //         if(xhr.status == 200){ //success
-            //             app.sendRating = xhr.responseText;
-            //             console.log(app.sendRating);
-            //         }else{
-            //             alert(xhr.status);
-            //         }
-            //     }
-            //     //設定好所要連結的程式
-            //     xhr.open("post", "send_vote.php", true);
-            //     xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
-            //     //送出資料
-            //     let data_info = "memId=" + document.getElementById("memId").value; //let data_info = "memId=Sara&memPsw=111";
-            //     xhr.send(data_info);
-
-            // }
-
-            // function init(){
-            //     $id('btnSendVote').onclick = sendScore;
-            // }
-            // window.onload=init;
         });
         
-        function sendScore(){  
-                //產生XMLHttpRequest物件
-                let xhr = new XMLHttpRequest();
-                // console.log(xhr.readyState)
-                //註冊callback function 
-                xhr.onload = function(){
-                    if(xhr.status == 200){ //success
-                        app.sendRating = xhr.responseText;
-                        console.log(app.sendRating);
-                    }else{
-                        alert(xhr.status);
-                    }
-                }
-                //設定好所要連結的程式
-                xhr.open("post", "./php/send_vote.php", true);
-                xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
-                //送出資料
-                let data_info = "GARD_VOTE=" + app.sendRating;
-                xhr.send(data_info);
-
-                // xhr.open("get","./php/vote_more.php", true); //step1
-                // xhr.send(null); //step2
-
-            }
-
-
+        
         Vue.component("star-rating", VueStarRating.default);
 
         var app = new Vue({
             el: "#app",
             data: {
-                showModal: false,
+                gardenTop:'',
+                lightbox: false,
+                lightbox_GARD_ID:'',
+
                 showModal2: false,
-                rating: "您尚未評分",
-                sendRating:""
+                rating: '您尚未評分',
+                sendRating:''
             },
 
             methods: {
+                show_lightbox(GARD_ID){
+                    this.lightbox = true;
+                    this.lightbox_GARD_ID = GARD_ID;
+                },
+
                 setRating(rating) {
-                    this.rating = "您評了 " + rating + "分";
+                    this.rating = "您評了 " + rating + " 分";
                     return this.sendRating = rating;
                 },
+
+                sendScore(){
+                    let xhr = new XMLHttpRequest();
+                    //註冊callback function 
+                    xhr.onload = function(){
+                        if(xhr.status == 200){ //success
+                            console.log(2) = xhr.responseText;
+                        }else{
+                            alert(xhr.status);
+                        }
+                    }
+                    //設定好所要連結的程式
+                    xhr.open("post", "./phps/send_vote.php", true);
+                    xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+                    //送出資料
+                    let data_info = "GARD_VOTE=" + this.sendRating + "&" + "GARD_ID=" + this.lightbox_GARD_ID;
+                    xhr.send(data_info);
+                }
             },
         });
 
