@@ -43,7 +43,7 @@
                         總分:&ensp;
                     </span>
                     <div>
-                        <star-rating :rating="4.7" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
+                        <star-rating  :rating="4.7" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
                     </div>
                 </div>
 
@@ -70,10 +70,10 @@
                             <p class="welcome">歡迎評分</p>
                             <div class="app">
                                 <div class="star">
-                                    <star-rating :increment="0.5" :star-size="35"></star-rating>
+                                    <star-rating :increment="0.5" :show-rating="false" @rating-selected="setRating"></star-rating>
+                                    <div style="margin-top:10px;font-weight:bold;">{{rating}}</div>                                </div>
                                 </div>
-                            </div>
-                            <button class="go">送出</button>
+                            <button id="btnSendVote" class="go" onclick="sendScore()">送出</button>
                         </form>
                     </div>
                 </div>
@@ -343,38 +343,95 @@
 
 
     <script>
-        Vue.component("star-rating", VueStarRating.default, {
-            methods: {
-                setRating: function (rating) {
-                    this.rating = "You have Selected: " + rating + " stars";
-                },
-                showCurrentRating: function (rating) {
-                    this.currentRating =
-                        rating === 0
-                            ? this.currentSelectedRating
-                            : "Click to select " + rating + " stars";
-                },
-                setCurrentSelectedRating: function (rating) {
-                    this.currentSelectedRating =
-                        "You have Selected: " + rating + " stars";
-                }
-            },
-            data: {
-                rating: "No Rating Selected",
-                currentRating: "No Rating",
-                currentSelectedRating: "No Current Rating",
-                boundRating: 3,
-            }
+        window.addEventListener("load", function (){
+			let gardenRows;
+			//============去server端拿資料
+			let xhr = new XMLHttpRequest();
+			xhr.onload = function(){  //step3
+				app.gardenRows = JSON.parse(xhr.responseText); 
+				// console.log(app.gardenRows);
+			}
+			xhr.open("get","./php/vote_more.php", true); //step1
+            xhr.send(null); //step2
+
+            //====================================送出評分
+            function $id(id){
+                return document.getElementById(id);
+            }	
+
+            // function sendScore(){  
+            //     console.log(1);
+            //     console.log(app.sendRating);
+            //     //產生XMLHttpRequest物件
+            //     let xhr = new XMLHttpRequest();
+
+            //     //註冊callback function 
+            //     xhr.onload = function(){
+            //         if(xhr.status == 200){ //success
+            //             app.sendRating = xhr.responseText;
+            //             console.log(app.sendRating);
+            //         }else{
+            //             alert(xhr.status);
+            //         }
+            //     }
+            //     //設定好所要連結的程式
+            //     xhr.open("post", "send_vote.php", true);
+            //     xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+            //     //送出資料
+            //     let data_info = "memId=" + document.getElementById("memId").value; //let data_info = "memId=Sara&memPsw=111";
+            //     xhr.send(data_info);
+
+            // }
+
+            // function init(){
+            //     $id('btnSendVote').onclick = sendScore;
+            // }
+            // window.onload=init;
         });
+        
+        function sendScore(){  
+                //產生XMLHttpRequest物件
+                let xhr = new XMLHttpRequest();
+                // console.log(xhr.readyState)
+                //註冊callback function 
+                xhr.onload = function(){
+                    if(xhr.status == 200){ //success
+                        app.sendRating = xhr.responseText;
+                        console.log(app.sendRating);
+                    }else{
+                        alert(xhr.status);
+                    }
+                }
+                //設定好所要連結的程式
+                xhr.open("post", "./php/send_vote.php", true);
+                xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+                //送出資料
+                let data_info = "GARD_VOTE=" + app.sendRating;
+                xhr.send(data_info);
+
+                // xhr.open("get","./php/vote_more.php", true); //step1
+                // xhr.send(null); //step2
+
+            }
 
 
+        Vue.component("star-rating", VueStarRating.default);
 
-        new Vue({
+        var app = new Vue({
             el: "#app",
             data: {
                 showModal: false,
                 showModal2: false,
-            }
+                rating: "您尚未評分",
+                sendRating:""
+            },
+
+            methods: {
+                setRating(rating) {
+                    this.rating = "您評了 " + rating + "分";
+                    return this.sendRating = rating;
+                },
+            },
         });
 
     </script>
