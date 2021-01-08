@@ -133,6 +133,13 @@ Vue.component("tour", {
     </div>
 </div>
     `,
+    mounted() {
+        $(".arrow").click(function () {
+            $(this).toggleClass("down").toggleClass("up").toggleClass("extend");
+            $(this).siblings().toggleClass('block');
+            // $().();
+        });
+    },
 });
 Vue.component("mine_fav", {
     template: `
@@ -315,6 +322,47 @@ Vue.component("mine_fav", {
         </div>
     </div>
     `,
+    mounted() {
+        //分頁切換
+        $(".fav_tour").click(function () {
+            // console.log($(this).parent("#mine_fav_bar").siblings("#fav_container").children("#fav_tour"));
+            $(this).addClass("colored").removeClass("unselected");
+            $(this).siblings().removeClass("colored").addClass("unselected");
+            $(this).parent("#mine_fav_bar").siblings("#fav_container").children().hide();
+            $(this).parent("#mine_fav_bar").siblings("#fav_container").children("#fav_tour").show();
+        });
+        $(".fav_article").click(function () {
+            $(this).addClass("colored").removeClass("unselected");
+            $(this).siblings().removeClass("colored").addClass("unselected");
+            $(this).parent("#mine_fav_bar").siblings("#fav_container").children().hide();
+            $(this).parent("#mine_fav_bar").siblings("#fav_container").children("#fav_article").show();
+        });
+        $(".fav_product").click(function () {
+            $(this).addClass("colored").removeClass("unselected");
+            $(this).siblings().removeClass("colored").addClass("unselected");
+            $(this).parent("#mine_fav_bar").siblings("#fav_container").children().hide();
+            $(this).parent("#mine_fav_bar").siblings("#fav_container").children("#fav_product").show();
+        });
+
+        //like
+        let like = document.getElementsByClassName("like");
+        for (var i = 0; i < like.length; i++) {
+            like[i].addEventListener("click", changeHeart);
+        }
+        function changeHeart() {
+            if (this.title == "加入收藏") {
+                this.title = "取消收藏";
+                this.src = "./images/common/heart.png";
+
+                $(this).parent("div").parent("div").css({
+                    display: "none",
+                });
+            } else {
+                this.title = "加入收藏";
+                this.src = "./images/common/like.png";
+            }
+        }
+    },
 });
 
 Vue.component("mine_order", {
@@ -563,6 +611,34 @@ Vue.component("mine_profile", {
                     </form>
                 </div>
     `,
+    mounted() {
+        //個人資料分頁
+        $("form")
+            .find("input, textarea")
+            .on("keyup blur focus", function (e) {
+                var $this = $(this),
+                    label = $this.prev("label");
+                if (e.type === "keyup") {
+                    if ($this.val() === "") {
+                        label.removeClass("active highlight");
+                    } else {
+                        label.addClass("active highlight");
+                    }
+                } else if (e.type === "blur") {
+                    if ($this.val() === "") {
+                        label.removeClass("active highlight");
+                    } else {
+                        label.removeClass("highlight");
+                    }
+                } else if (e.type === "focus") {
+                    if ($this.val() === "") {
+                        label.removeClass("highlight");
+                    } else if ($this.val() !== "") {
+                        label.addClass("highlight");
+                    }
+                }
+            });
+    },
 });
 
 //========== lightbox ==========//
@@ -596,24 +672,4 @@ $(".mine_profile").click(function () {
     $(this).addClass("bg-color").removeClass("select-color");
     $(this).siblings().removeClass("bg-color").addClass("select-color");
     $(this).parent().parent().siblings("#main_container").children("#sub_menu").children("h3").removeClass("bg-color");
-    // $("#tour").hide();
-    // $("#mine_fav").hide();
-    // $("#mine_order").hide();
-    // $("#mine_article").hide();
-    // $("#mine_profile").show();
-});
-
-//收藏內分頁
-$(".fav_tour").click(function () {
-    console.log($(this).parent("#mine_fav_bar").siblings("#fav_container").children("#fav_tour"));
-    $(this).addClass("colored").removeClass("unselected");
-    $(this).siblings().removeClass("colored").addClass("unselected");
-});
-$(".fav_article").click(function () {
-    $(this).addClass("colored").removeClass("unselected");
-    $(this).siblings().removeClass("colored").addClass("unselected");
-});
-$(".fav_product").click(function () {
-    $(this).addClass("colored").removeClass("unselected");
-    $(this).siblings().removeClass("colored").addClass("unselected");
 });

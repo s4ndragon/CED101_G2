@@ -37,7 +37,7 @@ var star = 25,
   init_walk,
   init_Bullet,
   init_shot;
-var sp_,
+  var sp_,
   time_b_,
   bb__,
   zom_,zarr_;
@@ -97,7 +97,7 @@ function setStar(n) {
 function createworm(damage, defense, hp, speed) {
   var img = document.createElement("img");
   img.className = 'createWorm';
-  img.src = '../dist/images/game/worm.gif';
+  img.src = '../dist/images/game/worm-preview.gif';
   img.dataset.damage = damage;
   img.dataset.defense = defense;
   img.dataset.speed = speed;
@@ -131,9 +131,9 @@ function createBullet(speed, damage, left) {
 //降落星星
 function sp(){				//創建一个img標籤
         var img = document.createElement("img");
-        //给img標籤赋值上我们写的star class
+        //给img標籤賦值上我们寫的star class
         img.className = "star";
-        //将圖片地址赋值给src
+        //將圖片地址賦值给src
         img.src = "../dist/images/game/giphy.webp";
         map.appendChild(img);
         //随機生成img的水平位置 而且不能超出地圖
@@ -194,30 +194,23 @@ function bb_(){
                 break;
               }
               //打到地圖外 删除子彈
-              // if(bullet[i].offsetLeft + bullet[i].offsetWidth > road.offsetWidth) {
-              //   bullet[i].parentNode.removeChild(bullet[i]);
-              //   //从數组中删除
-              //   bullet.splice(i, 1);
-              // }
+              
             }
     }
-                  if(bullet[i].offsetLeft + bullet[i].offsetWidth > road.offsetWidth) {
-                bullet[i].parentNode.removeChild(bullet[i]);
-                //从數组中删除
-                bullet.splice(i, 1);
-              }
+            if (bullet[i].offsetLeft + bullet[i].offsetWidth > road.offsetWidth) {
+              console.log(bullet[i].offsetLeft);
+                        bullet[i].parentNode.removeChild(bullet[i]);
+                        //从數组中删除
+                        bullet.splice(i, 1);
+                      }
         }}
-
-//用onUpdate(){}當watch監控偵測
 // 蟲子走路
 function zom(){
   for(var i = 0,th=wormArr.length; i < th; i++) {
   wormArr[i].style.left = wormArr[i].offsetLeft - parseInt(wormArr[i].dataset.speed) + "px";
-  if(wormArr[i].offsetLeft + wormArr[i].offsetWidth < 0) {
-    $("div.gameover").addClass("-on");//gameover開啟燈箱
+    if (wormArr[i].offsetLeft + wormArr[i].offsetWidth < 0) {
+    document.querySelector("div.gameover").classList.add("-on");
         gamestop();//停止遊戲
-    
-    // location.reload();
   }
   for(var j = 0; j < plantArr.length; j++) {
     //蟲子和植物碰上了
@@ -286,10 +279,7 @@ function wormState(index, worm, wormArr) {
     kill(index,worm,wormArr);
   }
 }
-
-$('.go').on('click', function () {
-    // document.getElementById('gotxt').innerText = `繼續驅蟲`;
-      // document.getElementById("go").style.display='none';
+document.getElementById('go').onclick=function () {
       sp_= setInterval("sp()", starTimer);//降落茶葉
   		time_b_=	setInterval("time_b()", 9000);//產生子彈
       bb__=setInterval("bb_()", 20);//移動子彈
@@ -299,20 +289,13 @@ $('.go').on('click', function () {
       init_Bullet=setInterval("Bullet_init()",9000);//生子彈
       init_shot=setInterval("shot()",20);//移動子彈
       init_worm=setInterval("wrom_init()",10000);//生蟲
-    init_walk = setInterval("walk()", 60);//蟲子走路
-
+      init_walk = setInterval("walk()", 60);//蟲子走路
       $("div.overlay").addClass("-opacity-zero");
     // 設定隔一秒後，移除相關 class
     setTimeout(function(){
       $("div.overlay").removeClass("-on -opacity-zero");
     }, 1000); // 關閉 Modal
-  });
-  
-// $('#pause').on('click', function () {
-
-//   $("div.overlay").addClass("-on");
-//   $(this).addClass("none");
-// });
+  }
 $('div.tea_ency').on('click', function () {
   $('.tea_en').addClass('-on');
 });
@@ -330,7 +313,7 @@ $('#checkbox').on('click', function(){
       gamestop();
   tween.pause();
   } else {
-          sp_= setInterval("sp()", starTimer);//降落茶葉
+      sp_= setInterval("sp()", starTimer);//降落茶葉
   		time_b_=	setInterval("time_b()", 9000);//產生子彈
       bb__=setInterval("bb_()", 20);//移動子彈
       zom_=setInterval("zom()", 60);//生蟲
@@ -339,7 +322,7 @@ $('#checkbox').on('click', function(){
       init_Bullet=setInterval("Bullet_init()",9000);//生子彈
       init_shot=setInterval("shot()",20);//移動子彈
       init_worm=setInterval("wrom_init()",10000);//生蟲
-    init_walk = setInterval("walk()", 60);//蟲子走路
+      init_walk = setInterval("walk()", 60);//蟲子走路
   }
 });
 function gamestop() {
@@ -361,9 +344,12 @@ function gamestop() {
   leaf=[];
   leaf_i=-1;
   tween.pause();
-  // tm.pause();
+
 }
 // 開啟 Modal 彈跳視窗
+document.getElementById('replay').onclick = function () {
+  location.reload();
+};
 
 
 //時間到開啟通關燈箱

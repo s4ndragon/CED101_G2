@@ -1,8 +1,4 @@
 $(document).ready(function () {
-
-    //地址二聯式下拉選單
-    // new TwCitySelector();
-
     //change profile
     $(".profile-pic").click(function () {
         $("#profile_pic_input").trigger("click");
@@ -106,7 +102,6 @@ $(document).ready(function () {
         $(this).toggleClass("down").toggleClass("up").toggleClass("extend");
         $(this).siblings().toggleClass('block');
         // $().();
-
     });
 
     //========  sub menu分頁
