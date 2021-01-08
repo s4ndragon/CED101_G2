@@ -3,20 +3,11 @@
     <head>
         <meta charset="UTF-8" />
         <title>茶園保衛戰</title>
-        <!-- 先把東西壓縮到同一支js，一線與其他三線整合，函數重新命名 -->
-        <!-- createElement() template，新增element，移除element，還有要放哪裡？放在window物件裡面嗎？vue如何操作window物件？
-		我要把產生的元素放到window物件裡面的json格式。然後讓js操作他 -->
-        <!-- 
-			https://medium.com/@speechless0922/vue的二三事-render-function-2b3705e4a5bd
-			vm.$nextTick( [callback] )
-			用Render Function當createElement()
-			vue中操作dom需要謹慎，尤其是新增或刪除dom的時候，特別是mounted()和created()的時候，此時dom物件還沒有生成，要放在this.nextTick()的回撥函式中。
-			原本放在window的變數以及json容器要放在data還是哪裡？
-			甚麼物件要放在widow，甚麼function要放在mothods、mounted、updated
-			updated:{落葉、子彈}
-			預計先fetch連線，傳回資料放在window下面
-		 -->
-        <!-- 如果來不及的話用jquery Ajax收發資料帶入角色資料，和timer資料 -->
+
+      <!-- https://medium.com/@speechless0922/vue的二三事-render-function-2b3705e4a5bd -->
+			
+
+
         <link rel="stylesheet" href="./css/game.css" />
         <link rel="stylesheet" href="./css/flex.css" />
         <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.js"></script> -->
@@ -218,7 +209,7 @@
         <script src="./js/game2.js"></script>
         <script>
             window.addEventListener("load", function (){
-			let data;var props=$('#props');
+			let data;var props=$('#props'),star;
 			//============去server端拿資料
 			let xhr = new XMLHttpRequest();
 			xhr.open("get","http://127.0.0.1/getROLE.php", true); //step1
@@ -227,9 +218,11 @@
 				data = JSON.parse(xhr.responseText); 
 				console.log(data);
 				for(let i of data){
-				var li=document.createElement("li");
+                var li=document.createElement("li");
+                
+
 				var inner=`<img src="./images/game/${i.IMG}" data-star="${i.DATA_STAR}" data-hps="${i.DATA_HPS}" data-hp="${i.data_HP}" data-defense="${i.DATA_DEFENSE}" data-damage="${i.DATA_DAMAGE}" data-speed="${i.DATA_SPEED}" class="plant" />
-				<span>"${i.DATA_STAR}"</span>
+				<span>${i.DATA_STAR}</span>
 				`;
 				li.innerHTML=inner;
 				document.getElementById('props').appendChild(li);
