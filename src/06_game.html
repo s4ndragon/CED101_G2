@@ -157,7 +157,7 @@
                 <div id="way2" class="road"></div>
                 <div id="way3" class="road"></div>
                 <ul id="props">
-                    <li>
+                    <!-- <li>
                         <img
                             src="./images/game/4.gif"
                             data-star="25"
@@ -192,7 +192,7 @@
                             data-speed="0"
                             class="plant"
                         /><span>75</span>
-                    </li>
+                    </li> -->
                     <!-- <li v-for="p in plant">
 					<img :src="'./images/game/'+p.pic" :data-star="p.star":data-hps="p.hps":data-hp="p.hp" :data-defense="p.defense" :data-damage="p.damage" :data-speed="p.speed">
 					<span>{{p.star}}</span>
@@ -216,7 +216,27 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
         <script src="./js/game (1).js"></script>
         <script src="./js/game2.js"></script>
-        <!-- 沒有角色名稱 -->
+        <script>
+            window.addEventListener("load", function (){
+			let data;var props=$('#props');
+			//============去server端拿資料
+			let xhr = new XMLHttpRequest();
+			xhr.open("get","http://127.0.0.1/getROLE.php", true); //step1
+			xhr.send(null); //step2
+			xhr.onload = function(){  //step3
+				data = JSON.parse(xhr.responseText); 
+				console.log(data);
+				for(let i of data){
+				var li=document.createElement("li");
+				var inner=`<img src="./images/game/${i.IMG}" data-star="${i.DATA_STAR}" data-hps="${i.DATA_HPS}" data-hp="${i.data_HP}" data-defense="${i.DATA_DEFENSE}" data-damage="${i.DATA_DAMAGE}" data-speed="${i.DATA_SPEED}" class="plant" />
+				<span>"${i.DATA_STAR}"</span>
+				`;
+				li.innerHTML=inner;
+				document.getElementById('props').appendChild(li);
+			}				
+			}
+		});
+        </script>
         <!--<script src="./js/game.js"></script> -->
         <!-- <script>
 			new Vue({
