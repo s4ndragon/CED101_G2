@@ -1,0 +1,342 @@
+@import './default/common';
+
+:root {
+    --header-height: 60px;
+    --aside-width: 240px;
+}
+body {
+    @include bg;
+}
+
+/* ==================== nav 區域 ==================== */
+.memicon {
+    position: fixed !important;
+    left: 9.4% !important;
+}
+/* ==================== aside 區域 ==================== */
+aside.aside {
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
+    height: calc(100% - var(--header-height));
+    width: var(--aside-width);
+    background-color: #ffeb3b5c;
+    overflow-y: auto;
+    padding: 80px 40px;
+    transition: all 1s;
+    text-align: left;
+}
+aside.aside button.btn_hamburger {
+    display: none;
+}
+
+aside.aside > ul.nav_list > li {
+    h1 {
+        font-size: $h4;
+    }
+    a {
+        display: inline-block;
+        width: 100%;
+        padding: 3px 10px;
+        color: #0f470f;
+    }
+}
+
+/* ==================== main 區域 ==================== */
+main.main {
+    margin-left: var(--aside-width);
+    width: calc(100% - var(--aside-width));
+    padding: 80px 20px 20px 20px;
+    min-height: calc(100vh - var(--header-height));
+    transition: all 1s;
+}
+
+main.main ul.item_list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+}
+main.main ul.item_list > li {
+    width: calc((100% - 60px) / 4);
+    margin-bottom: 20px;
+    margin-right: 20px;
+}
+
+main.main ul.item_list > li:nth-child(4n) {
+    margin-right: 0;
+}
+
+main.main ul.item_list > li > a {
+    display: inline-block;
+    text-decoration: none;
+    width: 100%;
+}
+main.main ul.item_list > li > a div.img_block {
+    font-size: 0;
+}
+main.main ul.item_list > li > a span.item_text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    width: 100%;
+}
+
+/* ==================== tab區域 ==================== */
+
+/* 整個頁籤及內容最外層區塊 */
+div.tab_container {
+    margin: 80px 40px;
+    display: none;
+}
+
+.tab_container.-on {
+    display: block;
+}
+
+/* 頁籤區塊 */
+div.tab_container div.tab_list_block {
+    padding-left: 20px;
+}
+
+/* 頁籤列表 */
+div.tab_container div.tab_list_block ul.tab_list {
+    list-style: none;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+}
+div.tab_container div.tab_list_block ul.tab_list > li {
+    display: inline-block;
+}
+div.tab_container div.tab_list_block ul.tab_list > li > a {
+    text-decoration: none;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-bottom: 1px solid #0f470f;
+    padding: 2px 20px;
+    border-radius: 5px 5px 0 0;
+    cursor: pointer;
+    color: #ccc;
+
+    position: relative;
+    top: 1px;
+}
+
+/* 畫出底部黑線 */
+div.tab_container div.tab_list_block ul.tab_list > li > a::after {
+    content: '';
+    position: absolute;
+    width: calc(100% + 2px);
+    height: 1px;
+    background-color: #0f470f;
+    bottom: -1px;
+    left: -1px;
+    z-index: 1;
+}
+div.tab_container div.tab_list_block ul.tab_list > li > a.-on {
+    border: 1px solid #0f470f;
+    color: black;
+}
+/* 將底部黑線改成白色 */
+div.tab_container div.tab_list_block ul.tab_list > li > a.-on::after {
+    background-color: white;
+    width: 100%;
+    left: 0;
+}
+
+/* 頁籤內容區塊 */
+div.tab_container div.tab_contents {
+    border: 1px solid #0f470f;
+    /*   margin-top: 30px; */
+}
+div.tab_container div.tab_contents div.tab {
+    padding: 30px;
+    display: none;
+}
+div.tab_container div.tab_contents div.tab.-on {
+    display: block;
+}
+
+/* ==================== table區域 ==================== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0px;
+    display: block;
+    overflow-x: scroll;
+    white-space: nowrap;
+}
+
+/* Zebra striping */
+tr:nth-of-type(odd) {
+    background: #eee;
+}
+
+th {
+    background: #8bc34a;
+    color: white;
+    font-weight: bold;
+}
+
+td,
+th {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: left;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.form-group {
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+input {
+    padding: 10px !important;
+}
+
+.btn-confirm {
+    @include smallbtn4;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: '';
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+}
+
+input:checked + .slider {
+    background-color: #2196f3;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196f3;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+/* ==================== RWD ==================== */
+
+// @media screen and (max-width: 767px) {
+//     main.main {
+//         width: 100%;
+//         margin-left: 0;
+//     }
+// }
+
+// @media screen and (max-width: 767px) {
+//     main.main ul.item_list > li {
+//         width: calc((100% - 20px) / 2);
+//     }
+// }
+// @media screen and (max-width: 767px) {
+//     main.main ul.item_list > li:nth-child(2n) {
+//         margin-right: 0;
+//     }
+// }
+
+// @media screen and (max-width: 767px) {
+//     aside.aside {
+//         top: 0;
+//         height: 100%;
+//         transform: translateX(-100%);
+//     }
+//     aside.aside.-on {
+//         transform: translateX(0%);
+//     }
+// }
+
+// @media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
+//     table {
+//         width: 100%;
+//     }
+
+//     table,
+//     thead,
+//     tbody,
+//     th,
+//     td,
+//     tr {
+//         display: block;
+//     }
+
+//     thead tr {
+//         position: absolute;
+//         top: -9999px;
+//         left: -9999px;
+//     }
+
+//     tr {
+//         border: 1px solid #ccc;
+//     }
+
+//     td {
+//         border: none;
+//         border-bottom: 1px solid #eee;
+//         position: relative;
+//         padding-left: 50%;
+//     }
+
+//     td:before {
+//         position: absolute;
+//         top: 6px;
+//         left: 6px;
+//         width: 45%;
+//         padding-right: 10px;
+//         white-space: nowrap;
+//         content: attr(data-column);
+
+//         color: #000;
+//         font-weight: bold;
+//     }
+// }
