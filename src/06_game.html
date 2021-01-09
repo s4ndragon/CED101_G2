@@ -3,11 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <title>茶園保衛戰</title>
-
       <!-- https://medium.com/@speechless0922/vue的二三事-render-function-2b3705e4a5bd -->
-			
-
-
         <link rel="stylesheet" href="./css/game.css" />
         <link rel="stylesheet" href="./css/flex.css" />
         <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.js"></script> -->
@@ -70,6 +66,8 @@
                                             left: 20%;
                                             color: #fff;
                                             text-shadow: 0 0 3.2em #87e;
+                                            -webkit-text-stroke-color: blue;
+                                            -webkit-text-stroke-width: 0.7px;
                                         "
                                         >遊戲</span
                                     >
@@ -85,7 +83,7 @@
                 <div class="gameover">
                     <article>
                         <div style="top: 107px; position: relative; font-size: 28px; left: 200px">
-                            <span>計分：</span>
+                            <span >計分</span>
                             <span id="score-over">0</span>
                         </div>
                         <div class="y-flex a_c" style="position: relative; top: 120px">
@@ -190,7 +188,7 @@
 				</li> -->
                 </ul>
                 <section id="botbar" class="flex">
-                    <div><span style="color: #000; font-size: 20px">計分:</span><span id="score">0</span></div>
+                    <div style="padding: 10px;"><span style="color: #000; font-size: 20px;white-space:nowrap;">計分</span><br><span id="score">0</span></div>
                     <div class="tea_ency"></div>
                     <div class="star-back y-flex a_sb" style="line-height: 2">
                         <div id="star-number">25</div>
