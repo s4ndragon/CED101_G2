@@ -1,18 +1,16 @@
 <?
 try {
     require_once("./connect.php");
-        $sql = "select * from product  order by :order";
-        $products = $pdo->prepare($sql);
-        $orderby=str_replace("_"," ",$_GET['orderby']);
-        $products->bindValue(":order", '$orderby');
-        $products->execute();
-
-    if ($products->rowCount() == 0) { //找不到
+    $sql = "select * from product where psn=:psn";
+    $product = $pdo->prepare($sql);
+    $product->bindValue(":psn", $_GET['psn']);
+    $product->execute();
+    if ($product->rowCount() == 0) { //找不到
         //傳回空的JSON字串
         echo "{}";
     } else { //找得到
         //取回一筆資料
-        $productRow = $products->fetchAll(PDO::FETCH_ASSOC);
+        $productRow = $product->fetchAll(PDO::FETCH_ASSOC);
         //送出json字串
         echo json_encode($productRow);
     }

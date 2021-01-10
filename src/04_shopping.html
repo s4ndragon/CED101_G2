@@ -18,7 +18,7 @@
     @@include('layout/nav.html')
     @@include('layout/title.html',{'title':'商城首頁'})
     <div class="shop_adv">
-        <a href="./04_product.html">
+        <a href="./phps/04_product.php?psn=10001">
             <img src="./images/shopping/adv.jpg" alt="">
         </a>
     </div>
@@ -37,13 +37,14 @@
                 <li class="classifyBtn">茶杯</li>
                 <li class="classifyBtn">茶罐</li>
             </ul>
-            <div class="orderby">
-                <input type="radio" name="order" id="new"><label for="new">新到貨</label>
-                <input type="radio" name="order" id="highP"><label for="highP">價格高&rarr;低</label>
-                <input type="radio" name="order" id="lowP"><label for="lowP">價格低&rarr;高</label>
-                <input type="radio" name="order" id="sales"><label for="sales">銷售排行</label>
+            <div class="orderby" id="orderby">
+                <input type="radio" name="order" id="new" value="DATE_DESC" checked><label for="new">新到貨</label>
+                <input type="radio" name="order" id="highP" value="PRICE_DESC"><label for="highP">價格高&rarr;低</label>
+                <input type="radio" name="order" id="lowP" value="PRICE"><label for="lowP">價格低&rarr;高</label>
+                <input type="radio" name="order" id="sales" value="SOLD_DESC"><label for="sales">銷售排行</label>
             </div>
         </div>
+        <div id="products_container"></div>
         <div class="page">
             <ul>
                 <li><a href="">1</a></li>

@@ -255,6 +255,12 @@ div.search {
         input {
             margin-left: 3%;
             margin-right: 5px;
+            appearance: auto;
+            cursor: pointer;
+        }
+
+        label {
+            cursor: pointer;
         }
     }
 }
@@ -266,6 +272,13 @@ div.products {
     margin: 0 auto;
     justify-content: space-around;
     max-width: $maxWidth;
+
+    #products_container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+
+    }
 
     @media all and (max-width: $small) {
         width: 95%;

@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "安裝": "npm i",
-    "watch": "gulp watch"
+    "watch": "gulp watch",
+    "打包圖片":"gulp moveImg"
   },
   "repository": {
     "type": "git",
