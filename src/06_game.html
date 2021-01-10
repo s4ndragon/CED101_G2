@@ -47,30 +47,8 @@
                                 class="teatxt-bar y-flex a_end j_c"
                                 style="width: 100px; position: relative; top: 26px"
                             >
-                                <div
-                                    id="teatxt-bar1"
-                                    style="
-                                        height: 100px !important;
-                                        width: 50px;
-                                        cursor: pointer;
-                                        writing-mode: vertical-lr;
-                                        position: relative;
-                                    "
-                                >
-                                    <span
-                                        style="
-                                            writing-mode: vertical-lr;
-                                            font-size: 20px;
-                                            position: relative;
-                                            top: 55%;
-                                            left: 20%;
-                                            color: #fff;
-                                            text-shadow: 0 0 3.2em #87e;
-                                            -webkit-text-stroke-color: blue;
-                                            -webkit-text-stroke-width: 0.7px;
-                                        "
-                                        >遊戲</span
-                                    >
+                                <div id="teatxt-bar1">
+                                    <span>遊戲</span>
                                 </div>
                                 <div
                                     id="teatxt-bar2"
@@ -188,7 +166,10 @@
 				</li> -->
                 </ul>
                 <section id="botbar" class="flex">
-                    <div style="padding: 10px;"><span style="color: #000; font-size: 20px;white-space:nowrap;">計分</span><br><span id="score">0</span></div>
+                    <div class="pad10 y-flex a_c">
+                        <span style="color: #000; font-size: 20px;white-space:nowrap;">計分</span>
+                        <span id="score">0</span>
+                    </div>
                     <div class="tea_ency"></div>
                     <div class="star-back y-flex a_sb" style="line-height: 2">
                         <div id="star-number">25</div>
@@ -229,69 +210,6 @@
 		});
         </script>
         <!--<script src="./js/game.js"></script> -->
-        <!-- <script>
-			new Vue({
-				el:'#map',
-				data:{
-					plant:[{pic:'4.gif',star:25,hps:50,hp:50,defense:20,damage:10,speed:2},
-							{pic:'Wallnut_body.png',star:50,hps:100,hp:100,defense:90,damage:0,speed:0},
-							{pic:'TallNut.gif',star:75,hps:150,hp:150,defense:90,damage:0,speed:0}],
-					para:{star:25,starTimer:3000,addball:9000,move}
-					star = 25,
-					score=0,
-					starTimer = 3000,
-					map = document.getElementById("map"),
-					road = document.getElementById("road"),
-					starNumber = document.getElementById("star-number"),
-					props = document.getElementById("props"),
-					plant = null,
-					plantArr = [],
-					bullet = [],
-					wormArr = [],
-					leaf_i=-1
-					leaf=[],
-					demo = {score:0}
-					demo2={score:0},
-					init_worm,
-					init_walk,
-					init_Bullet,
-					init_shot,
-					sp_,
-					time_b_,
-					bb__,
-					zom_,zarr_
-				},
-				motheds:{
-					clearStyle() {
-					var t = props.getElementsByTagName("img");
-					for(var i = 0; i < t.length; i++) {
-						t[i].className = "plant";
-					}
-					},
-					setStar(n) {
-					star += n;
-					starNumber.innerText = star;
-					},
-					createworm(damage, defense, hp, speed) {
-						var img = document.createElement("img");
-						img.className = 'createWorm';
-						img.src = '../dist/images/game/worm.gif';
-						img.dataset.damage = damage;
-						img.dataset.defense = defense;
-						img.dataset.speed = speed;
-						img.dataset.HP = hp;
-						img.dataset.hp = hp;
-						img.dataset.speed = speed;
-						road.appendChild(img);
-						return img;
-					},
-					zarr(){
-					wormArr.push(createworm(20, 5, 30, 1));
-					}
-				}
-			})
-		</script>	 -->
-
         @@include('layout/footer.html')
     </body>
 </html>

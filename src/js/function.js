@@ -19,3 +19,29 @@ function checkAll(obj) {
         $(this).first.first.checked = obj.checked;
     });
 }
+function allow(e,i,j,arr){
+var cl=$(e.parentNode.parentNode);
+     if ($(e).prop('checked') === true) {
+        
+    cl.find('td:eq(2)>input').attr('name','pic[]');
+    cl.find('td:eq(3)>input').attr('name','star[]');
+    cl.find('td:eq(4)>input').attr('name','hp[]');
+    cl.find('td:eq(5)>input').attr('name','hps[]');
+    cl.find('td:eq(5)>input').attr('name','hps[]');
+    cl.find('td:eq(6)>input').attr('name','speed[]');
+    cl.find('td:eq(7)>input').attr('name','damage[]');
+    cl.find('td:eq(8)>input').attr('name','defense[]');
+    }else{
+        for(var i=2;i<9;i++){
+            cl.find(`td:eq(${i})>input`).attr('name','');
+        }
+    }
+}        
+function allowsend(e, i, j, arr) {
+    var cl = $(e.parentNode.parentNode);
+    if ($(e).prop('checked') === true) {
+        for (var k = i; k < j; k++){
+            // 未完成待續
+        }
+    }
+}
