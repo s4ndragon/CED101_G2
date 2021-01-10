@@ -1,408 +1,446 @@
-@import "./default/common";
-@import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css";
-.w100{
-	width:100%;
+@import './default/common';
+@import 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css';
+.w100 {
+    width: 100%;
 }
-.v100w{
-	width:100vw;
+.v100w {
+    width: 100vw;
 }
-.size60{
-	font-size:60px;
+.size60 {
+    font-size: 60px;
 }
-#title{
-	height:400px;
-	@include banner-1st-title;
+#title {
+    height: 400px;
+    @include banner-1st-title;
 }
-.banner{
-	@include banner;
+.banner {
+    @include banner;
 }
-.banner-1st-title{
-	@include banner-1st-title;
+.banner-1st-title {
+    @include banner-1st-title;
 }
-.x-auto{
-	overflow-x:auto;
+.x-auto {
+    overflow-x: auto;
 }
-.title{
-position: relative;
-left: calc(50% - 232px);
-top:-40px;
+.pad10{padding:10px}
+.title {
+    position: relative;
+    left: calc(50% - 232px);
+    top: -40px;
 }
-.button2{
-  font-size:32px;
-  text-align: center;
-  vertical-align: middle;
-  background-image:url(../images/game/button2.png);
-  width:250px;
-  height:85px;
-  background-size: 100%;
-  position:absolute;
-  left:calc(50% - 125px);
-  bottom:20px;
-  cursor: pointer;
+.button2 {
+    font-size: 32px;
+    text-align: center;
+    vertical-align: middle;
+    background-image: url(../images/game/button2.png);
+    width: 250px;
+    height: 85px;
+    background-size: 100%;
+    position: absolute;
+    left: calc(50% - 125px);
+    bottom: 20px;
+    cursor: pointer;
 }
-.road{
-  position: absolute;
-  z-index: 2;
-left:calc(-310px + 40%);
-  background: url(../images/game/8.png);
-  width: 755px;
-  height: 110px;
-  z-index: 10;
+.road {
+    position: absolute;
+    z-index: 2;
+    left: calc(-310px + 40%);
+    background: url(../images/game/8.png);
+    width: 755px;
+    height: 110px;
+    z-index: 10;
 }
-#way1.road{
-  top:90px;
+#way1.road {
+    top: 90px;
 }
-#way2.road{
-  top:310px;
+#way2.road {
+    top: 310px;
 }
-#way3.road{
-  top:420px;
+#way3.road {
+    top: 420px;
 }
 .road .plant {
-  position: absolute;
-  width: 50px;
-  height: 50px;
-  top: 0px;
-  bottom: 0px;
-  margin: auto 0px;
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    top: 0px;
+    bottom: 0px;
+    margin: auto 0px;
 }
 .road .createWorm {
-  position: absolute;
-height: 90px;
-  width: 66px;
-  top: 0px;
-  bottom: 0px;
-  right: 0px;
-  margin: auto 0px;
-  z-index: 99;
+    position: absolute;
+    height: 60px;
+    width: 66px;
+    top: 0px;
+    bottom: 0px;
+    right: 0px;
+    margin: auto 0px;
+    z-index: 99;
 }
 .road .bullet {
-  position: absolute;
-  width: 35px;
-  height: 35px;
-  top: 0px;
-  bottom: 0px;
-  margin: auto 0px;
-  z-index: 200;
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    top: 0px;
+    bottom: 0px;
+    margin: auto 0px;
+    z-index: 200;
 }
-.button1{
-  background-image: url('../images/game/Button.png');
-  background-size: cover;
-  width:226px;
-  height:82px;
-  margin-left: auto;
-  margin-right:auto;
+.button1 {
+    background-image: url('../images/game/Button.png');
+    background-size: cover;
+    width: 226px;
+    height: 82px;
+    margin-left: auto;
+    margin-right: auto;
 }
-button.bin{
-  font-size: 50px;
-  width:339px;
-  height:123px;
-  background:url('../images/game/Button.png') 100% 100%;
+button.bin {
+    font-size: 50px;
+    width: 339px;
+    height: 123px;
+    background: url('../images/game/Button.png') 100% 100%;
 }
-div.overlay{
-position: relative;
-top: 10px;
-left: 0;
-width: 100%;
-/* 預設：完全透明；設定 z-index: -1 會在整個頁面的後方，看不到，才不會擋到頁面元素。 */
- opacity: 0;
-z-index: -1;
-transition: opacity 1s;
+div.overlay {
+    position: relative;
+    top: 10px;
+    left: 0;
+    width: 100%;
+    /* 預設：完全透明；設定 z-index: -1 會在整個頁面的後方，看不到，才不會擋到頁面元素。 */
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 1s;
 }
-div.overlay.-on,div.gameover.-on,div.gamewin.-on,.tea_en.-on{
-/* 加上 -on 之後，Modal 漸漸出現，因為有設定 transition */
-opacity: 1;
-z-index: 200;
-display:block;
+div.overlay.-on,
+div.gameover.-on,
+div.gamewin.-on,
+.tea_en.-on {
+    /* 加上 -on 之後，Modal 漸漸出現，因為有設定 transition */
+    opacity: 1;
+    z-index: 200;
+    display: block;
 }
 
-div.overlay.-opacity-zero,div.gameover.-opacity-zero,div.gamewin.-opacity-zero,.tea_en.-opacity-zero{
-/* 關閉 Modal 時，先讓 opacity設定0，就會慢慢變成完全透明，但這時會擋到後面的元素，所以要再移除 -on 及 -opacity-zero 這兩個 class */
-opacity: 0;
+div.overlay.-opacity-zero,
+div.gameover.-opacity-zero,
+div.gamewin.-opacity-zero,
+.tea_en.-opacity-zero {
+    /* 關閉 Modal 時，先讓 opacity設定0，就會慢慢變成完全透明，但這時會擋到後面的元素，所以要再移除 -on 及 -opacity-zero 這兩個 class */
+    opacity: 0;
 }
 /* 元素 article 置中及基本樣式 */
-div.overlay > article{
-background-image: url("../images/game/SeedChooser_Background.png");
-background-repeat: no-repeat;
-background-color: white;
-width:465px;
-height:555px;
-border-radius: 10px;
-box-shadow: 0 0 10px #ddd;
-padding: 0px;
-position: absolute;
-top: 300px;
-left: 50%;
-transform: translate(-50%, -50%);
+div.overlay > article {
+    background-image: url('../images/game/SeedChooser_Background.png');
+    background-repeat: no-repeat;
+    background-color: white;
+    width: 465px;
+    height: 555px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #ddd;
+    padding: 0px;
+    position: absolute;
+    top: 300px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    img.title {
+        position: relative;
+        top: -20px;
+        left: calc(94% - 417px);
+        width: 417px;
+        height: 128px;
+    }
 }
-div.gameover,div.gamewin{
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: -1;
-  transition: opacity 1s;
- opacity: 0;
+div.gameover,
+div.gamewin {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: -1;
+    transition: opacity 1s;
+    opacity: 0;
 }
-.tea_en{
-position: absolute;
-top: 0;
-left: 0;
-width: 100%;
-z-index: -1;
-transition: opacity 1s;
-opacity: 0;
-section{
-	 background-image: url('../images/game/tea_en.png');
-	 background-size: contain;
-	 background-position: left;
-	 background-repeat: no-repeat;
-	 width:1000px;
-	 height:600px;  
-	 position: relative;
-	 left: calc(-390px + 40%);
-	 article{
-		 position: relative;
-		 left:95px;
-		 top:90px;
-	 }
- }
+.tea_en {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: -1;
+    transition: opacity 1s;
+    opacity: 0;
+    section {
+        background-image: url('../images/game/tea_en.png');
+        background-size: contain;
+        background-position: left;
+        background-repeat: no-repeat;
+        width: 1000px;
+        height: 600px;
+        position: relative;
+        left: calc(-390px + 40%);
+        article {
+            position: relative;
+            left: 95px;
+            top: 90px;
+        }
+    }
 }
-.teatxt{
-	padding:10px;
-	border:rgba(116, 128, 10, 0.568) 2px solid;
-	width:400px;
-	height:400px;
-	overflow-x: auto;
+.teatxt {
+    padding: 10px;
+    border: rgba(116, 128, 10, 0.568) 2px solid;
+    width: 400px;
+    height: 400px;
+    overflow-x: auto;
 }
-.teatxt::-webkit-scrollbar{
-	width: 10px;
-	background-color: #F5F5F5;
+.teatxt::-webkit-scrollbar {
+    width: 10px;
+    background-color: #f5f5f5;
 }
 .teatxt::-webkit-scrollbar-track {
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-	background-color: #F5F5F5;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #f5f5f5;
 }
 .teatxt::-webkit-scrollbar-thumb {
-	background-color: #F90;	
-	background-image: -webkit-linear-gradient(45deg,rgba(255, 255, 255, .2) 25%,
-											  transparent 25%,
-											  transparent 50%,
-											  rgba(255, 255, 255, .2) 50%,
-											  rgba(255, 255, 255, .2) 75%,
-											  transparent 75%,
-											  transparent);
+    background-color: #f90;
+    background-image: -webkit-linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.2) 25%,
+        transparent 25%,
+        transparent 50%,
+        rgba(255, 255, 255, 0.2) 50%,
+        rgba(255, 255, 255, 0.2) 75%,
+        transparent 75%,
+        transparent
+    );
 }
-div.gameover>article{
-  background-image: url('../images/game/gameovre.png');
-  background-repeat: no-repeat;
-  background-color: none;
-  width:405px;
-  height:499px;
-  /* border-radius: 30px; */
-  padding: 0px;
-  position: absolute;
-  top: 400px;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  }
-div.gamewin>article{
-  background-image: url('../images/game/youwin.png');
-  background-repeat: no-repeat;
-  background-size: contain;
-  width:600px;
-  height:600px;
-  padding: 0px;
-  position: absolute;
-  top: 300px;
-  left: 50%;
-  transform: translate(-50%, -50%);
+div.gameover > article {
+    background-image: url('../images/game/gameovre.png');
+    background-repeat: no-repeat;
+    background-color: none;
+    width: 405px;
+    height: 499px;
+    /* border-radius: 30px; */
+    padding: 0px;
+    position: absolute;
+    top: 400px;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
-		/* 增加其餘的路 */
-			body,		ul {
-				padding: 0px;
-				margin: 0px;
-			}
-			/*地圖*/
-			#map {
-				position: relative;
-				width: 1400px;
-				max-width:100vw;
-				height: 600px;
-				background: url(../images/game/1.jpg);
-				background-position-x:40% ;
-				background-size: cover;
-		
-			}
-			/*路*/
-			#road {				
-				position: absolute;
-				z-index: 2;
-				// left: 250px;
-				left:calc(-310px + 40%);
-				top: 200px;
-				background: url(../images/game/8.png);
-				background-clip: border-box;
-				background-origin: content-box;
-				width: 755px;
-				height: 110px;
-				z-index: 10;
-			}
-			/*植物*/
-			#road .plant {
-				position: absolute;
-				width: 50px;
-				height: 50px;
-				top: 0px;
-				bottom: 0px;
-				margin: auto 0px;
-			}
-			/*疆屍*/
-			#road .createWorm {
-				position: absolute;
-				height: 90px;
-				width: 66px;
-				top: 0px;
-				bottom: 0px;
-				right: 0px;
-				margin: auto 0px;
-				z-index: 1000;
-			}
-			/*子彈*/
-			#road .bullet {
-				position: absolute;
-				width: 35px;
-				height: 35px;
-				top: 0px;
-				bottom: 0px;
-				margin: auto 0px;
-				z-index: 500;
-			}
-			/*道具欄*/
-			#props {
-				position: absolute;
-				bottom: 0px;
-				left: 100px;
-				z-index: 700;
-				list-style: none;
-				text-align: center;
-			}
-			#props li {
-				position: relative;
-				display: inline-block;
-				height: 50px;
-				width: 50px;
-			}
-			#props li span {
-        	position: absolute;
-        	width:27px;
-        	height:27px;
-				padding: 0;
-				right: 0;
-				top: -12px;
-				border-radius: 50%;
-				background: gold;
-			}
-			#props li img {
-				border: 2px solid gray;
-				height: 100%;
-				width: 100%;
-				cursor: pointer;
-				background: gainsboro;
-			}
-			#props li img.action {
-				border: 3px solid green;
-      }
-      #botbar{
-		position:absolute;
-		top:10px;
-		left:calc(50% - 180px);
-		background-color: yellowgreen;
-		&>div{
-			width:70px;
-			height:70px;
-		}
-		}
-	  .tea_ency{
-		background: url("../images/game/tea_ency.png");
-		background-size: contain;
-		background-repeat: no-repeat;
-		// width: 70px;
-		// height:70px;
-		cursor: pointer;
-	  }
-	  .star-back{
-		//   	width: 70px;
-		// height:70px;
-				background: url("../images/game/62720191121071129866.png");
-				background-size: contain;
-				background-repeat: no-repeat;			
-	  }
-			/*星星數量*/
-			#star-number {
-				position: absolute;
-				top:10px;
-				z-index: 150;
-				height: 50px;
-				width: 50px;
-				text-align: center;
-				line-height: 50px;
-				color: white;
-				font-weight: 900;
-				font-size: 20px;
-				  }
-        .checke{
-			cursor: pointer;
-			// border:solid 1px #F90;
-			position: relative;			
-            -webkit-appearance: none;
-            // width:70px;
-            // height: 70px;
-            font-size:50px;
-			outline: none;
-			&:before{
-            position: absolute;
-			left: 10px;
-			top: -20px;
-    		content: "❚❚";
-            width: 70px;
-            height: 70px;
-            transition: all 0.2s linear;
-			}
-			&:checked:before{
-			content: "▶" ;
-        	}
-        }
-	/*降落星星*/
-			.star {
-				position: absolute;
-				width: 70px;
-				height: 70px;
-				z-index: 300;
-			}
-			#return{
-				position:absolute;
-				left:30px;
-				bottom:25px;
-      }
-      #score-over{
-        position:relative;
-        left:55px;
-        color:#FFF;
-	  }
-	  .back{
-		  background-image: url(../images/game/1.jpg);
-		  background-position-x:40% ;
-		  background-clip: border-box;
-		  background-origin: border-box;
-		  background-position-y: 0%;
-		  background-size: 1000px 600px;
-		background-repeat: no-repeat;
-		  max-width: 100vw;
-		  width:100%;
-		  height:600px;
-
-	  }
-// @media screen and (max-width:768px){
-// 	max-width: 100vw;
-// } 
+div.gamewin > article {
+    background-image: url('../images/game/youwin.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 600px;
+    height: 600px;
+    padding: 0px;
+    position: absolute;
+    top: 300px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+/* 增加其餘的路 */
+body,
+ul {
+    padding: 0px;
+    margin: 0px;
+}
+/*地圖*/
+#map {
+    position: relative;
+    width: 1400px;
+    max-width: 100vw;
+    height: 600px;
+    background: url(../images/game/1.jpg);
+    background-position-x: 40%;
+    background-size: cover;
+}
+/*路*/
+#road {
+    position: absolute;
+    z-index: 2;
+    // left: 250px;
+    left: calc(-310px + 40%);
+    top: 200px;
+    background: url(../images/game/8.png);
+    background-clip: border-box;
+    background-origin: content-box;
+    width: 755px;
+    height: 110px;
+    z-index: 10;
+}
+/*植物*/
+#road .plant {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    top: 0px;
+    bottom: 0px;
+    margin: auto 0px;
+}
+/*疆屍*/
+#road .createWorm {
+    position: absolute;
+    height: 50px;
+    width: 66px;
+    top: 0px;
+    bottom: 0px;
+    right: 0px;
+    margin: auto 0px;
+    z-index: 1000;
+}
+/*子彈*/
+#road .bullet {
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    top: 0px;
+    bottom: 0px;
+    margin: auto 0px;
+    z-index: 500;
+}
+/*道具欄*/
+#props {
+    position: absolute;
+    bottom: 0px;
+    left: 100px;
+    z-index: 700;
+    list-style: none;
+    text-align: center;
+}
+#props li {
+    position: relative;
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+}
+#props li span {
+    position: absolute;
+    width: 27px;
+    height: 27px;
+    padding: 0;
+    right: 0;
+    top: -12px;
+    border-radius: 50%;
+    background: gold;
+}
+#props li img {
+    border: 2px solid gray;
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+    background: yellowgreen;
+}
+#props li img.action {
+    border: 3px solid green;
+}
+#botbar {
+    border: 2px solid brown;
+    position: absolute;
+    top: 10px;
+    left: calc(50% - 180px);
+    background-color: yellowgreen;
+    & > div {
+        width: 70px;
+        height: 70px;
+    }
+}
+.tea_ency {
+    background: url('../images/game/tea_ency.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    // width: 70px;
+    // height:70px;
+    cursor: pointer;
+}
+img[src='./images/game/62720191121071129866.png'] {
+    width: 40px;
+    height: 40px;
+}
+.star-back {
+    //   	width: 70px;
+    // height:70px;
+    background: url('../images/game/62720191121071129866.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+/*星星數量*/
+#star-number {
+    position: absolute;
+    top: 10px;
+    z-index: 150;
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    line-height: 50px;
+    color: white;
+    font-weight: 900;
+    font-size: 20px;
+}
+.checke {
+    cursor: pointer;
+    // border:solid 1px #F90;
+    position: relative;
+    -webkit-appearance: none;
+    // width:70px;
+    // height: 70px;
+    font-size: 50px;
+    outline: none;
+    &:before {
+        position: absolute;
+        left: 10px;
+        top: -20px;
+        content: '❚❚';
+        width: 70px;
+        height: 70px;
+        transition: all 0.2s linear;
+    }
+    &:checked:before {
+        content: '▶';
+    }
+}
+/*降落星星*/
+.star {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    z-index: 300;
+}
+#replay {
+    position: absolute;
+    left: 30px;
+    bottom: 25px;
+}
+#score-over {
+    text-align:center;
+    position: relative;
+    left: 55px;
+    color: #fff;
+}
+.back {
+    background-image: url(../images/game/1.jpg);
+    background-position-x: 40%;
+    background-clip: border-box;
+    background-origin: border-box;
+    background-position-y: 0%;
+    background-size: 1000px 600px;
+    background-repeat: no-repeat;
+    max-width: 100vw;
+    width: 100%;
+    height: 600px;
+}
+#teatxt-bar1{
+    height: 100px !important;
+    width: 50px;
+    cursor: pointer;
+    writing-mode: vertical-lr;
+    position: relative;
+    span{
+        writing-mode: vertical-lr;
+        font-size: 20px;
+        position: relative;
+        top: 55%;
+        left: 20%;
+        color: #fff;
+        text-shadow: 0 0 3.2em #87e;
+        -webkit-text-stroke-color: blue;
+        -webkit-text-stroke-width: 0.7px;
+    }
+}

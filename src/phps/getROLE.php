@@ -1,8 +1,7 @@
-<?php 
- 
+<?php
 try {
 	require_once("./connect.php");
-	$sql = "select * from garden";
+	$sql = "select * from ROLE";
 	$locations = $pdo->prepare($sql);
 	$locations->execute();
 	$locations = $locations->fetchAll(PDO::FETCH_ASSOC);
@@ -11,6 +10,6 @@ try {
 	echo "錯誤原因 : ", $e->getMessage(), "<br>";
 	echo "錯誤行號 : ", $e->getLine(), "<br>";
 
-	echo "系統錯誤, 請通知系統維護人員<br>";
+	// echo "系統錯誤, 請通知系統維護人員<br>";
 }
 ?>
