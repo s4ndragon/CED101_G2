@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="./css/membership.css" />
         <script src="../node_modules/jquery/dist/jquery.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
-        <script src="./js/membership.js"></script>
+        <!-- <script src="./js/membership.js"></script> -->
         <!-- <script src="./js/membership_vue.js"></script> -->
         <title>會員系統</title>
     </head>
@@ -24,8 +24,8 @@
                     <div class="profile-pic">
                         <img id="MEM_IMG" class="rounded-circle" src="./images/member/new_member.jpg" />
                     </div>
-                    <h2 id="MEM_NICKNAME"></h2>
-                    <h6 id="MEM_ID" class="memId">@</h6>
+                    <h2 id="MEM_NICKNAME">{{MEM_NICKNAME}}</h2>
+                    <h6 id="MEM_ID" class="memId">@{{MEM_ID}}</h6>
                     <!-- <input type="text" class="input-profile" name="profile" value="熱愛程式及茶園的男子"> -->
                     <button class="mine_profile" @click="content = 'mine_profile'">個人資料</button>
                 </div>
@@ -98,6 +98,9 @@
             </div>
         </div>
         <!-- 資料暫存區 -->
+        <input type="text" name="MEM_NICKNAME" value="<?=$memberRows["MEM_NICKNAME"]?>">
+        <input type="text" name="MEM_EMAIL" value="<?=$memberRows["MEM_EMAIL"]?>">
+        <input type="text" name="MEM_ID" value="<?=$memberRows["MEM_ID"]?>">
 
         @@include('layout/login_register.html') @@include('layout/footer.html')
         <!-- <script src="../node_modules/vue/dist/vue.js"></script> -->
