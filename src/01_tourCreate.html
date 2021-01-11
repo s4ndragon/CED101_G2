@@ -22,269 +22,321 @@
         </div>
     </div>
 
-
-    <h1>選擇搭配行程</h1>
-    <div class="createStep">
-        <ul>
-            <li class="t1">地點</li>
-            <li class="a1"></li>
-            <li class="t2">住宿</li>
-            <li class="a2"></li>
-            <li class="t3">餐廳</li>
-            <li class="a3"></li>
-            <li class="t4">活動</li>
-        </ul>
-    </div>
-
-
     <div id="tourCreate">
+        <h1>選擇搭配行程</h1>
+        <div class="createStep">
+            <ul>
+                <li class="t1" :style="t1styleChange">地點</li>
+                <li class="a1"></li>
+                <li class="t2" :style="t2styleChange">住宿</li>
+                <li class="a2"></li>
+                <li class="t3" :style="t3styleChange">餐廳</li>
+                <li class="a3"></li>
+                <li class="t4" :style="t4styleChange">活動</li>
+            </ul>
+        </div>
+
+
+
         <div class="tourCreate_main">
-            <h2>選擇茶園</h2>
+            <h2>{{title}}</h2>
             <div class="tourCreate_leftside" id="tourCreate">
-                <div class="tourCreate_item_block tea">
-                    <div class="tourCreate_item">
-                        <div class="tourCreate_item_img">
-                            <img src="images/vote/hotel.jpg" alt="">
-                        </div>
-                        <div class="tourCreate_item_text">
-                            <h3>瑞穗天合國際觀光酒店</h3>
-                            <p>整體設計以南歐莊園風格為主，風光明媚的山水以及豐富的人文及自然生態，將花蓮瑞穗美景盡收眼底。</p>
-                            <div class="viewBtn">
-                                <button class="viewBtn">預覽</button>
-                            </div>
-                        </div>
-                        <div class="add" @click="storagelocation(inputVlaue)"><img src="./images/tour/add.png" alt="">
-                        </div>
-                        <input type="hidden" v-model="inputVlaue">
-                    </div>
-                    <div class="tourCreate_item">
-                        <div class="tourCreate_item_img">
-                            <img src="images/vote/hotel.jpg" alt="">
-                        </div>
-                        <div class="tourCreate_item_text">
-                            <h3>瑞穗天合國際觀光酒店</h3>
-                            <p>整體設計以南歐莊園風格為主，風光明媚的山水以及豐富的人文及自然生態，將花蓮瑞穗美景盡收眼底。</p>
-                            <div class="viewBtn">
-                                <button>預覽</button>
-                            </div>
-                        </div>
-                        <div class="add"><img src="./images/tour/add.png" alt=""></div>
-                    </div>
-                    <div class="tourCreate_item">
-                        <div class="tourCreate_item_img">
-                            <img src="images/vote/hotel.jpg" alt="">
-                        </div>
-                        <div class="tourCreate_item_text">
-                            <h3>瑞穗天合國際觀光酒店</h3>
-                            <p>整體設計以南歐莊園風格為主，風光明媚的山水以及豐富的人文及自然生態，將花蓮瑞穗美景盡收眼底。</p>
-                            <div class="viewBtn">
-                                <button>預覽</button>
-                            </div>
-                        </div>
-                        <div class="add"><img src="./images/tour/add.png" alt=""></div>
-                    </div>
-                    <div class="tourCreate_item">
-                        <div class="tourCreate_item_img">
-                            <img src="images/vote/hotel.jpg" alt="">
-                        </div>
-                        <div class="tourCreate_item_text">
-                            <h3>瑞穗天合國際觀光酒店</h3>
-                            <p>整體設計以南歐莊園風格為主，風光明媚的山水以及豐富的人文及自然生態，將花蓮瑞穗美景盡收眼底。</p>
-                            <div class="viewBtn">
-                                <button>預覽</button>
-                            </div>
-                        </div>
-                        <div class="add"><img src="./images/tour/add.png" alt=""></div>
-                    </div>
-                    <div class="tourCreate_item">
-                        <div class="tourCreate_item_img">
-                            <img src="images/vote/hotel.jpg" alt="">
-                        </div>
-                        <div class="tourCreate_item_text">
-                            <h3>瑞穗天合國際觀光酒店</h3>
-                            <p>整體設計以南歐莊園風格為主，風光明媚的山水以及豐富的人文及自然生態，將花蓮瑞穗美景盡收眼底。</p>
-                            <div class="viewBtn">
-                                <button>預覽</button>
-                            </div>
-                        </div>
-                        <div class="add"><img src="./images/tour/add.png" alt=""></div>
-                    </div>
-                    <div class="tourCreate_item">
-                        <div class="tourCreate_item_img">
-                            <img src="images/vote/hotel.jpg" alt="">
-                        </div>
-                        <div class="tourCreate_item_text">
-                            <h3>瑞穗天合國際觀光酒店</h3>
-                            <p>整體設計以南歐莊園風格為主，風光明媚的山水以及豐富的人文及自然生態，將花蓮瑞穗美景盡收眼底。</p>
-                            <div class="viewBtn">
-                                <button>預覽</button>
-                            </div>
-                        </div>
-                        <div class="add"><img src="./images/tour/add.png" alt=""></div>
-                    </div>
-                </div>
-
-                <!-- =================hotel=================== -->
-                <div class="tourCreate_item_block hotel">
-                    <div class="tourCreate_item">
-                        <div class="tourCreate_item_img">
-                            <img src="images/vote/hotel.jpg" alt="">
-                        </div>
-                        <div class="tourCreate_item_text">
-                            <h3>瑞穗天合國際觀光酒店</h3>
-                            <p>整體設計以南歐莊園風格為主，風光明媚的山水以及豐富的人文及自然生態，將花蓮瑞穗美景盡收眼底。</p>
-                            <div class="viewBtn">
-                                <button class="viewBtn">預覽</button>
-                            </div>
-                        </div>
-                        <div class="add"><img src="./images/tour/add.png" alt=""></div>
-                    </div>
-                </div>
-                <!-- =================rest=================== -->
-                <div class="tourCreate_item_block rest">
-                    <div class="tourCreate_item">
-                        <div class="tourCreate_item_img">
-                            <img src="images/vote/hotel.jpg" alt="">
-                        </div>
-                        <div class="tourCreate_item_text">
-                            <h3>餐廳餐廳</h3>
-                            <p>整體設計以南歐莊園風格為主，風光明媚的山水以及豐富的人文及自然生態，將花蓮瑞穗美景盡收眼底。</p>
-                            <div class="viewBtn">
-                                <button class="viewBtn">預覽</button>
-                            </div>
-                        </div>
-                        <div class="add"><img src="./images/tour/add.png" alt=""></div>
-                    </div>
-                </div>
-                <!-- =================active=================== -->
-                <div class="tourCreate_item_block active">
-                    <div class="tourCreate_item">
-                        <div class="tourCreate_item_img">
-                            <img src="images/vote/hotel.jpg" alt="">
-                        </div>
-                        <div class="tourCreate_item_text">
-                            <h3>傳統採茶體驗</h3>
-                            <p>整體設計以南歐莊園風格為主，風光明媚的山水以及豐富的人文及自然生態，將花蓮瑞穗美景盡收眼底。</p>
-                            <div class="viewBtn">
-                                <button class="viewBtn">預覽</button>
-                            </div>
-                        </div>
-                        <div class="add"><img src="./images/tour/add.png" alt=""></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- =======================行程清單========================== -->
-            <div class="tourCreate_rightside_block">
-                <h3>行程明細</h3>
-                <div class="tourCreate_rightside">
-                    <div class="rightside">
-                        <h3>地點 <button @click="removeLocationStorage()">修改</button></h3>
-                        <input disabled v-model=locationList>
-                    </div>
-                    <div class="rightside">
-                        <h3>住宿 <button>修改</button></h3>
-                        <input disabled value="瑞穗天合國際觀光酒店">
-                    </div>
-                    <div class="rightside">
-                        <h3>餐廳 <button>修改</button></h3>
-                        <input disabled value="瑞穗天合國際觀光酒店">
-                    </div>
-                    <div class="rightside">
-                        <h3>活動 <button>修改</button></h3>
-                        <input disabled value="瑞穗天合國際觀光酒店">
-                    </div>
-                </div>
-                <div class="nextBtn"><button><a href="./01_tourCreateInfro.html">下一步</a></button></div>
+                <component :is="content" @click-plus-location="goToHotel()" @click-plus-hotel="goToRest()"
+                    @click-plus-rest="goToActive()" @click-plus-rest1="showRest1()" @click-plus-rest2="showRest2()"
+                    @click-plus-active="goToNext()" @show-light-box="showBox()" :locations=" locationRows"
+                    :hotels=" hotelRows" :rests="restRows" :acts="actRows" :choice-tea="locationList">
+                </component>
             </div>
         </div>
-    </div>
+        <!-- ======================================================== -->
 
-    <!-- =======================lightbox================================= -->
-    <div class="create_lightBox_mask" id="lightBox">
-        <div class="create_lightBox">
-            <div class="garden">
-                <img class="gpic" src="images/vote/tea5.jpg">
-            </div>
-            <div class="ginfo">
-                <div class="s1">
-                    <p class="p1">舞鶴茶園</p>
+
+
+        <!-- =======================行程清單========================== -->
+        <div class="tourCreate_rightside_block">
+            <h3>行程明細</h3>
+            <div class="tourCreate_rightside">
+                <div class="rightside">
+                    <h3>地點 <button @click="removeLocationStorage()">修改</button></h3>
+                    <input disabled v-model=locationList>
                 </div>
-                <div class="allscore app" id="app">
-                    <span class="score">
-                        總分:&ensp;
-                    </span>
-                    <div>
-                        <star-rating :rating="4.7" :read-only="true" :increment="0.01" :star-size="25">
-                        </star-rating>
+                <div class="rightside">
+                    <h3>住宿 <button @click="removeHotelStorage()">修改</button></h3>
+                    <input disabled v-model=hotelList>
+                </div>
+                <div class="rightside">
+                    <h3>餐廳 <button @click="removeRestStorage()">修改</button></h3>
+                    <input disabled v-model=restList1>
+                    <input disabled v-model=restList2>
+                    <input disabled v-model=restList3>
+                </div>
+                <div class="rightside">
+                    <h3>活動 <button @click="removeActiveStorage()">修改</button></h3>
+                    <input disabled v-model=activeList>
+                </div>
+            </div>
+            <div class="nextBtn" v-show=nextBtn><button><a href="./01_tourCreateInfro.html">下一步</a></button></div>
+        </div>
+
+
+
+        <!-- =======================lightbox================================= -->
+        <div class="create_lightBox_mask" id="lightBox" v-show="lightBox">
+            <div class="create_lightBox" v-for="location in locationRows">
+                <div class="garden">
+                    <img class="gpic" :src=boxImg>
+                </div>
+                <div class="ginfo">
+                    <div class="s1">
+                        <p class="p1">{{boxName}}</p>
                     </div>
+                    <div class="allscore app" id="app" v-show="score">
+                        <span class="score">
+                            總分:&ensp;
+                        </span>
+                        <div>
+                            <star-rating :rating="4.7" :read-only="true" :increment="0.01" :star-size="25">
+                            </star-rating>
+                        </div>
+                    </div>
+                    <p class="p4" v-show="score">
+                        <span class="tt">茶園地址:</span>{{boxAddress}}
+                    </p>
+                    <p class="p5">
+                        {{boxContent}}
+                    </p>
+                    <div class="addActBtn">
+                        <button id="addAct" @click="addBox()">加入行程</button>
+                    </div>
+
                 </div>
-                <p class="p4">
-                    <span class="tt">茶園地址:</span> 花蓮縣瑞穗鄉舞鶴村
-                </p>
-                <p class="p5">
-                    海拔100至300公尺的舞鶴台地，依傍高聳的中央山脈，隨風拂來秀姑巒溪與紅葉溪的濕潤水氣，宜人的氣候適合茶樹生長，是天鶴茶的產地，也是小葉綠蟬生長的天堂，經由小葉綠蟬吸吮而製成的蜜香紅茶，微帶淡淡的果香與蜜香，口感溫潤生津，獨特的風味聞名全臺，成為旅人來訪瑞穗必帶的伴手禮之一。
-                </p>
-                <div class="addActBtn">
-                    <button id="addAct">加入行程</button>
-                </div>
+                <button id="close_lightBox" @click="closeBox()">X</button>
 
             </div>
-            <button id="close_lightBox">X</button>
-
         </div>
     </div>
 
 
 
     @@include('layout/footer.html')
-    <script>
 
-
-    </script>
     <script>
         let storage = sessionStorage;
-        let viewBtn = document.getElementsByClassName("viewBtn");
-        let lightBox = document.getElementById("lightBox");
-        let closeLightBoxBtn = document.getElementById("close_lightBox");
-        let tourCreate = new Vue({
-            el: "#tourCreate",
-            data: {
-                inputVlaue: "瑞穗天合國際觀光酒店",
-                locationList: "",
+        window.addEventListener("load", function () {
+            //============去server端拿茶園資料
+            let locationRows;
+            let xhr = new XMLHttpRequest();
+            xhr.onload = function () {
+                tourCreate.locationRows = JSON.parse(xhr.responseText);
+                console.log(tourCreate.locationRows);
+            }
+            xhr.open("get", "./phps/getLocation.php", true);
+            xhr.send(null);
+            //============去server端拿住宿資料
+            let hotelRows;
+            let xhrHotel = new XMLHttpRequest();
+            xhrHotel.onload = function () {
+                tourCreate.hotelRows = JSON.parse(xhrHotel.responseText);
+                console.log(tourCreate.hotelRows);
+            }
+            xhrHotel.open("get", "./phps/getHotel.php", true);
+            xhrHotel.send(null);
+            //============去server端拿餐廳資料
+            let restRows;
+            let xhrRest = new XMLHttpRequest();
+            xhrRest.onload = function () {
+                tourCreate.restRows = JSON.parse(xhrRest.responseText);
+                console.log(tourCreate.restRows);
+            }
+            xhrRest.open("get", "./phps/getRest.php", true);
+            xhrRest.send(null);
+            //============去server端拿活動資料
+            let actRows;
+            let xhrAct = new XMLHttpRequest();
+            xhrAct.onload = function () {
+                tourCreate.actRows = JSON.parse(xhrAct.responseText);
+                console.log(tourCreate.actRows);
+            }
+            xhrAct.open("get", "./phps/getAct.php", true);
+            xhrAct.send(null);
+        })
+
+
+        Vue.component('tea', {
+            props: ['locations'],
+            data() {
+                return {
+
+                }
             },
             methods: {
-                storagelocation(inputVlaue) {
-                    storage['location'] = inputVlaue;
-                    this.locationList = storage.getItem('location');
+                storagelocation(name) {
+                    storage['location'] = name;
+                    this.$emit('click-plus-location');
                 },
-                removeLocationStorage() {
-                    storage.removeItem('location');
-                    this.locationList = "";
+                showLightBox(boxName, boxContent, boxAddress, boxImg) {
+                    this.$emit('show-light-box');
+                    storage['boxName'] = boxName;
+                    storage['boxContent'] = boxContent;
+                    storage['boxAddress'] = boxAddress;
+                    storage['boxImg'] = boxImg;
+
                 }
             },
+            template: `
+         <div class="tourCreate_item_block" id="tea" >
+            <div class="tourCreate_item" v-for=" location in locations">
+                <div class="tourCreate_item_img">
+                    <img :src=location.GARD_PIC alt="">
+                </div>
+                <div class="tourCreate_item_text">
+                    <h3>{{location.GARD_NAME}}</h3>
+                    <p>{{location.GARD_CONTENT}}</p>
+                    <div class="viewBtn">
+                        <button class="viewBtn" @click="showLightBox(location.GARD_NAME,location.GARD_CONTENT,location.GARD_ADDRESS,location.GARD_PIC)">預覽</button>
+                    </div>
+                </div>
+                <div class="add" @click="storagelocation(location.GARD_NAME)"><img src="./images/tour/add.png" alt="">
+                </div>
+   
+            </div>
+        </div>
+            `,
             mounted() {
-                this.locationList = storage.getItem('location');
-                for (var i = 0; i < viewBtn.length; i++) {
-                    viewBtn[i].addEventListener("click", openLightBox);
-                }
-                closeLightBoxBtn.addEventListener("click", closeLightBox);
-                function openLightBox() {
-                    lightBox.setAttribute("style", "display:block");
-                };
-                function closeLightBox() {
-                    lightBox.removeAttribute("style");
-                };
-            },
+
+            }
         });
-    </script>
+        Vue.component('hotel', {
+            props: ['hotels', 'choiceTea'],
+
+            data() {
+                return {
 
 
+                }
+            },
+            methods: {
+                storagelocation(hotelName) {
+                    storage['hotel'] = hotelName;
+                    this.$emit('click-plus-hotel');
+                },
+                showLightBox(boxName, boxContent, boxImg) {
+                    this.$emit('show-light-box');
+                    storage['boxName'] = boxName;
+                    storage['boxContent'] = boxContent;
+                    storage['boxImg'] = boxImg;
 
+                }
+            },
+            template: `
+            <div class="tourCreate_item_block" id="hotel">
+            <div class="tourCreate_item" v-for="hotel in hotels" v-if="hotel.GARD_NAME==choiceTea">
+                <div class="tourCreate_item_img">
+                    <img :src=hotel.HOTEL_IMG alt="">
+                </div>
+                <div class="tourCreate_item_text">
+                    <h3>{{hotel.HOTEL_NAME}}</h3>
+                    <p>{{hotel.HOTEL_INFRO}}</p>
+                    <div class="viewBtn">
+                        <button class="viewBtn" @click="showLightBox(hotel.HOTEL_NAME,hotel.HOTEL_INFRO,hotel.HOTEL_IMG)">預覽</button>
+                    </div>
+                </div>
+                <div class="add" @click="storagelocation(hotel.HOTEL_NAME)"><img src="./images/tour/add.png" alt="">
+                </div>
+                
+            </div>
+        </div>
+            `,
+        });
+        Vue.component('rest', {
+            props: ['rests', 'choiceTea'],
+            data() {
+                return {
 
+                }
+            },
+            methods: {
+                storagelocation(name) {
+                    if (storage.getItem('rest1') && storage.getItem('rest2') == undefined) {
 
+                        storage['rest2'] = name;
+                        this.$emit('click-plus-rest2');
 
-    <script>
+                    } else if (storage.getItem('rest2')) {
+                        storage['rest3'] = name;
+                        this.$emit('click-plus-rest');
+                    } else {
+                        storage['rest1'] = name;
+                        this.$emit('click-plus-rest1');
+                    }
+                },
+                showLightBox(boxName, boxContent, boxImg) {
+                    this.$emit('show-light-box');
+                    storage['boxName'] = boxName;
+                    storage['boxContent'] = boxContent;
+                    storage['boxImg'] = boxImg;
+
+                }
+            },
+            template: `
+            <div class="tourCreate_item_block" id="rest" >
+            <div class="tourCreate_item" v-for="rest in rests" v-if="rest.GARD_NAME==choiceTea">
+                <div class="tourCreate_item_img">
+                    <img :src=rest.RESTAURANT_IMG alt="">
+                </div>
+                <div class="tourCreate_item_text">
+                    <h3>{{rest.RESTAURANT_NAME}}</h3>
+                    <p>{{rest.RESTAURANT_INFRO}}</p>
+                    <div class="viewBtn">
+                        <button class="viewBtn" @click="showLightBox(rest.RESTAURANT_NAME,rest.RESTAURANT_INFRO,rest.RESTAURANT_IMG)">預覽</button>
+                    </div>
+                </div>
+                <div class="add" @click="storagelocation(rest.RESTAURANT_NAME)"><img src="./images/tour/add.png" alt=""></div>
+            </div>
+        </div>
+            `,
+        });
+        Vue.component('active', {
+            props: ['acts'],
+            data() {
+                return {
+
+                }
+            },
+            methods: {
+                storageActive(actNAME) {
+                    storage['active'] = actNAME;
+                    this.$emit('click-plus-active');
+                },
+                showLightBox(boxName, boxContent, boxImg) {
+                    this.$emit('show-light-box');
+                    storage['boxName'] = boxName;
+                    storage['boxContent'] = boxContent;
+                    storage['boxImg'] = boxImg;
+
+                }
+            },
+            template: `
+            <div class="tourCreate_item_block " id="active">
+                <div class="tourCreate_item" v-for="act in acts">
+                    <div class="tourCreate_item_img">
+                        <img :src=act.ACTIVE_IMG alt="">
+                    </div>
+                    <div class="tourCreate_item_text">
+                        <h3>{{act.ACTIVE_NAME}}</h3>
+                        <p>{{act.ACTIVE_INFRO}}</p>
+                        <div class="viewBtn">
+                            <button class="viewBtn" @click="showLightBox(act.ACTIVE_NAME,act.ACTIVE_INFRO,act.ACTIVE_IMG)">預覽</button>
+                        </div>
+                    </div>
+                    <div class="add"><img src="./images/tour/add.png" alt=""></div>
+                    <div class="add" @click="storageActive(act.ACTIVE_NAME)"><img src="./images/tour/add.png" alt=""></div>
+                </div>
+            </div>
+            `,
+
+        });
+
         Vue.component("star-rating", VueStarRating.default, {
             methods: {
                 setRating: function (rating) {
@@ -309,13 +361,288 @@
             }
         });
 
-        let sart = new Vue({
-            el: "#app",
+
+        let tourCreate = new Vue({
+            el: "#tourCreate",
             data: {
+                // ===========資料
+                locationRows: [],
+                hotelRows: [],
+                restRows: [],
+                actRows: [],
+                // ==============star
                 showModal: false,
                 showModal2: false,
-            }
+                // =================右側清單
+                nextBtn: false,
+                localView: "",
+                locationList: "",
+                hotelList: "",
+                restList1: "",
+                restList2: "",
+                restList3: "",
+                activeList: "",
+                content: "tea",
+                // =================版面改變=================================================    
+                title: "選擇茶園",
+                bgcolor1: '#FFF',
+                color1: '#4c6e39',
+                bgcolor2: '#4c6e39',
+                color2: '#FFF',
+                bgcolor3: '#4c6e39',
+                color3: '#FFF',
+                bgcolor4: '#4c6e39',
+                color4: '#FFF',
+                // ==================lightBox==========================================
+                score: true,
+                lightBox: false,
+                boxName: "",
+                boxContent: "",
+                boxAddress: "",
+                boxImg: "",
+            },
+            methods: {
+                removeLocationStorage() {
+                    this.removeHotelStorage();
+                    this.removeRestStorage();
+                    this.removeActiveStorage();
+                    this.content = 'tea';
+                    storage.removeItem('location');
+                    this.locationList = "";
+                    this.nextBtn = false;
+                    this.title = "選擇茶園";
+                    this.color1 = "#4c6e39";
+                    this.bgcolor1 = "#fff";
+                    this.color2 = "#fff";
+                    this.bgcolor2 = "#4c6e39";
+                    this.color3 = "#fff";
+                    this.bgcolor3 = "#4c6e39";
+                    this.color4 = "#fff";
+                    this.bgcolor4 = "#4c6e39";
+                },
+                removeHotelStorage() {
+                    this.removeRestStorage();
+                    this.removeActiveStorage();
+                    this.content = 'hotel';
+                    storage.removeItem('hotel');
+                    this.hotelList = "";
+
+                    this.nextBtn = false;
+                    this.title = "選擇住宿";
+                    this.color2 = "#4c6e39";
+                    this.bgcolor2 = "#fff";
+                    this.color1 = "#fff";
+                    this.bgcolor1 = "#4c6e39";
+                    this.color3 = "#fff";
+                    this.bgcolor3 = "#4c6e39";
+                    this.color4 = "#fff";
+                    this.bgcolor4 = "#4c6e39";
+                },
+                removeRestStorage() {
+                    this.removeActiveStorage();
+                    this.content = 'rest';
+                    storage.removeItem('rest1');
+                    storage.removeItem('rest2');
+                    storage.removeItem('rest3');
+                    this.restList1 = "";
+                    this.restList2 = "";
+                    this.restList3 = "";
+                    this.nextBtn = false;
+                    this.title = "選擇餐廳";
+                    this.color3 = "#4c6e39";
+                    this.bgcolor3 = "#fff";
+                    this.color1 = "#fff";
+                    this.bgcolor1 = "#4c6e39";
+                    this.color2 = "#fff";
+                    this.bgcolor2 = "#4c6e39";
+                    this.color4 = "#fff";
+                    this.bgcolor4 = "#4c6e39";
+                },
+                removeActiveStorage() {
+                    this.content = 'active';
+                    storage.removeItem('active');
+                    this.activeList = "";
+                    this.nextBtn = false;
+                    this.title = "選擇活動";
+                    this.color4 = "#4c6e39";
+                    this.bgcolor4 = "#fff";
+                    this.color1 = "#fff";
+                    this.bgcolor1 = "#4c6e39";
+                    this.color2 = "#fff";
+                    this.bgcolor2 = "#4c6e39";
+                    this.color3 = "#fff";
+                    this.bgcolor3 = "#4c6e39";
+                },
+                goToNext() {
+                    this.activeList = storage.getItem('active');
+                    this.nextBtn = true;
+
+                },
+                goToActive() {
+                    this.restList3 = storage.getItem('rest3');
+                    this.content = 'active';
+                    this.title = "選擇活動";
+                    this.color4 = "#4c6e39";
+                    this.bgcolor4 = "#fff";
+                    this.color1 = "#fff";
+                    this.bgcolor1 = "#4c6e39";
+                    this.color2 = "#fff";
+                    this.bgcolor2 = "#4c6e39";
+                    this.color3 = "#fff";
+                    this.bgcolor3 = "#4c6e39";
+
+                },
+                showRest1() {
+                    this.restList1 = storage.getItem('rest1');
+                },
+                showRest2() {
+                    this.restList2 = storage.getItem('rest2');
+                },
+                goToHotel() {
+                    this.locationList = storage.getItem('location');
+                    this.content = 'hotel';
+                    this.title = "選擇住宿";
+                    this.color2 = "#4c6e39";
+                    this.bgcolor2 = "#fff";
+                    this.color1 = "#fff";
+                    this.bgcolor1 = "#4c6e39";
+                    this.color3 = "#fff";
+                    this.bgcolor3 = "#4c6e39";
+                    this.color4 = "#fff";
+                    this.bgcolor4 = "#4c6e39";
+
+                },
+                goToRest() {
+                    this.hotelList = storage.getItem('hotel');
+                    this.content = 'rest';
+                    this.title = "選擇餐廳";
+                    this.color3 = "#4c6e39";
+                    this.bgcolor3 = "#fff";
+                    this.color1 = "#fff";
+                    this.bgcolor1 = "#4c6e39";
+                    this.color2 = "#fff";
+                    this.bgcolor2 = "#4c6e39";
+                    this.color4 = "#fff";
+                    this.bgcolor4 = "#4c6e39";
+                },
+                showBox() {
+                    setTimeout(() => {
+                        this.boxName = storage.getItem('boxName');
+                        this.boxContent = storage.getItem('boxContent');
+                        this.boxAddress = storage.getItem('boxAddress');
+                        this.boxImg = storage.getItem('boxImg');
+                        this.lightBox = true;
+                        if (storage.getItem('boxAddress')) {
+                            this.score = true;
+                        } else {
+                            this.score = false;
+                        }
+                    }, 10);
+
+                },
+
+                closeBox() {
+                    this.lightBox = false;
+                    storage.removeItem('boxName');
+                    storage.removeItem('boxContent');
+                    storage.removeItem('boxAddress');
+                    storage.removeItem('boxImg');
+                },
+
+                addBox() {
+                    if (storage.getItem('location') && storage.getItem('hotel') == undefined) {
+                        storage['hotel'] = this.boxName;
+                        this.closeBox();
+                        this.goToRest();
+                    } else if (storage.getItem('hotel') && storage.getItem('rest1') == undefined) {
+                        storage['rest1'] = this.boxName;
+                        this.closeBox();
+                        this.showRest1();
+                    } else if (storage.getItem('rest1') && storage.getItem('rest2') == undefined) {
+                        storage['rest2'] = this.boxName;
+                        this.closeBox();
+                        this.showRest2();
+                    } else if (storage.getItem('rest2') && storage.getItem('rest3') == undefined) {
+                        storage['rest3'] = this.boxName;
+                        this.closeBox();
+                        this.goToActive();
+                    } else if (storage.getItem('rest3') && storage.getItem('active') == undefined) {
+                        storage['active'] = this.boxName;
+                        this.closeBox();
+                        this.goToNext();
+                    } else {
+                        storage['location'] = this.boxName;
+                        this.closeBox();
+                        this.goToHotel();
+                    }
+                },
+
+            },
+            watch: {
+
+            },
+            computed: {//也是放函數，放在這裡的函數，不能傳參數，一定要有傳回值(return)
+                t1styleChange() {
+                    return {
+                        backgroundColor: this.bgcolor1,
+                        color: this.color1,
+                    };
+                },
+                t2styleChange() {
+                    return {
+                        backgroundColor: this.bgcolor2,
+                        color: this.color2,
+                    };
+                },
+                t3styleChange() {
+                    return {
+                        backgroundColor: this.bgcolor3,
+                        color: this.color3,
+                    };
+                },
+                t4styleChange() {
+                    return {
+                        backgroundColor: this.bgcolor4,
+                        color: this.color4,
+                    };
+                },
+            },
+            mounted() {
+                this.locationList = storage.getItem('location');
+                this.hotelList = storage.getItem('hotel');
+                this.restList1 = storage.getItem('rest1');
+                this.restList2 = storage.getItem('rest2');
+                this.restList3 = storage.getItem('rest3');
+                this.activeList = storage.getItem('active');
+                if (storage.getItem('active')) {
+                    this.content = "active";
+                    this.nextBtn = true;
+                    this.title = "選擇活動";
+                    this.color4 = "#4c6e39";
+                    this.bgcolor4 = "#fff";
+                    this.color1 = "#fff";
+                    this.bgcolor1 = "#4c6e39";
+                    this.color2 = "#fff";
+                    this.bgcolor2 = "#4c6e39";
+                    this.color3 = "#fff";
+                    this.bgcolor3 = "#4c6e39";
+                };
+
+
+
+            },
         });
+    </script>
+
+
+
+
+
+
+    <script>
+
+
+
     </script>
 
     <!-- <script src="./js/01_tourCreate_addItem.js"></script> -->

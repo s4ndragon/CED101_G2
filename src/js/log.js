@@ -17,3 +17,8 @@ console.log(lastname);
 //         var check=this.prop('checked');
 //         $(obj).closest("table").find("tr").find("td").find(input:checkbox).first.prop('checked',check);
 //     }   }
+// checkbox預設沒選，按鈕文字編輯，按下時會勾選並且readonly="false"，按鈕文字="送出"
+// 按下時變成不勾選時發出submit()，readonly="true"
+// 勾了全選→如何讓被勾選的那一行屬性透過按鈕(編輯、submit())改變？
+// 全選要觸發All click
+// 記得把sql檔案 交給董老師檔案內容
