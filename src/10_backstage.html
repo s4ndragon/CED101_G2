@@ -76,6 +76,7 @@
                     <tr><th><input type="checkbox" onclick="check_all(this,'a')" ></th>
                         <th>管理者編號</th><th>管理者帳號</th><th>管理者姓名</th><th>管理者密碼</th><th>編輯</th>
                     </tr>
+                    <!-- 老師說管理者不能改其他人的密碼，但是可以新增、刪除 -->
                     <tr v-for="g in admin">
                         <td><input type="checkbox" name="a"></td>
                         <td>{{g.ADMIN_NO}}</td> 
@@ -108,16 +109,16 @@
                     <tr><th><input type="checkbox" name="" onclick="check_all(this,'ga')"></th>
                         <th>圖片檔名</th><th>角色價錢</th><th>生命總值</th><th>初始生命</th><th>攻擊速度</th><th>攻擊</th><th>防禦</th><th>編輯</th>
                     </tr>
-                    <tr v-for="r in plant">
-                        <td><input type="checkbox" name="ga" id=""></td>
+                    <tr v-for="r in plant" ref="gamearr">
+                        <td><input type="checkbox" name="ga[]" id="" @click="edit" ref="gamearr"></td>
                         <td >{{r.role}}</td>
-                        <td><input type="text" :value="r.pic"min="0" name=""></td>
-                        <td><input type="text" :value="r.star"min="0" name=""></td>
-                        <td><input type="number" :value="r.hp"min="0" name=""></td>
-                        <td><input type="number" :value="r.hps"min="0"name=""></td>
-                        <td><input type="number" :value="r.speed"min="0" name=""></td>
-                        <td><input type="number" :value="r.damage"min="0" name=""></td>
-                        <td><input type="number" :value="r.defense"min="0" name="" id=""></td>
+                        <td><input type="text" :value="r.pic"min="0" name="pic[]"></td>
+                        <td><input type="text" :value="r.star"min="0" name="star[]"></td>
+                        <td><input type="number" :value="r.hp"min="0" name="hp[]"></td>
+                        <td><input type="number" :value="r.hps"min="0"name="hps[]"></td>
+                        <td><input type="number" :value="r.speed"min="0" name="speed[]"></td>
+                        <td><input type="number" :value="r.damage"min="0" name="damage[]"></td>
+                        <td><input type="number" :value="r.defense"min="0" name="defense[]" id=""></td>
                         <td><button class="btn btn-info">編輯</button></td>
                     </tr>
                 </table>
@@ -137,7 +138,7 @@
                     <tr><th><input type="checkbox" onclick="check_all(this,'t')" id=""></th>
                         <th>審核狀態</th><th>揪團留言檢舉編號</th><th>揪團留言編號</th><th>會員編號</th><th>檢舉時間</th><th>檢舉原因</th><th>編輯</th>
                     </tr>
-                    <tr v-for="t in TOUR">
+                    <tr v-for="t in TOUR" >
                         <td><input type="checkbox" name="t" id=""></td>
                         <td>
                             <select v-model="t.TOUR_MSG_REP_STATUS"readonly name="" id="">
@@ -401,6 +402,7 @@ Vue.component('Gamebox',{
                         
             },
             data:{
+                gamearr:[],
                 member:[{MEM_NO:202009263,MEM_ID:'pd223423',MEM_NAME:'陳小春',MEM_EMAIL:'postintw@gmail.com',MEM_IMG:'pd223423.jpg',MEM_STATUS:1}],
                 admin:[{ADMIN_NO:2021010137,ADMIN_ID:'pk434423',ADMIN_NAME:'陳小春'},
                         {ADMIN_NO:5623010678,ADMIN_ID:'gs234423',ADMIN_NAME:'胡壽王'},
@@ -420,7 +422,7 @@ Vue.component('Gamebox',{
             methods:{
                 edit(){
                     
-                    console.log(this);
+                    console.log(this.$refs.gamearr);
                     // $(obj).parent.parent.children('input').prop('readonly',false);
                     
                 },

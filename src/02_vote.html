@@ -54,7 +54,7 @@
 
 				<div class="btwrap">
 					<button class="bt">
-						<a class="btn" href="02_vote_more.html">
+						<a class="btn" :href="'02_vote_more.php?='+gardenTop.GARD_ID">
 							More
 						</a>
 					</button>
@@ -330,7 +330,7 @@
 				console.log(app.gardenRows);
 				console.log(app.gardenRowsEnd);
 			}
-			xhr.open("get","./php/vote.php", true); //step1
+			xhr.open("get","./phps/vote.php", true); //step1
 			xhr.send(null); //step2
 		});
 

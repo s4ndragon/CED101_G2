@@ -14,35 +14,55 @@ function init() {
     if ($id('products')) {
         getproducts();
         classifyBtnsSelect();
-        addcartalert()
+        orderBtn();
     };
+    //如果有推薦商品
     if ($id('recommends')) {
-        getRecommends(1)
+        getRecommends(1);
+        addcartalert();
     }
+    //如果是產品頁面
+    if ($id('add_cart')) {
+        productPageBtn();
+    }
+    //如果是有購物車清單
     if ($id('cart_content')) {
         loadcart();
-        addcartalert()
     }
+    //如果有總額
     if ($id('totalBtn')) {
         dicountBtn()
     }
 };
 
-function getproducts() {
+function getproducts(type, orderby) {
     var xhr = new XMLHttpRequest();
+    let url;
     xhr.onload = function () {
         if (xhr.status == 200) {
             //modify here
             let products = JSON.parse(xhr.responseText);
-            let page = document.getElementsByClassName('page')[0];
-            for (let i = 0; i < products.length; i++) {
-                document.getElementsByClassName('products')[0].insertBefore(addProduct(products[i]), page); //將div插入page前
-            };
+            $id('products_container').innerHTML = "";
+            if (type) {
+                for (let i in products) {
+                    if (products[i].TYPE == type) {
+                        $id('products_container').appendChild(addProduct(products[i]));
+                    }
+                }
+            } else {
+                for (let i = 0; i < products.length; i++) {
+                    $id('products_container').appendChild(addProduct(products[i]));
+                };
+            }
         } else {
             alert(xhr.status);
         }
     }
-    var url = "./phps/getproducts.php";
+    if (orderby) {
+        url = `./phps/getproducts.php?orderby=${orderby}`;
+    } else {
+        url = "./phps/getproducts.php?orderby=DATE_DESC";
+    }
     xhr.open("Get", url, true);
     xhr.send(null);
 
@@ -51,27 +71,52 @@ function getproducts() {
 function addProduct(product) {
     let newproduct = document.createElement('div'); //創建div
     newproduct.setAttribute('class', 'product'); //設定div的class
-    newproduct.innerHTML = `
+    if ($id('productInfo')) {
+        newproduct.innerHTML = `
     <div>
         <div class="img">   
-            <a href="./04_product.html">
-                <img src="./images/shopping/${product.IMG}" alt="">
+            <a href="./04_product.php?psn=${product.PSN}">
+                <img src="../images/shopping/${product.IMG}" alt="">
             </a>
         </div>
         <div class="content">
-            <a href="./04_product.html">
+            <a href="./04_product.php?psn=${product.PSN}">
                 <h4>${product.NAME}</h4>
                 <div class="price"><span>${product.PRICE}</span></div>
                 <p>${product.INFO}</p>
             </a>
             <div class='btns'>
-            <img class='addFavorite' src="./images/common/heart.png" alt="">
+            <img class='addFavorite' src="../images/common/heart.png" alt="">
             <input type="button" value="加入購物車" class="add_cart">
             <input type="hidden" name="" value='${product.PSN}|${product.NAME}|${product.IMG}|${product.PRICE}|1|1' class='productInfo' id="${product.PSN}">
             </div>
         </div>
     </div>
                         `;
+    } else {
+        newproduct.innerHTML = `
+        <div>
+            <div class="img">   
+                <a href="./phps/04_product.php?psn=${product.PSN}">
+                    <img src="./images/shopping/${product.IMG}" alt="">
+                </a>
+            </div>
+            <div class="content">
+                <a href="./phps/04_product.php?psn=${product.PSN}">
+                    <h4>${product.NAME}</h4>
+                    <div class="price"><span>${product.PRICE}</span></div>
+                    <p>${product.INFO}</p>
+                </a>
+                <div class='btns'>
+                <img class='addFavorite' src="./images/common/heart.png" alt="">
+                <input type="button" value="加入購物車" class="add_cart">
+                <input type="hidden" name="" value='${product.PSN}|${product.NAME}|${product.IMG}|${product.PRICE}|1|1' class='productInfo' id="${product.PSN}">
+                </div>
+            </div>
+        </div>
+                            `;
+    }
+
     newproduct.getElementsByClassName('add_cart')[0].addEventListener('click', addItem);
     return newproduct;
 }
@@ -83,15 +128,16 @@ function classifyBtnsSelect() {
             for (let j = 0; j < classifyBtns.length; j++) {
                 classifyBtns[j].setAttribute('class', 'classifyBtn');
             }
-            e.target.setAttribute('class', 'classifyBtn selected')
+            e.target.setAttribute('class', 'classifyBtn selected');
+
+            getproducts(e.target.innerText);
         });
 
     }
 }
 
 function addItem(e) {
-    console.log(e.target)
-    let itemValue = e.target.nextElementSibling.value;
+    let itemValue = e.target.parentNode.querySelectorAll('input[type=hidden]')[0].value;
     let itemNo = itemValue.split('|')[0],
         itemName = itemValue.split('|')[1],
         itemPrice = itemValue.split('|')[2],
@@ -198,7 +244,9 @@ function changeNum(e) {
     value.splice(-2, 1, num)
     value = value.join('|')
     storage[itemNo] = value;
-    calcAmount();
+    if ($id('totalAmount')) {
+        calcAmount();
+    }
 }
 
 
@@ -294,27 +342,49 @@ function getRecommends(sold) {
                 recommends.appendChild(addProduct(products[i]));
             };
             recommends.addEventListener('load', function () {
-                $('#recommends').slick({ //啟動slick
-                    infinite: true,
-                    slidesToShow: 3,
-                    slidesToScroll: 3,
-                    responsive: [{
-                        breakpoint: 721,
-                        settings: {
-                            slidesToShow: 1,
-                            slidesToScroll: 1,
-                        }
-                    }],
-                })
+
             });
         } else {
             alert(xhr.status);
         }
+        $('#recommends').slick({ //啟動slick
+            infinite: true,
+            slidesToShow: 3,
+            slidesToScroll: 3,
+            responsive: [{
+                breakpoint: 721,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                }
+            }],
+        })
     }
-    var url = "./phps/getRecommends.php?sold=" + sold;
+    if ($id('productInfo')) {
+        var url = "../phps/getRecommends.php?sold=" + sold;
+    } else {
+        var url = "./phps/getRecommends.php?sold=" + sold;
+
+    }
     xhr.open("Get", url, true);
     xhr.send(null);
+}
+
+function productPageBtn() {
+    $id('add_cart').addEventListener('click', addItem);
+    $id('buy').addEventListener('click', addItem);
+    $id('buy').addEventListener('click', () => {
+
+        location.href = './04_cart.html'
+    });
+}
 
 
-
+function orderBtn() {
+    let orderBtn = $id('orderby').querySelectorAll('input');
+    for (let i = 0; i < orderBtn.length; i++) {
+        orderBtn[i].addEventListener('change', () => {
+            getproducts('', orderBtn[i].value)
+        })
+    }
 }

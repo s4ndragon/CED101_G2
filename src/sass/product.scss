@@ -70,7 +70,7 @@ $mainWidth: 90%;
 }
 
 div.product_detail {
-    ul {
+    ul#selected {
         list-style: none;
         padding: 0;
         width: max-content;
@@ -106,7 +106,6 @@ div.product_detail {
     .content {
         background-color: #fff;
         text-align: center;
-        display: none;
         width: 90%;
         max-width: $maxWidth;
         margin: 0 auto;
@@ -121,11 +120,19 @@ div.product_detail {
             margin: 0 auto;
             width: max-content;
         }
+
+        #feature {
+            text-align: left;
+            width: max-content;
+            margin: 0 auto;
+
+            td {
+                padding: 5px;
+            }
+
+        }
     }
 
-    div.content:first-of-type {
-        display: block;
-    }
 }
 
 

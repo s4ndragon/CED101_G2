@@ -1,13 +1,10 @@
 <?php 
- 
 try {
 	require_once("./connectBooks.php");
-	$sql = "select * , GARD_VOTE/GARD_CLICK 'GARD_AVG' from garden order by GARD_AVG desc";
+	$sql = "select * from garden where GARD_ID = ?";
 	$garden = $pdo->prepare($sql);
+	$garden->bindValue(1, $_GET["GARD_ID"]); //第一個問號綁定的值是form表單傳來的資料$_GET["psn"]
 	$garden->execute();
-	$gardenRows = $garden->fetchAll(PDO::FETCH_ASSOC);
-	echo json_encode($gardenRows); //把陣列編碼成json字串傳到前端 echo印出json字串
-
 } catch (PDOException $e) {
 	echo "錯誤原因 : ", $e->getMessage(), "<br>";
 	echo "錯誤行號 : ", $e->getLine(), "<br>";

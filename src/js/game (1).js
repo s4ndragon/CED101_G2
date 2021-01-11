@@ -134,7 +134,7 @@ function sp(){				//創建一个img標籤
         //给img標籤賦值上我们寫的star class
         img.className = "star";
         //將圖片地址賦值给src
-        img.src = "../dist/images/game/giphy.webp";
+        img.src = "./images/game/leaf.gif";
         map.appendChild(img);
         //随機生成img的水平位置 而且不能超出地圖
         img.style.left = Math.random() * (map.offsetWidth - img.offsetWidth) + 'px';
@@ -142,7 +142,7 @@ function sp(){				//創建一个img標籤
         // leaf_i++;
 
         leaf[leaf.length]=setInterval(function(){
-          let objs = document.querySelectorAll('img[src="../dist/images/game/giphy.webp"]');
+          let objs = document.querySelectorAll('img[src="./images/game/leaf.gif"]');
           for(var img of objs){
             img.style.top = img.offsetTop + 2 + "px";        //
               if(img.offsetTop >= map.offsetHeight - img.offsetHeight) {
@@ -241,8 +241,9 @@ function calcDamage(keep, attack) {
    * attack 攻擊方
    */
   //計算减免的傷害值 百分比*傷害
-  //减血
-  keep.dataset.hp = keep.dataset.hp - (attack.dataset.damage - (keep.dataset.defense / 100 * attack.dataset.damage));
+  var breaks = keep.dataset.defense / 100 * attack.dataset.damage;
+				//减血
+	keep.dataset.hp = keep.dataset.hp - (attack.dataset.damage - breaks);
 }
 function kill(index,role,roleArr){
   //如果生命值hp歸零，則刪除陣列中以及地圖上的角色，角色有plant、worm。
