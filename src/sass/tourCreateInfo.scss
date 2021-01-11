@@ -51,12 +51,49 @@ h1 {
 
         .img_block {
             img {
+                width: 300px;
                 border-radius: 10px;
+                cursor: pointer;
+                // border: 1px solid black;
+            }
+
+
+
+        }
+
+        .imgWarn {
+            color: red;
+            text-align: right;
+
+        }
+
+        .tour_info {
+            input {
+                margin-bottom: 0;
+            }
+
+            .peopleAtt {
+                color: red;
+                text-align: right;
+                padding-right: 50px;
             }
         }
 
-        .option1 {
-            width: 100px;
+        #option1 {
+            margin-left: 20px;
+        }
+
+        .option {
+            width: 20px;
+        }
+
+        .tour_info_textarea {
+
+
+            p {
+                text-align: right;
+                color: $primary-typo-color;
+            }
         }
     }
 
@@ -74,7 +111,11 @@ h1 {
     }
 
     button {
-        @include btn2;
+        @include btn;
+    }
+
+    .next {
+        @include btn3;
     }
 }
 
