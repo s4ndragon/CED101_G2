@@ -28,9 +28,9 @@
                     <div class="num">數量:
                         <input type="number" v-model="itemNum" max='99' min='0' id="productNum">
                     </div><br><br>
-                    <img class='addFavorite' src="./images/common/heart.png" alt="">
+                    <img :class="'addFavorite ' +product[0].PSN" src="./images/common/heart.png" alt="">
                     <input type="button" value="加入購物車" class="add_cart" id="add_cart">
-                    <input type="hidden" name="" :value="value" class='productInfo'>
+                    <input type="hidden" name="" :value="value" class='productInfo' :id='product[0].PSN'>
                     <input type="button" value="直接購買" id="buy">
                 </div>
             </div>
@@ -62,13 +62,16 @@
             var xhr = new XMLHttpRequest();
             xhr.onload = function () {
                 if (xhr.status == 200) {
-                    //modify here
                     productInfo.product = JSON.parse(xhr.responseText);
                 } else {
                     alert(xhr.status);
                 }
-            }
-            var url = "./phps/getproductInfo.php?psn=10001";
+            };
+            let searchURL = window.location.search.split("=");
+
+            // console.log(searchURL[searchURL.length - 1]);
+            let psn = searchURL[searchURL.length - 1];
+            var url = `./phps/getproductInfo.php?psn=${psn}`;
             xhr.open("Get", url, true);
             xhr.send(null);
         };
@@ -145,10 +148,11 @@
             },
             computed: {
                 value() {
-                    let value = '';
-                    for (let i in this.product[0]) {
-                        value += this.product[0][i] + '|';
-                    }
+                    let value = this.product[0].PSN + '|' + this.product[0].NAME + '|' + this.product[0].IMG +
+                        '|' + this.product[0].PRICE + '|' + this.itemNum + '|' + '0';
+                    // for (let i in this.product[0]) {
+                    //     value += this.product[0][i] + '|';
+                    // }
                     return value;
                 }
             }
