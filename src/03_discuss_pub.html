@@ -12,42 +12,43 @@
 
 <body>
     @@include('layout/nav.html')
-    <main>
+    <main class="pub_back">
         <div class="banner">
             <div>
                 <h1>找茶討論</h1>
             </div>
         </div>
         <h2 id="pub_new">發表新文章</h2>
-        <form id="pub_article" action="">
+        <form id="pub_article" action="./phps/pubArticle.php" method="post" enctype="multipart/form-data">
             <div class="pub_input_container">
                 <label class="input_type upimg_text">文章圖片：</label>
                 <label id="preview_con" for="upimg"><img id="preview" src="./images/discuss/uploadimg.png"></label>
-                <input id="upimg" type="file">
+                <input id="upimg" type="file" name="img" accept="image/gif,image/jpeg,image/png,image/jpg">
             </div>
             <div class="pub_input_container">
                 <label class="input_type">文章類別：</label>
                 <select class="slt" name="article_cate">
-                    　<option value="">揪團心得</option>
-                    　<option value="">茶園討論</option>
-                    　<option value="">茶知識</option>
+                    　<option value="揪團心得">揪團心得</option>
+                    　<option value="茶園討論">茶園討論</option>
+                    　<option value="茶知識">茶知識</option>
                 </select>
             </div>
             <label class="input_type">文章標題：</label>
-            <input type="text">
-            </div>
+            <input type="text" name="title">
             <div class="pub_input_container">
                 <label class="input_type">文章內文：</label>
-                <textarea class="article_input"></textarea>
+                <textarea class="article_input" name="content"></textarea>
             </div>
             <div class="btn_countainer">
                 <button class="btn">
-                    <a href="03_discuss.html">送出</a>
-                </button>
-                <button class="btn">
                     <a href="03_discuss.html">取消</a>
                 </button>
+                <button class="btnsub" type="submit">
+                    送出
+                </button>
             </div>
+            <!-- ====隱藏value 用來存篩選分類==== -->
+            <input class="category" name="category" type="hidden" value="">
         </form>
     </main>
     @@include('layout/footer.html')
