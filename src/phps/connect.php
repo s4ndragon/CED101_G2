@@ -1,5 +1,5 @@
 <?
-$dsn='mysql:host=localhost;port=3306;dbname=ced101g2;charset=utf8';
+$dsn='mysql:host=localhost;port=3306;dbname=tibamefe_ced101g2;charset=utf8';
 $user='root';
 $password='root';
 // $options=array(3=>2,8=>0);
