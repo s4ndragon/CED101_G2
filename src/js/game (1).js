@@ -241,8 +241,9 @@ function calcDamage(keep, attack) {
    * attack 攻擊方
    */
   //計算减免的傷害值 百分比*傷害
-  //减血
-  keep.dataset.hp = keep.dataset.hp - (attack.dataset.damage - (keep.dataset.defense / 100 * attack.dataset.damage));
+  var breaks = keep.dataset.defense / 100 * attack.dataset.damage;
+				//减血
+	keep.dataset.hp = keep.dataset.hp - (attack.dataset.damage - breaks);
 }
 function kill(index,role,roleArr){
   //如果生命值hp歸零，則刪除陣列中以及地圖上的角色，角色有plant、worm。
