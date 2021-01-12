@@ -14,35 +14,58 @@ function init() {
     if ($id('products')) {
         getproducts();
         classifyBtnsSelect();
-        addcartalert()
+        orderBtn();
+        getFavortieList()
     };
+    //如果有推薦商品
     if ($id('recommends')) {
-        getRecommends(1)
+        getRecommends(1);
+        addcartalert();
     }
+    //如果是產品頁面
+    if ($id('add_cart')) {
+        productPageBtn();
+        $id('productInfo').querySelector('.addFavorite').addEventListener('click', addFavorite)
+    }
+    //如果是有購物車清單
     if ($id('cart_content')) {
         loadcart();
-        addcartalert()
     }
+    //如果有總額
     if ($id('totalBtn')) {
         dicountBtn()
     }
 };
 
-function getproducts() {
+function getproducts(type, orderby) {
     var xhr = new XMLHttpRequest();
+    let url;
     xhr.onload = function () {
         if (xhr.status == 200) {
             //modify here
             let products = JSON.parse(xhr.responseText);
-            let page = document.getElementsByClassName('page')[0];
-            for (let i = 0; i < products.length; i++) {
-                document.getElementsByClassName('products')[0].insertBefore(addProduct(products[i]), page); //將div插入page前
-            };
+            $id('products_container').innerHTML = "";
+            if (type) {
+                for (let i in products) {
+                    if (products[i].TYPE == type) {
+                        $id('products_container').appendChild(addProduct(products[i]));
+                    }
+                }
+            } else {
+                for (let i = 0; i < products.length; i++) {
+                    $id('products_container').appendChild(addProduct(products[i]));
+                };
+            }
         } else {
             alert(xhr.status);
         }
     }
-    var url = "./phps/getproducts.php";
+    if (orderby) {
+        url = `./phps/getproducts.php?orderby=${orderby}`;
+        console.log('排列選擇')
+    } else {
+        url = "./phps/getproducts.php?orderby=DATE_DESC";
+    }
     xhr.open("Get", url, true);
     xhr.send(null);
 
@@ -51,28 +74,33 @@ function getproducts() {
 function addProduct(product) {
     let newproduct = document.createElement('div'); //創建div
     newproduct.setAttribute('class', 'product'); //設定div的class
+
     newproduct.innerHTML = `
-    <div>
-        <div class="img">   
-            <a href="./04_product.html">
-                <img src="./images/shopping/${product.IMG}" alt="">
-            </a>
-        </div>
-        <div class="content">
-            <a href="./04_product.html">
-                <h4>${product.NAME}</h4>
-                <div class="price"><span>${product.PRICE}</span></div>
-                <p>${product.INFO}</p>
-            </a>
-            <div class='btns'>
-            <img class='addFavorite' src="./images/common/heart.png" alt="">
-            <input type="button" value="加入購物車" class="add_cart">
-            <input type="hidden" name="" value='${product.PSN}|${product.NAME}|${product.IMG}|${product.PRICE}|1|1' class='productInfo' id="${product.PSN}">
+        <div>
+            <div class="img">   
+                <a href="./04_product.html?psn=${product.PSN}">
+                    <img src="./images/shopping/${product.IMG}" alt="">
+                </a>
+            </div>
+            <div class="content">
+                <a href="./04_product.html?psn=${product.PSN}">
+                    <h4>${product.NAME}</h4>
+                    <div class="price"><span>${product.PRICE}</span></div>
+                    <p>${product.INFO}</p>
+                </a>
+                <div class='btns'>
+                <img class='addFavorite ${product.PSN}' src="./images/common/heart.png" alt="">
+                <input type="button" value="加入購物車" class="add_cart">
+                <input type="hidden" name="" value='${product.PSN}|${product.NAME}|${product.IMG}|${product.PRICE}|1|0' class='productInfo' id="${product.PSN}">
+                </div>
             </div>
         </div>
-    </div>
-                        `;
+                            `;
+
+
     newproduct.getElementsByClassName('add_cart')[0].addEventListener('click', addItem);
+    newproduct.getElementsByClassName('addFavorite')[0].addEventListener('click', addFavorite);
+    loadFavorite()
     return newproduct;
 }
 
@@ -83,38 +111,38 @@ function classifyBtnsSelect() {
             for (let j = 0; j < classifyBtns.length; j++) {
                 classifyBtns[j].setAttribute('class', 'classifyBtn');
             }
-            e.target.setAttribute('class', 'classifyBtn selected')
+            e.target.setAttribute('class', 'classifyBtn selected');
+
+            getproducts(e.target.innerText);
         });
 
     }
 }
 
 function addItem(e) {
-    console.log(e.target)
-    let itemValue = e.target.nextElementSibling.value;
-    let itemNo = itemValue.split('|')[0],
-        itemName = itemValue.split('|')[1],
-        itemPrice = itemValue.split('|')[2],
-        itemNum = itemValue.split('|')[3];
+    let itemValue = e.target.parentNode.querySelectorAll('input[type=hidden]')[0].value;
+    let itemNo = itemValue.split('|')[0];
     if (storage[`${itemNo}`]) {
-        alertLB('已經在購物車內囉。');
+        if (e.target.id != 'buy') {
+            alertLB('已經在購物車內囉。');
+        }
     } else {
         storage[`${itemNo}`] = itemValue;
         storage['addItemList'] += itemNo + ',';
-        itemValue = itemValue.split('|');
-        itemName = itemValue[1];
-        itemPrice = itemValue[2];
-        itemNum = itemValue[3];
         let cart_content = document.getElementById('cart_content');
         if (cart_content) {
             let newdiv = document.createElement('div');
             newdiv.setAttribute('class', 'item');
-            itemInnerhtml(newdiv, itemNo, itemName, itemNum, itemPrice);
-            cart_content.insertBefore(newdiv, amount);
+            newdiv.setAttribute('id', itemNo);
+            newdiv.innerHTML = itemInnerhtml(itemNo);
+            cart_content.insertBefore(newdiv, $id('amount'));
             calcAmount();
-            newdiv.querySelectorAll('.drop')[0].addEventListener('click', dropitem);
+            newdiv.querySelector('.drop').addEventListener('click', dropitem);
+            newdiv.querySelector('.itemNum').addEventListener('change', changeNum)
         };
-        alertLB('已加入購物車。');
+        if (e.target.id != 'buy') {
+            alertLB('已加入購物車。');
+        }
     }
 }
 
@@ -163,18 +191,16 @@ function dropitem(e) {
         index = addItemList.indexOf(e.target.parentNode.id);
     addItemList.splice(index, 1);
     storage['addItemList'] = addItemList;
-    console.log(addItemList);
     e.target.parentNode.remove();
     storage.removeItem(e.target.parentNode.id);
     calcAmount()
 }
 
 
-function calcAmount(e) {
+function calcAmount() {
     let items = document.getElementsByClassName('item'),
         total = 0;
     for (let i = 0; i < items.length; i++) {
-        items[i];
         let p = parseInt(items[i].getElementsByClassName('itemPrice')[0].value),
             n = parseInt(items[i].getElementsByClassName('itemNum')[0].value);
         total += p * n;
@@ -198,7 +224,9 @@ function changeNum(e) {
     value.splice(-2, 1, num)
     value = value.join('|')
     storage[itemNo] = value;
-    calcAmount();
+    if ($id('totalAmount')) {
+        calcAmount();
+    }
 }
 
 
@@ -272,6 +300,9 @@ function addcartalert() {
         document.getElementById('closeLB').addEventListener('click', () => {
             addcartLB.style.display = 'none';
         })
+        $id('addcartLB').addEventListener('click', () => {
+            addcartLB.style.display = 'none';
+        })
     }
 }
 
@@ -294,27 +325,138 @@ function getRecommends(sold) {
                 recommends.appendChild(addProduct(products[i]));
             };
             recommends.addEventListener('load', function () {
-                $('#recommends').slick({ //啟動slick
-                    infinite: true,
-                    slidesToShow: 3,
-                    slidesToScroll: 3,
-                    responsive: [{
-                        breakpoint: 721,
-                        settings: {
-                            slidesToShow: 1,
-                            slidesToScroll: 1,
-                        }
-                    }],
-                })
+
             });
         } else {
             alert(xhr.status);
         }
+        $('#recommends').slick({ //啟動slick
+            infinite: true,
+            slidesToShow: 3,
+            slidesToScroll: 3,
+            responsive: [{
+                breakpoint: 721,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                }
+            }],
+        });
+
     }
+
     var url = "./phps/getRecommends.php?sold=" + sold;
+
     xhr.open("Get", url, true);
     xhr.send(null);
+}
+
+function productPageBtn() {
+    $id('add_cart').addEventListener('click', addItem);
+    $id('buy').addEventListener('click', addItem);
+    $id('buy').addEventListener('click', () => {
+        location.href = '../04_cart.html'
+    });
+}
+
+
+function orderBtn() {
+    let orderBtn = $id('orderby').querySelectorAll('input');
+    for (let i = 0; i < orderBtn.length; i++) {
+        orderBtn[i].addEventListener('change', () => {
+            getproducts('', orderBtn[i].value)
+        })
+    }
+}
 
 
 
+function addFavorite(e) {
+    let img = e.target.src.split('/');
+    let src;
+    if (img[img.length - 1] == 'heart.png') {
+
+        src = './images/common/like.png';
+
+        storage['FavortieList'] += e.target.className.split(' ')[1] + ',';
+        let t = document.getElementsByClassName(`${e.target.className.split(' ')[1]}`);
+        for (let i = 0; i < t.length; i++) {
+            t[i].src = src;
+        }
+        alertLB('已加入我的最愛');
+
+    } else {
+        src = './images/common/heart.png';
+
+        let t = document.getElementsByClassName(`${e.target.className.split(' ')[1]}`);
+        for (let i = 0; i < t.length; i++) {
+            t[i].src = src;
+        }
+        let FavortieList = storage['FavortieList'].split(','),
+            index = FavortieList.indexOf(e.target.className.split(' ')[1]);
+        FavortieList.splice(index, 1);
+        storage['FavortieList'] = FavortieList;
+        alertLB('已取消我的最愛');
+    };
+}
+
+function loadFavorite() {
+    let list = storage['FavortieList'].split(',');
+    for (let i = 0; i < list.length - 1; i++) {
+        let like = document.getElementsByClassName(list[i]);
+        for (let j = 0; j < like.length; j++) {
+            let src = './images/common/like.png';
+
+            like[j].setAttribute('src', src)
+        }
+    }
+}
+
+function getFavortieList() {
+    var xhr = new XMLHttpRequest();
+    xhr.onload = function () {
+        if (xhr.status == 200) {
+            //modify here
+            let FavortieList = JSON.parse(xhr.responseText);
+            storage['FavortieList'] = '';
+            for (let i = 0; i < FavortieList.length; i++) {
+                storage['FavortieList'] += FavortieList[i].PSN + ',';
+
+            }
+            loadFavorite()
+
+        } else {
+            alert(xhr.status);
+        }
+    }
+    //假登入
+    let memNo = '1';
+    var url = "./phps/getFavoriteList.php?mem_no=" + memNo;
+
+
+    xhr.open("Get", url, true);
+    xhr.send(null);
+}
+
+window.addEventListener('load', sendFavortieList)
+
+function sendFavortieList() {
+    let xhr = new XMLHttpRequest();
+    let memNo = '1';
+    let url;
+    // 清空收藏列表
+    url = "./phps/deleteFavoriteList.php?mem_no=" + memNo;
+    xhr.open("Get", url, false);
+    xhr.send(null);
+
+    //寫入收藏列表
+    let FavortieList = storage['FavortieList'].split(',');
+    for (let i = 0; i < FavortieList.length - 1; i++) {
+        let psn = FavortieList[i];
+
+        url = "./phps/sendFavoriteList.php?mem_no=" + memNo + "&psn=" + psn;
+
+        xhr.open("Get", url, false);
+        xhr.send(null);
+    }
 }

@@ -47,6 +47,7 @@ main {
         .preview_container {
             width: 1200px;
             margin: 0 auto;
+            position: relative;
 
             @media only screen and (max-width: 576px) {
                 width: 100%;
@@ -66,6 +67,7 @@ main {
                 .preview_left {
                     display: inline-block;
                     width: 400px;
+
                     padding: 20px;
 
                     @media only screen and (max-width: 576px) {
@@ -74,6 +76,7 @@ main {
 
                     img {
                         border-radius: 10px;
+
                     }
 
                     // .preview_left_img
@@ -83,7 +86,7 @@ main {
                     display: inline-block;
                     width: 780px;
                     vertical-align: top;
-                    position: relative;
+
                     padding: 20px;
 
                     @media only screen and (max-width: 576px) {
@@ -105,22 +108,30 @@ main {
                             padding-right: 5px;
                             color: #7baa17;
                         }
+
+
                     }
 
-                    .rightDownDate {
-                        position: absolute;
+
+                }
+
+                .rightDownDate {
+                    position: absolute;
+                    bottom: 20px;
+                    right: 20px;
+
+
+                    @media only screen and (max-width: 576px) {
+                        position: relative;
                         bottom: 0;
                         right: 0;
-
-                        @media only screen and (max-width: 576px) {
-                            position: relative;
-                        }
-
-                        span {
-                            font-size: $h5;
-                        }
-
                     }
+
+                    span {
+                        font-size: $h5;
+                        color: #7baa17;
+                    }
+
                 }
             }
 
@@ -190,6 +201,10 @@ main {
                         .titleTour {
                             padding: 3px;
 
+                            span {
+                                color: black;
+                            }
+
                         }
 
                         .titleTour {
@@ -207,7 +222,7 @@ main {
     margin: 30px 0;
 
     h2 {
-        @include banner-2nd-title
+        @include banner-2nd-title;
     }
 }
 
@@ -234,6 +249,7 @@ main {
     .local_img {
         margin-right: 10px;
         border-radius: 10px;
+        position: relative;
 
         @media only screen and (max-width: 576px) {
             display: block;
@@ -243,6 +259,33 @@ main {
 
         img {
             border-radius: 10px;
+            height: 170px;
+        }
+
+        span {
+            font-size: $h5;
+            padding: 2px 5px;
+            color: white;
+            border-radius: 5px;
+            position: absolute;
+            right: -10px;
+            bottom: 0;
+        }
+
+        .t1 {
+            background-color: $secondary-typo-color;
+        }
+
+        .t2 {
+            background-color: deepskyblue;
+        }
+
+        .t3 {
+            background-color: orange;
+        }
+
+        .t4 {
+            background-color: deeppink;
         }
     }
 
@@ -261,30 +304,16 @@ main {
             font-size: $h4;
             color: #7baa17;
             font-weight: bold;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 1;
+            text-align: center;
         }
 
-        span {
-            font-size: $h5;
-            padding: 2px 5px;
-            color: white;
-            border-radius: 5px;
-        }
 
-        .t1 {
-            background-color: $secondary-typo-color;
-        }
 
-        .t2 {
-            background-color: deepskyblue;
-        }
-
-        .t3 {
-            background-color: orange;
-        }
-
-        .t4 {
-            background-color: deeppink;
-        }
 
 
 
@@ -293,7 +322,7 @@ main {
             text-overflow: ellipsis;
             display: -webkit-box;
             -webkit-box-orient: vertical;
-            -webkit-line-clamp: 5;
+            -webkit-line-clamp: 3;
             text-align: left;
         }
 
@@ -306,4 +335,6 @@ main {
     button {
         @include btn2;
     }
+
+
 }

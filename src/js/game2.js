@@ -152,13 +152,6 @@ function walk(){//蟲子走路
     for(var j = 0; j < path.plantArr[k].length; j++) {
       //蟲子和植物碰上了
       if(path.wormArr[k][i].offsetLeft <= path.plantArr[k][j].offsetLeft + path.plantArr[k][j].offsetWidth) {
-        /*
-         * data-star 所需star數
-         * data-hp hp
-         * data-defense 防御力
-         * data-damage 攻擊力
-         * data-speed 攻速
-         */
         //植物在殭屍之后时 不卡主殭屍
         if(path.plantArr[k][j].offsetLeft + path.plantArr[k][j].offsetWidth - path.wormArr[k][i].offsetLeft < 5) {
           //讓殭屍止步

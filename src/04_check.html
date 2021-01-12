@@ -7,14 +7,10 @@
     <title>結帳</title>
     <link rel="stylesheet" href="./vendors/slick-1.8.1/slick/slick.css">
     <link rel="stylesheet" href="./vendors/slick-1.8.1/slick/slick-theme.css">
-    <!-- <link rel="stylesheet" href="./css/shopping.css"> -->
     <link rel="stylesheet" href="./css/check.css">
 
-    <!-- 推薦廣告用 -->
-    <script src="./js/recommend.js"></script>
-    <script src="./js/checkout.js"></script>
     <script src="./js/product.js"></script>
-    <script src="./js/check.js"></script>
+    <script src="./js/checkout.js"></script>
 </head>
 
 <body>
@@ -36,7 +32,7 @@
                     <tr>
                         <td>寄件方式:</td>
                         <td>
-                            <select name="send" class="info">
+                            <select name="DELIVERY" class="info">
                                 <option value="宅配">宅配</option>
                                 <option value="7-11店到店">7-11店到店</option>
                             </select>
@@ -108,7 +104,7 @@
     </form>
     <div class="recommend">
         <h2>推薦商品</h2>
-        <div class="recommend_products">
+        <div class="recommend_products" id="recommends">
         </div>
     </div>
     @@include('layout/footer.html')
