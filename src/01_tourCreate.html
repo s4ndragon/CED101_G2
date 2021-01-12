@@ -43,8 +43,8 @@
             <div class="tourCreate_leftside" id="tourCreate">
                 <component :is="content" @click-plus-location="goToHotel()" @click-plus-hotel="goToRest()"
                     @click-plus-rest="goToActive()" @click-plus-rest1="showRest1()" @click-plus-rest2="showRest2()"
-                    @click-plus-active="goToNext()" @show-light-box="showBox()" :locations=" locationRows"
-                    :hotels=" hotelRows" :rests="restRows" :acts="actRows" :choice-tea="locationList">
+                    @click-plus-active="goToNext()" @show-light-box="showBox()" :locations="locationRows"
+                    :hotels="hotelRows" :rests="restRows" :acts="actRows" :choice-tea="locationList">
                 </component>
             </div>
         </div>
@@ -57,21 +57,21 @@
             <h3>行程明細</h3>
             <div class="tourCreate_rightside">
                 <div class="rightside">
-                    <h3>地點 <button @click="removeLocationStorage()">修改</button></h3>
+                    <h3>地點 <button @click="removeLocationStorage()" v-if="locationList.length>0">修改</button></h3>
                     <input disabled v-model=locationList>
                 </div>
                 <div class="rightside">
-                    <h3>住宿 <button @click="removeHotelStorage()">修改</button></h3>
+                    <h3>住宿 <button @click="removeHotelStorage()" v-if="hotelList.length>0">修改</button></h3>
                     <input disabled v-model=hotelList>
                 </div>
                 <div class="rightside">
-                    <h3>餐廳 <button @click="removeRestStorage()">修改</button></h3>
+                    <h3>餐廳 <button @click="removeRestStorage()" v-if="restList3.length>0">修改</button></h3>
                     <input disabled v-model=restList1>
                     <input disabled v-model=restList2>
                     <input disabled v-model=restList3>
                 </div>
                 <div class="rightside">
-                    <h3>活動 <button @click="removeActiveStorage()">修改</button></h3>
+                    <h3>活動 <button @click="removeActiveStorage()" v-if="activeList.length>0">修改</button></h3>
                     <input disabled v-model=activeList>
                 </div>
             </div>
@@ -170,16 +170,19 @@
                 }
             },
             methods: {
-                storagelocation(name) {
+                storagelocation(name, id) {
                     storage['location'] = name;
+                    storage['locationId'] = id;
                     this.$emit('click-plus-location');
                 },
-                showLightBox(boxName, boxContent, boxAddress, boxImg) {
-                    this.$emit('show-light-box');
+                showLightBox(boxName, boxContent, boxAddress, boxImg, gardID) {
                     storage['boxName'] = boxName;
                     storage['boxContent'] = boxContent;
                     storage['boxAddress'] = boxAddress;
                     storage['boxImg'] = boxImg;
+                    storage['gardID'] = gardID;
+                    this.$emit('show-light-box');
+
 
                 }
             },
@@ -193,10 +196,10 @@
                     <h3>{{location.GARD_NAME}}</h3>
                     <p>{{location.GARD_CONTENT}}</p>
                     <div class="viewBtn">
-                        <button class="viewBtn" @click="showLightBox(location.GARD_NAME,location.GARD_CONTENT,location.GARD_ADDRESS,location.GARD_PIC)">預覽</button>
+                        <button class="viewBtn" @click="showLightBox(location.GARD_NAME,location.GARD_CONTENT,location.GARD_ADDRESS,location.GARD_PIC,location.GARD_ID)">預覽</button>
                     </div>
                 </div>
-                <div class="add" @click="storagelocation(location.GARD_NAME)"><img src="./images/tour/add.png" alt="">
+                <div class="add" @click="storagelocation(location.GARD_NAME,location.GARD_ID)"><img src="./images/tour/add.png" alt="">
                 </div>
    
             </div>
@@ -216,21 +219,23 @@
                 }
             },
             methods: {
-                storagelocation(hotelName) {
+                storagelocation(hotelName, id) {
                     storage['hotel'] = hotelName;
+                    storage['hotelId'] = id;
                     this.$emit('click-plus-hotel');
                 },
-                showLightBox(boxName, boxContent, boxImg) {
+                showLightBox(boxName, boxContent, boxImg, hotelID) {
                     this.$emit('show-light-box');
                     storage['boxName'] = boxName;
                     storage['boxContent'] = boxContent;
                     storage['boxImg'] = boxImg;
+                    storage['hotelID'] = hotelID;
 
                 }
             },
             template: `
             <div class="tourCreate_item_block" id="hotel">
-            <div class="tourCreate_item" v-for="hotel in hotels" v-if="hotel.GARD_NAME==choiceTea">
+            <div class="tourCreate_item" v-for="hotel in hotels" v-show="hotel.GARD_NAME==choiceTea">
                 <div class="tourCreate_item_img">
                     <img :src=hotel.HOTEL_IMG alt="">
                 </div>
@@ -238,10 +243,10 @@
                     <h3>{{hotel.HOTEL_NAME}}</h3>
                     <p>{{hotel.HOTEL_INFRO}}</p>
                     <div class="viewBtn">
-                        <button class="viewBtn" @click="showLightBox(hotel.HOTEL_NAME,hotel.HOTEL_INFRO,hotel.HOTEL_IMG)">預覽</button>
+                        <button class="viewBtn" @click="showLightBox(hotel.HOTEL_NAME,hotel.HOTEL_INFRO,hotel.HOTEL_IMG,hotel.HOTEL_ID)">預覽</button>
                     </div>
                 </div>
-                <div class="add" @click="storagelocation(hotel.HOTEL_NAME)"><img src="./images/tour/add.png" alt="">
+                <div class="add" @click="storagelocation(hotel.HOTEL_NAME,hotel.HOTEL_ID)"><img src="./images/tour/add.png" alt="">
                 </div>
                 
             </div>
@@ -256,31 +261,52 @@
                 }
             },
             methods: {
-                storagelocation(name) {
+                storagelocation(name, id) {
                     if (storage.getItem('rest1') && storage.getItem('rest2') == undefined) {
-
                         storage['rest2'] = name;
-                        this.$emit('click-plus-rest2');
+                        if (storage.getItem('rest2') == storage.getItem('rest1')) {
+                            alert('餐廳不可以重複喔');
+                            storage.removeItem('rest2');
+
+                        } else {
+                            storage['rest2Id'] = id;
+                            this.$emit('click-plus-rest2');
+                        }
 
                     } else if (storage.getItem('rest2')) {
                         storage['rest3'] = name;
-                        this.$emit('click-plus-rest');
+                        if (storage.getItem('rest3') == storage.getItem('rest1')) {
+                            storage.removeItem('rest3');
+                            alert('餐廳不可以重複喔');
+
+                        } else if (storage.getItem('rest3') == storage.getItem('rest2')) {
+                            storage.removeItem('rest3');
+                            alert('餐廳不可以重複喔');
+
+                        } else {
+                            storage['rest3Id'] = id;
+                            this.$emit('click-plus-rest');
+                        }
+
+
                     } else {
                         storage['rest1'] = name;
+                        storage['rest1Id'] = id;
                         this.$emit('click-plus-rest1');
                     }
                 },
-                showLightBox(boxName, boxContent, boxImg) {
-                    this.$emit('show-light-box');
+                showLightBox(boxName, boxContent, boxImg, restID) {
                     storage['boxName'] = boxName;
                     storage['boxContent'] = boxContent;
                     storage['boxImg'] = boxImg;
+                    storage['restID'] = restID;
+                    this.$emit('show-light-box');
 
                 }
             },
             template: `
             <div class="tourCreate_item_block" id="rest" >
-            <div class="tourCreate_item" v-for="rest in rests" v-if="rest.GARD_NAME==choiceTea">
+            <div class="tourCreate_item" v-for="rest in rests" v-show="rest.GARD_NAME==choiceTea">
                 <div class="tourCreate_item_img">
                     <img :src=rest.RESTAURANT_IMG alt="">
                 </div>
@@ -288,10 +314,10 @@
                     <h3>{{rest.RESTAURANT_NAME}}</h3>
                     <p>{{rest.RESTAURANT_INFRO}}</p>
                     <div class="viewBtn">
-                        <button class="viewBtn" @click="showLightBox(rest.RESTAURANT_NAME,rest.RESTAURANT_INFRO,rest.RESTAURANT_IMG)">預覽</button>
+                        <button class="viewBtn" @click="showLightBox(rest.RESTAURANT_NAME,rest.RESTAURANT_INFRO,rest.RESTAURANT_IMG,rest.RESTAURANT_ID)">預覽</button>
                     </div>
                 </div>
-                <div class="add" @click="storagelocation(rest.RESTAURANT_NAME)"><img src="./images/tour/add.png" alt=""></div>
+                <div class="add" @click="storagelocation(rest.RESTAURANT_NAME,rest.RESTAURANT_ID)"><img src="./images/tour/add.png" alt=""></div>
             </div>
         </div>
             `,
@@ -304,15 +330,17 @@
                 }
             },
             methods: {
-                storageActive(actNAME) {
+                storageActive(actNAME, id) {
                     storage['active'] = actNAME;
+                    storage['activeId'] = id;
                     this.$emit('click-plus-active');
                 },
-                showLightBox(boxName, boxContent, boxImg) {
+                showLightBox(boxName, boxContent, boxImg, actID) {
                     this.$emit('show-light-box');
                     storage['boxName'] = boxName;
                     storage['boxContent'] = boxContent;
                     storage['boxImg'] = boxImg;
+                    storage['actID'] = actID;
 
                 }
             },
@@ -326,11 +354,11 @@
                         <h3>{{act.ACTIVE_NAME}}</h3>
                         <p>{{act.ACTIVE_INFRO}}</p>
                         <div class="viewBtn">
-                            <button class="viewBtn" @click="showLightBox(act.ACTIVE_NAME,act.ACTIVE_INFRO,act.ACTIVE_IMG)">預覽</button>
+                            <button class="viewBtn" @click="showLightBox(act.ACTIVE_NAME,act.ACTIVE_INFRO,act.ACTIVE_IMG,act.ACTIVE_ID)">預覽</button>
                         </div>
                     </div>
                     <div class="add"><img src="./images/tour/add.png" alt=""></div>
-                    <div class="add" @click="storageActive(act.ACTIVE_NAME)"><img src="./images/tour/add.png" alt=""></div>
+                    <div class="add" @click="storageActive(act.ACTIVE_NAME,act.ACTIVE_ID)"><img src="./images/tour/add.png" alt=""></div>
                 </div>
             </div>
             `,
@@ -400,6 +428,10 @@
                 boxContent: "",
                 boxAddress: "",
                 boxImg: "",
+                restID: "",
+                gardID: "",
+                actID: "",
+                hotelID: "",
             },
             methods: {
                 removeLocationStorage() {
@@ -448,7 +480,7 @@
                     this.restList2 = "";
                     this.restList3 = "";
                     this.nextBtn = false;
-                    this.title = "選擇餐廳";
+                    this.title = "選擇餐廳 (選擇三間)";
                     this.color3 = "#4c6e39";
                     this.bgcolor3 = "#fff";
                     this.color1 = "#fff";
@@ -515,7 +547,7 @@
                 goToRest() {
                     this.hotelList = storage.getItem('hotel');
                     this.content = 'rest';
-                    this.title = "選擇餐廳";
+                    this.title = "選擇餐廳 (選擇三間)";
                     this.color3 = "#4c6e39";
                     this.bgcolor3 = "#fff";
                     this.color1 = "#fff";
@@ -531,12 +563,29 @@
                         this.boxContent = storage.getItem('boxContent');
                         this.boxAddress = storage.getItem('boxAddress');
                         this.boxImg = storage.getItem('boxImg');
+                        this.restID = storage.getItem('restID');
+                        this.gardID = storage.getItem('gardID');
+                        this.actID = storage.getItem('actID');
+                        this.hotelID = storage.getItem('hotelID');
+                        storage['locationId'] = this.gardID;
+                        storage['activeId'] = this.actID;
+                        storage['hotelId'] = this.hotelID;
+
                         this.lightBox = true;
                         if (storage.getItem('boxAddress')) {
                             this.score = true;
                         } else {
                             this.score = false;
                         }
+                        if (storage.getItem('rest1') && storage.getItem('rest2') == undefined) {
+                            storage['rest2Id'] = this.restID;
+                        } else if (storage.getItem('rest2')) {
+                            storage['rest3Id'] = this.restID;
+                        } else {
+                            storage['rest1Id'] = this.restID;
+                        }
+
+
                     }, 10);
 
                 },
@@ -560,12 +609,37 @@
                         this.showRest1();
                     } else if (storage.getItem('rest1') && storage.getItem('rest2') == undefined) {
                         storage['rest2'] = this.boxName;
-                        this.closeBox();
-                        this.showRest2();
+
+                        if (storage.getItem('rest2') == storage.getItem('rest1')) {
+                            this.closeBox();
+                            alert('餐廳不可以重複喔');
+                            storage.removeItem('rest2');
+
+                        } else {
+
+                            this.closeBox();
+                            this.showRest2();
+                        }
                     } else if (storage.getItem('rest2') && storage.getItem('rest3') == undefined) {
                         storage['rest3'] = this.boxName;
-                        this.closeBox();
-                        this.goToActive();
+
+                        if (storage.getItem('rest3') == storage.getItem('rest1')) {
+                            this.closeBox();
+                            storage.removeItem('rest3');
+                            alert('餐廳不可以重複喔');
+
+                        } else if (storage.getItem('rest3') == storage.getItem('rest2')) {
+                            storage.removeItem('rest3');
+                            alert('餐廳不可以重複喔');
+                            this.closeBox();
+
+                        } else {
+                            this.closeBox();
+                            this.goToActive();
+
+                        }
+
+
                     } else if (storage.getItem('rest3') && storage.getItem('active') == undefined) {
                         storage['active'] = this.boxName;
                         this.closeBox();
@@ -608,13 +682,14 @@
                 },
             },
             mounted() {
-                this.locationList = storage.getItem('location');
-                this.hotelList = storage.getItem('hotel');
-                this.restList1 = storage.getItem('rest1');
-                this.restList2 = storage.getItem('rest2');
-                this.restList3 = storage.getItem('rest3');
-                this.activeList = storage.getItem('active');
+
                 if (storage.getItem('active')) {
+                    this.locationList = storage.getItem('location');
+                    this.hotelList = storage.getItem('hotel');
+                    this.restList1 = storage.getItem('rest1');
+                    this.restList2 = storage.getItem('rest2');
+                    this.restList3 = storage.getItem('rest3');
+                    this.activeList = storage.getItem('active');
                     this.content = "active";
                     this.nextBtn = true;
                     this.title = "選擇活動";
@@ -626,6 +701,7 @@
                     this.bgcolor2 = "#4c6e39";
                     this.color3 = "#fff";
                     this.bgcolor3 = "#4c6e39";
+
                 };
 
 

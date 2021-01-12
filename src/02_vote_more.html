@@ -22,7 +22,7 @@
     </div>
 
     <main id="app">
-        <div class="all" v-for="garitem in gardenTop">
+        <div class="all" v-for="garitem in gardenRows">
             <div class="garden">
                 <img class="gpic" :src="garitem.GARD_PIC">
             </div>
@@ -76,7 +76,7 @@
                                     <star-rating :increment="0.5" :show-rating="false" @rating-selected="setRating"></star-rating>
                                     <div style="margin-top:10px;font-weight:bold;">{{rating}}</div>                                </div>
                                 </div>
-                            <button id="btnSendVote" class="go" @click="sendScore">送出</button>
+                            <div id="btnSendVote" class="go" @click="sendScore">送出</div>
                         </form>
                     </div>
                 </div>
@@ -346,39 +346,20 @@
 
 
     <script>
-        window.addEventListener("load", function (){
-			let gardenRows;
-			//============去server端拿資料
-			let xhr = new XMLHttpRequest();
-			xhr.onload = function(){  //step3
-				app.gardenRows = JSON.parse(xhr.responseText); 
-                console.log(app.gardenRows);
-                app.gardenTop = app.gardenRows.slice(1,2);
-                console.log(gardenTop);
-			}
-			xhr.open("get","./phps/vote_more.php", true); //step1
-            xhr.send(null); //step2
-
-            //====================================送出評分
-            function $id(id){
-                return document.getElementById(id);
-            }	
-
-        });
-        
         
         Vue.component("star-rating", VueStarRating.default);
 
         var app = new Vue({
             el: "#app",
             data: {
-                gardenTop:'',
+                gardenRows:'',
                 lightbox: false,
                 lightbox_GARD_ID:'',
 
                 showModal2: false,
                 rating: '您尚未評分',
-                sendRating:''
+                sendRating:'',
+                targetPageId:''
             },
 
             methods: {
@@ -397,7 +378,9 @@
                     //註冊callback function 
                     xhr.onload = function(){
                         if(xhr.status == 200){ //success
-                            console.log(2) = xhr.responseText;
+                            // app.gardenRows = xhr.responseText;
+                            // console.log(app.gardenRows)
+                            console.log(666)
                         }else{
                             alert(xhr.status);
                         }
@@ -406,9 +389,45 @@
                     xhr.open("post", "./phps/send_vote.php", true);
                     xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
                     //送出資料
-                    let data_info = "GARD_VOTE=" + this.sendRating + "&" + "GARD_ID=" + this.lightbox_GARD_ID;
+                    let data_info = "GARD_VOTE=" + this.sendRating + "&" + "GARD_ID=" + this.targetPageId;
                     xhr.send(data_info);
+
+                    this.lightbox = false
                 }
+            },
+
+            mounted() {
+                let searchURL = window.location.search;
+                searchURL = searchURL.substring(1, searchURL.length);
+                let targetPageId = searchURL.split("=")[1];
+                this.targetPageId = targetPageId;
+
+                //============傳targetPageId給php
+                let gardenRows;
+
+                let xhr = new XMLHttpRequest();
+                    //註冊callback function 
+                    xhr.onload = function(){
+                        if(xhr.status == 200){ //success
+                            app.gardenRows = JSON.parse(xhr.responseText);
+                            
+                        }else{
+                            alert(xhr.status);
+                        }
+                    }
+                    //設定好所要連結的程式
+                    xhr.open("post", "./phps/vote_more.php", true);
+                    xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+                    //送出資料
+                    // let data_info = "GARD_ID=" + this.targetPageId;
+                    let data_info = `GARD_ID=${this.targetPageId}`;
+                    xhr.send(data_info);
+
+                //====================================送出評分
+                function $id(id){
+                    return document.getElementById(id);
+                }	
+
             },
         });
 

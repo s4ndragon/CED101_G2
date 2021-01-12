@@ -11,7 +11,7 @@
     </head>
     <body>
         @@include('layout/nav.html')
-        <div id="title" class="banner"><h1 class="banner-1st-title">小遊戲-茶園保衛戰</h1></div>
+        <div id="title" class="banner"><h1 class="fir">小遊戲-茶園保衛戰</h1></div>
         <div class="w100 flex j_c">
             <div id="map">
                 <div class="tea_en flex a_c j_c">
@@ -60,7 +60,7 @@
                 </div>
                 <div class="gameover">
                     <article>
-                        <div style="top: 107px; position: relative; font-size: 28px; left: 200px">
+                        <div style="top: 107px; position: relative; font-size: 28px; left: 225px">
                             <span >計分</span>
                             <span id="score-over">0</span>
                         </div>
@@ -68,11 +68,10 @@
                             <p style="font-size: 28px; color: red">蟲子跑進了茶園</p>
                             <img src="./images/game/200_d.gif" alt="" style="width: 300px" />
                         </div>
-                        <div id="replay" class="flex a_c" style="cursor: pointer">
-                            <img src="./images/game/return.png" alt="再玩一次" /><span
-                                style="font-size: 28px; color: red"
-                                >再玩一次</span
-                            >
+                        <div id="replay" class="flex a_c">
+                            <div id="innerplay" class="flex a_c j_c">
+                                <span>再玩一次</span>
+                            </div>
                         </div>
                     </article>
                 </div>
@@ -200,7 +199,7 @@
                 var li=document.createElement("li");
                 
 
-				var inner=`<img src="./images/game/${i.IMG}" data-star="${i.DATA_STAR}" data-hps="${i.DATA_HPS}" data-hp="${i.data_HP}" data-defense="${i.DATA_DEFENSE}" data-damage="${i.DATA_DAMAGE}" data-speed="${i.DATA_SPEED}" class="plant" />
+				var inner=`<img src="./images/game/${i.IMG}" data-star="${i.DATA_STAR}" data-hps="${i.DATA_HPS}" data-hp="${i.DATA_HP}" data-defense="${i.DATA_DEFENSE}" data-damage="${i.DATA_DAMAGE}" data-speed="${i.DATA_SPEED}" class="plant" />
 				<span>${i.DATA_STAR}</span>
 				`;
 				li.innerHTML=inner;

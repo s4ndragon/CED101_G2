@@ -4,10 +4,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="./images/index/webIcon.png" type="image/x-icon" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
-        integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous" />
     <link rel="stylesheet" href="./css/tour_preview.css" />
+    <script src="../node_modules/vue/dist/vue.js"></script>
     <title>建立揪團-預覽</title>
 </head>
 
@@ -19,70 +17,66 @@
             <h1>建立揪團</h1>
         </div>
     </div>
-    <main>
+    <main id="preview">
         <h1>預覽建立揪團</h1>
 
         <div class="tourCreate_main">
             <div class="preview_container">
-
                 <div class="preview_content">
                     <div class="preview_left">
                         <div class="preview_left_img">
-                            <img src="./images/tour/tour1.jpg" />
+                            <img :src=img>
                         </div>
-
-
                     </div>
                     <div class="preview_right">
                         <div class="titleTour tour_title">
-                            跨年茶園趴
+                            {{tourName}}
                         </div>
 
                         <div class="titleTour tour_brief">
                             <span>揪團簡介:</span><br>
-                            在高山茶園中度過最難忘的跨年之夜，當天茶園主人會準備豐盛的buffet及茶點，用餐完畢後有煙火大會，茶園備有KTV設備及Switch等娛樂設備供大家使用。
+                            {{intro}}
                         </div>
                         <div class="titleTour tour_date">
-                            <span>出團日期:</span>2020/12/31
+                            <span>出團日期:</span>{{activeDate}}
                         </div>
                         <div class="titleTour tour_attendency">
-                            <span>揪團人數:</span>30
+                            <span>揪團人數:</span>{{people}}
                         </div>
                         <div class="titleTour tour_notes">
                             <span>揪團備註:</span><br>
-                            請自備保暖衣物
-                        </div>
-                        <div class="rightDownDate">
-                            <div class="titleTour today_date">
-                                <span>發起日期:</span>2020/12/21
-                            </div>
-                            <div class="titleTour end_date">
-                                <span>截止日期:</span>2020/12/30
-                            </div>
+                            {{introPs}}
                         </div>
 
                     </div>
+                    <div class="rightDownDate">
+                        <div class="titleTour today_date">
+                            <span>發起日期:</span>{{today}}
+                        </div>
+                        <div class="titleTour end_date">
+                            <span>截止日期:</span>{{deadDate}}
+                        </div>
+                    </div>
+
                 </div>
                 <div class="garden_info_container">
                     <div class="info_title">
                         <h2>茶園簡介</h2>
                     </div>
-                    <div class="info_content">
-                        <div class="info_left"><img src="./images/tour/tour1.jpg" /></div>
+                    <div class="info_content" v-for="location in locationRows"
+                        v-show="location.GARD_NAME== locationList">
+                        <div class="info_left"><img :src=location.GARD_PIC /></div>
                         <div class="info_right">
+                            <div id="garden_title" class="content">{{location.GARD_NAME}}</div>
+                            <div class="titleTour garden_add">茶園地址:
+                                <span id="garden_add" class="content">{{location.GARD_ADDRESS}}</span>
+                            </div>
 
-                            <div id="garden_title" class="content">林杯茶園</div>
-                            <div class="titleTour garden_add">茶園地址:</div>
-                            <div id="garden_add" class="content">320,
-                                Taoyuan City,
-                                Zhongli District,
-                                Fuxing Road,
-                                46號9樓 </div>
                             <div class="titleTour garden_brift">茶園簡介:</div>
-                            <div id="garden_brift" class="content">位於中壢市區的小茶園</div>
-                            <div class="titleTour garden_price">預估費用:</div>
-                            <div id="garden_price" class="content">NT 10,
-                                000</div>
+                            <div id="garden_brift" class="content">{{location.GARD_CONTENT}}</div>
+                            <div class="titleTour garden_price">預估費用: <span id="garden_price" class="content">NT
+                                    {{location.GARD_PRICE}}</span></div>
+
                         </div>
                     </div>
                     <div class="activity">
@@ -90,76 +84,201 @@
                             <h2>選擇行程</h2>
                         </div>
                         <div class="activity_content">
-                            <div class="local_block">
+                            <div class="local_block" v-for="rest in restRows" v-show="rest.RESTAURANT_NAME==restList1">
                                 <div class="local_img">
-                                    <img src="images/vote/cafe.jpg" alt="">
+                                    <img :src=rest.RESTAURANT_IMG alt="">
+                                    <span class="t3">餐廳</span>
                                 </div>
                                 <div class="local_text">
-                                    <h2>好茶咖啡工作室
-                                        <span class="t3">餐廳</span>
+                                    <h2>{{rest.RESTAURANT_NAME}}
+
                                     </h2>
-                                    <p>Ba han han non - 阿美族語何不休息一下，品茗伴隨陣陣咖啡香，一同品味蜜香紅茶與迦納咖啡的風味。
+                                    <p>{{rest.RESTAURANT_INFRO}}
                                     </p>
                                 </div>
                             </div>
-                            <div class="local_block">
+                            <div class="local_block" v-for="rest in restRows" v-show="rest.RESTAURANT_NAME==restList2">
                                 <div class="local_img">
-                                    <img src="images/vote/cafe.jpg" alt="">
+                                    <img :src=rest.RESTAURANT_IMG alt="">
+                                    <span class="t3">餐廳</span>
                                 </div>
                                 <div class="local_text">
-                                    <h2>好茶咖啡工作室
-                                        <span class="t3">餐廳</span>
+                                    <h2>{{rest.RESTAURANT_NAME}}
                                     </h2>
-                                    <p>Ba han han non - 阿美族語何不休息一下，品茗伴隨陣陣咖啡香，一同品味蜜香紅茶與迦納咖啡的風味。
+                                    <p>{{rest.RESTAURANT_INFRO}}
                                     </p>
                                 </div>
                             </div>
-                            <div class="local_block">
+                            <div class="local_block" v-for="rest in restRows" v-show="rest.RESTAURANT_NAME==restList3">
                                 <div class="local_img">
-                                    <img src="images/vote/cafe.jpg" alt="">
+                                    <img :src=rest.RESTAURANT_IMG alt="">
+                                    <span class="t3">餐廳</span>
                                 </div>
                                 <div class="local_text">
-                                    <h2>好茶咖啡工作室
-                                        <span class="t3">餐廳</span>
+                                    <h2>{{rest.RESTAURANT_NAME}}
                                     </h2>
-                                    <p>Ba han han non - 阿美族語何不休息一下，品茗伴隨陣陣咖啡香，一同品味蜜香紅茶與迦納咖啡的風味。
+                                    <p>{{rest.RESTAURANT_INFRO}}
                                     </p>
                                 </div>
                             </div>
-                            <div class="local_block">
+                            <div class="local_block" v-for="hotel in hotelRows" v-show="hotel.HOTEL_NAME==hotelList">
                                 <div class="local_img">
-                                    <img src="images/vote/cafe.jpg" alt="">
+                                    <img :src=hotel.HOTEL_IMG alt="">
+                                    <span class="t2">住宿</span>
                                 </div>
                                 <div class="local_text">
-                                    <h2>好茶咖啡工作室
-                                        <span class="t3">餐廳</span>
+                                    <h2>{{hotel.HOTEL_NAME}}
                                     </h2>
-                                    <p>Ba han han non - 阿美族語何不休息一下，品茗伴隨陣陣咖啡香，一同品味蜜香紅茶與迦納咖啡的風味。
+                                    <p>{{hotel.HOTEL_INFRO}}
                                     </p>
                                 </div>
                             </div>
-                            <div class="local_block">
+                            <div class="local_block" v-for="act in actRows" v-show="act.ACTIVE_NAME==activeList">
                                 <div class="local_img">
-                                    <img src="images/vote/cafe.jpg" alt="">
+                                    <img :src=act.ACTIVE_IMG alt="">
+                                    <span class="t4">活動</span>
                                 </div>
                                 <div class="local_text">
-                                    <h2>好茶咖啡工作室
-                                        <span class="t3">餐廳</span>
+                                    <h2>{{act.ACTIVE_NAME}}
                                     </h2>
-                                    <p>Ba han han non - 阿美族語何不休息一下，品茗伴隨陣陣咖啡香，一同品味蜜香紅茶與迦納咖啡的風味。
+                                    <p>{{act.ACTIVE_INFRO}}
                                     </p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="btn"><button class="prev"><a href="./01_tourCreateInfro.html"> 上一步</a></button><button
-                        class="next"><a href="./01_tour.html"> 確認</a></button></div>
+                <form action="./phps/tourInsert.php" method="post" enctype="multipart/form-data">
+                    <input hidden type="text" name="GARD_ID" v-model=gardId>
+                    <input hidden type="text" name="MEM_NO" v-model=memNo>
+                    <input hidden type="text" name="HOTEL_ID" v-model=hotelId>
+                    <input hidden type="text" name="TOUR_PEOPLE" v-model=people>
+                    <input hidden type="text" name="NUM_OF_PARTICIPANTS" v-model=nowPeople>
+                    <input hidden type="text" name="SETUP_DATE" v-model=today>
+                    <input hidden type="text" name="DEADLINE_DATE" v-model=deadDate>
+                    <input hidden type="text" name="TOUR_SETOFFTIME" v-model=activeDate>
+                    <input hidden type="text" name="TOUR_TITLE" v-model=tourName>
+                    <input hidden type="text" name="TOUR_INFRO" v-model=intro>
+                    <input hidden type="text" name="TOUR_PS" v-model=introPs>
+                    <input hidden type="text" name="TOUR_IMG" v-model=img>
+                    <input hidden type="text" name="TOUR_LEADER" v-model=leader>
+                    <input hidden type="text" name="TOUR_ACTIVE" v-model=activeList>
+                    <input hidden type="text" name="TOUR_STATUS" v-model=status>
+                    <input hidden type="text" name="RESTAURANT_ID1" v-model=restId1>
+                    <input hidden type="text" name="RESTAURANT_ID2" v-model=restId2>
+                    <input hidden type="text" name="RESTAURANT_ID3" v-model=restId3>
+                    <div class="btn"><button class="prev"><a href="./01_tourCreateInfro.html"> 上一步</a></button>
+                        <button type="submit" class="next"><a> 確認</a></button>
+                    </div>
+                </form>
             </div>
         </div>
-
     </main>
     @@include('layout/footer.html')
+
+    <script>
+        let storage = sessionStorage;
+
+        window.addEventListener("load", function () {
+            //============去server端拿茶園資料
+            let locationRows;
+            let xhr = new XMLHttpRequest();
+            xhr.onload = function () {
+                preview.locationRows = JSON.parse(xhr.responseText);
+                console.log(preview.locationRows);
+            }
+            xhr.open("get", "./phps/getLocation.php", true);
+            xhr.send(null);
+            //============去server端拿住宿資料
+            let hotelRows;
+            let xhrHotel = new XMLHttpRequest();
+            xhrHotel.onload = function () {
+                preview.hotelRows = JSON.parse(xhrHotel.responseText);
+                console.log(preview.hotelRows);
+            }
+            xhrHotel.open("get", "./phps/getHotel.php", true);
+            xhrHotel.send(null);
+            //============去server端拿餐廳資料
+            let restRows;
+            let xhrRest = new XMLHttpRequest();
+            xhrRest.onload = function () {
+                preview.restRows = JSON.parse(xhrRest.responseText);
+                console.log(preview.restRows);
+            }
+            xhrRest.open("get", "./phps/getRest.php", true);
+            xhrRest.send(null);
+            //============去server端拿活動資料
+            let actRows;
+            let xhrAct = new XMLHttpRequest();
+            xhrAct.onload = function () {
+                preview.actRows = JSON.parse(xhrAct.responseText);
+                console.log(preview.actRows);
+            }
+            xhrAct.open("get", "./phps/getAct.php", true);
+            xhrAct.send(null);
+        })
+        let preview = new Vue({
+            el: "#preview",
+            data: {
+                gardId: "",
+                memNo: 1,
+                hotelId: "",
+                nowPeople: 0,
+                previewImg: "",
+                img: "",
+                tourName: "",
+                today: "",
+                people: "",
+                leader: "",
+                deadDate: "",
+                activeDate: "",
+                intro: "",
+                introPs: "",
+                locationList: "",
+                hotelList: "",
+                restList1: "",
+                restList2: "",
+                restList3: "",
+                activeList: "",
+                restId1: "",
+                restId2: "",
+                restId3: "",
+                status: 1,
+                // ===========資料
+                locationRows: [],
+                hotelRows: [],
+                restRows: [],
+                actRows: [],
+
+            },
+
+            mounted() {
+                this.previewImg = storage.getItem('preview_img');
+                this.tourName = storage.getItem('tourName');
+                this.people = storage.getItem('people');
+                this.leader = storage.getItem('leader');
+                this.today = storage.getItem('today');
+                this.deadDate = storage.getItem('deadDate');
+                this.activeDate = storage.getItem('activeDate');
+                this.intro = storage.getItem('intro');
+                this.introPs = storage.getItem('introPs');
+                this.locationList = storage.getItem('location');
+                this.hotelList = storage.getItem('hotel');
+                this.restList1 = storage.getItem('rest1');
+                this.restList2 = storage.getItem('rest2');
+                this.restList3 = storage.getItem('rest3');
+                this.activeList = storage.getItem('active');
+                this.restId1 = storage.getItem('rest1Id');
+                this.restId2 = storage.getItem('rest2Id');
+                this.restId3 = storage.getItem('rest3Id');
+                this.gardId = storage.getItem('locationId');
+                this.hotelId = storage.getItem('hotelId');
+                this.img = storage.getItem('img');
+
+            },
+
+        })
+    </script>
 </body>
 
 </html>
