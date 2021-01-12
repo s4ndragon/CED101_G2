@@ -19,18 +19,18 @@
     <div id='productInfo'>
         <div class="product_info">
             <div class="product_img">
-                <img v-bind:src="'./images/shopping/'+product[0].IMG" alt="">
+                <img v-bind:src="'./images/shopping/'+product.IMG" alt="">
             </div>
-            <div class="info">{{product[0].NAME}}</h2>
+            <div class="info">{{product.NAME}}</h2>
 
                 <div class="info_content">
-                    <div class="price">NT<span>{{product[0].PRICE}}</span></div>
+                    <div class="price">NT<span>{{product.PRICE}}</span></div>
                     <div class="num">數量:
                         <input type="number" v-model="itemNum" max='99' min='0' id="productNum">
                     </div><br><br>
-                    <img :class="'addFavorite ' +product[0].PSN" src="./images/common/heart.png" alt="">
+                    <img :class="'addFavorite ' +product.PSN" src="./images/common/heart.png" alt="">
                     <input type="button" value="加入購物車" class="add_cart" id="add_cart">
-                    <input type="hidden" name="" :value="value" class='productInfo' :id='product[0].PSN'>
+                    <input type="hidden" name="" :value="value" class='productInfo' :id='product.PSN'>
                     <input type="button" value="直接購買" id="buy">
                 </div>
             </div>
@@ -54,28 +54,6 @@
     @@include('layout/footer.html')
 
     <script>
-        var storage = sessionStorage;
-        // window.addEventListener('load', getproductInfo)
-        getproductInfo();
-
-        function getproductInfo() {
-            var xhr = new XMLHttpRequest();
-            xhr.onload = function () {
-                if (xhr.status == 200) {
-                    productInfo.product = JSON.parse(xhr.responseText);
-                } else {
-                    alert(xhr.status);
-                }
-            };
-            let searchURL = window.location.search.split("=");
-
-            // console.log(searchURL[searchURL.length - 1]);
-            let psn = searchURL[searchURL.length - 1];
-            var url = `./phps/getproductInfo.php?psn=${psn}`;
-            xhr.open("Get", url, true);
-            xhr.send(null);
-        };
-
         Vue.component('detail', {
             props: ['details', "product"],
             template: `
@@ -85,7 +63,7 @@
             `,
             computed: {
                 details() {
-                    details = this.product[0].FEATURES.split('|');
+                    details = this.product.FEATURES.split('|');
                     return details;
                 }
             },
@@ -104,7 +82,7 @@
             `,
             computed: {
                 feature() {
-                    feature = this.product[0].DETAIL.split('|');
+                    feature = this.product.DETAIL.split('|');
                     return feature[0].split('\n');
                 },
 
@@ -121,7 +99,7 @@
         productInfo = new Vue({
             el: '#productInfo',
             data: {
-                product: [{
+                product: {
                     DETAIL: "",
                     FEATURES: "1.jpg",
                     IMG: "1.jpg",
@@ -132,9 +110,24 @@
                     PSN: "",
                     SOLD: "",
                     TYPE: "",
-                }],
+                },
                 content: 'detail',
                 itemNum: 1,
+            },
+            beforeCreate() {
+                var xhr = new XMLHttpRequest();
+                xhr.onload = function () {
+                    if (xhr.status == 200) {
+                        productInfo.product = JSON.parse(xhr.responseText)[0];
+                    } else {
+                        alert(xhr.status);
+                    }
+                };
+                let searchURL = window.location.search.split("="),
+                    psn = searchURL[searchURL.length - 1],
+                    url = `./phps/getproductInfo.php?psn=${psn}`;
+                xhr.open("Get", url, true);
+                xhr.send(null);
             },
             methods: {
                 switchC($event) {
@@ -144,15 +137,13 @@
                     };
                     $event.target.setAttribute('class', 'displayBtn selected');
                     this.content = $event.target.id;
-                }
+                },
+
             },
             computed: {
                 value() {
-                    let value = this.product[0].PSN + '|' + this.product[0].NAME + '|' + this.product[0].IMG +
-                        '|' + this.product[0].PRICE + '|' + this.itemNum + '|' + '0';
-                    // for (let i in this.product[0]) {
-                    //     value += this.product[0][i] + '|';
-                    // }
+                    let value = this.product.PSN + '|' + this.product.NAME + '|' + this.product.IMG +
+                        '|' + this.product.PRICE + '|' + this.itemNum + '|' + '0';
                     return value;
                 }
             }

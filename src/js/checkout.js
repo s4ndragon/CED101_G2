@@ -34,7 +34,7 @@ function storeInfo() {
     for (let i = 0; i < infoList.length; i++) {
         storage[infoList[i].name] = infoList[i].value;
     };
-    location.href = './04_checkout.html'
+    // location.href = './04_checkout.html'
 }
 
 function loadinfo() {
@@ -70,6 +70,7 @@ function loaditems() {
                 <div class='aside'>
                 <h4 class="prodtitle">${itemName}</h4>
                 <div>數量:<span>${itemNum}</span></div>
+                <input type="hidden" name="${itemlist[i]}" value="${itemlist[i]},${itemNum},${itemPrice}">
                 <div>價格:<span>${itemPrice}</span></div>
                 </div>
                 `
