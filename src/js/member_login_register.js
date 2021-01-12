@@ -1,3 +1,18 @@
+function getLoginInfo() {
+    //取回使用者的登入資訊
+    let xhr = new XMLHttpRequest();
+    xhr.onload = function () {
+        member = JSON.parse(xhr.responseText);
+        if (member.MEM_ID) {
+            //如果有登入
+            // document.getElementById("MEM_NICKNAME").innerText = member.MEM_NICKNAME;
+            document.getElementById("spanLogin").innerText = "登出";
+        }
+    };
+    xhr.open("get", "getLoginInfo.php", true);
+    xhr.send(null);
+}
+
 $(document).ready(function () {
     $("p").on("click", function () {
         $("#login").css("display", "none");
@@ -45,12 +60,5 @@ $(document).ready(function () {
 
         $(target).fadeIn(600);
     });
-
-    // let memId = $("#memId").value;
-    // let memPw = $("memPw").value;
-    // $(".btn").click(function () {
-    //     if (memId == "ming" && memPs == 123) {
-    //         $("").click();
-    //     }
-    // });
+    getLoginInfo();
 });

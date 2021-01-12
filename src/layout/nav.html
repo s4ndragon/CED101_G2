@@ -2,23 +2,23 @@
 <script src="./vendors/slick-1.8.1/slick/slick.js"></script>
 <!-- <script src="./js/member_login_register"></script> -->
 
-<nav>
+<nav v-for="memRow in memRows">
     <!-- logo放置區 -->
     <a href="./index.html">
         <h1 id="logo"><img src="images/common/logo.png" alt="" /></h1>
     </a>
     <!-- 會員icon放置區 -->
     <a href="./05_member_login_register.html">
-        <img class="memicon" src="images/common/user.png" alt="">
+        <img class="memicon" :src="memRow.MEM_IMG" :onerror="defaultImg" alt="" />
     </a>
+    <span id="spanLogin"></span>
+
     <!-- 購物車icon放置區 -->
     <a href="./04_cart.html">
-        <img class="caricon" src="images/common/cart.png" alt="">
+        <img class="caricon" src="images/common/cart.png" alt="" />
     </a>
     <!-- 揪團去按鈕區 -->
-    <a class="go_tour" href="./01_tourCreate.html">
-        揪團去
-    </a>
+    <a class="go_tour" href="./01_tourCreate.html"> 揪團去 </a>
     <div class="menu-wrap">
         <input type="checkbox" class="toggler" />
         <div class="hamburger">
@@ -29,24 +29,29 @@
                 <div>
                     <ul>
                         <li>
-                            <a class="underline" href="01_tour.html"><img class="navicon"
-                                    src="images/common/nav_leaf.png" alt="" />茶園揪團</a>
+                            <a class="underline" href="01_tour.html"
+                                ><img class="navicon" src="images/common/nav_leaf.png" alt="" />茶園揪團</a
+                            >
                         </li>
                         <li>
-                            <a class="underline" href="02_vote.html"><img class="navicon"
-                                    src="images/common/nav_leaf.png" alt="" />茶園排行</a>
+                            <a class="underline" href="02_vote.html"
+                                ><img class="navicon" src="images/common/nav_leaf.png" alt="" />茶園排行</a
+                            >
                         </li>
                         <li>
-                            <a class="underline" href="04_shopping.html"><img class="navicon"
-                                    src="images/common/nav_leaf.png" alt="" />偵茶商城</a>
+                            <a class="underline" href="04_shopping.html"
+                                ><img class="navicon" src="images/common/nav_leaf.png" alt="" />偵茶商城</a
+                            >
                         </li>
                         <li>
-                            <a class="underline" href="03_discuss.html"><img class="navicon"
-                                    src="images/common/nav_leaf.png" alt="" />找茶討論</a>
+                            <a class="underline" href="03_discuss.html"
+                                ><img class="navicon" src="images/common/nav_leaf.png" alt="" />找茶討論</a
+                            >
                         </li>
                         <li>
-                            <a class="underline" href="06_game.html"><img class="navicon"
-                                    src="images/common/nav_leaf.png" alt="" />小遊戲</a>
+                            <a class="underline" href="06_game.html"
+                                ><img class="navicon" src="images/common/nav_leaf.png" alt="" />小遊戲</a
+                            >
                         </li>
                     </ul>
                 </div>

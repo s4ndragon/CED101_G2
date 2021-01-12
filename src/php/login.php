@@ -1,4 +1,5 @@
 <?php 
+session_start();
 try {
     // require_once("./connectBooks.php");
 	$dsn = "mysql:host=localhost;port=3306;dbname=ced101g2;charset=utf8";
