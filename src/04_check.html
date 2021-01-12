@@ -21,7 +21,7 @@
             <div class="cart_content" id="cart_content">
                 <h3 class="partTitle">購買清單</h3>
                 <div id="amount">
-                    <span>小計: </span><input type="number" name="amount" id="totalAmount" disabled value="0"
+                    <span>小計: </span><input type="number" name="amount" id="totalAmount" readonly value="0"
                         class="info">
                 </div>
             </div>
@@ -32,7 +32,7 @@
                     <tr>
                         <td>寄件方式:</td>
                         <td>
-                            <select name="DELIVERY" class="info">
+                            <select name="delivery" class="info">
                                 <option value="宅配">宅配</option>
                                 <option value="7-11店到店">7-11店到店</option>
                             </select>
@@ -61,17 +61,17 @@
                     </tr>
                     <tr id='atmAccount'>
                         <td>付款帳號: </td>
-                        <td><input type="text" value='00020384751' disabled></td>
+                        <td><input type="text" value='00020384751' readonly></td>
                     </tr>
                     <tr>
                         <td>折抵金額:</td>
-                        <td style="position: relative;"> <input type="number" name="discount" id="discount" disabled
+                        <td style="position: relative;"> <input type="number" name="discount" id="discount" readonly
                                 value="0" class="info">
                             <input type="button" value="使用優惠點數" id="usePoint">
                             <table id='pointTable'>
                                 <tr>
                                     <td>我的優惠點數:</td>
-                                    <td><input type="number" name="" id="myPoint" disabled value="2000"></td>
+                                    <td><input type="number" name="" id="myPoint" readonly value="2000"></td>
                                 </tr>
                                 <tr>
                                     <td>使用優惠點數:</td>
@@ -79,7 +79,7 @@
                                 </tr>
                                 <tr>
                                     <td>折抵費用:</td>
-                                    <td><input type="number" name="" id="discountprice" disabled value="0"></td>
+                                    <td><input type="number" name="" id="discountprice" readonly value="0"></td>
                                 </tr>
                                 <tr>
                                     <td colspan="2" style="text-align: center;">
@@ -92,12 +92,12 @@
                     </tr>
                     <tr>
                         <td colspan="2" id="total" style="text-align: center;">
-                            <span>總計: </span><input type="number" name="total" id="totalBtn" disabled value="0">
+                            <span>總計: </span><input type="number" name="total" id="totalBtn" readonly value="0">
                         </td>
                     </tr>
                 </table>
                 <input type="button" value="回上一步" class="back" onclick="location.href='javascript:history.go(-1);'">
-                <input type="button" value="繼續結帳" id='getinfo'>
+                <input type="submit" value="繼續結帳" id='getinfo'>
             </div>
         </div>
 

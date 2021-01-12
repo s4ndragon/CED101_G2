@@ -10,6 +10,9 @@ function init() {
     if (storage['addItemList'] == null) {
         storage['addItemList'] = '';
     }
+    if (storage['FavortieList'] == null) {
+        storage['FavortieList'] = '';
+    }
     //如果是商城首頁的話
     if ($id('products')) {
         getproducts();
@@ -62,7 +65,6 @@ function getproducts(type, orderby) {
     }
     if (orderby) {
         url = `./phps/getproducts.php?orderby=${orderby}`;
-        console.log('排列選擇')
     } else {
         url = "./phps/getproducts.php?orderby=DATE_DESC";
     }
@@ -355,7 +357,7 @@ function productPageBtn() {
     $id('add_cart').addEventListener('click', addItem);
     $id('buy').addEventListener('click', addItem);
     $id('buy').addEventListener('click', () => {
-        location.href = '../04_cart.html'
+        location.href = './04_cart.html'
     });
 }
 
@@ -364,7 +366,8 @@ function orderBtn() {
     let orderBtn = $id('orderby').querySelectorAll('input');
     for (let i = 0; i < orderBtn.length; i++) {
         orderBtn[i].addEventListener('change', () => {
-            getproducts('', orderBtn[i].value)
+            let type = document.querySelector('.selected');
+            getproducts(type.innerText, orderBtn[i].value)
         })
     }
 }
@@ -438,25 +441,26 @@ function getFavortieList() {
     xhr.send(null);
 }
 
-window.addEventListener('load', sendFavortieList)
+window.addEventListener('unload', sendFavortieList)
 
 function sendFavortieList() {
     let xhr = new XMLHttpRequest();
     let memNo = '1';
-    let url;
-    // 清空收藏列表
-    url = "./phps/deleteFavoriteList.php?mem_no=" + memNo;
-    xhr.open("Get", url, false);
-    xhr.send(null);
-
     //寫入收藏列表
-    let FavortieList = storage['FavortieList'].split(',');
-    for (let i = 0; i < FavortieList.length - 1; i++) {
-        let psn = FavortieList[i];
-
-        url = "./phps/sendFavoriteList.php?mem_no=" + memNo + "&psn=" + psn;
-
-        xhr.open("Get", url, false);
-        xhr.send(null);
+    let url = "./phps/sendFavoriteList.php";
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    let favoriteList = storage['FavortieList'];
+    let data_info = `mem_no=1&favoriteList=${favoriteList}`;
+    xhr.send(data_info);
+    // location.href = url;
+    xhr.onload = function () {
+        if (xhr.status == 200) {
+            // console.log(JSON.parse(xhr.responseText));//讀取json
+            console.log(xhr.responseText); //讀取字串
+        } else {
+            alert(xhr.status);
+        }
     }
+
 }
