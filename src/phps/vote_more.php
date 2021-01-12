@@ -2,8 +2,9 @@
  
 try {
 	require_once("./connectBooks.php");
-	$sql = "select * , GARD_VOTE/GARD_CLICK 'GARD_AVG' from garden order by GARD_AVG desc";
+	$sql = "select * , GARD_VOTE/GARD_CLICK 'GARD_AVG' from GARDEN where GARD_ID = :GARD_ID order by GARD_AVG desc";
 	$garden = $pdo->prepare($sql);
+	$garden->bindValue(":GARD_ID", $_POST["GARD_ID"]);
 	$garden->execute();
 	$gardenRows = $garden->fetchAll(PDO::FETCH_ASSOC);
 	echo json_encode($gardenRows); //把陣列編碼成json字串傳到前端 echo印出json字串

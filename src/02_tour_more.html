@@ -19,15 +19,15 @@
     </div>
 
     <main id="app">
-        <div class="all">
+        <div class="all" v-for="touritem in tourTop">
             <div class="tour">
-                <img class="tpic" src="images/vote/tea5.jpg">
+                <img class="tpic" :src="touritem.TOUR_IMG">
             </div>
 
             <div class="tinfo">
 
                 <div class="t1">
-                    <p class="pp1">舞鶴茶園一日遊</p>
+                    <p class="pp1">{{touritem.TOUR_TITLE}}</p>
                     <div class="social">
                         <div class="love">
                             <img class="like" src="./images/common/heart.png" title="加入收藏" alt="">
@@ -45,40 +45,41 @@
                 </div>
 
                 <p>
-                    <span class="green">揪團簡介:</span> 位於花東縱谷山線海拔100至300公尺的舞鶴茶園，著名的公主蜜香紅茶在此誕生，一起來趟放鬆的茶園之旅吧！
+                    <span class="green">揪團簡介:</span> {{touritem.TOUR_INFRO}}
                 </p>
 
                 <p>
-                    <span class="green">出團日期:</span> 2020/12/31
+                    <span class="green">出團日期:</span> {{touritem.TOUR_SETOFFTIME}}
                 </p>
 
                 <p>
-                    <span class="green">參加人數:</span> 15/20 人
+                    <span class="green">參加人數:</span> {{touritem.NUM_OF_PARTICIPANTS}}/{{touritem.TOUR_PEOPLE}} 人
                 </p>
 
                 <p>
-                    <span class="green">預估費用:</span> $800
+                    <span class="green">預估費用:</span> ${{touritem.GARD_PRICE}}
                 </p>
 
                 <p>
-                    <span class="green">茶園地址:</span> 花蓮縣瑞穗鄉舞鶴村
+                    <span class="green">茶園地址:</span> {{touritem.GARD_ADDRESS}}
                 </p>
 
-                <p><span class="green">茶園型態:</span> 觀光型</p>
-                <p><span class="green">導遊:</span> 有</p>
-                <p><span class="green">備註:</span> 無</p>
+                <p><span class="green">茶園型態:</span> {{checktype(touritem.GARD_TYPE)}}</p>
+                <p><span class="green">活動:</span> {{touritem.TOUR_ACTIVE}}</p>
+                <p><span class="green">導遊:</span> {{touritem.TOUR_LEADER}}</p>
+                <p><span class="green">備註:</span> {{touritem.TOUR_PS}}</p>
 
                 <div class="btwrap">
-                    <button class="bt">
+                    <button class="bt" @click="joinTour(touritem.TOUR_ID,touritem.NUM_OF_PARTICIPANTS,touritem.TOUR_PEOPLE)">
                         我要參加
                     </button>
 
                     <div class="date">
                         <p>
-                            發起日期: 2020/12/15
+                            發起日期: {{touritem.SETUP_DATE}}
                         </p>
                         <p>
-                            截止日期: 2020/12/26
+                            截止日期: {{touritem.DEADLINE_DATE}}
                         </p>
                     </div>
                 </div>
@@ -250,12 +251,69 @@
 
 
     <script>
-        new Vue({
+        var app = new Vue({
             el: "#app",
             data: {
-
                 showModal2: false,
-            }
+                tourRows:[],
+                tourTop:[],
+                tour_id:'',
+                people_now:'',
+                people_limit:''
+
+            },
+            methods: {
+                joinTour(TOUR_ID, NUM_OF_PARTICIPANTS, TOUR_PEOPLE){
+                    this.tour_id = TOUR_ID;
+                    this.people_now = NUM_OF_PARTICIPANTS;
+                    this.people_limit = TOUR_PEOPLE;
+                    // if(this.people_now = this.people_limit){
+                    //     alert('報名額滿囉!')
+                    // }else{
+                    //     if(){
+
+                    //     }
+                    // }
+
+                    // let xhr = new XMLHttpRequest();
+                    // //註冊callback function 
+                    // xhr.onload = function(){
+                    //     if(xhr.status == 200){ //success
+                    //         console.log(2) = xhr.responseText;
+                    //     }else{
+                    //         alert(xhr.status);
+                    //     }
+                    // }
+                    // //設定好所要連結的程式
+                    // xhr.open("post", "./phps/join_tour.php", true);
+                    // xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+                    // //送出資料
+                    // let data_info = "TOUR_ID=" + this.tour_id;
+                    // xhr.send(data_info);
+                },
+                checktype(data){
+                    if(data == 0){
+                        return "觀光型"
+                    }else{
+                        return "體驗型"
+
+                    }
+                }
+            },
+            mounted() {
+                let tourRows;
+			//============去server端拿資料
+                let xhr = new XMLHttpRequest();
+                xhr.onload = function(){  //step3
+                    app.tourRows = JSON.parse(xhr.responseText); 
+                    console.log(app.tourRows);
+                    app.tourTop = app.tourRows.slice(0,1);
+                    console.log(app.tourTop);
+                }
+                xhr.open("get","./phps/tour_more.php", true); //step1
+                xhr.send(null); //step2
+            },
+
         });
     </script>
 
