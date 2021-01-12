@@ -3,6 +3,9 @@
 .w100 {
     width: 100%;
 }
+.h3{
+    font-size:$h3;
+}
 .v100w {
     width: 100vw;
 }
@@ -11,12 +14,6 @@
 }
 #title {
     height: 400px;
-    @include banner-1st-title;
-}
-.banner {
-    @include banner;
-}
-.banner-1st-title {
     @include banner-1st-title;
 }
 .x-auto {
@@ -414,6 +411,10 @@ img[src='./images/game/62720191121071129866.png'] {
         background: url("../images/game/greenbutton.png");
         background-origin: border-box;
         background-size:contain ;
+        span{
+            font-size:28px;
+            color:red;
+        }
     }
 }
 #score-over {
