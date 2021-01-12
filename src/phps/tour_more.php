@@ -29,7 +29,7 @@ try {
 	
 
 	$MEM_NO = $_SESSION["MEM_NO"];
-	$sql = "select * from TOUR_JOIN where MEM_NO = $MEM_NO";
+	$sql = "select TOUR_ID from TOUR_JOIN where MEM_NO = $MEM_NO";
 	$tour2 = $pdo->prepare($sql);
 	$tour2->execute();
 	$memRows = $tour2->fetchAll(PDO::FETCH_ASSOC);

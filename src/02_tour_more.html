@@ -32,7 +32,7 @@
                         <div class="love">
                             <img class="like" src="./images/common/heart.png" title="加入收藏" alt="">
                         </div>
-                        <div class="fb-share-button" data-href="https://tw.yahoo.com/" data-layout="button"
+                        <div class="fb-share-button" :data-href="searchURL" data-layout="button"
                             data-size="small">
                             <a target="_blank"
                                 href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5501%2F07_vote_more.html&amp;src=sdkpreparse"
@@ -60,6 +60,9 @@
                     <span class="green">預估費用:</span> ${{touritem.GARD_PRICE}}
                 </p>
 
+                <p>
+                    <span class="green">茶園名稱:</span> {{touritem.GARD_NAME}}
+                </p>
                 <p>
                     <span class="green">茶園地址:</span> {{touritem.GARD_ADDRESS}}
                 </p>
@@ -264,7 +267,6 @@
                 people_now:'',
                 people_limit:'',
                 targetPageId:''
-
             },
             methods: {
                 joinTour(TOUR_ID, NUM_OF_PARTICIPANTS, TOUR_PEOPLE){
@@ -281,10 +283,9 @@
                         for(let i=0; i < this.memRows.length; i++){
                             if(this.memRows[i].TOUR_ID == this.tour_id){
                                 alert('已經報名此團')
-                            }else{
                                 return;
+                            }else{
                             }
-                            return;
                             console.log(this.memRows[i].TOUR_ID)
                         }
 
@@ -296,13 +297,15 @@
                                 alert(xhr.status);
                             }
                         }
-                        //設定好所要連結的程式
                         xhr.open("post", "./phps/join_tour.php", true);
                         xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
                         //送出資料
-                        let data_info = "TOUR_ID=" + this.tour_id;
+                        let data_info = "TOUR_ID=" + this.targetPageId;
                         xhr.send(data_info);
                         alert('報名成功')
+
+                        this.get_data()
+                        
                     }
 
                     // console.log(this.memRows.indexOf(this.tour_id) >= 0)
@@ -322,17 +325,10 @@
                     }else{
                         return "沒有"
                     }
-                }
-            },
-            mounted() {
-                let searchURL = window.location.search;
-                let targetPageId = searchURL.split("=")[1];
-                this.targetPageId = targetPageId;
-
-                let tourRows;
-			//============去server端拿資料
-                let xhr = new XMLHttpRequest();
-                xhr.onload = function(){ 
+                },
+                get_data(){
+                    let xhr = new XMLHttpRequest();
+                    xhr.onload = function(){ 
                     if(xhr.status == 200){
                         app.dataRows = JSON.parse(xhr.responseText); 
                         app.dataTop = app.dataRows[0];
@@ -341,15 +337,23 @@
                         app.foodRows = app.dataRows[3];
                     }else{
                         alert(xhr.status);
+                        }
                     }
+                    xhr.open("post", "./phps/tour_more.php", true);
+                    xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+                    let data_info = `TOUR_ID=${this.targetPageId}`;
+                    xhr.send(data_info);
                 }
-                xhr.open("post", "./phps/tour_more.php", true);
-                xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
-                let data_info = `TOUR_ID=${this.targetPageId}`;
-                xhr.send(data_info);
+            },
+            mounted() {
+                let searchURL = window.location.search;
+                let targetPageId = searchURL.split("=")[1];
+                this.targetPageId = targetPageId;
 
-
-
+                let tourRows;
+            //============去server端拿資料
+            this.get_data()
+                
             },
 
         });

@@ -359,7 +359,8 @@
                 showModal2: false,
                 rating: '您尚未評分',
                 sendRating:'',
-                targetPageId:''
+                targetPageId:'',
+                date:''
             },
 
             methods: {
@@ -373,7 +374,37 @@
                     return this.sendRating = rating;
                 },
 
+                get_data(){
+                    //============傳targetPageId給php
+                    let gardenRows;
+
+                    let xhr = new XMLHttpRequest();
+                        //註冊callback function 
+                        xhr.onload = function(){
+                            if(xhr.status == 200){ //success
+                                app.gardenRows = JSON.parse(xhr.responseText);
+                                
+                            }else{
+                                alert(xhr.status);
+                            }
+                        }
+                        //設定好所要連結的程式
+                        xhr.open("post", "./phps/vote_more.php", true);
+                        xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+                        //送出資料
+                        // let data_info = "GARD_ID=" + this.targetPageId;
+                        let data_info = `GARD_ID=${this.targetPageId}`;
+                        xhr.send(data_info);
+
+                    //====================================送出評分
+                    function $id(id){
+                        return document.getElementById(id);
+                    }	
+                },
+
                 sendScore(){
+                    this.date = Date();
+
                     let xhr = new XMLHttpRequest();
                     //註冊callback function 
                     xhr.onload = function(){
@@ -393,6 +424,7 @@
                     xhr.send(data_info);
 
                     this.lightbox = false
+                    this.get_data()
                 }
             },
 
@@ -402,31 +434,9 @@
                 let targetPageId = searchURL.split("=")[1];
                 this.targetPageId = targetPageId;
 
-                //============傳targetPageId給php
-                let gardenRows;
-
-                let xhr = new XMLHttpRequest();
-                    //註冊callback function 
-                    xhr.onload = function(){
-                        if(xhr.status == 200){ //success
-                            app.gardenRows = JSON.parse(xhr.responseText);
-                            
-                        }else{
-                            alert(xhr.status);
-                        }
-                    }
-                    //設定好所要連結的程式
-                    xhr.open("post", "./phps/vote_more.php", true);
-                    xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
-                    //送出資料
-                    // let data_info = "GARD_ID=" + this.targetPageId;
-                    let data_info = `GARD_ID=${this.targetPageId}`;
-                    xhr.send(data_info);
-
-                //====================================送出評分
-                function $id(id){
-                    return document.getElementById(id);
-                }	
+                //============去server端拿資料
+                this.get_data()
+                
 
             },
         });
