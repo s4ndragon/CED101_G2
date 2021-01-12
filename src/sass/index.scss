@@ -156,7 +156,7 @@ div.menu {
         max-width: 1000px;
         margin: 0 auto;
         font-size: 0;
-        margin-bottom: 30px;
+        margin-bottom: 80px;
     }
     .img-back {
         top: 25px;
@@ -369,7 +369,7 @@ div.menu {
     }
 
     .txt-intro {
-        font-size: $h6;
+        font-size: $h5;
         color: $success-sign;
         font-weight: lighter;
     }
@@ -667,16 +667,19 @@ div.menu {
 .shop-icon-wrapper {
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: flex-end;
     margin-top: 15%;
+    position: relative;
 }
 
-.shop-icon-wrapper .addFavorite {
+.memi {
     width: 30px;
     height: 30px;
     margin: 15px;
     vertical-align: middle;
     cursor: pointer;
+    position: absolute;
+    transform: translate(220%, -230%);
 }
 
 input[type='button'] {
@@ -689,7 +692,7 @@ input[type='button'] {
     font-size: 14px;
     letter-spacing: 0.5px;
     position: absolute;
-    top: 46.7%;
+    top: 43%;
     left: 5%;
 }
 
@@ -707,7 +710,7 @@ input[type='button'] {
     font-weight: bold;
     padding: 5px 20px;
     top: 39.2%;
-    transform: translate(8.5%, -168.8%);
+    transform: translate(9.5%, -168.8%);
 }
 
 .lg-btn-shop {
@@ -901,6 +904,10 @@ input[type='button'] {
         margin-top: 100px;
     }
 
+    .tour-list ul {
+        margin-bottom: 30px;
+    }
+
     .tour-list .img-back,
     .tour-list .img-front {
         display: none;
@@ -927,6 +934,10 @@ input[type='button'] {
 
     .shop .shop-banner .shop-banner-txt {
         top: 50px;
+    }
+
+    .shop .shopping {
+        margin-top: 50px;
     }
 
     .dis-img-btm {
@@ -993,10 +1004,11 @@ input[type='button'] {
 
     .shop-list li .txt-area .txt {
         width: 90%;
+        top: 47%;
     }
 
     .shop-icon-wrapper {
-        margin-top: 0;
+        margin-top: 20px;
     }
 
     .discuss .dis-box-info {
@@ -1037,13 +1049,17 @@ input[type='button'] {
     }
 
     .vote {
-        padding-bottom: 20px;
+        padding-top: 70px;
+        padding-bottom: 40px;
     }
 
     .vote-img-back {
         display: none;
     }
 
+    .vote-list {
+        margin-bottom: 0px;
+    }
     .vote-list li {
         width: 90%;
     }
@@ -1078,8 +1094,8 @@ input[type='button'] {
 
     .tour .tour_title {
         padding: 0;
-        margin: 0;
-        font-size: 1.45rem;
+        margin: 50px 0 0 0;
+        font-size: $h4;
     }
 
     .tour .tour_txt {
