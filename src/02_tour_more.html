@@ -19,7 +19,7 @@
     </div>
 
     <main id="app">
-        <div class="all" v-for="touritem in tourTop">
+        <div class="all" v-for="touritem in dataTop">
             <div class="tour">
                 <img class="tpic" :src="touritem.TOUR_IMG">
             </div>
@@ -66,11 +66,11 @@
 
                 <p><span class="green">茶園型態:</span> {{checktype(touritem.GARD_TYPE)}}</p>
                 <p><span class="green">活動:</span> {{touritem.TOUR_ACTIVE}}</p>
-                <p><span class="green">導遊:</span> {{touritem.TOUR_LEADER}}</p>
+                <p><span class="green">導遊:</span> {{checkLeader(touritem.TOUR_LEADER)}}</p>
                 <p><span class="green">備註:</span> {{touritem.TOUR_PS}}</p>
 
                 <div class="btwrap">
-                    <button class="bt" @click="joinTour(touritem.TOUR_ID,touritem.NUM_OF_PARTICIPANTS,touritem.TOUR_PEOPLE)">
+                    <button class="bt" @click="joinTour(touritem.TOUR_ID,touritem.NUM_OF_PARTICIPANTS,touritem.TOUR_PEOPLE,touritem.MEM_NO)">
                         我要參加
                     </button>
 
@@ -94,12 +94,12 @@
 
 
 
-            <div class="hotel_container first">
+            <div v-for="hotelRow in hotelRows" class="hotel_container first">
                 <p class="ht">旅館</p>
                 <div class="hotel">
-                    <img class="hpic" src="images/vote/hotel.jpg">
-                    <p class="hname">瑞穗天合國際觀光酒店</p>
-                    <p class="hinfo">整體設計以南歐莊園風格為主，風光明媚的山水以及豐富的人文及自然生態，將花蓮瑞穗美景盡收眼底。</p>
+                    <img class="hpic" :src="hotelRow.HOTEL_IMG">
+                    <p class="hname">{{hotelRow.HOTEL_NAME}}</p>
+                    <p class="hinfo">{{hotelRow.HOTEL_INFRO}}</p>
                 </div>
             </div>
 
@@ -255,11 +255,15 @@
             el: "#app",
             data: {
                 showModal2: false,
-                tourRows:[],
-                tourTop:[],
+                dataRows:[],
+                dataTop:[],
+                memRows:[],
+                hotelRows:[],
+                foodRows:[],
                 tour_id:'',
                 people_now:'',
-                people_limit:''
+                people_limit:'',
+                targetPageId:''
 
             },
             methods: {
@@ -267,29 +271,42 @@
                     this.tour_id = TOUR_ID;
                     this.people_now = NUM_OF_PARTICIPANTS;
                     this.people_limit = TOUR_PEOPLE;
-                    // if(this.people_now = this.people_limit){
-                    //     alert('報名額滿囉!')
-                    // }else{
-                    //     if(){
 
-                    //     }
-                    // }
+                    
+                    if(this.people_now == this.people_limit){
+                        alert('報名額滿囉!')
+                        console.log(this.people_now)
+                        console.log(this.people_limit)
+                    }else{
+                        for(let i=0; i < this.memRows.length; i++){
+                            if(this.memRows[i].TOUR_ID == this.tour_id){
+                                alert('已經報名此團')
+                            }else{
+                                return;
+                            }
+                            return;
+                            console.log(this.memRows[i].TOUR_ID)
+                        }
 
-                    // let xhr = new XMLHttpRequest();
-                    // //註冊callback function 
-                    // xhr.onload = function(){
-                    //     if(xhr.status == 200){ //success
-                    //         console.log(2) = xhr.responseText;
-                    //     }else{
-                    //         alert(xhr.status);
-                    //     }
-                    // }
-                    // //設定好所要連結的程式
-                    // xhr.open("post", "./phps/join_tour.php", true);
-                    // xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
-                    // //送出資料
-                    // let data_info = "TOUR_ID=" + this.tour_id;
-                    // xhr.send(data_info);
+                        let xhr = new XMLHttpRequest();
+                        xhr.onload = function(){
+                            if(xhr.status == 200){ //success
+                                console.log('success')
+                            }else{
+                                alert(xhr.status);
+                            }
+                        }
+                        //設定好所要連結的程式
+                        xhr.open("post", "./phps/join_tour.php", true);
+                        xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+                        //送出資料
+                        let data_info = "TOUR_ID=" + this.tour_id;
+                        xhr.send(data_info);
+                        alert('報名成功')
+                    }
+
+                    // console.log(this.memRows.indexOf(this.tour_id) >= 0)
+                    // console.log(this.memRows.indexOf(0))
                 },
                 checktype(data){
                     if(data == 0){
@@ -298,20 +315,41 @@
                         return "體驗型"
 
                     }
+                },
+                checkLeader(data){
+                    if(data == 0){
+                        return "有"
+                    }else{
+                        return "沒有"
+                    }
                 }
             },
             mounted() {
+                let searchURL = window.location.search;
+                let targetPageId = searchURL.split("=")[1];
+                this.targetPageId = targetPageId;
+
                 let tourRows;
 			//============去server端拿資料
                 let xhr = new XMLHttpRequest();
-                xhr.onload = function(){  //step3
-                    app.tourRows = JSON.parse(xhr.responseText); 
-                    console.log(app.tourRows);
-                    app.tourTop = app.tourRows.slice(0,1);
-                    console.log(app.tourTop);
+                xhr.onload = function(){ 
+                    if(xhr.status == 200){
+                        app.dataRows = JSON.parse(xhr.responseText); 
+                        app.dataTop = app.dataRows[0];
+                        app.memRows = app.dataRows[1];
+                        app.hotelRows = app.dataRows[2];
+                        app.foodRows = app.dataRows[3];
+                    }else{
+                        alert(xhr.status);
+                    }
                 }
-                xhr.open("get","./phps/tour_more.php", true); //step1
-                xhr.send(null); //step2
+                xhr.open("post", "./phps/tour_more.php", true);
+                xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+                let data_info = `TOUR_ID=${this.targetPageId}`;
+                xhr.send(data_info);
+
+
+
             },
 
         });
