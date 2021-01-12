@@ -21,9 +21,10 @@ vue = new Vue({
         xhr.send(data_info);
         xhr.onload = function () {
             if (xhr.status == 200) {
-                console.log(JSON.parse(xhr.responseText)[0]); //讀取json
+                console.log(JSON.parse(xhr.responseText));
+                // console.log(JSON.parse(xhr.responseText)[0]); //讀取json
                 // console.log(xhr.responseText); //讀取字串
-                vue.orderInfo = JSON.parse(xhr.responseText)[0];
+                // vue.orderInfo = JSON.parse(xhr.responseText)[0];
             } else {
                 alert(xhr.status);
             }
