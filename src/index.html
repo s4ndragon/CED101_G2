@@ -196,11 +196,11 @@
                                             </p>
                                         </div>
                                         <div class="shop-icon-wrapper">
-                                            <img class="addFavorite" src="./images/common/heart.png" alt="" />
-                                            <input type="button" value="加入購物車" class="add_cart" />
+                                            <input type="button" value="瀏覽商品" class="add_cart" />
                                         </div>
                                     </div>
                                 </a>
+                                <img class="memi addheart" title="加入收藏" src="./images/common/heart.png" alt="" />
                             </li>
                             <li class="is-category-05">
                                 <a href="./04_product.html">
@@ -210,23 +210,23 @@
 
                                     <div class="txt-area">
                                         <p class="label">
-                                            <span class="num">550<span class="small">元</span></span
+                                            <span class="num">750<span class="small">元</span></span
                                             ><span class="ribon"></span>
                                         </p>
-                                        <p class="category-name">德國紅點設計獎</p>
+                                        <p class="category-name">日式精美陶瓷</p>
                                         <div class="wrap-company">
                                             <img class="shop-leaf" src="./images/index/company5.png" alt="" />
-                                            <p class="company">白居易3入禮盒</p>
+                                            <p class="company">GU旅用茗茶組</p>
                                             <p class="txt">
-                                                現代與傳統完美的結合，透過小巧玲瓏的茶具將東方文化以不同的樣貌展現給大眾。
+                                                杯口圓滑好就口，釉面色彩質地溫暖。簡單線條設計搭配茶壺內附可拆式不鏽鋼大濾網，送禮自用的好選擇。
                                             </p>
                                         </div>
                                         <div class="shop-icon-wrapper">
-                                            <img class="addFavorite" src="./images/common/heart.png" alt="" />
-                                            <input type="button" value="加入購物車" class="add_cart" />
+                                            <input type="button" value="瀏覽商品" class="add_cart" />
                                         </div>
                                     </div>
                                 </a>
+                                <img class="memi addheart" title="加入收藏" src="./images/common/heart.png" alt="" />
                             </li>
                             <li class="is-category-05">
                                 <a href="./04_product.html">
@@ -236,23 +236,23 @@
 
                                     <div class="txt-area">
                                         <p class="label">
-                                            <span class="num">550<span class="small">元</span></span
+                                            <span class="num">950<span class="small">元</span></span
                                             ><span class="ribon"></span>
                                         </p>
-                                        <p class="category-name">德國紅點設計獎</p>
+                                        <p class="category-name">日系簡約精緻風格</p>
                                         <div class="wrap-company">
                                             <img class="shop-leaf" src="./images/index/company5.png" alt="" />
-                                            <p class="company">白居易3入禮盒</p>
+                                            <p class="company">KINTO JP茶壺</p>
                                             <p class="txt">
-                                                現代與傳統完美的結合，透過小巧玲瓏的茶具將東方文化以不同的樣貌展現給大眾。
+                                                以「更美味、簡單」的考量，搭配沉著的釉色而帶來穩定感的茶具。大空間濾網讓茶葉可以自由地展開，泡出好茶。
                                             </p>
                                         </div>
                                         <div class="shop-icon-wrapper">
-                                            <img class="addFavorite" src="./images/common/heart.png" alt="" />
-                                            <input type="button" value="加入購物車" class="add_cart" />
+                                            <input type="button" value="瀏覽商品" class="add_cart" />
                                         </div>
                                     </div>
                                 </a>
+                                <img class="memi addheart" title="加入收藏" src="./images/common/heart.png" alt="" />
                             </li>
                         </ul>
                         <img
@@ -335,5 +335,18 @@
 
         <!-- footer -->
         @@include('layout/footer.html')
+
+        <script>
+            $('.addheart').click(function (e) {
+                e.preventDefault
+                if (this.title == '加入收藏') {
+                    this.title = '取消收藏'
+                    this.src = './images/common/like.png'
+                } else {
+                    this.title = '加入收藏'
+                    this.src = './images/common/heart.png'
+                }
+            })
+        </script>
     </body>
 </html>

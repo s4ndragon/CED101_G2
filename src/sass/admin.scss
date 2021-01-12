@@ -7,6 +7,18 @@
 body {
     @include bg;
 }
+.clickleft {
+    display: flex;
+    align-items: center;
+    transform: translate(70%, -600%);
+    position: absolute;
+    bottom: 0;
+    font-size: 36px;
+}
+
+.arrow {
+    width: 10%;
+}
 
 /* ==================== nav 區域 ==================== */
 .memicon {
@@ -98,7 +110,7 @@ div.tab_container {
 
 /* 頁籤區塊 */
 div.tab_container div.tab_list_block {
-    padding-left: 20px;
+    padding-left: 0px !important;
 }
 
 /* 頁籤列表 */
@@ -114,7 +126,7 @@ div.tab_container div.tab_list_block ul.tab_list > li {
 div.tab_container div.tab_list_block ul.tab_list > li > a {
     text-decoration: none;
     display: inline-block;
-    border: 1px solid #ccc;
+    // border: 1px solid #ccc;
     border-bottom: 1px solid #0f470f;
     padding: 2px 20px;
     border-radius: 5px 5px 0 0;
@@ -137,7 +149,7 @@ div.tab_container div.tab_list_block ul.tab_list > li > a::after {
     z-index: 1;
 }
 div.tab_container div.tab_list_block ul.tab_list > li > a.-on {
-    border: 1px solid #0f470f;
+    // border: 1px solid #0f470f;
     color: black;
 }
 /* 將底部黑線改成白色 */
@@ -148,12 +160,12 @@ div.tab_container div.tab_list_block ul.tab_list > li > a.-on::after {
 }
 
 /* 頁籤內容區塊 */
-div.tab_container div.tab_contents {
-    border: 1px solid #0f470f;
-    /*   margin-top: 30px; */
-}
+// div.tab_container div.tab_contents {
+//     border: 1px solid #0f470f;
+//       margin-top: 30px;
+// }
 div.tab_container div.tab_contents div.tab {
-    padding: 30px;
+    padding: 30px 30px 30px 0px;
     display: none;
 }
 div.tab_container div.tab_contents div.tab.-on {
@@ -166,7 +178,7 @@ table {
     border-collapse: collapse;
     margin: 20px 0px;
     display: block;
-    overflow-x: scroll;
+    overflow-x: auto;
     white-space: nowrap;
 }
 
@@ -186,10 +198,13 @@ th {
     padding: 10px;
     border: 1px solid #ccc;
     text-align: left;
-    font-size: 14px;
+    font-size: $h6;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    width: 182px;
+    text-align: center;
+    vertical-align: middle;
 }
 
 .form-group {
@@ -197,27 +212,18 @@ th {
     margin-bottom: 15px;
 }
 
-input {
-    padding: 10px !important;
-}
-
-.btn-confirm {
-    @include smallbtn4;
-}
-
+/* Rounded sliders */
 .switch {
     position: relative;
     display: inline-block;
     width: 60px;
     height: 34px;
+    input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
 }
-
-.switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
 .slider {
     position: absolute;
     cursor: pointer;
@@ -228,41 +234,56 @@ input {
     background-color: #ccc;
     -webkit-transition: 0.4s;
     transition: 0.4s;
+    &:before {
+        position: absolute;
+        content: '';
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        -webkit-transition: 0.4s;
+        transition: 0.4s;
+    }
 }
-
-.slider:before {
-    position: absolute;
-    content: '';
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    -webkit-transition: 0.4s;
-    transition: 0.4s;
+input {
+    &:checked {
+        + {
+            .slider {
+                background-color: #2196f3;
+                &:before {
+                    -webkit-transform: translateX(26px);
+                    -ms-transform: translateX(26px);
+                    transform: translateX(26px);
+                }
+            }
+        }
+    }
+    &:focus {
+        + {
+            .slider {
+                box-shadow: 0 0 1px #2196f3;
+            }
+        }
+    }
 }
-
-input:checked + .slider {
-    background-color: #2196f3;
-}
-
-input:focus + .slider {
-    box-shadow: 0 0 1px #2196f3;
-}
-
-input:checked + .slider:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px);
-}
-
-/* Rounded sliders */
 .slider.round {
     border-radius: 34px;
+    &:before {
+        border-radius: 50%;
+    }
 }
 
-.slider.round:before {
-    border-radius: 50%;
+input {
+    padding: 10px !important;
+}
+
+.btn-confirm {
+    @include smallbtn4;
+}
+
+.btn-delete {
+    @include smallbtn3;
 }
 
 /* ==================== RWD ==================== */
