@@ -2,8 +2,7 @@
 try {
     require_once("./connect.php");
         if($_GET['orderby']=='PRICE'){
-            echo $_GET['orderby'];
-            $sql = "select * from product  order by price";
+            $sql = "select * from product  order by PRICE ASC";
         }else if($_GET['orderby']=="DATE_DESC"){
             $sql = "select * from product  order by DATE DESC";
 
@@ -12,7 +11,6 @@ try {
 
         }else if($_GET['orderby']=="SOLD_DESC"){
             $sql = "select * from product  order by SOLD DESC";
-
         }
 
         // $sql = "select * from product  order by :orderby";

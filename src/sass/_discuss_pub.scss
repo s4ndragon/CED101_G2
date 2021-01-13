@@ -6,6 +6,14 @@
     @include form_page;
 }
 
+.btnsub {
+    @include btn3;
+}
+
+.pub_back {
+    background-image: url(../images/index/img-hdg-illust.png);
+    background-size: contain;
+}
 
 
 // =========新增

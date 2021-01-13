@@ -16,10 +16,10 @@
     <form action="./phps/sendorderList.php" method="POST" id='orderform'>
         <div class="main">
             <h3 class="partTitle">訂單內容:</h3>
+            <input type="hidden" name="addItemList" id='addItemList'>
             <ul id="items">
             </ul>
             <input type="hidden" name="mem_no" value="1">
-            <input type="hidden" name="DEL_STATE" value="0">
             <table>
                 <tr>
                     <td>商品總額:</td>
@@ -35,7 +35,7 @@
                 </tr>
                 <tr>
                     <td>寄送方式:</td>
-                    <td><input type="text" name="DELIVERY" class="info" readonly="value"></td>
+                    <td><input type="text" name="delivery" class="info" readonly="value"></td>
                 </tr>
                 <tr>
                     <td>收件人:</td>
@@ -57,30 +57,25 @@
                     <td colspan="2" class="btn">
                         <input type="button" value="取消訂單"
                             onClick="if (confirm('確定取消？'))location.href= './04_shopping.html';return false;">
-                        <input type="submit" value="送出訂單" onClick=" if (confirm('是否確認提交？')) sendOrder()">
+                        <input type="submit" value="送出訂單" onClick=" if (confirm('是否確認提交？')) clearStorage()">
                     </td>
-                    <script>
-                        function sendOrder() {
-                            {
-                                // let xhr = new XMLHttpRequest();
-                                // let url;
-                                // if ($id('productInfo')) {
-                                //     url = "../phps/sendorderList.php";
-                                // } else {
-                                //     url = "./phps/sendorderList.php";
-
-                                // }
-                                // xhr.open("POST", url, false);
-                                // xhr.send(null);
-                                // xhr.onload = function () {
-
-                                // }
-                            }
-                        }
-                    </script>
                 </tr>
             </table>
         </div>
+        <script>
+            function clearStorage() {
+                let storage = sessionStorage,
+                    ItemList = storage['addItemList'].split(',');
+                document.getElementById('addItemList').value = storage['addItemList'];
+                console.log(ItemList)
+                for (let i = 0; i < ItemList.length - 1; i++) {
+                    storage.removeItem(ItemList[i]);
+                }
+                storage.removeItem('amount');
+                storage.removeItem('discount');
+                storage.removeItem('addItemList');
+            }
+        </script>
     </form>
     @@include('layout/footer.html')
 </body>

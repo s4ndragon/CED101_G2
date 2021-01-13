@@ -7,16 +7,17 @@
     <title>訂單明細</title>
     <link rel="stylesheet" href="./css/shopping.css">
     <link rel="stylesheet" href="./css/checkout.css">
-    <script src="./js/checkout.js"></script>
+    <!-- <script src="./js/checkout.js"></script> -->
+    <script src="./js/vue.min.js"></script>
 </head>
 
 <body>
     @@include('layout/nav.html')
     @@include('layout/title.html',{'title':'訂單明細'})
-    <form action="">
+    <form action="" id='app'>
         <div class="main" id='main'>
             <div class="orderNo">
-                <h3 class="partTitle">訂單編號 : </h3><input type="number" name="" disabled value="123456790">
+                <h3 class="partTitle">訂單編號 : </h3><input type="number" name="" disabled :value="orderInfo.ORDERS_NO">
             </div>
             <h3 class="partTitle">訂單內容</h3>
             <ul id="items">
@@ -65,7 +66,9 @@
             </tr>
         </table>
     </form>
+    <script src="./js/orders.js"></script>
     @@include('layout/footer.html')
+
 </body>
 
 </html>

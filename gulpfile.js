@@ -125,6 +125,17 @@ function clearHtml() {
 }
 exports.cleanHTML = clearHtml;
 
+//刪除phpPage
+function clearPhpPage() {
+    //src  檔案路徑
+    return src("dist/*.php", {
+        read: false, //避免 gulp 去讀取檔案內容，讓刪除效能變好
+        force: true, //強制刪除
+        allowEmpty: true,
+    }).pipe(clean());
+}
+exports.cleanPhpPage = clearPhpPage;
+
 //刪除圖片
 function clearImg() {
     //src  檔案路徑
@@ -172,6 +183,20 @@ function includeHTML() {
 }
 exports.html = includeHTML;
 
+//html template 引入php檔案 
+function includePhpPage() {
+    return src("src/*.php")
+        .pipe(
+            fileinclude({
+                prefix: "@@",
+                basepath: "@file",
+            })
+        )
+        .pipe(dest("dist/"));
+    done();
+}
+exports.html = includePhpPage;
+
 //babel (es6->es5)
 // function babels() {
 //     return src("js/*.js")
@@ -199,7 +224,8 @@ function watchFile() {
     watch(["src/*.html", "src/nav.html", "src/footer.html"], series(clearHtml, includeHTML));
     watch("src/images/**/*.*", series(clearImg, moveImg));
     watch("src/vendors/**/**/**", series(clearVendors, moveVendors));
-    // watch("src/phps/*.*", series(clearPhp, movePhp));
+    watch("src/php/*.*", series(clearPhp, movePhp));
+    watch(["src/*.php", "src/layout/nav.html", "src/layout/footer.html"], series(clearPhpPage, includePhpPage));
 }
 exports.watch = watchFile;
 
@@ -211,7 +237,7 @@ function uploadFile() {
     watch(["src/*.html", "src/layout/*.html"], series(clearHtml, includeHTML));
     watch("src/images/**/*.*", series(clearImg, zipImg));
     watch("src/vendors/**/**/**", series(clearVendors, moveVendors))
-    // watch("src/phps/*.*", series(clearPhp, movePhp))
+    watch("src/php/*.*", series(clearPhp, movePhp))
 }
 exports.upload = uploadFile;
 // PHP定義相關環境變數

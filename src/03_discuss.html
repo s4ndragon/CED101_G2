@@ -14,7 +14,7 @@
 <body>
     @@include('layout/leaf.html')
     @@include('layout/nav.html')
-    <main id="app">
+    <main id="are">
         <div class="banner">
             <div>
                 <h1>找茶討論</h1>
@@ -36,20 +36,21 @@
 
         <section id="discuss">
             <div id="all_articles">
-                <div class="article tour">
+                <!-- =====單篇文章開始===== -->
+                <div v-for="artRow in articlesRows" class="article" :class="artRow.FILTER">
                     <div class="ar_img">
-                        <img class="ar_rimg" src="images/vote/tea2.jpg" alt="">
-                        <p class="ar_title">【揪團心得】今天團很爛</p>
+                        <img class="ar_rimg" :src="artRow.ART_IMG" alt="">
+                        <p class="ar_title">【{{artRow.CAT}}】{{artRow.ART_TITLE}}</p>
                         <div class="art_memicon">
-                            <img class="memi" src="./images/common/mem_photo1.png" alt="">
-                            <span class="mem_name">民民</span>
+                            <img class="memi memipeople" :src="'./images/member/' + artRow.MEM_IMG " alt="">
+                            <span class="mem_name">{{artRow.MEM_NICNAME}}</span>
                         </div>
                     </div>
                     <div class="ar_text">
                         <div class="art_icons">
                             <img class="memi addheart" title="加入收藏" src="./images/common/heart.png" alt="">
                             <img class="memi" src="./images/common/messenger.png" alt="">
-                            <span class="com_num">50</span>
+                            <span class="com_num">{{artRow.ART_REPLYS}}</span>
                             <div class="excl" @click="showModal2 = true">
                                 <img class="excl" src="./images/common/852019_exclamation_512x512.png" alt="">
                             </div>
@@ -57,442 +58,140 @@
                             <div class="overlay" v-if="showModal2" @click="showModal2 = true"></div>
                             <!-- modal -->
                             <div class="modal" v-if="showModal2">
-                                <form>
+                                <form action="post">
                                     <div class="close" @click="showModal2 = false">
                                         <img class="cancel" src="images/vote/cancel.png">
                                     </div>
-                                    <p class="welcome">請輸入檢舉理由</p>
-                                    <textarea class="repoinfo" cols="30" rows="10"></textarea>
-
-                                    <button class="go">送出</button>
+                                    <p class="welcome">請選取檢舉理由</p>
+                                    <div class="reason_container">
+                                        <input class="reason" type="radio" name="size" value="惡意中傷">惡意中傷</div>
+                                    <div class="reason_container">
+                                        <input class="reason" type="radio" name="size" value="散布廣告">散布廣告
+                                    </div>
+                                    <div class="reason_container">
+                                        <input class="reason" type="radio" name="size" value="色情資訊">色情資訊
+                                    </div>
+                                    <div class="reason_container">
+                                        <input class="reason" type="radio" name="size" value="色情資訊">不雅字眼
+                                    </div>
+                                    <button class="go" type="submit">送出</button>
                                 </form>
                             </div>
-                            <div class="fb-share-button" data-href="https://www.youtube.com/watch?v=HDhltQ4Jx0o"
+                            <!-- ====以下臉書分享==== -->
+                            <!-- <div class="fb-share-button" data-href="https://www.youtube.com/watch?v=HDhltQ4Jx0o"
                                 data-layout="button_count" data-size="small"><a target="_blank"
                                     href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DHDhltQ4Jx0o&amp;src=sdkpreparse"
-                                    class="fb-xfbml-parse-ignore">分享</a></div>
+                                    class="fb-xfbml-parse-ignore">分享</a>
+                            </div> -->
+                            <!-- 自己寫測試的 -->
+                            <!-- href="'https://www.facebook.com/sharer/sharer.php?u=03_discuss_article.php?ART_NO=' + artRow.ART_NO + '&amp;src=sdkpreparse'" -->
+                            <div class="fb-share-button"
+                                data-href="http://localhost/important/dist/03_discuss_article.php?ART_NO=51"
+                                data-layout="button" data-size="small"><a target="_blank"
+                                    href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%2Fimportant%2Fdist%2F03_discuss_article.php%3FART_NO%3D51&amp;src=sdkpreparse"
+                                    class="fb-xfbml-parse-ignore">分享</a>
+                            </div>
+                            <!-- ====以上臉書分享==== -->
                         </div>
-                        <div class="ar_innertext">今天去茶園好開心，今天去茶園好開心今園好開心今。天去茶園好開心今天去茶園好開心...</div>
-                        <div class="btncontainer"><button class="btn"><a
-                                    href="03_discuss_article.html">More</a></button>
+                        <div class="ar_innertext">
+                            <p>{{artRow.ART_CONTENT}}</p>
                         </div>
-                        <div class="pub_time"><span>發表於2020-5-15</span></div>
+                        <div class="btncontainer"><button class="btn">
+                                <a :href="'03_discuss_article.php?ART_NO=' + artRow.ART_NO">More</a></button>
+                        </div>
+                        <div class="pub_time"><span>發表於{{artRow.ART_DATE}}</span></div>
                     </div>
                 </div>
-                <div class="article tour">
-                    <div class="ar_img">
-                        <img class="ar_rimg" src="images/discuss/ar_img7.jpg" alt="">
-                        <p class="ar_title">【揪團心得】我今天去茶園好讚</p>
-                        <div class="art_memicon">
-                            <img class="memi" src="./images/common/mem_photo1.png" alt="">
-                            <span class="mem_name">民民</span>
-                        </div>
-                    </div>
-                    <div class="ar_text">
-                        <div class="art_icons">
-                            <img class="memi addheart" title="加入收藏" src="./images/common/heart.png" alt="">
-                            <img class="memi" src="./images/common/messenger.png" alt="">
-                            <span class="com_num">50</span>
-                            <div class="fb-share-button" data-href="https://www.youtube.com/watch?v=HDhltQ4Jx0o"
-                                data-layout="button_count" data-size="small"><a target="_blank"
-                                    href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DHDhltQ4Jx0o&amp;src=sdkpreparse"
-                                    class="fb-xfbml-parse-ignore">分享</a></div>
-                        </div>
-                        <div class="ar_innertext">今天去茶園好開心，今天去茶園好開心今園好開心今。天去茶園好開心今天去茶園好開心...</div>
-                        <div class="btncontainer"><button class="btn"><a
-                                    href="03_discuss_article.html">More</a></button>
-                        </div>
-                        <div class="pub_time"><span>發表於2020-5-15</span></div>
-                    </div>
-                </div>
-                <div class="article garden">
-                    <div class="ar_img">
-                        <img class="ar_rimg" src="images/discuss/ar_img6.jpg" alt="">
-                        <p class="ar_title">【茶園討論】天龍茶園心得</p>
-                        <div class="art_memicon">
-                            <img class="memi" src="./images/common/mem_photo1.png" alt="">
-                            <span class="mem_name">民民</span>
-                        </div>
-                    </div>
-                    <div class="ar_text">
-                        <div class="art_icons">
-                            <img class="memi addheart" title="加入收藏" src="./images/common/heart.png" alt="">
-                            <img class="memi" src="./images/common/messenger.png" alt="">
-                            <span class="com_num">50</span>
-                            <div class="fb-share-button" data-href="https://www.youtube.com/watch?v=HDhltQ4Jx0o"
-                                data-layout="button_count" data-size="small"><a target="_blank"
-                                    href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DHDhltQ4Jx0o&amp;src=sdkpreparse"
-                                    class="fb-xfbml-parse-ignore">分享</a></div>
-                        </div>
-                        <div class="ar_innertext">今天去茶園好開心，今天去茶園好開心今園好開心今。天去茶園好開心今天去茶園好開心...</div>
-                        <div class="btncontainer"><button class="btn"><a
-                                    href="03_discuss_article.html">More</a></button>
-                        </div>
-                        <div class="pub_time"><span>發表於2020-5-15</span></div>
-                    </div>
-                </div>
-                <div class="article garden">
-                    <div class="ar_img">
-                        <img class="ar_rimg" src="images/discuss/ar_img5.jpg" alt="">
-                        <p class="ar_title">【茶園討論】分享安安茶園</p>
-                        <div class="art_memicon">
-                            <img class="memi" src="./images/common/mem_photo1.png" alt="">
-                            <span class="mem_name">民民</span>
-                        </div>
-                    </div>
-                    <div class="ar_text">
-                        <div class="art_icons">
-                            <img class="memi addheart" title="加入收藏" src="./images/common/heart.png" alt="">
-                            <img class="memi" src="./images/common/messenger.png" alt="">
-                            <span class="com_num">50</span>
-                            <div class="fb-share-button" data-href="https://www.youtube.com/watch?v=HDhltQ4Jx0o"
-                                data-layout="button_count" data-size="small"><a target="_blank"
-                                    href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DHDhltQ4Jx0o&amp;src=sdkpreparse"
-                                    class="fb-xfbml-parse-ignore">分享</a></div>
-                        </div>
-                        <div class="ar_innertext">今天去茶園好開心，今天去茶園好開心今園好開心今。天去茶園好開心今天去茶園好開心...</div>
-                        <div class="btncontainer"><button class="btn"><a
-                                    href="03_discuss_article.html">More</a></button>
-                        </div>
-                        <div class="pub_time"><span>發表於2020-5-15</span></div>
-                    </div>
-                </div>
-                <div class="article garden">
-                    <div class="ar_img">
-                        <img class="ar_rimg" src="images/discuss/ar_img4.jpg" alt="">
-                        <p class="ar_title">【茶園討論】北七茶園還好</p>
-                        <div class="art_memicon">
-                            <img class="memi" src="./images/common/mem_photo1.png" alt="">
-                            <span class="mem_name">民民</span>
-                        </div>
-                    </div>
-                    <div class="ar_text">
-                        <div class="art_icons">
-                            <img class="memi addheart" title="加入收藏" src="./images/common/heart.png" alt="">
-                            <img class="memi" src="./images/common/messenger.png" alt="">
-                            <span class="com_num">50</span>
-                            <div class="fb-share-button" data-href="https://www.youtube.com/watch?v=HDhltQ4Jx0o"
-                                data-layout="button_count" data-size="small"><a target="_blank"
-                                    href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DHDhltQ4Jx0o&amp;src=sdkpreparse"
-                                    class="fb-xfbml-parse-ignore">分享</a></div>
-                        </div>
-                        <div class="ar_innertext">今天去茶園好開心，今天去茶園好開心今園好開心今。天去茶園好開心今天去茶園好開心...</div>
-                        <div class="btncontainer"><button class="btn"><a
-                                    href="03_discuss_article.html">More</a></button>
-                        </div>
-                        <div class="pub_time"><span>發表於2020-5-15</span></div>
-                    </div>
-                </div>
-                <div class="article garden">
-                    <div class="ar_img">
-                        <img class="ar_rimg" src="images/discuss/ar_img3.jpg" alt="">
-                        <p class="ar_title">【茶園討論】我今天去茶園好讚</p>
-                        <div class="art_memicon">
-                            <img class="memi" src="./images/common/mem_photo1.png" alt="">
-                            <span class="mem_name">民民</span>
-                        </div>
-                    </div>
-                    <div class="ar_text">
-                        <div class="art_icons">
-                            <img class="memi addheart" title="加入收藏" src="./images/common/heart.png" alt="">
-                            <img class="memi" src="./images/common/messenger.png" alt="">
-                            <span class="com_num">50</span>
-                            <div class="fb-share-button" data-href="https://www.youtube.com/watch?v=HDhltQ4Jx0o"
-                                data-layout="button_count" data-size="small"><a target="_blank"
-                                    href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DHDhltQ4Jx0o&amp;src=sdkpreparse"
-                                    class="fb-xfbml-parse-ignore">分享</a></div>
-                        </div>
-                        <div class="ar_innertext">今天去茶園好開心，今天去茶園好開心今園好開心今。天去茶園好開心今天去茶園好開心...</div>
-                        <div class="btncontainer"><button class="btn"><a
-                                    href="03_discuss_article.html">More</a></button>
-                        </div>
-                        <div class="pub_time"><span>發表於2020-5-15</span></div>
-                    </div>
-                </div>
-                <div class="article garden">
-                    <div class="ar_img">
-                        <img class="ar_rimg" src="images/discuss/ar_img2.jpg" alt="">
-                        <p class="ar_title">【茶園討論】五人茶園如何</p>
-                        <div class="art_memicon">
-                            <img class="memi" src="./images/common/mem_photo1.png" alt="">
-                            <span class="mem_name">民民</span>
-                        </div>
-                    </div>
-                    <div class="ar_text">
-                        <div class="art_icons">
-                            <img class="memi addheart" title="加入收藏" src="./images/common/heart.png" alt="">
-                            <img class="memi" src="./images/common/messenger.png" alt="">
-                            <span class="com_num">50</span>
-                            <div class="fb-share-button" data-href="https://www.youtube.com/watch?v=HDhltQ4Jx0o"
-                                data-layout="button_count" data-size="small"><a target="_blank"
-                                    href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DHDhltQ4Jx0o&amp;src=sdkpreparse"
-                                    class="fb-xfbml-parse-ignore">分享</a></div>
-                        </div>
-                        <div class="ar_innertext">今天去茶園好開心，今天去茶園好開心今園好開心今。天去茶園好開心今天去茶園好開心...</div>
-                        <div class="btncontainer"><button class="btn"><a
-                                    href="03_discuss_article.html">More</a></button>
-                        </div>
-                        <div class="pub_time"><span>發表於2020-5-15</span></div>
-                    </div>
-                </div>
-                <div class="article garden">
-                    <div class="ar_img">
-                        <img class="ar_rimg" src="images/discuss/ar_img1.webp" alt="">
-                        <p class="ar_title">【茶園討論】哈囉哈囉大家好</p>
-                        <div class="art_memicon">
-                            <img class="memi" src="./images/common/mem_photo1.png" alt="">
-                            <span class="mem_name">民民</span>
-                        </div>
-                    </div>
-                    <div class="ar_text">
-                        <div class="art_icons">
-                            <img class="memi addheart" title="加入收藏" src="./images/common/heart.png" alt="">
-                            <img class="memi" src="./images/common/messenger.png" alt="">
-                            <span class="com_num">50</span>
-                            <div class="fb-share-button" data-href="https://www.youtube.com/watch?v=HDhltQ4Jx0o"
-                                data-layout="button_count" data-size="small"><a target="_blank"
-                                    href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DHDhltQ4Jx0o&amp;src=sdkpreparse"
-                                    class="fb-xfbml-parse-ignore">分享</a></div>
-                        </div>
-                        <div class="ar_innertext">今天去茶園好開心，今天去茶園好開心今園好開心今。天去茶園好開心今天去茶園好開心...</div>
-                        <div class="btncontainer"><button class="btn"><a
-                                    href="03_discuss_article.html">More</a></button>
-                        </div>
-                        <div class="pub_time"><span>發表於2020-5-15</span></div>
-                    </div>
-                </div>
-                <div class="article tour">
-                    <div class="ar_img">
-                        <img class="ar_rimg" src="images/discuss/ar_img9.jpg" alt="">
-                        <p class="ar_title">【揪團心得】上禮拜出團心得</p>
-                        <div class="art_memicon">
-                            <img class="memi" src="./images/common/mem_photo1.png" alt="">
-                            <span class="mem_name">民民</span>
-                        </div>
-                    </div>
-                    <div class="ar_text">
-                        <div class="art_icons">
-                            <img class="memi addheart" title="加入收藏" src="./images/common/heart.png" alt="">
-                            <img class="memi" src="./images/common/messenger.png" alt="">
-                            <span class="com_num">50</span>
-                            <div class="fb-share-button" data-href="https://www.youtube.com/watch?v=HDhltQ4Jx0o"
-                                data-layout="button_count" data-size="small"><a target="_blank"
-                                    href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DHDhltQ4Jx0o&amp;src=sdkpreparse"
-                                    class="fb-xfbml-parse-ignore">分享</a></div>
-                        </div>
-                        <div class="ar_innertext">今天去茶園好開心，今天去茶園好開心今園好開心今。天去茶園好開心今天去茶園好開心...</div>
-                        <div class="btncontainer"><button class="btn"><a
-                                    href="03_discuss_article.html">More</a></button>
-                        </div>
-                        <div class="pub_time"><span>發表於2020-5-15</span></div>
-                    </div>
-                </div>
-                <div class="article tour">
-                    <div class="ar_img">
-                        <img class="ar_rimg" src="images/discuss/ar_img10.jpg" alt="">
-                        <p class="ar_title">【揪團心得】喔喔喔下次再來</p>
-                        <div class="art_memicon">
-                            <img class="memi" src="./images/common/mem_photo1.png" alt="">
-                            <span class="mem_name">民民</span>
-                        </div>
-                    </div>
-                    <div class="ar_text">
-                        <div class="art_icons">
-                            <img class="memi addheart" title="加入收藏" src="./images/common/heart.png" alt="">
-                            <img class="memi" src="./images/common/messenger.png" alt="">
-                            <span class="com_num">50</span>
-                            <div class="fb-share-button" data-href="https://www.youtube.com/watch?v=HDhltQ4Jx0o"
-                                data-layout="button_count" data-size="small"><a target="_blank"
-                                    href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DHDhltQ4Jx0o&amp;src=sdkpreparse"
-                                    class="fb-xfbml-parse-ignore">分享</a></div>
-                        </div>
-                        <div class="ar_innertext">今天去茶園好開心，今天去茶園好開心今園好開心今。天去茶園好開心今天去茶園好開心...</div>
-                        <div class="btncontainer"><button class="btn"><a
-                                    href="03_discuss_article.html">More</a></button>
-                        </div>
-                        <div class="pub_time"><span>發表於2020-5-15</span></div>
-                    </div>
-                </div>
-                <div class="article tour">
-                    <div class="ar_img">
-                        <img class="ar_rimg" src="images/discuss/ar_img11.jpg" alt="">
-                        <p class="ar_title">【揪團心得】我今天去茶園好讚</p>
-                        <div class="art_memicon">
-                            <img class="memi" src="./images/common/mem_photo1.png" alt="">
-                            <span class="mem_name">民民</span>
-                        </div>
-                    </div>
-                    <div class="ar_text">
-                        <div class="art_icons">
-                            <img class="memi addheart" title="加入收藏" src="./images/common/heart.png" alt="">
-                            <img class="memi" src="./images/common/messenger.png" alt="">
-                            <span class="com_num">50</span>
-                            <div class="fb-share-button" data-href="https://www.youtube.com/watch?v=HDhltQ4Jx0o"
-                                data-layout="button_count" data-size="small"><a target="_blank"
-                                    href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DHDhltQ4Jx0o&amp;src=sdkpreparse"
-                                    class="fb-xfbml-parse-ignore">分享</a></div>
-                        </div>
-                        <div class="ar_innertext">今天去茶園好開心，今天去茶園好開心今園好開心今。天去茶園好開心今天去茶園好開心...</div>
-                        <div class="btncontainer"><button class="btn"><a
-                                    href="03_discuss_article.html">More</a></button>
-                        </div>
-                        <div class="pub_time"><span>發表於2020-5-15</span></div>
-                    </div>
-                </div>
-                <div class="article tour">
-                    <div class="ar_img">
-                        <img class="ar_rimg" src="images/discuss/ar_img4.jpg" alt="">
-                        <p class="ar_title">【揪團心得】哈哈哈我要去海邊</p>
-                        <div class="art_memicon">
-                            <img class="memi" src="./images/common/mem_photo1.png" alt="">
-                            <span class="mem_name">民民</span>
-                        </div>
-                    </div>
-                    <div class="ar_text">
-                        <div class="art_icons">
-                            <img class="memi addheart" title="加入收藏" src="./images/common/heart.png" alt="">
-                            <img class="memi" src="./images/common/messenger.png" alt="">
-                            <span class="com_num">50</span>
-                            <div class="fb-share-button" data-href="https://www.youtube.com/watch?v=HDhltQ4Jx0o"
-                                data-layout="button_count" data-size="small"><a target="_blank"
-                                    href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DHDhltQ4Jx0o&amp;src=sdkpreparse"
-                                    class="fb-xfbml-parse-ignore">分享</a></div>
-                        </div>
-                        <div class="ar_innertext">今天去茶園好開心，今天去茶園好開心今園好開心今。天去茶園好開心今天去茶園好開心...</div>
-                        <div class="btncontainer"><button class="btn"><a
-                                    href="03_discuss_article.html">More</a></button>
-                        </div>
-                        <div class="pub_time"><span>發表於2020-5-15</span></div>
-                    </div>
-                </div>
-                <div class="article tour">
-                    <div class="ar_img">
-                        <img class="ar_rimg" src="images/vote/tea2.jpg" alt="">
-                        <p class="ar_title">【揪團心得】我今天去茶園好讚</p>
-                        <div class="art_memicon">
-                            <img class="memi" src="./images/common/mem_photo1.png" alt="">
-                            <span class="mem_name">民民</span>
-                        </div>
-                    </div>
-                    <div class="ar_text">
-                        <div class="art_icons">
-                            <img class="memi addheart" title="加入收藏" src="./images/common/heart.png" alt="">
-                            <img class="memi" src="./images/common/messenger.png" alt="">
-                            <span class="com_num">50</span>
-                            <div class="fb-share-button" data-href="https://www.youtube.com/watch?v=HDhltQ4Jx0o"
-                                data-layout="button_count" data-size="small"><a target="_blank"
-                                    href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DHDhltQ4Jx0o&amp;src=sdkpreparse"
-                                    class="fb-xfbml-parse-ignore">分享</a></div>
-                        </div>
-                        <div class="ar_innertext">今天去茶園好開心，今天去茶園好開心今園好開心今。天去茶園好開心今天去茶園好開心...</div>
-                        <div class="btncontainer"><button class="btn"><a
-                                    href="03_discuss_article.html">More</a></button>
-                        </div>
-                        <div class="pub_time"><span>發表於2020-5-15</span></div>
-                    </div>
-                </div>
-                <div class="article tour">
-                    <div class="ar_img">
-                        <img class="ar_rimg" src="images/discuss/ar_img12.jpg" alt="">
-                        <p class="ar_title">【揪團心得】給我一個理由忘記</p>
-                        <div class="art_memicon">
-                            <img class="memi" src="./images/common/mem_photo1.png" alt="">
-                            <span class="mem_name">民民</span>
-                        </div>
-                    </div>
-                    <div class="ar_text">
-                        <div class="art_icons">
-                            <img class="memi addheart" title="加入收藏" src="./images/common/heart.png" alt="">
-                            <img class="memi" src="./images/common/messenger.png" alt="">
-                            <span class="com_num">50</span>
-                            <div class="fb-share-button" data-href="https://www.youtube.com/watch?v=HDhltQ4Jx0o"
-                                data-layout="button_count" data-size="small"><a target="_blank"
-                                    href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DHDhltQ4Jx0o&amp;src=sdkpreparse"
-                                    class="fb-xfbml-parse-ignore">分享</a></div>
-                        </div>
-                        <div class="ar_innertext">今天去茶園好開心，今天去茶園好開心今園好開心今。天去茶園好開心今天去茶園好開心...</div>
-                        <div class="btncontainer"><button class="btn"><a
-                                    href="03_discuss_article.html">More</a></button>
-                        </div>
-                        <div class="pub_time"><span>發表於2020-5-15</span></div>
-                    </div>
-                </div>
-                <div class="article leaf">
-                    <div class="ar_img">
-                        <img class="ar_rimg" src="images/discuss/ar_img4.jpg" alt="">
-                        <p class="ar_title">【茶葉知識】文山包種好喝嗎</p>
-                        <div class="art_memicon">
-                            <img class="memi" src="./images/common/mem_photo1.png" alt="">
-                            <span class="mem_name">民民</span>
-                        </div>
-                    </div>
-                    <div class="ar_text">
-                        <div class="art_icons">
-                            <img class="memi addheart" title="加入收藏" src="./images/common/heart.png" alt="">
-                            <img class="memi" src="./images/common/messenger.png" alt="">
-                            <span class="com_num">50</span>
-                            <div class="fb-share-button" data-href="https://www.youtube.com/watch?v=HDhltQ4Jx0o"
-                                data-layout="button_count" data-size="small"><a target="_blank"
-                                    href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DHDhltQ4Jx0o&amp;src=sdkpreparse"
-                                    class="fb-xfbml-parse-ignore">分享</a></div>
-                        </div>
-                        <div class="ar_innertext">今天去茶園好開心，今天去茶園好開心今園好開心今。天去茶園好開心今天去茶園好開心...</div>
-                        <div class="btncontainer"><button class="btn"><a
-                                    href="03_discuss_article.html">More</a></button>
-                        </div>
-                        <div class="pub_time"><span>發表於2020-5-15</span></div>
-                    </div>
-                </div>
+
 
             </div>
         </section>
     </main>
     @@include('layout/footer.html')
 
-
+    <!-- ====臉書分享==== -->
     <div id="fb-root"></div>
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v9.0"
-        nonce="lEdg4PO1"></script>
+        nonce="02xnpbCX"></script>
+    <!-- ====臉書分享==== -->
+
+
 
     <script>
-        $(function () {
-            $('.list').click(function () {
-                let value = $(this).attr('data-filter');
-                if (value == 'all') {
-                    $('.article').removeClass('fil_none');
-                }
-                else {
-                    $('.article').not('.' + value).addClass('fil_none');
-                    $('.article').filter('.' + value).removeClass('fil_none');
-                }
-            });
-
-            // ======filter change
-            $('.list').click(function () {
-                $(this).addClass('fit');
-                $('.list').not(this).removeClass('fit');
-            });
-
-            $('.addheart').click(function () {
-                if (this.title == "加入收藏") {
-                    this.title = "取消收藏";
-                    this.src = "./images/common/like.png";
-                } else {
-                    this.title = "加入收藏";
-                    this.src = "./images/common/heart.png";
-                }
-            });
-        });
-    </script>
-
-    <script>
-        new Vue({
-            el: "#app",
+        var app = new Vue({
+            el: "#are",
             data: {
                 showModal: false,
                 showModal2: false,
+                articlesRows: [],
+
+            },
+        });
+
+        $('.list').click(function () {
+            let value = $(this).attr('data-filter');
+            if (value == 'all') {
+                $('.article').removeClass('fil_none');
+            }
+            else {
+                $('.article').not('.' + value).addClass('fil_none');
+                $('.article').filter('.' + value).removeClass('fil_none');
             }
         });
+
+        // ======filter change
+        $('.list').click(function () {
+            $(this).addClass('fit');
+            $('.list').not(this).removeClass('fit');
+        });
+
+
+
+        // ====jq寫法==== 無效中
+        // $('.addheart').click(function () {
+        //     if (this.title == "加入收藏") {
+        //         this.title = "取消收藏";
+        //         this.src = "./images/common/like.png";
+        //     } else {
+        //         this.title = "加入收藏";
+        //         this.src = "./images/common/heart.png";
+        //     }
+        // });
+
+        // ====js寫法====依然無效
+        // function init() {
+        //     document.getElementByClass("addheart").onclick = switchFavorite;
+        // }
+
+        // function switchFavorite() {
+        //     var getHp = document.getElementByClass("addheart");
+        //     if (getHp.title == "加入收藏") {
+        //         getHp.src = "./images/common/like.png";
+        //         getHp.title = "取消收藏";
+        //         console.log('addd');
+        //     } else {
+        //         getHp.src = "./images/common/heart.png";
+        //         getHp.title = "加入收藏";
+        //     }
+        // }
+
+
+
+    </script>
+
+
+    <script type="text/javascript">
+        window.addEventListener("load", function () {
+            let articlesRows;
+            //============去server端拿資料
+            let xhr = new XMLHttpRequest();
+            xhr.onload = function () {
+                app.articlesRows = JSON.parse(xhr.responseText);
+                console.log(app.articlesRows);
+            }
+            xhr.open("get", "./phps/getArticles.php", true);
+            xhr.send(null);
+        })
     </script>
 </body>
 
