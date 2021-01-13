@@ -109,20 +109,10 @@
 
             <div class="hotel_container sec">
                 <p class="ht eat">餐廳</p>
-                <div class="hotel">
-                    <img class="hpic" src="images/vote/cafe.jpg">
-                    <p class="hname">好茶咖啡工作室</p>
-                    <p class="hinfo">Ba han han non - 阿美族語何不休息一下，品茗伴隨陣陣咖啡香，一同品味蜜香紅茶與迦納咖啡的風味。</p>
-                </div>
-                <div class="hotel">
-                    <img class="hpic" src="images/vote/sweet.jpg">
-                    <p class="hname">瑞穗鮮奶豆花冰店</p>
-                    <p class="hinfo">純手工製作的鮮奶豆花綿密醇濃，除了鮮奶豆花外，也有販售季節水果剉冰、古早味黑糖剉冰、冬季甜湯系列。</p>
-                </div>
-                <div class="hotel">
-                    <img class="hpic" src="images/vote/steak.jpg">
-                    <p class="hname">PRIME ONE 牛排館</p>
-                    <p class="hinfo">獲得2018年台北米其林指南「餐盤推薦」殊榮，以濕式熟成來呈現牛排風味，完整呈現出高級牛排館及NEW CUISINE料理。</p>
+                <div v-for="foodRow in foodRows" class="hotel">
+                    <img class="hpic" :src="foodRow.RESTAURANT_IMG">
+                    <p class="hname">{{foodRow.RESTAURANT_NAME}}</p>
+                    <p class="hinfo">{{foodRow.RESTAURANT_INFRO}}</p>
                 </div>
             </div>
         </div>

@@ -6,9 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="./images/index/webIcon.png" type="image/x-icon" />
     <link rel="stylesheet" href="css/discuss.css" />
+    <title>找茶討論</title>
+    <!-- jquery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- vue  -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.js"></script>
-    <title>討論區</title>
 </head>
 
 <body>
@@ -48,7 +50,8 @@
                     </div>
                     <div class="ar_text">
                         <div class="art_icons">
-                            <img class="memi addheart" title="加入收藏" src="./images/common/heart.png" alt="">
+                            <img class="memi addheart" title="加入收藏" src="./images/common/heart.png" alt=""
+                                @click="addheart">
                             <img class="memi" src="./images/common/messenger.png" alt="">
                             <span class="com_num">{{artRow.ART_REPLYS}}</span>
                             <div class="excl" @click="showModal2 = true">
@@ -72,9 +75,10 @@
                                         <input class="reason" type="radio" name="size" value="色情資訊">色情資訊
                                     </div>
                                     <div class="reason_container">
-                                        <input class="reason" type="radio" name="size" value="色情資訊">不雅字眼
+                                        <input class="reason" type="radio" name="size" value="不雅字眼">不雅字眼
                                     </div>
                                     <button class="go" type="submit">送出</button>
+                                    <input type="hidden" name="art_reg" :value="artRow.ART_NO">
                                 </form>
                             </div>
                             <!-- ====以下臉書分享==== -->
@@ -102,8 +106,6 @@
                         <div class="pub_time"><span>發表於{{artRow.ART_DATE}}</span></div>
                     </div>
                 </div>
-
-
             </div>
         </section>
     </main>
@@ -126,6 +128,20 @@
                 articlesRows: [],
 
             },
+            methods: {
+                addheart: function () {
+                    $('.addheart').click(function () {
+                        if (this.title == "加入收藏") {
+                            this.title = "取消收藏";
+                            this.src = "./images/common/like.png";
+                        } else {
+                            this.title = "加入收藏";
+                            this.src = "./images/common/heart.png";
+                        }
+                    });
+                }
+
+            },
         });
 
         $('.list').click(function () {
@@ -144,39 +160,6 @@
             $(this).addClass('fit');
             $('.list').not(this).removeClass('fit');
         });
-
-
-
-        // ====jq寫法==== 無效中
-        // $('.addheart').click(function () {
-        //     if (this.title == "加入收藏") {
-        //         this.title = "取消收藏";
-        //         this.src = "./images/common/like.png";
-        //     } else {
-        //         this.title = "加入收藏";
-        //         this.src = "./images/common/heart.png";
-        //     }
-        // });
-
-        // ====js寫法====依然無效
-        // function init() {
-        //     document.getElementByClass("addheart").onclick = switchFavorite;
-        // }
-
-        // function switchFavorite() {
-        //     var getHp = document.getElementByClass("addheart");
-        //     if (getHp.title == "加入收藏") {
-        //         getHp.src = "./images/common/like.png";
-        //         getHp.title = "取消收藏";
-        //         console.log('addd');
-        //     } else {
-        //         getHp.src = "./images/common/heart.png";
-        //         getHp.title = "加入收藏";
-        //     }
-        // }
-
-
-
     </script>
 
 
