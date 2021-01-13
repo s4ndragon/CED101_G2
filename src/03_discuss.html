@@ -44,7 +44,7 @@
                         <img class="ar_rimg" :src="artRow.ART_IMG" alt="">
                         <p class="ar_title">【{{artRow.CAT}}】{{artRow.ART_TITLE}}</p>
                         <div class="art_memicon">
-                            <img class="memi memipeople" :src="'./images/member/' + artRow.MEM_IMG " alt="">
+                            <img class="memi memipeople" :src=" artRow.MEM_IMG " alt="">
                             <span class="mem_name">{{artRow.MEM_NICNAME}}</span>
                         </div>
                     </div>
@@ -126,7 +126,6 @@
                 showModal: false,
                 showModal2: false,
                 articlesRows: [],
-
             },
             methods: {
                 addheart: function () {
@@ -144,6 +143,7 @@
             },
         });
 
+        // =====filter=====
         $('.list').click(function () {
             let value = $(this).attr('data-filter');
             if (value == 'all') {
@@ -160,10 +160,8 @@
             $(this).addClass('fit');
             $('.list').not(this).removeClass('fit');
         });
-    </script>
 
 
-    <script type="text/javascript">
         window.addEventListener("load", function () {
             let articlesRows;
             //============去server端拿資料

@@ -55,13 +55,10 @@
 
     <script>
         let upload = document.getElementById("upimg");
-
         upload.addEventListener("change", hand, false);
-
         function hand() {
             readURL(this);
         }
-
         function readURL(input) {
             if (input.files && input.files[0]) {
                 let reader = new FileReader();
@@ -71,8 +68,6 @@
                 reader.readAsDataURL(input.files[0])
             }
         }
-
-
     </script>
 </body>
 
