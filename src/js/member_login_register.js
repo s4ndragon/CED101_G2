@@ -1,3 +1,7 @@
+function $id(id){
+	return document.getElementById(id);
+}	
+
 function getLoginInfo() {
     //取回使用者的登入資訊
     let xhr = new XMLHttpRequest();
@@ -23,9 +27,9 @@ function sendForm() {
             if (member.MEM_ID) {
                 //如果有回傳一個有會員資料的物件, 表示登入成功
                 $id("spanLogin").innerText = "登出";
-                $id("memName").innerText = member.memName;
+                // $id("memName").innerText = member.memName;
                 //將登入表單上的資料清空，並隱藏起來
-                $id("lightBox").style.display = "none";
+                // $id("lightBox").style.display = "none";
                 $id("MEM_ID").value = "";
                 $id("MEM_PW").value = "";
             } else {
@@ -43,6 +47,7 @@ function sendForm() {
 
 $(document).ready(function () {
     getLoginInfo();
+    console.log(getLoginInfo());
     $(".memicon").click(function () {
         $(".cover").css("display", "block");
         // console.log("hihi");

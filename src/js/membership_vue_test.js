@@ -17,10 +17,10 @@ Vue.component("tour", {
                     <h3>我主揪</h3>
                     <div id="mine_on_going">
                         <h4>揪團中的團</h4>
-                        <div class="tour_detail">
-                            <div class="tour_title">跨年茶園之旅</div>
-                            <div class="tour_date">2020/12/31</div>
-                            <div class="tour_attendency" @click="lightboxAttendency = true">人數：<span class="attend attend_1">15</span>／<span class="require require_1">30</span></div>
+                        <div class="tour_detail" v-for="memTour in memTours">
+                            <div class="tour_title">{{memTour.TOUR_TITLE}}</div>
+                            <div class="tour_date">{{memTour.TOUR_SETOFFTIME}}</div>
+                            <div class="tour_attendency" @click="lightboxAttendency = true">人數：<span class="attend attend_1">{{memTour.NUM_OF_PARTICIPANTS}}</span>／<span class="require require_1">{{memTour.TOUR_PEOPLE}}</span></div>
                             <div class="tour_status_bar">
                                 <div class="tour_status">未成團</div>
                                 <div class="tour_join">取消</div>
@@ -608,7 +608,7 @@ Vue.component("mine_profile", {
                                         <input type="text" name="confirm_new_pw" class="confirm_new_pw" />
                                     </div>
                                     <div class="btn_sent">
-                                        <button type="submit" class="button button-block"/>送出</button>
+                                        <button type="submit" class="button"/>送出</button>
                                     </div>
                                 </form>
                             </div>
