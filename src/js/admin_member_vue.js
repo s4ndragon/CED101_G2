@@ -33,8 +33,8 @@ new Vue({
 			this.members = res
 		},
 
-		query_mem_id: async function (mem_id) {
-			console.log(mem_id)
+		query_mem_id: async function () {
+			console.log(this.mem_id)
 
 			const res = await fetch('./phps/admin_QueMembers.php', {
 				method: 'POST',
@@ -49,9 +49,13 @@ new Vue({
 			}).then(function(data){
 				return data.json()
 			})
-          //重新撈取一次細項列表
-			this.get_mems(this.mem_id)
-		},
+			this.members = res
+
+			//查詢完後清空輸入的內容
+			this.mem_id =''
+
+		}
+		
 	},
 
 

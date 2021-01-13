@@ -63,15 +63,15 @@
                     <div class="tab_list_block">
                         <ul class="tab_list">
                             <li><a href="#" data-target="tab1" class="tab -on">商品查詢及上下架</a></li>
-                            <li><a href="#" data-target="tab5" class="tab -on">商城訂單管理</a></li>
+                            <li><a href="#" data-target="tab2" class="tab -on">商城訂單管理</a></li>
                         </ul>
                     </div>
 
                     <div class="tab_contents">
                         <div class="tab tab1 -on">
                             <form>
-                                <input type="text" placeholder="請輸入商品編號" />
-                                <button class="btn-confirm" type="button">送出</button>
+                                <input type="text" placeholder="請在此輸入商品編號" />
+                                <button class="btn-confirm" type="button">查詢</button>
                             </form>
                             <form>
                                 <input type="text" placeholder="請輸入商品編號" />
@@ -91,19 +91,19 @@
                                     <th>商品上下架狀態</th>
                                     <th>確認修改</th>
                                 </tr>
-                                <tbody v-for="item in products">
+                                <tbody v-for="(item,key) in products">
                                     <tr>
                                         <td>{{item.PSN}}</td>
-                                        <td><input type="text" :value="item.NAME" /></td>
-                                        <td><input type="text" :value="item.INFO" /></td>
-                                        <td><input type="text" :value="item.PRICE" /></td>
-                                        <td><input type="text" :value="item.SOLD" /></td>
+                                        <td><input type="text" :value="item.NAME" @keyup="change($event,key)" /></td>
+                                        <td><input type="text" :value="item.INFO" @keyup="change($event,key)" /></td>
+                                        <td><input type="text" :value="item.PRICE" @keyup="change($event,key)" /></td>
+                                        <td>{{item.SOLD}}</td>
 
                                         <td>
                                             <div class="form-group">
                                                 上架
                                                 <label class="switch">
-                                                    <input type="checkbox" />
+                                                    <input type="checkbox" v-model="item.ischecked" />
                                                     <span class="slider round"></span>
                                                 </label>
                                                 下架
@@ -115,35 +115,31 @@
                             </table>
 
                             <table>
-                                已下架商品
+                                已下架商品 (無法回復上架，若需要請重新新增商品)
                                 <tr>
                                     <th>商品編號</th>
                                     <th>商品名稱</th>
                                     <th>商品特色</th>
                                     <th>商品價格</th>
-                                    <th>商品圖片</th>
                                     <th>銷售數量</th>
                                     <th>商品上下架狀態</th>
-                                    <th>確認修改</th>
                                 </tr>
-                                <tbody>
+                                <tbody v-for="item in Delprodus">
                                     <tr>
-                                        <td><input type="text" placeholder="111" /></td>
-                                        <td><input type="text" placeholder="111" /></td>
-                                        <td><input type="text" placeholder="111" /></td>
-                                        <td><input type="text" placeholder="111" /></td>
-                                        <td><input type="text" placeholder="111" /></td>
-                                        <td><input type="text" placeholder="111" /></td>
+                                        <td>{{item.PSN}}</td>
+                                        <td>{{item.NAME}}</td>
+                                        <td>{{item.INFO}}</td>
+                                        <td>{{item.PRICE}}</td>
+                                        <td>{{item.SOLD}}</td>
                                         <td>已下架</td>
-                                        <td><input type="button" class="btn-delete" value="確認修改" /></td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
 
-                        <div class="tab tab2 -on">
+                        <div class="tab tab2">
                             <table>
-                                商城訂單管理
+                                商城訂單管理 -未付款0
                                 <tr>
                                     <th>訂單編號</th>
                                     <th>會員編號</th>
@@ -158,14 +154,72 @@
                                     <th>收件人電話</th>
                                     <th>確認修改</th>
                                 </tr>
-                                <tbody v-for="item in orders">
+                                <tbody v-for="(item,key) in orders">
                                     <tr>
-                                        <td>{{item.ORDERS_NO }}</td>
-                                        <td><input type="text" :value="item.MEMBER" /></td>
-                                        <td><input type="text" :value="item.STATE" /></td>
-                                        <td><input type="text" :value="item.DATA" /></td>
+                                        <td>{{item.ORDERS_NO}}</td>
+                                        <td>{{item.MEMBER}}</td>
+                                        <td>
+                                            <select name="出貨狀態" v-model="selecteddealState">
+                                                <option v-for="(dealState,index) in dealStates" :value="index">
+                                                    {{dealState}}
+                                                </option>
+                                            </select>
+                                        </td>
+                                        <td>{{item.ORD_DATE}}</td>
                                         <td><input type="text" :value="item.DELIVERY" /></td>
                                         <td><input type="text" :value="item.PAY" /></td>
+                                        <td><input type="text" :value="item.DISCOUNT" /></td>
+                                        <td><input type="text" :value="item.TOTAL" /></td>
+                                        <td><input type="text" :value="item.RECEIVER_NAME" /></td>
+                                        <td><input type="text" :value="item.RECEIVER_ADDRESS" /></td>
+                                        <td><input type="text" :value="item.RECEIVER_TEL " /></td>
+
+                                        <!-- <td>
+                                            <div class="form-group">
+                                                上架
+                                                <label class="switch">
+                                                    <input type="checkbox" />
+                                                    <span class="slider round"></span>
+                                                </label>
+                                                下架
+                                            </div>
+                                        </td> -->
+                                        <td><input type="button" class="btn-delete" value="確認修改" /></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <!-- <table>
+                                商城訂單管理 - 已付款1
+                                <tr>
+                                    <th>訂單編號</th>
+                                    <th>會員編號</th>
+                                    <th>訂單狀態</th>
+                                    <th>訂單成立日期</th>
+                                    <th>寄貨方式</th>
+                                    <th>付款方式</th>
+                                    <th>折扣點數</th>
+                                    <th>訂單總額</th>
+                                    <th>收件人</th>
+                                    <th>收件人地址</th>
+                                    <th>收件人電話</th>
+                                    <th>確認修改</th>
+                                </tr>
+                                <tbody v-for="(item,key) in orders">
+                                    <tr>
+                                        <td>{{item.ORDERS_NO }}</td>
+                                        <td>{{item.MEMBER}}</td>
+                                        <td>
+                                            <select>
+                                                <option value="">已付款</option>
+                                                <option value="">未付款</option>
+                                                <option value="">未出貨</option>
+                                                <option value="">已出貨</option>
+                                            </select>
+                                        </td>
+                                        <td>{{item.ORD_DATE}}</td>
+                                        <td><input type="text" :value="item.DELIVERY" /></td>
+                                        <td><input type="text" :value="item.PAY" /></td>
+                                        <td><input type="text" :value="item.DISCOUNT" /></td>
                                         <td><input type="text" :value="item.TOTAL" /></td>
                                         <td><input type="text" :value="item.RECEIVER_NAME" /></td>
                                         <td><input type="text" :value="item.RECEIVER_ADDRESS" /></td>
@@ -184,7 +238,109 @@
                                         <td><input type="button" class="btn-delete" value="確認修改" /></td>
                                     </tr>
                                 </tbody>
-                            </table>
+                            </table> -->
+                            <!-- <table>
+                                商城訂單管理 -未出貨2
+                                <tr>
+                                    <th>訂單編號</th>
+                                    <th>會員編號</th>
+                                    <th>訂單狀態</th>
+                                    <th>訂單成立日期</th>
+                                    <th>寄貨方式</th>
+                                    <th>付款方式</th>
+                                    <th>折扣點數</th>
+                                    <th>訂單總額</th>
+                                    <th>收件人</th>
+                                    <th>收件人地址</th>
+                                    <th>收件人電話</th>
+                                    <th>確認修改</th>
+                                </tr>
+                                <tbody v-for="(item,key) in orders">
+                                    <tr>
+                                        <td>{{item.ORDERS_NO }}</td>
+                                        <td>{{item.MEMBER}}</td>
+                                        <td>
+                                            <select>
+                                                <option value="">未出貨</option>
+                                                <option value="">已付款</option>
+                                                <option value="">未付款</option>
+                                                <option value="">已出貨</option>
+                                            </select>
+                                        </td>
+                                        <td>{{item.ORD_DATE}}</td>
+                                        <td><input type="text" :value="item.DELIVERY" /></td>
+                                        <td><input type="text" :value="item.PAY" /></td>
+                                        <td><input type="text" :value="item.DISCOUNT" /></td>
+                                        <td><input type="text" :value="item.TOTAL" /></td>
+                                        <td><input type="text" :value="item.RECEIVER_NAME" /></td>
+                                        <td><input type="text" :value="item.RECEIVER_ADDRESS" /></td>
+                                        <td><input type="text" :value="item.RECEIVER_TEL " /></td>
+
+                                        <td>
+                                            <div class="form-group">
+                                                上架
+                                                <label class="switch">
+                                                    <input type="checkbox" />
+                                                    <span class="slider round"></span>
+                                                </label>
+                                                下架
+                                            </div>
+                                        </td>
+                                        <td><input type="button" class="btn-delete" value="確認修改" /></td>
+                                    </tr>
+                                </tbody>
+                            </table> -->
+                            <!-- <table>
+                                商城訂單管理 -已出貨 3
+                                <tr>
+                                    <th>訂單編號</th>
+                                    <th>會員編號</th>
+                                    <th>訂單狀態</th>
+                                    <th>訂單成立日期</th>
+                                    <th>寄貨方式</th>
+                                    <th>付款方式</th>
+                                    <th>折扣點數</th>
+                                    <th>訂單總額</th>
+                                    <th>收件人</th>
+                                    <th>收件人地址</th>
+                                    <th>收件人電話</th>
+                                    <th>確認修改</th>
+                                </tr>
+                                <tbody v-for="(item,key) in orders">
+                                    <tr>
+                                        <td>{{item.ORDERS_NO }}</td>
+                                        <td>{{item.MEMBER}}</td>
+                                        <td>
+                                            <select>
+                                                <option value="">已出貨</option>
+                                                <option value="">已付款</option>
+                                                <option value="">未付款</option>
+                                                <option value="">未出貨</option>
+                                            </select>
+                                        </td>
+                                        <td>{{item.ORD_DATE}}</td>
+                                        <td><input type="text" :value="item.DELIVERY" /></td>
+                                        <td><input type="text" :value="item.PAY" /></td>
+                                        <td><input type="text" :value="item.DISCOUNT" /></td>
+                                        <td><input type="text" :value="item.TOTAL" /></td>
+                                        <td><input type="text" :value="item.RECEIVER_NAME" /></td>
+                                        <td><input type="text" :value="item.RECEIVER_ADDRESS" /></td>
+                                        <td><input type="text" :value="item.RECEIVER_TEL " /></td>
+
+                                        <td>
+                                            <div class="form-group">
+                                                上架
+                                                <label class="switch">
+                                                    <input type="checkbox" />
+                                                    <span class="slider round"></span>
+                                                </label>
+                                                下架
+                                            </div>
+                                        </td>
+                                        <td><input type="button" class="btn-delete" value="確認修改" /></td>
+                                    </tr>
+                                </tbody>
+                            </table> -->
                         </div>
                     </div>
                 </div>
