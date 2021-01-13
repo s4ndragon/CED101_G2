@@ -1,0 +1,41 @@
+@import "./default/common";
+
+img {
+    width: 100%;
+}
+
+.successBox {
+    width: 400px;
+    height: 400px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: -webkit-gradient(linear, 0% 20%, 0% 92%, from(#f3f3f3), to(#fff), color-stop(0.1, #f3f3f3));
+    border-radius: 10px;
+    box-shadow: 3px 3px 10px black;
+
+    p {
+        &:nth-child(1) {
+            text-align: center;
+            margin-top: 120px;
+            font-size: $h1;
+            font-weight: $font-weight;
+            color: $primary-typo-color;
+        }
+
+        &:nth-child(2) {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 18px;
+            color: $secondary-typo-color;
+        }
+    }
+
+    .img {
+        position: absolute;
+        bottom: 0;
+        right: -100px;
+
+    }
+}

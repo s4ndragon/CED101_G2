@@ -1,19 +1,4 @@
 
-let locationPoint = document.getElementsByClassName("location");
-let locationImg = document.getElementsByClassName("locationImg");
-// console.log(locationPoint[2]);
-for (var i = 0; i < locationImg.length; i++) {
-    locationImg[i].addEventListener("mouseover", changeImage);
-};
-function changeImage() {
-
-    this.src = `./images/tour/tour1.jpg`;
-    this.addEventListener("mouseout", removeChangeImage);
-};
-function removeChangeImage() {
-    this.src = "./images/common/location.png";
-    this.addEventListener("mouseover", changeImage);
-};
 
 let locationArea = document.getElementsByClassName("location");
 let allLocal = document.getElementById("allLocal");

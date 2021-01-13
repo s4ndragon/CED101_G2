@@ -130,8 +130,8 @@
                 image.style.maxWidth = '500px';
                 image.style.maxHeight = '400px';
             });
-            if (fileSize > 2) {
-                form.imgWarn = "*檔案大小不可超過2M";
+            if (fileSize > 5) {
+                form.imgWarn = "*檔案大小不可超過5M";
             } else {
                 form.imgWarn = "";
                 storage['img'] = `./images/tour/tour/${file.name}`;
