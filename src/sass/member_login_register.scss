@@ -1,5 +1,5 @@
-@import './default/reset';
-@import './default/common';
+@import "./default/reset";
+@import "./default/common";
 
 //============= var ============//
 
@@ -54,7 +54,7 @@ a {
     margin: 0 0 40px 0;
 
     &:after {
-        content: '';
+        content: "";
         display: table;
         clear: both;
     }
@@ -84,7 +84,7 @@ a {
     }
 }
 
-.tab-content>div:last-child {
+.tab-content > div:last-child {
     display: none;
 }
 
@@ -158,12 +158,12 @@ textarea {
 
 .top-row {
     &:after {
-        content: '';
+        content: "";
         display: table;
         clear: both;
     }
 
-    >div {
+    > div {
         float: left;
         width: 48%;
         margin-right: 4%;

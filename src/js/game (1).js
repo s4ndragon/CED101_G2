@@ -37,10 +37,12 @@ var star = 25,
   init_walk,
   init_Bullet,
   init_shot;
-  var sp_,
+var sp_,
   time_b_,
   bb__,
-  zom_,zarr_;
+  zom_, zarr_;
+// var  bomb = new audio("http://ys.yd.yiscdn.com/yisell/ycys2020111852017888/sound/yisell_sound_2014080113081858221_66366.mp3"),
+  // overaudio=new audio('http://ys.yd.yiscdn.com/yisell/ycys2020111852017888/sound/yisell_sound_2014081313362320795_66366.mp3');
 var tm= new TimelineMax();
 //事件委托
 map.onclick = function(e) {
@@ -114,10 +116,8 @@ function zarr(){
 
 // 生成子彈
 function createBullet(speed, damage, left) {
-  /*
-   * speed 射速
-   * damage 傷害
-   */
+/*   * speed 射速  * damage 傷害   */
+  bomb.play();
   var img = document.createElement("img");
   img.className = 'bullet';
   //設置到創建的子彈標籤上
@@ -210,7 +210,8 @@ function zom(){
   wormArr[i].style.left = wormArr[i].offsetLeft - parseInt(wormArr[i].dataset.speed) + "px";
     if (wormArr[i].offsetLeft + wormArr[i].offsetWidth < 0) {
     document.querySelector("div.gameover").classList.add("-on");
-        gamestop();//停止遊戲
+      gamestop();//停止遊戲
+      overaudio.play();
   }
   for(var j = 0; j < plantArr.length; j++) {
     //蟲子和植物碰上了
@@ -280,7 +281,9 @@ function wormState(index, worm, wormArr) {
     kill(index,worm,wormArr);
   }
 }
-document.getElementById('go').onclick=function () {
+document.getElementById('go').onclick = function () {
+   var a=document.getElementById('audioc')
+                a.play();
       sp_= setInterval("sp()", starTimer);//降落茶葉
   		time_b_=	setInterval("time_b()", 9000);//產生子彈
       bb__=setInterval("bb_()", 20);//移動子彈

@@ -7,8 +7,7 @@
         <link rel="stylesheet" href="./css/membership.css" />
         <script src="../node_modules/jquery/dist/jquery.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
-        <!-- <script src="./js/membership.js"></script> -->
-        <!-- <script src="./js/membership_vue.js"></script> -->
+        <script src="./js/membership.js"></script>
         <title>會員系統</title>
     </head>
     <body>
@@ -24,8 +23,8 @@
                     <div class="profile-pic">
                         <img id="MEM_IMG" class="rounded-circle" src="./images/member/new_member.jpg" />
                     </div>
-                    <h2 id="MEM_NICKNAME">阿民</h2>
-                    <h6 id="MEM_ID" class="memId">@min</h6>
+                    <h2 id="MEM_NICKNAME"></h2>
+                    <h6 id="MEM_ID" class="memId">@</h6>
                     <!-- <input type="text" class="input-profile" name="profile" value="熱愛程式及茶園的男子"> -->
                     <button class="mine_profile" @click="content = 'mine_profile'">個人資料</button>
                 </div>
@@ -97,10 +96,13 @@
                 <input type="button" id="recall_cancel" value="取消" />
             </div>
         </div>
+        <!-- 資料暫存區 -->
+
         @@include('layout/login_register.html') @@include('layout/footer.html')
         <!-- <script src="../node_modules/vue/dist/vue.js"></script> -->
         <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
         <script src="./js/membership_vue.js"></script>
         <!-- <script src="./js/membership.js"></script> -->
+        <script src="./js/member_login_register.js"></script>
     </body>
 </html>

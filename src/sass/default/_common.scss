@@ -1,24 +1,24 @@
-@import 'variables';
-@import 'reset';
-@import 'header';
-@import 'footer';
-@import 'bground_style';
-@import 'btn';
-@import 'form';
-@import 'leaf';
-@import 'login_register';
-@import 'leaf';
-@import 'load';
-@import 'filter';
-@import 'banner';
-@import 'close_icon';
+@import "variables";
+@import "reset";
+@import "header";
+@import "footer";
+@import "bground_style";
+@import "btn";
+@import "form";
+@import "leaf";
+@import "leaf";
+@import "load";
+@import "filter";
+@import "banner";
+@import "close_icon";
+@import "login_register";
 
 img {
     max-width: $img-max-width;
 }
 
 body {
-    font-family: 'Noto Sans TC';
+    font-family: "Noto Sans TC";
     line-height: 28px;
     background-image: url(../images/index/img_bg_yg_pc4.png);
     background-size: 100% auto;
@@ -26,8 +26,8 @@ body {
 
 input {
     // -webkit-appearance: none;
- // /* Safari 和 Chrome，常用於iOS下移除內建樣式 */
- // -moz-appearance: none;
- // /* FireFox */
- // appearance: none;
+    // /* Safari 和 Chrome，常用於iOS下移除內建樣式 */
+    // -moz-appearance: none;
+    // /* FireFox */
+    // appearance: none;
 }

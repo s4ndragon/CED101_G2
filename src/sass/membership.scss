@@ -692,7 +692,7 @@ main {
         #mine_profile {
             // display: none;
             width: $main-width;
-            flex-direction: row;
+            // flex-direction: row;
 
             @media only screen and (max-width: 768px) {
                 width: 100%;
@@ -710,7 +710,6 @@ main {
                 align-items: center;
                 justify-content: center;
                 padding-top: 20px;
-
                 .field-wrap {
                     // display: flex;
                     // flex-direction: column;
@@ -769,30 +768,33 @@ main {
                 }
                 .btn_sent {
                     // border: 1px solid black;
-                    // width: 300px;
+                    // @include btn3;
+                    width: 100%;
                     text-align: center;
                     // margin-bottom: 15px;
-                    .button {
-                        @include btn3; // border: 0;
-                        margin: 0 auto // outline: none;
-                            // border-radius: 0;
-                            // padding: 5px 10px;
-                            // font-size: $h3;
-                            // font-weight: bold;
-                            // text-transform: uppercase;
-                            // letter-spacing: 0.1em;
-                            // background: $primary-typo-color;
-                            // color: $btn-color;
-                            // transition: all.5s ease;
-                            // -webkit-appearance: none;
-                            // width: 300px;
-                            // cursor: pointer;
-                            // &:hover,
-                            // &:focus {
-                            //     background: darken($primary-typo-color, 5%);
-                            //     padding: 5px 10px;
-                            // }
-;
+                    button {
+                        @include btn3;
+                        // border: 0;
+                        // margin: 0 auto
+                        // outline: none;
+                        // border-radius: 0;
+                        // padding: 5px 10px;
+                        // font-size: $h3;
+                        // font-weight: bold;
+                        // text-transform: uppercase;
+                        // letter-spacing: 0.1em;
+                        // background: $primary-typo-color;
+                        // color: $btn-color;
+                        // transition: all.5s ease;
+                        // -webkit-appearance: none;
+                        // width: 300px;
+                        // cursor: pointer;
+                        // &:hover,
+                        // &:focus {
+                        //     background: darken($primary-typo-color, 5%);
+                        //     padding: 5px 10px;
+                        // }
+                        // ;
                     }
                 }
 
