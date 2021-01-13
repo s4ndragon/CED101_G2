@@ -1,10 +1,23 @@
 <?
 try {
     require_once("./connect.php");
-        $sql = "select * from product  order by :order";
+        if($_GET['orderby']=='PRICE'){
+            $sql = "select * from product  order by PRICE ASC";
+        }else if($_GET['orderby']=="DATE_DESC"){
+            $sql = "select * from product  order by DATE DESC";
+
+        }else if($_GET['orderby']=="PRICE_DESC"){
+            $sql = "select * from product  order by PRICE DESC";
+
+        }else if($_GET['orderby']=="SOLD_DESC"){
+            $sql = "select * from product  order by SOLD DESC";
+        }
+
+        // $sql = "select * from product  order by :orderby";
         $products = $pdo->prepare($sql);
-        $orderby=str_replace("_"," ",$_GET['orderby']);
-        $products->bindValue(":order", '$orderby');
+        // $orderby=str_replace("_"," ",$_GET['orderby']);
+        // $products->bindValue(":order", $orderby);
+        // $products->bindValue(":orderby", "PRICE");
         $products->execute();
 
     if ($products->rowCount() == 0) { //找不到

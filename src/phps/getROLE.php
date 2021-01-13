@@ -1,6 +1,6 @@
 <?php
 try {
-	require_once("./connect.php");
+	require_once("./connect_game.php");
 	$sql = "select * from ROLE";
 	$locations = $pdo->prepare($sql);
 	$locations->execute();

@@ -1,3 +1,16 @@
+// window.addEventListener("load", function () {
+//抓抓抓
+let memRows = [];
+//============去server端拿資料
+let xhr = new XMLHttpRequest();
+xhr.onload = function () {
+    app.memRows = JSON.parse(xhr.responseText);
+    console.log(app.memRows);
+};
+xhr.open("get", "member.php", true);
+xhr.send(null);
+// });
+
 //========== content ==========//
 Vue.component("tour", {
     template: `
@@ -136,7 +149,7 @@ Vue.component("tour", {
     mounted() {
         $(".arrow").click(function () {
             $(this).toggleClass("down").toggleClass("up").toggleClass("extend");
-            $(this).siblings().toggleClass('block');
+            $(this).siblings().toggleClass("block");
             // $().();
         });
     },
@@ -571,22 +584,22 @@ Vue.component("mine_article", {
 Vue.component("mine_profile", {
     template: `
     <div id="mine_profile">
-                    <form action="" id="profile">
+        <form action="./php/member.php" id="profile" method="POST">
                         <div class="field-wrap">
-                            <label for="my_name">暱稱</label>
-                            <input type="text" name="my_name" class="my_name" />
+                            <label for="MEM_NICKNAME">暱稱</label>
+                            <input type="text" name="MEM_NICKNAME" class="my_name">
                         </div>
                         <div class="field-wrap">
-                            <label for="email">電子信箱</label>
-                            <input type="email" name="email" class="email"/>
+                            <label for="MEM_EMAIL">電子信箱</label>
+                            <input type="email" name="MEM_EMAIL" class="email">
                         </div>
                         <div class="field-wrap">
-                            <label for="my_id">帳號</label>
-                            <input type="text" name="my_id" class="my_id" />
+                            <label for="MEM_ID">帳號</label>
+                            <input type="text" name="MEM_ID" class="my_id" value="<?=$memberRows["MEM_NICNAME"]?>">
                         </div>
                         <div class="field-wrap">
-                            <label for="pass_password">舊密碼</label>
-                            <input type="password" name="pass_password" class="pass_password" />
+                            <label for="MEM_PW">舊密碼</label>
+                            <input type="password" name="MEM_PW" class="pass_password" />
                         </div>
                         <div class="field-wrap">
                             <label for="new_password">新密碼</label>
@@ -596,15 +609,6 @@ Vue.component("mine_profile", {
                             <label for="confirm_new_password">確認新密碼</label>
                             <input type="text" name="confirm_new_pw" class="confirm_new_pw" />
                         </div>
-                        <!-- <div class="field-wrap"> -->
-                            <!-- <div role="tw-city-selector" class="add"></div> -->
-                            <!-- <label for="add">地址</label>
-                            <input type="text" name="add" class="add" />
-                        </div>
-                        <div class="field-wrap">
-                            <label for="tel">電話</label>
-                            <input type="text" name="add" class="add" />
-                        </div> -->
                         <div class="btn_sent">
                             <button type="submit" class="button button-block"/>送出</button>
                         </div>
@@ -648,6 +652,7 @@ new Vue({
     data: {
         content: "tour",
         lightboxAttendency: false,
+        memRows: [],
     },
 });
 

@@ -54,7 +54,7 @@
 
 				<div class="btwrap">
 					<button class="bt">
-						<a class="btn" :href="'02_vote_more.php?='+gardenTop.GARD_ID">
+						<a class="btn" :href="'02_vote_more.html?GARD_ID=' + gardenTop.GARD_ID">
 							More
 						</a>
 					</button>
@@ -146,7 +146,7 @@
 			<td>{{index+4}}</td>
 				<td>
 					<img class="chartpic" :src="gardenEnd.GARD_PIC">
-					{{gardenEnd.GARD_NAME}}
+					<a class="title" :href="'02_vote_more.html?GARD_ID=' + gardenEnd.GARD_ID">{{gardenEnd.GARD_NAME}}</a>
 				</td>
 				<td>
 					<i class="fas fa-map-marker-alt"></i>&ensp;

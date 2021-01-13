@@ -17,11 +17,24 @@
     @@include('layout/leaf.html')
     @@include('layout/nav.html')
     @@include('layout/title.html',{'title':'商城首頁'})
-    <div class="shop_adv">
-        <a href="./phps/04_product.php?psn=10001">
-            <img src="./images/shopping/adv.jpg" alt="">
-        </a>
+    <div>
+        <div class="shop_adv" id="shop_advs">
+            <a href="./04_product.html?psn=10001">
+                <img src="./images/shopping/adv.jpg" alt="">
+            </a>
+            <a href="./04_product.html?psn=10001">
+                <img src="./images/shopping/adv.jpg" alt="">
+            </a>
+            <a href="./04_product.html?psn=10001">
+                <img src="./images/shopping/adv.jpg" alt="">
+            </a>
+        </div>
     </div>
+    <script>
+        $(function () {
+            $('#shop_advs').slick()
+        })
+    </script>
     <div class="recommend">
         <h2>推薦商品</h2>
         <div class="recommend_products" id="recommends">

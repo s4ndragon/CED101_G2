@@ -19,20 +19,20 @@
     </div>
 
     <main id="app">
-        <div class="all">
+        <div class="all" v-for="touritem in dataTop">
             <div class="tour">
-                <img class="tpic" src="images/vote/tea5.jpg">
+                <img class="tpic" :src="touritem.TOUR_IMG">
             </div>
 
             <div class="tinfo">
 
                 <div class="t1">
-                    <p class="pp1">舞鶴茶園一日遊</p>
+                    <p class="pp1">{{touritem.TOUR_TITLE}}</p>
                     <div class="social">
                         <div class="love">
                             <img class="like" src="./images/common/heart.png" title="加入收藏" alt="">
                         </div>
-                        <div class="fb-share-button" data-href="https://tw.yahoo.com/" data-layout="button"
+                        <div class="fb-share-button" :data-href="searchURL" data-layout="button"
                             data-size="small">
                             <a target="_blank"
                                 href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5501%2F07_vote_more.html&amp;src=sdkpreparse"
@@ -45,40 +45,44 @@
                 </div>
 
                 <p>
-                    <span class="green">揪團簡介:</span> 位於花東縱谷山線海拔100至300公尺的舞鶴茶園，著名的公主蜜香紅茶在此誕生，一起來趟放鬆的茶園之旅吧！
+                    <span class="green">揪團簡介:</span> {{touritem.TOUR_INFRO}}
                 </p>
 
                 <p>
-                    <span class="green">出團日期:</span> 2020/12/31
+                    <span class="green">出團日期:</span> {{touritem.TOUR_SETOFFTIME}}
                 </p>
 
                 <p>
-                    <span class="green">參加人數:</span> 15/20 人
+                    <span class="green">參加人數:</span> {{touritem.NUM_OF_PARTICIPANTS}}/{{touritem.TOUR_PEOPLE}} 人
                 </p>
 
                 <p>
-                    <span class="green">預估費用:</span> $800
+                    <span class="green">預估費用:</span> ${{touritem.GARD_PRICE}}
                 </p>
 
                 <p>
-                    <span class="green">茶園地址:</span> 花蓮縣瑞穗鄉舞鶴村
+                    <span class="green">茶園名稱:</span> {{touritem.GARD_NAME}}
+                </p>
+                <p>
+                    <span class="green">茶園地址:</span> {{touritem.GARD_ADDRESS}}
                 </p>
 
-                <p><span class="green">茶園型態:</span> 觀光型</p>
-                <p><span class="green">導遊:</span> 有</p>
-                <p><span class="green">備註:</span> 無</p>
+                <p><span class="green">茶園型態:</span> {{checktype(touritem.GARD_TYPE)}}</p>
+                <p><span class="green">活動:</span> {{touritem.TOUR_ACTIVE}}</p>
+                <p><span class="green">導遊:</span> {{checkLeader(touritem.TOUR_LEADER)}}</p>
+                <p><span class="green">備註:</span> {{touritem.TOUR_PS}}</p>
 
                 <div class="btwrap">
-                    <button class="bt">
+                    <button class="bt" @click="joinTour(touritem.TOUR_ID,touritem.NUM_OF_PARTICIPANTS,touritem.TOUR_PEOPLE,touritem.MEM_NO)">
                         我要參加
                     </button>
 
                     <div class="date">
                         <p>
-                            發起日期: 2020/12/15
+                            發起日期: {{touritem.SETUP_DATE}}
                         </p>
                         <p>
-                            截止日期: 2020/12/26
+                            截止日期: {{touritem.DEADLINE_DATE}}
                         </p>
                     </div>
                 </div>
@@ -93,32 +97,22 @@
 
 
 
-            <div class="hotel_container first">
+            <div v-for="hotelRow in hotelRows" class="hotel_container first">
                 <p class="ht">旅館</p>
                 <div class="hotel">
-                    <img class="hpic" src="images/vote/hotel.jpg">
-                    <p class="hname">瑞穗天合國際觀光酒店</p>
-                    <p class="hinfo">整體設計以南歐莊園風格為主，風光明媚的山水以及豐富的人文及自然生態，將花蓮瑞穗美景盡收眼底。</p>
+                    <img class="hpic" :src="hotelRow.HOTEL_IMG">
+                    <p class="hname">{{hotelRow.HOTEL_NAME}}</p>
+                    <p class="hinfo">{{hotelRow.HOTEL_INFRO}}</p>
                 </div>
             </div>
 
 
             <div class="hotel_container sec">
                 <p class="ht eat">餐廳</p>
-                <div class="hotel">
-                    <img class="hpic" src="images/vote/cafe.jpg">
-                    <p class="hname">好茶咖啡工作室</p>
-                    <p class="hinfo">Ba han han non - 阿美族語何不休息一下，品茗伴隨陣陣咖啡香，一同品味蜜香紅茶與迦納咖啡的風味。</p>
-                </div>
-                <div class="hotel">
-                    <img class="hpic" src="images/vote/sweet.jpg">
-                    <p class="hname">瑞穗鮮奶豆花冰店</p>
-                    <p class="hinfo">純手工製作的鮮奶豆花綿密醇濃，除了鮮奶豆花外，也有販售季節水果剉冰、古早味黑糖剉冰、冬季甜湯系列。</p>
-                </div>
-                <div class="hotel">
-                    <img class="hpic" src="images/vote/steak.jpg">
-                    <p class="hname">PRIME ONE 牛排館</p>
-                    <p class="hinfo">獲得2018年台北米其林指南「餐盤推薦」殊榮，以濕式熟成來呈現牛排風味，完整呈現出高級牛排館及NEW CUISINE料理。</p>
+                <div v-for="foodRow in foodRows" class="hotel">
+                    <img class="hpic" :src="foodRow.RESTAURANT_IMG">
+                    <p class="hname">{{foodRow.RESTAURANT_NAME}}</p>
+                    <p class="hinfo">{{foodRow.RESTAURANT_INFRO}}</p>
                 </div>
             </div>
         </div>
@@ -250,12 +244,108 @@
 
 
     <script>
-        new Vue({
+        var app = new Vue({
             el: "#app",
             data: {
-
                 showModal2: false,
-            }
+                dataRows:[],
+                dataTop:[],
+                memRows:[],
+                hotelRows:[],
+                foodRows:[],
+                tour_id:'',
+                people_now:'',
+                people_limit:'',
+                targetPageId:''
+            },
+            methods: {
+                joinTour(TOUR_ID, NUM_OF_PARTICIPANTS, TOUR_PEOPLE){
+                    this.tour_id = TOUR_ID;
+                    this.people_now = NUM_OF_PARTICIPANTS;
+                    this.people_limit = TOUR_PEOPLE;
+
+                    
+                    if(this.people_now == this.people_limit){
+                        alert('報名額滿囉!')
+                        console.log(this.people_now)
+                        console.log(this.people_limit)
+                    }else{
+                        for(let i=0; i < this.memRows.length; i++){
+                            if(this.memRows[i].TOUR_ID == this.tour_id){
+                                alert('已經報名此團')
+                                return;
+                            }else{
+                            }
+                            console.log(this.memRows[i].TOUR_ID)
+                        }
+
+                        let xhr = new XMLHttpRequest();
+                        xhr.onload = function(){
+                            if(xhr.status == 200){ //success
+                                console.log('success')
+                            }else{
+                                alert(xhr.status);
+                            }
+                        }
+                        xhr.open("post", "./phps/join_tour.php", true);
+                        xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+                        //送出資料
+                        let data_info = "TOUR_ID=" + this.targetPageId;
+                        xhr.send(data_info);
+                        alert('報名成功')
+
+                        this.get_data()
+                        
+                    }
+
+                    // console.log(this.memRows.indexOf(this.tour_id) >= 0)
+                    // console.log(this.memRows.indexOf(0))
+                },
+                checktype(data){
+                    if(data == 0){
+                        return "觀光型"
+                    }else{
+                        return "體驗型"
+
+                    }
+                },
+                checkLeader(data){
+                    if(data == 0){
+                        return "有"
+                    }else{
+                        return "沒有"
+                    }
+                },
+                get_data(){
+                    let xhr = new XMLHttpRequest();
+                    xhr.onload = function(){ 
+                    if(xhr.status == 200){
+                        app.dataRows = JSON.parse(xhr.responseText); 
+                        app.dataTop = app.dataRows[0];
+                        app.memRows = app.dataRows[1];
+                        app.hotelRows = app.dataRows[2];
+                        app.foodRows = app.dataRows[3];
+                    }else{
+                        alert(xhr.status);
+                        }
+                    }
+                    xhr.open("post", "./phps/tour_more.php", true);
+                    xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+                    let data_info = `TOUR_ID=${this.targetPageId}`;
+                    xhr.send(data_info);
+                }
+            },
+            mounted() {
+                let searchURL = window.location.search;
+                let targetPageId = searchURL.split("=")[1];
+                this.targetPageId = targetPageId;
+
+                let tourRows;
+            //============去server端拿資料
+            this.get_data()
+                
+            },
+
         });
     </script>
 
