@@ -1,16 +1,14 @@
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="./vendors/slick-1.8.1/slick/slick.js"></script>
-<!-- <script src="./js/member_login_register"></script> -->
-
-<nav v-for="memRow in memRows">
+<nav>
+    <!-- v-for="memRow in memRows" -->
     <!-- logo放置區 -->
     <a href="./index.html">
         <h1 id="logo"><img src="images/common/logo.png" alt="" /></h1>
     </a>
     <!-- 會員icon放置區 -->
-    <a href="./05_member_login_register.html">
-        <img class="memicon" :src="memRow.MEM_IMG" :onerror="defaultImg" alt="" />
-    </a>
+    <!-- <a href=""> -->
+        <img  v-for="memRow in memRows" class="memicon" :src="memRow.MEM_IMG"  :onerror="defaultImg" alt="" />
+        <!-- :src="memRow.MEM_IMG"  :onerror="defaultImg" src="images/common/user.png"  -->
+    <!-- </a> -->
     <span id="spanLogin"></span>
 
     <!-- 購物車icon放置區 -->
