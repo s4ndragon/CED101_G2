@@ -11,9 +11,9 @@
     </head>
     <body>
         @@include('layout/nav.html')
-        <div id="title" class="banner"><h1 class="fir">小遊戲-茶園保衛戰</h1></div>
+        <div id="title" class="banner"><h1 class="banner-1st-title">小遊戲-茶園保衛戰</h1></div>
         <div class="w100 flex j_c">
-            <div id="map">
+            <div id="map" oncontextmenu="return false;" onselectstart="return false;">
                 <div class="tea_en flex a_c j_c">
                     <section style="overflow-x: hidden">
                         <article class="flex">
@@ -176,21 +176,27 @@
                         <div class="" style="color: #fff; position: relative; top: 10px">茶能量</div>
                     </div>
                     <div>
+                    <label for="checke">
+                        <!-- <img src="" alt=""style="width:50px;height:50px;"> -->
                         <input type="checkbox" class="checke" id="checkbox" value="pause" />
+                    </label>
+                        
                         <input type="hidden" name="" value="0" data-text="註解：放要上傳的分數提供商城折扣" />
                     </div>
                 </section>
             </div>
-        </div>
+        </div><audio src="./audio/Spring_Chicken.mp3" muted class="d-none" id="audioc"></audio>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
         <script src="./js/game (1).js"></script>
         <script src="./js/game2.js"></script>
         <script>
             window.addEventListener("load", function (){
+               
+                
 			let data;var props=$('#props'),star;
 			//============去server端拿資料
 			let xhr = new XMLHttpRequest();
-			xhr.open("get","http://127.0.0.1/getROLE.php", true); //step1
+			xhr.open("get","./phps/getROLE.php", true); //step1
 			xhr.send(null); //step2
 			xhr.onload = function(){  //step3
 				data = JSON.parse(xhr.responseText); 
