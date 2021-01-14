@@ -39,7 +39,7 @@
         <section id="discuss">
             <div id="all_articles">
                 <!-- =====單篇文章開始===== -->
-                <div v-for="(artRow,i) in articlesRows" class="article" :class="artRow.FILTER">
+                <div v-for="(artRow,i) in articlesRows" class="article" :class="artRow.FILTER" :i="i">
                     <div class="ar_img">
                         <img class="ar_rimg" :src="artRow.ART_IMG" alt="">
                         <p class="ar_title">【{{artRow.CAT}}】{{artRow.ART_TITLE}}</p>
@@ -104,12 +104,12 @@
 
     <script>
         Vue.component('art-reg', {
-            props: [],
+            props: ['i'],
             template: ` <div class="overlay" style="display: none;">
                             <div class="modal">
                                 <form action="post">
                                     <div class="close">
-                                        <img class="cancel" src="images/vote/cancel.png" @click="closeBox(i)">
+                                        <img class="cancel" src="./images/vote/cancel.png" @click="closeBox(i)">
                                     </div>
                                     <p class="welcome">請選取檢舉理由</p>
                                     <div class="reason_container">
@@ -129,9 +129,14 @@
                                 </form>
                             </div>
                          </div>`,
+            data() {
+                return {
+                    i: this.i,
+                }
+            },
 
             methods: {
-                closeBox: function () {
+                closeBox: function (i) {
                     let lightbox = document.querySelectorAll('.overlay');
                     // console.log();
                     lightbox[i].style.display = 'none';
