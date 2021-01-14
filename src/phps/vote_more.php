@@ -1,8 +1,8 @@
 <?php
 session_start();  //啟用session
 try{
-  require_once("./connectBooks.php");
-  $sql = "select * from MEMBER where MEM_NO = 5"; 
+  require_once("./connect.php");
+  $sql = "select * from MEMBER where MEM_NO = 8"; 
   $member = $pdo->prepare($sql);
   $member->execute();
 
@@ -21,7 +21,7 @@ try{
 <?php 
  
 try {
-	require_once("./connectBooks.php");
+	require_once("./connect.php");
 	$sql = "select * , round(GARD_VOTE/GARD_CLICK,1) 'GARD_AVG' from GARDEN where GARD_ID = :GARD_ID order by GARD_AVG desc";
 	$garden = $pdo->prepare($sql);
 	$garden->bindValue(":GARD_ID", $_POST["GARD_ID"]);
@@ -41,9 +41,18 @@ try {
 	$tour->bindValue(":GARD_ID", $_POST["GARD_ID"]);
 	$tour->execute();
 	$tourRows = $tour->fetchAll(PDO::FETCH_ASSOC);
+
+	//抓這個茶園的 留言 | 留言會員資料
+	$sql = "select MEMBER.MEM_NICNAME, MEMBER.MEM_IMG, GARDEN_MSG.MSG_DATE, GARDEN_MSG.MSG_CONTENT, GARDEN_MSG.MSG_NO from
+				 MEMBER join GARDEN_MSG on MEMBER.MEM_NO = GARDEN_MSG.MEM_NO where GARDEN_MSG.GARD_ID = :GARD_ID";
+	$mem = $pdo->prepare($sql);
+	$MEM_NO = $_SESSION["MEM_NO"];
+	$mem->bindParam(":GARD_ID", $_POST["GARD_ID"]);
+	$mem->execute();
+	$msgRows = $mem->fetchAll(PDO::FETCH_ASSOC);
 	
 
-	$dataRows = [$gardenRows,$pastDate,$tourRows];
+	$dataRows = [$gardenRows,$pastDate,$tourRows,$msgRows];
 	echo json_encode($dataRows);  //把陣列編碼成json字串傳到前端 echo印出json字串
 
 } catch (PDOException $e) {

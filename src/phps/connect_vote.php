@@ -1,6 +1,6 @@
 <?php 
 try {
-	require_once("./connectBooks.php");
+	require_once("./connect.php");
 	$sql = "select * from garden where GARD_ID = ?";
 	$garden = $pdo->prepare($sql);
 	$garden->bindValue(1, $_GET["GARD_ID"]); //第一個問號綁定的值是form表單傳來的資料$_GET["psn"]
