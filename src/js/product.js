@@ -81,7 +81,7 @@ function addProduct(product) {
         <div>
             <div class="img">   
                 <a href="./04_product.html?psn=${product.PSN}">
-                    <img src="./images/shopping/${product.IMG}" alt="">
+                    <img src="${product.IMG}" alt="">
                 </a>
             </div>
             <div class="content">
@@ -175,7 +175,7 @@ function itemInnerhtml(itemNo) {
     return `
     <div class="drop">×</div>
     <div class="img">
-        <img src="./images/shopping/${itemImg}" alt="">
+        <img src="${itemImg}" alt="">
     </div>
     <div class="aside">
         <a href="./04_product.html"><h3>${itemName}</h3></a>
@@ -451,7 +451,7 @@ function sendFavortieList() {
     xhr.open("POST", url, true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     let favoriteList = storage['FavortieList'];
-    let data_info = `mem_no=1&favoriteList=${favoriteList}`;
+    let data_info = `mem_no=${memNo}&favoriteList=${favoriteList}`;
     xhr.send(data_info);
     // location.href = url;
     xhr.onload = function () {

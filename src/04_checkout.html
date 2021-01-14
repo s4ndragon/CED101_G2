@@ -57,24 +57,13 @@
                     <td colspan="2" class="btn">
                         <input type="button" value="取消訂單"
                             onClick="if (confirm('確定取消？'))location.href= './04_shopping.html';return false;">
-                        <input type="submit" value="送出訂單" onClick=" if (confirm('是否確認提交？')) clearStorage()">
+                        <input type="submit" value="送出訂單" id="submitBtn">
                     </td>
                 </tr>
             </table>
         </div>
         <script>
-            function clearStorage() {
-                let storage = sessionStorage,
-                    ItemList = storage['addItemList'].split(',');
-                document.getElementById('addItemList').value = storage['addItemList'];
-                console.log(ItemList)
-                for (let i = 0; i < ItemList.length - 1; i++) {
-                    storage.removeItem(ItemList[i]);
-                }
-                storage.removeItem('amount');
-                storage.removeItem('discount');
-                storage.removeItem('addItemList');
-            }
+
         </script>
     </form>
     @@include('layout/footer.html')
