@@ -9,15 +9,8 @@ xhr.onload = function () {
 xhr.open("get", "./php/member.php", true);
 xhr.send(null);
 
-//========== content ==========//
-Vue.component("tour", {
-    template: `
-                <div id="tour">
-                <div id="mine_tour">
-                    <h3>我主揪</h3>
-                    <div id="mine_on_going">
-                        <h4>揪團中的團</h4>
-                        <div class="tour_detail" v-for="memTour in memTours">
+{
+    /* <div class="tour_detail" v-for="memTour in memTours">
                             <div class="tour_title">{{memTour.TOUR_TITLE}}</div>
                             <div class="tour_date">{{memTour.TOUR_SETOFFTIME}}</div>
                             <div class="tour_attendency" @click="lightboxAttendency = true">人數：<span class="attend attend_1">{{memTour.NUM_OF_PARTICIPANTS}}</span>／<span class="require require_1">{{memTour.TOUR_PEOPLE}}</span></div>
@@ -29,12 +22,22 @@ Vue.component("tour", {
                                 </div>
                                 <div class="arrow down"></div>
                             </div>
-                        </div>
+                        </div> */
+}
+
+//========== content ==========//
+Vue.component("tour", {
+    template: `
+                <div id="tour">
+                <div id="mine_tour">
+                    <h3>我主揪</h3>
+                    <div id="mine_on_going">
+                        <h4>揪團中的團</h4> 
                         <div class="tour_detail">
                             <div class="tour_title">12月例行揪團</div>
                             <div class="arrow down"></div>
                             <div class="tour_date">2020/12/20</div>
-                            <div class="tour_attendency" @click="lightboxAttendency = true">人數：<span class="attend attend_1">10</span>／<span class="require require_1">10</span></div>
+                            <div class="tour_attendency">人數：<span class="attend attend_1">10</span>／<span class="require require_1">10</span></div>
                             <div class="tour_status_bar">
                                 <div class="tour_status">已成團</div>
                                 <div class="tour_join">取消</div>
@@ -47,13 +50,26 @@ Vue.component("tour", {
                         <h4>過往的揪團</h4>
                         <div class="tour_detail outdated">
                             <div class="tour_title">11月例行揪團</div>
+                            <div class="arrow down"></div>
                             <div class="tour_date">2020/11/20</div>
+                            <div class="tour_attendency">人數：<span class="attend attend_1">10</span>／<span class="require require_1">10</span></div>
+                            <div class="tour_status_bar">
+                                <div class="tour_status">已過期</div>
+                                <div class="tour_join"></div>
+                                <div class="tour_check">查看</div>
+                                
+                            </div>
+                        </div>
+                        <div class="tour_detail outdated">
+                            <div class="tour_title">10月例行揪團</div>
+                            <div class="arrow down"></div>
+                            <div class="tour_date">2020/10/20</div>
                             <div class="tour_attendency" @click="lightboxAttendency = true">人數：<span class="attend attend_1">10</span>／<span class="require require_1">10</span></div>
                             <div class="tour_status_bar">
                                 <div class="tour_status">已過期</div>
                                 <div class="tour_join"></div>
                                 <div class="tour_check">查看</div>
-                                <div class="arrow down"></div>
+                                
                             </div>
                         </div>
                     </div>
@@ -61,6 +77,7 @@ Vue.component("tour", {
                         <h4>取消的揪團</h4>
                         <div class="tour_detail outdated">
                             <div class="tour_title">10月例行揪團</div>
+                            <div class="arrow down"></div>
                             <div class="tour_date">2020/10/20</div>
                             <div class="tour_attendency" @click="lightboxAttendency = true">人數：<span class="attend attend_1">10</span>／<span class="require require_1">10</span></div>
                             <div class="tour_status_bar">
@@ -78,6 +95,7 @@ Vue.component("tour", {
                         <h4>揪團中的團</h4>
                         <div class="tour_detail">
                             <div class="tour_title">跨年茶園之旅</div>
+                            <div class="arrow down"></div>
                             <div class="tour_date">2020/12/31</div>
                             <div class="tour_attendency">人數：<span class="attend attend_1">15</span>／<span class="require require_1">30</span></div>
                             <div class="tour_status_bar">
@@ -89,6 +107,7 @@ Vue.component("tour", {
                         </div>
                         <div class="tour_detail">
                             <div class="tour_title">12月例行揪團</div>
+                            <div class="arrow down"></div>
                             <div class="tour_date">2020/12/20</div>
                             <div class="tour_attendency">人數：<span class="attend attend_1">10</span>／<span class="require require_1">10</span></div>
                             <div class="tour_status_bar">
@@ -103,6 +122,7 @@ Vue.component("tour", {
                         <h4>過往的揪團</h4>
                         <div class="tour_detail outdated">
                             <div class="tour_title">11月例行揪團</div>
+                            <div class="arrow down"></div>
                             <div class="tour_date">2020/11/20</div>
                             <div class="tour_attendency">人數：<span class="attend attend_1">10</span>／<span class="require require_1">10</span></div>
                             <div class="tour_status_bar">
@@ -117,6 +137,7 @@ Vue.component("tour", {
                         <h4>取消的揪團</h4>
                         <div class="tour_detail outdated">
                             <div class="tour_title">10月例行揪團</div>
+                            <div class="arrow down"></div>
                             <div class="tour_date">2020/10/20</div>
                             <div class="tour_attendency">人數：<span class="attend attend_1">10</span>／<span class="require require_1">10</span></div>
                             <div class="tour_status_bar">
@@ -131,6 +152,7 @@ Vue.component("tour", {
                         <h4>退出的揪團</h4>
                         <div class="tour_detail outdated">
                             <div class="tour_title">1月例行揪團</div>
+                            <div class="arrow down"></div>
                             <div class="tour_date">2020/1/20</div>
                             <div class="tour_attendency">人數：<span class="attend attend_1">10</span>／<span class="require require_1">10</span></div>
                             <div class="tour_status_bar">
@@ -146,10 +168,16 @@ Vue.component("tour", {
                 `,
     mounted() {
         $(".arrow").click(function () {
-            $(this).toggleClass("down").toggleClass("up").toggleClass("extend");
-            $(this).siblings().toggleClass("block");
-            // $().();
+            $(this).toggleClass("down").toggleClass("up");
+            $(this).parent().toggleClass("extend");
+            $(this).siblings(".tour_date").toggle();
+            $(this).siblings(".tour_status_bar").toggle().css("width", "80%");
+            $(this).siblings(".tour_status_bar").children().toggle();
+            $(this).siblings(".tour_attendency").toggle().css("width", "80%");
         });
+    },
+    methods: {
+        
     },
 });
 Vue.component("mine_fav", {
