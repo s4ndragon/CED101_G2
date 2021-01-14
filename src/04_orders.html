@@ -21,39 +21,42 @@
             </div>
             <h3 class="partTitle">訂單內容</h3>
             <ul id="items">
+                <item v-for="product in products" v-bind='product'></item>
             </ul>
             <table>
                 <tr>
                     <td>商品總額:</td>
-                    <td><input type="number" name="amount" id="amount" disabled class="info"></td>
+                    <td><input type="number" name="amount" id="amount" disabled class="info" :value='amount'></td>
                 </tr>
                 <tr>
                     <td>折扣金額:</td>
-                    <td><input type="number" name="discount" id="discount" disabled class="info"></td>
+                    <td><input type="number" name="discount" id="discount" disabled class="info"
+                            :value="orderInfo.DISCOUNT"></td>
                 </tr>
                 <tr>
                     <td>應付金額:</td>
-                    <td><input type="number" id="total" disabled></td>
+                    <td><input type="number" id="total" disabled :value="orderInfo.TOTAL"></td>
                 </tr>
                 <tr>
                     <td>寄送方式:</td>
-                    <td><input type="text" name="send" class="info" disabled></td>
+                    <td><input type="text" name="send" class="info" disabled :value="deliveryMethod"></td>
                 </tr>
                 <tr>
                     <td>收件人:</td>
-                    <td><input type="text" name="reciever" disabled class="info"></td>
+                    <td><input type="text" name="reciever" disabled class="info" :value="orderInfo.RECEIVER_NAME"></td>
                 </tr>
                 <tr>
                     <td>收件地址:</td>
-                    <td><input type="text" name="address" disabled class="info"></td>
+                    <td><input type="text" name="address" disabled class="info" :value="orderInfo.RECEIVER_ADDRESS">
+                    </td>
                 </tr>
                 <tr>
                     <td>收件人電話:</td>
-                    <td><input type="number" name="phone" disabled class="info"></td>
+                    <td><input type="number" name="phone" disabled class="info" :value="orderInfo.RECEIVER_TEL"></td>
                 </tr>
                 <tr>
                     <td>付款方式:</td>
-                    <td><input type="text" name="pay" class="info" disabled></td>
+                    <td><input type="text" name="pay" class="info" disabled :value='payMethod'></td>
                 </tr>
             </table>
         </div>
