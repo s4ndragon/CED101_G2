@@ -2,7 +2,7 @@ new Vue({
 	el: '#app',
 	data: {
         //放click 事件 和v-model後面的變數
-        gard_id:'',
+        GARD_ID:'',
         RESTAURANT_ID:'',
         HOTEL_ID:'',
         gardens:'',
@@ -85,7 +85,7 @@ new Vue({
 },
 
 query_gard_id: async function () {
-    console.log(this.gard_id)
+    console.log(this.GARD_ID)
 
     const res = await fetch('./phps/admin_QueGards.php', {
         method: 'POST',
@@ -95,7 +95,7 @@ query_gard_id: async function () {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            gard_id: this.gard_id,
+            GARD_ID: this.GARD_ID,
         }),
     }).then(function(data){
         return data.json()
@@ -103,11 +103,57 @@ query_gard_id: async function () {
     this.gardens = res
 
     //查詢完後清空輸入的內容
-    this.gard_id =''
+    this.GARD_ID =''
 
+    },
+
+    query_rest_id: async function () {
+        console.log(this.RESTAURANT_ID)
     
-  
-    }
+        const res = await fetch('./phps/admin_QueRests.php', {
+            method: 'POST',
+            mode: 'same-origin',
+            credentials: 'same-origin',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                RESTAURANT_ID: this.RESTAURANT_ID,
+            }),
+        }).then(function(data){
+            return data.json()
+        })
+        this.rests = res
+    
+        //查詢完後清空輸入的內容
+        this.RESTAURANT_ID =''
+      
+        },
+
+        query_hotel_id: async function () {
+            console.log(this.HOTEL_ID)
+        
+            const res = await fetch('./phps/admin_QueHotels.php', {
+                method: 'POST',
+                mode: 'same-origin',
+                credentials: 'same-origin',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    HOTEL_ID: this.HOTEL_ID,
+                }),
+            }).then(function(data){
+                return data.json()
+            })
+            this.hotels = res
+        
+            //查詢完後清空輸入的內容
+            this.HOTEL_ID =''
+        
+            
+          
+            }
 },
 
 
