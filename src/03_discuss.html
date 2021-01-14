@@ -54,33 +54,13 @@
                                 @click="addheart">
                             <img class="memi" src="./images/common/messenger.png" alt="">
                             <span class="com_num">{{artRow.ART_REPLYS}}</span>
-                            <div class="excl" @click="showModal2 = true">
+                            <div class="excl" @click="showBox">
                                 <img class="excl" src="./images/common/852019_exclamation_512x512.png" alt="">
                             </div>
-                            <!-- overlay -->
-                            <div class="overlay" v-if="showModal2" @click="showModal2 = true"></div>
-                            <!-- modal -->
-                            <div class="modal" v-if="showModal2">
-                                <form action="post">
-                                    <div class="close" @click="showModal2 = false">
-                                        <img class="cancel" src="images/vote/cancel.png">
-                                    </div>
-                                    <p class="welcome">請選取檢舉理由</p>
-                                    <div class="reason_container">
-                                        <input class="reason" type="radio" name="size" value="惡意中傷">惡意中傷</div>
-                                    <div class="reason_container">
-                                        <input class="reason" type="radio" name="size" value="散布廣告">散布廣告
-                                    </div>
-                                    <div class="reason_container">
-                                        <input class="reason" type="radio" name="size" value="色情資訊">色情資訊
-                                    </div>
-                                    <div class="reason_container">
-                                        <input class="reason" type="radio" name="size" value="不雅字眼">不雅字眼
-                                    </div>
-                                    <button class="go" type="submit">送出</button>
-                                    <input type="hidden" name="art_reg" :value="artRow.ART_NO">
-                                </form>
-                            </div>
+
+                            <!-- ====檢舉燈箱==== -->
+                            <art-reg></art-reg>
+
                             <!-- ====以下臉書分享==== -->
                             <!-- <div class="fb-share-button" data-href="https://www.youtube.com/watch?v=HDhltQ4Jx0o"
                                 data-layout="button_count" data-size="small"><a target="_blank"
@@ -120,11 +100,46 @@
 
 
     <script>
+        Vue.component('art-reg', {
+            props: ['mem-avatar',],
+            template: ` <div class="overlay" style="display: none;">
+                            <div class="modal">
+                                <form action="post">
+                                    <div class="close">
+                                        <img class="cancel" src="images/vote/cancel.png" @click="closeBox">
+                                    </div>
+                                    <p class="welcome">請選取檢舉理由</p>
+                                    <div class="reason_container">
+                                        <input class="reason" type="radio" name="size" value="惡意中傷">惡意中傷
+                                    </div>
+                                    <div class="reason_container">
+                                        <input class="reason" type="radio" name="size" value="散布廣告">散布廣告
+                                    </div>
+                                    <div class="reason_container">
+                                        <input class="reason" type="radio" name="size" value="色情資訊">色情資訊
+                                    </div>
+                                    <div class="reason_container">
+                                        <input class="reason" type="radio" name="size" value="不雅字眼">不雅字眼
+                                    </div>
+                                    <button class="go" type="submit">送出</button>
+                                    <input type="hidden" name="art_reg">
+                                </form>
+                            </div>
+                         </div>`,
+
+            methods: {
+                closeBox: function () {
+                    let lightbox = document.querySelectorAll('.overlay');
+                    lightbox[0].style.display = 'none';
+                },
+            }
+
+        });
+
+        // : value = "artRow.ART_NO"
         var app = new Vue({
             el: "#are",
             data: {
-                showModal: false,
-                showModal2: false,
                 articlesRows: [],
             },
             methods: {
@@ -135,11 +150,15 @@
                             this.src = "./images/common/like.png";
                         } else {
                             this.title = "加入收藏";
+                            let lightbox = document.querySelectorAll('.overlay');
                             this.src = "./images/common/heart.png";
                         }
                     });
-                }
-
+                },
+                showBox: function () {
+                    let lightbox = document.querySelectorAll('.overlay');
+                    lightbox[0].style.display = '';
+                },
             },
         });
 

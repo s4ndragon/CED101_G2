@@ -147,7 +147,7 @@ try {
                 },
 
                 beforeCreate() {
-                                 $.ajax({
+                        $.ajax({
                         url: './phps/getCommand.php', // 要傳送的頁面
                         method: 'POST',               // 使用 POST 方法傳送請求
                         dataType: 'json',             // 回傳資料會是 json 格式
