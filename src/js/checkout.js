@@ -6,17 +6,35 @@ function $id(id) { //尋找id
 }
 
 function init() {
-    let pay = $id('pay');
-    if (pay) {
-        payDisplay();
-        pay.addEventListener('change', payDisplay);
+    if ($id('getinfo')) {
         $id('getinfo').addEventListener('click', storeInfo);
     }
-    if (storage['addItemList'] != "") {
-        loaditems();
-    }
-    loadinfo();
+    if (storage['addItemList'] != "" && storage['addItemList']) {
+        let pay = $id('pay');
+        if (pay) {
+            payDisplay();
+            pay.addEventListener('change', payDisplay);
 
+        }
+        loaditems();
+        loadinfo();
+        if ($id('submitBtn')) {
+            $id('submitBtn').addEventListener('click', submitForm)
+        }
+    } else {
+        if ($id('orderform')) {
+            $id('orderform').innerHTML =
+                `<p style="padding:80px ;text-align:center;">訂單已送出或是購物車內沒有商品。請返回購物車重新操作。<p/>
+        <table>
+        <tr>
+            <td colspan=" 2" class="btn">
+                <input type="button" value="回上一頁" onClick="history.go(-1)">
+                <input type="button" value="回商城" onClick="location.href= './04_shopping.html';return false;">
+            </td>
+        </tr>
+    </table>`;
+        }
+    }
 }
 
 function payDisplay() {
@@ -34,7 +52,7 @@ function storeInfo() {
     for (let i = 0; i < infoList.length; i++) {
         storage[infoList[i].name] = infoList[i].value;
     };
-    // location.href = './04_checkout.html'
+    // $id('checkForm').submit();
 }
 
 function loadinfo() {
@@ -66,7 +84,7 @@ function loaditems() {
             let newdiv = document.createElement('li');
             // newdiv.setAttribute('class', 'item');
             newdiv.innerHTML = `
-                <div class="img"><img src="./images/shopping/${itemImg}" alt=""></div>
+                <div class="img"><img src="${itemImg}" alt=""></div>
                 <div class='aside'>
                 <h4 class="prodtitle">${itemName}</h4>
                 <div>數量:<span>${itemNum}</span></div>
@@ -76,5 +94,26 @@ function loaditems() {
                 `
             items.appendChild(newdiv);
         };
+    }
+}
+
+function submitForm(e) {
+    e.preventDefault();
+    if (storage['addItemList'] == '') {
+        alert('您的購物車內沒有物品，請選擇商品後再結帳，謝謝。')
+    } else {
+        if (confirm('是否確認提交？')) {
+            let storage = sessionStorage,
+                ItemList = storage['addItemList'].split(',');
+            document.getElementById('addItemList').value = storage['addItemList'];
+            for (let i = 0; i < ItemList.length - 1; i++) {
+                storage.removeItem(ItemList[i]);
+            }
+            storage.removeItem('amount');
+            storage.removeItem('discount');
+            storage.removeItem('addItemList');
+            $id('orderform').submit();
+            return false;
+        }
     }
 }

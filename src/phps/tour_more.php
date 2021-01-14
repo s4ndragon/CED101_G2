@@ -1,7 +1,7 @@
 <?php
 session_start();  //啟用session
 try{
-  require_once("./connectBooks.php");
+  require_once("./connect.php");
   $sql = "select * from MEMBER where MEM_NO = 1"; 
   $member = $pdo->prepare($sql);
   $member->execute();

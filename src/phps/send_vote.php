@@ -1,7 +1,7 @@
 <?php
 session_start();  //啟用session
 try{
-  require_once("./connectBooks.php");
+  require_once("./connect.php");
   $sql = "select * from MEMBER where MEM_NO = 5"; 
   $member = $pdo->prepare($sql);
   $member->execute();
@@ -20,7 +20,7 @@ try{
 <?php 
  
 try {
-	require_once("./connectBooks.php");
+	require_once("./connect.php");
 	$sql = "update garden set GARD_VOTE = GARD_VOTE + :GARD_VOTE, GARD_CLICK = GARD_CLICK + 1 where GARD_ID = :GARD_ID";
     $garden = $pdo->prepare($sql);
 	$garden->bindValue(":GARD_VOTE", $_POST["GARD_VOTE"]);

@@ -38,6 +38,33 @@ try {
         //取回一筆資料
         $per_ord_datarow = $per_ord_data->fetchAll(PDO::FETCH_ASSOC);
 
+        //將取回訂單狀態0,1,2,3,4轉回字串  傳回前台
+        for($i=0;$i < count($per_ord_datarow);$i++){
+            if( $$per_ord_datarow[$i]["DEL_STATE"] == 0 ){
+                // 若取回的訂單狀態欄位為0 則前台顯示未付款 以此類推
+                $per_ord_datarow[$i]["不知道抓捨麼放"] = 顯示未付款;
+              }else{
+                if($per_ord_datarow[$i]["DEL_STATE"] == 1){
+                    $per_ord_datarow[$i]["不知道抓捨麼放"] = 顯示已付款;  // 第二種情況
+                }else {  
+                  if( $$per_ord_datarow[$i]["DEL_STATE"] == 2){
+                    $per_ord_datarow[$i]["不知道抓捨麼放"] = 顯示未出貨;  // 第三種情況
+                  }else{
+                    $per_ord_datarow[$i]["不知道抓捨麼放"] = 顯示已出貨;   // 第四種情況
+                  };
+                };
+            };
+            };
+
+           
+            
+
+        
+
+        };
+
+
+
         //送出json字串
         echo json_encode($per_ord_datarow);
         // echo $managerdatarow;

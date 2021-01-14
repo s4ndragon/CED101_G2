@@ -2,7 +2,9 @@ new Vue({
 	el: '#app',
 	data: {
         //放click 事件 和v-model後面的變數
-        query_gard_id: '',
+        GARD_ID:'',
+        RESTAURANT_ID:'',
+        HOTEL_ID:'',
         gardens:'',
         rests:'',
         hotels:'',
@@ -32,7 +34,7 @@ new Vue({
 			}).then(function(data){
 				return data.json()
 			})
-			//完成後 重新撈取一次資料 把res回傳到members裡面
+			//完成後 重新撈取一次資料 把res回傳到gardens裡面
 			this.gardens = res
         },
         
@@ -55,7 +57,7 @@ new Vue({
         }).then(function(data){
             return data.json()
         })
-        //完成後 重新撈取一次資料 把res回傳到members裡面
+        //完成後 重新撈取一次資料 把res回傳到rests裡面
         this.rests = res
     },
 
@@ -82,26 +84,77 @@ new Vue({
     this.hotels = res
 },
 
-		// query_mem_id: async function (mem_id) {
-		// 	console.log(mem_id)
+query_gard_id: async function () {
+    console.log(this.GARD_ID)
 
-		// 	const res = await fetch('./phps/admin_QueMembers.php', {
-		// 		method: 'POST',
-		// 		mode: 'same-origin',
-		// 		credentials: 'same-origin',
-		// 		headers: {
-		// 			'Content-Type': 'application/json',
-		// 		},
-		// 		body: JSON.stringify({
-		// 			mem_id: this.mem_id,
-		// 		}),
-		// 	}).then(function(data){
-		// 		return data.json()
-		// 	})
-        //   //重新撈取一次細項列表
-		// 	this.get_mems(this.mem_id)
-		// },
-	},
+    const res = await fetch('./phps/admin_QueGards.php', {
+        method: 'POST',
+        mode: 'same-origin',
+        credentials: 'same-origin',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            GARD_ID: this.GARD_ID,
+        }),
+    }).then(function(data){
+        return data.json()
+    })
+    this.gardens = res
+
+    //查詢完後清空輸入的內容
+    this.GARD_ID =''
+
+    },
+
+    query_rest_id: async function () {
+        console.log(this.RESTAURANT_ID)
+    
+        const res = await fetch('./phps/admin_QueRests.php', {
+            method: 'POST',
+            mode: 'same-origin',
+            credentials: 'same-origin',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                RESTAURANT_ID: this.RESTAURANT_ID,
+            }),
+        }).then(function(data){
+            return data.json()
+        })
+        this.rests = res
+    
+        //查詢完後清空輸入的內容
+        this.RESTAURANT_ID =''
+      
+        },
+
+        query_hotel_id: async function () {
+            console.log(this.HOTEL_ID)
+        
+            const res = await fetch('./phps/admin_QueHotels.php', {
+                method: 'POST',
+                mode: 'same-origin',
+                credentials: 'same-origin',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    HOTEL_ID: this.HOTEL_ID,
+                }),
+            }).then(function(data){
+                return data.json()
+            })
+            this.hotels = res
+        
+            //查詢完後清空輸入的內容
+            this.HOTEL_ID =''
+        
+            
+          
+            }
+},
 
 
 	created(){
