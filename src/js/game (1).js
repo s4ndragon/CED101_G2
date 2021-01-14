@@ -41,8 +41,7 @@ var sp_,
   time_b_,
   bb__,
   zom_, zarr_;
-// var  bomb = new audio("http://ys.yd.yiscdn.com/yisell/ycys2020111852017888/sound/yisell_sound_2014080113081858221_66366.mp3"),
-  // overaudio=new audio('http://ys.yd.yiscdn.com/yisell/ycys2020111852017888/sound/yisell_sound_2014081313362320795_66366.mp3');
+
 var tm= new TimelineMax();
 //事件委托
 map.onclick = function(e) {
@@ -117,7 +116,7 @@ function zarr(){
 // 生成子彈
 function createBullet(speed, damage, left) {
 /*   * speed 射速  * damage 傷害   */
-  bomb.play();
+
   var img = document.createElement("img");
   img.className = 'bullet';
   //設置到創建的子彈標籤上
