@@ -52,7 +52,8 @@ var path = {
 });
 //產生新子彈，本身不加上for(){}
 function addBullet(speed, damage, left,o) {
-  /*   * speed 射速   * damage 傷害   */
+/*   * speed 射速   * damage 傷害   */
+  bomb.play();
   var img = document.createElement("img");
   img.className = 'bullet';
   //設置到創建的子彈標籤上

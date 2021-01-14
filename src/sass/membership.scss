@@ -35,9 +35,9 @@ body {
         font-size: $h4;
     }
 
-    h5 {
-        // font-size: $h5;
-    }
+    // h5 {
+    // font-size: $h5;
+    // }
 
     h6 {
         font-size: $h6;
@@ -299,10 +299,13 @@ main {
                             //     // border-top: 10px solid $lighter;
                             // }
                         }
+                        .extend {
+                            height: 200px;
+                        }
 
                         .tour_title,
                         .tour_date {
-                            border: 1px solid green;
+                            // border: 1px solid green;
                             width: 20%;
 
                             @media only screen and (max-width: 576px) {
@@ -311,7 +314,7 @@ main {
                         }
 
                         .tour_date {
-                            @media only screen and (max-width: 540px) {
+                            @media only screen and (max-width: 576px) {
                                 display: none;
                             }
                         }
@@ -328,7 +331,7 @@ main {
                         }
 
                         .tour_status_bar {
-                            border: 1px solid red;
+                            // border: 1px solid red;
                             width: 20%;
                             display: flex;
                             justify-content: space-between;
@@ -338,7 +341,6 @@ main {
                             .tour_join,
                             .tour_check {
                                 cursor: pointer;
-
                                 @media only screen and (max-width: 576px) {
                                     display: none;
                                 }
@@ -382,16 +384,13 @@ main {
                             width: 0;
                             height: 0;
                             position: relative;
-                            top: -180px;
+                            top: 10px;
                             right: 0px;
                             cursor: pointer;
                             border-left: 10px solid transparent;
                             border-right: 10px solid transparent;
                             border-bottom: 10px solid black;
                             color: $primary-typo-color;
-                        }
-                        .extend {
-                            height: 200px;
                         }
                     }
 
@@ -1028,6 +1027,9 @@ main {
     }
 }
 
-.block {
-    display: block;
+.flex {
+    display: flex;
+}
+.extend {
+    height: 200px;
 }

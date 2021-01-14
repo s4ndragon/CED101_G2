@@ -100,14 +100,17 @@ button.bin {
     height: 123px;
     background: url('../images/game/Button.png') 100% 100%;
 }
-div.overlay {
+.bglightbox{
     position: absolute;/* 不能用rerative 會佔位，落葉飄不下來*/
     top: 0;
     left: 0;
-    width: 1400px;
+    width: 100%;
     max-width: 100vw;
     height: 600px;
     background-color:rgba(116, 128, 10, 0.568);
+}
+div.overlay {
+
     /* 預設：完全透明；設定 z-index: -1 會在整個頁面的後方，看不到，才不會擋到頁面元素。 */
     opacity: 0;
     z-index: -1;
@@ -153,15 +156,13 @@ div.overlay > article {
     }
 }
 div.gameover,
-div.gamewin {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
+div.gamewin
+{
     z-index: -1;
     transition: opacity 1s;
     opacity: 0;
 }
+
 .tea_en {
     position: absolute;
     top: 0;
@@ -178,7 +179,7 @@ div.gamewin {
         width: 1000px;
         height: 600px;
         position: relative;
-        left: calc(-390px + 40%);
+        left: calc(-400px + 40%);
         article {
             position: relative;
             left: 95px;
@@ -223,7 +224,7 @@ div.gameover > article {
     /* border-radius: 30px; */
     padding: 0px;
     position: absolute;
-    top: 400px;
+    top: 285px;
     left: 50%;
     transform: translate(-50%, -50%);
 }

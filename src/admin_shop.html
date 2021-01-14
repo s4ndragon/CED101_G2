@@ -81,7 +81,7 @@
                                 <button class="btn-confirm" type="button">新增商品</button>
                             </form>
                             <table>
-                                已上架商品
+                                商品狀態及資訊查詢
                                 <tr>
                                     <th>商品編號</th>
                                     <th>商品名稱</th>
@@ -94,44 +94,35 @@
                                 <tbody v-for="(item,key) in products">
                                     <tr>
                                         <td>{{item.PSN}}</td>
-                                        <td><input type="text" :value="item.NAME" @keyup="change($event,key)" /></td>
-                                        <td><input type="text" :value="item.INFO" @keyup="change($event,key)" /></td>
-                                        <td><input type="text" :value="item.PRICE" @keyup="change($event,key)" /></td>
+                                        <td>
+                                            <input type="text" :value="item.NAME" @keyup="changeNAME($event,key)" />
+                                        </td>
+                                        <td>
+                                            <input type="text" :value="item.INFO" @keyup="changeINFO($event,key)" />
+                                        </td>
+                                        <td>
+                                            <input type="text" :value="item.PRICE" @keyup="changePRICE($event,key)" />
+                                        </td>
                                         <td>{{item.SOLD}}</td>
 
                                         <td>
                                             <div class="form-group">
-                                                上架
+                                                下架
                                                 <label class="switch">
                                                     <input type="checkbox" v-model="item.ischecked" />
                                                     <span class="slider round"></span>
                                                 </label>
-                                                下架
+                                                上架
                                             </div>
                                         </td>
-                                        <td><input type="button" class="btn-delete" value="確認修改" /></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-
-                            <table>
-                                已下架商品 (無法回復上架，若需要請重新新增商品)
-                                <tr>
-                                    <th>商品編號</th>
-                                    <th>商品名稱</th>
-                                    <th>商品特色</th>
-                                    <th>商品價格</th>
-                                    <th>銷售數量</th>
-                                    <th>商品上下架狀態</th>
-                                </tr>
-                                <tbody v-for="item in Delprodus">
-                                    <tr>
-                                        <td>{{item.PSN}}</td>
-                                        <td>{{item.NAME}}</td>
-                                        <td>{{item.INFO}}</td>
-                                        <td>{{item.PRICE}}</td>
-                                        <td>{{item.SOLD}}</td>
-                                        <td>已下架</td>
+                                        <td>
+                                            <input
+                                                type="button"
+                                                class="btn-delete"
+                                                value="確認修改"
+                                                @click="edit_products(item.PSN,key)"
+                                            />
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -188,7 +179,7 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <!-- <table>
+                            <table>
                                 商城訂單管理 - 已付款1
                                 <tr>
                                     <th>訂單編號</th>
@@ -340,7 +331,7 @@
                                         <td><input type="button" class="btn-delete" value="確認修改" /></td>
                                     </tr>
                                 </tbody>
-                            </table> -->
+                            </table>
                         </div>
                     </div>
                 </div>
