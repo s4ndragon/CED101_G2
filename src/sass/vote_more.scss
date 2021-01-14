@@ -300,6 +300,7 @@ main {
                     @include btn3;
                     width: 80px;
                     padding: 10px 3px;
+                    margin: 30px auto 0;
                 }
     
                 .repoinfo {
@@ -348,6 +349,7 @@ main {
 
                 .inner_btn {
                     @include smallbtn2;
+                    margin: 30px auto;
                 }
             }
         }
