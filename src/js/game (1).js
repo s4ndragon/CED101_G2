@@ -18,6 +18,9 @@
  * zombies 僵屍數組
  * score 計分 初始值0
  */
+var song = new Audio("http://ys.yd.yiscdn.com/yisell/pays2020111852017888/sound/yisell_sound_2008041015324213582_88011.mp3"),
+  bomb=new Audio("http://ys.yd.yiscdn.com/yisell/ycys2020111852017888/sound/yisell_sound_2014080113383117110_66366.mp3");
+song.loop = true;
 var star = 25,
   score=0,
   starTimer = 3000,
@@ -116,7 +119,7 @@ function zarr(){
 // 生成子彈
 function createBullet(speed, damage, left) {
 /*   * speed 射速  * damage 傷害   */
-
+  bomb.play();
   var img = document.createElement("img");
   img.className = 'bullet';
   //設置到創建的子彈標籤上
@@ -281,8 +284,7 @@ function wormState(index, worm, wormArr) {
   }
 }
 document.getElementById('go').onclick = function () {
-   var a=document.getElementById('audioc')
-                a.play();
+      song.play();
       sp_= setInterval("sp()", starTimer);//降落茶葉
   		time_b_=	setInterval("time_b()", 9000);//產生子彈
       bb__=setInterval("bb_()", 20);//移動子彈
@@ -344,6 +346,7 @@ function gamestop() {
   clearInterval(init_shot);
   clearInterval(init_worm);
   clearInterval(init_walk);
+
   leaf=[];
   leaf_i=-1;
   tween.pause();
