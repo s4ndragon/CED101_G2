@@ -103,9 +103,15 @@
             </div>
 
 
-            <component :is="content" :tours="tourRows" :filter="filter"></component>
+            <component :is="content" :tours="tourRows" :filter="filter" @sumit-form="sumit()"></component>
 
         </div>
+        <form id="" ref="form" action="./phps/addTourLike.php" method="post">
+            <input type="text" name="addCase" v-model=addCase>
+            <input type="text" name="MEM_NO" v-model=memNO>
+            <input type="text" name="TOUR_ID" v-model=tourId>
+            <input ref="submit" type="submit">
+        </form>
     </div>
 
     @@include('layout/footer.html')
@@ -113,12 +119,41 @@
 
 
 
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v9.0"
-        nonce="2JLZxLTK"></script>
-    <script src="./js/like.js"></script>
+
+
     <!-- <script src="./js/01_tour_topLocation.js"></script> -->
     <script>
+
+        let storage = sessionStorage;
+        window.addEventListener("afterrender", function () {
+
+        })
         window.addEventListener("load", function () {
+            $('form').on('submit', function () {
+                $.ajax({
+                    url: './phps/addTourLike.php', // 要傳送的頁面
+                    method: 'POST',               // 使用 POST 方法傳送請求
+                    dataType: 'text',             // 回傳資料會是 json 格式
+                    data: $('form').serialize(),  // 將表單資料用打包起來送出去
+                    success: function (res) {
+                        if (res == 1) {
+                            console.log('good');
+                        } else {
+                            console.log('remove');
+
+                        }       // 成功以後會執行這個方法
+
+                    },
+                    error: function (err) {
+                        alert('失敗!!');
+                        console.log('not good');
+                    },
+                });
+                return false;  // 阻止瀏覽器跳轉到 send.php，因為已經用 ajax 送出去了
+            });
+
+
+
             //============去server端拿揪團資料
             let tourRows;
             let xhr = new XMLHttpRequest();
@@ -156,6 +191,28 @@
             xhr3.open("get", "./phps/getSgarden.php", true);
             xhr3.send(null);
 
+            //============去server端拿收藏資料
+            let xhr4 = new XMLHttpRequest();
+            xhr4.onload = function () {
+                if (xhr4.status == 200) {
+                    //modify here
+                    let FavortieList = JSON.parse(xhr4.responseText);
+                    storage['FavortieTourList'] = '';
+                    for (let i = 0; i < FavortieList.length; i++) {
+                        storage['FavortieTourList'] += FavortieList[i].TOUR_ID + ',';
+
+                    }
+
+
+                } else {
+                    alert(xhr4.status);
+                }
+            }
+            let memNo = '1';
+            var url = "./phps/getTourFavoriteList.php?mem_no=" + memNo;
+            xhr4.open("Get", url, true);
+            xhr4.send(null);
+
 
         })
 
@@ -167,19 +224,17 @@
             },
             template: `
         <div class="tour_browse" id="tourBrowseBlock">
-            <div class="tour_block" id="tourBlock" v-for="tourRow in tours" >
+            <div class="tour_block" id="tourBlock" v-for="(tourRow,index) in tours" >
                 <div class="tour_img">
                     <p>{{tourRow.TOUR_TITLE}}</p>
                     <p>{{tourRow.TOUR_SETOFFTIME}} 開團</p>
                     <img :src="tourRow.TOUR_IMG" alt="">
                     <div class="love_share">
-                         <div class="love">
-                              <img class="like" src="./images/common/heart.png" title="加入收藏" alt="">
-                         </div>
+                            <div class="love">
+                                <img :id=tourRow.TOUR_ID  ref="like" @click="heart(index, tourRow.TOUR_ID)" src="./images/common/heart.png" title="加入收藏" alt="" >
+                             </div>               
                     </div>
                 </div>
-
-               
                 <div class="tour_text">
                     <div class="deadline">
                         <h3>茶園名稱</h3>
@@ -211,6 +266,36 @@
         </div>
             
             `,
+            methods: {
+                heart(index, tourId) {
+                    if (this.$refs.like[index].title == "加入收藏") {
+                        storage["tourId"] = tourId;
+                        storage["case"] = 1;
+                        this.$emit('sumit-form');
+                        this.$refs.like[index].title = "取消收藏";
+                        this.$refs.like[index].src = "./images/common/like.png";
+                    } else {
+                        setTimeout(() => {
+                            this.$refs.like[index].title = "加入收藏";
+                            this.$refs.like[index].src = "./images/common/heart.png";
+                        }, 100);
+                        storage["tourId"] = tourId;
+                        storage["case"] = 2;
+                        this.$emit('sumit-form');
+                    }
+                }
+
+
+            },
+            updated() {
+
+            },
+
+
+
+
+
+
         })
 
         Vue.component('north', {
@@ -221,14 +306,14 @@
             },
             template: `
         <div class="tour_browse" id="tourBrowseBlock">
-            <div class="tour_block" id="tourBlock" v-for="tourRow in tours" v-show="tourRow.GARD_LOCATE==filter">
+            <div class="tour_block" id="tourBlock" v-for="(tourRow,index) in tours" v-show="tourRow.GARD_LOCATE==filter">
                 <div class="tour_img">
                     <p>{{tourRow.TOUR_TITLE}}</p>
                     <p>{{tourRow.TOUR_SETOFFTIME}} 開團</p>
                     <img :src="tourRow.TOUR_IMG" alt="">
                     <div class="love_share">
                         <div class="love">
-                            <img class="like" src="./images/common/heart.png" title="加入收藏" alt="">
+                            <img :id=tourRow.TOUR_ID  src="./images/common/heart.png" ref="like" @click="heart(index, tourRow.TOUR_ID)" title="加入收藏" alt="">
                         </div>
                     </div>
                
@@ -266,6 +351,28 @@
         </div>
             
             `,
+            methods: {
+                heart(index, tourId) {
+                    if (this.$refs.like[index].title == "加入收藏") {
+                        storage["tourId"] = tourId;
+                        storage["case"] = 1;
+                        this.$emit('sumit-form');
+                        this.$refs.like[index].title = "取消收藏";
+                        this.$refs.like[index].src = "./images/common/like.png";
+                    } else {
+                        setTimeout(() => {
+                            this.$refs.like[index].title = "加入收藏";
+                            this.$refs.like[index].src = "./images/common/heart.png";
+                        }, 100);
+                        storage["tourId"] = tourId;
+                        storage["case"] = 2;
+                        this.$emit('sumit-form');
+                    }
+                }
+
+
+            },
+
         })
 
         Vue.component('type', {
@@ -276,19 +383,17 @@
             },
             template: `
         <div class="tour_browse" id="tourBrowseBlock">
-            <div class="tour_block" id="tourBlock" v-for="tourRow in tours" v-show="tourRow.GARD_TYPE==filter">
+            <div class="tour_block" id="tourBlock" v-for="(tourRow,index) in tours" v-show="tourRow.GARD_TYPE==filter">
                 <div class="tour_img">
                     <p>{{tourRow.TOUR_TITLE}}</p>
                     <p>{{tourRow.TOUR_SETOFFTIME}} 開團</p>
                     <img :src="tourRow.TOUR_IMG" alt="">
                     <div class="love_share">
                         <div class="love">
-                         <img class="like" src="./images/common/heart.png" title="加入收藏" alt="">
+                         <img :id=tourRow.TOUR_ID src="./images/common/heart.png" @click="heart(index, tourRow.TOUR_ID)" ref="like" title="加入收藏" alt="">
                         </div>                  
                      </div>
                  </div>
-
-               
                 <div class="tour_text">
                     <div class="deadline">
                         <h3>茶園名稱</h3>
@@ -320,6 +425,29 @@
         </div>
             
             `,
+            methods: {
+                heart(index, tourId) {
+                    if (this.$refs.like[index].title == "加入收藏") {
+                        storage["tourId"] = tourId;
+                        storage["case"] = 1;
+                        this.$emit('sumit-form');
+                        this.$refs.like[index].title = "取消收藏";
+                        this.$refs.like[index].src = "./images/common/like.png";
+                    } else {
+                        setTimeout(() => {
+                            this.$refs.like[index].title = "加入收藏";
+                            this.$refs.like[index].src = "./images/common/heart.png";
+                        }, 100);
+                        storage["tourId"] = tourId;
+                        storage["case"] = 2;
+                        this.$emit('sumit-form');
+                    }
+                },
+
+
+
+            },
+
         })
 
         Vue.component('price', {
@@ -330,14 +458,14 @@
             },
             template: `
         <div class="tour_browse" id="tourBrowseBlock">
-            <div class="tour_block" id="tourBlock" v-for="tourRow in tours" v-show="tourRow.GARD_PRICE<=filter">
+            <div class="tour_block" id="tourBlock" v-for="(tourRow,index) in tours" v-show="tourRow.GARD_PRICE<=filter">
                 <div class="tour_img">
                     <p>{{tourRow.TOUR_TITLE}}</p>
                     <p>{{tourRow.TOUR_SETOFFTIME}} 開團</p>
                     <img :src="tourRow.TOUR_IMG" alt="">
                     <div class="love_share">
                         <div class="love">
-                            <img class="like" src="./images/common/heart.png" title="加入收藏" alt="">
+                            <img :id=tourRow.TOUR_ID src="./images/common/heart.png" @click="heart(index, tourRow.TOUR_ID)" ref="like" title="加入收藏" alt="">
                         </div>
                     </div>
                 </div>
@@ -374,6 +502,28 @@
         </div>
             
             `,
+            methods: {
+                heart(index, tourId) {
+                    if (this.$refs.like[index].title == "加入收藏") {
+                        storage["tourId"] = tourId;
+                        storage["case"] = 1;
+                        this.$emit('sumit-form');
+                        this.$refs.like[index].title = "取消收藏";
+                        this.$refs.like[index].src = "./images/common/like.png";
+                    } else {
+                        setTimeout(() => {
+                            this.$refs.like[index].title = "加入收藏";
+                            this.$refs.like[index].src = "./images/common/heart.png";
+                        }, 100);
+                        storage["tourId"] = tourId;
+                        storage["case"] = 2;
+                        this.$emit('sumit-form');
+                    }
+                }
+
+
+            },
+
         })
 
         var app = new Vue({
@@ -392,12 +542,18 @@
                 locN: true,
                 locC: true,
                 locS: true,
+                memNO: 1,
+                tourId: "",
+                addCase: "",
             },
             methods: {
                 showAll() {
                     this.locN = true;
                     this.locC = true;
                     this.locS = true;
+                    let like = this.$refs.like;
+
+                    // this.loadFavorite();
                 },
                 showN() {
                     this.locN = true;
@@ -414,7 +570,45 @@
                     this.locC = false;
                     this.locS = true;
                 },
+
+
+                sumit() {
+                    this.tourId = storage.getItem('tourId');
+                    this.addCase = storage.getItem('case');
+
+                    setTimeout(() => {
+                        this.$refs.submit.click();
+
+
+
+                    }, 1);
+
+                },
+                loadFavorite() {
+                    setTimeout(() => {
+                        let list = storage['FavortieTourList'].split(',');
+                        for (var i = 0; i < list.length; i++) {
+                            let showHeart = document.getElementById(list[i]);
+                            showHeart.src = "./images/common/like.png";
+                            showHeart.title = "取消收藏";
+                        }
+                    }, 10);
+                }
+
             },
+            // mounted() {
+            //     this.loadFavorite();
+            // },
+            updated() {
+                this.loadFavorite();
+            },
+            // beforeDestroy() {
+            //     this.loadFavorite();
+            // },
+
+
+
+
         })
 
 

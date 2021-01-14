@@ -290,7 +290,7 @@ function dicountBtn() {
 }
 
 function addcartalert() {
-    if ($id('addcartLB')) {} else {
+    if ($id('addcartLB')) { } else {
         let newdiv = document.createElement('div');
         newdiv.setAttribute('id', 'addcartLB');
         newdiv.innerHTML = `<div>

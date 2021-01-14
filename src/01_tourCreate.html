@@ -173,6 +173,7 @@
                 storagelocation(name, id) {
                     storage['location'] = name;
                     storage['locationId'] = id;
+                    storage['gardID'] = id;
                     this.$emit('click-plus-location');
                 },
                 showLightBox(boxName, boxContent, boxAddress, boxImg, gardID) {
@@ -222,6 +223,7 @@
                 storagelocation(hotelName, id) {
                     storage['hotel'] = hotelName;
                     storage['hotelId'] = id;
+                    storage['hotelID'] = id
                     this.$emit('click-plus-hotel');
                 },
                 showLightBox(boxName, boxContent, boxImg, hotelID) {
@@ -270,6 +272,7 @@
 
                         } else {
                             storage['rest2Id'] = id;
+                            storage['restID'] = id;
                             this.$emit('click-plus-rest2');
                         }
 
@@ -285,6 +288,7 @@
 
                         } else {
                             storage['rest3Id'] = id;
+                            storage['restID'] = id;
                             this.$emit('click-plus-rest');
                         }
 
@@ -292,6 +296,7 @@
                     } else {
                         storage['rest1'] = name;
                         storage['rest1Id'] = id;
+                        storage['restID'] = id;
                         this.$emit('click-plus-rest1');
                     }
                 },
@@ -333,6 +338,7 @@
                 storageActive(actNAME, id) {
                     storage['active'] = actNAME;
                     storage['activeId'] = id;
+                    storage['actID'] = id;
                     this.$emit('click-plus-active');
                 },
                 showLightBox(boxName, boxContent, boxImg, actID) {
@@ -451,6 +457,7 @@
                     this.bgcolor3 = "#4c6e39";
                     this.color4 = "#fff";
                     this.bgcolor4 = "#4c6e39";
+                    storage.clear();
                 },
                 removeHotelStorage() {
                     this.removeRestStorage();
@@ -508,7 +515,6 @@
                 goToNext() {
                     this.activeList = storage.getItem('active');
                     this.nextBtn = true;
-
                 },
                 goToActive() {
                     this.restList3 = storage.getItem('rest3');
@@ -586,7 +592,7 @@
                         }
 
 
-                    }, 10);
+                    }, 1);
 
                 },
 
@@ -644,10 +650,12 @@
                         storage['active'] = this.boxName;
                         this.closeBox();
                         this.goToNext();
-                    } else {
+                    } else if (storage.getItem('location') == undefined) {
                         storage['location'] = this.boxName;
                         this.closeBox();
                         this.goToHotel();
+                    } else {
+                        alert("請前往下一步!!!")
                     }
                 },
 
@@ -702,6 +710,9 @@
                     this.color3 = "#fff";
                     this.bgcolor3 = "#4c6e39";
 
+                } else {
+                    this.removeLocationStorage();
+                    storage.clear();
                 };
 
 

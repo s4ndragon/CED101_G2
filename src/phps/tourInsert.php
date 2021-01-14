@@ -2,14 +2,15 @@
 <html>
 <head>
 <meta charset="utf-8">
-<link rel="stylesheet" href="../css/inser.css">
+
 <title>Examples</title>
 </head>
 <body>
 <?php
 $errMsg = "";
+$success="success";
 try {
-	require_once("./phps/connect.php");
+	require_once("./connect.php");
 	//.......確定是否上傳成功
 			$sql = "INSERT INTO `tour` (`TOUR_ID`,`GARD_ID`, `MEM_NO`, `HOTEL_ID`, `TOUR_PEOPLE`, `NUM_OF_PARTICIPANTS`, `SETUP_DATE`, `DEADLINE_DATE`, `TOUR_SETOFFTIME`, `TOUR_TITLE`, `TOUR_INFRO`, `TOUR_IMG`, `TOUR_LEADER`, `TOUR_ACTIVE`, `TOUR_PS`, `TOUR_STATUS`) 
                             values(null, :GARD_ID, :MEM_NO, :HOTEL_ID, :TOUR_PEOPLE,:NUM_OF_PARTICIPANTS,:SETUP_DATE,:DEADLINE_DATE,:TOUR_SETOFFTIME,:TOUR_TITLE,:TOUR_INFRO,:TOUR_IMG,:TOUR_LEADER,:TOUR_ACTIVE,:TOUR_PS, :TOUR_STATUS )";
@@ -39,26 +40,17 @@ try {
 			$rest -> bindValue(":RESTAURANT_ID1", $_POST["RESTAURANT_ID1"]);
 			$rest -> bindValue(":RESTAURANT_ID2", $_POST["RESTAURANT_ID2"]);
 			$rest -> bindValue(":RESTAURANT_ID3", $_POST["RESTAURANT_ID3"]);	
-			$rest -> execute();	?>	
-
-	@@include('/layout/nav.html')
-			<a href="../01_tour.html">
-    <div class="successBox">
-        <p>
-        新增成功!!!
-        </p>
-        <p>點擊回揪團瀏覽頁查詢</p>
-        <div class="img">
-        <img src="../images/tour/success.gif" alt=""> 
-        </div>
-    </div>
-    </a>
-<?
+			$rest -> execute();	
+			echo $success;
+			
+			
 } catch (PDOException $e) {
 	$pdo->rollBack();
 	$errMsg .= "錯誤原因 : ".$e -> getMessage(). "<br>";
 	$errMsg .= "錯誤行號 : ".$e -> getLine(). "<br>";	
 	echo $errMsg;
+	
+	
 }
 
 
