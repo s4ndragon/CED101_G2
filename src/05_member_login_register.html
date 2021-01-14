@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="./images/index/webIcon.png" type="image/x-icon" />
     <!-- <link rel="stylesheet" href="./css/member_login_register.css"> -->
-    <link rel="stylesheet" href="../dist/css/member_login_register.css" />
+    <link rel="stylesheet" href="./css/member_login_register.css" />
     <!-- <link rel="preconnect" href="https://fonts.gstatic.com">  -->
     <script src="../node_modules/jquery/dist/jquery.js"></script>
     <script src="./js/member_login_register.js"></script>
@@ -14,29 +14,29 @@
 <body>
     <div class="form">
         <ul class="tab-group">
-          <li class="tab active"><a href="#login">登入</a></li>
-          <li class="tab"><a href="#signup">註冊</a></li>
+            <li class="tab active"><a href="#login">登入</a></li>
+            <li class="tab"><a href="#signup">註冊</a></li>
         </ul>
         
         <div class="tab-content">
             <div id="login">   
                 <h2>歡迎回來！</h2>
-                <form action="/" method="post">
+                <form action="./php/login.php" method="post">
                     <div class="field-wrap">
-                        <label for="log_memId">
+                        <label for="MEM_ID">
                             帳號<span class="req">*</span>
                         </label>
-                        <input type="text"required autocomplete="off" id="log_memId" name="log_memId"/>
+                        <input type="text"required autocomplete="off" id="log_memId" name="MEM_ID"/>
                     </div>
                     <div class="field-wrap">
-                        <label for="log_memPw">
+                        <label for="MEM_PW">
                             密碼<span class="req">*</span>
                         </label>
-                        <input type="password"required autocomplete="off" id="log_memPw" name="log_memPw"/>
+                        <input type="password"required autocomplete="off" id="log_memPw" name="MEM_PW"/>
                     </div>
                     <p class="forgot"><a href="#">忘記密碼？</a></p>
                     <div class="btn_container">
-                        <button class="btn"/>登入</button>
+                        <button id="log-in" class="btn"/>登入</button>
                     </div>
                 </form>
             </div>
@@ -66,7 +66,7 @@
                     </div>
                     <div class="field-wrap">
                         <label for="reg_memId">
-                        帳號<span class="req">*</span>ß
+                        帳號<span class="req">*</span>
                         </label>
                         <input type="text"required autocomplete="off" id="reg_memId" name="reg_memId"/>
                     </div>

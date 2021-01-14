@@ -4,14 +4,17 @@
     --header-height: 60px;
     --aside-width: 240px;
 }
+
 body {
     @include bg;
 }
+
 /* ==================== nav 區域 ==================== */
 .memicon {
     position: fixed !important;
     left: 9.4% !important;
 }
+
 /* ==================== aside 區域 ==================== */
 aside.aside {
     position: fixed;
@@ -25,14 +28,16 @@ aside.aside {
     transition: all 1s;
     text-align: left;
 }
+
 aside.aside button.btn_hamburger {
     display: none;
 }
 
-aside.aside > ul.nav_list > li {
+aside.aside>ul.nav_list>li {
     h1 {
         font-size: $h4;
     }
+
     a {
         display: inline-block;
         width: 100%;
@@ -57,25 +62,28 @@ main.main ul.item_list {
     display: flex;
     flex-wrap: wrap;
 }
-main.main ul.item_list > li {
+
+main.main ul.item_list>li {
     width: calc((100% - 60px) / 4);
     margin-bottom: 20px;
     margin-right: 20px;
 }
 
-main.main ul.item_list > li:nth-child(4n) {
+main.main ul.item_list>li:nth-child(4n) {
     margin-right: 0;
 }
 
-main.main ul.item_list > li > a {
+main.main ul.item_list>li>a {
     display: inline-block;
     text-decoration: none;
     width: 100%;
 }
-main.main ul.item_list > li > a div.img_block {
+
+main.main ul.item_list>li>a div.img_block {
     font-size: 0;
 }
-main.main ul.item_list > li > a span.item_text {
+
+main.main ul.item_list>li>a span.item_text {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -107,10 +115,12 @@ div.tab_container div.tab_list_block ul.tab_list {
     margin: 0;
     padding: 0;
 }
-div.tab_container div.tab_list_block ul.tab_list > li {
+
+div.tab_container div.tab_list_block ul.tab_list>li {
     display: inline-block;
 }
-div.tab_container div.tab_list_block ul.tab_list > li > a {
+
+div.tab_container div.tab_list_block ul.tab_list>li>a {
     text-decoration: none;
     display: inline-block;
     border: 1px solid #ccc;
@@ -125,7 +135,7 @@ div.tab_container div.tab_list_block ul.tab_list > li > a {
 }
 
 /* 畫出底部黑線 */
-div.tab_container div.tab_list_block ul.tab_list > li > a::after {
+div.tab_container div.tab_list_block ul.tab_list>li>a::after {
     content: '';
     position: absolute;
     width: calc(100% + 2px);
@@ -135,12 +145,14 @@ div.tab_container div.tab_list_block ul.tab_list > li > a::after {
     left: -1px;
     z-index: 1;
 }
-div.tab_container div.tab_list_block ul.tab_list > li > a.-on {
+
+div.tab_container div.tab_list_block ul.tab_list>li>a.-on {
     border: 1px solid #0f470f;
     color: black;
 }
+
 /* 將底部黑線改成白色 */
-div.tab_container div.tab_list_block ul.tab_list > li > a.-on::after {
+div.tab_container div.tab_list_block ul.tab_list>li>a.-on::after {
     background-color: white;
     width: 100%;
     left: 0;
@@ -151,10 +163,12 @@ div.tab_container div.tab_contents {
     border: 1px solid #0f470f;
     /*   margin-top: 30px; */
 }
+
 div.tab_container div.tab_contents div.tab {
     padding: 30px;
     display: none;
 }
+
 div.tab_container div.tab_contents div.tab.-on {
     display: block;
 }
@@ -195,23 +209,28 @@ th {
     display: inline-block;
     margin-bottom: 15px;
 }
+
 input {
     padding: 10px !important;
 }
+
 .btn-confirm {
     @include smallbtn4;
 }
+
 .switch {
     position: relative;
     display: inline-block;
     width: 60px;
     height: 34px;
 }
+
 .switch input {
     // opacity: 0;
     width: 0;
     height: 0;
 }
+
 .slider {
     position: absolute;
     cursor: pointer;
@@ -223,6 +242,7 @@ input {
     -webkit-transition: 0.4s;
     transition: 0.4s;
 }
+
 .slider:before {
     position: absolute;
     content: '';
@@ -234,131 +254,152 @@ input {
     -webkit-transition: 0.4s;
     transition: 0.4s;
 }
-input:checked + .slider {
+
+input:checked+.slider {
     background-color: #2196f3;
 }
-input:focus + .slider {
+
+input:focus+.slider {
     box-shadow: 0 0 1px #2196f3;
 }
-input:checked + .slider:before {
+
+input:checked+.slider:before {
     -webkit-transform: translateX(26px);
     -ms-transform: translateX(26px);
     transform: translateX(26px);
 }
+
 /* Rounded sliders */
 .slider.round {
     border-radius: 34px;
 }
+
 .slider.round:before {
     border-radius: 50%;
 }
-button{
-  cursor: pointer;
+
+button {
+    cursor: pointer;
 }
+
 input[type=number]::-webkit-outer-spin-button,
 input[type=number]::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
+
 /* Firefox */
 input[type=number] {
-  -moz-appearance: textfield;
+    -moz-appearance: textfield;
 }
+
 /* 新增管理員 */
-#Adminbox{
-position: fixed;
-top: 0;
-left: 0;
-width: 100vw;
-height: 100vh;
-background-color: hsla(0, 0%, 0%, .5);
-opacity: 0;
-z-index: -1;
-transition: opacity 1s;
+#Adminbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: hsla(0, 0%, 0%, .5);
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 1s;
 }
-#Adminbox.-on{
-  opacity: 1;
-  z-index: 1;
+
+#Adminbox.-on {
+    opacity: 1;
+    z-index: 1;
 }
-#Adminbox.-opacity-zero{
-  opacity: 0;
+
+#Adminbox.-opacity-zero {
+    opacity: 0;
 }
-#Adminbox > form{
-  background-color: white;
-  width: 90%;
-  max-width: 800px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px #ddd;
-  padding: 10px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+
+#Adminbox>form {
+    background-color: white;
+    width: 90%;
+    max-width: 800px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #ddd;
+    padding: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
+
 /* 新增管理員 */
 /* 新增商品 */
-#prodbox{
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 100%;
-  height: 100vh;
-  background-color: hsla(0, 0%, 0%, .5);
-  opacity: 0;
-  z-index: -1;
-  transition: opacity 1s;
+#prodbox {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: hsla(0, 0%, 0%, .5);
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 1s;
 }
-#prodbox.-on{
-  opacity: 1;
-  z-index: 1;
+
+#prodbox.-on {
+    opacity: 1;
+    z-index: 1;
 }
-#prodbox.-opacity-zero{
-  opacity: 0;
+
+#prodbox.-opacity-zero {
+    opacity: 0;
 }
-#prodbox > form{
-  background-color: white;
-  width: 90%;
-  max-width: 350px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px #ddd;
-  padding: 10px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+
+#prodbox>form {
+    background-color: white;
+    width: 90%;
+    max-width: 350px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #ddd;
+    padding: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
+
 /* 新增商品 */
 /* 新增遊戲角色 gamebox*/
-#gamebox{
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 100%;
-  height: 100vh;
-  background-color: hsla(0, 0%, 0%, .5);
-  opacity: 0;
-  z-index: -1;
-  transition: opacity 1s;
+#gamebox {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: hsla(0, 0%, 0%, .5);
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 1s;
 }
-#gamebox.-on{
-  opacity: 1;
-  z-index: 1;
+
+#gamebox.-on {
+    opacity: 1;
+    z-index: 1;
 }
-#gamebox.-opacity-zero{
-  opacity: 0;
+
+#gamebox.-opacity-zero {
+    opacity: 0;
 }
-#gamebox > form{
-  background-color: white;
-  width: 90%;
-  max-width: 400px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px #ddd;
-  padding: 10px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+
+#gamebox>form {
+    background-color: white;
+    width: 90%;
+    max-width: 400px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #ddd;
+    padding: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
+
 /* ==================== RWD ==================== */
 
 // @media screen and (max-width: 767px) {

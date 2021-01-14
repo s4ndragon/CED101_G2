@@ -67,7 +67,7 @@
                     <div class="modal" v-if="lightbox">
                         <form>
                             <input type="hidden" id="gardenId">
-                            <div class="close"  @click="lightbox = false">
+                            <div class="close"  @click="close_lightbox">
                                 
                             </div>
                             <p class="welcome">歡迎評分</p>
@@ -98,9 +98,9 @@
                             <div class="com_pub_time">發表於2012-03-20 12:20:30</div>
                         </div>
                         <div class="excl ">
-                            <button class="repobt" @click="showModal2 = true">
+                            <div class="repobt" @click="showModal2 = true">
                                 <img class="excl" src="./images/common/852019_exclamation_512x512.png" alt="">
-                            </button>
+                            </div>
     
                             <!-- overlay -->
                             <div class="overlay" v-if="showModal2" @click="showModal2 = true"></div>
@@ -120,72 +120,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="command">
-                    <div class="nameall">
-                        <div class="mem_photo"><img class="mem_photo" src="./images/common/mem_photo1.png" alt=""></div>
-                        <span class="pub_mem_name">翰婷</span>
-                    </div>
-                    <div class="text_excl ">
-                        <div class="command_text">
-                            <div class="pub_text">哈囉，還好吧還好吧還好吧還好吧還好吧，我也要去。</div>
-                            <div class="com_pub_time">發表於2012-03-20 12:20:30</div>
-                        </div>
-                        <div class="excl ">
-                            <button class="repobt" @click="showModal2 = true">
-                                <img class="excl" src="./images/common/852019_exclamation_512x512.png" alt="">
-                            </button>
-    
-                            <!-- overlay -->
-                            <div class="overlay" v-if="showModal2" @click="showModal2 = true"></div>
-                            <!-- modal -->
-                            <div class="modal" v-if="showModal2">
-                                <form>
-                                    <div class="close" @click="showModal2 = false">
-                                        
-                                    </div>
-                                    <p class="welcome">請輸入檢舉理由</p>
-                                    <textarea class="repoinfo" cols="25" rows="10"></textarea>
-    
-                                    <button class="go">送出</button>
-                                </form>
-                            </div>
-    
-                        </div>
-                    </div>
-                </div>
-                <div class="command">
-                    <div class="nameall">
-                        <div class="mem_photo"><img class="mem_photo" src="./images/common/mem_photo1.png" alt=""></div>
-                        <span class="pub_mem_name">翰婷</span>
-                    </div>
-                    <div class="text_excl">
-                        <div class="command_text">
-                            <div class="pub_text">哈囉，還好吧還好吧還好吧還好吧還好吧，我也要去。</div>
-                            <div class="com_pub_time">發表於2012-03-20 12:20:30</div>
-                        </div>
-                        <div class="excl ">
-                            <button class="repobt" @click="showModal2 = true">
-                                <img class="excl" src="./images/common/852019_exclamation_512x512.png" alt="">
-                            </button>
-    
-                            <!-- overlay -->
-                            <div class="overlay" v-if="showModal2" @click="showModal2 = true"></div>
-                            <!-- modal -->
-                            <div class="modal" v-if="showModal2">
-                                <form>
-                                    <div class="close" @click="showModal2 = false">
-                                        
-                                    </div>
-                                    <p class="welcome">請輸入檢舉理由</p>
-                                    <textarea class="repoinfo" cols="25" rows="10"></textarea>
-    
-                                    <button class="go">送出</button>
-                                </form>
-                            </div>
-    
-                        </div>
-                    </div>
-                </div>
+                
+                
 
         </div>
 
@@ -208,11 +144,11 @@
         <div class="tour_browse_block" id="tourBrowseBlock"></div>
 
         <div class="toursection">
-            <div class="tour_block">
+            <div v-for="tourRow in tourRows" class="tour_block">
                 <div class="tour_img">
-                    <p>舞鶴茶園一日遊</p>
-                    <p>2020/12/30 出團</p>
-                    <img src="https://tibamef2e.com/ced101/project/g2/images/tour/tour1.jpg">
+                    <p>{{tourRow.TOUR_TITLE}}</p>
+                    <p>{{tourRow.TOUR_SETOFFTIME}} 出團</p>
+                    <img :src="tourRow.TOUR_IMG">
                 </div>
 
                 <div class="love_share">
@@ -227,109 +163,29 @@
                 <div class="tour_text">
                     <div class="deadline">
                         <h3>截止揪團日期</h3>
-                        <p>2020/12/25</p>
+                        <p>{{tourRow.DEADLINE_DATE}}</p>
                     </div>
                     <div class="price">
                         <h3>預估費用</h3>
-                        <p>$7800</p>
+                        <p>${{tourRow.GARD_PRICE}}</p>
                     </div>
                     <div class="ink">
                         <div class="ink_bg"></div>
                         <div class="inkText">
                             <h3>參加人數</h3>
-                            <p>14/16</p>
+                            <p>{{tourRow.NUM_OF_PARTICIPANTS}}/{{tourRow.TOUR_PEOPLE}}</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="tourBtn">
                     <button type="button">
-                        <a href="./02_tour_more.html"> 立即報名</a>
+                        <a :href="'02_tour_more.html?TOUR_ID=' + tourRow.TOUR_ID"> 立即報名</a>
                     </button>
                 </div>
             </div>
 
-            <div class="tour_block">
-                <div class="tour_img">
-                    <p>舞鶴茶園一日遊</p>
-                    <p>2020/12/30 出團</p>
-                    <img src="https://tibamef2e.com/ced101/project/g2/images/tour/tour1.jpg">
-                </div>
-
-                <div class="love_share">
-                    <div class="love">
-                        <img class="like" src="./images/common/heart.png" title="加入收藏" alt="">
-                    </div>
-                    <div class="share">
-                        <div class="fb-share-button" data-href="http://127.0.0.1:5501/dist/01_tour.html" data-layout="button" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5501%2Fdist%2F01_tour.html&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">分享</a></div>
-                    </div>
-                </div>
-
-                <div class="tour_text">
-                    <div class="deadline">
-                        <h3>截止揪團日期</h3>
-                        <p>2020/12/25</p>
-                    </div>
-                    <div class="price">
-                        <h3>預估費用</h3>
-                        <p>$7800</p>
-                    </div>
-                    <div class="ink">
-                        <div class="ink_bg"></div>
-                        <div class="inkText">
-                            <h3>參加人數</h3>
-                            <p>14/16</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tourBtn">
-                    <button type="button">
-                        <a href="./02_tour_more.html"> 立即報名</a>
-                    </button>
-                </div>
-            </div>
-
-            <div class="tour_block">
-                <div class="tour_img">
-                    <p>舞鶴茶園一日遊</p>
-                    <p>2020/12/30 出團</p>
-                    <img src="https://tibamef2e.com/ced101/project/g2/images/tour/tour1.jpg">
-                </div>
-
-                <div class="love_share">
-                    <div class="love">
-                        <img class="like" src="./images/common/heart.png" title="加入收藏" alt="">
-                    </div>
-                    <div class="share">
-                        <div class="fb-share-button" data-href="http://127.0.0.1:5501/dist/01_tour.html" data-layout="button" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5501%2Fdist%2F01_tour.html&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">分享</a></div>
-                    </div>
-                </div>
-
-                <div class="tour_text">
-                    <div class="deadline">
-                        <h3>截止揪團日期</h3>
-                        <p>2020/12/25</p>
-                    </div>
-                    <div class="price">
-                        <h3>預估費用</h3>
-                        <p>$7800</p>
-                    </div>
-                    <div class="ink">
-                        <div class="ink_bg"></div>
-                        <div class="inkText">
-                            <h3>參加人數</h3>
-                            <p>14/16</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tourBtn">
-                    <button type="button">
-                        <a href="./02_tour_more.html"> 立即報名</a>
-                    </button>
-                </div>
-            </div>
+            
 
         </div>
 
@@ -352,14 +208,18 @@
         var app = new Vue({
             el: "#app",
             data: {
+                dataRows:'',
                 gardenRows:'',
+                tourRows:'',
+                pastDate:'',
                 lightbox: false,
                 lightbox_GARD_ID:'',
 
-                showModal2: false,
+                // showModal2: false,
                 rating: '您尚未評分',
                 sendRating:'',
-                targetPageId:''
+                targetPageId:'',
+                today:''
             },
 
             methods: {
@@ -368,31 +228,77 @@
                     this.lightbox_GARD_ID = GARD_ID;
                 },
 
+                close_lightbox(){
+                    this.lightbox = false;
+                    this.rating = '您尚未評分';
+                },
+
                 setRating(rating) {
                     this.rating = "您評了 " + rating + " 分";
                     return this.sendRating = rating;
                 },
 
-                sendScore(){
-                    let xhr = new XMLHttpRequest();
-                    //註冊callback function 
-                    xhr.onload = function(){
-                        if(xhr.status == 200){ //success
-                            // app.gardenRows = xhr.responseText;
-                            // console.log(app.gardenRows)
-                            console.log(666)
-                        }else{
-                            alert(xhr.status);
-                        }
+                nowDate(){
+                    let today = new Date();
+                    let dd = today.getDate();
+                    let mm = today.getMonth()+1; 
+                    let yyyy = today.getFullYear();
+                    if(dd<10){
+                        dd='0'+dd;
+                    } 
+                    if(mm<10) {
+                        mm='0'+mm;
                     }
-                    //設定好所要連結的程式
-                    xhr.open("post", "./phps/send_vote.php", true);
-                    xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
-                    //送出資料
-                    let data_info = "GARD_VOTE=" + this.sendRating + "&" + "GARD_ID=" + this.targetPageId;
-                    xhr.send(data_info);
+                    today = yyyy+'-'+mm+'-'+dd;
+                    this.today = today
+                },
 
-                    this.lightbox = false
+                sendScore(){
+                    if(this.today == this.pastDate[0].VOTE_DATE){
+                        alert('一天只能投一次票喔!')
+                    }else{
+                        let xhr = new XMLHttpRequest();
+                        xhr.onload = function(){
+                            if(xhr.status == 200){ //success
+                                console.log('success')
+                            }else{
+                                alert(xhr.status);
+                            }
+                        }
+                        xhr.open("post", "./phps/send_vote.php", true);
+                        xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+                        //送出資料
+                        let data_info = "GARD_VOTE=" + this.sendRating + "&" + "GARD_ID=" + this.targetPageId;
+                        xhr.send(data_info);
+
+                        this.lightbox = false
+                        this.get_data()
+                        this.rating = '您尚未評分'
+                    }
+                },
+
+                get_data(){
+                    //============傳targetPageId給php
+                    
+                    let xhr = new XMLHttpRequest();
+                        //註冊callback function 
+                        xhr.onload = function(){
+                            if(xhr.status == 200){ //success
+                                app.dataRows = JSON.parse(xhr.responseText);
+                                app.gardenRows = app.dataRows[0];
+                                app.pastDate = app.dataRows[1];
+                                app.tourRows = app.dataRows[2];
+                            }else{
+                                alert(xhr.status);
+                            }
+                        }
+                        //設定好所要連結的程式
+                        xhr.open("post", "./phps/vote_more.php", true);
+                        xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+                        //送出資料
+                        // let data_info = "GARD_ID=" + this.targetPageId;
+                        let data_info = `GARD_ID=${this.targetPageId}`;
+                        xhr.send(data_info);
                 }
             },
 
@@ -402,31 +308,10 @@
                 let targetPageId = searchURL.split("=")[1];
                 this.targetPageId = targetPageId;
 
-                //============傳targetPageId給php
-                let gardenRows;
-
-                let xhr = new XMLHttpRequest();
-                    //註冊callback function 
-                    xhr.onload = function(){
-                        if(xhr.status == 200){ //success
-                            app.gardenRows = JSON.parse(xhr.responseText);
-                            
-                        }else{
-                            alert(xhr.status);
-                        }
-                    }
-                    //設定好所要連結的程式
-                    xhr.open("post", "./phps/vote_more.php", true);
-                    xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
-                    //送出資料
-                    // let data_info = "GARD_ID=" + this.targetPageId;
-                    let data_info = `GARD_ID=${this.targetPageId}`;
-                    xhr.send(data_info);
-
-                //====================================送出評分
-                function $id(id){
-                    return document.getElementById(id);
-                }	
+                //============去server端拿資料
+                this.get_data()
+                this.nowDate()
+                
 
             },
         });

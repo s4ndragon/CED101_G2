@@ -1,65 +1,69 @@
-<div id="form-log">
+<div class="cover">
+<div class="form">
+    <!-- <div class="close"></div> -->
     <ul class="tab-group">
         <li class="tab active"><a href="#login">登入</a></li>
         <li class="tab"><a href="#signup">註冊</a></li>
     </ul>
     <div class="tab-content">
         <div id="login">   
-            <h2 class="title-log">歡迎回來！</h2>
-            <form class="form" action="/" method="post">
+            <h2>歡迎回來！</h2>
+            <form action="./php/login.php" method="post">
                 <div class="field-wrap">
-                    <label for="memId-log">
+                    <label for="MEM_ID">
                         帳號<span class="req">*</span>
                     </label>
-                    <input type="text"required autocomplete="off" id="memId-log" name="memId-log"/>
+                    <input type="text"required autocomplete="off" id="log_memId" name="MEM_ID"/>
                 </div>
                 <div class="field-wrap">
-                    <label for="memPw-log">
+                    <label for="MEM_PW">
                         密碼<span class="req">*</span>
                     </label>
-                    <input type="password"required autocomplete="off" id="memPw-log" name="memPw-log"/>
+                    <input type="password"required autocomplete="off" id="log_memPw" name="MEM_PW"/>
                 </div>
                 <p class="forgot"><a href="#">忘記密碼？</a></p>
                 <div class="btn_container">
-                    <button class="btn"/>登入</button>
+                    <button id="log-in" class="btn"/>登入</button>
+                    <button id="log-cancel" class="btn cancel"/>取消</button>
                 </div>
             </form>
         </div>
         <div id="forget_pw">
-            <h2 class="title">找回密碼</h2>
-            <form class="form" action="/" method="post">
+            <h2>找回密碼</h2>
+            <form action="/" method="post">
                 <div class="field-wrap">
-                    <label for="email-find">
+                    <label for="get_email">
                         信箱<span class="req">*</span>
                     </label>
-                    <input type="email"required autocomplete="off" id="email-find" name="email-find"/>
+                    <input type="email"required autocomplete="off" id="get_email" name="get_email"/>
                 </div>
                 <div class="btn_container">
                     <button class="btn"/>取回密碼</button>
+                    <button id="get-cancel" class="btn cancel"/>取消</button>
                 </div>
                 
             </form>
         </div>        
         <div id="signup">   
-            <h2 class="title">註冊會員</h2>
-            <form class="form" action="/" method="post">
+            <h2>註冊會員</h2>
+            <form action="/" method="post">
                 <div class="field-wrap">
-                    <label for="email">
+                    <label for="reg_email">
                     信箱<span class="req">*</span>
                     </label>
-                <input type="email"required autocomplete="off" id="email-reg" name="email-reg"/>
+                <input type="email"required autocomplete="off" id="reg_email" name="reg_email"/>
                 </div>
                 <div class="field-wrap">
-                    <label for="memId-reg">
+                    <label for="reg_memId">
                     帳號<span class="req">*</span>
                     </label>
-                    <input type="text"required autocomplete="off" id="memId-reg" name="memId-reg"/>
+                    <input type="text"required autocomplete="off" id="reg_memId" name="reg_memId"/>
                 </div>
                 <div class="field-wrap">
-                    <label for="memPw">
+                    <label for="reg_memPw">
                     密碼<span class="req">*</span>
                     </label>
-                    <input type="password"required autocomplete="off" id="memPw-reg" name="memPw-reg"/>
+                    <input type="password"required autocomplete="off" id="reg_memPw" name="reg_memPw"/>
                 </div>
                 <div class="field-wrap">
                     <label for="re_memPw">
@@ -69,8 +73,20 @@
                 </div>
                 <div class="btn_container">
                     <button type="submit" class="btn"/>註冊</button>
+                    <button id="reg-cancel" class="btn cancel"/>取消</button>
                 </div>
             </form>
         </div>  
     </div><!-- tab-content -->  
-</div> 
+</div> <!-- /form -->
+</div>
+<script src="../node_modules/jquery/dist/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+<!-- <script src="./js/membership_vue.js"></script> -->
+
+<!-- vue相關 -->
+<!-- <script src="./js/membership_vue_test.js"></script> -->
+<!-- login  -->
+<!-- <script src="./js/member_login_register.js"></script> -->
+<script src="./js/login.js"></script>

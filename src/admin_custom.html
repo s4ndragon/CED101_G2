@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        <title>偵茶者後台管理 | TEA SEARCHER | 帶你找茶 喝茶 買茶</title>
+        <link rel="shortcut icon" href="./images/index/webIcon.png" type="image/x-icon" />
+        <link rel="stylesheet" href="./css/admin.css" />
+        <script src="../node_modules/vue/dist/vue.js"></script>
+        <script src="js/admin.js"></script>
+    </head>
+    <body>
+        <nav class="nav">
+            <!-- logo放置區 -->
+            <a href="#">
+                <h1 id="logo"><img src="images/common/logo.png" alt="" /></h1>
+            </a>
+            
+            <!-- 會員icon放置區 -->
+            <a href="#">
+                <img class="memicon" src="images/common/user.png" alt="" />
+            </a>
+        </nav>
+        
+        <aside class="aside">
+            <ul class="nav_list">
+                <li><h1>後台管理頁</h1></li>
+                
+                <li class="li">
+                    <a href="#" data-target="admin"
+                    ><img class="navicon" src="images/common/nav_leaf.png" alt="" />管理員管理</a
+                    >
+                </li>
+                <li class="li">
+                    <a href="#" data-target="member">
+                        <img class="navicon" src="images/common/nav_leaf.png" alt="" />會員管理</a
+                        >
+                    </li>
+                    <li class="li">
+                        <a href="#" data-target="custom"
+                        ><img class="navicon" src="images/common/nav_leaf.png" alt="" />客製化內容管理</a
+                        >
+                    </li>
+                    <li class="li">
+                        <a href="#" data-target="shop"
+                        ><img class="navicon" src="images/common/nav_leaf.png" alt="" />商城管理</a
+                        >
+                    </li>
+                    
+                    <li class="li">
+                        <a href="#" data-target="report"
+                        ><img class="navicon" src="images/common/nav_leaf.png" alt="" />檢舉管理</a
+                        >
+                </li>
+            </ul>
+        </aside>
+
+        <main class="main">
+            <div id="app">
+                <div class="tab_container -on custom">
+                    <div class="tab_list_block">
+                        <ul class="tab_list">
+                            <li><a href="#" data-target="tab1" class="tab -on">茶園管理</a></li>
+                            <li><a href="#" data-target="tab2" class="tab -on">餐廳管理</a></li>
+                            <li><a href="#" data-target="tab3" class="tab -on">住宿管理</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="tab_contents">
+                        <div class="tab tab1 -on">
+                            茶園管理
+                            <form>
+                                <input type="text" v-model="gard_id" placeholder="請輸入茶園編號，從1開始" />
+                                <button class="btn-confirm" type="button" @click="query_gard_id">送出查詢</button>
+                                <button class="btn-confirm" type="button" @click="get_gards">回到列表</button>
+                            </form>
+                            
+                            <form>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>茶園編號</th>
+                                            <th>茶園名稱</th>
+                                            <th>茶園型態</br>(0:觀光型 1:體驗型)</th>
+                                            <th>茶園地址</th>
+                                            <th>茶園總得分</th>
+                                            <th>茶園評分次數</th>
+                                            <th>茶園狀態 </th>
+                                            <th>修改確認</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody v-for="item in gardens">
+                                        <tr>
+                                            <td>{{item.GARD_ID}}</td>
+                                            <td><input type="text" :value="item.GARD_NAME" /></td>
+                                            <td><input type="text" :value="item.GARD_TYPE" /></td>
+                                            <td><input type="text" :value="item.GARD_ADDRESS" /></td>
+                                            <td><input type="text" :value="item.GARD_VOTE" /></td>
+                                            <td><input type="text" :value="item.GARD_CLICK" /></td>
+                                            <td>
+                                                <div class="form-group">
+                                                    上架
+                                                    <label class="switch">
+                                                        <input type="checkbox" v-model="item.ischecked" />
+                                                        <span class="slider round"></span>
+                                                    </label>
+                                                    下架
+                                                </div>
+                                            </td>
+                                            <td><input class="btn-delete" type="button" value="確認修改" /></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </form>
+                        </div>
+                        
+                        <div class="tab tab2">
+                            餐廳管理
+                            <form>
+                                <input type="text" v-model="RESTAURANT_ID" placeholder="請輸入餐廳編號，從1開始" />
+                                <button class="btn-confirm"  type="button" @click="query_rest_id">送出查詢</button>
+                                <button class="btn-confirm" type="button" @click="get_rests">回到列表</button>
+
+                            </form>
+                            <table>
+                                <tr>
+                                    <th>餐廳編號</th>
+                                    <th>餐廳名稱</th>
+                                    <th>餐廳介紹</th>
+                                    <th>餐廳上下架狀態</th>
+                                    <th>確認修改</th>
+                                </tr>
+                                
+                                <tbody v-for="item in rests">
+                                    <tr>
+                                        <td>{{item.RESTAURANT_ID}}</td>
+                                        <td><input type="text" :value="item.RESTAURANT_NAME" /></td>
+                                        <td><input type="text" :value="item.RESTAURANT_INFRO" /></td>
+                                        <td>
+                                            <div class="form-group">
+                                                上架
+                                                <label class="switch">
+                                                    <input type="checkbox" v-model="item.ischecked"/>
+                                                    <span class="slider round"></span>
+                                                </label>
+                                                下架
+                                            </div>
+                                        </td>
+                                        <td><input type="button" class="btn-delete" value="確認修改" /></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="tab tab3">
+                            住宿管理
+                            <form>
+                                <input type="text" v-model="HOTEL_ID" placeholder="請輸入旅館編號，從1開始" />
+                                <button class="btn-delete" type="button" @click="query_hotel_id">送出查詢</button>
+                                <button class="btn-confirm" type="button" @click="get_hotels">回到列表</button>
+
+                            </form>
+                            <table>
+                                <tr>
+                                    <th>旅館編號</th>
+                                    <th>旅館名稱</th>
+                                    <th>旅館介紹</th>
+                                    <th>旅館上下架狀態</th>
+                                    <th>確認修改</th>
+                                </tr>
+                                
+                                <tbody v-for="item in hotels">
+                                    <tr>
+                                        <td>{{item.HOTEL_ID}}</td>
+                                        <td><input type="text" :value="item.HOTEL_NAME" /></td>
+                                        <td><input type="text" :value="item.HOTEL_INFRO" /></td>
+                                        <td>
+                                            <div class="form-group">
+                                                上架
+                                                <label class="switch">
+                                                    <input type="checkbox" v-model="item.ischecked"/>
+                                                    <span class="slider round"></span>
+                                                </label>
+                                                下架
+                                            </div>
+                                        </td>
+                                        <td><input type="button" class="btn-delete" value="確認修改" /></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <script>
+            // $(function () {
+                //     $('ul.nav_list li a').on('click', function (e) {
+                    //         // alert('good')
+                    //         e.preventDefault()
+                    //         $('.tab_container').removeClass('-on')
+                    //         $('.tab_container.' + $(this).attr('data-target')).addClass('-on')
+                    //     })
+                    // })
+                    
+                    //tab
+                    $(function () {
+                $('a.tab').on('click', function (e) {
+                    e.preventDefault()
+
+                    /* 將頁籤列表移除所有 -on，再將指定的加上 -on */
+                    $(this).closest('ul').find('a.tab').removeClass('-on')
+                    $(this).addClass('-on')
+
+                    /* 找到對應的頁籤內容，加上 -on 來顯示 */
+                    $('div.tab').removeClass('-on')
+                    $('div.tab.' + $(this).attr('data-target')).addClass('-on')
+                })
+            })
+            </script>
+        <script src="js/admin_custom_vue.js"></script>
+    </body>
+    </html>
+    
