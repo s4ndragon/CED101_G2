@@ -8,7 +8,12 @@
 <?php
 $errMsg = "";
 try {
-	require_once("./connect_game.php");
+    require_once("./connect_game.php");
+    $sql="select ROLE_NO form ROLE where ROLE_NO = :no";
+    $gamerole = $pdo->prepare($sql);
+    $gamerole->bindValue(":no", $_POST["no"]);
+    $res=$gamerole->execute();
+    if(empty($res)){
     $sql="insert into ROLE (`ROLE_NO`, `IMG`,`DATA_HPS`,`DATA_HP`,`DATA_DEFENSE`,`DATA_DAMAGE`,`DATA_SPEED`,`DATA_STAR`)
         values ( :no , :IMG ,:hps , :hp,:defense ,:damage , :speed , :star);
     ";
@@ -21,7 +26,12 @@ try {
     $gamerole->bindValue(":damage", $_POST["damage"]);    
     $gamerole->bindValue(":speed", $_POST["speed"]);
     $gamerole->bindValue(":star", $_POST["star"]);    
-	$gamerole->execute();
+    $gamerole->execute();
+    echo '新增成功';
+    }else{
+    echo '值已經存在，不准複寫';
+    }
+    
 } catch (PDOException $e) {
 	// $pdo->rollBack();
 	$errMsg .= "錯誤原因 : ".$e -> getMessage(). "<br>";
