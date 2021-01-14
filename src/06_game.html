@@ -3,10 +3,12 @@
     <head>
         <meta charset="UTF-8" />
         <title>茶園保衛戰</title>
+        <link rel="shortcut icon" href="./images/index/webIcon.png" type="image/x-icon" />
       <!-- https://medium.com/@speechless0922/vue的二三事-render-function-2b3705e4a5bd -->
         <link rel="stylesheet" href="./css/game.css" />
         <link rel="stylesheet" href="./css/flex.css" />
         <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.js"></script> -->
+        
         <script src="../node_modules/jquery/dist/jquery.min.js"></script>
     </head>
     <body>
@@ -58,7 +60,7 @@
                         </article>
                     </section>
                 </div>
-                <div class="gameover">
+                <div class="gameover bglightbox">
                     <article>
                         <div style="top: 107px; position: relative; font-size: 28px; left: 225px">
                             <span >計分</span>
@@ -75,7 +77,7 @@
                         </div>
                     </article>
                 </div>
-                <div class="gamewin">
+                <div class="gamewin bglightbox">
                     <article>
                         <div class="y-flex a_c" style="position: relative; top: 225px">
                             <img
@@ -91,7 +93,7 @@
                         </div>
                     </article>
                 </div>
-                <div class="overlay -on">
+                <div class="overlay -on bglightbox">
                     <article>
                         <img src="./images/game/game_role.png" class="title" />
                         <div style="color: #fff; padding-left: 10px; font-size: 18px; border: solid 1px #fff">
@@ -185,7 +187,7 @@
                     </div>
                 </section>
             </div>
-        </div><audio src="./audio/Spring_Chicken.mp3" muted class="d-none" id="audioc"></audio>
+        </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
         <script src="./js/game (1).js"></script>
         <script src="./js/game2.js"></script>
@@ -214,6 +216,9 @@
 			}
 		});
         </script>
+        <!-- <audio id="au" >
+        <source src="http://ys.yd.yiscdn.com/yisell/pays2020111852017888/sound/yisell_sound_2008041015324213582_88011.mp3" type="audio/mpeg">
+        </audio> -->
         <!--<script src="./js/game.js"></script> -->
         @@include('layout/footer.html')
     </body>
