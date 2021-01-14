@@ -100,7 +100,7 @@ $(document).ready(function () {
     //========  arrow up & down
     $(".arrow").click(function () {
         $(this).toggleClass("down").toggleClass("up").toggleClass("extend");
-        $(this).siblings().toggleClass('block');
+        $(this).siblings().toggleClass("block");
         // $().();
     });
 
