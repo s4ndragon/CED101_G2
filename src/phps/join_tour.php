@@ -21,7 +21,7 @@ try{
 <?php 
  
 try {
-	require_once("./connectBooks.php");
+	require_once("./connect.php");
   $sql = "insert into TOUR_JOIN (TOUR_ID, MEM_NO) values (:TOUR_ID,:MEM_NO)"; //存入報名資料
   $jtour = $pdo->prepare($sql);
   //取得欲報名的揪團編號

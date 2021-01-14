@@ -1,7 +1,7 @@
 <?php 
  
 try {
-	require_once("./connectBooks.php");
+	require_once("./connect.php");
 	$sql = "select * , round(GARD_VOTE/GARD_CLICK,1) 'GARD_AVG' from garden order by GARD_AVG desc";
 	$garden = $pdo->prepare($sql);
 	$garden->execute();

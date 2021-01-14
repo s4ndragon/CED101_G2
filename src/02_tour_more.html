@@ -32,10 +32,10 @@
                         <div class="love">
                             <img class="like" src="./images/common/heart.png" title="加入收藏" alt="">
                         </div>
-                        <div class="fb-share-button" :data-href="searchURL" data-layout="button"
+                        <div class="fb-share-button" :data-href="nowURL" data-layout="button"
                             data-size="small">
                             <a target="_blank"
-                                href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5501%2F07_vote_more.html&amp;src=sdkpreparse"
+                                href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse"
                                 class="fb-xfbml-parse-ignore">
                                 分享
                             </a>
@@ -256,7 +256,8 @@
                 tour_id:'',
                 people_now:'',
                 people_limit:'',
-                targetPageId:''
+                targetPageId:'',
+                nowURL:''
             },
             methods: {
                 joinTour(TOUR_ID, NUM_OF_PARTICIPANTS, TOUR_PEOPLE){
@@ -336,6 +337,8 @@
                 }
             },
             mounted() {
+                let nowURL = window.location.href;
+                this.nowURL = nowURL;
                 let searchURL = window.location.search;
                 let targetPageId = searchURL.split("=")[1];
                 this.targetPageId = targetPageId;
