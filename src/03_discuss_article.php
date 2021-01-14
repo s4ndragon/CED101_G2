@@ -1,13 +1,11 @@
 <?php 
 try {
 	require_once("./phps/connect.php");
-    $sql = "select * from my_art where ART_NO = ?";
-    // $sql = "select * from my_art a left join art_msg b on a.ART_NO = b.ART_NO where a.ART_NO = ?";
+    $sql = "select * from my_art a left join member b on a.MEM_NO = b.MEM_NO where a.ART_NO = ?";
 	$arts = $pdo->prepare($sql);
     $arts->bindValue(1, $_GET["ART_NO"]);
     $arts->execute();
     $artsRow = $arts->fetch(PDO::FETCH_ASSOC);
-    // echo json_encode($artsRow);
 } catch (PDOException $e) {
 	echo "錯誤原因 : ", $e->getMessage(), "<br>";
 	echo "錯誤行號 : ", $e->getLine(), "<br>";
@@ -17,7 +15,6 @@ try {
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -26,12 +23,10 @@ try {
     <title>討論區</title>
     <!-- vue  -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.js"></script>
-
 </head>
 
 <body>
     @@include('layout/nav.html')
-    
      <main id="app">
         <div class="banner">
             <div>
@@ -45,8 +40,8 @@ try {
             </button>
             <div id="art_information">
                 <div class="nameall2">
-                    <div class="mem_photo"><img class="mem_photo" src="./images/common/mem_photo1.png" alt=""></div>
-                    <span>董董</span>
+                    <div class="mem_photo"><img class="mem_photo" src="<?=$artsRow["MEM_IMG"]?>" alt=""></div>
+                    <span><?=$artsRow["MEM_NICNAME"]?></span>
                 </div>
                 <div class="text_excl">
                     <h2>【<?=$artsRow["CAT"]?>】<?=$artsRow["ART_TITLE"]?></h2>
@@ -66,8 +61,8 @@ try {
                 <!-- ====一則留言開始==== -->
                 <div class="command" v-for="item in comList">
                     <div class="nameall">
-                        <div class="mem_photo"><img class="mem_photo" src="./images/common/mem_photo1.png" alt=""></div>
-                        <span class="pub_mem_name">翰婷</span>
+                        <div class="mem_photo"><img class="mem_photo" :src="item.MEM_IMG" alt=""></div>
+                        <span class="pub_mem_name">{{item.MEM_NICNAME}}</span>
                     </div>
                     <div class="text_excl">
                         <div class="command_text">
@@ -187,6 +182,8 @@ try {
                     });
                 },
             });
+
+            
     
     </script>
 </body>

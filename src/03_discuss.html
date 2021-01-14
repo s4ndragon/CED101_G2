@@ -39,7 +39,7 @@
         <section id="discuss">
             <div id="all_articles">
                 <!-- =====單篇文章開始===== -->
-                <div v-for="artRow in articlesRows" class="article" :class="artRow.FILTER">
+                <div v-for="(artRow,i) in articlesRows" class="article" :class="artRow.FILTER">
                     <div class="ar_img">
                         <img class="ar_rimg" :src="artRow.ART_IMG" alt="">
                         <p class="ar_title">【{{artRow.CAT}}】{{artRow.ART_TITLE}}</p>
@@ -54,12 +54,14 @@
                                 @click="addheart">
                             <img class="memi" src="./images/common/messenger.png" alt="">
                             <span class="com_num">{{artRow.ART_REPLYS}}</span>
-                            <div class="excl" @click="showBox">
+                            <div class="excl" @click="showBox(i)">
                                 <img class="excl" src="./images/common/852019_exclamation_512x512.png" alt="">
                             </div>
 
                             <!-- ====檢舉燈箱==== -->
-                            <art-reg></art-reg>
+                            <art-reg :value="artRow.ART_NO"></art-reg>
+
+
 
                             <!-- ====以下臉書分享==== -->
                             <!-- <div class="fb-share-button" data-href="https://www.youtube.com/watch?v=HDhltQ4Jx0o"
@@ -76,6 +78,8 @@
                                     class="fb-xfbml-parse-ignore">分享</a>
                             </div>
                             <!-- ====以上臉書分享==== -->
+
+
                         </div>
                         <div class="ar_innertext">
                             <p>{{artRow.ART_CONTENT}}</p>
@@ -95,18 +99,17 @@
     <div id="fb-root"></div>
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v9.0"
         nonce="02xnpbCX"></script>
-    <!-- ====臉書分享==== -->
 
 
 
     <script>
         Vue.component('art-reg', {
-            props: ['mem-avatar',],
+            props: [],
             template: ` <div class="overlay" style="display: none;">
                             <div class="modal">
                                 <form action="post">
                                     <div class="close">
-                                        <img class="cancel" src="images/vote/cancel.png" @click="closeBox">
+                                        <img class="cancel" src="images/vote/cancel.png" @click="closeBox(i)">
                                     </div>
                                     <p class="welcome">請選取檢舉理由</p>
                                     <div class="reason_container">
@@ -130,18 +133,19 @@
             methods: {
                 closeBox: function () {
                     let lightbox = document.querySelectorAll('.overlay');
-                    lightbox[0].style.display = 'none';
+                    // console.log();
+                    lightbox[i].style.display = 'none';
                 },
             }
 
         });
 
-        // : value = "artRow.ART_NO"
         var app = new Vue({
             el: "#are",
             data: {
                 articlesRows: [],
             },
+
             methods: {
                 addheart: function () {
                     $('.addheart').click(function () {
@@ -155,10 +159,21 @@
                         }
                     });
                 },
-                showBox: function () {
+                showBox: function (i) {
                     let lightbox = document.querySelectorAll('.overlay');
-                    lightbox[0].style.display = '';
+                    lightbox[i].style.display = '';
                 },
+            },
+            mounted() {
+                let articlesRows;
+                //============去server端拿資料
+                let xhr = new XMLHttpRequest();
+                xhr.onload = function () {
+                    app.articlesRows = JSON.parse(xhr.responseText);
+                    console.log(app.articlesRows);
+                }
+                xhr.open("get", "./phps/getArticles.php", true);
+                xhr.send(null);
             },
         });
 
@@ -181,17 +196,17 @@
         });
 
 
-        window.addEventListener("load", function () {
-            let articlesRows;
-            //============去server端拿資料
-            let xhr = new XMLHttpRequest();
-            xhr.onload = function () {
-                app.articlesRows = JSON.parse(xhr.responseText);
-                console.log(app.articlesRows);
-            }
-            xhr.open("get", "./phps/getArticles.php", true);
-            xhr.send(null);
-        })
+        // window.addEventListener("load", function () {
+        //     let articlesRows;
+        //     //============去server端拿資料
+        //     let xhr = new XMLHttpRequest();
+        //     xhr.onload = function () {
+        //         app.articlesRows = JSON.parse(xhr.responseText);
+        //         console.log(app.articlesRows);
+        //     }
+        //     xhr.open("get", "./phps/getArticles.php", true);
+        //     xhr.send(null);
+        // })
     </script>
 </body>
 
