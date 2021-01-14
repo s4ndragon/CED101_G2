@@ -72,7 +72,7 @@
                         <div class="tab tab1 -on">
                             茶園管理
                             <form>
-                                <input type="text" v-model="gard_id" placeholder="請輸入茶園編號，從1開始" />
+                                <input type="text" v-model="GARD_ID" placeholder="請輸入茶園編號，從1開始" />
                                 <button class="btn-confirm" type="button" @click="query_gard_id">送出查詢</button>
                                 <button class="btn-confirm" type="button" @click="get_gards">回到列表</button>
                             </form>
@@ -120,7 +120,7 @@
                             餐廳管理
                             <form>
                                 <input type="text" v-model="RESTAURANT_ID" placeholder="請輸入餐廳編號，從1開始" />
-                                <button class="btn-confirm"  type="button" @click="query_rest_id">送出查詢</button>
+                                <button class="btn-confirm"  type="button" @click="query_rest_id" >送出查詢</button>
                                 <button class="btn-confirm" type="button" @click="get_rests">回到列表</button>
 
                             </form>
@@ -136,13 +136,14 @@
                                 <tbody v-for="item in rests">
                                     <tr>
                                         <td>{{item.RESTAURANT_ID}}</td>
-                                        <td><input type="text" :value="item.RESTAURANT_NAME" /></td>
-                                        <td><input type="text" :value="item.RESTAURANT_INFRO" /></td>
+                                        <td><input type="text" :value="item.RESTAURANT_NAME"></td>
+                                        <td><input type="text" :value="item.RESTAURANT_INFRO"></td>
+                                  
                                         <td>
                                             <div class="form-group">
                                                 上架
                                                 <label class="switch">
-                                                    <input type="checkbox" v-model="item.ischecked"/>
+                                                    <input type="checkbox" v-model="item.ischecked" />
                                                     <span class="slider round"></span>
                                                 </label>
                                                 下架
@@ -158,8 +159,8 @@
                             住宿管理
                             <form>
                                 <input type="text" v-model="HOTEL_ID" placeholder="請輸入旅館編號，從1開始" />
-                                <button class="btn-delete" type="button" @click="query_hotel_id">送出查詢</button>
-                                <button class="btn-confirm" type="button" @click="get_hotels">回到列表</button>
+                                <button class="btn-confirm" type="button" @="query_hotel_id">送出查詢</button>
+                                <button class="btn-confirm" type="button" @="get_hotels">回到列表</button>
 
                             </form>
                             <table>
@@ -171,16 +172,16 @@
                                     <th>確認修改</th>
                                 </tr>
                                 
-                                <tbody v-for="item in hotels">
+                                <tbody v-for="value in hotels">
                                     <tr>
-                                        <td>{{item.HOTEL_ID}}</td>
-                                        <td><input type="text" :value="item.HOTEL_NAME" /></td>
-                                        <td><input type="text" :value="item.HOTEL_INFRO" /></td>
+                                        <td>{{value.HOTEL_ID}}</td>
+                                        <td><input type="text" :value="value.HOTEL_NAME"></td>
+                                        <td><input type="text" :value="value.HOTEL_INFRO"></td>
                                         <td>
                                             <div class="form-group">
                                                 上架
                                                 <label class="switch">
-                                                    <input type="checkbox" v-model="item.ischecked"/>
+                                                    <input type="checkbox" v-model="value.ischecked" />
                                                     <span class="slider round"></span>
                                                 </label>
                                                 下架
