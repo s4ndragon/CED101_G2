@@ -12,6 +12,8 @@ try {
 	$articles->execute();
 	$articlesRows = $articles->fetchAll(PDO::FETCH_ASSOC);
 	echo json_encode($articlesRows);
+
+	$sql = "updates ";
 } catch (PDOException $e) {
 	echo "錯誤原因 : ", $e->getMessage(), "<br>";
 	echo "錯誤行號 : ", $e->getLine(), "<br>";

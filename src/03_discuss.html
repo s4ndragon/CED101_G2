@@ -39,7 +39,7 @@
         <section id="discuss">
             <div id="all_articles">
                 <!-- =====單篇文章開始===== -->
-                <div v-for="artRow in articlesRows" class="article" :class="artRow.FILTER">
+                <div v-for="(artRow,i) in articlesRows" class="article" :class="artRow.FILTER" :i="i">
                     <div class="ar_img">
                         <img class="ar_rimg" :src="artRow.ART_IMG" alt="">
                         <p class="ar_title">【{{artRow.CAT}}】{{artRow.ART_TITLE}}</p>
@@ -54,33 +54,15 @@
                                 @click="addheart">
                             <img class="memi" src="./images/common/messenger.png" alt="">
                             <span class="com_num">{{artRow.ART_REPLYS}}</span>
-                            <div class="excl" @click="showModal2 = true">
+                            <div class="excl" @click="showBox(i)">
                                 <img class="excl" src="./images/common/852019_exclamation_512x512.png" alt="">
                             </div>
-                            <!-- overlay -->
-                            <div class="overlay" v-if="showModal2" @click="showModal2 = true"></div>
-                            <!-- modal -->
-                            <div class="modal" v-if="showModal2">
-                                <form action="post">
-                                    <div class="close" @click="showModal2 = false">
-                                        <img class="cancel" src="images/vote/cancel.png">
-                                    </div>
-                                    <p class="welcome">請選取檢舉理由</p>
-                                    <div class="reason_container">
-                                        <input class="reason" type="radio" name="size" value="惡意中傷">惡意中傷</div>
-                                    <div class="reason_container">
-                                        <input class="reason" type="radio" name="size" value="散布廣告">散布廣告
-                                    </div>
-                                    <div class="reason_container">
-                                        <input class="reason" type="radio" name="size" value="色情資訊">色情資訊
-                                    </div>
-                                    <div class="reason_container">
-                                        <input class="reason" type="radio" name="size" value="不雅字眼">不雅字眼
-                                    </div>
-                                    <button class="go" type="submit">送出</button>
-                                    <input type="hidden" name="art_reg" :value="artRow.ART_NO">
-                                </form>
-                            </div>
+
+                            <!-- ====檢舉燈箱==== -->
+                            <art-reg :value="artRow.ART_NO"></art-reg>
+
+
+
                             <!-- ====以下臉書分享==== -->
                             <!-- <div class="fb-share-button" data-href="https://www.youtube.com/watch?v=HDhltQ4Jx0o"
                                 data-layout="button_count" data-size="small"><a target="_blank"
@@ -96,6 +78,8 @@
                                     class="fb-xfbml-parse-ignore">分享</a>
                             </div>
                             <!-- ====以上臉書分享==== -->
+
+
                         </div>
                         <div class="ar_innertext">
                             <p>{{artRow.ART_CONTENT}}</p>
@@ -115,18 +99,58 @@
     <div id="fb-root"></div>
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v9.0"
         nonce="02xnpbCX"></script>
-    <!-- ====臉書分享==== -->
 
 
 
     <script>
+        Vue.component('art-reg', {
+            props: ['i'],
+            template: ` <div class="overlay" style="display: none;">
+                            <div class="modal">
+                                <form action="post">
+                                    <div class="close">
+                                        <img class="cancel" src="./images/vote/cancel.png" @click="closeBox(i)">
+                                    </div>
+                                    <p class="welcome">請選取檢舉理由</p>
+                                    <div class="reason_container">
+                                        <input class="reason" type="radio" name="size" value="惡意中傷">惡意中傷
+                                    </div>
+                                    <div class="reason_container">
+                                        <input class="reason" type="radio" name="size" value="散布廣告">散布廣告
+                                    </div>
+                                    <div class="reason_container">
+                                        <input class="reason" type="radio" name="size" value="色情資訊">色情資訊
+                                    </div>
+                                    <div class="reason_container">
+                                        <input class="reason" type="radio" name="size" value="不雅字眼">不雅字眼
+                                    </div>
+                                    <button class="go" type="submit">送出</button>
+                                    <input type="hidden" name="art_reg">
+                                </form>
+                            </div>
+                         </div>`,
+            data() {
+                return {
+                    i: this.i,
+                }
+            },
+
+            methods: {
+                closeBox: function (i) {
+                    let lightbox = document.querySelectorAll('.overlay');
+                    // console.log();
+                    lightbox[i].style.display = 'none';
+                },
+            }
+
+        });
+
         var app = new Vue({
             el: "#are",
             data: {
-                showModal: false,
-                showModal2: false,
                 articlesRows: [],
             },
+
             methods: {
                 addheart: function () {
                     $('.addheart').click(function () {
@@ -135,11 +159,26 @@
                             this.src = "./images/common/like.png";
                         } else {
                             this.title = "加入收藏";
+                            let lightbox = document.querySelectorAll('.overlay');
                             this.src = "./images/common/heart.png";
                         }
                     });
+                },
+                showBox: function (i) {
+                    let lightbox = document.querySelectorAll('.overlay');
+                    lightbox[i].style.display = '';
+                },
+            },
+            mounted() {
+                let articlesRows;
+                //============去server端拿資料
+                let xhr = new XMLHttpRequest();
+                xhr.onload = function () {
+                    app.articlesRows = JSON.parse(xhr.responseText);
+                    console.log(app.articlesRows);
                 }
-
+                xhr.open("get", "./phps/getArticles.php", true);
+                xhr.send(null);
             },
         });
 
@@ -162,17 +201,17 @@
         });
 
 
-        window.addEventListener("load", function () {
-            let articlesRows;
-            //============去server端拿資料
-            let xhr = new XMLHttpRequest();
-            xhr.onload = function () {
-                app.articlesRows = JSON.parse(xhr.responseText);
-                console.log(app.articlesRows);
-            }
-            xhr.open("get", "./phps/getArticles.php", true);
-            xhr.send(null);
-        })
+        // window.addEventListener("load", function () {
+        //     let articlesRows;
+        //     //============去server端拿資料
+        //     let xhr = new XMLHttpRequest();
+        //     xhr.onload = function () {
+        //         app.articlesRows = JSON.parse(xhr.responseText);
+        //         console.log(app.articlesRows);
+        //     }
+        //     xhr.open("get", "./phps/getArticles.php", true);
+        //     xhr.send(null);
+        // })
     </script>
 </body>
 

@@ -6,7 +6,7 @@
 try{
     require_once("./connect.php");
     
-    $sql = "select * from art_msg where ART_NO = ? and MSG_STATUS = 1";
+    $sql = "select * from art_msg a join member b on a.MEM_NO = b.MEM_NO where ART_NO = ? and MSG_STATUS = 1";
     $msg = $pdo->prepare($sql);
     $msg->bindValue(1, $_POST["artNo"]);
     $msg->execute();

@@ -227,9 +227,23 @@ div.search {
     width: $mainWidth;
 
     .classify {
-        display: inline-block;
         position: relative;
         @include filter-no-more;
+        display: grid;
+        grid-template-columns: repeat(6, auto);
+
+        @media all and (max-width: $medium) {
+            grid-template-columns: repeat(3, auto);
+        }
+
+        @media all and (max-width: $small) {
+            grid-template-columns: repeat(2, auto);
+        }
+
+        h2 {
+            width: 100%;
+        }
+
 
 
         .selected {
