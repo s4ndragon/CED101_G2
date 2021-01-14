@@ -2,7 +2,9 @@ new Vue({
 	el: '#app',
 	data: {
         //放click 事件 和v-model後面的變數
-        query_gard_id: '',
+        gard_id:'',
+        RESTAURANT_ID:'',
+        HOTEL_ID:'',
         gardens:'',
         rests:'',
         hotels:'',
@@ -32,7 +34,7 @@ new Vue({
 			}).then(function(data){
 				return data.json()
 			})
-			//完成後 重新撈取一次資料 把res回傳到members裡面
+			//完成後 重新撈取一次資料 把res回傳到gardens裡面
 			this.gardens = res
         },
         
@@ -55,7 +57,7 @@ new Vue({
         }).then(function(data){
             return data.json()
         })
-        //完成後 重新撈取一次資料 把res回傳到members裡面
+        //完成後 重新撈取一次資料 把res回傳到rests裡面
         this.rests = res
     },
 
@@ -82,26 +84,31 @@ new Vue({
     this.hotels = res
 },
 
-		// query_mem_id: async function (mem_id) {
-		// 	console.log(mem_id)
+query_gard_id: async function () {
+    console.log(this.gard_id)
 
-		// 	const res = await fetch('./phps/admin_QueMembers.php', {
-		// 		method: 'POST',
-		// 		mode: 'same-origin',
-		// 		credentials: 'same-origin',
-		// 		headers: {
-		// 			'Content-Type': 'application/json',
-		// 		},
-		// 		body: JSON.stringify({
-		// 			mem_id: this.mem_id,
-		// 		}),
-		// 	}).then(function(data){
-		// 		return data.json()
-		// 	})
-        //   //重新撈取一次細項列表
-		// 	this.get_mems(this.mem_id)
-		// },
-	},
+    const res = await fetch('./phps/admin_QueGards.php', {
+        method: 'POST',
+        mode: 'same-origin',
+        credentials: 'same-origin',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            gard_id: this.gard_id,
+        }),
+    }).then(function(data){
+        return data.json()
+    })
+    this.gardens = res
+
+    //查詢完後清空輸入的內容
+    this.gard_id =''
+
+    
+  
+    }
+},
 
 
 	created(){

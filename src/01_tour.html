@@ -8,9 +8,7 @@
     <link rel="stylesheet" href="./css/tour.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
         integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
-    <div id="fb-root"></div>
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v9.0"
-        nonce="2JLZxLTK"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.1/vue.js"></script>
     <title>瀏覽揪團</title>
 
@@ -22,111 +20,107 @@
     <div class="banner">
         <h2>茶園揪團</h2>
     </div>
-    <div class="choice_block">
-        <div class="flex">
-            <div class="twMap">
-                <div class="twMap_img">
-                    <img src="./images/tour/twMap.png" alt="">
-                </div>
-                <button id="allLocal">全部地區</button>
-                <button id="nLocal">北部地區</button>
-                <button id="cLocal">中部地區</button>
-                <button id="sLocal">南部地區</button>
-                <div class="location1 location">
-                    <img class="locationImg" src="./images/common/location.png" alt="">
-                </div>
-                <div class="location10 location">
-                    <img class="locationImg" src="./images/common/location.png" alt="">
-                </div>
-                <div class="location7 location">
-                    <img class="locationImg" src="./images/common/location.png" alt="">
-                </div>
-                <div class="location6 location">
-                    <img class="locationImg" src="./images/common/location.png" alt="">
-                </div>
-                <div class="location5 location">
-                    <img class="locationImg" src="./images/common/location.png" alt="">
-                </div>
-                <div class="location9 location">
-                    <img class="locationImg" src="./images/common/location.png" alt="">
-                </div>
-                <div class="location2 location">
-                    <img class="locationImg" src="./images/common/location.png" alt="">
-                </div>
+    <div id="app">
+        <div class="choice_block">
+            <div class="flex">
+                <div class="twMap">
+                    <div>
+                        <div class="N" v-for="locationRow in locationRows" v-show=locN>
+                            <a :href="'02_vote_more.html?GARD_ID=' + locationRow.GARD_ID">
+                                <img class="locationImg" :src=locationRow.GARD_PIC alt="">
+                                <p>{{locationRow.GARD_NAME}}</p>
+                            </a>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="C" v-for="locationRow in locationCRows" v-show=locC>
+                            <a :href="'02_vote_more.html?GARD_ID=' + locationRow.GARD_ID">
+                                <img class="locationImg" :src=locationRow.GARD_PIC alt="">
+                                <p>{{locationRow.GARD_NAME}}</p>
+                            </a>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="S" v-for="locationRow in locationSRows" v-show=locS>
+                            <a :href="'02_vote_more.html?GARD_ID=' + locationRow.GARD_ID">
+                                <img class="locationImg" :src=locationRow.GARD_PIC alt="">
+                                <p>{{locationRow.GARD_NAME}}</p>
+                            </a>
+                        </div>
+                    </div>
 
-                <div class="location4 location">
-                    <img class="locationImg" src="./images/common/location.png" alt="">
-                </div>
-                <div class="location3 location">
-                    <img class="locationImg" src="./images/common/location.png" alt="">
-                </div>
-
-                <div class="location8 location">
-                    <img class="locationImg" src="./images/common/location.png" alt="">
-                </div>
+                    <div class=" twMap_img">
+                        <img src="./images/tour/twMap.png" alt="">
+                    </div>
+                    <button id="allLocal" @click="showAll()">全部地區</button>
+                    <button id="nLocal" @click="showN()">北部地區</button>
+                    <button id="cLocal" @click="showC()">中部地區</button>
+                    <button id="sLocal" @click="showS()">南部地區</button>
 
 
+
+                </div>
+                <!-- <img src="../images/index/notuse/8355.png" alt=""> -->
             </div>
-            <!-- <img src="../images/index/notuse/8355.png" alt=""> -->
-        </div>
-        <div class="tour_center_img">
-            <img src="./images/tour/bg-project-map-illust.png" alt="">
-        </div>
-        <div class="tour_center_img2">
-            <img src="./images/index/bg-green-top.png" alt="">
-        </div>
+            <div class="tour_center_img">
+                <img src="./images/tour/bg-project-map-illust.png" alt="">
+            </div>
+            <div class="tour_center_img2">
+                <img src="./images/index/bg-green-top.png" alt="">
+            </div>
 
-    </div>
-    <div class="main_body" id="app">
-        <h1>瀏覽揪團</h1>
-        <div class="choice_list">
-            <ul>
-                <li @click="content='all'">
-                    <h2>全部揪團</h2>
-                </li>
-                <li class="mini_choice">
-                    <h2>揪團地區 <i class="fas fa-angle-down" fa-4x></i></h2>
-                    <ul>
-                        <li @click="content='north';filter='北部'">北部</li>
-                        <li @click="content='north';filter='中部'">中部</li>
-                        <li @click="content='north';filter='南部'">南部</li>
-                    </ul>
-                </li>
-                <li>
-                    <h2>茶園類型 <i class=" fas fa-angle-down" fa-4x></i></h2>
-                    <ul>
-                        <li @click="content='type';filter=0">觀光型</li>
-                        <li @click="content='type';filter=1">體驗型</li>
-                    </ul>
-                </li>
-                <li>
-                    <h2>預估費用 <i class="fas fa-angle-down" fa-4x></i></h2>
-                    <ul>
-                        <li @click="content='price';filter=2000">2000以下</li>
-                        <li @click="content='price';filter=3000">3000以下</li>
-                    </ul>
-                </li>
-            </ul>
         </div>
+        <div class="main_body" id="app">
+            <h1>瀏覽揪團</h1>
+            <div class="choice_list">
+                <ul>
+                    <li @click="content='all'">
+                        <h2>全部揪團</h2>
+                    </li>
+                    <li class="mini_choice">
+                        <h2>揪團地區 <i class="fas fa-angle-down" fa-4x></i></h2>
+                        <ul>
+                            <li @click="content='north';filter='北部'">北部</li>
+                            <li @click="content='north';filter='中部'">中部</li>
+                            <li @click="content='north';filter='南部'">南部</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <h2>茶園類型 <i class=" fas fa-angle-down" fa-4x></i></h2>
+                        <ul>
+                            <li @click="content='type';filter=0">觀光型</li>
+                            <li @click="content='type';filter=1">體驗型</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <h2>預估費用 <i class="fas fa-angle-down" fa-4x></i></h2>
+                        <ul>
+                            <li @click="content='price';filter=2000">2000以下</li>
+                            <li @click="content='price';filter=3000">3000以下</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
 
 
-        <component :is="content" :tours="tourRows" :filter="filter"></component>
+            <component :is="content" :tours="tourRows" :filter="filter"></component>
 
+        </div>
     </div>
 
     @@include('layout/footer.html')
 
 
-    <div id="fb-root"></div>
+
 
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v9.0"
         nonce="2JLZxLTK"></script>
     <script src="./js/like.js"></script>
-    <script src="./js/01_tour_topLocation.js"></script>
+    <!-- <script src="./js/01_tour_topLocation.js"></script> -->
     <script>
         window.addEventListener("load", function () {
-            //============去server端拿茶園資料
-            let TourRows;
+            //============去server端拿揪團資料
+            let tourRows;
             let xhr = new XMLHttpRequest();
             xhr.onload = function () {
                 app.tourRows = JSON.parse(xhr.responseText);
@@ -134,6 +128,35 @@
             }
             xhr.open("get", "./phps/getTour.php", true);
             xhr.send(null);
+            //============去server端拿北茶園資料
+            let locationRows;
+            let xhr1 = new XMLHttpRequest();
+            xhr1.onload = function () {
+                app.locationRows = JSON.parse(xhr1.responseText);
+                console.log(app.locationRows);
+            }
+            xhr1.open("get", "./phps/getNgarden.php", true);
+            xhr1.send(null);
+            //============去server端拿中茶園資料
+            let locationCRows;
+            let xhr2 = new XMLHttpRequest();
+            xhr2.onload = function () {
+                app.locationCRows = JSON.parse(xhr2.responseText);
+                console.log(app.locationCRows);
+            }
+            xhr2.open("get", "./phps/getCgarden.php", true);
+            xhr2.send(null);
+            //============去server端拿南茶園資料
+            let locationSRows;
+            let xhr3 = new XMLHttpRequest();
+            xhr3.onload = function () {
+                app.locationSRows = JSON.parse(xhr3.responseText);
+                console.log(app.locationSRows);
+            }
+            xhr3.open("get", "./phps/getSgarden.php", true);
+            xhr3.send(null);
+
+
         })
 
         Vue.component('all', {
@@ -149,20 +172,19 @@
                     <p>{{tourRow.TOUR_TITLE}}</p>
                     <p>{{tourRow.TOUR_SETOFFTIME}} 開團</p>
                     <img :src="tourRow.TOUR_IMG" alt="">
+                    <div class="love_share">
+                         <div class="love">
+                              <img class="like" src="./images/common/heart.png" title="加入收藏" alt="">
+                         </div>
+                    </div>
                 </div>
 
-                <div class="love_share">
-                    <div class="love">
-                        <img class="like" src="./images/common/heart.png" title="加入收藏" alt="">
-                    </div>
-                    <div class="share">
-                        <div class="fb-share-button" data-href="https://www.youtube.com/watch?v=HDhltQ4Jx0o"
-                            data-layout="button_count" data-size="small"><a target="_blank"
-                                href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DHDhltQ4Jx0o&amp;src=sdkpreparse"
-                                class="fb-xfbml-parse-ignore">分享</a></div>
-                    </div>
-                </div>
+               
                 <div class="tour_text">
+                    <div class="deadline">
+                        <h3>茶園名稱</h3>
+                        <p>{{tourRow.GARD_NAME}}</p>
+                    </div>
                     <div class="deadline">
                         <h3>截止揪團日期</h3>
                         <p>{{tourRow.DEADLINE_DATE}}</p>
@@ -204,20 +226,20 @@
                     <p>{{tourRow.TOUR_TITLE}}</p>
                     <p>{{tourRow.TOUR_SETOFFTIME}} 開團</p>
                     <img :src="tourRow.TOUR_IMG" alt="">
+                    <div class="love_share">
+                        <div class="love">
+                            <img class="like" src="./images/common/heart.png" title="加入收藏" alt="">
+                        </div>
+                    </div>
+               
                 </div>
 
-                <div class="love_share">
-                    <div class="love">
-                        <img class="like" src="./images/common/heart.png" title="加入收藏" alt="">
-                    </div>
-                    <div class="share">
-                        <div class="fb-share-button" data-href="https://www.youtube.com/watch?v=HDhltQ4Jx0o"
-                            data-layout="button_count" data-size="small"><a target="_blank"
-                                href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DHDhltQ4Jx0o&amp;src=sdkpreparse"
-                                class="fb-xfbml-parse-ignore">分享</a></div>
-                    </div>
-                </div>
+                
                 <div class="tour_text">
+                    <div class="deadline">
+                        <h3>茶園名稱</h3>
+                        <p>{{tourRow.GARD_NAME}}</p>
+                    </div>
                     <div class="deadline">
                         <h3>截止揪團日期</h3>
                         <p>{{tourRow.DEADLINE_DATE}}</p>
@@ -259,20 +281,19 @@
                     <p>{{tourRow.TOUR_TITLE}}</p>
                     <p>{{tourRow.TOUR_SETOFFTIME}} 開團</p>
                     <img :src="tourRow.TOUR_IMG" alt="">
-                </div>
+                    <div class="love_share">
+                        <div class="love">
+                         <img class="like" src="./images/common/heart.png" title="加入收藏" alt="">
+                        </div>                  
+                     </div>
+                 </div>
 
-                <div class="love_share">
-                    <div class="love">
-                        <img class="like" src="./images/common/heart.png" title="加入收藏" alt="">
-                    </div>
-                    <div class="share">
-                        <div class="fb-share-button" data-href="https://www.youtube.com/watch?v=HDhltQ4Jx0o"
-                            data-layout="button_count" data-size="small"><a target="_blank"
-                                href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DHDhltQ4Jx0o&amp;src=sdkpreparse"
-                                class="fb-xfbml-parse-ignore">分享</a></div>
-                    </div>
-                </div>
+               
                 <div class="tour_text">
+                    <div class="deadline">
+                        <h3>茶園名稱</h3>
+                        <p>{{tourRow.GARD_NAME}}</p>
+                    </div>
                     <div class="deadline">
                         <h3>截止揪團日期</h3>
                         <p>{{tourRow.DEADLINE_DATE}}</p>
@@ -314,20 +335,19 @@
                     <p>{{tourRow.TOUR_TITLE}}</p>
                     <p>{{tourRow.TOUR_SETOFFTIME}} 開團</p>
                     <img :src="tourRow.TOUR_IMG" alt="">
+                    <div class="love_share">
+                        <div class="love">
+                            <img class="like" src="./images/common/heart.png" title="加入收藏" alt="">
+                        </div>
+                    </div>
                 </div>
 
-                <div class="love_share">
-                    <div class="love">
-                        <img class="like" src="./images/common/heart.png" title="加入收藏" alt="">
-                    </div>
-                    <div class="share">
-                        <div class="fb-share-button" data-href="https://www.youtube.com/watch?v=HDhltQ4Jx0o"
-                            data-layout="button_count" data-size="small"><a target="_blank"
-                                href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DHDhltQ4Jx0o&amp;src=sdkpreparse"
-                                class="fb-xfbml-parse-ignore">分享</a></div>
-                    </div>
-                </div>
+               
                 <div class="tour_text">
+                    <div class="deadline">
+                        <h3>茶園名稱</h3>
+                        <p>{{tourRow.GARD_NAME}}</p>
+                    </div>
                     <div class="deadline">
                         <h3>截止揪團日期</h3>
                         <p>{{tourRow.DEADLINE_DATE}}</p>
@@ -360,11 +380,41 @@
             el: "#app",
             data: {
                 content: "all",
-                tourRows: [],
+                Ngardens: [],
+                Cgardens: [],
+                Sgardens: [],
                 showTour: "",
                 filter: "",
+                locationRows: [],
+                locationCRows: [],
+                locationSRows: [],
+                tourRows: [],
+                locN: true,
+                locC: true,
+                locS: true,
             },
-            methods: {},
+            methods: {
+                showAll() {
+                    this.locN = true;
+                    this.locC = true;
+                    this.locS = true;
+                },
+                showN() {
+                    this.locN = true;
+                    this.locC = false;
+                    this.locS = false;
+                },
+                showC() {
+                    this.locN = false;
+                    this.locC = true;
+                    this.locS = false;
+                },
+                showS() {
+                    this.locN = false;
+                    this.locC = false;
+                    this.locS = true;
+                },
+            },
         })
 
 

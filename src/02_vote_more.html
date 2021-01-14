@@ -98,9 +98,9 @@
                             <div class="com_pub_time">發表於2012-03-20 12:20:30</div>
                         </div>
                         <div class="excl ">
-                            <button class="repobt" @click="showModal2 = true">
+                            <div class="repobt" @click="showModal2 = true">
                                 <img class="excl" src="./images/common/852019_exclamation_512x512.png" alt="">
-                            </button>
+                            </div>
     
                             <!-- overlay -->
                             <div class="overlay" v-if="showModal2" @click="showModal2 = true"></div>
@@ -120,72 +120,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="command">
-                    <div class="nameall">
-                        <div class="mem_photo"><img class="mem_photo" src="./images/common/mem_photo1.png" alt=""></div>
-                        <span class="pub_mem_name">翰婷</span>
-                    </div>
-                    <div class="text_excl ">
-                        <div class="command_text">
-                            <div class="pub_text">哈囉，還好吧還好吧還好吧還好吧還好吧，我也要去。</div>
-                            <div class="com_pub_time">發表於2012-03-20 12:20:30</div>
-                        </div>
-                        <div class="excl ">
-                            <button class="repobt" @click="showModal2 = true">
-                                <img class="excl" src="./images/common/852019_exclamation_512x512.png" alt="">
-                            </button>
-    
-                            <!-- overlay -->
-                            <div class="overlay" v-if="showModal2" @click="showModal2 = true"></div>
-                            <!-- modal -->
-                            <div class="modal" v-if="showModal2">
-                                <form>
-                                    <div class="close" @click="showModal2 = false">
-                                        
-                                    </div>
-                                    <p class="welcome">請輸入檢舉理由</p>
-                                    <textarea class="repoinfo" cols="25" rows="10"></textarea>
-    
-                                    <button class="go">送出</button>
-                                </form>
-                            </div>
-    
-                        </div>
-                    </div>
-                </div>
-                <div class="command">
-                    <div class="nameall">
-                        <div class="mem_photo"><img class="mem_photo" src="./images/common/mem_photo1.png" alt=""></div>
-                        <span class="pub_mem_name">翰婷</span>
-                    </div>
-                    <div class="text_excl">
-                        <div class="command_text">
-                            <div class="pub_text">哈囉，還好吧還好吧還好吧還好吧還好吧，我也要去。</div>
-                            <div class="com_pub_time">發表於2012-03-20 12:20:30</div>
-                        </div>
-                        <div class="excl ">
-                            <button class="repobt" @click="showModal2 = true">
-                                <img class="excl" src="./images/common/852019_exclamation_512x512.png" alt="">
-                            </button>
-    
-                            <!-- overlay -->
-                            <div class="overlay" v-if="showModal2" @click="showModal2 = true"></div>
-                            <!-- modal -->
-                            <div class="modal" v-if="showModal2">
-                                <form>
-                                    <div class="close" @click="showModal2 = false">
-                                        
-                                    </div>
-                                    <p class="welcome">請輸入檢舉理由</p>
-                                    <textarea class="repoinfo" cols="25" rows="10"></textarea>
-    
-                                    <button class="go">送出</button>
-                                </form>
-                            </div>
-    
-                        </div>
-                    </div>
-                </div>
+                
+                
 
         </div>
 
@@ -279,7 +215,7 @@
                 lightbox: false,
                 lightbox_GARD_ID:'',
 
-                showModal2: false,
+                // showModal2: false,
                 rating: '您尚未評分',
                 sendRating:'',
                 targetPageId:'',

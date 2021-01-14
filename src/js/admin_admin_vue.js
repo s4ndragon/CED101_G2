@@ -30,7 +30,7 @@ new Vue({
 			//完成後 重新撈取一次資料 把res回傳到admins裡面
 			this.admins = res
 		},
-
+		
 		
 		insert_admins: async function () {
 			const res = await fetch('./phps/admin_InsertAdmins.php', {
@@ -45,11 +45,12 @@ new Vue({
 					add_id: this.add_id,
 					add_name: this.add_name,
 					add_psw: this.add_psw,
-
 				}),
-			}).then(function(data){
-				return data.json()
 			})
+			//新增完後清空輸入的內容
+			this.add_id = this.add_name = this.add_psw =''
+			//重新撈取更新後的全部資料
+			this.get_admins()
 		},
 
 

@@ -29,10 +29,10 @@
 			<div class="info">
 				<div class="s1">
 					<p class="p1">{{gardenTop.GARD_NAME}}</p>
-					<div class="fb-share-button" data-href="https://tw.yahoo.com/" data-layout="button"
+					<div class="fb-share-button" :data-href="'http://127.0.0.1:5501/CED101_G2/dist/02_vote_more.html?GARD_ID='+gardenTop.GARD_ID" data-layout="button"
 						data-size="small">
 						<a target="_blank"
-							href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5501%2F07_vote_more.html&amp;src=sdkpreparse"
+							href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%2FCED101_G2%2Fdist%2F02_vote_more.html%3FGARD_ID%3D6&amp;src=sdkpreparse"
 							class="fb-xfbml-parse-ignore">
 							分享
 						</a>
@@ -62,82 +62,6 @@
 			</div>
 		</div>
 
-		<!-- <div class="block1">
-			<div class="pic">
-				<img class="tea" src="images/vote/tea6.jpg">
-				<img class="m1" src="images/vote/medal2.png">
-			</div>
-			<div class="info">
-				<div class="s1">
-					<p class="p1">晴天茶園</p>
-					<div class="fb-share-button" data-href="https://tw.yahoo.com/" data-layout="button"
-						data-size="small">
-						<a target="_blank"
-							href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5501%2F07_vote_more.html&amp;src=sdkpreparse"
-							class="fb-xfbml-parse-ignore">
-							分享
-						</a>
-					</div>
-				</div>
-
-				<div class="allscore">
-					<span class="score">
-						總分:&ensp;
-					</span>
-					<div>
-						<star-rating :rating="4.3" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
-					</div>
-				</div>
-				<p class="p3">晴天鹿谷，台灣水鹿群聚之鄉，也是聞名世界台灣烏龍茶發源地，單一茶區鹿谷出發，
-					嚴選台灣經典茶種青心烏龍與台茶十二號金萱，日光、淨泉、山嵐、沃土，涵養涓滴回甘的好茶。</p>
-				<div class="btwrap">
-					<button class="bt">
-						<a href="02_vote_more.html">
-							More
-						</a>
-					</button>
-				</div>
-			</div>
-		</div>
-
-		<div class="block1">
-			<div class="pic">
-				<img class="tea" src="images/vote/tea7.jpg">
-				<img class="m1" src="images/vote/medal3.png">
-			</div>
-			<div class="info">
-				<div class="s1">
-					<p class="p1">坪林茶園</p>
-					<div class="fb-share-button" data-href="https://tw.yahoo.com/" data-layout="button"
-						data-size="small">
-						<a target="_blank"
-							href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5501%2F07_vote_more.html&amp;src=sdkpreparse"
-							class="fb-xfbml-parse-ignore">
-							分享
-						</a>
-					</div>
-				</div>
-
-				<div class="allscore">
-					<span class="score">
-						總分:&ensp;
-					</span>
-					<div>
-						<star-rating :rating="3.8" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
-					</div>
-				</div>
-				<p class="p3">
-					擁有百年歷史的靜謐山城，四面山脈綿延、雲霧繚繞，為茶樹生長最佳環境，並擁有世代相傳的百年製茶技術 ，邀您一同遨遊低海拔茶園仙境 ，這裡是文山包種茶的故鄉-坪林茶園。</p>
-				<div class="btwrap">
-					<button class="bt">
-						<a href="02_vote_more.html">
-							More
-						</a>
-					</button>
-				</div>
-			</div>
-		</div> -->
-
 		<!-- 4 ~ 10 名排行區 -->
 
 		<table>
@@ -146,7 +70,7 @@
 			<td>{{index+4}}</td>
 				<td>
 					<img class="chartpic" :src="gardenEnd.GARD_PIC">
-					<a class="title" :href="'02_vote_more.html?GARD_ID=' + gardenEnd.GARD_ID">{{gardenEnd.GARD_NAME}}</a>
+					<a class="title" :href="'02_vote_more.html?GARD_ID=' + gardenEnd.GARD_ID" style="color:green">{{gardenEnd.GARD_NAME}}</a>
 				</td>
 				<td>
 					<i class="fas fa-map-marker-alt"></i>&ensp;
@@ -166,150 +90,6 @@
 					</div>
 				</td>
 			</tr>
-			<!-- <tr>
-				<td>5</td>
-				<td>
-					<img class="chartpic" src="images/vote/tea7.jpg">
-					紅香茶園
-				</td>
-				<td>
-					<i class="fas fa-map-marker-alt"></i>&ensp;
-					花蓮縣瑞穗鄉舞鶴村
-				</td>
-				<td class="resize">
-					<star-rating :rating="3.5" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
-				</td>
-				<td>
-					<div class="fb-share-button" data-href="https://tw.yahoo.com/" data-layout="button"
-						data-size="small">
-						<a target="_blank"
-							href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5501%2F07_vote_more.html&amp;src=sdkpreparse"
-							class="fb-xfbml-parse-ignore">
-							分享
-						</a>
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<td>6</td>
-				<td>
-					<img class="chartpic" src="images/vote/tea7.jpg">
-					熊空茶園
-				</td>
-				<td>
-					<i class="fas fa-map-marker-alt"></i>&ensp;
-					花蓮縣瑞穗鄉舞鶴村
-				</td>
-				<td class="resize">
-					<star-rating :rating="3.3" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
-				</td>
-				<td>
-					<div class="fb-share-button" data-href="https://tw.yahoo.com/" data-layout="button"
-						data-size="small">
-						<a target="_blank"
-							href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5501%2F07_vote_more.html&amp;src=sdkpreparse"
-							class="fb-xfbml-parse-ignore">
-							分享
-						</a>
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<td>7</td>
-				<td>
-					<img class="chartpic" src="images/vote/tea7.jpg">
-					武界茶園
-				</td>
-				<td>
-					<i class="fas fa-map-marker-alt"></i>&ensp;
-					花蓮縣瑞穗鄉舞鶴村
-				</td>
-				<td class="resize">
-					<star-rating :rating="3.2" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
-				</td>
-				<td>
-					<div class="fb-share-button" data-href="https://tw.yahoo.com/" data-layout="button"
-						data-size="small">
-						<a target="_blank"
-							href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5501%2F07_vote_more.html&amp;src=sdkpreparse"
-							class="fb-xfbml-parse-ignore">
-							分享
-						</a>
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<td>8</td>
-				<td>
-					<img class="chartpic" src="images/vote/tea7.jpg">
-					雙圓茶園
-				</td>
-				<td>
-					<i class="fas fa-map-marker-alt"></i>&ensp;
-					花蓮縣瑞穗鄉舞鶴村
-				</td>
-				<td class="resize">
-					<star-rating :rating="3.1" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
-				</td>
-				<td>
-					<div class="fb-share-button" data-href="https://tw.yahoo.com/" data-layout="button"
-						data-size="small">
-						<a target="_blank"
-							href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5501%2F07_vote_more.html&amp;src=sdkpreparse"
-							class="fb-xfbml-parse-ignore">
-							分享
-						</a>
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<td>9</td>
-				<td>
-					<img class="chartpic" src="images/vote/tea7.jpg">
-					二尖山茶園
-				</td>
-				<td>
-					<i class="fas fa-map-marker-alt"></i>&ensp;
-					花蓮縣瑞穗鄉舞鶴村
-				</td>
-				<td class="resize">
-					<star-rating :rating="3.0" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
-				</td>
-				<td>
-					<div class="fb-share-button" data-href="https://tw.yahoo.com/" data-layout="button"
-						data-size="small">
-						<a target="_blank"
-							href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5501%2F07_vote_more.html&amp;src=sdkpreparse"
-							class="fb-xfbml-parse-ignore">
-							分享
-						</a>
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<td>10</td>
-				<td>
-					<img class="chartpic" src="images/vote/tea7.jpg">
-					阿薩姆茶園
-				</td>
-				<td>
-					<i class="fas fa-map-marker-alt"></i>&ensp;
-					花蓮縣瑞穗鄉舞鶴村
-				</td>
-				<td class="resize">
-					<star-rating :rating="2.7" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
-				</td>
-				<td>
-					<div class="fb-share-button" data-href="https://tw.yahoo.com/" data-layout="button"
-						data-size="small">
-						<a target="_blank"
-							href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5501%2F07_vote_more.html&amp;src=sdkpreparse"
-							class="fb-xfbml-parse-ignore">
-							分享
-						</a>
-					</div>
-				</td>
-			</tr> -->
 		</table>
 		<img class="deco" src="images/index/img-about-list-illust-front.png">
 
@@ -327,8 +107,8 @@
 				app.gardenRows = JSON.parse(xhr.responseText); 
 				app.gardenRowsTop = app.gardenRows.slice(0,3);
 				app.gardenRowsEnd = app.gardenRows.slice(3);
-				console.log(app.gardenRows);
-				console.log(app.gardenRowsEnd);
+				// console.log(app.gardenRows);
+				// console.log(app.gardenRowsEnd);
 			}
 			xhr.open("get","./phps/vote.php", true); //step1
 			xhr.send(null); //step2

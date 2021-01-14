@@ -19,7 +19,7 @@
     <div id='productInfo'>
         <div class="product_info">
             <div class="product_img">
-                <img v-bind:src="'./images/shopping/'+product.IMG" alt="">
+                <img v-bind:src="product.IMG" alt="">
             </div>
             <div class="info">{{product.NAME}}</h2>
 
@@ -58,7 +58,7 @@
             props: ['details', "product"],
             template: `
                     <div class="content">
-                        <img v-for='jpg in details' v-bind:src="'./images/shopping/'+jpg" alt="">
+                        <img v-for='jpg in details' v-bind:src="jpg" alt="">
                     </div>
             `,
             computed: {
@@ -101,8 +101,8 @@
             data: {
                 product: {
                     DETAIL: "",
-                    FEATURES: "1.jpg",
-                    IMG: "1.jpg",
+                    FEATURES: "./images/shopping/1-1.jpg",
+                    IMG: "./images/shopping/1-1.jpg",
                     INFO: "",
                     NAME: "",
                     ONSALE: "",

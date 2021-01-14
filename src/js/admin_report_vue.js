@@ -33,7 +33,7 @@ new Vue({
 				return data.json()
 			})
 			//完成後 重新撈取一次資料 把res回傳到members裡面
-			this.get_gardens_MegReports = res
+			this.gardens_MegReports = res
         },
         
         get_diss_MegReports:async function () {
@@ -56,7 +56,7 @@ new Vue({
             return data.json()
         })
         //完成後 重新撈取一次資料 把res回傳到members裡面
-        this.get_diss_MegReports = res
+        this.diss_MegReports = res
     },
 
     get_diss_ArtReports:async function () {
@@ -78,8 +78,8 @@ new Vue({
     }).then(function(data){
         return data.json()
     })
-    //完成後 重新撈取一次資料 把res回傳到members裡面
-    this.get_diss_ArtReports = res
+    //完成後 重新撈取一次資料 把res回傳
+    this.diss_ArtReports = res
 },
 
 

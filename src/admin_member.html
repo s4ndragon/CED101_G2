@@ -71,6 +71,7 @@
                             <form>
                                 <input type="text" v-model="mem_id" placeholder="請輸入會員帳號" />
                                 <button class="btn-confirm" type="button" @click="query_mem_id">送出查詢</button>
+                                <button class="btn-confirm" type="button" @click="get_mems">回到列表</button>
                             </form>
 
                             <table>
@@ -100,13 +101,13 @@
                                             <div class="form-group">
                                                 正常
                                                 <label class="switch">
-                                                    <input type="checkbox" />
+                                                    <input type="checkbox" v-model="item.ischecked" />
                                                     <span class="slider round"></span>
                                                 </label>
                                                 停權
                                             </div>
                                         </td>
-                                        <td><input class="btn-delete" type="button" value="確認修改" /></td>
+                                        <td><input class="btn-delete" type="button" value="確認停權" /></td>
                                     </tr>
                                 </tbody>
                             </table>
