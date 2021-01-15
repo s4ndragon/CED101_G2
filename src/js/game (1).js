@@ -213,7 +213,6 @@ function zom(){
     if (wormArr[i].offsetLeft + wormArr[i].offsetWidth < 0) {
     document.querySelector("div.gameover").classList.add("-on");
       gamestop();//停止遊戲
-      overaudio.play();
   }
   for(var j = 0; j < plantArr.length; j++) {
     //蟲子和植物碰上了
