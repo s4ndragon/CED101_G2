@@ -29,7 +29,7 @@ try{
     $msg->execute();
 
 
-    $sql = "select * from art_msg where ART_NO = ?";
+    $sql = "select * from art_msg a join member b on a.MEM_NO = b.MEM_NO where ART_NO = ?";
     $msg = $pdo->prepare($sql);
     $msg->bindValue(1, $_POST["artNo"]);
     $msg->execute();
