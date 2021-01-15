@@ -1,4 +1,4 @@
-<?
+<?php
 	$dsn = "mysql:host=localhost;port=3306;dbname=tibamefe_ced101g2;charset=utf8";
 	$user = "tibamefe_since2021";
 	$password = "vwRBSb.j&K#E";
