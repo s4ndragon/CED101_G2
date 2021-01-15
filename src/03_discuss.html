@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-TW">
 
 <head>
     <meta charset="UTF-8" />
@@ -54,12 +54,9 @@
                                 @click="addheart">
                             <img class="memi" src="./images/common/messenger.png" alt="">
                             <span class="com_num">{{artRow.ART_REPLYS}}</span>
-                            <div class="excl" @click="showBox(i)">
+                            <div class="excl" @click="showBox(artRow.ART_NO)">
                                 <img class="excl" src="./images/common/852019_exclamation_512x512.png" alt="">
                             </div>
-
-                            <!-- ====檢舉燈箱==== -->
-                            <art-reg :value="artRow.ART_NO" :g="i"></art-reg>
 
 
 
@@ -90,6 +87,8 @@
                         <div class="pub_time"><span>發表於{{artRow.ART_DATE}}</span></div>
                     </div>
                 </div>
+                <!-- ====檢舉燈箱==== -->
+                <art-reg :artno="artno"></art-reg>
             </div>
         </section>
     </main>
@@ -104,50 +103,74 @@
 
     <script>
         Vue.component('art-reg', {
-            props: ['g'],
+            props: ['artno'],
             template: ` <div class="overlay" style="display: none;">
                             <div class="modal">
-                                <form method="post" action="./phps/articleReg.php">
-                                    <div class="close">
-                                        <img class="cancel" src="./images/vote/cancel.png" @click="closeBox(g)">
+                                <form method="post" >
+                                    <div class="close" @click="closeBox()">
+                                        <img class="cancel" src="./images/vote/cancel.png">
                                     </div>
                                     <p class="welcome">請選取檢舉理由</p>
                                     <div class="reason_container">
-                                        <input class="reason" type="radio" name="size" value="惡意中傷">惡意中傷
+                                        <input class="reason" type="radio" name="size" id="a" value="惡意中傷">
+                                        <label for="a">惡意中傷</label>
                                     </div>
                                     <div class="reason_container">
-                                        <input class="reason" type="radio" name="size" value="散布廣告">散布廣告
+                                        <input class="reason" type="radio" name="size" id="b" value="散布廣告">
+                                        <label for="b">散布廣告</label>
                                     </div>
                                     <div class="reason_container">
-                                        <input class="reason" type="radio" name="size" value="色情資訊">色情資訊
+                                        <input class="reason" type="radio" name="size" id="c" value="色情資訊">
+                                        <label for="c">色情資訊</label>
                                     </div>
                                     <div class="reason_container">
-                                        <input class="reason" type="radio" name="size" value="不雅字眼">不雅字眼
+                                        <input class="reason" type="radio" name="size" id="d" value="不雅字眼">
+                                        <label for="d">不雅字眼</label>
                                     </div>
-                                    <button class="go" type="submit">送出</button>
-                                    <input type="hidden" name="art_reg" value="artRow.ART_NO">
+                                    <button class="go" type="button" @click="send_data">送出</button>
+                                    <input type="hidden" name="art_reg" :value="artno">
                                 </form>
                             </div>
                          </div>`,
-            data() {
-                return {
-                    g: this.i,
-                }
-            },
+
 
             methods: {
-                closeBox: function (j) {
-                    let lightbox = document.querySelectorAll('.overlay');
+                closeBox: function () {
+                    let lightbox = document.querySelectorAll('.overlay')[0];
                     // console.log();
-                    lightbox[j].style.display = 'none';
+                    lightbox.style.display = 'none';
                 },
-            }
+                check_radio() {
 
+                },
+                send_data() {
+                    $.ajax({
+                        url: './phps/articleReg.php', // 要傳送的頁面
+                        method: 'POST',               // 使用 POST 方法傳送請求
+                        dataType: 'text',             // 回傳資料會是 json 格式
+                        data: $('form').serialize(),  // 將表單資料用打包起來送出去
+                        success: function (res) {       // 成功以後會執行這個方法
+                            console.log('good');
+                            console.log(res);
+                            let lightbox = document.querySelectorAll('.overlay')[0];
+                            lightbox.style.display = 'none';
+                            alert('檢舉成功');
+                        },
+                        error: function (res) {
+                            console.log('not good');
+                            console.log(res);
+                        },
+                    });
+                },
+            },
         });
+
+
 
         var app = new Vue({
             el: "#are",
             data: {
+                artno: "",
                 articlesRows: [],
             },
 
@@ -164,10 +187,12 @@
                         }
                     });
                 },
-                showBox: function (i) {
-                    let lightbox = document.querySelectorAll('.overlay');
-                    lightbox[i].style.display = '';
+                showBox: function (ART_NO) {
+                    let lightbox = document.querySelectorAll('.overlay')[0];
+                    lightbox.style.display = '';
+                    this.artno = ART_NO;
                 },
+
             },
             mounted() {
                 let articlesRows;
@@ -180,6 +205,7 @@
                 xhr.open("get", "./phps/getArticles.php", true);
                 xhr.send(null);
             },
+
         });
 
         // =====filter=====
@@ -200,18 +226,6 @@
             $('.list').not(this).removeClass('fit');
         });
 
-
-        // window.addEventListener("load", function () {
-        //     let articlesRows;
-        //     //============去server端拿資料
-        //     let xhr = new XMLHttpRequest();
-        //     xhr.onload = function () {
-        //         app.articlesRows = JSON.parse(xhr.responseText);
-        //         console.log(app.articlesRows);
-        //     }
-        //     xhr.open("get", "./phps/getArticles.php", true);
-        //     xhr.send(null);
-        // })
     </script>
 </body>
 

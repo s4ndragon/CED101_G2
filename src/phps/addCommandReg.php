@@ -1,18 +1,18 @@
 <?php
     $reason = isset($_POST["size"])?$_POST["size"]:""; 
-    $artNo = isset($_POST["art_reg"])?$_POST["art_reg"]:""; 
+    $msgNo = isset($_POST["msg_reg"])?$_POST["msg_reg"]:""; 
     
     //------------------
 try{
     require_once("./connect.php");
-    $sql = "INSERT INTO art_rep(
+    $sql = "INSERT INTO art_msg_rep(
                 MEM_NO,
-                ART_NO,
-                AR_DATE,
-                AR_REASON,
-                AR_STATUS
+                MSG_NO,
+                AMR_DATE,
+                AMR_CONTENT,
+                AMR_STATUS
             ) 
-            VALUES(1,'$artNo',now(),'$reason',1)";
+            VALUES(1,'$msgNo',now(),'$reason',1)";
 
     $article = $pdo->prepare($sql);
     $article->execute();
@@ -25,3 +25,6 @@ try{
     echo json_encode($error);
 }
 ?>
+
+
+
