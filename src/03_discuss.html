@@ -39,7 +39,7 @@
         <section id="discuss">
             <div id="all_articles">
                 <!-- =====單篇文章開始===== -->
-                <div v-for="(artRow,i) in articlesRows" class="article" :class="artRow.FILTER" :i="i">
+                <div v-for="(artRow,i) in articlesRows" class="article" :class="artRow.FILTER">
                     <div class="ar_img">
                         <img class="ar_rimg" :src="artRow.ART_IMG" alt="">
                         <p class="ar_title">【{{artRow.CAT}}】{{artRow.ART_TITLE}}</p>
@@ -59,7 +59,7 @@
                             </div>
 
                             <!-- ====檢舉燈箱==== -->
-                            <art-reg :value="artRow.ART_NO"></art-reg>
+                            <art-reg :value="artRow.ART_NO" :g="i"></art-reg>
 
 
 
@@ -104,12 +104,12 @@
 
     <script>
         Vue.component('art-reg', {
-            props: ['i'],
+            props: ['g'],
             template: ` <div class="overlay" style="display: none;">
                             <div class="modal">
-                                <form action="post">
+                                <form method="post" action="./phps/articleReg.php">
                                     <div class="close">
-                                        <img class="cancel" src="./images/vote/cancel.png" @click="closeBox(i)">
+                                        <img class="cancel" src="./images/vote/cancel.png" @click="closeBox(g)">
                                     </div>
                                     <p class="welcome">請選取檢舉理由</p>
                                     <div class="reason_container">
@@ -125,21 +125,21 @@
                                         <input class="reason" type="radio" name="size" value="不雅字眼">不雅字眼
                                     </div>
                                     <button class="go" type="submit">送出</button>
-                                    <input type="hidden" name="art_reg">
+                                    <input type="hidden" name="art_reg" value="artRow.ART_NO">
                                 </form>
                             </div>
                          </div>`,
             data() {
                 return {
-                    i: this.i,
+                    g: this.i,
                 }
             },
 
             methods: {
-                closeBox: function (i) {
+                closeBox: function (j) {
                     let lightbox = document.querySelectorAll('.overlay');
                     // console.log();
-                    lightbox[i].style.display = 'none';
+                    lightbox[j].style.display = 'none';
                 },
             }
 
