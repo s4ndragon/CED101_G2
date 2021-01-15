@@ -9,7 +9,7 @@
 $errMsg = "";
 try {
     require_once("./connect_game.php");
-    $sql="select ROLE_NO form role= ";
+    $sql="select ROLE_NO form role= :no";
     $game=$pdo->prepare($sql);
     $game->bindValue(":no", $_POST["no"]);
     $res=$game->execute();
