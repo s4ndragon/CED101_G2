@@ -57,7 +57,7 @@ $(document).ready(function () {
     //     $(".cover").css("display", "flex");
     //     console.log("hihi");
     // });
-    $('$log-in').onclick() = sendForm;
+    $('#log-in').onclick() = sendForm;
     $("form")
         .find("input, textarea")
         .on("keyup blur focus", function (e) {
