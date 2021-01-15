@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/tour_preview.css" />
+    <link rel="stylesheet" href="./css/inser.css">
     <script src="../node_modules/vue/dist/vue.js"></script>
     <title>建立揪團-預覽</title>
 </head>
@@ -148,7 +149,7 @@
                         </div>
                     </div>
                 </div>
-                <form action="./tourInsert.php" method="post" enctype="multipart/form-data">
+                <form action="./phps/tourInsert.php" method="post" enctype="multipart/form-data">
                     <input hidden type="text" name="GARD_ID" v-model=gardId>
                     <input hidden type="text" name="MEM_NO" v-model=memNo>
                     <input hidden type="text" name="HOTEL_ID" v-model=hotelId>
@@ -173,13 +174,46 @@
                 </form>
             </div>
         </div>
+
+        <div class="successBox" v-show=successBox>
+            <a href="./01_tour.html">
+                <p>
+                    新增成功!!!
+                </p>
+                <p>點擊回揪團瀏覽頁查詢</p>
+                <div class="img">
+                    <img src="./images/tour/success.gif" alt="">
+                </div>
+            </a>
+        </div>
     </main>
     @@include('layout/footer.html')
 
     <script>
         let storage = sessionStorage;
 
+
         window.addEventListener("load", function () {
+            $('form').on('submit', function () {
+                $.ajax({
+                    url: './phps/tourInsert.php', // 要傳送的頁面
+                    method: 'POST',               // 使用 POST 方法傳送請求
+                    dataType: 'text',             // 回傳資料會是 json 格式
+                    data: $('form').serialize(),  // 將表單資料用打包起來送出去
+                    success: function (res) {       // 成功以後會執行這個方法
+                        console.log('good');
+                        preview.successBox = true;
+
+                    },
+                    error: function (err) {
+                        alert('資料傳輸有誤!!');
+                        console.log('not good');
+
+
+                    },
+                });
+                return false;  // 阻止瀏覽器跳轉到 send.php，因為已經用 ajax 送出去了
+            });
             //============去server端拿茶園資料
             let locationRows;
             let xhr = new XMLHttpRequest();
@@ -216,10 +250,13 @@
             }
             xhrAct.open("get", "./phps/getAct.php", true);
             xhrAct.send(null);
+
+
         })
         let preview = new Vue({
             el: "#preview",
             data: {
+
                 gardId: "",
                 memNo: 1,
                 hotelId: "",
@@ -249,6 +286,11 @@
                 hotelRows: [],
                 restRows: [],
                 actRows: [],
+                //-============successBox
+                successBox: false,
+
+            },
+            method: {
 
             },
 
@@ -275,9 +317,12 @@
                 this.hotelId = storage.getItem('hotelId');
                 this.img = storage.getItem('img');
 
+
+
+
             },
 
-        })
+        });
     </script>
 </body>
 

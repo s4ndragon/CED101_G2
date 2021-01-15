@@ -6,13 +6,15 @@ function $id(id) { //尋找id
 }
 
 function init() {
+    if ($id('getinfo')) {
+        $id('getinfo').addEventListener('click', storeInfo);
+    }
     if (storage['addItemList'] != "" && storage['addItemList']) {
-        console.log('aa')
         let pay = $id('pay');
         if (pay) {
             payDisplay();
             pay.addEventListener('change', payDisplay);
-            $id('getinfo').addEventListener('click', storeInfo);
+
         }
         loaditems();
         loadinfo();
@@ -20,16 +22,18 @@ function init() {
             $id('submitBtn').addEventListener('click', submitForm)
         }
     } else {
-        $id('orderform').innerHTML =
-            `<p style="padding:80px ;text-align:center;">訂單已送出或是購物車內沒有商品。請返回購物車重新操作。<p/>
-    <table>
-    <tr>
-        <td colspan=" 2" class="btn">
-            <input type="button" value="回上一頁" onClick="history.go(-1)">
-            <input type="button" value="回商城" onClick="location.href= './04_shopping.html';return false;">
-        </td>
-    </tr>
-</table>`;
+        if ($id('orderform')) {
+            $id('orderform').innerHTML =
+                `<p style="padding:80px ;text-align:center;">訂單已送出或是購物車內沒有商品。請返回購物車重新操作。<p/>
+        <table>
+        <tr>
+            <td colspan=" 2" class="btn">
+                <input type="button" value="回上一頁" onClick="history.go(-1)">
+                <input type="button" value="回商城" onClick="location.href= './04_shopping.html';return false;">
+            </td>
+        </tr>
+    </table>`;
+        }
     }
 }
 
@@ -48,6 +52,7 @@ function storeInfo() {
     for (let i = 0; i < infoList.length; i++) {
         storage[infoList[i].name] = infoList[i].value;
     };
+    // $id('checkForm').submit();
 }
 
 function loadinfo() {

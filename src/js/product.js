@@ -15,7 +15,7 @@ function init() {
     }
     //如果是商城首頁的話
     if ($id('products')) {
-        getproducts();
+        getproducts('所有商品', 'DATE_DESC');
         classifyBtnsSelect();
         orderBtn();
         getFavortieList()
@@ -34,6 +34,10 @@ function init() {
     if ($id('cart_content')) {
         loadcart();
     }
+    if ($id('totalAmount')) {
+        console.log('aaaa')
+        calcAmount();
+    }
     //如果有總額
     if ($id('totalBtn')) {
         dicountBtn()
@@ -45,29 +49,34 @@ function getproducts(type, orderby) {
     let url;
     xhr.onload = function () {
         if (xhr.status == 200) {
-            //modify here
             let products = JSON.parse(xhr.responseText);
             $id('products_container').innerHTML = "";
-            if (type) {
-                for (let i in products) {
-                    if (products[i].TYPE == type) {
-                        $id('products_container').appendChild(addProduct(products[i]));
-                    }
-                }
-            } else {
-                for (let i = 0; i < products.length; i++) {
-                    $id('products_container').appendChild(addProduct(products[i]));
-                };
-            }
+            // if (type) {
+            //     if (type == '所有商品') {
+            //         for (let i in products) {
+            //             $id('products_container').appendChild(addProduct(products[i]));
+            //         }
+            //     } else {
+            //         for (let i in products) {
+            //             if (products[i].TYPE == type) {
+            //                 $id('products_container').appendChild(addProduct(products[i]));
+            //             }
+            //         }
+            //     }
+            // } else {
+            //     for (let i = 0; i < products.length; i++) {
+            //         $id('products_container').appendChild(addProduct(products[i]));
+            //     };
+            // }
+            let pages = getPage(products);
+            for (let i = 0; i < products.length; i++) {
+                $id('products_container').appendChild(addProduct(products[i]));
+            };
         } else {
             alert(xhr.status);
         }
     }
-    if (orderby) {
-        url = `./phps/getproducts.php?orderby=${orderby}`;
-    } else {
-        url = "./phps/getproducts.php?orderby=DATE_DESC";
-    }
+    url = `./phps/getproducts.php?orderby=${orderby}&type=${type}`;
     xhr.open("Get", url, true);
     xhr.send(null);
 
@@ -106,7 +115,7 @@ function addProduct(product) {
     return newproduct;
 }
 
-function classifyBtnsSelect() {
+function classifyBtnsSelect() { //選擇type
     classifyBtns = document.getElementsByClassName('classifyBtn');
     for (let i = 0; i < classifyBtns.length; i++) {
         classifyBtns[i].addEventListener('click', (e) => {
@@ -114,8 +123,9 @@ function classifyBtnsSelect() {
                 classifyBtns[j].setAttribute('class', 'classifyBtn');
             }
             e.target.setAttribute('class', 'classifyBtn selected');
-
-            getproducts(e.target.innerText);
+            // let orderby = document.getElementsByName('order');
+            let orderby = document.querySelector('input[name=order]:checked').value;
+            getproducts(e.target.innerText, orderby);
         });
 
     }
@@ -138,9 +148,9 @@ function addItem(e) {
             newdiv.setAttribute('id', itemNo);
             newdiv.innerHTML = itemInnerhtml(itemNo);
             cart_content.insertBefore(newdiv, $id('amount'));
-            calcAmount();
             newdiv.querySelector('.drop').addEventListener('click', dropitem);
             newdiv.querySelector('.itemNum').addEventListener('change', changeNum)
+            calcAmount();
         };
         if (e.target.id != 'buy') {
             alertLB('已加入購物車。');
@@ -195,7 +205,7 @@ function dropitem(e) {
     storage['addItemList'] = addItemList;
     e.target.parentNode.remove();
     storage.removeItem(e.target.parentNode.id);
-    calcAmount()
+    calcAmount();
 }
 
 
@@ -206,10 +216,8 @@ function calcAmount() {
         let p = parseInt(items[i].getElementsByClassName('itemPrice')[0].value),
             n = parseInt(items[i].getElementsByClassName('itemNum')[0].value);
         total += p * n;
-
     }
-    $id('totalAmount').setAttribute('value', total);
-
+    $id('totalAmount').value = total;
     let totalBtn = $id('totalBtn');
     if (totalBtn) {
         dealDisPoint()
@@ -290,7 +298,7 @@ function dicountBtn() {
 }
 
 function addcartalert() {
-    if ($id('addcartLB')) {} else {
+    if ($id('addcartLB')) { } else {
         let newdiv = document.createElement('div');
         newdiv.setAttribute('id', 'addcartLB');
         newdiv.innerHTML = `<div>
@@ -463,4 +471,13 @@ function sendFavortieList() {
         }
     }
 
+}
+
+function getPage(totalItem) {
+    totalItem = 30;
+    // totalItem = totalItem.length;
+    let pages = 0;
+    pages += parseInt(totalItem / 6);
+    pages += (totalItem % 6 > 0) ? 1 : 0;
+    return pages;
 }

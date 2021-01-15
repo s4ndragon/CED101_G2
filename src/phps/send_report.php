@@ -2,7 +2,7 @@
 session_start();  //啟用session
 try{
   require_once("./connect.php");
-  $sql = "select * from MEMBER where MEM_NO = 5"; 
+  $sql = "select * from MEMBER where MEM_NO = 8"; 
   $member = $pdo->prepare($sql);
   $member->execute();
 
@@ -21,17 +21,15 @@ try{
  
 try {
 	require_once("./connect.php");
-	$sql = "update garden set GARD_VOTE = GARD_VOTE + :GARD_VOTE, GARD_CLICK = GARD_CLICK + 1 where GARD_ID = :GARD_ID";
-    $garden = $pdo->prepare($sql);
-	$garden->bindValue(":GARD_VOTE", $_POST["GARD_VOTE"]);
-	$garden->bindValue(":GARD_ID", $_POST["GARD_ID"]);
-	$garden->execute();
-
-	$sql = "update member set VOTE_DATE = NOW() where MEM_NO = :MEM_NO";
-    $time = $pdo->prepare($sql);
+	$sql = "insert into garden_msg_rep (MEM_NO, MSG_NO, MSG_REP_DATE, MSG_REP_CONTENT, MSG_REP_STATUS)
+			values (:MEM_NO, :MSG_NO, NOW(), :MSG_REP_CONTENT, 0)";
+	$report = $pdo->prepare($sql);
 	$MEM_NO = $_SESSION["MEM_NO"];
-	$time->bindValue(":MEM_NO", $MEM_NO);
-	$time->execute();
+	$report->bindValue(":MEM_NO", $MEM_NO);
+	$report->bindValue(":MSG_NO", $_POST["MSG_NO"]);
+	$report->bindValue(":MSG_REP_CONTENT", $_POST["MSG_REP_CONTENT"]);
+	$report->execute();
+	
 
 } catch (PDOException $e) {
 	echo "錯誤原因 : ", $e->getMessage(), "<br>";

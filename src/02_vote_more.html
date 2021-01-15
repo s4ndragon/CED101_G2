@@ -15,13 +15,12 @@
 </head>
 
 <body>
-    @@include('layout/leaf.html')
     @@include('layout/nav.html')
     <div class="banner">
         <p class="fir">茶園排行</p>
     </div>
 
-    <main id="app">
+    <main id="app" v-cloak>
         <div class="all" v-for="garitem in gardenRows">
             <div class="garden">
                 <img class="gpic" :src="garitem.GARD_PIC">
@@ -86,51 +85,21 @@
 
         <div id="commandall">
             <h3 class="t1">茶園留言</h2>
-                <!--       留言重複開始         -->
-                <div class="command">
-                    <div class="nameall">
-                        <div class="mem_photo"><img class="mem_photo" src="./images/common/mem_photo1.png" alt=""></div>
-                        <span class="pub_mem_name">翰婷</span>
-                    </div>
-                    <div class="text_excl">
-                        <div class="command_text">
-                            <div class="pub_text">哈囉，還好吧還好吧還好吧還好吧還好吧，我也要去。</div>
-                            <div class="com_pub_time">發表於2012-03-20 12:20:30</div>
-                        </div>
-                        <div class="excl ">
-                            <div class="repobt" @click="showModal2 = true">
-                                <img class="excl" src="./images/common/852019_exclamation_512x512.png" alt="">
-                            </div>
-    
-                            <!-- overlay -->
-                            <div class="overlay" v-if="showModal2" @click="showModal2 = true"></div>
-                            <!-- modal -->
-                            <div class="modal" v-if="showModal2">
-                                <form action="post">
-                                    <div class="close" @click="showModal2 = false">
-                                        <img class="cancel" src="images/vote/cancel.png">
-                                    </div>
-                                    <p class="welcome">請選取檢舉理由</p>
-                                    <div class="reason_container">
-                                        <input class="reason" type="radio" name="size" value="惡意中傷">惡意中傷</div>
-                                    <div class="reason_container">
-                                        <input class="reason" type="radio" name="size" value="散布廣告">散布廣告
-                                    </div>
-                                    <div class="reason_container">
-                                        <input class="reason" type="radio" name="size" value="色情資訊">色情資訊
-                                    </div>
-                                    <div class="reason_container">
-                                        <input class="reason" type="radio" name="size" value="不雅字眼">不雅字眼
-                                    </div>
-                                    <button class="go" type="submit">送出</button>
-                                </form>
-                            </div>
-    
-                        </div>
-                    </div>
-                </div>
-                
-                
+            <!--       留言+檢舉燈箱開始        -->
+            <!-- 接收子組件傳來的事件show-box後執行showModal(i)函式  -->
+            <comment-component v-for="(msgRow, i) in msgRows"
+                               :mem-pic="msgRow.MEM_IMG"
+                               :mem-name="msgRow.MEM_NICNAME"
+                               :msg-con="msgRow.MSG_CONTENT"
+                               :msg-time="msgRow.MSG_DATE"
+                               :msg-no="msgRow.MSG_NO"
+                               @show-box="showModal(i)"
+                               @close-box="closeModal(i)"
+                               @send-repo="sendReport(i)">
+            </comment-component>
+            <!--       留言+檢舉燈箱結束        -->
+            <div class="empty" v-show="msgRows.length==0">此文章尚無留言，歡迎留言。</div>
+
 
         </div>
 
@@ -138,11 +107,11 @@
             <div class="input_container">
                 <h3>新增留言</h3>
                 <div class="create_command_container">
-                    <textarea class="create_command"></textarea>
+                    <textarea id="content" class="create_command"></textarea>
                     <div class="com_btn_countainer">
-                        <button class="inner_btn">
-                            <a href="03_discuss.html">送出</a>
-                        </button>
+                        <div class="inner_btn">
+                            <a href="#">送出</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -213,6 +182,72 @@
     <script>
         
         Vue.component("star-rating", VueStarRating.default);
+        Vue.component("comment-component",{
+            props:['mem-pic','mem-name','msg-con','msg-time','msg-no'], //父組件傳給子組件的資料
+            template:`
+                <div class="command">
+                    <div class="nameall">
+                        <div class="mem_photo"><img class="mem_photo" :src="memPic" alt=""></div>
+                        <span class="pub_mem_name">{{memName}}</span>
+                    </div>
+                    <div class="text_excl">
+                        <div class="command_text">
+                            <div class="pub_text">{{msgCon}}</div>
+                            <div class="com_pub_time">發表於{{msgTime}}</div>
+                        </div>
+                        <div class="excl">
+                            <!-- 檢舉按鈕 -->
+                            <div class="repobt" @click="showModal_son">
+                                <img class="excl" src="./images/common/852019_exclamation_512x512.png" alt="">
+                            </div>
+
+                            <!-- 檢舉燈箱 -->
+                            <div class="modal_wrapper"  style="display: none;">
+                                <div class="modal">
+                                        <div class="close" @click="closeModal_son">
+                                            <img class="cancel" src="images/vote/cancel.png">
+                                        </div>
+                                        <p class="welcome">請選取檢舉理由</p>
+                                        <p>留言編號: {{msgNo}}</p>
+                                    <form>
+                                        
+                                            <input class="reason" type="radio" name="option" value="惡意中傷">惡意中傷
+                                        
+                                        <br>
+                                        
+                                            <input class="reason" type="radio" name="option" value="散布廣告">散布廣告
+                                        
+                                        <br>
+                                        
+                                            <input class="reason" type="radio" name="option" value="色情資訊">色情資訊
+                                        
+                                        <br>
+                                        
+                                            <input class="reason" type="radio" name="option" value="不雅字眼">不雅字眼
+                                        
+                                        <div @click="sendRepo_son" class="go" type="submit">送出</div>
+                                    </form>
+                                </div>
+                            </div>
+    
+                        </div>
+                    </div>
+                </div>
+            `,
+            methods: {
+                showModal_son(){
+                    // 此子組件發出emit事件至父層的自定義事件(show-box)
+                    this.$emit('show-box');
+                },
+                closeModal_son(){
+                    this.$emit('close-box');
+                },
+                sendRepo_son(){
+                    this.$emit('send-repo');
+                }
+                
+            },
+        })
 
         var app = new Vue({
             el: "#app",
@@ -220,11 +255,11 @@
                 dataRows:'',
                 gardenRows:'',
                 tourRows:'',
+                msgRows:'',
                 pastDate:'',
                 lightbox: false,
                 lightbox_GARD_ID:'',
 
-                showModal2: false,
                 rating: '您尚未評分',
                 sendRating:'',
                 targetPageId:'',
@@ -265,6 +300,8 @@
                 sendScore(){
                     if(this.today == this.pastDate[0].VOTE_DATE){
                         alert('一天只能投一次票喔!')
+                        this.lightbox = false
+                        this.rating = '您尚未評分'
                     }else{
                         let xhr = new XMLHttpRequest();
                         xhr.onload = function(){
@@ -287,16 +324,23 @@
                 },
 
                 get_data(){
+                    let searchURL = window.location.search;
+                    searchURL = searchURL.substring(1, searchURL.length);
+                    let targetPageId = searchURL.split("=")[1];
+                    this.targetPageId = targetPageId;
                     //============傳targetPageId給php
                     
                     let xhr = new XMLHttpRequest();
                         //註冊callback function 
                         xhr.onload = function(){
+                            // console.log(xhr.responseText);
                             if(xhr.status == 200){ //success
                                 app.dataRows = JSON.parse(xhr.responseText);
                                 app.gardenRows = app.dataRows[0];
                                 app.pastDate = app.dataRows[1];
                                 app.tourRows = app.dataRows[2];
+                                app.msgRows = app.dataRows[3];
+
                             }else{
                                 alert(xhr.status);
                             }
@@ -308,14 +352,41 @@
                         // let data_info = "GARD_ID=" + this.targetPageId;
                         let data_info = `GARD_ID=${this.targetPageId}`;
                         xhr.send(data_info);
+                },
+
+                showModal(i){
+                    let modal = document.querySelectorAll('.modal_wrapper');
+                    modal[i].style.display = '';
+                },
+
+                closeModal(i){
+                    let modal = document.querySelectorAll('.modal_wrapper');
+                    modal[i].style.display = 'none';
+                },
+
+                sendReport(i){
+                    let xhr = new XMLHttpRequest();
+                    // console.log(this.msgRows[i].MSG_NO)
+                    // console.log(document.querySelector('input[name="option"]:checked').value)
+                        xhr.onload = function(){
+                            if(xhr.status == 200){ //success
+                                let modal = document.querySelectorAll('.modal_wrapper');
+                                modal[i].style.display = 'none';
+                                alert('檢舉成功')
+                            }else{
+                                alert(xhr.status);
+                            }
+                        }
+                        xhr.open("post", "./phps/send_report.php", true);
+                        xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+                        //送出資料
+                        let data_info = `MSG_NO=${this.msgRows[i].MSG_NO}&MSG_REP_CONTENT=${document.querySelector('input[name="option"]:checked').value}`;
+                        xhr.send(data_info);
                 }
+
             },
 
             mounted() {
-                let searchURL = window.location.search;
-                searchURL = searchURL.substring(1, searchURL.length);
-                let targetPageId = searchURL.split("=")[1];
-                this.targetPageId = targetPageId;
 
                 //============去server端拿資料
                 this.get_data()
