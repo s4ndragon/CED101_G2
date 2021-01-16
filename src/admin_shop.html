@@ -8,7 +8,7 @@
         <title>偵茶者後台管理 | TEA SEARCHER | 帶你找茶 喝茶 買茶</title>
         <link rel="shortcut icon" href="./images/index/webIcon.png" type="image/x-icon" />
         <link rel="stylesheet" href="./css/admin.css" />
-        <script src="../node_modules/vue/dist/vue.js"></script>
+        <script src="./js/vue.js"></script>
         <script src="js/admin.js"></script>
     </head>
     <body>
@@ -26,7 +26,7 @@
 
         <aside class="aside">
             <ul class="nav_list">
-                <li><h1>後台管理頁</h1></li>
+                <a href="admin_tea.html"><h1>後台管理頁</h1></a>
 
                 <li class="li">
                     <a href="#" data-target="admin"
@@ -72,13 +72,14 @@
                             <form>
                                 <input type="text" v-model="psn" placeholder="請在此輸入商品編號" />
                                 <button class="btn-confirm" type="button" @click="query_pro_psn">查詢</button>
+                                <button class="btn-confirm" type="button" @click="get_produs">回到列表</button>
                             </form>
-                            <form>
+                            <!-- <form>
                                 <input type="text" v-model="add_NAME" placeholder="請輸入商品名稱" />
                                 <input type="text" v-model="add_INFO" placeholder="請輸入商品特色" />
                                 <input type="text" v-model="add_PRICE" placeholder="請輸入商品價格" />
                                 <button class="btn-confirm" type="button" @click="add_products">新增商品</button>
-                            </form>
+                            </form> -->
                             <table>
                                 商品狀態及資訊查詢
                                 <tr>
@@ -128,6 +129,11 @@
                         </div>
 
                         <div class="tab tab2">
+                            <form>
+                                <input type="text" v-model="ord_no" placeholder="請在此輸入訂單編號" />
+                                <button class="btn-confirm" type="button" @click="query_ord">查詢</button>
+                                <button class="btn-confirm" type="button" @click="get_orders">回到列表</button>
+                            </form>
                             <table>
                                 商城訂單管理
                                 <tr>
@@ -149,32 +155,60 @@
                                         <td>{{item.ORDERS_NO}}</td>
                                         <td>{{item.MEMBER}}</td>
                                         <td>
-                                            <select name="出貨狀態" v-model="selecteddealState">
+                                            <!-- <select name="訂單狀態" v-model="selecteddealState">
                                                 <option v-for="(dealState,index) in dealStates" :value="index">
                                                     {{dealState}}
                                                 </option>
-                                            </select>
+                                            </select> -->
                                         </td>
                                         <td>{{item.ORD_DATE}}</td>
-                                        <td><input type="text" :value="item.DELIVERY" /></td>
-                                        <td><input type="text" :value="item.PAY" /></td>
-                                        <td><input type="text" :value="item.DISCOUNT" /></td>
-                                        <td><input type="text" :value="item.TOTAL" /></td>
-                                        <td><input type="text" :value="item.RECEIVER_NAME" /></td>
-                                        <td><input type="text" :value="item.RECEIVER_ADDRESS" /></td>
-                                        <td><input type="text" :value="item.RECEIVER_TEL " /></td>
-
                                         <td>
-                                            <div class="form-group">
-                                                上架
-                                                <label class="switch">
-                                                    <input type="checkbox" />
-                                                    <span class="slider round"></span>
-                                                </label>
-                                                下架
-                                            </div>
+                                            <input
+                                                type="text"
+                                                :value="item.DELIVERY"
+                                                @keyup="changeDELIVERY($event,key)"
+                                            />
                                         </td>
-                                        <td><input type="button" class="btn-delete" value="確認修改" /></td>
+                                        <td><input type="text" :value="item.PAY" @keyup="changePAY($event,key)" /></td>
+                                        <td>
+                                            <input
+                                                type="text"
+                                                :value="item.DISCOUNT"
+                                                @keyup="changeDISCOUNT($event,key)"
+                                            />
+                                        </td>
+                                        <td>
+                                            <input type="text" :value="item.TOTAL" @keyup="changeTOTAL($event,key)" />
+                                        </td>
+                                        <td>
+                                            <input
+                                                type="text"
+                                                :value="item.RECEIVER_NAME"
+                                                @keyup="changeRECEIVER_NAME($event,key)"
+                                            />
+                                        </td>
+                                        <td>
+                                            <input
+                                                type="text"
+                                                :value="item.RECEIVER_ADDRESS"
+                                                @keyup="changeRECEIVER_ADDRESS($event,key)"
+                                            />
+                                        </td>
+                                        <td>
+                                            <input
+                                                type="text"
+                                                :value="item.RECEIVER_TEL "
+                                                @keyup="changeRECEIVER_TEL($event,key)"
+                                            />
+                                        </td>
+                                        <td>
+                                            <input
+                                                type="button"
+                                                class="btn-delete"
+                                                @click="edit_orders(item.ORDERS_NO,key)"
+                                                value="確認修改"
+                                            />
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -185,15 +219,6 @@
         </main>
 
         <script>
-            // $(function () {
-            //     $('ul.nav_list li a').on('click', function (e) {
-            //         // alert('good')
-            //         e.preventDefault()
-            //         $('.tab_container').removeClass('-on')
-            //         $('.tab_container.' + $(this).attr('data-target')).addClass('-on')
-            //     })
-            // })
-
             //tab
             $(function () {
                 $('a.tab').on('click', function (e) {
