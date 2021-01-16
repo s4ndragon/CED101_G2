@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/discuss.css" />
     <title>討論區</title>
     <!-- vue  -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.js"></script>
+    <script src="./js/vue.js"></script>
 </head>
 
 
@@ -21,6 +21,7 @@
             </div>
         </div>
         <h2 id="pub_new">發表新文章</h2>
+
         <form id="pub_article" action="./phps/pubArticle.php" method="post" enctype="multipart/form-data">
             <div class="pub_input_container">
                 <label class="input_type upimg_text">文章圖片：</label>
@@ -46,17 +47,36 @@
                 <button class="btn">
                     <a href="03_discuss.html">取消</a>
                 </button>
-                <button class="btnsub" type="submit">
+                <button class="btnsub" type="button" @click="send_data()">
                     送出
                 </button>
             </div>
+            <!-- ====發表完成確認燈箱==== -->
+            <pub></pub>
             <!-- ====隱藏value 用來存篩選分類==== -->
             <input class="category" name="category" type="hidden" value="">
         </form>
+
     </main>
     @@include('layout/footer.html')
 
     <script>
+        Vue.component('pub', {
+            template: ` <div class="overlay" style="display: none;" >
+                            <div class="modal">
+                                <form method="post" >
+                                    <p class="welcome">發文成功！</p>
+                                    <button class="go" type="button" @click="go_discuss">確認</button>
+                                </form>
+                            </div>
+                         </div>`,
+            methods: {
+                go_discuss() {
+                    window.location.href = "./03_discuss.html";
+                },
+            },
+        });
+
 
         var app = new Vue({
             el: ".pub_back",
@@ -68,23 +88,52 @@
                 all: function () {
                     this.leftword = 500 - this.tex.length;
                 },
+
+                send_data() {
+                    var form = $('form')[0];
+                    var formData = new FormData(form);
+                    $.ajax({
+                        url: './phps/pubArticle.php', // 要傳送的頁面
+                        method: 'POST',               // 使用 POST 方法傳送請求
+                        dataType: 'text',             // 回傳資料會是 json 格式
+                        contentType: false,
+                        cache: false,
+                        processData: false,
+                        data: formData,  // 將表單資料用打包起來送出去
+                        success: function (res) {       // 成功以後會執行這個方法
+                            // console.log('good');
+                            // console.log(res);
+                            let lightbox = document.querySelectorAll('.overlay')[0];
+                            lightbox.style.display = '';
+                        },
+                        error: function (res) {
+                            // console.log('not good');
+                            // console.log(res);
+                            let lightbox = document.querySelectorAll('.overlay')[0];
+                            lightbox.style.display = '';
+                        },
+                    });
+                },
+            },
+            mounted() {
+                let upload = document.getElementById("upimg");
+                upload.addEventListener("change", hand, false);
+                function hand() {
+                    readURL(this);
+                }
+                function readURL(input) {
+                    if (input.files && input.files[0]) {
+                        let reader = new FileReader();
+                        reader.onload = function (e) {
+                            document.getElementById("preview").src = e.target.result;
+                        };
+                        reader.readAsDataURL(input.files[0])
+                    }
+                }
             },
         });
 
-        let upload = document.getElementById("upimg");
-        upload.addEventListener("change", hand, false);
-        function hand() {
-            readURL(this);
-        }
-        function readURL(input) {
-            if (input.files && input.files[0]) {
-                let reader = new FileReader();
-                reader.onload = function (e) {
-                    document.getElementById("preview").src = e.target.result;
-                };
-                reader.readAsDataURL(input.files[0])
-            }
-        }
+
     </script>
 </body>
 
