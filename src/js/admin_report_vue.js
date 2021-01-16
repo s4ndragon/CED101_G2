@@ -9,7 +9,13 @@ new Vue({
         diss_MegReports: '',
         diss_ArtReports:'',
         gardens_MegReports: '',
-          },
+        MSG_REP_STATUS:'',
+        MSG_REP_NO:'',
+        AMR_STATUS:'',
+        REP_NO:'',
+        AR_STATUS:'',
+        
+    },
 
     methods: {
         //函數放這裡
@@ -71,10 +77,11 @@ new Vue({
             })
             //完成後 重新撈取一次資料 把res回傳
             this.diss_ArtReports = res
+
+           
         },
         
         // 查詢茶園留言
-        //query_gardMsg_id
         query_gardMsg_id: async function () {
 			console.log(this.gardMsgId)
 
@@ -144,7 +151,77 @@ new Vue({
 			//查詢完後清空輸入的內容
 			this.DissMsgId =''
 
-		}
+        },
+        
+        edit_gardens_Meg: async function (MSG_REP_NO, key) {
+            if (this.gardens_MegReports[key].ischecked == false) {
+                this.MSG_REP_STATUS = 1
+            } else if (this.gardens_MegReports[key].ischecked == true) {
+                this.MSG_REP_STATUS = 2
+            }
+
+            const res = await fetch('./phps/admin_UpdGardsMsg.php', {
+                method: 'POST',
+                mode: 'same-origin',
+                credentials: 'same-origin',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    MSG_REP_NO: MSG_REP_NO,
+                    MSG_REP_STATUS: this.MSG_REP_STATUS,
+                }),
+            })
+
+            this.get_gardens_MegReports()
+        },
+
+        edit_diss_Meg: async function (MSG_REP_NO, key) {
+            if (this.diss_MegReports[key].ischecked == false) {
+                this.AMR_STATUS = 1
+            } else if (this.diss_MegReports[key].ischecked == true) {
+                this.AMR_STATUS = 2
+            }
+
+            const res = await fetch('./phps/admin_UpdDissMeg.php ', {
+                method: 'POST',
+                mode: 'same-origin',
+                credentials: 'same-origin',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    MSG_REP_NO: MSG_REP_NO,
+                    AMR_STATUS: this.AMR_STATUS,
+                }),
+            })
+
+            this.get_diss_MegReports()
+        },
+
+
+        edit_diss_Art: async function (REP_NO, key) {
+            if (this.diss_ArtReports[key].ischecked == false) {
+                this.AR_STATUS = 1
+            } else if (this.diss_ArtReports[key].ischecked == true) {
+                this.AR_STATUS = 2
+            }
+
+            const res = await fetch('./phps/admin_UpdDissArt.php ', {
+                method: 'POST',
+                mode: 'same-origin',
+                credentials: 'same-origin',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    REP_NO: REP_NO,
+                    AR_STATUS: this.AR_STATUS,
+                }),
+            })
+
+            this.get_diss_ArtReports()
+        },
 
         
 

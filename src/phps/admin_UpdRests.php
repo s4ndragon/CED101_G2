@@ -6,25 +6,31 @@ try {
     $content = trim(file_get_contents("php://input")); 
     $decoded = json_decode($content, true);
 
-    // $add_no = $decoded["add_no"]; //php叫物件內屬性的寫法
-    $add_NAME = $decoded["add_NAME"];
-    $add_INFO = $decoded["add_INFO"];
-    $add_PRICE = $decoded["add_PRICE"];
+    //php叫物件內屬性的寫法
+    $RESTAURANT_ID = $decoded["RESTAURANT_ID"]; 
+    $RESTAURANT_NAME = $decoded["RESTAURANT_NAME"];
+    $RESTAURANT_INFRO = $decoded["RESTAURANT_INFRO"];
+    $RESTAURANT_STATUS = $decoded["RESTAURANT_STATUS"];
+    
+
   
     //接到之後要做的SQL指令
     //:後面+名字會變成一個變數 ->Php 寫sql的時候的寫法
-    $sql = "insert into product (NAME,INFO,PRICE)
-                values(:add_NAME,:add_INFO,:add_PRICE)
+    $sql = "update restaurant  
+            set RESTAURANT_NAME=:RESTAURANT_NAME, RESTAURANT_INFRO=:RESTAURANT_INFRO ,
+                RESTAURANT_STATUS= :RESTAURANT_STATUS
+            where RESTAURANT_ID=:RESTAURANT_ID
             ";
 
     // $grouporddata = $pdo->query($sql);
     $per_ord_data = $pdo->prepare($sql);
 
     //把接到的資料寫進SQL (要先經過PHP轉譯 所以不能直接寫入SQL指令內)
-    $per_ord_data->bindValue(":add_NAME", $add_NAME);
-    $per_ord_data->bindValue(":add_INFO", $add_INFO);
-    $per_ord_data->bindValue(":add_PRICE", $add_PRICE);
-
+    $per_ord_data->bindValue(":RESTAURANT_ID", $RESTAURANT_ID);
+    $per_ord_data->bindValue(":RESTAURANT_NAME", $RESTAURANT_NAME);
+    $per_ord_data->bindValue(":RESTAURANT_INFRO", $RESTAURANT_INFRO);
+    $per_ord_data->bindValue(":RESTAURANT_STATUS", $RESTAURANT_STATUS);
+    
 
     $per_ord_data->execute();
 
@@ -36,7 +42,7 @@ try {
     // } else { //找得到
     //     //取回一筆資料
     //     $per_ord_datarow = $per_ord_data->fetchAll(PDO::FETCH_ASSOC);
-
+       
     //     //送出json字串
     //     echo json_encode($per_ord_datarow);
     //     // echo $managerdatarow;
