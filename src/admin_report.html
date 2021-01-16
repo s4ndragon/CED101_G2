@@ -72,8 +72,10 @@
                         <div class="tab tab1 -on">
                             茶園留言的檢舉管理
                             <form>
-                                <input type="text" placeholder="請輸入茶園留言檢舉編號" />
-                                <button class="btn-confirm" type="button">送出</button>
+                                <input type="text" v-model="gardMsgId" placeholder="欲查詢請輸入茶園留言檢舉編號" />
+                                <button id="g1" class="btn-confirm" type="button" @click="query_gardMsg_id">
+                                    送出查詢
+                                </button>
                             </form>
                             <table>
                                 <thead>
@@ -113,8 +115,8 @@
                         <div class="tab tab2">
                             討論區留言管理
                             <form>
-                                <input type="text" placeholder="請輸入文章留言編號" />
-                                <button class="btn-confirm" type="button">送出</button>
+                                <input type="text" v-model="DissMsgId" placeholder="欲查詢請輸入文章留言編號" />
+                                <button class="btn-confirm" type="button" @click="query_DissMsg_id">送出查詢</button>
                             </form>
                             <table>
                                 <tr>
@@ -153,8 +155,8 @@
                         <div class="tab tab3">
                             討論區文章檢舉管理
                             <form>
-                                <input type="text" placeholder="請輸入文章檢舉編號" />
-                                <button class="btn-confirm" type="button">送出</button>
+                                <input type="text" v-model="DissArtId" placeholder="欲查詢請輸入文章檢舉編號" />
+                                <button class="btn-confirm" type="button" @click="query_DissArt_id">送出查詢</button>
                             </form>
                             <table>
                                 <tr>
@@ -195,15 +197,8 @@
         </main>
 
         <script>
-            // $(function () {
-            //     $('ul.nav_list li a').on('click', function (e) {
-            //         // alert('good')
-            //         e.preventDefault()
-            //         $('.tab_container').removeClass('-on')
-            //         $('.tab_container.' + $(this).attr('data-target')).addClass('-on')
-            //     })
-            // })
-
+            let g1 = document.querySelector('#g1')
+            let gg1 = g1.value
             //tab
             $(function () {
                 $('a.tab').on('click', function (e) {

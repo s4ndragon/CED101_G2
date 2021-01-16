@@ -15,7 +15,6 @@
 </head>
 
 <body>
-    @@include('layout/leaf.html')
     @@include('layout/nav.html')
     <div class="banner">
         <p class="fir">茶園排行</p>
@@ -98,6 +97,8 @@
                                @close-box="closeModal(i)"
                                @send-repo="sendReport(i)">
             </comment-component>
+            <!--       留言+檢舉燈箱結束        -->
+            <div class="empty" v-show="msgRows.length==0">此文章尚無留言，歡迎留言。</div>
 
 
         </div>
@@ -106,11 +107,11 @@
             <div class="input_container">
                 <h3>新增留言</h3>
                 <div class="create_command_container">
-                    <textarea class="create_command"></textarea>
+                    <textarea id="content" class="create_command"></textarea>
                     <div class="com_btn_countainer">
-                        <button class="inner_btn">
-                            <a href="03_discuss.html">送出</a>
-                        </button>
+                        <div class="inner_btn">
+                            <a href="#">送出</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -209,21 +210,21 @@
                                         <p class="welcome">請選取檢舉理由</p>
                                         <p>留言編號: {{msgNo}}</p>
                                     <form>
-                                        <label>
-                                            <input class="reason" type="radio" name="size" value="惡意中傷">惡意中傷
-                                        </label>
+                                        
+                                            <input class="reason" type="radio" name="option" value="惡意中傷">惡意中傷
+                                        
                                         <br>
-                                        <label>
-                                            <input class="reason" type="radio" name="size" value="散布廣告">散布廣告
-                                        </label>
+                                        
+                                            <input class="reason" type="radio" name="option" value="散布廣告">散布廣告
+                                        
                                         <br>
-                                        <label>
-                                            <input class="reason" type="radio" name="size" value="色情資訊">色情資訊
-                                        </label>
+                                        
+                                            <input class="reason" type="radio" name="option" value="色情資訊">色情資訊
+                                        
                                         <br>
-                                        <label> 
-                                            <input class="reason" type="radio" name="size" value="不雅字眼">不雅字眼
-                                        </label>
+                                        
+                                            <input class="reason" type="radio" name="option" value="不雅字眼">不雅字眼
+                                        
                                         <div @click="sendRepo_son" class="go" type="submit">送出</div>
                                     </form>
                                 </div>
@@ -299,6 +300,8 @@
                 sendScore(){
                     if(this.today == this.pastDate[0].VOTE_DATE){
                         alert('一天只能投一次票喔!')
+                        this.lightbox = false
+                        this.rating = '您尚未評分'
                     }else{
                         let xhr = new XMLHttpRequest();
                         xhr.onload = function(){
@@ -337,6 +340,7 @@
                                 app.pastDate = app.dataRows[1];
                                 app.tourRows = app.dataRows[2];
                                 app.msgRows = app.dataRows[3];
+
                             }else{
                                 alert(xhr.status);
                             }
@@ -361,7 +365,23 @@
                 },
 
                 sendReport(i){
-                    
+                    let xhr = new XMLHttpRequest();
+                    // console.log(this.msgRows[i].MSG_NO)
+                    // console.log(document.querySelector('input[name="option"]:checked').value)
+                        xhr.onload = function(){
+                            if(xhr.status == 200){ //success
+                                let modal = document.querySelectorAll('.modal_wrapper');
+                                modal[i].style.display = 'none';
+                                alert('檢舉成功')
+                            }else{
+                                alert(xhr.status);
+                            }
+                        }
+                        xhr.open("post", "./phps/send_report.php", true);
+                        xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+                        //送出資料
+                        let data_info = `MSG_NO=${this.msgRows[i].MSG_NO}&MSG_REP_CONTENT=${document.querySelector('input[name="option"]:checked').value}`;
+                        xhr.send(data_info);
                 }
 
             },

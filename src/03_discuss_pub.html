@@ -7,6 +7,8 @@
     <link rel="shortcut icon" href="./images/index/webIcon.png" type="image/x-icon" />
     <link rel="stylesheet" href="css/discuss.css" />
     <title>討論區</title>
+    <!-- vue  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.js"></script>
 </head>
 
 
@@ -33,11 +35,12 @@
                     　<option value="茶知識">茶知識</option>
                 </select>
             </div>
-            <label class="input_type">文章標題：</label>
+            <label class="input_type" maxlength="15">文章標題：</label>
             <input type="text" name="title">
             <div class="pub_input_container">
                 <label class="input_type">文章內文：</label>
-                <textarea class="article_input" name="content"></textarea>
+                <textarea class="article_input" name="content" maxlength="500" v-model="tex" @input="all"></textarea>
+                <div style="text-align: right;">剩餘字數：{{leftword}}</div>
             </div>
             <div class="btn_countainer">
                 <button class="btn">
@@ -54,6 +57,20 @@
     @@include('layout/footer.html')
 
     <script>
+
+        var app = new Vue({
+            el: ".pub_back",
+            data: {
+                leftword: 500,
+                tex: "",
+            },
+            methods: {
+                all: function () {
+                    this.leftword = 500 - this.tex.length;
+                },
+            },
+        });
+
         let upload = document.getElementById("upimg");
         upload.addEventListener("change", hand, false);
         function hand() {
