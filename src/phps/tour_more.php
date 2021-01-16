@@ -20,7 +20,7 @@ try{
 <?php 
  
 try {
-	require_once("./connectBooks.php");
+	require_once("./connect.php");
 	$sql = "select * from TOUR join GARDEN on TOUR.GARD_ID = GARDEN.GARD_ID where TOUR_ID = :TOUR_ID";
 	$tour = $pdo->prepare($sql);
 	$tour->bindValue(":TOUR_ID", $_POST["TOUR_ID"]);
