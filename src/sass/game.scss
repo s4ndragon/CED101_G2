@@ -40,19 +40,7 @@
   transition:.2s;        /* 點選放大時候的漸變時間 */
 }
 }
-.setpanel{
-    position: absolute;
-    background: url("../images/game/13868995569383.png");
-    background-size: contain;
-    background-repeat: no-repeat;
-    top:calc(50% - 230px);
-    left:calc(50% - 290px);
-    width: 590px;
-    height:455px;
-    opacity: 0;
-    z-index: -1;
-    transition: opacity 1s;
-}
+
 .bglightbox{
     position: absolute;/* 不能用rerative 會佔位，落葉飄不下來*/
     top: 0;
@@ -66,13 +54,7 @@
     z-index: -1;
     transition: opacity 1s;
 }
-.setpanel-x{
-    cursor: pointer;
-    right: calc(2% - 1px);
-    top: calc(6% - 2px);
-    width: 30px;
-    height: 30px;
-}
+
 .panelinner{
     width: 500px;
     height: 220px;
@@ -130,13 +112,6 @@
         outline: rgb(238, 204, 153);
 
     }
-}
-.config{
-    background-image: url("../images/game/config.png");
-    background-repeat: no-repeat;
-    background-size: contain;
-    width:50px;
-    height:50px;
 }
 .banner {
     @include banner;

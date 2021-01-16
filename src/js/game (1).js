@@ -40,7 +40,7 @@ var star = 25,
   init_walk,
   init_Bullet,
   init_shot,
-  ballimg=['./images/game/6.gif'];
+  ballimg=['https://tibamef2e.com/ced101/project/g2/images/game/6.gif'];
 var sp_,
   time_b_,
   bb__,
@@ -102,7 +102,7 @@ function setStar(n) {
 function createworm(damage, defense, hp, speed) {
   var img = document.createElement("img");
   img.className = 'createWorm';
-  img.src = '../dist/images/game/worm-preview.gif';
+  img.src = 'https://tibamef2e.com/ced101/project/g2/images/game/worm-preview.gif';
   img.dataset.damage = damage;
   img.dataset.defense = defense;
   img.dataset.speed = speed;
@@ -138,7 +138,7 @@ function sp(){				//創建一个img標籤
         //给img標籤賦值上我们寫的star class
         img.className = "star";
         //將圖片地址賦值给src
-        img.src = "./images/game/leaf.gif";
+        img.src = "https://tibamef2e.com/ced101/project/g2/images/game/leaf.gif";
         map.appendChild(img);
         //随機生成img的水平位置 而且不能超出地圖
         img.style.left = Math.random() * (map.offsetWidth - img.offsetWidth) + 'px';
@@ -146,7 +146,7 @@ function sp(){				//創建一个img標籤
         // leaf_i++;
 
         leaf[leaf.length]=setInterval(function(){
-          let objs = document.querySelectorAll('img[src="./images/game/leaf.gif"]');
+          let objs = document.querySelectorAll('img[src="https://tibamef2e.com/ced101/project/g2/images/game/leaf.gif"]');
           for(var img of objs){
             img.style.top = img.offsetTop + 2 + "px";        //
               if(img.offsetTop >= map.offsetHeight - img.offsetHeight) {
@@ -188,7 +188,7 @@ function bb_(){
                */
               if(bullet[i].offsetLeft - wormArr[j].offsetLeft - wormArr[j].offsetWidth < 5) {
                 //計算傷害
-                calcDamage(wormArr[j], bullet[i], '../dist/images/game/11.gif');
+                calcDamage(wormArr[j], bullet[i], 'https://tibamef2e.com/ced101/project/g2/images/game/11-2.gif ');
                 //受傷狀態的
                 wormState(j, wormArr[j], wormArr);
                 //从地圖中删除
@@ -268,9 +268,9 @@ function plantState(index, plant, plantArr) {
   console.log(plant.dataset.hps);
   if(plant.dataset.hps * 0.5 > 　parseInt(plant.dataset.hp)) {
     if(parseInt(plant.dataset.damage) !== 0) {
-      plant.src = '../dist/images/game/5.png';
+      plant.src = './images/game/5.png';
     } else {
-      plant.src = '../dist/images/game/Wallnut_cracked2.png';
+      plant.src = './images/game/Wallnut_cracked2.png';
     }
     kill(index,plant,plantArr);
   }
@@ -280,7 +280,7 @@ function wormState(index, worm, wormArr) {
   //受傷啦 上绷带
   console.log(parseInt(worm.dataset.hp));
   if(worm.dataset.HP * 0.5 > 　parseInt(worm.dataset.hp)) {
-    worm.src = '../dist/images/game/11-2.gif';
+    worm.src = 'https://tibamef2e.com/ced101/project/g2/images/game/11-2.gif';
     kill(index,worm,wormArr);
   }
 }
@@ -312,7 +312,7 @@ $('#teatxt-bar1').on('click', function () {
       $("div.tea_en").removeClass("-on -opacity-zero");
     }, 1000); // 關閉 Modal
 })
-$('div.config').on('click', function () {
+$('#config').on('click', function () {
   $('div.setpanel').addClass('-on');
 });
 function volume(vol) {
