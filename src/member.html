@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="shortcut icon" href="./images/index/webIcon.png" type="image/x-icon" />
+        <link rel="stylesheet" href="./css/membership.css" />
+        <!-- <script src="../node_modules/jquery/dist/jquery.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script> -->
+        <!-- <script src="./js/membership.js"></script> -->
+        <title>會員系統</title>
+    </head>
+    <body>
+        <div id="app">
+            @@include('layout/nav.html')
+            <div class="banner">
+                <h1>會員中心</h1>
+                <!-- <h2>歡迎回來</h2> -->
+            </div>
+            <main>
+                <!-- 側邊欄 -->
+                <div class="card" v-for="memRow in memRows">
+                    <div class="card-body">
+                        <div class="profile-pic">
+                            <img id="MEM_IMG" class="rounded-circle" :src="memRow.MEM_IMG" />
+                        </div>
+                        <h2 id="MEM_NICKNAME">{{memRow.MEM_NICNAME}}</h2>
+                        <h6 id="MEM_ID" class="memId">@{{memRow.MEM_ID}}</h6>
+                        <!-- <input type="text" class="input-profile" name="profile" value="熱愛程式及茶園的男子"> -->
+                        <button class="mine_profile" @click="content = 'mine_profile'">個人資料</button>
+                    </div>
+                </div>
+                <input type="file" id="profile_pic_input" name="profile_pic_input" accept="image/*" />
+                <!-- 主要內容 -->
+                <div id="main_container">
+                    <!-- 主要內容的選單列 -->
+                    <div id="sub_menu">
+                        <h3 class="tour bg-color">揪團管理</h3>
+                        <h3 class="mine_fav select-color">我的收藏</h3>
+                        <h3 class="mine_order select-color">訂單查詢</h3>
+                        <h3 class="mine_article select-color">我的文章</h3>
+                        <h3 class="mine_profile select-color">個人資料</h3>
+                    </div>
+                    <!-- 揪團管理 -->
+                    <div id="tour">
+                        <div id="mine_tour">
+                            <h3>我主揪</h3>
+                            <div id="mine_on_going">
+                                <h4>揪團中的團</h4>
+                                <div class="tour_detail" v-for="memTour in memTours">
+                                    <div class="tour_title">{{memTour.TOUR_TITLE}}</div>
+                                    <div class="arrow down"></div>
+                                    <div class="tour_date">{{memTour.TOUR_SETOFFTIME}}</div>
+                                    <div class="tour_attendency">
+                                        人數：<span class="attend attend_1">{{memTour.NUM_OF_PARTICIPANTS}}</span
+                                        >／<span class="require require_1">{{memTour.TOUR_PEOPLE}}</span>
+                                    </div>
+                                    <div class="tour_status_bar">
+                                        <div class="tour_status">未成團</div>
+                                        <div class="tour_join" @click="cancel">取消</div>
+                                        <div class="tour_check">
+                                            <a href="">查看</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="mine_out_of_date">
+                                <h4>過往的揪團</h4>
+                                <div class="tour_detail outdated">
+                                    <div class="tour_title">11月例行揪團</div>
+                                    <div class="arrow down"></div>
+                                    <div class="tour_date">2020/11/20</div>
+                                    <div class="tour_attendency">
+                                        人數：<span class="attend attend_1">10</span>／<span class="require require_1"
+                                            >10</span
+                                        >
+                                    </div>
+                                    <div class="tour_status_bar">
+                                        <div class="tour_status">已過期</div>
+                                        <div class="tour_join"></div>
+                                        <div class="tour_check">查看</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="mine_cancel">
+                                <h4>取消的揪團</h4>
+                                <div class="tour_detail outdated">
+                                    <div class="tour_title">10月例行揪團</div>
+                                    <div class="arrow down"></div>
+                                    <div class="tour_date">2020/10/20</div>
+                                    <div class="tour_attendency" @click="lightboxAttendency = true">
+                                        人數：<span class="attend attend_1">10</span>／<span class="require require_1"
+                                            >10</span
+                                        >
+                                    </div>
+                                    <div class="tour_status_bar">
+                                        <div class="tour_status">已取消</div>
+                                        <div class="tour_join"></div>
+                                        <div class="tour_check">查看</div>
+                                        <div class="arrow down"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="i_join">
+                            <h3>我參加</h3>
+                            <div id="join_on_going">
+                                <h4>揪團中的團</h4>
+                                <div class="tour_detail">
+                                    <div class="tour_title">跨年茶園之旅</div>
+                                    <div class="arrow down"></div>
+                                    <div class="tour_date">2020/12/31</div>
+                                    <div class="tour_attendency">
+                                        人數：<span class="attend attend_1">15</span>／<span class="require require_1"
+                                            >30</span
+                                        >
+                                    </div>
+                                    <div class="tour_status_bar">
+                                        <div class="tour_status">未成團</div>
+                                        <div class="tour_join">退出</div>
+                                        <div class="tour_check">查看</div>
+                                        <div class="arrow down"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="join_out_of_date">
+                                <h4>過往的揪團</h4>
+                                <div class="tour_detail outdated">
+                                    <div class="tour_title">11月例行揪團</div>
+                                    <div class="arrow down"></div>
+                                    <div class="tour_date">2020/11/20</div>
+                                    <div class="tour_attendency">
+                                        人數：<span class="attend attend_1">10</span>／<span class="require require_1"
+                                            >10</span
+                                        >
+                                    </div>
+                                    <div class="tour_status_bar">
+                                        <div class="tour_status">已過期</div>
+                                        <div class="tour_join"></div>
+                                        <div class="tour_check">查看</div>
+                                        <div class="arrow down"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="join_cancel">
+                                <h4>取消的揪團</h4>
+                                <div class="tour_detail outdated">
+                                    <div class="tour_title">10月例行揪團</div>
+                                    <div class="arrow down"></div>
+                                    <div class="tour_date">2020/10/20</div>
+                                    <div class="tour_attendency">
+                                        人數：<span class="attend attend_1">10</span>／<span class="require require_1"
+                                            >10</span
+                                        >
+                                    </div>
+                                    <div class="tour_status_bar">
+                                        <div class="tour_status">已取消</div>
+                                        <div class="tour_join"></div>
+                                        <div class="tour_check">查看</div>
+                                        <div class="arrow down"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="join_quit">
+                                <h4>退出的揪團</h4>
+                                <div class="tour_detail outdated">
+                                    <div class="tour_title">1月例行揪團</div>
+                                    <div class="arrow down"></div>
+                                    <div class="tour_date">2020/1/20</div>
+                                    <div class="tour_attendency">
+                                        人數：<span class="attend attend_1">10</span>／<span class="require require_1"
+                                            >10</span
+                                        >
+                                    </div>
+                                    <div class="tour_status_bar">
+                                        <div class="tour_status">已退出</div>
+                                        <div class="tour_join"></div>
+                                        <div class="tour_check">查看</div>
+                                        <div class="arrow down"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 收藏管理 -->
+                    <div id="mine_fav">
+                        <!-- 收藏管理選單列 -->
+                        <div id="mine_fav_bar">
+                            <h4 class="fav_tour colored">揪團</h4>
+                            <h4 class="fav_article unselected">文章</h4>
+                            <h4 class="fav_product unselected">商品</h4>
+                        </div>
+                        <!-- 收藏管理主內容 -->
+                        <div id="fav_container">
+                            <!-- 收藏的揪團 -->
+                            <div id="fav_tour">
+                                <div id="tour_list" class="fav_content">
+                                    <div class="blog_container tour_blog">
+                                        <img src="./images/tour/tour1.jpg" />
+                                        <div class="heart">
+                                            <img class="like" src="./images/common/like.png" title="加入收藏" alt="" />
+                                        </div>
+                                        <div class="blog_content_container">
+                                            <div class="blog_title">跨年茶園之旅</div>
+                                            <div class="blog_content">一年一度的跨年活動絕對不能錯過</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 收藏的文章 -->
+                            <div id="fav_article">
+                                <div id="article_list" class="fav_content">
+                                    <div class="blog_container article_blog">
+                                        <img src="./images/tour/tour1.jpg" alt="" />
+                                        <div class="heart">
+                                            <img class="like" src="./images/common/like.png" title="加入收藏" alt="" />
+                                        </div>
+                                        <div class="blog_content">
+                                            <div class="blog_title">高海拔茶園全攻略！</div>
+                                            <div class="blog_content">網羅全台必去高海拔茶園都在這一篇</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 收藏的商品 -->
+                            <div id="fav_product">
+                                <div id="product_list" class="fav_content">
+                                    <div class="blog_container product_blog">
+                                        <img src="./images/tour/tour1.jpg" alt="" />
+                                        <div class="heart">
+                                            <img class="like" src="./images/common/like.png" title="加入收藏" alt="" />
+                                        </div>
+                                        <div class="blog_content">
+                                            <div class="blog_title">斗笠</div>
+                                            <div class="blog_content">2020最佳出遊道具，過了這個村，沒了那個店</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 訂單管理 -->
+                            <div id="mine_order">
+                                <div id="list">
+                                    <div id="list_title">
+                                        <h5 id="order_no">訂單編號</h5>
+                                        <h5 id="order_status">訂單狀態</h5>
+                                        <h5 id="order_payment">付款方式</h5>
+                                        <h5 id="order_total">訂單金額</h5>
+                                        <h5 id="order_date">下單時間</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 我的文章 -->
+                            <div id="mine_article">
+                                <div class="article_brief" id="article_brief">
+                                    <div class="article_detail">
+                                        <div class="article_title">林家茶園心得</div>
+                                        <div class="article_date">2020/11/25</div>
+                                        <div class="article_status_bar">
+                                            <!-- <div class="article_status">分享</div> -->
+                                            <div class="article_join">查看</div>
+                                            <div class="article_check">刪除</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 個人資料 -->
+                            <div id="mine_profile">
+                                <form action="./php/member.php" id="profile" method="POST">
+                                    <div class="field-wrap">
+                                        <label for="MEM_NICKNAME">暱稱</label>
+                                        <input type="text" name="MEM_NICKNAME" class="my_name">
+                                    </div>
+                                    <div class="field-wrap">
+                                        <label for="MEM_EMAIL">電子信箱</label>
+                                        <input type="email" name="MEM_EMAIL" class="email">
+                                    </div>            
+                                    <div class="field-wrap">
+                                        <label for="MEM_ID">帳號</label>
+                                        <input type="text" name="MEM_ID" class="my_id">
+                                    </div>
+                                    <div class="field-wrap">
+                                        <label for="MEM_PW">舊密碼</label>
+                                        <input type="password" name="MEM_PW" class="pass_password" />
+                                    </div>
+                                    <div class="field-wrap">
+                                        <label for="new_password">新密碼</label>
+                                        <input type="password" name="new_password" class="new_password" />
+                                    </div>
+                                    <div class="field-wrap">
+                                        <label for="confirm_new_password">確認新密碼</label>
+                                        <input type="text" name="confirm_new_pw" class="confirm_new_pw" />
+                                    </div>
+                                    <div class="btn_sent">
+                                        <button type="submit" class="button"/>送出</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+            <!-- 人數燈箱 -->
+            <!-- <component :is="lightbox"></component> -->
+            <!-- <div class="bgd"  v-if="lightboxAttendency" @click="lightboxAttendency = true"> </div> -->
+            <div id="num_attendency" v-if="lightboxAttendency">
+                <div class="close" @click="lightboxAttendency = false"></div>
+                <div class="num_1 group">
+                    <div id="num_1_icon" class="icon">
+                        <img src="./images/member/new_member.jpg" />
+                    </div>
+                    <div id="num_1_id" class="id">s4ndragon</div>
+                </div>
+                <div class="num_2 group">
+                    <div id="num_2_icon" class="icon">
+                        <img src="./images/member/new_member.jpg" />
+                    </div>
+                    <div id="num_2_id" class="id">wan</div>
+                </div>
+                <div class="num_3 group">
+                    <div id="num_3_icon" class="icon">
+                        <img src="./images/member/new_member.jpg" />
+                    </div>
+                    <div id="num_3_id" class="id">Tingting</div>
+                </div>
+                <div class="num_4 group">
+                    <div id="num_4_icon" class="icon">
+                        <img src="./images/member/new_member.jpg" />
+                    </div>
+                    <div id="num_4_id" class="id">guan</div>
+                </div>
+                <div class="num_5 group">
+                    <div id="num_5_icon" class="icon">
+                        <img src="./images/member/new_member.jpg" />
+                    </div>
+                    <div id="num_5_id" class="id">chieh</div>
+                </div>
+            </div>
+
+            <!-- 刪除燈箱 -->
+            <div id="delete_confirm">
+                是否確認刪除？
+                <div class="btn">
+                    <input type="button" id="btn_confirm" value="確認" />
+                    <input type="button" id="btn_cancel" value="取消" />
+                </div>
+            </div>
+            <!-- 取消收藏燈箱 -->
+            <div id="cancel_confirm">
+                是否確認刪除？
+                <div class="btn">
+                    <input type="button" id="cancel_confirm_btn" value="確認" />
+                    <input type="button" id="recall_cancel" value="取消" />
+                </div>
+            </div>
+            <!-- @@include('layout/login_register.html')  -->
+        </div>
+        <!-- @@include('layout/member_main.html')  -->
+        @@include('layout/footer.html')
+        <!-- </div> -->
+        <script src="../node_modules/jquery/dist/jquery.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+        <!-- <script src="./js/membership_vue.js"></script> -->
+
+        <!-- vue相關 -->
+        <script src="./js/member_vue.js"></script>
+        <!-- login  -->
+        <!-- <script src="./js/member_login_register.js"></script> -->
+        <!-- <script src="./js/login.js"></script> -->
+    </body>
+</html>

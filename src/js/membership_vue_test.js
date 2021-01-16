@@ -6,7 +6,7 @@ xhr.onload = function () {
     app.memRows = JSON.parse(xhr.responseText);
     console.log(app.memRows);
 };
-xhr.open("get", "./php/member.php", true);
+xhr.open("get", "./phps/member.php", true);
 xhr.send(null);
 
 //========== content ==========//
