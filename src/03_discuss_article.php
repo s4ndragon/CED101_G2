@@ -22,7 +22,7 @@ try {
     <link rel="stylesheet" href="css/discuss.css" />
     <title>討論區</title>
     <!-- vue  -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.js"></script>
+    <script src="./js/vue.js"></script>
 </head>
 
 <body>
