@@ -9,8 +9,26 @@
         <link rel="stylesheet" href="./css/game.css" />
         <link rel="stylesheet" href="./css/flex.css" />
         <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.js"></script> -->
-        
-        <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+                <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+        <style>
+            #sound{
+            -webkit-appearance: none;
+            width: 100px;
+            height: 7px;
+            outline : brown;
+            border:2px solid brown;      /* 避免點選會有藍線或虛線 */
+            background:rgb(121, 97, 61);
+        }
+        #sound::-webkit-slider-thumb{
+            -webkit-appearance: none;
+            position: relative;    /* 設為相對位置，為了前後區塊的絕對位置而設定 */
+            width:10px;
+            height:10px;
+            background:#f22;
+            transition:.2s;        /* 點選放大時候的漸變時間 */
+        }
+        </style>
     </head>
     <body>
         @@include('layout/nav.html')
@@ -60,6 +78,25 @@
                             </div>
                         </article>
                     </section>
+                </div>
+                <div class="setpanel">
+                    <div class="absolute circle setpanel-x"  onclick="config()"></div>
+                    <div class="panelinner absolute" >
+                        <div>
+                            <label for="" class="white">遊戲音樂：<input type="range"class="rangecostom" max="1" min="0" step="0.01" value="1" id="volume" oninput="volume(this)"></label>
+                        </div>
+                        <div>
+                            <label for="" class="white">遊戲音效：<input type="range"class="rangecostom" max="1" min="0" step="0.01" value="1" id="sound" oninput="sou(this)"></label>
+                        </div>
+                        <div class="white flex">
+                            <p>子彈樣式：</p>
+                            <input type="radio" name="ball"value="./images/game/6.gif" onclick="ballstyle(this)" id="greenball" checked>
+                            <input type="radio" name="ball"value="./images/game/7.gif" onclick="ballstyle(this)" id="frieball">
+                        </div>
+                        <div>
+                            <p class="white">聯絡我們：postintw@gmail.com</p>
+                        </div>
+                    </div>
                 </div>
                 <div class="gameover bglightbox">
                     <article>
@@ -167,7 +204,7 @@
                 </ul>
                 <section id="botbar" class="flex">
                     <div class="flex a_c j_c">
-
+                        <div class="config" ></div>
                     </div>
                     <div class="pad10 y-flex a_c">
                         <span style="color: #000; font-size: 20px;white-space:nowrap;">計分</span>
@@ -206,6 +243,9 @@
 				<span>25</span>`;
                 document.getElementById('props').appendChild(li);
                });         
+               function sou(vol) {
+                bomb.volume = vol.value;
+                }
         </script>
         <!--<script src="./js/game.js"></script> -->
         @@include('layout/footer.html')
