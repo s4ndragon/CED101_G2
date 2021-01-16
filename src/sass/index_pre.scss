@@ -1,23 +1,166 @@
-@import './default/common';
+// @import './default/common';
 
-body {
-    height: 100%;
-    /* max-height: 600px; */
-    width: 1000px;
-    background-color: #faaf41;
-    background-image: url('../images/index/test.png');
-    // url('https://78.media.tumblr.com/66445d34fe560351d474af69ef3f2fb0/tumblr_p7n908E1Jb1uy4lhuo1_1280.png'),
-    // url('https://78.media.tumblr.com/8cd0a12b7d9d5ba2c7d26f42c25de99f/tumblr_p7n8kqHMuD1uy4lhuo2_1280.png'),
-    // url('https://78.media.tumblr.com/5ecb41b654f4e8878f59445b948ede50/tumblr_p7n8on19cV1uy4lhuo1_1280.png'),
-    // url('https://78.media.tumblr.com/28bd9a2522fbf8981d680317ccbf4282/tumblr_p7n8kqHMuD1uy4lhuo3_1280.png');
-    background-repeat: repeat-x;
-    background-position: 0 20%, 0 100%, 0 50%, 0 100%, 0 0;
-    background-size: 2500px, 800px, 500px 200px, 1000px, 400px 260px;
-    animation: 50s para infinite linear;
-}
+html {
+    background-color: #25504f !important;
+    margin: 0;
+    padding: 0;
+    font-family: 'Noto Sans TC';
+    img {
+        max-width: 100%;
+    }
 
-@keyframes para {
-    100% {
-        background-position: -5000px 20%, -800px 95%, 500px 50%, 1000px 100%, 400px 0;
+    .main {
+        height: 100vh;
+        .circle {
+            width: 600px;
+            height: 600px;
+            // padding-top: 100%;
+            border-radius: 50%;
+            // background-color: #faaf41;
+            background-color: #e3be80;
+            border: 1px solid white;
+            margin: auto;
+        }
+
+        .logo {
+            text-align: center;
+            transform: translateY(-340%);
+            img {
+                width: 20% !important;
+            }
+        }
+
+        // .circle {
+        //     transform-origin: center;
+        //     animation: vanish 4s linear, zoom1 4s cubic-bezier(0.65, 0, 0.35, 1); //easeInOutCubic
+        // }
+        .cups {
+            width: 90%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transform: translate(4.5%, -150%);
+
+            .cup_left {
+                width: 30%;
+                transform: rotate(10deg);
+                position: relative;
+
+                .front {
+                    position: absolute;
+                    right: 34.9%;
+                    font-size: 36px;
+
+                    a {
+                        color: #fff;
+                        text-decoration: none;
+                    }
+                }
+            }
+
+            .cup_right {
+                width: 30%;
+                transform: rotate(-10deg);
+                position: relative;
+
+                .back {
+                    position: absolute;
+                    right: 34.9%;
+                    font-size: 36px;
+
+                    a {
+                        color: #fff;
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
+    }
+
+    @keyframes zoom1 {
+        from {
+            transform: scale(1);
+        }
+        to {
+            transform: scale(30);
+        }
+    }
+    @keyframes zoom2 {
+        from {
+            transform: scale(1);
+        }
+        to {
+            transform: scale(21.25);
+        }
+    }
+
+    @keyframes slide {
+        0%,
+        20% {
+            transform: translateY(0%);
+        }
+        50%,
+        100% {
+            transform: translateY(-10%);
+        }
+    }
+    @keyframes vanish {
+        0%,
+        40% {
+            opacity: 1;
+        }
+        55%,
+        100% {
+            opacity: 0;
+        }
+    }
+
+    @keyframes y2anim {
+        0%,
+        50% {
+            transform: translateX(15%);
+        }
+        100% {
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes sun2anim {
+        56% {
+            transform: translate(-10%, 5%);
+        }
+        100% {
+            transform: translate(0, 0);
+        }
+    }
+
+    @keyframes beach2anim {
+        0%,
+        45% {
+            transform: translateY(20%);
+        }
+        100% {
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes house2anim {
+        0%,
+        50% {
+            transform: translateY(30%) scale(0.4);
+        }
+        100% {
+            transform: translateY(0) scale(1);
+        }
+    }
+
+    @keyframes tree2anim {
+        0%,
+        55% {
+            transform: translateY(30%) scale(0.2);
+        }
+        100% {
+            transform: translateY(0) scale(1);
+        }
     }
 }
