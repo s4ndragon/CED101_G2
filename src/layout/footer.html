@@ -23,7 +23,7 @@
                     </div>
                     <p class="forgot"><a href="#">忘記密碼？</a></p>
                     <div class="btn_container">
-                        <button id="log-in" class="btn"/>登入</button>
+                        <button @click="log_in(log_mem_id, log_mem_pw)" id="log-in" class="btn"/>登入</button>
                         <button id="log-cancel" class="btn cancel"/>取消</button>
                     </div>
                 </form>
@@ -72,7 +72,7 @@
                         <input type="password"required autocomplete="off" id="re_memPw" name="re_memPw"/>
                     </div>
                     <div class="btn_container">
-                        <button type="submit" class="btn"/>註冊</button>
+                        <button  @click="admin_add" type="submit" class="btn"/>註冊</button>
                         <button id="reg-cancel" class="btn cancel"/>取消</button>
                     </div>
                 </form>

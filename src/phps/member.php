@@ -3,7 +3,7 @@ try {
     require_once("./connect.php");
     $MEM_ID = $_POST["MEM_ID"];
     $MEM_PW = $_POST["MEM_PW"];
-    $sql = "select * from member where MEM_ID = 'amin'";
+    $sql = "select * from member where MEM_ID = 'amin' and MEM_PW = '0000'";
     $member = $pdo->prepare($sql);
     $member->execute();
     $memRows = $member->fetchAll(PDO::FETCH_ASSOC);

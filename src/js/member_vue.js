@@ -4,7 +4,7 @@ let memRows;
 let xhr = new XMLHttpRequest();
 xhr.onload = function () {
     app.memRows = JSON.parse(xhr.responseText);
-    console.log(app.memRows);
+    // console.log(app.memRows);
 };
 xhr.open("get", "./phps/member.php", true);
 xhr.send(null);
@@ -174,36 +174,60 @@ Vue.component("mine_profile", {
 //         };
 //     },
 // };
-//========== lightbox ==========//
 
 var app = new Vue({
     el: "#app",
     data: {
         memRows: [],
-        memTours: "",
+        memTours: [],
         lightboxAttendency: false,
+    },
+    methods: {
+        get_mine_tour: async function () {
+            const res = await fetch("./phps/get_mine_tour.php", {
+                method: "POST",
+                mode: "same-origin",
+                credentials: "same-origin",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            }).then(function (data) {
+                return data.json();
+            });
+            console.log(res);
+            this.memTours = res;
+        },
     },
 });
 
 //==========  sub menu分頁  ==========//
-$(".tour").click(function () {
-    $(this).toggleClass("bg-color").toggleClass("select-color");
-    $(this).siblings().removeClass("bg-color").addClass("select-color");
-});
-$(".mine_fav").click(function () {
-    $(this).addClass("bg-color").removeClass("select-color");
-    $(this).siblings().removeClass("bg-color").addClass("select-color");
-});
-$(".mine_order").click(function () {
-    $(this).addClass("bg-color").removeClass("select-color");
-    $(this).siblings().removeClass("bg-color").addClass("select-color");
-});
-$(".mine_article").click(function () {
-    $(this).addClass("bg-color").removeClass("select-color");
-    $(this).siblings().removeClass("bg-color").addClass("select-color");
-});
-$(".mine_profile").click(function () {
-    $(this).addClass("bg-color").removeClass("select-color");
-    $(this).siblings().removeClass("bg-color").addClass("select-color");
-    $(this).parent().parent().siblings("#main_container").children("#sub_menu").children("h3").removeClass("bg-color");
+$(window).on("load", function () {
+    get_mine_tour();
+    $(".tour").click(function () {
+        $(this).toggleClass("bg-color").toggleClass("select-color");
+        $(this).siblings().removeClass("bg-color").addClass("select-color");
+    });
+    $(".mine_fav").click(function () {
+        $(this).addClass("bg-color").removeClass("select-color");
+        $(this).siblings().removeClass("bg-color").addClass("select-color");
+    });
+    $(".mine_order").click(function () {
+        $(this).addClass("bg-color").removeClass("select-color");
+        $(this).siblings().removeClass("bg-color").addClass("select-color");
+    });
+    $(".mine_article").click(function () {
+        $(this).addClass("bg-color").removeClass("select-color");
+        $(this).siblings().removeClass("bg-color").addClass("select-color");
+    });
+    $(".mine_profile").click(function () {
+        $(this).addClass("bg-color").removeClass("select-color");
+        $(this).siblings().removeClass("bg-color").addClass("select-color");
+        $(this)
+            .parent()
+            .parent()
+            .siblings("#main_container")
+            .children("#sub_menu")
+            .children("h3")
+            .removeClass("bg-color");
+    });
 });

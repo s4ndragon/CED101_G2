@@ -46,9 +46,9 @@
                     <div id="tour">
                         <div id="mine_tour">
                             <h3>我主揪</h3>
-                            <div id="mine_on_going">
+                            <div id="mine_on_going" v-for="memTour in memTours">
                                 <h4>揪團中的團</h4>
-                                <div class="tour_detail" v-for="memTour in memTours">
+                                <div class="tour_detail">
                                     <div class="tour_title">{{memTour.TOUR_TITLE}}</div>
                                     <div class="arrow down"></div>
                                     <div class="tour_date">{{memTour.TOUR_SETOFFTIME}}</div>
