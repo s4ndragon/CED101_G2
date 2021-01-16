@@ -37,7 +37,7 @@ h1#logo {
     position: absolute;
 }
 
-h1#logo > img {
+h1#logo>img {
     width: 100%;
 }
 
@@ -59,7 +59,7 @@ div.menu a {
     color: #17581e;
 }
 
-.menu-wrap .menu > div {
+.menu-wrap .menu>div {
     transition: all 1s ease;
 }
 
@@ -166,7 +166,7 @@ div.menu a {
         margin-top: 15px;
     }
 
-    .menu-wrap .hamburger > div {
+    .menu-wrap .hamburger>div {
         position: relative;
         flex: none;
         width: 100%;
@@ -178,8 +178,8 @@ div.menu a {
         background: white;
     }
 
-    .menu-wrap .hamburger > div::before,
-    .menu-wrap .hamburger > div::after {
+    .menu-wrap .hamburger>div::before,
+    .menu-wrap .hamburger>div::after {
         content: "";
         position: absolute;
         z-index: 1;
@@ -189,34 +189,34 @@ div.menu a {
         background: inherit;
     }
 
-    .menu-wrap .hamburger > div::after {
+    .menu-wrap .hamburger>div::after {
         top: 10px;
     }
 
-    .menu-wrap .toggler:checked + .hamburger > div {
+    .menu-wrap .toggler:checked+.hamburger>div {
         transform: rotate(135deg);
     }
 
-    .menu-wrap .toggler:checked + .hamburger > div:before,
-    .menu-wrap .toggler:checked + .hamburger > div:after {
+    .menu-wrap .toggler:checked+.hamburger>div:before,
+    .menu-wrap .toggler:checked+.hamburger>div:after {
         top: 0;
         transform: rotate(90deg);
     }
 
-    .menu-wrap .toggler:checked:hover + .hamburger > div {
+    .menu-wrap .toggler:checked:hover+.hamburger>div {
         transform: rotate(225deg);
     }
 
-    .menu-wrap .toggler:checked ~ .menu {
+    .menu-wrap .toggler:checked~.menu {
         visibility: visible;
     }
 
-    .menu-wrap .toggler:checked ~ .menu > div {
+    .menu-wrap .toggler:checked~.menu>div {
         transform: scale(1);
         transition-duration: 0.5s;
     }
 
-    .menu-wrap .toggler:checked ~ .menu > div > div {
+    .menu-wrap .toggler:checked~.menu>div>div {
         opacity: 1;
     }
 
@@ -234,7 +234,7 @@ div.menu a {
     }
 
     /* 控制漢堡打開樣式 */
-    .menu-wrap .menu > div {
+    .menu-wrap .menu>div {
         background-color: #afc9a0;
         border-radius: 50%;
         width: 100vw;
@@ -247,7 +247,7 @@ div.menu a {
         transition: all 0.5s ease;
     }
 
-    .menu-wrap .menu > div > div {
+    .menu-wrap .menu>div>div {
         text-align: center;
         max-width: 90vw;
         max-height: 100vh;
@@ -467,6 +467,10 @@ div.menu a {
 @media screen and (max-width: 900px) {
     #index_background {
         height: 50vh !important;
+    }
+
+    .nav_game {
+        display: none;
     }
 }
 

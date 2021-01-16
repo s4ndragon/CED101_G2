@@ -5,18 +5,10 @@ new Vue({
         products: '',
         Delprodus: '',
         orders: '',
-        //#1
         selecteddealState: '',
-        dealStates: ['未付款', '已付款', '未出貨', '已出貨'],
-        // #2
-        // selectSTATE:'',
-        // STAlists: [
-        // 	{val:"0",item:'未付款'},
-        // 	{val:"1",item:'已付款'},
-        // 	{val:"2",item:'未出貨'},
-        // 	{val:"3",item:'已出貨'},
-		// ],
-		ONSALE:"",
+        dealStates: ['0(未付款)', '1(已付款)', '2(未出貨)', '3(已出貨)'],
+        ONSALE: '',
+        psn:'',
     },
 
     methods: {
@@ -30,40 +22,11 @@ new Vue({
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                // body: JSON.stringify({
-                // 	add_no: this.add_no,
-                // 	add_id: this.add_id,
-                // 	add_name: this.add_name,
-                // 	add_psw: this.add_psw,
-
-                // }),
             }).then(function (data) {
                 return data.json()
             })
-            //完成後 重新撈取一次資料 把res回傳到members裡面
+            //完成後 重新撈取一次資料 把res回傳到products裡面
             this.products = res
-        },
-
-        get_Delprodus: async function () {
-            const res = await fetch('./phps/admin_GetDelProduts.php', {
-                method: 'POST',
-                mode: 'same-origin',
-                credentials: 'same-origin',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                // body: JSON.stringify({
-                // 	add_no: this.add_no,
-                // 	add_id: this.add_id,
-                // 	add_name: this.add_name,
-                // 	add_psw: this.add_psw,
-
-                // }),
-            }).then(function (data) {
-                return data.json()
-            })
-            //完成後 重新撈取一次資料 把res回傳到members裡面
-            this.Delprodus = res
         },
 
         get_orders: async function () {
@@ -74,17 +37,10 @@ new Vue({
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                // body: JSON.stringify({
-                // 	add_no: this.add_no,
-                // 	add_id: this.add_id,
-                // 	add_name: this.add_name,
-                // 	add_psw: this.add_psw,
-
-                // }),
             }).then(function (data) {
                 return data.json()
             })
-            //完成後 重新撈取一次資料 把res回傳到members裡面
+            //完成後 重新撈取一次資料 把res回傳到orders裡面
             this.orders = res
         },
 
@@ -125,30 +81,53 @@ new Vue({
             this.get_produs()
         },
 
-        // query_mem_id: async function (mem_id) {
-        // 	console.log(mem_id)
-
-        // 	const res = await fetch('./phps/admin_QueMembers.php', {
-        // 		method: 'POST',
-        // 		mode: 'same-origin',
-        // 		credentials: 'same-origin',
-        // 		headers: {
-        // 			'Content-Type': 'application/json',
-        // 		},
-        // 		body: JSON.stringify({
-        // 			mem_id: this.mem_id,
-        // 		}),
-        // 	}).then(function(data){
-        // 		return data.json()
-        // 	})
-        //   //重新撈取一次細項列表
-        // 	this.get_mems(this.mem_id)
-        // },
+        add_products(){
+            const res = await fetch('./phps/admin_InsertProds.php', {
+				method: 'POST',
+				mode: 'same-origin',
+				credentials: 'same-origin',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
+					//自動增號欄位無法新增 (無法新增psn)
+					add_NAME: this.add_NAME,
+					add_INFO: this.add_INFO,
+					add_PRICE: this.add_PRICE,
+				}),
+			})
+			//新增完後清空輸入的內容
+			this.add_NAME = this.add_INFO = this.add_PRICE =''
+			//重新撈取更新後的全部資料
+			this.get_produs()
+        },
+        
+        query_pro_psn: async function () {
+            console.log(this.psn)
+        
+            const res = await fetch('./phps/admin_QueProds.php', {
+                method: 'POST',
+                mode: 'same-origin',
+                credentials: 'same-origin',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    psn: this.psn,
+                }),
+            }).then(function(data){
+                return data.json()
+            })
+            this.products = res
+        
+            //查詢完後清空輸入的內容
+            this.psn =''
+        
+            },
     },
 
     created() {
         this.get_produs()
-        this.get_Delprodus()
         this.get_orders()
     },
 })
