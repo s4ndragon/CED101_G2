@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="css/discuss.css" />
     <title>找茶討論</title>
     <!-- jquery -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="./js/jquery-3.5.1.min.js"></script>
     <!-- vue  -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.js"></script>
+    <script src="./js/vue.js"></script>
 </head>
 
 <body>
@@ -192,7 +192,6 @@
                     lightbox.style.display = '';
                     this.artno = ART_NO;
                 },
-
             },
             mounted() {
                 let articlesRows;
@@ -204,26 +203,25 @@
                 }
                 xhr.open("get", "./phps/getArticles.php", true);
                 xhr.send(null);
+
+                // =====filter=====
+                $('.list').click(function () {
+                    let value = $(this).attr('data-filter');
+                    if (value == 'all') {
+                        $('.article').removeClass('fil_none');
+                    }
+                    else {
+                        $('.article').not('.' + value).addClass('fil_none');
+                        $('.article').filter('.' + value).removeClass('fil_none');
+                    }
+                });
+
+                // ======filter change
+                $('.list').click(function () {
+                    $(this).addClass('fit');
+                    $('.list').not(this).removeClass('fit');
+                });
             },
-
-        });
-
-        // =====filter=====
-        $('.list').click(function () {
-            let value = $(this).attr('data-filter');
-            if (value == 'all') {
-                $('.article').removeClass('fil_none');
-            }
-            else {
-                $('.article').not('.' + value).addClass('fil_none');
-                $('.article').filter('.' + value).removeClass('fil_none');
-            }
-        });
-
-        // ======filter change
-        $('.list').click(function () {
-            $(this).addClass('fit');
-            $('.list').not(this).removeClass('fit');
         });
 
     </script>

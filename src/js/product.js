@@ -51,27 +51,26 @@ function getproducts(type, orderby) {
         if (xhr.status == 200) {
             let products = JSON.parse(xhr.responseText);
             $id('products_container').innerHTML = "";
-            // if (type) {
-            //     if (type == '所有商品') {
-            //         for (let i in products) {
-            //             $id('products_container').appendChild(addProduct(products[i]));
-            //         }
-            //     } else {
-            //         for (let i in products) {
-            //             if (products[i].TYPE == type) {
-            //                 $id('products_container').appendChild(addProduct(products[i]));
-            //             }
-            //         }
-            //     }
-            // } else {
-            //     for (let i = 0; i < products.length; i++) {
-            //         $id('products_container').appendChild(addProduct(products[i]));
-            //     };
-            // }
-            let pages = getPage(products);
-            for (let i = 0; i < products.length; i++) {
-                $id('products_container').appendChild(addProduct(products[i]));
-            };
+            let perpageNum = 2;
+            let pages = getPage(products, perpageNum);
+            $id('pages').innerHTML = '';
+            //每次get時先印出第一頁
+            loadPerpageProduct(products, perpageNum, 1)
+            if (products.length) {
+                for (let i = 0; i < pages; i++) {
+                    let newli = document.createElement('li');
+                    newli.innerHTML = `<a href="">${i+1}</a>`;
+                    $id('pages').appendChild(newli);
+                    newli.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        let n = e.target.innerText;
+                        loadPerpageProduct(products, perpageNum, n)
+                    })
+                }
+                // for (let i = 0; i < perpageNum; i++) {
+                //     $id('products_container').appendChild(addProduct(products[i]));
+                // };
+            }
         } else {
             alert(xhr.status);
         }
@@ -82,10 +81,22 @@ function getproducts(type, orderby) {
 
 }
 
+function loadPerpageProduct(products, perpageNum, n) {
+    $id('products_container').innerHTML = "";
+    if (n * perpageNum < products.length) {
+        for (let j = (n - 1) * perpageNum; j < n * perpageNum; j++) {
+            $id('products_container').appendChild(addProduct(products[j]));
+        };
+    } else {
+        for (let j = (n - 1) * perpageNum; j < products.length; j++) {
+            $id('products_container').appendChild(addProduct(products[j]));
+        };
+    }
+}
+
 function addProduct(product) {
     let newproduct = document.createElement('div'); //創建div
     newproduct.setAttribute('class', 'product'); //設定div的class
-
     newproduct.innerHTML = `
         <div>
             <div class="img">   
@@ -473,11 +484,11 @@ function sendFavortieList() {
 
 }
 
-function getPage(totalItem) {
-    totalItem = 30;
-    // totalItem = totalItem.length;
+function getPage(totalItem, perpageNum) {
+    // totalItem = 34;
+    totalItem = totalItem.length;
     let pages = 0;
-    pages += parseInt(totalItem / 6);
-    pages += (totalItem % 6 > 0) ? 1 : 0;
+    pages += parseInt(totalItem / perpageNum);
+    pages += (totalItem % perpageNum > 0) ? 1 : 0;
     return pages;
 }

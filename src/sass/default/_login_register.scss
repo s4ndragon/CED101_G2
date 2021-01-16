@@ -33,8 +33,9 @@ $br: 5px;
     margin: 40px auto;
     border-radius: $border-radius-sml;
     box-shadow: 0 4px 10px 4px rgba($primary-typo-color, 0.3);
+    height: fit-content;
     .close {
-        @include close-icon; 
+        @include close-icon;
         cursor: pointer;
     }
     .tab-group {

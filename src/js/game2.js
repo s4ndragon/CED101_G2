@@ -2,12 +2,9 @@
 //由上起算第二路有woromArr、plantArr
 //降落星星茶葉打算用tweenMax下降以控制暫停pause(),繼續resume(),碰到邊界要自我刪除kill()
 //用var img = document.createElement("img");產生得來的可否能用tweenLiteMax(img,2,{y:9});
-/* 變數統一用k<3
-完成三個道路放置植物
+/*  
 間隔一段時間生成子彈 time_b()包{createBullet()}
 createBullet()注意road.appendChild要把road改成要針對的物件
-改寫----
-讓子彈飛
 bb_()改成shot(){};for(var k=0;k<3;k++){};
 產生子彈，改變 對象.appendChild
 time_b()改成Bullet_init
@@ -60,7 +57,8 @@ function addBullet(speed, damage, left,o) {
   img.dataset.speed = speed;
   img.dataset.damage = damage;
   img.style.left = left + 'px';
-  img.src = '../dist/images/game/6.gif';
+  img.src = ballimg[0];
+  // '../dist/images/game/6.gif'
   o.appendChild(img);
   //o換上way[k];
   return img;

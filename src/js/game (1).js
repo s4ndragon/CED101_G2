@@ -39,7 +39,8 @@ var star = 25,
   var init_worm,
   init_walk,
   init_Bullet,
-  init_shot;
+  init_shot,
+  ballimg=['./images/game/6.gif'];
 var sp_,
   time_b_,
   bb__,
@@ -126,7 +127,8 @@ function createBullet(speed, damage, left) {
   img.dataset.speed = speed;
   img.dataset.damage = damage;
   img.style.left = left + 'px';
-  img.src = '../dist/images/game/6.gif';
+  img.src = ballimg[0];
+  // '../dist/images/game/6.gif'
   road.appendChild(img);
   return img;
 }
@@ -310,6 +312,22 @@ $('#teatxt-bar1').on('click', function () {
       $("div.tea_en").removeClass("-on -opacity-zero");
     }, 1000); // 關閉 Modal
 })
+$('div.config').on('click', function () {
+  $('div.setpanel').addClass('-on');
+});
+function volume(vol) {
+  song.volume = vol.value;
+}
+function ballstyle(path) {
+  ballimg[0] = path.value;
+}
+function config() {
+        $("div.setpanel").addClass("-opacity-zero");
+    // 設定隔一秒後，移除相關 class
+    setTimeout(function(){
+      $("div.setpanel").removeClass("-on -opacity-zero");
+    }, 1000); // 關閉 Modal
+}
 var pause = document.getElementById('checkbox');
 $('#checkbox').on('click', function(){
   if (pause.checked === true) {
@@ -351,11 +369,11 @@ function gamestop() {
   tween.pause();
 
 }
+
 // 開啟 Modal 彈跳視窗
 document.getElementById('replay').onclick = function () {
   location.reload();
 };
-
 
 //時間到開啟通關燈箱
 var tween = TweenLite.to(demo,300,{

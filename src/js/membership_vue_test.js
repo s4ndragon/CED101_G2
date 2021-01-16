@@ -6,24 +6,8 @@ xhr.onload = function () {
     app.memRows = JSON.parse(xhr.responseText);
     console.log(app.memRows);
 };
-xhr.open("get", "./php/member.php", true);
+xhr.open("get", "./phps/member.php", true);
 xhr.send(null);
-
-{
-    /* <div class="tour_detail" v-for="memTour in memTours">
-                            <div class="tour_title">{{memTour.TOUR_TITLE}}</div>
-                            <div class="tour_date">{{memTour.TOUR_SETOFFTIME}}</div>
-                            <div class="tour_attendency" @click="lightboxAttendency = true">人數：<span class="attend attend_1">{{memTour.NUM_OF_PARTICIPANTS}}</span>／<span class="require require_1">{{memTour.TOUR_PEOPLE}}</span></div>
-                            <div class="tour_status_bar">
-                                <div class="tour_status">未成團</div>
-                                <div class="tour_join">取消</div>
-                                <div class="tour_check">
-                                    <a href="">查看</a>
-                                </div>
-                                <div class="arrow down"></div>
-                            </div>
-                        </div> */
-}
 
 //========== content ==========//
 Vue.component("tour", {
@@ -33,6 +17,19 @@ Vue.component("tour", {
                     <h3>我主揪</h3>
                     <div id="mine_on_going">
                         <h4>揪團中的團</h4> 
+                        <div class="tour_detail" v-for="memTour in memTours">
+                            <div class="tour_title">{{memTour.TOUR_TITLE}}</div>
+                            <div class="arrow down"></div>
+                            <div class="tour_date">{{memTour.TOUR_SETOFFTIME}}</div>
+                            <div class="tour_attendency">人數：<span class="attend attend_1">{{memTour.NUM_OF_PARTICIPANTS}}</span>／<span class="require require_1">{{memTour.TOUR_PEOPLE}}</span></div>
+                            <div class="tour_status_bar">
+                                <div class="tour_status">未成團</div>
+                                <div class="tour_join" @click="cancel">取消</div>
+                                <div class="tour_check">
+                                    <a href="">查看</a>
+                                </div>
+                            </div>
+                        </div>
                         <div class="tour_detail">
                             <div class="tour_title">12月例行揪團</div>
                             <div class="arrow down"></div>
@@ -176,10 +173,62 @@ Vue.component("tour", {
             $(this).siblings(".tour_attendency").toggle().css("width", "80%");
         });
     },
+    data() {
+        return {
+            // mine_tour: "",
+            memTours: "",
+        };
+    },
     methods: {
-        
+        get_mine_tour: async function () {
+            const res = await fetch("./phps/get_mine_tour.php", {
+                method: "POST",
+                mode: "same-origin",
+                credentials: "same-origin",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            }).then(function (data) {
+                return data.json();
+            });
+            // console.log(res);
+            this.memTours = res;
+        },
+        cancel: async function (TOUR_ID) {
+            console.log(TOUR_ID);
+            const res = await fetch("./phps/cancel_tour.php", {
+                method: "POST",
+                mode: "same-origin",
+                credentials: "same-origin",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    TOUR_ID: TOUR_ID,
+                }),
+            });
+            //重新撈取一次細項列表
+            this.get_mine_tour(this.TOUR_ID);
+        },
+        quit: async function (TOUR_ID) {
+            // console.log(TOUR_ID);
+            const res = await fetch("./phps/quit_tour.php", {
+                method: "POST",
+                mode: "same-origin",
+                credentials: "same-origin",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    TOUR_ID: TOUR_ID,
+                }),
+            });
+            //重新撈取一次細項列表
+            this.get_mine_tour(this.TOUR_ID);
+        },
     },
 });
+
 Vue.component("mine_fav", {
     template: `
                 <!-- 收藏管理 -->
