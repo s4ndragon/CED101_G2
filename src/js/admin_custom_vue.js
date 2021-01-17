@@ -8,6 +8,9 @@ new Vue({
         gardens:'',
         rests:'',
         hotels:'',
+        HOTEL_STATUS:'',
+        GARD_STATUS:'',
+        RESTAURANT_STATUS:'',
 		
 	},
 	
@@ -150,10 +153,131 @@ query_gard_id: async function () {
         
             //查詢完後清空輸入的內容
             this.HOTEL_ID =''
-        
+            },
+
+            changeHOTEL_NAME(event, key) {
+                console.log(key)
+                this.hotels[key].HOTEL_NAME = event.currentTarget.value
+            },
+
+            changeHOTEL_INFRO(event, key) {
+                console.log(key)
+                this.hotels[key].HOTEL_INFRO = event.currentTarget.value
+            },
+
+            edit_hotels: async function (HOTEL_ID, key) {
+                if (this.hotels[key].ischecked == false) {
+                    this.HOTEL_STATUS = 0
+                } else if (this.hotels[key].ischecked == true) {
+                    this.HOTEL_STATUS = 1
+                }
+    
+                const res = await fetch('./phps/admin_UpdHotels.php', {
+                    method: 'POST',
+                    mode: 'same-origin',
+                    credentials: 'same-origin',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        HOTEL_ID: HOTEL_ID,
+                        HOTEL_NAME: this.hotels[key].HOTEL_NAME,
+                        HOTEL_INFRO: this.hotels[key].HOTEL_INFRO,
+                        HOTEL_STATUS:this.HOTEL_STATUS,
+                     
+                    }),
+                })
+    
+                this.get_hotels()
+            },
+
+            changeGARD_NAME(event, key) {
+                console.log(key)
+                this.gardens[key].GARD_NAME = event.currentTarget.value
+            },
+            changeGARD_TYPE(event, key) {
+                console.log(key)
+                this.gardens[key].GARD_TYPE = event.currentTarget.value
+            },
+            changeGARD_ADDRESS(event, key) {
+                console.log(key)
+                this.gardens[key].GARD_ADDRESS = event.currentTarget.value
+            },
+            changeGARD_VOTE(event, key) {
+                console.log(key)
+                this.gardens[key].GARD_VOTE = event.currentTarget.value
+            },
+            changeGARD_CLICK(event, key) {
+                console.log(key)
+                this.gardens[key].GARD_CLICK = event.currentTarget.value
+            },
             
+
+            edit_gardens: async function (GARD_ID, key) {
+                if (this.gardens[key].ischecked == false) {
+                    this.GARD_STATUS = 0
+                } else if (this.gardens[key].ischecked == true) {
+                    this.GARD_STATUS = 1
+                }
+    
+                const res = await fetch('./phps/admin_UpdGardss.php', {
+                    method: 'POST',
+                    mode: 'same-origin',
+                    credentials: 'same-origin',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        GARD_ID: GARD_ID,
+                        GARD_NAME: this.gardens[key].GARD_NAME,
+                        GARD_TYPE: this.gardens[key].GARD_TYPE,
+                        GARD_ADDRESS: this.gardens[key].GARD_ADDRESS,
+                        GARD_VOTE: this.gardens[key].GARD_VOTE,
+                        GARD_CLICK: this.gardens[key].GARD_CLICK,
+                        GARD_STATUS:this.GARD_STATUS,
+                      
+                    }),
+                })
+    
+                this.get_gards()
+            },
+
+            changeRESTAURANT_NAME(event, key) {
+                console.log(key)
+                this.rests[key].RESTAURANT_NAME = event.currentTarget.value
+            },
+            changeRESTAURANT_INFRO(event, key) {
+                console.log(key)
+                this.rests[key].RESTAURANT_INFRO = event.currentTarget.value
+            },
+
           
-            }
+            edit_rests: async function (RESTAURANT_ID, key) {
+                if (this.rests[key].ischecked == false) {
+                    this.RESTAURANT_STATUS = 0
+                } else if (this.rests[key].ischecked == true) {
+                    this.RESTAURANT_STATUS = 1
+                }
+    
+                const res = await fetch('./phps/admin_UpdRests.php', {
+                    method: 'POST',
+                    mode: 'same-origin',
+                    credentials: 'same-origin',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        RESTAURANT_ID: RESTAURANT_ID,
+                        RESTAURANT_NAME: this.rests[key].RESTAURANT_NAME,
+                        RESTAURANT_INFRO: this.rests[key].RESTAURANT_INFRO,
+                        RESTAURANT_STATUS: this.RESTAURANT_STATUS,
+                        
+                      
+                    }),
+                })
+    
+                this.get_rests()
+            },
 },
 
 

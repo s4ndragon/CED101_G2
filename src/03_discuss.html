@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-TW">
 
 <head>
     <meta charset="UTF-8" />
@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="css/discuss.css" />
     <title>找茶討論</title>
     <!-- jquery -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="./js/jquery-3.5.1.min.js"></script>
     <!-- vue  -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.js"></script>
+    <script src="./js/vue.js"></script>
 </head>
 
 <body>
@@ -39,7 +39,7 @@
         <section id="discuss">
             <div id="all_articles">
                 <!-- =====單篇文章開始===== -->
-                <div v-for="(artRow,i) in articlesRows" class="article" :class="artRow.FILTER" :i="i">
+                <div v-for="(artRow,i) in articlesRows" class="article" :class="artRow.FILTER">
                     <div class="ar_img">
                         <img class="ar_rimg" :src="artRow.ART_IMG" alt="">
                         <p class="ar_title">【{{artRow.CAT}}】{{artRow.ART_TITLE}}</p>
@@ -54,12 +54,9 @@
                                 @click="addheart">
                             <img class="memi" src="./images/common/messenger.png" alt="">
                             <span class="com_num">{{artRow.ART_REPLYS}}</span>
-                            <div class="excl" @click="showBox(i)">
+                            <div class="excl" @click="showBox(artRow.ART_NO)">
                                 <img class="excl" src="./images/common/852019_exclamation_512x512.png" alt="">
                             </div>
-
-                            <!-- ====檢舉燈箱==== -->
-                            <art-reg :value="artRow.ART_NO"></art-reg>
 
 
 
@@ -90,6 +87,8 @@
                         <div class="pub_time"><span>發表於{{artRow.ART_DATE}}</span></div>
                     </div>
                 </div>
+                <!-- ====檢舉燈箱==== -->
+                <art-reg :artno="artno"></art-reg>
             </div>
         </section>
     </main>
@@ -104,50 +103,88 @@
 
     <script>
         Vue.component('art-reg', {
-            props: ['i'],
-            template: ` <div class="overlay" style="display: none;">
+            props: ['artno'],
+            template: ` <div><div class="overlay" style="display: none;">
                             <div class="modal">
-                                <form action="post">
-                                    <div class="close">
-                                        <img class="cancel" src="./images/vote/cancel.png" @click="closeBox(i)">
+                                <form method="post" >
+                                    <div class="close" @click="closeBox()">
+                                        <img class="cancel" src="./images/vote/cancel.png">
                                     </div>
                                     <p class="welcome">請選取檢舉理由</p>
                                     <div class="reason_container">
-                                        <input class="reason" type="radio" name="size" value="惡意中傷">惡意中傷
+                                        <input class="reason" type="radio" name="size" id="a" value="惡意中傷">
+                                        <label for="a">惡意中傷</label>
                                     </div>
                                     <div class="reason_container">
-                                        <input class="reason" type="radio" name="size" value="散布廣告">散布廣告
+                                        <input class="reason" type="radio" name="size" id="b" value="散布廣告">
+                                        <label for="b">散布廣告</label>
                                     </div>
                                     <div class="reason_container">
-                                        <input class="reason" type="radio" name="size" value="色情資訊">色情資訊
+                                        <input class="reason" type="radio" name="size" id="c" value="色情資訊">
+                                        <label for="c">色情資訊</label>
                                     </div>
                                     <div class="reason_container">
-                                        <input class="reason" type="radio" name="size" value="不雅字眼">不雅字眼
+                                        <input class="reason" type="radio" name="size" id="d" value="不雅字眼">
+                                        <label for="d">不雅字眼</label>
                                     </div>
-                                    <button class="go" type="submit">送出</button>
-                                    <input type="hidden" name="art_reg">
+                                    <button class="go" type="button" @click="send_data">送出</button>
+                                    <input type="hidden" name="art_reg" :value="artno">
                                 </form>
                             </div>
-                         </div>`,
-            data() {
-                return {
-                    i: this.i,
-                }
-            },
+                         </div>
+                         <div class="overlay2" style="display: none;" >
+                            <div class="modal">
+                                <form method="post" >
+                                    <p class="welcome">檢舉成功！</p>
+                                    <button class="go" type="button" @click="close">確認</button>
+                                </form>
+                            </div>
+                         </div></div>
+                         `,
+
 
             methods: {
-                closeBox: function (i) {
-                    let lightbox = document.querySelectorAll('.overlay');
+                closeBox: function () {
+                    let lightbox = document.querySelectorAll('.overlay')[0];
                     // console.log();
-                    lightbox[i].style.display = 'none';
+                    lightbox.style.display = 'none';
                 },
-            }
+                check_radio() {
 
+                },
+                send_data() {
+                    $.ajax({
+                        url: './phps/articleReg.php', // 要傳送的頁面
+                        method: 'POST',               // 使用 POST 方法傳送請求
+                        dataType: 'text',             // 回傳資料會是 json 格式
+                        data: $('form').serialize(),  // 將表單資料用打包起來送出去
+                        success: function (res) {       // 成功以後會執行這個方法
+                            console.log('good');
+                            console.log(res);
+                            let lightbox = document.querySelectorAll('.overlay')[0];
+                            lightbox.style.display = 'none';
+                            let lightbox2 = document.querySelectorAll('.overlay2')[0];
+                            lightbox2.style.display = '';
+                        },
+                        error: function (res) {
+                            console.log('not good');
+                            console.log(res);
+                        },
+                    });
+                },
+                close() {
+                    let lightbox2 = document.querySelectorAll('.overlay2')[0];
+                    lightbox2.style.display = 'none';
+                },
+            },
         });
+
+
 
         var app = new Vue({
             el: "#are",
             data: {
+                artno: "",
                 articlesRows: [],
             },
 
@@ -159,15 +196,18 @@
                             this.src = "./images/common/like.png";
                         } else {
                             this.title = "加入收藏";
-                            let lightbox = document.querySelectorAll('.overlay');
                             this.src = "./images/common/heart.png";
                         }
                     });
                 },
-                showBox: function (i) {
-                    let lightbox = document.querySelectorAll('.overlay');
-                    lightbox[i].style.display = '';
+                showBox: function (ART_NO) {
+                    let lightbox = document.querySelectorAll('.overlay')[0];
+                    lightbox.style.display = '';
+                    this.artno = ART_NO;
                 },
+            },
+            computed: {
+
             },
             mounted() {
                 let articlesRows;
@@ -179,39 +219,27 @@
                 }
                 xhr.open("get", "./phps/getArticles.php", true);
                 xhr.send(null);
+
+                // =====filter=====
+                $('.list').click(function () {
+                    let value = $(this).attr('data-filter');
+                    if (value == 'all') {
+                        $('.article').removeClass('fil_none');
+                    }
+                    else {
+                        $('.article').not('.' + value).addClass('fil_none');
+                        $('.article').filter('.' + value).removeClass('fil_none');
+                    }
+                });
+
+                // ======filter change
+                $('.list').click(function () {
+                    $(this).addClass('fit');
+                    $('.list').not(this).removeClass('fit');
+                });
             },
         });
 
-        // =====filter=====
-        $('.list').click(function () {
-            let value = $(this).attr('data-filter');
-            if (value == 'all') {
-                $('.article').removeClass('fil_none');
-            }
-            else {
-                $('.article').not('.' + value).addClass('fil_none');
-                $('.article').filter('.' + value).removeClass('fil_none');
-            }
-        });
-
-        // ======filter change
-        $('.list').click(function () {
-            $(this).addClass('fit');
-            $('.list').not(this).removeClass('fit');
-        });
-
-
-        // window.addEventListener("load", function () {
-        //     let articlesRows;
-        //     //============去server端拿資料
-        //     let xhr = new XMLHttpRequest();
-        //     xhr.onload = function () {
-        //         app.articlesRows = JSON.parse(xhr.responseText);
-        //         console.log(app.articlesRows);
-        //     }
-        //     xhr.open("get", "./phps/getArticles.php", true);
-        //     xhr.send(null);
-        // })
     </script>
 </body>
 

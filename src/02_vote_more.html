@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="./css/vote_more.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.js"></script>
     <script src="https://unpkg.com/vue-star-rating@1.5.1/dist/star-rating.min.js"></script>
-    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script src="./js/vue.js"></script>
     <script src="./js/like.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
@@ -103,16 +103,16 @@
 
         </div>
 
-        <form action="">
+        <form>
             <div class="input_container">
                 <h3>新增留言</h3>
                 <div class="create_command_container">
                     <textarea id="content" class="create_command"></textarea>
-                    <div class="com_btn_countainer">
-                        <div class="inner_btn">
-                            <a href="#">送出</a>
-                        </div>
-                    </div>
+                    
+                        
+                            <div class="btnc" @click="sendComm">送出</div>
+                        
+                    
                 </div>
             </div>
 
@@ -382,6 +382,30 @@
                         //送出資料
                         let data_info = `MSG_NO=${this.msgRows[i].MSG_NO}&MSG_REP_CONTENT=${document.querySelector('input[name="option"]:checked').value}`;
                         xhr.send(data_info);
+                },
+
+                sendComm(){
+                    let words = document.getElementById("content")
+                    if(words.value == ''){
+                        alert('尚未輸入內容')
+                    }else{
+                        let xhr = new XMLHttpRequest();
+                        xhr.onload = function(){
+                            if(xhr.status == 200){ //success
+                                console.log('success')
+                            }else{
+                                alert(xhr.status);
+                            }
+                        }
+                        xhr.open("post", "./phps/send_words.php", true);
+                        xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+                        //送出資料
+                        let data_info = `GARD_ID=${this.targetPageId}&MSG_CONTENT=${words.value}`;
+                        xhr.send(data_info);
+
+                        this.get_data()
+                        words.value = ''
+                    }
                 }
 
             },

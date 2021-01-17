@@ -257,13 +257,12 @@ main{
                 font-size: 18px;
                 padding: 10px 20px;
             }
-    
-            .com_btn_countainer {
-    
+
                 .inner_btn {
-                    @include smallbtn2;
+                    @include smallbtn4;
+                    
                 }
-            }
+           
         }
     
     }

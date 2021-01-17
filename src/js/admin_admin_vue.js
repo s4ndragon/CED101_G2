@@ -22,7 +22,6 @@ new Vue({
 				// 	add_id: this.add_id,
 				// 	add_name: this.add_name,
 				// 	add_psw: this.add_psw,
-
 				// }),
 			}).then(function(data){
 				return data.json()
@@ -41,6 +40,7 @@ new Vue({
 					'Content-Type': 'application/json',
 				},
 				body: JSON.stringify({
+					//add_no是自動增號
 					// add_no: this.add_no,
 					add_id: this.add_id,
 					add_name: this.add_name,

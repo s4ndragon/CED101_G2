@@ -1,17 +1,9 @@
 <?php 
-    session_start();
-	$dsn = "mysql:host=localhost;port=3306;dbname=ced101g2;charset=utf8";
-	$user = "root";
-	$password = "root";
-	$options = array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, PDO::ATTR_CASE => PDO::CASE_NATURAL);
-	$pdo = new PDO($dsn, $user, $password, $options);
-?>
-<?php 
 try {
-    // require_once("./connectBooks.php");
+    require_once("./connect.php");
     $MEM_ID = $_POST["MEM_ID"];
     $MEM_PW = $_POST["MEM_PW"];
-    $sql = "select * from member where MEM_ID = 'amin'";
+    $sql = "select * from member where MEM_ID = 'amin' and MEM_PW = '0000'";
     $member = $pdo->prepare($sql);
     $member->execute();
     $memRows = $member->fetchAll(PDO::FETCH_ASSOC);

@@ -8,7 +8,6 @@
         <title>偵茶者後台管理 | TEA SEARCHER | 帶你找茶 喝茶 買茶</title>
         <link rel="shortcut icon" href="./images/index/webIcon.png" type="image/x-icon" />
         <link rel="stylesheet" href="./css/admin.css" />
-        <script src="../node_modules/vue/dist/vue.js"></script>
         <script src="js/admin.js"></script>
     </head>
     <body>
@@ -26,7 +25,7 @@
 
         <aside class="aside">
             <ul class="nav_list">
-                <li><h1>後台管理頁</h1></li>
+                <a href="admin_tea.html"><h1>後台管理頁</h1></a>
 
                 <li class="li">
                     <a href="#" data-target="admin"
@@ -72,8 +71,13 @@
                         <div class="tab tab1 -on">
                             茶園留言的檢舉管理
                             <form>
-                                <input type="text" placeholder="請輸入茶園留言檢舉編號" />
-                                <button class="btn-confirm" type="button">送出</button>
+                                <input type="text" v-model="gardMsgId" placeholder="欲查詢請輸入檢舉編號" />
+                                <button id="g1" class="btn-confirm" type="button" @click="query_gardMsg_id">
+                                    送出查詢
+                                </button>
+                                <button class="btn-confirm" type="button" @click="get_gardens_MegReports">
+                                    回到列表
+                                </button>
                             </form>
                             <table>
                                 <thead>
@@ -87,7 +91,7 @@
                                         <th>修改確認</th>
                                     </tr>
                                 </thead>
-                                <tbody v-for="item in gardens_MegReports">
+                                <tbody v-for="(item,key) in gardens_MegReports">
                                     <tr>
                                         <td>{{item.MSG_REP_NO}}</td>
                                         <td>{{item.MEM_NO}}</td>
@@ -104,7 +108,14 @@
                                                 未通過
                                             </div>
                                         </td>
-                                        <td><input type="button" value="確認修改" /></td>
+                                        <td>
+                                            <input
+                                                type="button"
+                                                value="確認修改"
+                                                class="btn-delete"
+                                                @click="edit_gardens_Meg(item.MSG_REP_NO,key)"
+                                            />
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -113,12 +124,13 @@
                         <div class="tab tab2">
                             討論區留言管理
                             <form>
-                                <input type="text" placeholder="請輸入文章留言編號" />
-                                <button class="btn-confirm" type="button">送出</button>
+                                <input type="text" v-model="DissMsgId" placeholder="欲查詢請輸入檢舉編號" />
+                                <button class="btn-confirm" type="button" @click="query_DissMsg_id">送出查詢</button>
+                                <button class="btn-confirm" type="button" @click="get_diss_MegReports">回到列表</button>
                             </form>
                             <table>
                                 <tr>
-                                    <th>文章留言檢舉編號</th>
+                                    <th>留言檢舉編號</th>
                                     <th>會員編號</th>
                                     <th>文章留言編號</th>
                                     <th>檢舉時間</th>
@@ -127,7 +139,7 @@
                                     <th>確認修改</th>
                                 </tr>
 
-                                <tbody v-for="item in diss_MegReports">
+                                <tbody v-for="(item,key) in diss_MegReports">
                                     <tr>
                                         <td>{{item.MSG_REP_NO}}</td>
                                         <td>{{item.MEM_NO}}</td>
@@ -144,7 +156,14 @@
                                                 未通過
                                             </div>
                                         </td>
-                                        <td><input type="button" class="btn-delete" value="確認修改" /></td>
+                                        <td>
+                                            <input
+                                                type="button"
+                                                class="btn-delete"
+                                                value="確認修改"
+                                                @click="edit_diss_Meg(item.MSG_REP_NO,key)"
+                                            />
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -153,12 +172,13 @@
                         <div class="tab tab3">
                             討論區文章檢舉管理
                             <form>
-                                <input type="text" placeholder="請輸入文章檢舉編號" />
-                                <button class="btn-confirm" type="button">送出</button>
+                                <input type="text" v-model="DissArtId" placeholder="欲查詢請輸入檢舉編號" />
+                                <button class="btn-confirm" type="button" @click="query_DissArt_id">送出查詢</button>
+                                <button class="btn-confirm" type="button" @click="get_diss_ArtReports">回到列表</button>
                             </form>
                             <table>
                                 <tr>
-                                    <th>文章留言檢舉編號</th>
+                                    <th>文章檢舉編號</th>
                                     <th>會員編號</th>
                                     <th>文章編號</th>
                                     <th>檢舉時間</th>
@@ -167,7 +187,7 @@
                                     <th>確認修改</th>
                                 </tr>
 
-                                <tbody v-for="item in diss_ArtReports">
+                                <tbody v-for="(item,key) in diss_ArtReports">
                                     <tr>
                                         <td>{{item.REP_NO}}</td>
                                         <td>{{item.MEM_NO}}</td>
@@ -184,7 +204,14 @@
                                                 未通過
                                             </div>
                                         </td>
-                                        <td><input type="button" class="btn-delete" value="確認修改" /></td>
+                                        <td>
+                                            <input
+                                                type="button"
+                                                class="btn-delete"
+                                                value="確認修改"
+                                                @click="edit_diss_Art(item.REP_NO,key)"
+                                            />
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -195,15 +222,6 @@
         </main>
 
         <script>
-            // $(function () {
-            //     $('ul.nav_list li a').on('click', function (e) {
-            //         // alert('good')
-            //         e.preventDefault()
-            //         $('.tab_container').removeClass('-on')
-            //         $('.tab_container.' + $(this).attr('data-target')).addClass('-on')
-            //     })
-            // })
-
             //tab
             $(function () {
                 $('a.tab').on('click', function (e) {
@@ -219,6 +237,7 @@
                 })
             })
         </script>
+        <script src="./js/vue.js"></script>
         <script src="js/admin_report_vue.js"></script>
     </body>
 </html>

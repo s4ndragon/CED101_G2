@@ -1,16 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8" />
+        <meta charset="UTF-8"/>
         <title>茶園保衛戰</title>
         <link rel="shortcut icon" href="./images/index/webIcon.png" type="image/x-icon" />
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-      <!-- https://medium.com/@speechless0922/vue的二三事-render-function-2b3705e4a5bd -->
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.js"></script> -->
+        <!-- <script src="../node_modules/jquery/dist/jquery.min.js"></script> -->
+        <script src="https://tibamef2e.com/ced101/project/g2/js/jquery-3.5.1.min.js"></script>
         <link rel="stylesheet" href="./css/game.css" />
         <link rel="stylesheet" href="./css/flex.css" />
-        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.js"></script> -->
-        
-        <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+        <link rel="stylesheet" href="./css/game2.css">
+        <style>
+            #config{
+            cursor: pointer;
+            width:50px;
+            height:50px;
+            }
+            #sound{
+            -webkit-appearance: none;
+            width: 100px;
+            height: 7px;
+            outline : brown;
+            border:2px solid brown;      /* 避免點選會有藍線或虛線 */
+            background:rgb(121, 97, 61);
+        }
+        #sound::-webkit-slider-thumb{
+            -webkit-appearance: none;
+            position: relative;    /* 設為相對位置，為了前後區塊的絕對位置而設定 */
+            width:10px;
+            height:10px;
+            background:#f22;
+            transition:.2s;        /* 點選放大時候的漸變時間 */
+        }
+        </style>
     </head>
     <body>
         @@include('layout/nav.html')
@@ -60,6 +83,25 @@
                             </div>
                         </article>
                     </section>
+                </div>
+                <div class="setpanel">
+                    <div class="absolute circle setpanel-x"  onclick="config()"></div>
+                    <div class="panelinner absolute" >
+                        <div>
+                            <label for="" class="white">遊戲音樂：<input type="range"class="rangecostom" max="1" min="0" step="0.01" value="1" id="volume" oninput="volume(this)"></label>
+                        </div>
+                        <div>
+                            <label for="" class="white">遊戲音效：<input type="range"class="rangecostom" max="1" min="0" step="0.01" value="1" id="sound" oninput="sou(this)"></label>
+                        </div>
+                        <div class="white flex">
+                            <p>子彈樣式：</p>
+                            <input type="radio" name="ball"value="https://tibamef2e.com/ced101/project/g2/images/game/6.gif" onclick="ballstyle(this)" id="greenball" checked>
+                            <input type="radio" name="ball"value="https://tibamef2e.com/ced101/project/g2/images/game/7.gif" onclick="ballstyle(this)" id="frieball">
+                        </div>
+                        <div>
+                            <p class="white">聯絡我們：postintw@gmail.com</p>
+                        </div>
+                    </div>
                 </div>
                 <div class="gameover bglightbox">
                     <article>
@@ -124,7 +166,7 @@
                 <div id="way2" class="road"></div>
                 <div id="way3" class="road"></div>
                 <ul id="props">
-                    <!-- <li>
+                    <li>
                         <img
                             src="./images/game/4.gif"
                             data-star="25"
@@ -159,7 +201,7 @@
                             data-speed="0"
                             class="plant"
                         /><span>75</span>
-                    </li> -->
+                    </li>
                     <!-- <li v-for="p in plant">
 					<img :src="'./images/game/'+p.pic" :data-star="p.star":data-hps="p.hps":data-hp="p.hp" :data-defense="p.defense" :data-damage="p.damage" :data-speed="p.speed">
 					<span>{{p.star}}</span>
@@ -167,7 +209,7 @@
                 </ul>
                 <section id="botbar" class="flex">
                     <div class="flex a_c j_c">
-
+                       <img src="./images/game/config.png" alt="" id="config">
                     </div>
                     <div class="pad10 y-flex a_c">
                         <span style="color: #000; font-size: 20px;white-space:nowrap;">計分</span>
@@ -192,24 +234,23 @@
         <script src="./js/game (1).js"></script>
         <script src="./js/game2.js"></script>
         <script>
-               axios.get("./phps/getROLE.php").then(function(response){
-                let data=response.data;var props=$('#props');
-				for(let i of data){
-                var li=document.createElement("li");
-				li.innerHTML=`<img src="./images/game/${i.IMG}" data-star="${i.DATA_STAR}" data-hps="${i.DATA_HPS}" data-hp="${i.DATA_HP}" data-defense="${i.DATA_DEFENSE}" data-damage="${i.DATA_DAMAGE}" data-speed="${i.DATA_SPEED}" class="plant" />
-				<span>${i.DATA_STAR}</span>`;
-				document.getElementById('props').appendChild(li);
-			    }
-               }).catch(function(){
-                var li=document.createElement("li");
-				li.innerHTML=`<img src="./images/game/4.gif" data-star="25" data-hps="50" data-hp="${50}" data-defense="${20}" data-damage="${10}" data-speed="${2}" class="plant" />
-				<span>25</span>`;
-                document.getElementById('props').appendChild(li);
-               
-               });         
-            
-			//============去server端拿資料
-
+            //    axios.get("./phps/getROLE.php").then(function(response){
+            //     let data=response.data;var props=$('#props');
+			// 	for(let i of data){
+            //     var li=document.createElement("li");
+			// 	li.innerHTML=`<img src="./images/game/${i.IMG}" data-star="${i.DATA_STAR}" data-hps="${i.DATA_HPS}" data-hp="${i.DATA_HP}" data-defense="${i.DATA_DEFENSE}" data-damage="${i.DATA_DAMAGE}" data-speed="${i.DATA_SPEED}" class="plant" />
+			// 	<span>${i.DATA_STAR}</span>`;
+			// 	document.getElementById('props').appendChild(li);
+			//     }
+            //    }).catch(function(){
+            //     var li=document.createElement("li");
+			// 	li.innerHTML=`<img src="./images/game/4.gif" data-star="25" data-hps="50" data-hp="${50}" data-defense="${20}" data-damage="${10}" data-speed="${2}" class="plant" />
+			// 	<span>25</span>`;
+            //     document.getElementById('props').appendChild(li);
+            //    });         
+            //    function sou(vol) {
+            //     bomb.volume = vol.value;
+            //     }
         </script>
         <!--<script src="./js/game.js"></script> -->
         @@include('layout/footer.html')

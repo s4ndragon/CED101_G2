@@ -21,7 +21,7 @@ try{
                 1)";
 
     $article = $pdo->prepare($sql);
-    $article->execute(); //程式執行到這結束
+    $article->execute(); 
 
     $sql = "Update my_art set ART_REPLYS = ART_REPLYS +1 where ART_NO= ?";
     $msg = $pdo->prepare($sql);
@@ -29,14 +29,12 @@ try{
     $msg->execute();
 
 
-    $sql = "select * from art_msg where ART_NO = ?";
+    $sql = "select * from art_msg a join member b on a.MEM_NO = b.MEM_NO where ART_NO = ?";
     $msg = $pdo->prepare($sql);
     $msg->bindValue(1, $_POST["artNo"]);
     $msg->execute();
     $msgRows = $msg->fetchAll(PDO::FETCH_ASSOC);
     echo json_encode($msgRows);
-    // $diaryNo = $pdo->lastInsertId();  //接收到剛剛的日誌流水號
-
 
 
 }catch(PDOException $e){

@@ -5,18 +5,15 @@ new Vue({
         products: '',
         Delprodus: '',
         orders: '',
-        //#1
         selecteddealState: '',
-        dealStates: ['未付款', '已付款', '未出貨', '已出貨'],
-        // #2
-        // selectSTATE:'',
-        // STAlists: [
-        // 	{val:"0",item:'未付款'},
-        // 	{val:"1",item:'已付款'},
-        // 	{val:"2",item:'未出貨'},
-        // 	{val:"3",item:'已出貨'},
-		// ],
-		ONSALE:"",
+        dealStates: ['0(未付款)', '1(已付款)', '2(未出貨)', '3(已出貨)'],
+        ONSALE: '',
+        psn: '',
+        add_NAME:'',
+        add_INFO:'',
+        add_PRICE:'',
+        ord_no:'',
+        ORDERS_NO:'',
     },
 
     methods: {
@@ -30,40 +27,11 @@ new Vue({
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                // body: JSON.stringify({
-                // 	add_no: this.add_no,
-                // 	add_id: this.add_id,
-                // 	add_name: this.add_name,
-                // 	add_psw: this.add_psw,
-
-                // }),
             }).then(function (data) {
                 return data.json()
             })
-            //完成後 重新撈取一次資料 把res回傳到members裡面
+            //完成後 重新撈取一次資料 把res回傳到products裡面
             this.products = res
-        },
-
-        get_Delprodus: async function () {
-            const res = await fetch('./phps/admin_GetDelProduts.php', {
-                method: 'POST',
-                mode: 'same-origin',
-                credentials: 'same-origin',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                // body: JSON.stringify({
-                // 	add_no: this.add_no,
-                // 	add_id: this.add_id,
-                // 	add_name: this.add_name,
-                // 	add_psw: this.add_psw,
-
-                // }),
-            }).then(function (data) {
-                return data.json()
-            })
-            //完成後 重新撈取一次資料 把res回傳到members裡面
-            this.Delprodus = res
         },
 
         get_orders: async function () {
@@ -74,17 +42,10 @@ new Vue({
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                // body: JSON.stringify({
-                // 	add_no: this.add_no,
-                // 	add_id: this.add_id,
-                // 	add_name: this.add_name,
-                // 	add_psw: this.add_psw,
-
-                // }),
             }).then(function (data) {
                 return data.json()
             })
-            //完成後 重新撈取一次資料 把res回傳到members裡面
+            //完成後 重新撈取一次資料 把res回傳到orders裡面
             this.orders = res
         },
 
@@ -125,30 +86,140 @@ new Vue({
             this.get_produs()
         },
 
-        // query_mem_id: async function (mem_id) {
-        // 	console.log(mem_id)
+        add_products: async function () {
+            const res = await fetch('./phps/admin_InsertProds.php', {
+                method: 'POST',
+                mode: 'same-origin',
+                credentials: 'same-origin',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    //自動增號欄位無法新增 (無法新增psn)
+                    add_NAME: this.add_NAME,
+                    add_INFO: this.add_INFO,
+                    add_PRICE: this.add_PRICE,
+                }),
+            })
+            //新增完後清空輸入的內容
+            this.add_NAME = this.add_INFO = this.add_PRICE = ''
+            //重新撈取更新後的全部資料
+            this.get_produs()
+        },
 
-        // 	const res = await fetch('./phps/admin_QueMembers.php', {
-        // 		method: 'POST',
-        // 		mode: 'same-origin',
-        // 		credentials: 'same-origin',
-        // 		headers: {
-        // 			'Content-Type': 'application/json',
-        // 		},
-        // 		body: JSON.stringify({
-        // 			mem_id: this.mem_id,
-        // 		}),
-        // 	}).then(function(data){
-        // 		return data.json()
-        // 	})
-        //   //重新撈取一次細項列表
-        // 	this.get_mems(this.mem_id)
-        // },
+        query_pro_psn: async function () {
+            console.log(this.psn)
+
+            const res = await fetch('./phps/admin_QueProds.php', {
+                method: 'POST',
+                mode: 'same-origin',
+                credentials: 'same-origin',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    psn: this.psn,
+                }),
+            }).then(function (data) {
+                return data.json()
+            })
+            this.products = res
+
+            //查詢完後清空輸入的內容
+            this.psn = ''
+        },
+
+        query_ord: async function () {
+            console.log(this.ord_no)
+
+            const res = await fetch('./phps/admin_QueOrds.php', {
+                method: 'POST',
+                mode: 'same-origin',
+                credentials: 'same-origin',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    ord_no: this.ord_no,
+                }),
+            }).then(function (data) {
+                return data.json()
+            })
+            this.orders = res
+
+            //查詢完後清空輸入的內容
+            this.ord_no = ''
+        },
+
+
+        changeDELIVERY(event, key) {
+            console.log(key)
+            this.orders[key].DELIVERY = event.currentTarget.value
+        },
+
+        changePAY(event, key) {
+            console.log(key)
+            this.orders[key].PAY = event.currentTarget.value
+        },
+
+        changeTOTAL(event, key) {
+            console.log(key)
+            this.orders[key].TOTAL = event.currentTarget.value
+        },
+
+        changeDISCOUNT(event, key) {
+            console.log(key)
+            this.orders[key].DISCOUNT = event.currentTarget.value
+        },
+
+        changeRECEIVER_NAME(event, key) {
+            console.log(key)
+            this.orders[key].RECEIVER_NAME = event.currentTarget.value
+        },
+
+        changeRECEIVER_ADDRESS(event, key) {
+            console.log(key)
+            this.orders[key].RECEIVER_ADDRESS = event.currentTarget.value
+        },    
+        
+        changeRECEIVER_TEL(event, key) {
+            console.log(key)
+            this.orders[key].RECEIVER_TEL = event.currentTarget.value
+        },
+
+        edit_orders: async function (ORDERS_NO, key) {
+            // if (this.orders[key].ischecked == false) {
+            //     this.ONSALE = 0
+            // } else if (this.orders[key].ischecked == true) {
+            //     this.ONSALE = 1
+            // }
+
+            const res = await fetch('./phps/admin_UpdOrds.php', {
+                method: 'POST',
+                mode: 'same-origin',
+                credentials: 'same-origin',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    ORDERS_NO: ORDERS_NO,
+                    // dealState: this.orders[key].dealState,
+                    DELIVERY: this.orders[key].DELIVERY,
+                    PAY: this.orders[key].PAY,
+                    DISCOUNT: this.orders[key].DISCOUNT,
+                    TOTAL: this.orders[key].TOTAL,
+                    RECEIVER_NAME: this.orders[key].RECEIVER_NAME,
+                    RECEIVER_ADDRESS: this.orders[key].RECEIVER_ADDRESS,
+                    RECEIVER_TEL: this.orders[key].RECEIVER_TEL,
+                }),
+            })
+
+            this.get_orders()
+        },
     },
 
     created() {
         this.get_produs()
-        this.get_Delprodus()
         this.get_orders()
     },
 })

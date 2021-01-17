@@ -8,7 +8,6 @@
         <title>偵茶者後台管理 | TEA SEARCHER | 帶你找茶 喝茶 買茶</title>
         <link rel="shortcut icon" href="./images/index/webIcon.png" type="image/x-icon" />
         <link rel="stylesheet" href="./css/admin.css" />
-        <script src="../node_modules/vue/dist/vue.js"></script>
         <script src="js/admin.js"></script>
     </head>
     <body>
@@ -26,7 +25,7 @@
 
         <aside class="aside">
             <ul class="nav_list">
-                <li><h1>後台管理頁</h1></li>
+                <a href="admin_tea.html"><h1>後台管理頁</h1></a>
 
                 <li class="li">
                     <a href="#" data-target="admin"
@@ -86,7 +85,7 @@
                                     <th>會員狀態</th>
                                     <th>修改確認</th>
                                 </tr>
-                                <tbody v-for="item in members">
+                                <tbody v-for="(item,key) in members">
                                     <tr>
                                         <td>{{item.MEM_NO}}</td>
                                         <td>{{item.MEM_ID}}</td>
@@ -99,15 +98,22 @@
                                         <!-- <td><input type="text" :value="item.GAME_POINT" /></td> -->
                                         <td>
                                             <div class="form-group">
-                                                正常
+                                                正常(1)
                                                 <label class="switch">
                                                     <input type="checkbox" v-model="item.ischecked" />
                                                     <span class="slider round"></span>
                                                 </label>
-                                                停權
+                                                停權(0)
                                             </div>
                                         </td>
-                                        <td><input class="btn-delete" type="button" value="確認停權" /></td>
+                                        <td>
+                                            <input
+                                                class="btn-delete"
+                                                type="button"
+                                                @click="edit_status(item.MEM_NO,key)"
+                                                value="確認停權"
+                                            />
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -116,7 +122,7 @@
                 </div>
             </div>
         </main>
-
+        <script src="./js/vue.js"></script>
         <script src="js/admin_member_vue.js"></script>
     </body>
 </html>

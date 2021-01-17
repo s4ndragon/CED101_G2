@@ -745,17 +745,14 @@ main {
 
                     label {
                         position: absolute;
-                        transform: translateY(17%);
-                        left: 20px;
+                        // transform: translateY(17%);
+                        // left: 20px;
                         transition: all 0.25s ease;
                         // -webkit-backface-visibility: hidden;
                         pointer-events: none;
                         // font-size: 22px;
                         color: $primary-typo-color;
                         font-size: $h5;
-                    }
-
-                    label.active {
                         transform: translateY(-25px);
                         left: 10px;
                         font-size: $h6;

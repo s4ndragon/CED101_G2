@@ -10,7 +10,7 @@ body {
 .clickleft {
     display: flex;
     align-items: center;
-    transform: translate(70%, -600%);
+    transform: translate(80%, -1540%);
     position: absolute;
     bottom: 0;
     font-size: 36px;
@@ -42,7 +42,7 @@ aside.aside button.btn_hamburger {
     display: none;
 }
 
-aside.aside > ul.nav_list > li {
+aside.aside > ul.nav_list {
     h1 {
         font-size: $h4;
     }

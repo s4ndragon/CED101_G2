@@ -14,7 +14,7 @@ try {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-TW">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -22,7 +22,7 @@ try {
     <link rel="stylesheet" href="css/discuss.css" />
     <title>討論區</title>
     <!-- vue  -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.js"></script>
+    <script src="./js/vue.js"></script>
 </head>
 
 <body>
@@ -70,38 +70,15 @@ try {
                             <div class="com_pub_time">發表於{{item.MSG_DATE}}</div>
                         </div>
                         <div class="excl">
-                            <img class="excl" src="./images/common/852019_exclamation_512x512.png" alt="" @click="showModal2 = true">
+                            <img class="excl" src="./images/common/852019_exclamation_512x512.png" alt="" @click="showBox(item.MSG_NO)">
                         </div>
-                    </div>
-                    
-                    <!-- overlay 檢舉燈箱開始 -->
-                    <div class="overlay" v-if="showModal2" @click="showModal2 = true"></div>
-                    <!-- modal -->
-                    <div class="modal" v-if="showModal2">
-                        <form action="post">
-                            <div class="close" @click="showModal2 = false">
-                                <img class="cancel" src="images/vote/cancel.png">
-                            </div>
-                            <p class="welcome">請選取檢舉理由</p>
-                            <div class="reason_container">
-                                <input class="reason" type="radio" name="size" value="惡意中傷">惡意中傷</div>
-                            <div class="reason_container">
-                                <input class="reason" type="radio" name="size" value="散布廣告">散布廣告
-                            </div>
-                            <div class="reason_container">
-                                <input class="reason" type="radio" name="size" value="色情資訊">色情資訊
-                            </div>
-                            <div class="reason_container">
-                                <input class="reason" type="radio" name="size" value="不雅字眼">不雅字眼
-                            </div>
-                            <button class="go" type="submit">送出</button>
-                        </form>
-                    </div>
-                    <!-- =====以上是檢舉燈箱==== -->
-                    
+                    </div>                   
                 </div>
                 <div class="empty" v-show="comList.length==0">此文章尚無留言，歡迎留言。</ul>
             </div>
+
+            <!-- ====檢舉燈箱==== -->
+                <art-reg :msgno="msgno"></art-reg>
 
             <form method="post">
                 <div class="input_container">
@@ -129,16 +106,96 @@ try {
     @@include('layout/footer.html')
 
     <script>
+        Vue.component('art-reg', {
+            props: ['msgno'],
+            template: ` <div>
+                        <div class="overlay" style="display: none;">
+                            <div class="modal">
+                                <form method="post" >
+                                    <div class="close" @click="closeBox()">
+                                        <img class="cancel" src="./images/vote/cancel.png">
+                                    </div>
+                                    <p class="welcome">請選取檢舉理由</p>
+                                    <div class="reason_container">
+                                        <input class="reason" type="radio" name="size" id="a" value="惡意中傷">
+                                        <label for="a">惡意中傷</label>
+                                    </div>
+                                    <div class="reason_container">
+                                        <input class="reason" type="radio" name="size" id="b" value="散布廣告">
+                                        <label for="b">散布廣告</label>
+                                    </div>
+                                    <div class="reason_container">
+                                        <input class="reason" type="radio" name="size" id="c" value="色情資訊">
+                                        <label for="c">色情資訊</label>
+                                    </div>
+                                    <div class="reason_container">
+                                        <input class="reason" type="radio" name="size" id="d" value="不雅字眼">
+                                        <label for="d">不雅字眼</label>
+                                    </div>
+                                    <button class="go" type="button" @click="send_data">送出</button>
+                                    <input type="hidden" name="msg_reg" :value="msgno">
+                                </form>
+                            </div>
+                        </div>
+                        <div class="overlay2" style="display: none;" >
+                            <div class="modal">
+                                <form method="post" >
+                                    <p class="welcome">檢舉成功！</p>
+                                    <button class="go" type="button" @click="close">確認</button>
+                                </form>
+                            </div>
+                         </div></div>
+                         `,
+            methods: {
+                closeBox: function () {
+                    let lightbox = document.querySelectorAll('.overlay')[0];
+                    lightbox.style.display = 'none';
+                },
+                check_radio() {
+
+                },
+                send_data() {
+                    $.ajax({
+                        url: './phps/addCommandReg.php', // 要傳送的頁面
+                        method: 'POST',               // 使用 POST 方法傳送請求
+                        dataType: 'text',             // 回傳資料會是 json 格式
+                        data: $('form').serialize(),  // 將表單資料用打包起來送出去
+                        success: function (res) {       // 成功以後會執行這個方法
+                            console.log('good');
+                            console.log(res);
+                            let lightbox = document.querySelectorAll('.overlay')[0];
+                            lightbox.style.display = 'none';
+                            let lightbox2 = document.querySelectorAll('.overlay2')[0];
+                            lightbox2.style.display = '';
+                        },
+                        error: function (res) {
+                            console.log('not good');
+                            console.log(res);
+                        },
+                    });
+                },
+                                        close() {
+                            let lightbox2 = document.querySelectorAll('.overlay2')[0];
+                            lightbox2.style.display = 'none';
+                        },
+            },
+        });
+
+
+
             var app = new Vue({
                 el: '#app',
                 data: {
-                    showModal: false,
-                    showModal2: false,
                     comList:[],
                     content:"",
+                    msgno: "",
                 },
                 methods: {
-
+                showBox: function (MSG_NO) {
+                    let lightbox = document.querySelectorAll('.overlay')[0];
+                    lightbox.style.display = '';
+                    this.msgno = MSG_NO;
+                },
                 },
 
                 beforeCreate() {
@@ -151,7 +208,6 @@ try {
                             console.log('good');
                             console.log(res);
                             app.comList = res;
-                            console.log(app.comList);
                         },
                         error: function(res){    
                             console.log('not good');
