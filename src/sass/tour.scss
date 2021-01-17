@@ -384,6 +384,10 @@ img {
             border: 5px solid rgb(243, 185, 185);
             cursor: pointer;
 
+            img {
+                height: 50px;
+            }
+
             p {
                 position: absolute;
                 top: 50%;
@@ -604,7 +608,8 @@ img {
     border-radius: 10px;
 
     @media screen and (max-width: 576px) {
-        margin: 10px auto;
+        width: 85%;
+        margin: 20px auto;
         display: block;
     }
 
