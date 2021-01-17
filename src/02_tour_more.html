@@ -120,118 +120,33 @@
 
         <div id="commandall">
             <!--       留言重複開始         -->
-            <div class="command">
+            <div class="command" v-for="msgRow in msgRows" :key="msgRow.MSG_NO">
                 <div class="nameall">
-                    <div class="mem_photo"><img class="mem_photo" src="./images/common/mem_photo1.png" alt=""></div>
-                    <span class="pub_mem_name">翰婷</span>
+                    <div class="mem_photo"><img class="mem_photo" :src="msgRow.MEM_IMG" alt=""></div>
+                    <span class="pub_mem_name">{{msgRow.MEM_NICNAME}}</span>
                 </div>
                 <div class="text_excl">
                     <div class="command_text">
-                        <div class="pub_text">哈囉，還好吧還好吧還好吧還好吧還好吧，我也要去。</div>
-                        <div class="com_pub_time">發表於2012-03-20 12:20:30</div>
-                    </div>
-                    <div class="excl ">
-                        <button class="repobt" @click="showModal2 = true">
-                            <img class="excl" src="./images/common/852019_exclamation_512x512.png" alt="">
-                        </button>
-
-                        <!-- overlay -->
-                        <div class="overlay" v-if="showModal2" @click="showModal2 = true"></div>
-                        <!-- modal -->
-                        <div class="modal" v-if="showModal2">
-                            <form>
-                                <div class="close" @click="showModal2 = false">
-
-                                </div>
-                                <p class="welcome">請輸入檢舉理由</p>
-                                <textarea class="repoinfo" cols="25" rows="10"></textarea>
-
-                                <button class="go">送出</button>
-                            </form>
-                        </div>
-
+                        <div class="pub_text">{{msgRow.MSG_CONTENT}}</div>
+                        <div class="com_pub_time">發表於{{msgRow.MSG_DATE}}</div>
                     </div>
                 </div>
             </div>
-            <div class="command">
-                <div class="nameall">
-                    <div class="mem_photo"><img class="mem_photo" src="./images/common/mem_photo1.png" alt=""></div>
-                    <span class="pub_mem_name">翰婷</span>
-                </div>
-                <div class="text_excl ">
-                    <div class="command_text">
-                        <div class="pub_text">哈囉，還好吧還好吧還好吧還好吧還好吧，我也要去。</div>
-                        <div class="com_pub_time">發表於2012-03-20 12:20:30</div>
-                    </div>
-                    <div class="excl ">
-                        <button class="repobt" @click="showModal2 = true">
-                            <img class="excl" src="./images/common/852019_exclamation_512x512.png" alt="">
-                        </button>
-
-                        <!-- overlay -->
-                        <div class="overlay" v-if="showModal2" @click="showModal2 = true"></div>
-                        <!-- modal -->
-                        <div class="modal" v-if="showModal2">
-                            <form>
-                                <div class="close" @click="showModal2 = false">
-                                    
-                                </div>
-                                <p class="welcome">請輸入檢舉理由</p>
-                                <textarea class="repoinfo" cols="25" rows="10"></textarea>
-
-                                <button class="go">送出</button>
-                            </form>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <div class="command">
-                <div class="nameall">
-                    <div class="mem_photo"><img class="mem_photo" src="./images/common/mem_photo1.png" alt=""></div>
-                    <span class="pub_mem_name">翰婷</span>
-                </div>
-                <div class="text_excl">
-                    <div class="command_text">
-                        <div class="pub_text">哈囉，還好吧還好吧還好吧還好吧還好吧，我也要去。</div>
-                        <div class="com_pub_time">發表於2012-03-20 12:20:30</div>
-                    </div>
-                    <div class="excl ">
-                        <button class="repobt" @click="showModal2 = true">
-                            <img class="excl" src="./images/common/852019_exclamation_512x512.png" alt="">
-                        </button>
-
-                        <!-- overlay -->
-                        <div class="overlay" v-if="showModal2" @click="showModal2 = true"></div>
-                        <!-- modal -->
-                        <div class="modal" v-if="showModal2">
-                            <form>
-                                <div class="close" @click="showModal2 = false">
-                                    
-                                </div>
-                                <p class="welcome">請輸入檢舉理由</p>
-                                <textarea class="repoinfo" cols="25" rows="10"></textarea>
-
-                                <button class="go">送出</button>
-                            </form>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
+            <!--       留言重複結束         -->
+            <div class="empty" v-show="msgRows.length==0">此文章尚無留言，歡迎留言。</div>
 
         </div>
 
-        <form action="">
+        <form>
             <div class="input_container">
                 <h3>新增留言</h3>
                 <div class="create_command_container">
-                    <textarea class="create_command"></textarea>
-                    <div class="com_btn_countainer">
-                        <button class="inner_btn">
-                            <a href="03_discuss.html">送出</a>
-                        </button>
-                    </div>
+                    <textarea id="content" class="create_command"></textarea>
+                    
+                        <div @click="sendComm" class="inner_btn" style="margin: 15px auto;">
+                            送出
+                        </div>
+                   
                 </div>
             </div>
 
@@ -247,11 +162,12 @@
             el: "#app",
             data: {
                 showModal2: false,
-                dataRows:[],
-                dataTop:[],
-                memRows:[],
-                hotelRows:[],
-                foodRows:[],
+                dataRows:'',
+                dataTop:'',
+                memRows:'',
+                hotelRows:'',
+                foodRows:'',
+                msgRows:'',
                 tour_id:'',
                 people_now:'',
                 people_limit:'',
@@ -325,6 +241,7 @@
                         app.memRows = app.dataRows[1];
                         app.hotelRows = app.dataRows[2];
                         app.foodRows = app.dataRows[3];
+                        app.msgRows = app.dataRows[4];
                     }else{
                         alert(xhr.status);
                         }
@@ -333,7 +250,33 @@
                     xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
                     let data_info = `TOUR_ID=${this.targetPageId}`;
                     xhr.send(data_info);
+                },
+
+                sendComm(){
+                    let words = document.getElementById("content")
+                    if(words.value == ''){
+                        alert('尚未輸入內容')
+                    }else{
+                        let xhr = new XMLHttpRequest();
+                        xhr.onload = function(){
+                            if(xhr.status == 200){ //success
+                                console.log('success')
+                            }else{
+                                alert(xhr.status);
+                            }
+                        }
+                        xhr.open("post", "./phps/send_tour_msg.php", false);
+                        xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+                        //送出資料
+                        let data_info = `TOUR_ID=${this.targetPageId}&MSG_CONTENT=${words.value}`;
+                        xhr.send(data_info);
+
+                        this.get_data()
+                        words.value = ''
+                        
+                    }
                 }
+
             },
             mounted() {
                 let nowURL = window.location.href;

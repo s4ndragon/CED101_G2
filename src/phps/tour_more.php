@@ -2,7 +2,7 @@
 session_start();  //啟用session
 try{
   require_once("./connect.php");
-  $sql = "select * from MEMBER where MEM_NO = 1"; 
+  $sql = "select * from MEMBER where MEM_NO = 7"; 
   $member = $pdo->prepare($sql);
   $member->execute();
 
@@ -46,7 +46,14 @@ try {
 	$food->execute();
 	$foodRows = $food->fetchAll(PDO::FETCH_ASSOC);
 
-	$dataRows=[$tourRows,$memRows,$hotelRows,$foodRows];
+	$sql = "select * from TOUR_MSG join MEMBER on TOUR_MSG.MEM_NO = MEMBER.MEM_NO where TOUR_MSG.TOUR_ID = :TOUR_ID";
+	$msg = $pdo->prepare($sql);
+	$MEM_NO = $_SESSION["MEM_NO"];
+	$msg->bindValue(":TOUR_ID", $_POST["TOUR_ID"]);
+	$msg->execute();
+	$msgRows = $msg->fetchAll(PDO::FETCH_ASSOC);
+
+	$dataRows=[$tourRows,$memRows,$hotelRows,$foodRows,$msgRows];
 	echo json_encode($dataRows);
 
 } catch (PDOException $e) {
