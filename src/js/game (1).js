@@ -18,8 +18,8 @@
  * zombies 僵屍數組
  * score 計分 初始值0
  */
-var song = new Audio("http://ys.yd.yiscdn.com/yisell/pays2020111852017888/sound/yisell_sound_2008041015324213582_88011.mp3"),
-  bomb=new Audio("http://ys.yd.yiscdn.com/yisell/ycys2020111852017888/sound/yisell_sound_2014080113383117110_66366.mp3");
+var song = new Audio("https://tibamef2e.com/ced101/project/g2/yisell_sound_2008041015324213582_88011.mp3"),
+  bomb=new Audio("https://tibamef2e.com/ced101/project/g2/pon.mp3");
 song.loop = true;
 var star = 25,
   score=0,
