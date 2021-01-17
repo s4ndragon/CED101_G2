@@ -21,8 +21,6 @@ try {
     <link rel="shortcut icon" href="./images/index/webIcon.png" type="image/x-icon" />
     <link rel="stylesheet" href="css/discuss.css" />
     <title>討論區</title>
-    <!-- vue  -->
-    <script src="./js/vue.js"></script>
 </head>
 
 <body>
@@ -104,7 +102,8 @@ try {
     </main>
 
     @@include('layout/footer.html')
-
+     <!-- vue  -->
+    <script src="./js/vue.js"></script>
     <script>
         Vue.component('art-reg', {
             props: ['msgno'],
