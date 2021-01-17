@@ -530,8 +530,8 @@
                                 </tr>
                             </table>
                             <div class="flex a_sb">
-                                <button type="button" class="btn-confirm" name="remove">移除</button>
-                                <input type="submit"class="btn-confirm" value="送出" name="update">
+                                <button type="button" class="btn-confirm" name="remove" onclick="delrole()">移除</button>
+                                <input type="button"class="btn-confirm" value="送出" name="update" onclick="setrole()">
                                 <div></div>
                             </div>  
                             
@@ -732,7 +732,8 @@ Vue.component('Gamebox',{
             });
 function edit(e){
     var cl=$(e.parentNode.parentNode);
-     if ($(e).prop('checked') === true) {        
+     if ($(e).prop('checked') === true) {
+    cl.find('td:eq(1)>input').attr('name','no[]');             
     cl.find('td:eq(2)>input').attr('name','pic[]');
     cl.find('td:eq(3)>input').attr('name','star[]');
     cl.find('td:eq(4)>input').attr('name','hp[]');
@@ -742,12 +743,30 @@ function edit(e){
     cl.find('td:eq(7)>input').attr('name','damage[]');
     cl.find('td:eq(8)>input').attr('name','defense[]');
     }else{
-        for(var i=2;i<9;i++){
+        for(var i=1;i<9;i++){
             cl.find(`td:eq(${i})>input`).attr('name','');
         }
     }
 }
-
+var gamep=document.getElementById("gamep");
+function delrole(){
+var xhr=new XMLHttpRequest();
+xhr.open("POST","./phps/sendROLE.php",true);
+xhr.setRequestHeader("Content-Type","multipart/form-data");
+xhr.send(`no[]=${gamep.getElementsByName("no[]")}`);
+xhr.onload=function(){
+    alert(xhr.responseText);
+}
+}
+function setrole(){
+var xhr=new XMLHttpRequest();
+xhr.open("POST","./phps/sendROLE.php",true);
+xhr.setRequestHeader("Content-Type","multipart/form-data");
+xhr.send(`update=${gamep.getElementsByName("no[]")}&no[]=${gamep.getElementsByName("no[]")}&pic[]=${gamep.getElementsByName("pic[]")}&hp[]=${gamep.getElementsByName("hp[]")}&hps[]=${gamep.getElementsByName("hps[]")}&speed[]=${gamep.getElementsByName("speed[]")}&damage[]=${gamep.getElementsByName("damage[]")}&defense[]=${gamep.getElementsByName("defense[]")}`);
+xhr.onload=function(){
+    alert(xhr.responseText);
+}
+}
 function check_all(obj,Name){for(var i of document.getElementsByName(Name)){i.click(); }}
         </script>
     </body>
