@@ -104,7 +104,7 @@
     <script>
         Vue.component('art-reg', {
             props: ['artno'],
-            template: ` <div class="overlay" style="display: none;">
+            template: ` <div><div class="overlay" style="display: none;">
                             <div class="modal">
                                 <form method="post" >
                                     <div class="close" @click="closeBox()">
@@ -131,7 +131,16 @@
                                     <input type="hidden" name="art_reg" :value="artno">
                                 </form>
                             </div>
-                         </div>`,
+                         </div>
+                         <div class="overlay2" style="display: none;" >
+                            <div class="modal">
+                                <form method="post" >
+                                    <p class="welcome">檢舉成功！</p>
+                                    <button class="go" type="button" @click="close">確認</button>
+                                </form>
+                            </div>
+                         </div></div>
+                         `,
 
 
             methods: {
@@ -154,13 +163,18 @@
                             console.log(res);
                             let lightbox = document.querySelectorAll('.overlay')[0];
                             lightbox.style.display = 'none';
-                            alert('檢舉成功');
+                            let lightbox2 = document.querySelectorAll('.overlay2')[0];
+                            lightbox2.style.display = '';
                         },
                         error: function (res) {
                             console.log('not good');
                             console.log(res);
                         },
                     });
+                },
+                close() {
+                    let lightbox2 = document.querySelectorAll('.overlay2')[0];
+                    lightbox2.style.display = 'none';
                 },
             },
         });
@@ -182,7 +196,6 @@
                             this.src = "./images/common/like.png";
                         } else {
                             this.title = "加入收藏";
-                            let lightbox = document.querySelectorAll('.overlay');
                             this.src = "./images/common/heart.png";
                         }
                     });
@@ -192,6 +205,9 @@
                     lightbox.style.display = '';
                     this.artno = ART_NO;
                 },
+            },
+            computed: {
+
             },
             mounted() {
                 let articlesRows;
