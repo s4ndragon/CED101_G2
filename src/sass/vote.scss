@@ -365,6 +365,10 @@ main{
                     vertical-align: middle;
                     margin-right: 10px;
                 }
+
+                .title{
+                    color:#90a30b;
+                }
             }
 
             td:nth-child(3){
@@ -372,12 +376,29 @@ main{
             }
 
             td:nth-child(4){
-                width: 273px;
+                width: 261px;
             }
+
+            
 
             td:nth-child(5){
                 width: 100px;
                 padding-right: 33px;
+                
+                .btn{
+                    color: white;
+                    font-weight: bolder;
+                    font-size: 14px;
+                    background-color: #69994e;
+                    padding: 8px 10px;
+                    border-radius: 15px;
+                }
+
+                .btn:hover{
+                    box-shadow: 0 0 0 5px #69994e inset, 0 0 0 150px white inset;
+                    color:#69994e;
+                    transition: all 0.5s ease;
+                }
             }
 
             .resize{
@@ -397,6 +418,10 @@ main{
             // cursor: pointer;
             transition: all 0.5s ease;
         }
+
+      
+
+        
 
     }
 

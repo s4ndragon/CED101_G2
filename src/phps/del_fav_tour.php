@@ -17,21 +17,21 @@ try{
 }
 ?>
 
-
 <?php 
  
 try {
-	require_once("./connect.php");
-    $sql = "insert into garden_msg (GARD_ID, MEM_NO, MSG_DATE, MSG_CONTENT, MSG_CONTENT_STATUS)
-            values (:GARD_ID, :MEM_NO, NOW(), :MSG_CONTENT, 1)";
-    $words = $pdo->prepare($sql);
-	$MEM_NO = $_SESSION["MEM_NO"];
-	$words->bindValue(":MEM_NO", $MEM_NO);
-    $words->bindValue(":GARD_ID", $_POST["GARD_ID"]);
-    $words->bindValue(":MSG_CONTENT", $_POST["MSG_CONTENT"]);
-	$words->execute();
+	require_once("./connect.php");//刪除收藏資料
+    $sql = "delete from tour_collect where TOUR_ID = :TOUR_ID and MEM_NO = :MEM_NO"; 
+    $dislike = $pdo->prepare($sql);
+    //取得欲收藏的揪團編號
+    $dislike->bindValue(":TOUR_ID", $_POST["TOUR_ID"]);
+    //取得會員資料
+    $MEM_NO = $_SESSION["MEM_NO"];
+    $dislike->bindValue(":MEM_NO", $MEM_NO);
+    $dislike->execute();
 
-	
+
+ 
 
 } catch (PDOException $e) {
 	echo "錯誤原因 : ", $e->getMessage(), "<br>";

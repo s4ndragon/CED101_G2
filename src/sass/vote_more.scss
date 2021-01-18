@@ -53,6 +53,8 @@ main {
                 display: flex;
                 justify-content: space-between;
 
+               
+
                 .p1 {
                     font-size: $h4;
                     color: #7baa17;
@@ -164,6 +166,8 @@ main {
         }
     }
 
+  
+
     h3 {
         margin-top: 60px;
         text-align: left;
@@ -201,7 +205,7 @@ main {
     }
 
     #commandall {
-        border-bottom: 1px solid white;
+        // border-bottom: 1px solid white;
         width: 90%;
         margin: 30px auto 0;
 
@@ -347,23 +351,20 @@ main {
 
             .com_btn_countainer {
 
-                .btnc {
-                    border-radius: 20px;
-                    font-weight: bolder;
-                    border: 2px;
-                    transition: all 0.5s ease;
-                    font-size: 14px;
-                    outline: none;
-                    cursor: pointer;
-                    margin: 15px;
-                    padding: 15px 5px;
-                    background-color: white;
-                    color: #69994e;
-                    width: 100px;
-                }
+                
             }
         }
 
+    }
+
+    .btnc {
+        @include smallbtn4;
+        margin: 10px auto;
+    }
+
+    .empty{
+        color:white;
+        font-size: 18px;
     }
 
 

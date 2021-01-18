@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="./css/vote_more.css">
     <script src="https://unpkg.com/vue-star-rating@1.5.1/dist/star-rating.min.js"></script>
     <script src="./js/like.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    
     
 </head>
 
@@ -27,13 +27,14 @@
             <div class="ginfo">
                 <div class="s1">
                     <p class="p1">{{garitem.GARD_NAME}}</p>
-                    <div class="fb-share-button" data-href="https://tw.yahoo.com/" data-layout="button"
-                        data-size="small">
-                        <a target="_blank"
-                            href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5501%2F07_vote_more.html&amp;src=sdkpreparse"
-                            class="fb-xfbml-parse-ignore">
-                            分享
-                        </a>
+                    <div class="fb-share-button" :data-href="nowURL" data-layout="button"
+                            data-size="small">
+                            <a target="_blank"
+                               style="background: #1483f5; color: white; padding: 2px 9px; border-radius: 5px; font-weight: bold;"
+                                :href="'https://www.facebook.com/sharer/sharer.php?u='+nowURL+'&amp;src=sdkpreparse'"
+                                class="fb-xfbml-parse-ignore fbi">
+                                分享
+                            </a>
                     </div>
                 </div>
 
@@ -109,7 +110,7 @@
                     <textarea id="content" class="create_command"></textarea>
                     
                         
-                            <div class="btnc" @click="sendComm">送出</div>
+                    <div class="btnc" @click="sendComm">送出</div>
                         
                     
                 </div>
@@ -133,7 +134,7 @@
                         <img class="like" src="./images/common/heart.png" title="加入收藏" alt="">
                     </div>
                     <div class="share">
-                        <div class="fb-share-button" data-href="http://127.0.0.1:5501/dist/01_tour.html" data-layout="button" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5501%2Fdist%2F01_tour.html&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">分享</a></div>
+                        <div class="fb-share-button" data-href="http://127.0.0.1:5501/dist/01_tour.html" data-layout="button" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5501%2Fdist%2F01_tour.html&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore ">分享</a></div>
                     </div>
                 </div>
 
@@ -262,7 +263,8 @@
                 rating: '您尚未評分',
                 sendRating:'',
                 targetPageId:'',
-                today:''
+                today:'',
+                nowURL:''
             },
 
             methods: {
@@ -323,8 +325,9 @@
                 },
 
                 get_data(){
+                    let nowURL = window.location.href;
+                    this.nowURL = nowURL;
                     let searchURL = window.location.search;
-                    searchURL = searchURL.substring(1, searchURL.length);
                     let targetPageId = searchURL.split("=")[1];
                     this.targetPageId = targetPageId;
                     //============傳targetPageId給php
@@ -424,8 +427,7 @@
     
 
     <div id="fb-root"></div>
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v9.0"
-        nonce="WuFFSzIJ"></script>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v9.0" nonce="sJvAs018"></script>
 </body>
 
 </html>

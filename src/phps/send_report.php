@@ -2,7 +2,7 @@
 session_start();  //啟用session
 try{
   require_once("./connect.php");
-  $sql = "select * from MEMBER where MEM_NO = 8"; 
+  $sql = "select * from member where MEM_NO = 8"; 
   $member = $pdo->prepare($sql);
   $member->execute();
 

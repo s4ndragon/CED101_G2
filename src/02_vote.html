@@ -7,8 +7,6 @@
 	<title>茶園排行</title>
 	<link rel="stylesheet" href="./css/vote.css">
 	<script src="https://unpkg.com/vue-star-rating@1.5.1/dist/star-rating.min.js"></script>
-	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.js"></script> -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="./images/vote/awesome/css/all.css">
 	
 </head>
@@ -30,14 +28,7 @@
 			<div class="info">
 				<div class="s1">
 					<p class="p1">{{gardenTop.GARD_NAME}}</p>
-					<div class="fb-share-button" :data-href="'02_vote_more.html?GARD_ID='+gardenTop.GARD_ID" data-layout="button"
-						data-size="small">
-						<a target="_blank"
-							href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%2FCED101_G2%2Fdist%2F02_vote_more.html%3FGARD_ID%3D6&amp;src=sdkpreparse"
-							class="fb-xfbml-parse-ignore">
-							分享
-						</a>
-					</div>
+				
 				</div>
 
 				<div class="allscore">
@@ -71,7 +62,7 @@
 			<td>{{index+4}}</td>
 				<td>
 					<img class="chartpic" :src="gardenEnd.GARD_PIC">
-					<a class="title" :href="'02_vote_more.html?GARD_ID=' + gardenEnd.GARD_ID" style="color:green">{{gardenEnd.GARD_NAME}}</a>
+					<a class="title" :href="'02_vote_more.html?GARD_ID=' + gardenEnd.GARD_ID">{{gardenEnd.GARD_NAME}}</a>
 				</td>
 				<td>
 					<i class="fas fa-map-marker-alt"></i>&ensp;
@@ -81,14 +72,9 @@
 					<star-rating :rating="gardenEnd.GARD_AVG" :read-only="true" :increment="0.01" :star-size="25"></star-rating>
 				</td>
 				<td>
-					<div class="fb-share-button" data-href="https://tw.yahoo.com/" data-layout="button"
-						data-size="small">
-						<a target="_blank"
-							href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5501%2F07_vote_more.html&amp;src=sdkpreparse"
-							class="fb-xfbml-parse-ignore">
-							分享
+						<a class="btn" :href="'02_vote_more.html?GARD_ID=' + gardenEnd.GARD_ID">
+							More
 						</a>
-					</div>
 				</td>
 			</tr>
 		</table>

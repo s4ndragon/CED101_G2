@@ -22,16 +22,17 @@ try{
  
 try {
 	require_once("./connect.php");
-    $sql = "insert into garden_msg (GARD_ID, MEM_NO, MSG_DATE, MSG_CONTENT, MSG_CONTENT_STATUS)
-            values (:GARD_ID, :MEM_NO, NOW(), :MSG_CONTENT, 1)";
-    $words = $pdo->prepare($sql);
-	$MEM_NO = $_SESSION["MEM_NO"];
-	$words->bindValue(":MEM_NO", $MEM_NO);
-    $words->bindValue(":GARD_ID", $_POST["GARD_ID"]);
-    $words->bindValue(":MSG_CONTENT", $_POST["MSG_CONTENT"]);
-	$words->execute();
+  $sql = "insert into tour_collect (TOUR_ID, MEM_NO) values (:TOUR_ID,:MEM_NO)"; //存入收藏資料
+  $like = $pdo->prepare($sql);
+  //取得欲收藏的揪團編號
+  $like->bindValue(":TOUR_ID", $_POST["TOUR_ID"]);
+  //取得會員資料
+  $MEM_NO = $_SESSION["MEM_NO"];
+  $like->bindValue(":MEM_NO", $MEM_NO);
+  $like->execute();
 
-	
+
+ 
 
 } catch (PDOException $e) {
 	echo "錯誤原因 : ", $e->getMessage(), "<br>";
