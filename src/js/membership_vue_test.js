@@ -4,7 +4,7 @@ let memRows;
 let xhr = new XMLHttpRequest();
 xhr.onload = function () {
     app.memRows = JSON.parse(xhr.responseText);
-    console.log(app.memRows);
+    // console.log(app.memRows);
 };
 xhr.open("get", "./phps/member.php", true);
 xhr.send(null);
