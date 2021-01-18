@@ -35,7 +35,7 @@
         <section id="discuss">
             <div id="all_articles">
                 <!-- =====單篇文章開始===== -->
-                <div v-for="(artRow,i) in articlesRows" class="article" :class="artRow.FILTER">
+                <div v-for="(artRow,i) in articlesRows[0]" class="article" :class="artRow.FILTER">
                     <div class="ar_img">
                         <img class="ar_rimg" :src="artRow.ART_IMG" alt="">
                         <p class="ar_title">【{{artRow.CAT}}】{{artRow.ART_TITLE}}</p>
@@ -46,33 +46,19 @@
                     </div>
                     <div class="ar_text">
                         <div class="art_icons">
+                            <!-- 加入收藏愛心 -->
                             <img class="memi addheart" title="add" src="./images/common/heart.png" alt=""
                                 @click="addheart(artRow.ART_NO)">
                             <img class="memi" src="./images/common/messenger.png" alt="">
-                            <span class="com_num">{{artRow.ART_REPLYS}}</span>
+                            <span class="com_num">{{artRow.msg}}</span>
                             <div class="excl" @click="showBox(artRow.ART_NO)">
                                 <img class="excl" src="./images/common/852019_exclamation_512x512.png" alt="">
                             </div>
-
-
-
-                            <!-- ====以下臉書分享==== -->
-                            <!-- <div class="fb-share-button" data-href="https://www.youtube.com/watch?v=HDhltQ4Jx0o"
-                                data-layout="button_count" data-size="small"><a target="_blank"
-                                    href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DHDhltQ4Jx0o&amp;src=sdkpreparse"
-                                    class="fb-xfbml-parse-ignore">分享</a>
-                            </div> -->
-                            <!-- 自己寫測試的 -->
-                            <!-- href="'https://www.facebook.com/sharer/sharer.php?u=03_discuss_article.php?ART_NO=' + artRow.ART_NO + '&amp;src=sdkpreparse'" -->
                             <div class="fb-share-button"
-                                data-href="http://localhost/important/dist/03_discuss_article.php?ART_NO=51"
-                                data-layout="button" data-size="small"><a target="_blank"
-                                    href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%2Fimportant%2Fdist%2F03_discuss_article.php%3FART_NO%3D51&amp;src=sdkpreparse"
-                                    class="fb-xfbml-parse-ignore">分享</a>
-                            </div>
-                            <!-- ====以上臉書分享==== -->
-
-
+                                :data-href="'https://tibamef2e.com/ced101/project/g2/03_discuss_article.php?ART_NO='+ artRow.ART_NO"
+                                data-layout="button_count" data-size="small"><a target="_blank"
+                                    href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ftibamef2e.com%2Fced101%2Fproject%2Fg2%2F03_discuss_article.php%3FART_NO%3D51&amp;src=sdkpreparse"
+                                    class="fb-xfbml-parse-ignore">分享</a></div>
                         </div>
                         <div class="ar_innertext">
                             <p>{{artRow.ART_CONTENT}}</p>
@@ -83,16 +69,16 @@
                         <div class="pub_time"><span>發表於{{artRow.ART_DATE}}</span></div>
                     </div>
                 </div>
-                <!-- ====檢舉燈箱==== -->
-                <art-reg :artno="artno"></art-reg>
+                <!-- 檢舉燈箱 -->
             </div>
         </section>
+        <art-reg :artno="artno"></art-reg>
     </main>
     @@include('layout/footer.html')
     <!-- vue  -->
     <script src="./js/vue.js"></script>
 
-    <!-- ====臉書分享==== -->
+    <!-- 臉書分享 -->
     <div id="fb-root"></div>
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v9.0"
         nonce="02xnpbCX"></script>
@@ -146,9 +132,7 @@
                     let lightbox = document.querySelectorAll('.overlay')[0];
                     lightbox.style.display = 'none';
                 },
-                check_radio() {
 
-                },
                 send_data() {
                     $.ajax({
                         url: './phps/articleReg.php', // 要傳送的頁面
@@ -184,40 +168,43 @@
             },
 
             methods: {
-                addheart(arno) {
-                    if (this.title == "add") {
-                        $.ajax({
-                            url: './phps/addArtFavorite.php', // 要傳送的頁面
-                            type: "POST",
-                            method: 'POST',
-                            dataType: 'text',             // 回傳資料會是 json 格式
-                            data: { arno },                 // 將表單資料用打包起來送出去
-                            success: function (res) {       // 成功以後會執行這個方法
-                                console.log('good');
-                            },
-                            error: function (res) {
-                                console.log('not good');
-                            },
-                        });
-                        this.title = "noadd"
-                    } else if (this.title = "noadd") {
-                        this.title = "add";
-                        this.src = "./images/common/heart.png";
-                        $.ajax({
-                            url: './phps/deleteArtFav.php', // 要傳送的頁面
-                            type: "POST",
-                            method: 'POST',
-                            dataType: 'text',             // 回傳資料會是 json 格式
-                            data: { arno },                 // 將表單資料用打包起來送出去
-                            success: function (res) {       // 成功以後會執行這個方法
-                                console.log('good');
-                            },
-                            error: function (res) {
-                                console.log('not good');
-                            },
-                        });
-                    }
-                },
+                // addheart(arno) {
+                //     $('.addheart').click(function () {
+                //         if (this.title == "add") {
+                //             this.title = "noadd";
+                //             this.src = "./images/common/like.png";
+                //             $.ajax({
+                //                 url: './phps/addArtFavorite.php', // 要傳送的頁面
+                //                 type: "POST",
+                //                 method: 'POST',
+                //                 dataType: 'text',             // 回傳資料
+                //                 data: { arno },                 // 將表單資料用打包起來送出去
+                //                 success: function (res) {       // 成功以後會執行這個方法
+                //                     console.log('good');
+                //                 },
+                //                 error: function (res) {
+                //                     console.log('not good');
+                //                 },
+                //             });
+                //         } else if (this.title == "noadd") {
+                //             this.title = "add";
+                //             this.src = "./images/common/heart.png";
+                //             $.ajax({
+                //                 url: './phps/deleteArtFav.php', // 要傳送的頁面
+                //                 type: "POST",
+                //                 method: 'POST',
+                //                 dataType: 'text',             // 回傳資料
+                //                 data: { arno },                 // 將表單資料用打包起來送出去
+                //                 success: function (res) {       // 成功以後會執行這個方法
+                //                     console.log('good');
+                //                 },
+                //                 error: function (res) {
+                //                     console.log('not good');
+                //                 },
+                //             });
+                //         }
+                //     });
+                // },
                 showBox: function (ART_NO) {
                     let lightbox = document.querySelectorAll('.overlay')[0];
                     lightbox.style.display = '';
@@ -225,7 +212,14 @@
                 },
             },
             computed: {
+                ILike() {
+                    if () {
+                        return true;
 
+                    } else {
+
+                    }
+                }
             },
             mounted() {
                 let articlesRows;
@@ -233,7 +227,7 @@
                 let xhr = new XMLHttpRequest();
                 xhr.onload = function () {
                     app.articlesRows = JSON.parse(xhr.responseText);
-                    console.log(app.articlesRows);
+                    console.log(app.articlesRows[0]);
                 }
                 xhr.open("get", "./phps/getArticles.php", true);
                 xhr.send(null);

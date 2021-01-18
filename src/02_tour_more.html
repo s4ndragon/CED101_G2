@@ -6,9 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>茶園揪團</title>
     <link rel="stylesheet" href="./css/tour_more.css">
-    <script src="./js/like.js"></script>
-    <script src="./js/vue.js"></script>
-
 </head>
 
 <body>
@@ -29,12 +26,13 @@
                     <p class="pp1">{{touritem.TOUR_TITLE}}</p>
                     <div class="social">
                         <div class="love">
-                            <img class="like" src="./images/common/heart.png" title="加入收藏" alt="">
+                            <img @click="addFav" class="like" :src="imageSource" alt="">
                         </div>
                         <div class="fb-share-button" :data-href="nowURL" data-layout="button"
                             data-size="small">
                             <a target="_blank"
-                                href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse"
+                            style="background: #1483f5; color: white; padding: 2px 9px; border-radius: 5px; font-weight: bold;"
+                                :href="'https://www.facebook.com/sharer/sharer.php?u='+nowURL+'&amp;src=sdkpreparse'"
                                 class="fb-xfbml-parse-ignore">
                                 分享
                             </a>
@@ -133,7 +131,7 @@
                 </div>
             </div>
             <!--       留言重複結束         -->
-            <div class="empty" v-show="msgRows.length==0">此文章尚無留言，歡迎留言。</div>
+            <div class="empty" v-show="msgRows.length==0">此揪團尚無留言，歡迎留言。</div>
 
         </div>
 
@@ -156,7 +154,7 @@
 
     @@include('layout/footer.html')
 
-
+    <script src="./js/vue.js"></script>
     <script>
         var app = new Vue({
             el: "#app",
@@ -168,11 +166,14 @@
                 hotelRows:'',
                 foodRows:'',
                 msgRows:'',
+                loveRows:'',
+                savedLikes:'',
                 tour_id:'',
                 people_now:'',
                 people_limit:'',
                 targetPageId:'',
                 nowURL:''
+                // imageSource:'./images/common/heart.png'
             },
             methods: {
                 joinTour(TOUR_ID, NUM_OF_PARTICIPANTS, TOUR_PEOPLE){
@@ -233,6 +234,12 @@
                     }
                 },
                 get_data(){
+                    let nowURL = window.location.href;
+                    this.nowURL = nowURL;
+                    let searchURL = window.location.search;
+                    let targetPageId = searchURL.split("=")[1];
+                    this.targetPageId = targetPageId;
+
                     let xhr = new XMLHttpRequest();
                     xhr.onload = function(){ 
                     if(xhr.status == 200){
@@ -242,6 +249,19 @@
                         app.hotelRows = app.dataRows[2];
                         app.foodRows = app.dataRows[3];
                         app.msgRows = app.dataRows[4];
+                        app.loveRows = app.dataRows[5];
+                        
+
+                        let array = []
+
+                        for(let i =0 ; i < app.loveRows.length ; i++){
+                            array.push(app.loveRows[i].TOUR_ID)
+                        }
+
+                        app.loveRows = array
+
+                        app.savedLikes = app.dataRows[6];
+
                     }else{
                         alert(xhr.status);
                         }
@@ -250,6 +270,8 @@
                     xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
                     let data_info = `TOUR_ID=${this.targetPageId}`;
                     xhr.send(data_info);
+
+                    this.tour_id = targetPageId;
                 },
 
                 sendComm(){
@@ -275,28 +297,82 @@
                         words.value = ''
                         
                     }
+                },
+
+                
+
+                addFav(){
+
+                    if(this.loveRows.indexOf(this.tour_id) != -1){
+                        console.log("有加入過收藏")
+
+                            let xhr = new XMLHttpRequest();
+                            xhr.onload = function(){
+                                if(xhr.status == 200){ //success
+                                    console.log('移除收藏成功')
+                                }else{
+                                    alert(xhr.status);
+                                }
+                            }
+                            xhr.open("post", "./phps/del_fav_tour.php", true);
+                            xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+                            //送出資料
+                            let data_info = `TOUR_ID=${this.targetPageId}`;
+                            xhr.send(data_info);
+
+                            this.get_data()
+
+                    }else{
+                        console.log("沒有加入過")
+                            
+                            let xhr = new XMLHttpRequest();
+                            xhr.onload = function(){
+                                if(xhr.status == 200){ //success
+                                    console.log('加入收藏成功')
+                                }else{
+                                    // alert(xhr.status);
+                                }
+                            }
+                            xhr.open("post", "./phps/add_fav_tour.php", true);
+                            xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+                            //送出資料
+                            let data_info = `TOUR_ID=${this.targetPageId}`;
+                            xhr.send(data_info);
+
+                            this.get_data()
+
+                    }
+
+                    
                 }
 
             },
-            mounted() {
-                let nowURL = window.location.href;
-                this.nowURL = nowURL;
-                let searchURL = window.location.search;
-                let targetPageId = searchURL.split("=")[1];
-                this.targetPageId = targetPageId;
 
-                let tourRows;
+            computed:{
+                //進揪團詳情頁時 判斷會員是否有收藏過此揪團(有收藏過就顯示實心)
+                // savedLikes == 1 代表此會員有收藏此揪團 imageSource就是true
+                //反之 代表此會員沒有收藏此揪團 imageSource就是false
+                imageSource(){
+                    if(this.savedLikes[0].like_before == 1){ 
+                        return './images/common/like.png' //顯示實心
+                    }else{
+                        return './images/common/heart.png'
+                    }
+                },
+            },
+
+            mounted() {
             //============去server端拿資料
             this.get_data()
+            // this.imageSource()
                 
-            },
+            }
 
         });
     </script>
 
     <div id="fb-root"></div>
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v9.0"
-        nonce="WuFFSzIJ"></script>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v9.0" nonce="uIi17ONM"></script>
 
 </body>
 

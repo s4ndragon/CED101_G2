@@ -12,7 +12,7 @@ try{
                 AR_REASON,
                 AR_STATUS
             ) 
-            VALUES(1,'$artNo',now(),'$reason',1)";
+            VALUES(1,'$artNo',now(),'$reason',0)";
 
     $article = $pdo->prepare($sql);
     $article->execute();
