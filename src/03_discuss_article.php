@@ -20,7 +20,13 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="./images/index/webIcon.png" type="image/x-icon" />
     <link rel="stylesheet" href="css/discuss.css" />
-    <title>討論區</title>
+    <title>找茶討論</title>
+    <!-- 代換預覽 -->
+    <meta property="og:url" content="https://www.your-domain.com/your-page.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="偵茶者-<?=$artsRow["ART_TITLE"]?>" />
+    <meta property="og:description" content="<?=$artsRow["ART_CONTENT"]?>" />
+    <meta property="og:image" content="https://www.your-domain.com/path/<?=$artsRow["ART_IMG"]?>"/>
 </head>
 
 <body>
