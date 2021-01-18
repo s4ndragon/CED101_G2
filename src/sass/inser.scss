@@ -17,6 +17,11 @@ img {
     border-radius: 10px;
     box-shadow: 3px 3px 10px black;
 
+    @media only screen and (max-width: 576px) {
+        width: 90%;
+
+    }
+
     p {
         &:nth-child(1) {
             text-align: center;

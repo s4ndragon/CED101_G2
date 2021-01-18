@@ -21,8 +21,6 @@ try {
     <link rel="shortcut icon" href="./images/index/webIcon.png" type="image/x-icon" />
     <link rel="stylesheet" href="css/discuss.css" />
     <title>討論區</title>
-    <!-- vue  -->
-    <script src="./js/vue.js"></script>
 </head>
 
 <body>
@@ -104,11 +102,13 @@ try {
     </main>
 
     @@include('layout/footer.html')
-
+     <!-- vue  -->
+    <script src="./js/vue.js"></script>
     <script>
         Vue.component('art-reg', {
             props: ['msgno'],
-            template: ` <div class="overlay" style="display: none;">
+            template: ` <div>
+                        <div class="overlay" style="display: none;">
                             <div class="modal">
                                 <form method="post" >
                                     <div class="close" @click="closeBox()">
@@ -135,7 +135,16 @@ try {
                                     <input type="hidden" name="msg_reg" :value="msgno">
                                 </form>
                             </div>
-                         </div>`,
+                        </div>
+                        <div class="overlay2" style="display: none;" >
+                            <div class="modal">
+                                <form method="post" >
+                                    <p class="welcome">檢舉成功！</p>
+                                    <button class="go" type="button" @click="close">確認</button>
+                                </form>
+                            </div>
+                         </div></div>
+                         `,
             methods: {
                 closeBox: function () {
                     let lightbox = document.querySelectorAll('.overlay')[0];
@@ -155,7 +164,8 @@ try {
                             console.log(res);
                             let lightbox = document.querySelectorAll('.overlay')[0];
                             lightbox.style.display = 'none';
-                            alert('檢舉成功');
+                            let lightbox2 = document.querySelectorAll('.overlay2')[0];
+                            lightbox2.style.display = '';
                         },
                         error: function (res) {
                             console.log('not good');
@@ -163,6 +173,10 @@ try {
                         },
                     });
                 },
+                                        close() {
+                            let lightbox2 = document.querySelectorAll('.overlay2')[0];
+                            lightbox2.style.display = 'none';
+                        },
             },
         });
 
