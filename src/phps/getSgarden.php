@@ -4,7 +4,7 @@ try {
 	require_once("./connect.php");
 	$sql = "select *
     from garden
-    where GARD_LOCATE = '南部'
+    where GARD_LOCATE = '南部' and GARD_STATUS = 1
     order by GARD_VOTE desc
     limit 3";
 	$tours = $pdo->prepare($sql);
