@@ -15,6 +15,12 @@
 .h3 {
     font-size: $h3;
 }
+.h40px{
+    height:40px;
+}
+.w40px{
+    width:40px;
+}
 .v100w {
     width: 100vw;
 }
@@ -274,10 +280,12 @@ div.overlay>article {
 
 div.gameover,
 div.gamewin {
-    position: fixed;
+    position: absolute;
+    
     top: 0;
     left: 0;
     width: 100%;
+    height:600px;
     z-index: -1;
     transition: opacity 1s;
     opacity: 0;
@@ -346,14 +354,12 @@ div.gameover>article {
     background-color: none;
     width: 405px;
     height: 499px;
-    /* border-radius: 30px; */
     padding: 0px;
     position: absolute;
-    top: 400px;
+    top: 300px;
     left: 50%;
     transform: translate(-50%, -50%);
 }
-
 div.gamewin>article {
     background-image: url('../images/game/youwin.png');
     background-repeat: no-repeat;
@@ -373,7 +379,6 @@ ul {
     padding: 0px;
     margin: 0px;
 }
-
 /*地圖*/
 #map {
     position: relative;
@@ -600,11 +605,12 @@ img[src='./images/game/62720191121071129866.png'] {
 
 #teatxt-bar1 {
     height: 100px !important;
-    width: 50px;
+    width: 100px;
+    position: relative;
+    top: 26px;
     cursor: pointer;
     writing-mode: vertical-lr;
     position: relative;
-
     span {
         writing-mode: vertical-lr;
         font-size: 20px;
