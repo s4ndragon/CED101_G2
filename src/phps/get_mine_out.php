@@ -1,15 +1,16 @@
 <?php
 try {
-    require_once "./connect.php";
+    session_start();
+    require_once("./connect.php");
 
 	$sql = "select * 
             from tour
-            where MEM_NO = 1
+            where MEM_NO = :MEM_NO
             and DEADLINE_DATE < CURRENT_DATE() 
             ";
 
-    // $get_mine_tour->bindValue(":MEM_NO", $MEM_NO);
     $get_mine_out = $pdo->prepare($sql);
+    $get_mine_out->bindValue(":MEM_NO", $_SESSION["MEM_NO"]);
 
     //把接到的資料寫進SQL (要先經過PHP轉譯 所以不能直接寫入SQL指令內)
     // $per_ord_data->bindValue(":ADMIN_NO", $add_no);

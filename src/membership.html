@@ -5,30 +5,32 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="shortcut icon" href="./images/index/webIcon.png" type="image/x-icon" />
         <link rel="stylesheet" href="./css/membership.css" />
-        <!-- <script src="../node_modules/jquery/dist/jquery.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script> -->
+        <!-- <script src="../node_modules/jquery/dist/jquery.js"></script> -->
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script> -->
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
         <!-- <script src="./js/membership.js"></script> -->
         <title>會員系統</title>
     </head>
     <body>
+        @@include('layout/nav.html')
         <div id="app">
-            @@include('layout/nav.html')
             <div class="banner">
                 <h1>會員中心</h1>
                 <!-- <h2>歡迎回來</h2> -->
             </div>
             <main>
                 <!-- 側邊欄 -->
-                <div class="card" v-for="memRow in memRows">
+                <div class="card">
                     <div class="card-body">
                         <div class="profile-pic">
-                            <img id="MEM_IMG" class="rounded-circle" :src="memRow.MEM_IMG" />
+                            <img id="MEM_IMG" class="rounded-circle" :src="memRows.MEM_IMG" />
                         </div>
-                        <h2 id="MEM_NICKNAME">{{memRow.MEM_NICNAME}}</h2>
-                        <h6 id="MEM_ID" class="memId">@{{memRow.MEM_ID}}</h6>
+                        <h2 id="MEM_NICKNAME">{{memRows.MEM_NICNAME}}</h2>
+                        <h6 id="MEM_ID" class="memId">@{{memRows.MEM_ID}}</h6>
                         <!-- <input type="text" class="input-profile" name="profile" value="熱愛程式及茶園的男子"> -->
-                        <button class="mine_profile" @click="content = 'mine_profile'">個人資料</button>
+                        <button id="mine_profile_btn" class="mine_profile" @click="content = 'mine_profile'">
+                            個人資料
+                        </button>
                     </div>
                 </div>
                 <input type="file" id="profile_pic_input" name="profile_pic_input" accept="image/*" />

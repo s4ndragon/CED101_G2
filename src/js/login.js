@@ -1,12 +1,4 @@
-let memberRows;
-//============去server端拿資料
-let xhrMem = new XMLHttpRequest();
-xhrMem.onload = function () {
-    app.memberRows = JSON.parse(xhrMem.responseText);
-    // console.log(app.memberRows);
-};
-xhrMem.open("get", "./php/member.php", true);
-xhrMem.send(null);
+
 
 function $id(id) {
     return document.getElementById(id);
@@ -139,29 +131,29 @@ $(document).ready(function () {
     });
 });
 
-new Vue({
-    el: "#app",
-    data() {
-        return {
-            log_mem_id: "",
-            log_mem_pw: "",
-        };
-    },
-    methods: {
-        mem_register: async function () {
-            const res = await fetch("./php/mem_register.php", {
-                method: "POST",
-                mode: "same-origin",
-                credentials: "same-origin",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    // empName: this.empName,
-                    // empId: this.empId,
-                    // empPsw: this.empPsw,
-                }),
-            });
-        },
-    },
-});
+// new Vue({
+//     el: "#app",
+//     data() {
+//         return {
+//             log_mem_id: "",
+//             log_mem_pw: "",
+//         };
+//     },
+//     methods: {
+//         mem_register: async function () {
+//             const res = await fetch("./php/mem_register.php", {
+//                 method: "POST",
+//                 mode: "same-origin",
+//                 credentials: "same-origin",
+//                 headers: {
+//                     "Content-Type": "application/json",
+//                 },
+//                 body: JSON.stringify({
+//                     // empName: this.empName,
+//                     // empId: this.empId,
+//                     // empPsw: this.empPsw,
+//                 }),
+//             });
+//         },
+//     },
+// });
