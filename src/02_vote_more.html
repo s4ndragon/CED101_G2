@@ -8,7 +8,6 @@
     <title>茶園票選</title>
     <link rel="stylesheet" href="./css/vote_more.css">
     <script src="https://unpkg.com/vue-star-rating@1.5.1/dist/star-rating.min.js"></script>
-    <script src="./js/like.js"></script>
     
     
 </head>
@@ -127,18 +126,20 @@
                     <p>{{tourRow.TOUR_TITLE}}</p>
                     <p>{{tourRow.TOUR_SETOFFTIME}} 出團</p>
                     <img :src="tourRow.TOUR_IMG">
+                    <div class="love_share">
+                        <div class="love">
+                            <img class="like" src="images/common/heart.png">
+                        </div>
+                    </div>
                 </div>
 
-                <div class="love_share">
-                    <div class="love">
-                        <img class="like" src="./images/common/heart.png" title="加入收藏" alt="">
-                    </div>
-                    <div class="share">
-                        <div class="fb-share-button" data-href="http://127.0.0.1:5501/dist/01_tour.html" data-layout="button" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A5501%2Fdist%2F01_tour.html&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore ">分享</a></div>
-                    </div>
-                </div>
+                
 
                 <div class="tour_text">
+                    <div class="deadline">
+                        <h3>茶園名稱</h3>
+                        <p>{{tourRow.GARD_NAME}}</p>
+                    </div>
                     <div class="deadline">
                         <h3>截止揪團日期</h3>
                         <p>{{tourRow.DEADLINE_DATE}}</p>
@@ -256,6 +257,7 @@
                 gardenRows:'',
                 tourRows:'',
                 msgRows:'',
+                likeRows:'',
                 pastDate:'',
                 lightbox: false,
                 lightbox_GARD_ID:'',
@@ -342,6 +344,7 @@
                                 app.pastDate = app.dataRows[1];
                                 app.tourRows = app.dataRows[2];
                                 app.msgRows = app.dataRows[3];
+                                app.likeRows = app.dataRows[4];
 
                             }else{
                                 alert(xhr.status);
@@ -399,7 +402,7 @@
                                 alert(xhr.status);
                             }
                         }
-                        xhr.open("post", "./phps/send_words.php", true);
+                        xhr.open("post", "./phps/send_words.php", false);
                         xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
                         //送出資料
                         let data_info = `GARD_ID=${this.targetPageId}&MSG_CONTENT=${words.value}`;
