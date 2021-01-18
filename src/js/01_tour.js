@@ -71,13 +71,7 @@ window.addEventListener("load", function () {
         if (xhr4.status == 200) {
             //modify here
             let FavortieList = JSON.parse(xhr4.responseText);
-            console.log(FavortieList);
-            storage['FavortieTourList'] = '';
-            for (let i = 0; i < FavortieList.length; i++) {
-                storage['FavortieTourList'] += FavortieList[i].TOUR_ID + ',';
-
-            }
-
+            app.FavortieLists = FavortieList;
 
         } else {
             alert(xhr4.status);
@@ -162,14 +156,6 @@ Vue.component('all', {
 
 
     },
-    updated() {
-
-    },
-
-
-
-
-
 
 })
 
@@ -414,6 +400,7 @@ var app = new Vue({
         locationCRows: [],
         locationSRows: [],
         tourRows: [],
+        FavortieLists: [],
         locN: true,
         locC: true,
         locS: true,
@@ -461,9 +448,9 @@ var app = new Vue({
         },
         loadFavorite() {
             setTimeout(() => {
-                let list = storage['FavortieTourList'].split(',');
-                for (var i = 0; i < list.length; i++) {
-                    let showHeart = document.getElementById(list[i]);
+                for (var i = 0; i < this.FavortieLists.length; i++) {
+                    let list = this.FavortieLists[i].TOUR_ID;
+                    let showHeart = document.getElementById(list);
                     showHeart.src = "./images/common/like.png";
                     showHeart.title = "取消收藏";
                 }
@@ -471,17 +458,9 @@ var app = new Vue({
         }
 
     },
-    // mounted() {
-    //     this.loadFavorite();
-    // },
+
     updated() {
         this.loadFavorite();
     },
-    // beforeDestroy() {
-    //     this.loadFavorite();
-    // },
-
-
-
 
 })

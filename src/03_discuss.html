@@ -47,8 +47,9 @@
                     <div class="ar_text">
                         <div class="art_icons">
                             <!-- 加入收藏愛心 -->
-                            <img class="memi addheart" title="add" :src="ILike(artRow.ART_NO)" alt="">
-                            <img class="memi" src="./images/common/messenger.png" alt="">
+                            <img class="memi addheart" title="add" :id=artRow.ART_NO src="./images/common/heart.png"
+                                alt="">
+                            <img class=" memi" src="./images/common/messenger.png" alt="">
                             <span class="com_num">{{artRow.msg}}</span>
                             <div class="excl" @click="showBox(artRow.ART_NO)">
                                 <img class="excl" src="./images/common/852019_exclamation_512x512.png" alt="">
@@ -168,18 +169,25 @@
             methods: {
                 // 有問題ㄉ迴圈有問題ㄉ迴圈有問題ㄉ迴圈有問題ㄉ迴圈有問題ㄉ迴圈有問題ㄉ迴圈有問題ㄉ迴圈有問題ㄉ迴圈有問題ㄉ迴圈有問題ㄉ迴圈有問題ㄉ迴圈有問題ㄉ迴圈有問題ㄉ迴圈有問題ㄉ迴圈有問題ㄉ迴圈
                 // ILike(arno) {
-                //     for (let i = 0; i < this.articlesRows[1].length; i++) {
+                // console.log(this.articlesRows[1][2].ART_NO)
+                // for (let i = 0; i < this.articlesRows[1].length; i++) {
 
-                //         if (this.articlesRows[1][i].ART_NO == arno) {
-                //             console.log(this.articlesRows[1][i].ART_NO)
+                // this.$emit('changeHeart');
+                // console.log(this.articlesRows[1][i].ART_NO)
 
-                //             return './images/common/like.png' //顯示實心
+                // if (this.articlesRows[1][i].ART_NO == arno) {
+
+                //     document.getElementById(arno).src = './images/common/like.png';
+                // return './images/common/like.png' //顯示實心
 
 
-                //         } else {
-                //             return './images/common/heart.png'
-                //         }
+
+                // } else {
+
+                // return './images/common/heart.png'
+
                 //     }
+                // }
                 // },
 
                 // addheart(arno) {
@@ -254,7 +262,20 @@
                     $(this).addClass('fit');
                     $('.list').not(this).removeClass('fit');
                 });
+
             },
+            updated() {
+                setTimeout(() => {
+                    for (var i = 0; this.articlesRows[1].length; i++) {
+                        let list = this.articlesRows[1][i].ART_NO;
+                        console.log(list);
+                        let showHeart = document.getElementById(list);
+                        showHeart.src = "./images/common/like.png";
+                        showHeart.title = "取消收藏";
+                    }
+                }, 10);
+            },
+
         });
 
     </script>
