@@ -509,7 +509,7 @@
                 </div>
                 <div class="tab_contents">
                     <div class="tab tab1 -on">
-                        <form action="" id="gamep" method="POST">
+                        <form action="./phps/sendROLE.php" id="gamep" method="GET">
                                 <button type="button" class="btn-confirm" id="addgame">新增</button>
                                 <Gamebox></Gamebox> 
                             <table  class="table table-striped table-bordered table-responsive game role " width="50%">
@@ -526,12 +526,12 @@
                                     <td><input type="number"  :value="r.DATA_SPEED"min="0" name=""></td>
                                     <td><input type="number"  :value="r.DATA_DAMAGE"min="0" name=""></td>
                                     <td><input type="number" :value="r.DATA_DEFENSE"min="0" name="" ></td>
-                                    <!-- <td><button type="button"  class="btn-confirm">編輯</button></td> -->
+                                    <!-- <td><button type="button"  class="btn-confirm">編輯</button></td>onclick="delrole() onclick="setrole()"-->
                                 </tr>
                             </table>
                             <div class="flex a_sb">
-                                <button type="button" class="btn-confirm" name="remove" onclick="delrole()">移除</button>
-                                <input type="button"class="btn-confirm" value="送出" name="update" onclick="setrole()">
+                                <button type="submit" class="btn-confirm" name="remove">移除</button>
+                                <input type="submit"class="btn-confirm" value="送出" name="update" >
                                 <div></div>
                             </div>  
                             
@@ -733,12 +733,11 @@ Vue.component('Gamebox',{
 function edit(e){
     var cl=$(e.parentNode.parentNode);
      if ($(e).prop('checked') === true) {
-    cl.find('td:eq(1)>input').attr('name','no[]');             
+    cl.find('td:eq(1)>input').attr('name','role_no[]');             
     cl.find('td:eq(2)>input').attr('name','pic[]');
     cl.find('td:eq(3)>input').attr('name','star[]');
     cl.find('td:eq(4)>input').attr('name','hp[]');
-    cl.find('td:eq(5)>input').attr('name','HPS[]');
-    cl.find('td:eq(5)>input').attr('name','HPS[]');
+    cl.find('td:eq(5)>input').attr('name','hps[]');
     cl.find('td:eq(6)>input').attr('name','speed[]');
     cl.find('td:eq(7)>input').attr('name','damage[]');
     cl.find('td:eq(8)>input').attr('name','defense[]');
@@ -748,25 +747,25 @@ function edit(e){
         }
     }
 }
-var gamep=document.getElementById("gamep");
-function delrole(){
-var xhr=new XMLHttpRequest();
-xhr.open("POST","./phps/sendROLE.php",true);
-xhr.setRequestHeader("Content-Type","multipart/form-data");
-xhr.send(`no[]=${gamep.getElementsByName("no[]")}`);
-xhr.onload=function(){
-    alert(xhr.responseText);
-}
-}
-function setrole(){
-var xhr=new XMLHttpRequest();
-xhr.open("POST","./phps/sendROLE.php",true);
-xhr.setRequestHeader("Content-Type","multipart/form-data");
-xhr.send(`update=${gamep.getElementsByName("no[]")}&no[]=${gamep.getElementsByName("no[]")}&pic[]=${gamep.getElementsByName("pic[]")}&hp[]=${gamep.getElementsByName("hp[]")}&hps[]=${gamep.getElementsByName("hps[]")}&speed[]=${gamep.getElementsByName("speed[]")}&damage[]=${gamep.getElementsByName("damage[]")}&defense[]=${gamep.getElementsByName("defense[]")}`);
-xhr.onload=function(){
-    alert(xhr.responseText);
-}
-}
+// var gamep=document.getElementById("gamep");
+// function delrole(){
+// var xhr=new XMLHttpRequest();
+// xhr.open("POST","./phps/sendROLE.php",true);
+// xhr.setRequestHeader("Content-Type","multipart/form-data");
+// xhr.send(`no[]=${gamep.getElementsByName("no[]")}`);
+// xhr.onload=function(){
+//     alert(xhr.responseText);
+// }
+// }
+// function setrole(){
+// var xhr=new XMLHttpRequest();
+// xhr.open("POST","./phps/sendROLE.php",true);
+// xhr.setRequestHeader("Content-Type","multipart/form-data");
+// xhr.send(`update=${gamep.getElementsByName("no[]")}&no[]=${gamep.getElementsByName("no[]")}&pic[]=${gamep.getElementsByName("pic[]")}&hp[]=${gamep.getElementsByName("hp[]")}&hps[]=${gamep.getElementsByName("hps[]")}&speed[]=${gamep.getElementsByName("speed[]")}&damage[]=${gamep.getElementsByName("damage[]")}&defense[]=${gamep.getElementsByName("defense[]")}`);
+// xhr.onload=function(){
+//     alert(xhr.responseText);
+// }
+// }
 function check_all(obj,Name){for(var i of document.getElementsByName(Name)){i.click(); }}
         </script>
     </body>
