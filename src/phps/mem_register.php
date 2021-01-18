@@ -9,8 +9,7 @@ try {
     $reg_memPw = $decoded["reg_memPw"];
 
     $sql = "insert into member(MEM_NO, MEM_NICNAME, MEM_PW, MEM_EMAIL)
-            values (:MEM_NO, :MEM_NICNAME, :MEM_PW, :MEM_EMAIL)
-            where empNo = :empNo
+            values (:MEM_NO, :MEM_NICNAME, :MEM_PW, :MEM_EMAIL);
             ";
 
     $reg_mem = $pdo->prepare($sql);

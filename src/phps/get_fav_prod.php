@@ -1,22 +1,16 @@
 <?php
 try {
-    require_once "./connect.php";
+    session_start();
+    require_once("./connect.php");
 
-	$sql = "select f.mem_no, p.name, p.info, p.img
+	$sql = "select f.mem_no, p.name, p.info, p.img, p.psn
             from product_f f join product p
             on f.psn = p.psn
-            where f.MEM_NO = 1
+            where f.MEM_NO = :MEM_NO
             ";
 
-    // $get_mine_tour->bindValue(":MEM_NO", $MEM_NO);
     $get_fav_prod = $pdo->prepare($sql);
-
-    //把接到的資料寫進SQL (要先經過PHP轉譯 所以不能直接寫入SQL指令內)
-    // $per_ord_data->bindValue(":ADMIN_NO", $add_no);
-    // $per_ord_data->bindValue(":ADMIN_ID", $add_id);
-    // $per_ord_data->bindValue(":ADMIN_NAME", $add_name);
-    // $per_ord_data->bindValue(":ADMIN_PW", $add_psw);
-
+    $get_fav_prod->bindValue(":MEM_NO", $_SESSION["MEM_NO"]);
 
     $get_fav_prod->execute();
 

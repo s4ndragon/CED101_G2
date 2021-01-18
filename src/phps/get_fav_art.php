@@ -1,22 +1,15 @@
 <?php
 try {
-    require_once "./connect.php";
+    session_start();
+    require_once("./connect.php");
 
-	$sql = "select f.art_no, f.mem_no, m.art_title, m.art_img, m.art_content 
-            from art_favorite f join my_art m
-            on f.art_no = m.art_no
-            where f.MEM_NO = 1
-            ";
+	$sql = "select art_title, art_img, art_content, art_no
+            from my_art 
+            where MEM_NO = :MEM_NO
+            ";    
 
-    // $get_mine_tour->bindValue(":MEM_NO", $MEM_NO);
     $get_fav_art = $pdo->prepare($sql);
-
-    //把接到的資料寫進SQL (要先經過PHP轉譯 所以不能直接寫入SQL指令內)
-    // $per_ord_data->bindValue(":ADMIN_NO", $add_no);
-    // $per_ord_data->bindValue(":ADMIN_ID", $add_id);
-    // $per_ord_data->bindValue(":ADMIN_NAME", $add_name);
-    // $per_ord_data->bindValue(":ADMIN_PW", $add_psw);
-
+    $get_fav_art->bindValue(":MEM_NO", $_SESSION["MEM_NO"]);
 
     $get_fav_art->execute();
 
@@ -27,10 +20,10 @@ try {
 
     } else { //找得到
         //取回一筆資料
-        $get_fav_art = $get_fav_art->fetchAll(PDO::FETCH_ASSOC);
+        $get_fav_artRow = $get_fav_art->fetchAll(PDO::FETCH_ASSOC);
 
         //送出json字串
-        echo json_encode($get_fav_art);
+        echo json_encode($get_fav_artRow);
         // echo $managerdatarow;
     }
 

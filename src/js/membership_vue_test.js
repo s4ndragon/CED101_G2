@@ -8,7 +8,6 @@ xhr.onload = function () {
 };
 xhr.open("get", "./phps/member.php", true);
 xhr.send(null);
-
 //========== content ==========//
 Vue.component("tour", {
     template: `
@@ -159,7 +158,7 @@ Vue.component("tour", {
             }).then(function (data) {
                 return data.json();
             });
-            console.log(res);
+            // console.log(res);
             this.memTours = res;
         },
         // get_mine_out: async function () {
@@ -226,6 +225,7 @@ Vue.component("tour", {
     mounted() {
         this.get_mine_tour();
         $(".arrow").click(function () {
+            // console.log('hihi')
             $(this).toggleClass("down").toggleClass("up");
             $(this).parent().toggleClass("extend");
             $(this).siblings(".tour_date").toggle();
@@ -249,45 +249,57 @@ Vue.component("mine_fav", {
                     <!-- 收藏管理主內容 -->
                     <div id="fav_container">
                         <!-- 收藏的揪團 -->
-                        <div id="fav_tour" v-for="favTour in favTours">
+                        <div id="fav_tour">
                             <div id="tour_list" class="fav_content">
-                                <div class="blog_container tour_blog">
-                                    <img :src="favTour.TOUR_IMG">
+                                <div class="blog_container tour_blog" v-for="favTour in favTours">
+                                    <img class="banner_img" :src="favTour.TOUR_IMG">
                                     <div class="heart">
                                         <img class="like" src="./images/common/like.png" title="加入收藏" alt="">
                                     </div>
                                     <div class="blog_content_container">
-                                        <div class="blog_title">{{favTour.TOUR_TITLE}}</div>
-                                        <div class="blog_content">{{favTour.TOUR_INFO}}</div>
+                                        <div class="blog_title">
+                                            <a v-bind:href="'https://tibamef2e.com/ced101/project/g2/02_tour_more.html?TOUR_ID=' + favTour.tour_no">
+                                            {{favTour.TOUR_TITLE}}
+                                            </a>
+                                        </div>
+                                        <div class="blog_content">{{favTour.TOUR_INFRO}}</div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <!-- 收藏的文章 -->
-                        <div id="fav_article" v-for="favArt in favArts">
+                        <div id="fav_article">
                             <div id="article_list" class="fav_content">
-                                <div class="blog_container article_blog">
-                                    <img :src="favArt.ART_IMG">
+                                <div class="blog_container article_blog" v-for="favArt in favArts">
+                                    <img class="banner_img" :src="favArt.art_img">
                                     <div class="heart">
                                         <img class="like" src="./images/common/like.png" title="加入收藏" alt="">
                                     </div>
-                                    <div class="blog_content">
-                                        <div class="blog_title">{{favArt.art_title}}</div>
+                                    <div class="blog_content_container">
+                                        <div class="blog_title">
+                                            <a v-bind:href="'https://tibamef2e.com/ced101/project/g2/03_discuss_article.php?ART_NO=' + favArt.art_no">
+                                                {{favArt.art_title}}
+                                            </a>
+                                        </div>
                                         <div class="blog_content">{{favArt.art_content}}</div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <!-- 收藏的商品 -->
-                        <div id="fav_product" v-for="favProd in favProds">
+                        <div id="fav_product">
                             <div id="product_list" class="fav_content">
-                                <div class="blog_container product_blog">
-                                    <img :src="favProd.img" alt="">
+                                <div class="blog_container product_blog" v-for="favProd in favProds">
+                                    <img class="banner_img" v-bind:src="'./images/shopping/' + favProd.img">
                                     <div class="heart">
                                         <img class="like" src="./images/common/like.png" title="加入收藏" alt="">
                                     </div>
-                                    <div class="blog_content">
-                                        <div class="blog_title">{{favProd.name}}</div>
+                                    <div class="blog_content_container">
+                                        <div class="blog_title">
+                                            <a v-bind:href="'https://tibamef2e.com/ced101/project/g2/04_product.html?psn=' + favProd.psn">
+                                                {{favProd.name}}
+                                            </a>
+                                        </div>
                                         <div class="blog_content">{{favProd.info}}</div>
                                     </div>
                                 </div>
@@ -298,7 +310,6 @@ Vue.component("mine_fav", {
                 `,
     data() {
         return {
-            // mine_tour: "",
             favTours: "",
             favArts: "",
             favProds: "",
@@ -317,7 +328,7 @@ Vue.component("mine_fav", {
                 return data.json();
             });
             // console.log(fav_tour);
-            this.favTour = fav_tour;
+            this.favTours = fav_tour;
         },
         get_fav_art: async function () {
             const fav_art = await fetch("./phps/get_fav_art.php", {
@@ -330,8 +341,8 @@ Vue.component("mine_fav", {
             }).then(function (data) {
                 return data.json();
             });
-            console.log(fav_art);
-            this.favArt = fav_art;
+            // console.log(fav_art);
+            this.favArts = fav_art;
         },
         get_fav_prod: async function () {
             const fav_prod = await fetch("./phps/get_fav_prod.php", {
@@ -345,7 +356,7 @@ Vue.component("mine_fav", {
                 return data.json();
             });
             // console.log(fav_prod);
-            this.favProd = fav_prod;
+            this.favProds = fav_prod;
         },
     },
     mounted() {
@@ -398,12 +409,19 @@ Vue.component("mine_order", {
     template: `
                 <div id="mine_order">
                                 <div id="list">
-                                    <div id="list_title" v-for="ordList in ordLists">
-                                        <h5 id="order_no">{{ordList.ORDERS_NO}}</h5>
-                                        <h5 id="order_status">{{ordList.DEL_STATE}}</h5>
-                                        <h5 id="order_payment">{{ordList.PAY}}</h5>
-                                        <h5 id="order_total">NT {{ordList.TOTAL}}</h5>
-                                        <h5 id="order_date">{{ordList.ORD_DATE}}</h5>
+                                    <div class="order">
+                                        <h5 class="order_no">訂單編號</h5>
+                                        <h5 class="order_status">訂單狀態</h5>
+                                        <h5 class="order_payment">支付方式</h5>
+                                        <h5 class="order_total">訂單金額</h5>
+                                        <h5 class="order_date">下單時間</h5>
+                                    </div> 
+                                    <div class="order list_title" v-for="ordList in ordLists">
+                                        <h5 class="order_no">{{ordList.ORDERS_NO}}</h5>
+                                        <h5 class="order_status">{{ordList.DEL_STATE}}</h5>
+                                        <h5 class="order_payment">{{ordList.PAY}}</h5>
+                                        <h5 class="order_total">NT {{ordList.TOTAL}}</h5>
+                                        <h5 class="order_date">{{ordList.ORD_DATE}}</h5>
                                     </div>                                 
                                 </div>
                             </div>
@@ -425,8 +443,8 @@ Vue.component("mine_order", {
             }).then(function (data) {
                 return data.json();
             });
-            console.log(order_list);
-            this.ordList = order_list;
+            // console.log(order_list);
+            this.ordLists = order_list;
         },
     },
     mounted() {
@@ -468,7 +486,7 @@ Vue.component("mine_article", {
                 return data.json();
             });
             // console.log(mine_art);
-            this.mineArt = mine_art;
+            this.mineArts = mine_art;
         },
     },
     mounted() {
@@ -517,7 +535,7 @@ Vue.component("mine_profile", {
     },
     methods: {
         get_mine_info: async function () {
-            const res = await fetch("./phps/get_mine_info.php", {
+            const mine_info = await fetch("./phps/get_mine_info.php", {
                 method: "POST",
                 mode: "same-origin",
                 credentials: "same-origin",
@@ -527,8 +545,8 @@ Vue.component("mine_profile", {
             }).then(function (data) {
                 return data.json();
             });
-            // console.log(res);
-            this.mineInfo = res;
+            console.log(mine_info);
+            this.mineInfos = mine_info;
         },
     },
     mounted() {
@@ -598,5 +616,8 @@ $(".mine_article").click(function () {
 $(".mine_profile").click(function () {
     $(this).addClass("bg-color").removeClass("select-color");
     $(this).siblings().removeClass("bg-color").addClass("select-color");
-    $(this).parent().parent().siblings("#main_container").children("#sub_menu").children("h3").removeClass("bg-color");
+    // $(this).parent().parent().siblings("#main_container").children("#sub_menu").children("h3").removeClass("bg-color");
+});
+$("#mine_profile_btn").click(function () {
+    $("#sub_menu").children("h3").removeClass("bg-color").addClass("select-color");
 });
