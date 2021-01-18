@@ -509,7 +509,7 @@
                 </div>
                 <div class="tab_contents">
                     <div class="tab tab1 -on">
-                        <form action="./phps/sendROLE.php" id="gamep" method="GET">
+                        <form action="./phps/sendROLE.php" id="gamep" method="POST" enctyped="multipart/form-data">
                                 <button type="button" class="btn-confirm" id="addgame">新增</button>
                                 <Gamebox></Gamebox> 
                             <table  class="table table-striped table-bordered table-responsive game role " width="50%">
@@ -716,8 +716,7 @@ Vue.component('Gamebox',{
             // 開啟 Modal 彈跳視窗
             $("#btn_model").on("click", function(){
                 $("#overlay").addClass("-on");
-            });
-            
+            });            
             // 關閉 Modal
             $("#btn_modal_close").on("click", function(){
                 $("#overlay").addClass("-opacity-zero");
@@ -726,8 +725,7 @@ Vue.component('Gamebox',{
                 setTimeout(function(){
                 $("#overlay").removeClass("-on -opacity-zero");
                 }, 1000);
-            });
-            
+            });            
             },
             });
 function edit(e){
