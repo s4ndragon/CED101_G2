@@ -2,11 +2,11 @@ new Vue({
     el: '#app',
     data: {
         //放click 事件 和v-model後面的變數
+        selecteddealState:'',
         products: '',
         Delprodus: '',
         orders: '',
-        selecteddealState: '',
-        dealStates: ['0(未付款)', '1(已付款)', '2(未出貨)', '3(已出貨)'],
+        // dealStates: ['0(未付款)', '1(已付款)', '2(未出貨)', '3(已出貨)'],
         ONSALE: '',
         psn: '',
         add_NAME:'',
@@ -14,7 +14,9 @@ new Vue({
         add_PRICE:'',
         ord_no:'',
         ORDERS_NO:'',
+        
     },
+  
 
     methods: {
         //函數放這裡
@@ -222,4 +224,116 @@ new Vue({
         this.get_produs()
         this.get_orders()
     },
+    
+    components:{
+        'orderdiv':{
+            props:['item'],
+            template:`    
+            <div>
+                <div><span>{{item.ORDERS_NO}}</span></div>
+                <div><span>{{item.MEMBER}}</span></div>
+                <div>
+                <span>
+                    <select name="訂單狀態" v-model="selecteddealState">
+                        <option v-for="(dealState,index) in dealStates" :value="index">
+                            {{dealState}}
+                        </option>
+                    </select>
+                    </span>
+                </div>
+                <div><span>{{item.ORD_DATE}}</span></div>
+                <div>
+                <span>
+                    <input
+                        type="text"
+                        size="4"
+                        :value="item.DELIVERY"
+                        @keyup="changeDELIVERY($event,key)"
+                    />
+                    </span>
+                </div>
+                <div>
+                <span>
+                    <input
+                        type="text"
+                        size="3"
+                        :value="item.PAY"
+                        @keyup="changePAY($event,key)"
+                    />
+                    </span>
+                </div>
+                <div>
+                <span>
+                    <input
+                        type="text"
+                        size="1"
+                        :value="item.DISCOUNT"
+                        @keyup="changeDISCOUNT($event,key)"
+                    />
+                    </span>
+                </div>
+                <div>
+                <span>
+                    <input
+                        type="text"
+                        size="1"
+                        :value="item.TOTAL"
+                        @keyup="changeTOTAL($event,key)"
+                    />
+                    </span>
+                </div>
+                <div>
+                <span>
+                    <input
+                        type="text"
+                        size="1"
+                        :value="item.RECEIVER_NAME"
+                        @keyup="changeRECEIVER_NAME($event,key)"
+                    />
+                    </span>
+                </div>
+                <div>
+                <span>
+                    <input
+                        type="text"
+                        :value="item.RECEIVER_ADDRESS"
+                        @keyup="changeRECEIVER_ADDRESS($event,key)"
+                    />
+                    </span>
+                </div>
+                <div>
+                <span>
+                    <input
+                        type="text"
+                        size="8"
+                        :value="item.RECEIVER_TEL "
+                        @keyup="changeRECEIVER_TEL($event,key)"
+                    />
+                    </span>
+                </div>
+                <div>
+                <span>
+                    <input
+                        type="button"
+                        class="btn-delete"
+                        @click="edit_orders(item.ORDERS_NO,key)"
+                        value="確認修改"
+                    />
+                    </span>
+                </div>
+            </div>`,
+            data(){
+                return{
+                    dealStates: ['0(未付款)', '1(已付款)', '2(未出貨)', '3(已出貨)'],
+
+                };
+            },
+            computed:{
+                selecteddealState(){
+                    return this.item.DEL_STATE
+                }
+            }
+
+        }
+    }
 })

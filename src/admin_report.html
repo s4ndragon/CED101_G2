@@ -38,6 +38,11 @@
                     >
                 </li>
                 <li class="li">
+                    <a href="#" data-target="tour"
+                        ><img class="navicon" src="images/common/nav_leaf.png" alt="" />揪團活動管理</a
+                    >
+                </li>
+                <li class="li">
                     <a href="#" data-target="custom"
                         ><img class="navicon" src="images/common/nav_leaf.png" alt="" />客製化內容管理</a
                     >
@@ -99,14 +104,14 @@
                                         <td>{{item.MSG_REP_DATE}}</td>
                                         <td>{{item.MSG_REP_CONTENT}}</td>
                                         <td>
-                                            <div class="form-group">
-                                                通過
-                                                <label class="switch">
-                                                    <input type="checkbox" v-model="item.ischecked" />
-                                                    <span class="slider round"></span>
-                                                </label>
-                                                未通過
-                                            </div>
+                                            <select
+                                                :value="item.MSG_REP_STATUS"
+                                                @change="change_GarMsgstatus($event,key)"
+                                            >
+                                                <option value="0">(0)未審核</option>
+                                                <option value="1">(1)審核通過</option>
+                                                <option value="2">(2)審核未通過</option>
+                                            </select>
                                         </td>
                                         <td>
                                             <input
@@ -147,14 +152,11 @@
                                         <td>{{item.AMR_DATE}}</td>
                                         <td>{{item.AMR_CONTENT}}</td>
                                         <td>
-                                            <div class="form-group">
-                                                通過
-                                                <label class="switch">
-                                                    <input type="checkbox" v-model="item.ischecked" />
-                                                    <span class="slider round"></span>
-                                                </label>
-                                                未通過
-                                            </div>
+                                            <select :value="item.AMR_STATUS" @change="change_DisMegstatus($event,key)">
+                                                <option value="0">(0)未審核</option>
+                                                <option value="1">(1)審核通過</option>
+                                                <option value="2">(2)審核未通過</option>
+                                            </select>
                                         </td>
                                         <td>
                                             <input
@@ -195,14 +197,11 @@
                                         <td>{{item.AR_DATE}}</td>
                                         <td>{{item.AR_REASON}}</td>
                                         <td>
-                                            <div class="form-group">
-                                                通過
-                                                <label class="switch">
-                                                    <input type="checkbox" v-model="item.ischecked" />
-                                                    <span class="slider round"></span>
-                                                </label>
-                                                未通過
-                                            </div>
+                                            <select :value="item.AR_STATUS" @change="change_DisArtStatus($event,key)">
+                                                <option value="0">(0)未審核</option>
+                                                <option value="1">(1)審核通過</option>
+                                                <option value="2">(2)審核未通過</option>
+                                            </select>
                                         </td>
                                         <td>
                                             <input

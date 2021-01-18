@@ -2,26 +2,29 @@
 try {
     require_once "./connect.php";
 
-    // 先接受前端送來的資料
+    //先接受前端送來的資料
     // $content = trim(file_get_contents("php://input")); 
     // $decoded = json_decode($content, true);
 
-    // //php叫物件內屬性的寫法
-    // $mem_id = $decoded["mem_id"];
-
+    // $add_no = $decoded["add_no"]; //php叫物件內屬性的寫法
+    // $add_id = $decoded["add_id"];
+    // $add_name = $decoded["add_name"];
+    // $add_psw = $decoded["add_psw"];
   
     //接到之後要做的SQL指令
     //:後面+名字會變成一個變數 ->Php 寫sql的時候的寫法
 	$sql = "select * 
-            from member
+			from tour
             ";
 
     // $grouporddata = $pdo->query($sql);
     $per_ord_data = $pdo->prepare($sql);
 
     //把接到的資料寫進SQL (要先經過PHP轉譯 所以不能直接寫入SQL指令內)
-    // $per_ord_data->bindValue(":mem_id", $mem_id);
-    
+    // $per_ord_data->bindValue(":ADMIN_NO", $add_no);
+    // $per_ord_data->bindValue(":ADMIN_ID", $add_id);
+    // $per_ord_data->bindValue(":ADMIN_NAME", $add_name);
+    // $per_ord_data->bindValue(":ADMIN_PW", $add_psw);
 
 
     $per_ord_data->execute();
@@ -38,10 +41,10 @@ try {
         //將取回的0或1轉回字串  傳回前台
         for($i=0;$i < count($per_ord_datarow);$i++){
 
-            if($per_ord_datarow[$i]["MEM_STATUS"] == 0){
+            if($per_ord_datarow[$i]["TOUR_STATUS"] == 0){
                 $per_ord_datarow[$i]["ischecked"] = false;
             }else{
-                $per_ord_datarow[$i]["ischecked"] = true;
+                $per_ord_datarow[$i]["ischecked"] = true ;
             };
 
         };

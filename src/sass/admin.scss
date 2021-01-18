@@ -361,3 +361,54 @@ input {
         font-weight: bold;
     }
 }
+
+#ord_management {
+    width: 100%;
+    // border-collapse: collapse;
+    margin: 20px 0px;
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+#ord_management .th {
+    background: #8bc34a;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    font-size: $h6;
+    vertical-align: middle;
+    text-align: center;
+}
+
+#ord_management > div {
+    h5 {
+        margin-bottom: 20px;
+    }
+    display: grid;
+    grid-template-columns: repeat(2, 76px) repeat(1, 100px) repeat(1, 182px) repeat(5, 100px) repeat(1, 250px) repeat(
+            2,
+            182px
+        );
+    align-items: center;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    width: max-content;
+
+    > div {
+        // background: #eee;
+        padding: 10px;
+        font-size: 14px;
+        // width: 182px;
+        text-align: center;
+        // border-left: 1px solid #ccc;
+        border-right: 1px solid #ccc;
+        height: 100%;
+
+        span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+    }
+}
