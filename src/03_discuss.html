@@ -47,8 +47,7 @@
                     <div class="ar_text">
                         <div class="art_icons">
                             <!-- 加入收藏愛心 -->
-                            <img class="memi addheart" title="add" src="./images/common/heart.png" alt=""
-                                @click="addheart(artRow.ART_NO)">
+                            <img class="memi addheart" title="add" :src="ILike(artRow.ART_NO)" alt="">
                             <img class="memi" src="./images/common/messenger.png" alt="">
                             <span class="com_num">{{artRow.msg}}</span>
                             <div class="excl" @click="showBox(artRow.ART_NO)">
@@ -132,7 +131,6 @@
                     let lightbox = document.querySelectorAll('.overlay')[0];
                     lightbox.style.display = 'none';
                 },
-
                 send_data() {
                     $.ajax({
                         url: './phps/articleReg.php', // 要傳送的頁面
@@ -168,6 +166,22 @@
             },
 
             methods: {
+                // 有問題ㄉ迴圈有問題ㄉ迴圈有問題ㄉ迴圈有問題ㄉ迴圈有問題ㄉ迴圈有問題ㄉ迴圈有問題ㄉ迴圈有問題ㄉ迴圈有問題ㄉ迴圈有問題ㄉ迴圈有問題ㄉ迴圈有問題ㄉ迴圈有問題ㄉ迴圈有問題ㄉ迴圈有問題ㄉ迴圈
+                // ILike(arno) {
+                //     for (let i = 0; i < this.articlesRows[1].length; i++) {
+
+                //         if (this.articlesRows[1][i].ART_NO == arno) {
+                //             console.log(this.articlesRows[1][i].ART_NO)
+
+                //             return './images/common/like.png' //顯示實心
+
+
+                //         } else {
+                //             return './images/common/heart.png'
+                //         }
+                //     }
+                // },
+
                 // addheart(arno) {
                 //     $('.addheart').click(function () {
                 //         if (this.title == "add") {
@@ -212,14 +226,6 @@
                 },
             },
             computed: {
-                ILike() {
-                    if () {
-                        return true;
-
-                    } else {
-
-                    }
-                }
             },
             mounted() {
                 let articlesRows;
@@ -227,7 +233,6 @@
                 let xhr = new XMLHttpRequest();
                 xhr.onload = function () {
                     app.articlesRows = JSON.parse(xhr.responseText);
-                    console.log(app.articlesRows[0]);
                 }
                 xhr.open("get", "./phps/getArticles.php", true);
                 xhr.send(null);
