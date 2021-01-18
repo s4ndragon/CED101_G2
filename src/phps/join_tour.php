@@ -1,8 +1,8 @@
 <?php
 session_start();  //啟用session
 try{
-  require_once("./connectBooks.php");
-  $sql = "select * from MEMBER where MEM_NO = 1"; 
+  require_once("./connect.php");
+  $sql = "select * from member where MEM_NO = 5"; 
   $member = $pdo->prepare($sql);
   $member->execute();
 
@@ -22,7 +22,7 @@ try{
  
 try {
 	require_once("./connect.php");
-  $sql = "insert into TOUR_JOIN (TOUR_ID, MEM_NO) values (:TOUR_ID,:MEM_NO)"; //存入報名資料
+  $sql = "insert into tour_join (TOUR_ID, MEM_NO) values (:TOUR_ID,:MEM_NO)"; //存入報名資料
   $jtour = $pdo->prepare($sql);
   //取得欲報名的揪團編號
   $jtour->bindValue(":TOUR_ID", $_POST["TOUR_ID"]);
@@ -31,13 +31,13 @@ try {
   $jtour->bindValue(":MEM_NO", $MEM_NO);
   $jtour->execute();
 
-  $sql = "update TOUR set NUM_OF_PARTICIPANTS = NUM_OF_PARTICIPANTS + 1"; //更改參加人數
+  $sql = "update tour set NUM_OF_PARTICIPANTS = NUM_OF_PARTICIPANTS + 1"; //更改參加人數
   $jointo = $pdo->prepare($sql);
   $jointo->execute();
 
 
   $MEM_NO = $_SESSION["MEM_NO"]; //撈session中的會員
-	$sql = "select * from TOUR_JOIN where MEM_NO = $MEM_NO";
+	$sql = "select * from tour_join where MEM_NO = $MEM_NO";
 	$tour = $pdo->prepare($sql);
 	$tour->execute();
 	$memRows = $tour->fetchAll(PDO::FETCH_ASSOC);

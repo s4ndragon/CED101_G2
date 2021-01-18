@@ -122,9 +122,10 @@ main {
 
 
                     @media only screen and (max-width: 576px) {
-                        position: relative;
-                        bottom: 0;
-                        right: 0;
+                        position: static;
+                        padding: 20px;
+                        padding-top: 0px;
+
                     }
 
                     span {

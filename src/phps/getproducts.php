@@ -1,41 +1,25 @@
 <?
 try {
     require_once("./connect.php");
-    if($_GET['type']=='所有商品'){
-        if($_GET['orderby']=='PRICE'){
-            $sql = "select * from product  order by PRICE ASC";
-        }else if($_GET['orderby']=="DATE_DESC"){
-            $sql = "select * from product  order by DATE DESC";
 
-        }else if($_GET['orderby']=="PRICE_DESC"){
-            $sql = "select * from product  order by PRICE DESC";
-
-        }else if($_GET['orderby']=="SOLD_DESC"){
-            $sql = "select * from product  order by SOLD DESC";
+    $orderby=str_replace("_"," ",$_GET['orderby']);
+    $orderby =htmlspecialchars($orderby);
+    if( strlen($orderby)<20){  
+            if($_GET['type']=='所有商品'){
+            $sql = "select * from product  order by $orderby";
+        }else{
+            $sql = "select * from product where type= :type order by $orderby";
         }
-    }
-      else { if($_GET['orderby']=='PRICE'){
-            $sql = "select * from product where type= :type order by PRICE ASC";
-        }else if($_GET['orderby']=="DATE_DESC"){
-            $sql = "select * from product where type= :type order by DATE DESC";
-
-        }else if($_GET['orderby']=="PRICE_DESC"){
-            $sql = "select * from product where type= :type order by PRICE DESC";
-
-        }else if($_GET['orderby']=="SOLD_DESC"){
-            $sql = "select * from product where type= :type order by SOLD DESC";
-        }}
-        // $sql = "select * from product  order by :orderby";
-        // $orderby=str_replace("_"," ",$_GET['orderby']);
+        
         $products = $pdo->prepare($sql);
-        // $products->bindValue(":orderby", $orderby,PDO::PARAM_STR);
         if($_GET['type']=='所有商品'){
         }else{
             $products->bindValue(":type", $_GET['type']);
         }
-        // $products->bindValue(':orderby',$orderby,PDO::PARAM_STR);
-        // $products->bindValue(":orderby", "PRICE",PDO::PARAM_STR);
         $products->execute();
+    }else{
+            echo '篩選條件錯誤，請重新設定。';
+    }
 
     if ($products->rowCount() == 0) { //找不到
         //傳回空的JSON字串

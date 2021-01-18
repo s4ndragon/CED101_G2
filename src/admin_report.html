@@ -8,13 +8,12 @@
         <title>偵茶者後台管理 | TEA SEARCHER | 帶你找茶 喝茶 買茶</title>
         <link rel="shortcut icon" href="./images/index/webIcon.png" type="image/x-icon" />
         <link rel="stylesheet" href="./css/admin.css" />
-        <script src="./js/vue.js"></script>
         <script src="js/admin.js"></script>
     </head>
     <body>
         <nav class="nav">
             <!-- logo放置區 -->
-            <a href="#">
+            <a href="index.html">
                 <h1 id="logo"><img src="images/common/logo.png" alt="" /></h1>
             </a>
 
@@ -36,6 +35,11 @@
                 <li class="li">
                     <a href="#" data-target="member">
                         <img class="navicon" src="images/common/nav_leaf.png" alt="" />會員管理</a
+                    >
+                </li>
+                <li class="li">
+                    <a href="#" data-target="tour"
+                        ><img class="navicon" src="images/common/nav_leaf.png" alt="" />揪團活動管理</a
                     >
                 </li>
                 <li class="li">
@@ -100,14 +104,14 @@
                                         <td>{{item.MSG_REP_DATE}}</td>
                                         <td>{{item.MSG_REP_CONTENT}}</td>
                                         <td>
-                                            <div class="form-group">
-                                                通過
-                                                <label class="switch">
-                                                    <input type="checkbox" v-model="item.ischecked" />
-                                                    <span class="slider round"></span>
-                                                </label>
-                                                未通過
-                                            </div>
+                                            <select
+                                                :value="item.MSG_REP_STATUS"
+                                                @change="change_GarMsgstatus($event,key)"
+                                            >
+                                                <option value="0">(0)未審核</option>
+                                                <option value="1">(1)審核通過</option>
+                                                <option value="2">(2)審核未通過</option>
+                                            </select>
                                         </td>
                                         <td>
                                             <input
@@ -148,14 +152,11 @@
                                         <td>{{item.AMR_DATE}}</td>
                                         <td>{{item.AMR_CONTENT}}</td>
                                         <td>
-                                            <div class="form-group">
-                                                通過
-                                                <label class="switch">
-                                                    <input type="checkbox" v-model="item.ischecked" />
-                                                    <span class="slider round"></span>
-                                                </label>
-                                                未通過
-                                            </div>
+                                            <select :value="item.AMR_STATUS" @change="change_DisMegstatus($event,key)">
+                                                <option value="0">(0)未審核</option>
+                                                <option value="1">(1)審核通過</option>
+                                                <option value="2">(2)審核未通過</option>
+                                            </select>
                                         </td>
                                         <td>
                                             <input
@@ -196,14 +197,11 @@
                                         <td>{{item.AR_DATE}}</td>
                                         <td>{{item.AR_REASON}}</td>
                                         <td>
-                                            <div class="form-group">
-                                                通過
-                                                <label class="switch">
-                                                    <input type="checkbox" v-model="item.ischecked" />
-                                                    <span class="slider round"></span>
-                                                </label>
-                                                未通過
-                                            </div>
+                                            <select :value="item.AR_STATUS" @change="change_DisArtStatus($event,key)">
+                                                <option value="0">(0)未審核</option>
+                                                <option value="1">(1)審核通過</option>
+                                                <option value="2">(2)審核未通過</option>
+                                            </select>
                                         </td>
                                         <td>
                                             <input
@@ -238,6 +236,7 @@
                 })
             })
         </script>
+        <script src="./js/vue.js"></script>
         <script src="js/admin_report_vue.js"></script>
     </body>
 </html>

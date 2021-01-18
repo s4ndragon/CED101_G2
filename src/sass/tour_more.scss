@@ -64,6 +64,7 @@ main{
                         margin-right: 10px;
                         cursor: pointer;
                     }
+
                 }
             }
 
@@ -178,7 +179,7 @@ main{
     }
 
     #commandall {
-        border-bottom: 1px solid white;
+        // border-bottom: 1px solid white;
         width: 90%;
         margin: 30px auto 0;
     
@@ -257,16 +258,23 @@ main{
                 font-size: 18px;
                 padding: 10px 20px;
             }
-    
-            .com_btn_countainer {
-    
-                .inner_btn {
-                    @include smallbtn2;
-                }
-            }
+
+                
+           
         }
     
     }
+    .inner_btn {
+        @include smallbtn4;
+        margin: 10px auto;
+    }
+
+    .empty{
+        color:white;
+        font-size: 18px;
+    }
+
+
     
     
     .text_excl {

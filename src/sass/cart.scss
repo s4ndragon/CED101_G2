@@ -141,3 +141,8 @@ div#amount {
     border-radius: 5px;
     text-align: center;
 }
+
+input.itemPrice,
+#totalAmount {
+    border: none;
+}

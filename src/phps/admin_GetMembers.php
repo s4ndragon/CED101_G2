@@ -39,9 +39,9 @@ try {
         for($i=0;$i < count($per_ord_datarow);$i++){
 
             if($per_ord_datarow[$i]["MEM_STATUS"] == 0){
-                $per_ord_datarow[$i]["ischecked"] = true;
-            }else{
                 $per_ord_datarow[$i]["ischecked"] = false;
+            }else{
+                $per_ord_datarow[$i]["ischecked"] = true;
             };
 
         };

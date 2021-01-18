@@ -53,6 +53,8 @@ main {
                 display: flex;
                 justify-content: space-between;
 
+               
+
                 .p1 {
                     font-size: $h4;
                     color: #7baa17;
@@ -164,6 +166,8 @@ main {
         }
     }
 
+  
+
     h3 {
         margin-top: 60px;
         text-align: left;
@@ -201,7 +205,7 @@ main {
     }
 
     #commandall {
-        border-bottom: 1px solid white;
+        // border-bottom: 1px solid white;
         width: 90%;
         margin: 30px auto 0;
 
@@ -345,15 +349,19 @@ main {
                 padding: 10px 20px;
             }
 
-            .com_btn_countainer {
-
-                .inner_btn {
-                    @include smallbtn2;
-                    margin: 30px auto;
-                }
-            }
+           
         }
 
+    }
+
+    .btnc {
+        @include smallbtn4;
+        margin: 10px auto;
+    }
+
+    .empty{
+        color:white;
+        font-size: 18px;
     }
 
 
@@ -377,19 +385,41 @@ main {
             margin: 40px 10px;
             position: relative;
             background: -webkit-gradient(linear, 0% 20%, 0% 92%, from(#f3f3f3), to(#fff), color-stop(0.1, #f3f3f3));
-            border-top: 1px solid white;
-            border-right: 1px solid #ccc;
             -webkit-box-shadow: -1px 2px 2px rgba(0, 0, 0, 0.2);
             overflow: hidden;
             border-radius: 10px;
         
-            @media screen and (max-width: 575px) {
-                margin: 10px auto;
+            @media screen and (max-width: 576px) {
+                // margin: 10px auto;
+                // display: block;
+                width: 88%;
+                margin: 20px auto;
                 display: block;
             }
         
             .tour_img {
                 position: relative;
+        
+                .love_share {
+                    position: absolute;
+                    bottom: 20px;
+                    right: 20px;
+        
+                    div {
+        
+                        width: 50px;
+        
+                        img {
+                            width: 100%;
+                            height: 100%;
+        
+                        }
+        
+        
+        
+                    }
+                }
+        
         
                 p {
                     &:nth-child(1) {
@@ -399,6 +429,8 @@ main {
                         color: #fff;
                         font-size: 24px;
                         letter-spacing: 3px;
+                        // background-color: rgba($color: #000000, $alpha: .4);
+                        text-shadow: 0px 0px 5px black;
                     }
         
                     &:nth-child(2) {
@@ -408,37 +440,25 @@ main {
                         color: #fff;
                         font-size: 16px;
                         letter-spacing: 3px;
+                        text-shadow: 0px 0px 5px black;
                     }
                 }
         
                 img {
                     width: 100%;
-                }
-            }
-        
-            .love_share {
-                position: absolute;
-                bottom: 105px;
-                right: 38px;
-        
-                div {
-                    display: inline-block;
-                    width: 30px;
-                    vertical-align: top;
-                }
-
-                .love{
-                    margin-right: 5px;
+                    height: 200px;
                 }
             }
         
             .tour_text {
-                width: 88%;
+                // width: 88%;
+                padding-right: 20px;
+                padding-left: 20px;
                 display: flex;
-                justify-content: flex-start;
+                justify-content: space-between;
         
                 .deadline {
-                    margin-left: 20px;
+                    margin-left: 10px;
         
                     h3 {
                         margin: 0;
@@ -511,6 +531,11 @@ main {
                         }
                     }
                 }
+        
+        
+        
+        
+        
             }
         
             .tourBtn {
@@ -522,44 +547,7 @@ main {
             }
         }
 
-        .tourwrap {
-            width: 300px;
-            padding: 10px;
-            border-radius: $border-radius-sml;
-            background-color: #fffeed;
-            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-            margin: 20px;
-            display: inline-block;
-
-            .social {
-                display: flex;
-                justify-content: flex-end;
-
-                .love {
-                    width: 30px;
-                    margin-right: 10px;
-                    cursor: pointer;
-                }
-            }
-
-            .tourpic {
-                border-radius: $border-radius-sml;
-            }
-
-            .tourinfo {
-                padding: 10px;
-                text-align: left;
-
-                .green {
-                    color: #7baa17;
-                }
-            }
-
-            .bt {
-                @include btn;
-                margin: 5px auto 20px;
-            }
-        }
+       
     }
 
 
@@ -629,6 +617,7 @@ main {
             .ginfo {
                 width: 100%;
                 padding: 20px 10px 10px 10px;
+                height: 443px;
             }
         }
 
@@ -726,4 +715,33 @@ main {
         }
     }
 
+}
+
+@media screen and (max-width: 374px){
+    main{
+        .all{
+            .ginfo{
+                .btwrap{
+                    .bt{
+                        margin: 0;
+                    }
+                }
+            }
+        }
+
+        .create_command{
+            width: 257px !important;
+        }
+
+        .toursection{
+            .tour_block{
+                width: 95%;
+                .tour_text{
+                    padding: 0 10px;
+                }
+            }
+        }
+        
+    }
+    
 }

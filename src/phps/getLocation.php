@@ -2,7 +2,8 @@
  
 try {
 	require_once("./connect.php");
-	$sql = "select * from garden";
+	$sql = "select * from garden
+	where GARD_STATUS = 1";
 	$locations = $pdo->prepare($sql);
 	$locations->execute();
 	$locations = $locations->fetchAll(PDO::FETCH_ASSOC);

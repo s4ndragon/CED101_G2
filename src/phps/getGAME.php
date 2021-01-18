@@ -1,6 +1,6 @@
 <?php
 try {
-    require_once("./connectBooks.php");
+    require_once("./connect.php");
     $sql = "select * from game";
     $recommends = $pdo->prepare($sql);
 

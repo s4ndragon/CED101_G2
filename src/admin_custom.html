@@ -8,13 +8,12 @@
         <title>偵茶者後台管理 | TEA SEARCHER | 帶你找茶 喝茶 買茶</title>
         <link rel="shortcut icon" href="./images/index/webIcon.png" type="image/x-icon" />
         <link rel="stylesheet" href="./css/admin.css" />
-        <script src="./js/vue.js"></script>
         <script src="js/admin.js"></script>
     </head>
     <body>
         <nav class="nav">
             <!-- logo放置區 -->
-            <a href="#">
+            <a href="index.html">
                 <h1 id="logo"><img src="images/common/logo.png" alt="" /></h1>
             </a>
             
@@ -36,6 +35,11 @@
                 <li class="li">
                     <a href="#" data-target="member">
                         <img class="navicon" src="images/common/nav_leaf.png" alt="" />會員管理</a
+                        >
+                    </li>
+                    <li class="li">
+                        <a href="#" data-target="tour"
+                            ><img class="navicon" src="images/common/nav_leaf.png" alt="" />揪團活動管理</a
                         >
                     </li>
                     <li class="li">
@@ -94,19 +98,19 @@
                                     <tbody v-for="(item,key) in gardens">
                                         <tr>
                                             <td>{{item.GARD_ID}}</td>
-                                            <td><input type="text" :value="item.GARD_NAME" @keyup="changeGARD_NAME($event,key)"/></td>
-                                            <td><input type="text" :value="item.GARD_TYPE" @keyup="changeGARD_TYPE($event,key)"/></td>
+                                            <td><input type="text" size="6" :value="item.GARD_NAME" @keyup="changeGARD_NAME($event,key)"/></td>
+                                            <td><input type="text" size="1" :value="item.GARD_TYPE" @keyup="changeGARD_TYPE($event,key)"/></td>
                                             <td><input type="text" :value="item.GARD_ADDRESS" @keyup="changeGARD_ADDRESS($event,key)"/></td>
-                                            <td><input type="text" :value="item.GARD_VOTE" @keyup="changeGARD_VOTE($event,key)"/></td>
-                                            <td><input type="text" :value="item.GARD_CLICK" @keyup="changeGARD_CLICK($event,key)"/></td>
+                                            <td><input type="text" size="1" :value="item.GARD_VOTE" @keyup="changeGARD_VOTE($event,key)"/></td>
+                                            <td><input type="text" size="1" :value="item.GARD_CLICK" @keyup="changeGARD_CLICK($event,key)"/></td>
                                             <td>
                                                 <div class="form-group">
-                                                    上架
+                                                    下架
                                                     <label class="switch">
                                                         <input type="checkbox" v-model="item.ischecked" />
                                                         <span class="slider round"></span>
                                                     </label>
-                                                    下架
+                                                    上架
                                                 </div>
                                             </td>
                                             <td><input class="btn-delete" type="button" value="確認修改" @click="edit_gardens(item.GARD_ID,key)"  /></td>
@@ -129,6 +133,7 @@
                                     <th>餐廳編號</th>
                                     <th>餐廳名稱</th>
                                     <th>餐廳介紹</th>
+                                    <th>屬於哪個茶園</th>
                                     <th>餐廳上下架狀態</th>
                                     <th>確認修改</th>
                                 </tr>
@@ -138,15 +143,16 @@
                                         <td>{{item.RESTAURANT_ID}}</td>
                                         <td><input type="text" :value="item.RESTAURANT_NAME" @keyup="changeRESTAURANT_NAME($event,key)"  ></td>
                                         <td><input type="text" :value="item.RESTAURANT_INFRO" @keyup="changeRESTAURANT_INFRO($event,key)" ></td>
+                                        <td>{{item.GARD_ID}}</td>
                                   
                                         <td>
                                             <div class="form-group">
-                                                上架
+                                                下架
                                                 <label class="switch">
                                                     <input type="checkbox" v-model="item.ischecked" />
                                                     <span class="slider round"></span>
                                                 </label>
-                                                下架
+                                                上架
                                             </div>
                                         </td>
                                         <td><input type="button" class="btn-delete" value="確認修改" @click="edit_rests(item.RESTAURANT_ID,key)" /></td>
@@ -168,6 +174,7 @@
                                     <th>旅館編號</th>
                                     <th>旅館名稱</th>
                                     <th>旅館介紹</th>
+                                    <th>屬於哪個茶園</th>
                                     <th>旅館上下架狀態</th>
                                     <th>確認修改</th>
                                 </tr>
@@ -177,14 +184,15 @@
                                         <td>{{value.HOTEL_ID}}</td>
                                         <td><input type="text" :value="value.HOTEL_NAME" @keyup="changeHOTEL_NAME($event,key)"></td>
                                         <td><input type="text" :value="value.HOTEL_INFRO" @keyup="changeHOTEL_INFRO($event,key)" ></td>
+                                        <td>{{item.GARD_ID}}</td>
                                         <td>
                                             <div class="form-group">
-                                                上架
+                                                下架
                                                 <label class="switch">
                                                     <input type="checkbox" v-model="value.ischecked" />
                                                     <span class="slider round"></span>
                                                 </label>
-                                                下架
+                                                上架
                                             </div>
                                         </td>
                                         <td><input type="button" class="btn-delete" value="確認修改" @click="edit_hotels(value.HOTEL_ID,key)"  /></td>
@@ -214,6 +222,7 @@
                 })
             })
             </script>
+        <script src="./js/vue.js"></script>
         <script src="js/admin_custom_vue.js"></script>
     </body>
     </html>
