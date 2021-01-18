@@ -1,5 +1,4 @@
 <?php
-    // $reason = isset($_POST["size"])?$_POST["size"]:""; 
     $arno = isset($_POST["arno"])?$_POST["arno"]:""; 
     
     //------------------
