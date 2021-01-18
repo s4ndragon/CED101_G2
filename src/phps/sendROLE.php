@@ -2,7 +2,7 @@
 <!-- 尚缺資料驗證可否被刪除、被修改 -->
 <?php 
  try {
-    require_once("./connect_game.php");
+    require_once("connect.php");
 if(isset($_REQUEST['update'])){
     $game=$_REQUEST["role_no"];
     foreach($game as $i => $data){
@@ -11,7 +11,7 @@ if(isset($_REQUEST['update'])){
     DATA_HP = :hp,
     DATA_HPS = :hps,    
     DATA_SPEED = :speed,
-    DATA_DAMAGE = :damage,    
+    DATA_DAMAGE = :damage,
     DATA_DEFENSE = :defense
      where ROLE_NO = :ROLE_NO ";
     $gamerole = $pdo->prepare($sql);
