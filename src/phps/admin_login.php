@@ -5,7 +5,7 @@ try {
 	$dsn = "mysql:host=localhost;port=3306;dbname=ced101g2;charset=utf8";
 	$user = "root";
 	$password = "root";
-	// $options = array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, PDO::ATTR_CASE => PDO::CASE_NATURAL);
+	$options = array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, PDO::ATTR_CASE => PDO::CASE_NATURAL);
 	$pdo = new PDO($dsn, $user, $password, $options);
 
     $ADMIN_ID = $_POST["ADMIN_ID"];
@@ -31,16 +31,17 @@ catch (PDOException $e) {
     <?php
     if($admin->rowCount()===0) { //rowCount()可取得這次select的總筆數
 	// echo "error, plz <a href = '1204_pdo_login.html'>login</a> again";
-	echo "<script>alert('id & pw error');location.href='..//admin_login.html'</script>";
+    echo 
+    "<script>alert('id & pw error');location.href='../admin_login.html'</script>";
     } else {
     $adminRow = $admin->fetch(PDO::FETCH_ASSOC);
-    session_start();
+    // session_start();
         $_SESSION["ADMIN_NO"] = $adminRow["ADMIN_NO"];
         $_SESSION["ADMIN_ID"] = $adminRow["ADMIN_ID"];
         $_SESSION["ADMIN_NAME"] = $adminRow["ADMIN_NAME"];
         $_SESSION["ADMIN_PW"] = $adminRow["ADMIN_PW"];
     echo $adminRow["ADMIN_ID"], "您好~<br>";
-	echo "<script>location.href='../membership.html'</script>";
+	echo "<script>location.href='../admin_tea.html'</script>";
     }      
     ?>
 </body>

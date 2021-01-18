@@ -152,13 +152,18 @@ new Vue({
 			this.DissMsgId =''
 
         },
+
+        change_DisMegstatus(event, key) {
+            console.log(key)
+            this.diss_MegReports[key].AMR_STATUS = event.currentTarget.value
+        },
         
         edit_gardens_Meg: async function (MSG_REP_NO, key) {
-            if (this.gardens_MegReports[key].ischecked == false) {
-                this.MSG_REP_STATUS = 1
-            } else if (this.gardens_MegReports[key].ischecked == true) {
-                this.MSG_REP_STATUS = 2
-            }
+            // if (this.gardens_MegReports[key].ischecked == false) {
+            //     this.MSG_REP_STATUS = 1
+            // } else if (this.gardens_MegReports[key].ischecked == true) {
+            //     this.MSG_REP_STATUS = 2
+            // }
 
             const res = await fetch('./phps/admin_UpdGardsMsg.php', {
                 method: 'POST',
@@ -169,19 +174,24 @@ new Vue({
                 },
                 body: JSON.stringify({
                     MSG_REP_NO: MSG_REP_NO,
-                    MSG_REP_STATUS: this.MSG_REP_STATUS,
+                    MSG_REP_STATUS: this.gardens_MegReports[key].MSG_REP_STATUS,
                 }),
             })
 
             this.get_gardens_MegReports()
         },
 
+        change_GarMsgstatus(event,key){
+            this.gardens_MegReports[key].MSG_REP_STATUS = event.currentTarget.value
+        },
+       
+
         edit_diss_Meg: async function (MSG_REP_NO, key) {
-            if (this.diss_MegReports[key].ischecked == false) {
-                this.AMR_STATUS = 1
-            } else if (this.diss_MegReports[key].ischecked == true) {
-                this.AMR_STATUS = 2
-            }
+            // if (this.diss_MegReports[key].ischecked == false) {
+            //     this.AMR_STATUS = 1
+            // } else if (this.diss_MegReports[key].ischecked == true) {
+            //     this.AMR_STATUS = 2
+            // }
 
             const res = await fetch('./phps/admin_UpdDissMeg.php ', {
                 method: 'POST',
@@ -199,13 +209,16 @@ new Vue({
             this.get_diss_MegReports()
         },
 
+        change_DisArtStatus(event,key){
+            this.diss_ArtReports[key].AR_STATUS = event.currentTarget.value
+        },
 
         edit_diss_Art: async function (REP_NO, key) {
-            if (this.diss_ArtReports[key].ischecked == false) {
-                this.AR_STATUS = 1
-            } else if (this.diss_ArtReports[key].ischecked == true) {
-                this.AR_STATUS = 2
-            }
+            // if (this.diss_ArtReports[key].ischecked == false) {
+            //     this.AR_STATUS = 1
+            // } else if (this.diss_ArtReports[key].ischecked == true) {
+            //     this.AR_STATUS = 2
+            // }
 
             const res = await fetch('./phps/admin_UpdDissArt.php ', {
                 method: 'POST',
@@ -222,6 +235,7 @@ new Vue({
 
             this.get_diss_ArtReports()
         },
+       
 
         
 

@@ -38,6 +38,11 @@
                     >
                 </li>
                 <li class="li">
+                    <a href="#" data-target="tour"
+                        ><img class="navicon" src="images/common/nav_leaf.png" alt="" />揪團活動管理</a
+                    >
+                </li>
+                <li class="li">
                     <a href="#" data-target="custom"
                         ><img class="navicon" src="images/common/nav_leaf.png" alt="" />客製化內容管理</a
                     >
@@ -100,7 +105,12 @@
                                             <input type="text" :value="item.INFO" @keyup="changeINFO($event,key)" />
                                         </td>
                                         <td>
-                                            <input type="text" :value="item.PRICE" @keyup="changePRICE($event,key)" />
+                                            <input
+                                                type="text"
+                                                size="1"
+                                                :value="item.PRICE"
+                                                @keyup="changePRICE($event,key)"
+                                            />
                                         </td>
                                         <td>{{item.SOLD}}</td>
 
@@ -133,84 +143,29 @@
                                 <button class="btn-confirm" type="button" @click="query_ord">查詢</button>
                                 <button class="btn-confirm" type="button" @click="get_orders">回到列表</button>
                             </form>
-                            <table>
-                                商城訂單管理
-                                <tr>
-                                    <th>訂單編號</th>
-                                    <th>會員編號</th>
-                                    <th>訂單狀態</th>
-                                    <th>訂單成立日期</th>
-                                    <th>寄貨方式</th>
-                                    <th>付款方式</th>
-                                    <th>折扣點數</th>
-                                    <th>訂單總額</th>
-                                    <th>收件人</th>
-                                    <th>收件人地址</th>
-                                    <th>收件人電話</th>
-                                    <th>確認修改</th>
-                                </tr>
-                                <tbody v-for="(item,key) in orders">
-                                    <tr>
-                                        <td>{{item.ORDERS_NO}}</td>
-                                        <td>{{item.MEMBER}}</td>
-                                        <td>
-                                            <select name="訂單狀態" v-model="selecteddealState">
-                                                <option v-for="(dealState,index) in dealStates" :value="index">
-                                                    {{dealState}}
-                                                </option>
-                                            </select>
-                                        </td>
-                                        <td>{{item.ORD_DATE}}</td>
-                                        <td>
-                                            <input
-                                                type="text"
-                                                :value="item.DELIVERY"
-                                                @keyup="changeDELIVERY($event,key)"
-                                            />
-                                        </td>
-                                        <td><input type="text" :value="item.PAY" @keyup="changePAY($event,key)" /></td>
-                                        <td>
-                                            <input
-                                                type="text"
-                                                :value="item.DISCOUNT"
-                                                @keyup="changeDISCOUNT($event,key)"
-                                            />
-                                        </td>
-                                        <td>
-                                            <input type="text" :value="item.TOTAL" @keyup="changeTOTAL($event,key)" />
-                                        </td>
-                                        <td>
-                                            <input
-                                                type="text"
-                                                :value="item.RECEIVER_NAME"
-                                                @keyup="changeRECEIVER_NAME($event,key)"
-                                            />
-                                        </td>
-                                        <td>
-                                            <input
-                                                type="text"
-                                                :value="item.RECEIVER_ADDRESS"
-                                                @keyup="changeRECEIVER_ADDRESS($event,key)"
-                                            />
-                                        </td>
-                                        <td>
-                                            <input
-                                                type="text"
-                                                :value="item.RECEIVER_TEL "
-                                                @keyup="changeRECEIVER_TEL($event,key)"
-                                            />
-                                        </td>
-                                        <td>
-                                            <input
-                                                type="button"
-                                                class="btn-delete"
-                                                @click="edit_orders(item.ORDERS_NO,key)"
-                                                value="確認修改"
-                                            />
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <div id="ord_management">
+                                <h5>商城訂單管理</h5>
+
+                                <div>
+                                    <div class="th">訂單編號</div>
+                                    <div class="th">會員編號</div>
+                                    <div class="th">訂單狀態</div>
+                                    <div class="th">訂單成立日期</div>
+                                    <div class="th">寄貨方式</div>
+                                    <div class="th">付款方式</div>
+                                    <div class="th">折扣點數</div>
+                                    <div class="th">訂單總額</div>
+                                    <div class="th">收件人</div>
+                                    <div class="th">收件人地址</div>
+                                    <div class="th">收件人電話</div>
+                                    <div class="th">確認修改</div>
+                                </div>
+
+                                <!-- <tr>
+                                    <td>1</td>
+                                </tr> -->
+                                <orderdiv v-for="(item,key) in orders" v-bind="orders" :item="item"></orderdiv>
+                            </div>
                         </div>
                     </div>
                 </div>

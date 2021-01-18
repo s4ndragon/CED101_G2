@@ -166,10 +166,10 @@ query_gard_id: async function () {
             },
 
             edit_hotels: async function (HOTEL_ID, key) {
-                if (this.hotels[key].ischecked == false) {
-                    this.HOTEL_STATUS = 0
-                } else if (this.hotels[key].ischecked == true) {
+                if (this.hotels[key].ischecked == true ) {
                     this.HOTEL_STATUS = 1
+                } else if (this.hotels[key].ischecked == false) {
+                    this.HOTEL_STATUS = 0
                 }
     
                 const res = await fetch('./phps/admin_UpdHotels.php', {
@@ -214,9 +214,9 @@ query_gard_id: async function () {
             
 
             edit_gardens: async function (GARD_ID, key) {
-                if (this.gardens[key].ischecked == false) {
+                if (this.gardens[key].ischecked == true) {
                     this.GARD_STATUS = 0
-                } else if (this.gardens[key].ischecked == true) {
+                } else if (this.gardens[key].ischecked == false) {
                     this.GARD_STATUS = 1
                 }
     
@@ -253,9 +253,9 @@ query_gard_id: async function () {
 
           
             edit_rests: async function (RESTAURANT_ID, key) {
-                if (this.rests[key].ischecked == false) {
+                if (this.rests[key].ischecked == true ) {
                     this.RESTAURANT_STATUS = 0
-                } else if (this.rests[key].ischecked == true) {
+                } else if (this.rests[key].ischecked == false) {
                     this.RESTAURANT_STATUS = 1
                 }
     

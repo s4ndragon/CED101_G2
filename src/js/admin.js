@@ -2,7 +2,7 @@
 window.addEventListener("load", function (e){
     e.preventDefault();
 	function go(i){
-		let program = ["admin_admin.html", "admin_member.html","admin_custom.html","admin_shop.html","admin_report.html"];
+		let program = ["admin_admin.html", "admin_member.html","admin_tour.html","admin_custom.html","admin_shop.html","admin_report.html"];
 		location.href = program[i];
 	}
 	let menuUl = document.querySelectorAll("ul.nav_list li a");
