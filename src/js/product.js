@@ -15,7 +15,7 @@ function init() {
     }
     //如果是商城首頁的話
     if ($id('products')) {
-        getproducts('所有商品', 'DATE_DESC');
+        getproducts('所有商品', 'PSN_DESC');
         classifyBtnsSelect();
         orderBtn();
         getFavortieList()
@@ -51,7 +51,7 @@ function getproducts(type, orderby) {
         if (xhr.status == 200) {
             let products = JSON.parse(xhr.responseText);
             $id('products_container').innerHTML = "";
-            let perpageNum = 2;
+            let perpageNum = 6;
             let pages = getPage(products, perpageNum);
             $id('pages').innerHTML = '';
             //每次get時先印出第一頁
@@ -70,6 +70,8 @@ function getproducts(type, orderby) {
                 // for (let i = 0; i < perpageNum; i++) {
                 //     $id('products_container').appendChild(addProduct(products[i]));
                 // };
+            } else {
+                $id('products_container').innerHTML = "<div style='padding: 120px;background: #fff;border-radius: 40px;'>此類別商品並無資料。</div>";
             }
         } else {
             alert(xhr.status);
@@ -309,7 +311,7 @@ function dicountBtn() {
 }
 
 function addcartalert() {
-    if ($id('addcartLB')) { } else {
+    if ($id('addcartLB')) {} else {
         let newdiv = document.createElement('div');
         newdiv.setAttribute('id', 'addcartLB');
         newdiv.innerHTML = `<div>

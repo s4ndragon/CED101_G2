@@ -1,69 +1,84 @@
-
 @import './default/common';
 @import "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css";
-.w100{
-	width:100%;
+
+.w100 {
+  width: 100%;
 }
-.v100w{
-	width:100vw;
+
+.v100w {
+  width: 100vw;
 }
-.h400px{
-    height:400px;
+
+.h400px {
+  height: 400px;
 }
-.size60{
-	font-size:60px;
+
+.size60 {
+  font-size: 60px;
 }
-.banner{
-	@include banner;
+
+.banner {
+  @include banner;
 }
-.banner-1st-title{
-	@include banner-1st-title;
+
+.banner-1st-title {
+  @include banner-1st-title;
 }
-#page-right  {
-  float:right;
+
+#page-right {
+  float: right;
   margin: 0;
   display: inline
 }
-td a{
+
+td a {
   padding: 5px
 }
-table.game1{
-input[type="text"]{
-    width:65px !important;
+
+table.game1 {
+  input[type="text"] {
+    width: 65px !important;
+  }
 }
-}
-button{
+
+button {
   cursor: pointer;
 }
+
 input[type=number]::-webkit-outer-spin-button,
 input[type=number]::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
 /* Firefox */
 input[type=number] {
   -moz-appearance: textfield;
 }
+
 /* 新增管理員 */
-#Adminbox{
-position: fixed;
-top: 0;
-left: 0;
-width: 100vw;
-height: 100vh;
-background-color: hsla(0, 0%, 0%, .5);
-opacity: 0;
-z-index: -1;
-transition: opacity 1s;
+#Adminbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: hsla(0, 0%, 0%, .5);
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 1s;
 }
-#Adminbox.-on{
+
+#Adminbox.-on {
   opacity: 1;
   z-index: 1;
 }
-#Adminbox.-opacity-zero{
+
+#Adminbox.-opacity-zero {
   opacity: 0;
 }
-#Adminbox > form{
+
+#Adminbox>form {
   background-color: white;
   width: 90%;
   max-width: 800px;
@@ -75,9 +90,10 @@ transition: opacity 1s;
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
 /* 新增管理員 */
 /* 新增商品 */
-#prodbox{
+#prodbox {
   position: fixed;
   top: 0;
   right: 0;
@@ -88,14 +104,17 @@ transition: opacity 1s;
   z-index: -1;
   transition: opacity 1s;
 }
-#prodbox.-on{
+
+#prodbox.-on {
   opacity: 1;
   z-index: 1;
 }
-#prodbox.-opacity-zero{
+
+#prodbox.-opacity-zero {
   opacity: 0;
 }
-#prodbox > form{
+
+#prodbox>form {
   background-color: white;
   width: 90%;
   max-width: 350px;
@@ -107,9 +126,10 @@ transition: opacity 1s;
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
 /* 新增商品 */
 /* 新增遊戲角色 gamebox*/
-#gamebox{
+#gamebox {
   position: fixed;
   top: 0;
   right: 0;
@@ -120,14 +140,17 @@ transition: opacity 1s;
   z-index: -1;
   transition: opacity 1s;
 }
-#gamebox.-on{
+
+#gamebox.-on {
   opacity: 1;
   z-index: 1;
 }
-#gamebox.-opacity-zero{
+
+#gamebox.-opacity-zero {
   opacity: 0;
 }
-#gamebox > form{
+
+#gamebox>form {
   background-color: white;
   width: 90%;
   max-width: 400px;
@@ -139,12 +162,14 @@ transition: opacity 1s;
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
 /* gamebox */
-.leftside{
-    width:150;
-    border:solid 5px green;
-}    
-.rightside{
-width:calc(99vw - 150px);
-border:solid 5px red;
+.leftside {
+  width: 150;
+  border: solid 5px green;
+}
+
+.rightside {
+  width: calc(99vw - 150px);
+  border: solid 5px red;
 }

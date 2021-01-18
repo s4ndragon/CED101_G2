@@ -27,15 +27,16 @@ try {
     $orderList->bindValue(":RECEIVER_ADDRESS",  $_POST['address']);
     $orderList->bindValue(":RECEIVER_TEL",  $_POST['phone']);
     $affectedRows=$orderList->execute();
-    echo "成功異動了{$affectedRows}筆資料";
+    // echo "成功異動了{$affectedRows}筆資料";
+    $orderNo = $pdo->lastInsertId();
 
      //搜尋訂單編號
-     require_once("./connect.php");
-     $sql = "select * from ORDERS where MEMBER = :MEMBER ORDER BY 1 DESC LIMIT 1";
-     $orderListNo = $pdo->prepare($sql);
-     $orderListNo->bindValue(":MEMBER",  $_POST['mem_no']);
-     $orderListNo->execute();
-     $prodRow = $orderListNo->fetch(PDO::FETCH_ASSOC);
+    //  require_once("./connect.php");
+    //  $sql = "select * from ORDERS where MEMBER = :MEMBER ORDER BY 1 DESC LIMIT 1";
+    //  $orderListNo = $pdo->prepare($sql);
+    //  $orderListNo->bindValue(":MEMBER",  $_POST['mem_no']);
+    //  $orderListNo->execute();
+    //  $prodRow = $orderListNo->fetch(PDO::FETCH_ASSOC);
 
     //orderList增加
     require_once("./connect.php");
@@ -45,17 +46,22 @@ try {
     $sql = "INSERT INTO orderlist (ODRDER_NO, PSN, QUANTITY) VALUES (:ODRDER_NO, :PSN, :QUANTITY)";
     $product= $_POST[$list[$i]];
     $productInfo=preg_split('/,/', $product, -1, PREG_SPLIT_NO_EMPTY);
-    echo $productInfo[1].";";
     $orders = $pdo->prepare($sql);
-    $orders->bindValue(":ODRDER_NO", $prodRow['ORDERS_NO']);
+    $orders->bindValue(":ODRDER_NO", $orderNo);
     $orders->bindValue(":PSN",  $list[$i]);
     $orders->bindValue(":QUANTITY",  $productInfo[1]);
     $orders->execute();
     $n++;
-};
-    echo "成功異動了{$n}筆資料";
-    header("Location:../04_orders.html?orders_no={$prodRow['ORDERS_NO']}");
+    };
+    // echo "成功異動了{$n}筆資料";
+    header("Location: ../04_orders.html?orders_no={$orderNo}");
     exit();
 } catch (PDOException $e) {
     echo  $e->getMessage() ;
-};?>
+};
+?>
+<!-- <script>
+    window.addEventListener('load', () => {
+        window.location.href = "../04_orders.html?orders_no=<?= $prodRow['ORDERS_NO'] ?>";
+    })
+</script> -->
