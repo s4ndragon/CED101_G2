@@ -15,6 +15,12 @@
 .h3 {
     font-size: $h3;
 }
+.h40px{
+    height:40px;
+}
+.w40px{
+    width:40px;
+}
 .v100w {
     width: 100vw;
 }
@@ -600,11 +606,12 @@ img[src='./images/game/62720191121071129866.png'] {
 
 #teatxt-bar1 {
     height: 100px !important;
-    width: 50px;
+    width: 100px;
+    position: relative;
+    top: 26px;
     cursor: pointer;
     writing-mode: vertical-lr;
     position: relative;
-
     span {
         writing-mode: vertical-lr;
         font-size: 20px;
