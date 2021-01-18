@@ -427,9 +427,9 @@ div.menu {
 }
 
 .shop .shop-banner {
-    display: none;
-    // position: relative;
-    // text-decoration: none;
+    display: block;
+    position: relative;
+    text-decoration: none;
 }
 
 .shop .shop-banner:after {

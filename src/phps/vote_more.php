@@ -36,7 +36,7 @@ try {
 	$date->execute();
 	$pastDate = $date->fetchAll(PDO::FETCH_ASSOC);
 
-	$sql = "select * from tour join garden on tour.GARD_ID = garden.GARD_ID where garden.GARD_ID = :GARD_ID";
+	$sql = "select * from tour join garden on tour.GARD_ID = garden.GARD_ID where garden.GARD_ID = :GARD_ID or garden.GARD_ID = 6 limit 3";
 	$tour = $pdo->prepare($sql);
 	$tour->bindValue(":GARD_ID", $_POST["GARD_ID"]);
 	$tour->execute();
@@ -50,9 +50,16 @@ try {
 	$mem->bindParam(":GARD_ID", $_POST["GARD_ID"]);
 	$mem->execute();
 	$msgRows = $mem->fetchAll(PDO::FETCH_ASSOC);
+
+	$sql = "select TOUR_ID from tour_collect where MEM_NO = :MEM_NO";
+	$like = $pdo->prepare($sql);
+	$MEM_NO = $_SESSION["MEM_NO"];
+	$like->bindValue(":MEM_NO", $MEM_NO);
+	$like->execute();
+	$likeRows = $like->fetchAll(PDO::FETCH_ASSOC);
 	
 
-	$dataRows = [$gardenRows,$pastDate,$tourRows,$msgRows];
+	$dataRows = [$gardenRows,$pastDate,$tourRows,$msgRows,$likeRows];
 	echo json_encode($dataRows);  //把陣列編碼成json字串傳到前端 echo印出json字串
 
 } catch (PDOException $e) {
