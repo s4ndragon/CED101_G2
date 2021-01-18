@@ -53,26 +53,6 @@
                             <div class="excl" @click="showBox(artRow.ART_NO)">
                                 <img class="excl" src="./images/common/852019_exclamation_512x512.png" alt="">
                             </div>
-
-
-
-                            <!-- ====以下臉書分享==== -->
-                            <!-- <div class="fb-share-button" data-href="https://www.youtube.com/watch?v=HDhltQ4Jx0o"
-                                data-layout="button_count" data-size="small"><a target="_blank"
-                                    href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DHDhltQ4Jx0o&amp;src=sdkpreparse"
-                                    class="fb-xfbml-parse-ignore">分享</a>
-                            </div> -->
-                            <!-- 自己寫測試的 -->
-                            <!-- href="'https://www.facebook.com/sharer/sharer.php?u=03_discuss_article.php?ART_NO=' + artRow.ART_NO + '&amp;src=sdkpreparse'" -->
-                            <div class="fb-share-button"
-                                data-href="http://localhost/important/dist/03_discuss_article.php?ART_NO=51"
-                                data-layout="button" data-size="small"><a target="_blank"
-                                    href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%2Fimportant%2Fdist%2F03_discuss_article.php%3FART_NO%3D51&amp;src=sdkpreparse"
-                                    class="fb-xfbml-parse-ignore">分享</a>
-                            </div>
-                            <!-- ====以上臉書分享==== -->
-
-
                         </div>
                         <div class="ar_innertext">
                             <p>{{artRow.ART_CONTENT}}</p>
@@ -84,9 +64,9 @@
                     </div>
                 </div>
                 <!-- ====檢舉燈箱==== -->
-                <art-reg :artno="artno"></art-reg>
             </div>
         </section>
+        <art-reg :artno="artno"></art-reg>
     </main>
     @@include('layout/footer.html')
     <!-- vue  -->
