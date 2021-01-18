@@ -7,9 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>茶園票選</title>
     <link rel="stylesheet" href="./css/vote_more.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.js"></script>
     <script src="https://unpkg.com/vue-star-rating@1.5.1/dist/star-rating.min.js"></script>
-    <script src="./js/vue.js"></script>
     <script src="./js/like.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
@@ -98,7 +96,7 @@
                                @send-repo="sendReport(i)">
             </comment-component>
             <!--       留言+檢舉燈箱結束        -->
-            <div class="empty" v-show="msgRows.length==0">此文章尚無留言，歡迎留言。</div>
+            <div class="empty" v-show="msgRows.length==0">此茶園尚無留言，歡迎留言。</div>
 
 
         </div>
@@ -178,7 +176,7 @@
 
     @@include('layout/footer.html')
 
-
+    <script src="./js/vue.js"></script>
     <script>
         
         Vue.component("star-rating", VueStarRating.default);
@@ -299,7 +297,7 @@
 
                 sendScore(){
                     if(this.today == this.pastDate[0].VOTE_DATE){
-                        alert('一天只能投一次票喔!')
+                        alert('一天只能評分一次喔!')
                         this.lightbox = false
                         this.rating = '您尚未評分'
                     }else{
