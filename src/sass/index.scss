@@ -42,6 +42,10 @@ div.menu {
         letter-spacing: 0.1rem;
         text-align: center;
     }
+    .tour_title_rwd {
+        display: none;
+    }
+
     .tour_txt {
         max-width: 700px;
         margin: 0 auto 40px;
@@ -423,9 +427,9 @@ div.menu {
 }
 
 .shop .shop-banner {
-    position: relative;
-    display: block;
-    text-decoration: none;
+    display: none;
+    // position: relative;
+    // text-decoration: none;
 }
 
 .shop .shop-banner:after {
@@ -1100,9 +1104,15 @@ input[type='button'] {
     }
 
     .tour .tour_title {
-        padding: 0;
-        margin: 50px 0 0 0;
-        font-size: $h4;
+        display: none;
+    }
+
+    .tour .tour_title_rwd {
+        padding: 10px;
+        margin: 17px 0 0 0;
+        font-size: 24px;
+        color: #fff;
+        display: block;
     }
 
     .tour .tour_txt {
@@ -1115,7 +1125,7 @@ input[type='button'] {
     }
 
     .tour .tour-head-img {
-        top: 220px;
+        top: 250px;
     }
 
     .dis-img-right {

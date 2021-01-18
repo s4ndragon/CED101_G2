@@ -22,7 +22,6 @@ new Vue({
 				// 	add_id: this.add_id,
 				// 	add_name: this.add_name,
 				// 	add_psw: this.add_psw,
-
 				// }),
 			}).then(function(data){
 				return data.json()

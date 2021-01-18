@@ -15,13 +15,7 @@
             }
             $from = $_FILES['img']['tmp_name']; //暫存區路徑
             $to = "$dir/{$_FILES['img']['name']}";
-
-            if(copy($from, $to)){
-                echo "上傳成功 <br>";
-                echo $_FILES['img']['tmp_name'];
-            }else{
-                echo "拷貝失敗 <br>";
-            }
+            copy($from, $to);
         break;
     }
 
@@ -60,8 +54,8 @@ try{
                 '$category')";
 
     $article = $pdo->prepare($sql);
-    $article->execute(); //程式執行到這結束
-    // $diaryNo = $pdo->lastInsertId();  //接收到剛剛的日誌流水號
+    $article->execute(); 
+
 
 
 // -------------------------------------------------------------------------------------------------
@@ -69,15 +63,8 @@ try{
 
 }catch(PDOException $e){
     $error = array("errorMsg"=>$e->getMessage());
-    // $error.= $e->getLine() . '<br>' . $e->getMessage() ;
     echo json_encode($error);
 }
 ?>
 
-<?php  
-$url = "../03_discuss.html";
-echo "<script type='text/javascript'>";
-echo "window.location.href='$url'";
-echo "</script>"; 
-?> 
 

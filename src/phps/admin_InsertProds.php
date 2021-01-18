@@ -21,7 +21,6 @@ try {
     $per_ord_data = $pdo->prepare($sql);
 
     //把接到的資料寫進SQL (要先經過PHP轉譯 所以不能直接寫入SQL指令內)
-    // $per_ord_data->bindValue(":ADMIN_NO", $add_no);
     $per_ord_data->bindValue(":add_NAME", $add_NAME);
     $per_ord_data->bindValue(":add_INFO", $add_INFO);
     $per_ord_data->bindValue(":add_PRICE", $add_PRICE);

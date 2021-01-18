@@ -8,13 +8,14 @@ try {
 
     //php叫物件內屬性的寫法
     $DissArtId = $decoded["DissArtId"];
+ 
 
   
     //接到之後要做的SQL指令
     //:後面+名字會變成一個變數 ->Php 寫sql的時候的寫法
 	$sql = "select * 
-            from art_msg_rep
-            where MSG_REP_NO= :DissArtId
+            from art_rep
+            where REP_NO= :DissArtId
             ";
 
     // $grouporddata = $pdo->query($sql);

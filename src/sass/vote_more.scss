@@ -347,9 +347,19 @@ main {
 
             .com_btn_countainer {
 
-                .inner_btn {
-                    @include smallbtn2;
-                    margin: 30px auto;
+                .btnc {
+                    border-radius: 20px;
+                    font-weight: bolder;
+                    border: 2px;
+                    transition: all 0.5s ease;
+                    font-size: 14px;
+                    outline: none;
+                    cursor: pointer;
+                    margin: 15px;
+                    padding: 15px 5px;
+                    background-color: white;
+                    color: #69994e;
+                    width: 100px;
                 }
             }
         }

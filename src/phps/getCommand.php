@@ -1,5 +1,4 @@
 <?php
-// 要去哪抓會員id
     $command = isset($_POST["command"])?$_POST["command"]:"";
     $artNo =   isset($_POST["artNo"])?$_POST["artNo"]:"";
 

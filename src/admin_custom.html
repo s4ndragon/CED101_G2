@@ -8,13 +8,12 @@
         <title>偵茶者後台管理 | TEA SEARCHER | 帶你找茶 喝茶 買茶</title>
         <link rel="shortcut icon" href="./images/index/webIcon.png" type="image/x-icon" />
         <link rel="stylesheet" href="./css/admin.css" />
-        <script src="../node_modules/vue/dist/vue.js"></script>
         <script src="js/admin.js"></script>
     </head>
     <body>
         <nav class="nav">
             <!-- logo放置區 -->
-            <a href="#">
+            <a href="index.html">
                 <h1 id="logo"><img src="images/common/logo.png" alt="" /></h1>
             </a>
             
@@ -26,7 +25,7 @@
         
         <aside class="aside">
             <ul class="nav_list">
-                <li><h1>後台管理頁</h1></li>
+                <a href="admin_tea.html"><h1>後台管理頁</h1></a>
                 
                 <li class="li">
                     <a href="#" data-target="admin"
@@ -87,18 +86,18 @@
                                             <th>茶園地址</th>
                                             <th>茶園總得分</th>
                                             <th>茶園評分次數</th>
-                                            <th>茶園狀態 </th>
+                                            <th>茶園狀態</br>(0:上架 1:下架)</th>
                                             <th>修改確認</th>
                                         </tr>
                                     </thead>
-                                    <tbody v-for="item in gardens">
+                                    <tbody v-for="(item,key) in gardens">
                                         <tr>
                                             <td>{{item.GARD_ID}}</td>
-                                            <td><input type="text" :value="item.GARD_NAME" /></td>
-                                            <td><input type="text" :value="item.GARD_TYPE" /></td>
-                                            <td><input type="text" :value="item.GARD_ADDRESS" /></td>
-                                            <td><input type="text" :value="item.GARD_VOTE" /></td>
-                                            <td><input type="text" :value="item.GARD_CLICK" /></td>
+                                            <td><input type="text" :value="item.GARD_NAME" @keyup="changeGARD_NAME($event,key)"/></td>
+                                            <td><input type="text" :value="item.GARD_TYPE" @keyup="changeGARD_TYPE($event,key)"/></td>
+                                            <td><input type="text" :value="item.GARD_ADDRESS" @keyup="changeGARD_ADDRESS($event,key)"/></td>
+                                            <td><input type="text" :value="item.GARD_VOTE" @keyup="changeGARD_VOTE($event,key)"/></td>
+                                            <td><input type="text" :value="item.GARD_CLICK" @keyup="changeGARD_CLICK($event,key)"/></td>
                                             <td>
                                                 <div class="form-group">
                                                     上架
@@ -109,7 +108,7 @@
                                                     下架
                                                 </div>
                                             </td>
-                                            <td><input class="btn-delete" type="button" value="確認修改" /></td>
+                                            <td><input class="btn-delete" type="button" value="確認修改" @click="edit_gardens(item.GARD_ID,key)"  /></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -133,11 +132,11 @@
                                     <th>確認修改</th>
                                 </tr>
                                 
-                                <tbody v-for="item in rests">
+                                <tbody v-for="(item,key) in rests">
                                     <tr>
                                         <td>{{item.RESTAURANT_ID}}</td>
-                                        <td><input type="text" :value="item.RESTAURANT_NAME"></td>
-                                        <td><input type="text" :value="item.RESTAURANT_INFRO"></td>
+                                        <td><input type="text" :value="item.RESTAURANT_NAME" @keyup="changeRESTAURANT_NAME($event,key)"  ></td>
+                                        <td><input type="text" :value="item.RESTAURANT_INFRO" @keyup="changeRESTAURANT_INFRO($event,key)" ></td>
                                   
                                         <td>
                                             <div class="form-group">
@@ -149,7 +148,7 @@
                                                 下架
                                             </div>
                                         </td>
-                                        <td><input type="button" class="btn-delete" value="確認修改" /></td>
+                                        <td><input type="button" class="btn-delete" value="確認修改" @click="edit_rests(item.RESTAURANT_ID,key)" /></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -159,8 +158,8 @@
                             住宿管理
                             <form>
                                 <input type="text" v-model="HOTEL_ID" placeholder="請輸入旅館編號，從1開始" />
-                                <button class="btn-confirm" type="button" @="query_hotel_id">送出查詢</button>
-                                <button class="btn-confirm" type="button" @="get_hotels">回到列表</button>
+                                <button class="btn-confirm" type="button" @click="query_hotel_id">送出查詢</button>
+                                <button class="btn-confirm" type="button" @click="get_hotels">回到列表</button>
 
                             </form>
                             <table>
@@ -172,11 +171,11 @@
                                     <th>確認修改</th>
                                 </tr>
                                 
-                                <tbody v-for="value in hotels">
+                                <tbody v-for="(value,key) in hotels">
                                     <tr>
                                         <td>{{value.HOTEL_ID}}</td>
-                                        <td><input type="text" :value="value.HOTEL_NAME"></td>
-                                        <td><input type="text" :value="value.HOTEL_INFRO"></td>
+                                        <td><input type="text" :value="value.HOTEL_NAME" @keyup="changeHOTEL_NAME($event,key)"></td>
+                                        <td><input type="text" :value="value.HOTEL_INFRO" @keyup="changeHOTEL_INFRO($event,key)" ></td>
                                         <td>
                                             <div class="form-group">
                                                 上架
@@ -187,7 +186,7 @@
                                                 下架
                                             </div>
                                         </td>
-                                        <td><input type="button" class="btn-delete" value="確認修改" /></td>
+                                        <td><input type="button" class="btn-delete" value="確認修改" @click="edit_hotels(value.HOTEL_ID,key)"  /></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -198,15 +197,7 @@
         </main>
         
         <script>
-            // $(function () {
-                //     $('ul.nav_list li a').on('click', function (e) {
-                    //         // alert('good')
-                    //         e.preventDefault()
-                    //         $('.tab_container').removeClass('-on')
-                    //         $('.tab_container.' + $(this).attr('data-target')).addClass('-on')
-                    //     })
-                    // })
-                    
+                  
                     //tab
                     $(function () {
                 $('a.tab').on('click', function (e) {
@@ -222,6 +213,7 @@
                 })
             })
             </script>
+        <script src="./js/vue.js"></script>
         <script src="js/admin_custom_vue.js"></script>
     </body>
     </html>

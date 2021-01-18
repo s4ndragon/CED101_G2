@@ -1,0 +1,20 @@
+.setpanel{
+    position: absolute;
+    background: url("../images/game/13868995569383.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    top:calc(50% - 230px);
+    left:calc(50% - 290px);
+    width: 590px;
+    height:455px;
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 1s;
+}
+.setpanel-x{
+    cursor: pointer;
+    right: calc(2% - 1px);
+    top: calc(6% - 2px);
+    width: 30px;
+    height: 30px;
+}

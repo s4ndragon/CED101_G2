@@ -40,15 +40,15 @@ try {
 
         //需要有3種情形的寫法 0:未審核 1:審核通過 2:審核未通過
         //將取回的0或1轉回字串  傳回前台
-        // for($i=0;$i < count($per_ord_datarow);$i++){
+        for($i=0;$i < count($per_ord_datarow);$i++){
 
-        //     if($per_ord_datarow[$i]["AR_STATUS"] == 0){
-        //         $per_ord_datarow[$i]["ischecked"] = true;
-        //     }else{
-        //         $per_ord_datarow[$i]["ischecked"] = false;
-        //     };
+            if($per_ord_datarow[$i]["AR_STATUS"] != 0){
+                $per_ord_datarow[$i]["ischecked"] = false ;
+            }else{
+                $per_ord_datarow[$i]["ischecked"] = true;
+            };
 
-        // };
+        };
         //送出json字串
         echo json_encode($per_ord_datarow);
         // echo $managerdatarow;

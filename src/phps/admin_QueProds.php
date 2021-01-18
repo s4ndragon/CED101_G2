@@ -7,21 +7,21 @@ try {
     $decoded = json_decode($content, true);
 
     //php叫物件內屬性的寫法
-    $GARD_ID = $decoded["GARD_ID"];
+    $psn = $decoded["psn"];
 
   
     //接到之後要做的SQL指令
     //:後面+名字會變成一個變數 ->Php 寫sql的時候的寫法
 	$sql = "select * 
-            from garden
-            where GARD_ID= :GARD_ID
+            from product
+            where psn= :psn
             ";
 
     // $grouporddata = $pdo->query($sql);
     $per_ord_data = $pdo->prepare($sql);
 
     //把接到的資料寫進SQL (要先經過PHP轉譯 所以不能直接寫入SQL指令內)
-    $per_ord_data->bindValue(":GARD_ID", $GARD_ID);
+    $per_ord_data->bindValue(":psn", $psn);
     
 
 
