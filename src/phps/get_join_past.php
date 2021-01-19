@@ -4,11 +4,11 @@ try {
     require_once("./connect.php");
 
 	$sql = "select t.TOUR_ID, t.TOUR_TITLE, t.TOUR_SETOFFTIME, t.NUM_OF_PARTICIPANTS, t.TOUR_PEOPLE, j.mem_no
-            from tour t join tour_join J 
-            on t.tour_id = j.tour_id 
-            where j.mem_no = :MEM_NO
-            and t.DEADLINE_DATE < t.CURRENT_DATE() 
-            and t.NUM_OF_PARTICIPANTS < t.TOUR_PEOPLE
+    from tour t join tour_join J 
+    on t.tour_id = j.tour_id 
+    where j.mem_no = :MEM_NO
+    and t.DEADLINE_DATE < CURRENT_DATE() 
+    order by t.tour_id;
             ";
 
     $get_mine_tour = $pdo->prepare($sql);

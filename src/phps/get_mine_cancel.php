@@ -7,7 +7,7 @@ try {
 	$sql = "select * 
             from tour
             where MEM_NO = :MEM_NO
-            and TOUR_STATUS = 2 
+            and TOUR_STATUS = 0 
             ";
 
     $get_mine_cancel = $pdo->prepare($sql);

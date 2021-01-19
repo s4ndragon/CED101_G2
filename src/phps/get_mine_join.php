@@ -7,7 +7,7 @@ try {
             from tour t join tour_join J 
             on t.tour_id = j.tour_id 
             where j.mem_no = :MEM_NO
-            and t.DEADLINE_DATE > t.CURRENT_DATE() 
+            and t.DEADLINE_DATE > CURRENT_DATE() 
             and t.NUM_OF_PARTICIPANTS < t.TOUR_PEOPLE
             and t.TOUR_STATUS = 1;
             ";
