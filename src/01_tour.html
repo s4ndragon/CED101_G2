@@ -1,116 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="shortcut icon" href="./images/index/webIcon.png" type="image/x-icon" />
-        <link rel="stylesheet" href="./css/tour.css" />
-        <link
-            rel="stylesheet"
-            href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
-            integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
-            crossorigin="anonymous"
-        />
-        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
 
-        <title>瀏覽揪團</title>
-    </head>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="./images/index/webIcon.png" type="image/x-icon" />
+    <link rel="stylesheet" href="./css/tour.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+        integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
 
-    <body>
-        @@include('layout/leaf.html') @@include('layout/nav.html')
-        <div class="banner">
-            <h2>茶園揪團</h2>
-        </div>
-        <div id="app">
-            <div class="choice_block">
-                <div class="flex">
-                    <div class="twMap">
-                        <div>
-                            <div class="N" v-for="locationRow in locationRows" v-show="locN">
-                                <a :href="'02_vote_more.html?GARD_ID=' + locationRow.GARD_ID">
-                                    <img class="locationImg" :src="locationRow.GARD_PIC" alt="" />
-                                    <p>{{locationRow.GARD_NAME}}</p>
-                                </a>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="C" v-for="locationRow in locationCRows" v-show="locC">
-                                <a :href="'02_vote_more.html?GARD_ID=' + locationRow.GARD_ID">
-                                    <img class="locationImg" :src="locationRow.GARD_PIC" alt="" />
-                                    <p>{{locationRow.GARD_NAME}}</p>
-                                </a>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="S" v-for="locationRow in locationSRows" v-show="locS">
-                                <a :href="'02_vote_more.html?GARD_ID=' + locationRow.GARD_ID">
-                                    <img class="locationImg" :src="locationRow.GARD_PIC" alt="" />
-                                    <p>{{locationRow.GARD_NAME}}</p>
-                                </a>
-                            </div>
-                        </div>
+    <title>瀏覽揪團</title>
+</head>
 
-                        <div class="twMap_img">
-                            <img src="./images/tour/twMap.png" alt="" />
+<body>
+    @@include('layout/leaf.html') @@include('layout/nav.html')
+    <div class="banner">
+        <h2>茶園揪團</h2>
+    </div>
+    <div id="app">
+        <div class="choice_block">
+            <div class="flex">
+                <div class="twMap">
+                    <div>
+                        <div class="N" v-for="locationRow in locationRows" v-show="locN">
+                            <a :href="'02_vote_more.html?GARD_ID=' + locationRow.GARD_ID">
+                                <img class="locationImg" :src="locationRow.GARD_PIC" alt="" />
+                                <p>{{locationRow.GARD_NAME}}</p>
+                            </a>
                         </div>
-                        <button id="allLocal" @click="showAll()">全部地區</button>
-                        <button id="nLocal" @click="showN()">北部地區</button>
-                        <button id="cLocal" @click="showC()">中部地區</button>
-                        <button id="sLocal" @click="showS()">南部地區</button>
                     </div>
-                    <!-- <img src="../images/index/notuse/8355.png" alt=""> -->
-                </div>
-                <div class="tour_center_img">
-                    <img src="./images/tour/bg-project-map-illust.png" alt="" />
-                </div>
-                <div class="tour_center_img2">
-                    <img src="./images/index/bg-green-top.png" alt="" />
-                </div>
-            </div>
-            <div class="main_body" id="app">
-                <h1>瀏覽揪團</h1>
-                <div class="choice_list">
-                    <ul>
-                        <li @click="content='all'">
-                            <h2>全部揪團</h2>
-                        </li>
-                        <li class="mini_choice">
-                            <h2>揪團地區 <i class="fas fa-angle-down" fa-4x></i></h2>
-                            <ul>
-                                <li @click="content='north';filter='北部'">北部</li>
-                                <li @click="content='north';filter='中部'">中部</li>
-                                <li @click="content='north';filter='南部'">南部</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <h2>茶園類型 <i class="fas fa-angle-down" fa-4x></i></h2>
-                            <ul>
-                                <li @click="content='type';filter=0">觀光型</li>
-                                <li @click="content='type';filter=1">體驗型</li>
-                            </ul>
-                        </li>
-                        <li>
-                            <h2>預估費用 <i class="fas fa-angle-down" fa-4x></i></h2>
-                            <ul>
-                                <li @click="content='price';filter=2000">2000以下</li>
-                                <li @click="content='price';filter=3000">3000以下</li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
+                    <div>
+                        <div class="C" v-for="locationRow in locationCRows" v-show="locC">
+                            <a :href="'02_vote_more.html?GARD_ID=' + locationRow.GARD_ID">
+                                <img class="locationImg" :src="locationRow.GARD_PIC" alt="" />
+                                <p>{{locationRow.GARD_NAME}}</p>
+                            </a>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="S" v-for="locationRow in locationSRows" v-show="locS">
+                            <a :href="'02_vote_more.html?GARD_ID=' + locationRow.GARD_ID">
+                                <img class="locationImg" :src="locationRow.GARD_PIC" alt="" />
+                                <p>{{locationRow.GARD_NAME}}</p>
+                            </a>
+                        </div>
+                    </div>
 
-                <component :is="content" :tours="tourRows" :filter="filter" @sumit-form="sumit()"></component>
+                    <div class="twMap_img">
+                        <img src="./images/tour/twMap.png" alt="" />
+                    </div>
+                    <button id="allLocal" @click="showAll()">全部地區</button>
+                    <button id="nLocal" @click="showN()">北部地區</button>
+                    <button id="cLocal" @click="showC()">中部地區</button>
+                    <button id="sLocal" @click="showS()">南部地區</button>
+                </div>
+                <!-- <img src="../images/index/notuse/8355.png" alt=""> -->
             </div>
-            <form id="" ref="form" action="./phps/addTourLike.php" method="post">
-                <input hidden type="text" name="addCase" v-model="addCase" />
-                <input hidden type="text" name="MEM_NO" v-model="memNO" />
-                <input hidden type="text" name="TOUR_ID" v-model="tourId" />
-                <input hidden ref="submit" type="submit" />
-            </form>
+            <div class="tour_center_img">
+                <img src="./images/tour/bg-project-map-illust.png" alt="" />
+            </div>
+            <div class="tour_center_img2">
+                <img src="./images/index/bg-green-top.png" alt="" />
+            </div>
         </div>
+        <div class="main_body" id="app">
+            <h1>瀏覽揪團</h1>
+            <div class="choice_list">
+                <ul>
+                    <li @click="content='all'">
+                        <h2>全部揪團</h2>
+                    </li>
+                    <li class="mini_choice">
+                        <h2>揪團地區 <i class="fas fa-angle-down" fa-4x></i></h2>
+                        <ul>
+                            <li @click="content='north';filter='北部'">北部</li>
+                            <li @click="content='north';filter='中部'">中部</li>
+                            <li @click="content='north';filter='南部'">南部</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <h2>茶園類型 <i class="fas fa-angle-down" fa-4x></i></h2>
+                        <ul>
+                            <li @click="content='type';filter=0">觀光型</li>
+                            <li @click="content='type';filter=1">體驗型</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <h2>預估費用 <i class="fas fa-angle-down" fa-4x></i></h2>
+                        <ul>
+                            <li @click="content='price';filter=2000">2000以下</li>
+                            <li @click="content='price';filter=3000">3000以下</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
 
-        @@include('layout/footer.html')
-        <script src="./js/vue.js"></script>
-        <script src="./js/01_tour.js"></script>
-    </body>
+            <component :is="content" :tours="tourRows" :filter="filter" @sumit-form="sumit()"></component>
+        </div>
+        <form id="addLike" ref="form" action="./phps/addTourLike.php" method="post">
+            <input hidden type="text" name="addCase" v-model="addCase" />
+            <input hidden type="text" name="MEM_NO" v-model="memNO" />
+            <input hidden type="text" name="TOUR_ID" v-model="tourId" />
+            <input hidden ref="submit" type="submit" />
+        </form>
+    </div>
+
+    @@include('layout/footer.html')
+    <script src="./js/vue.js"></script>
+    <script src="./js/01_tour.js"></script>
+</body>
+
 </html>

@@ -3,7 +3,7 @@ window.addEventListener("afterrender", function () {
 
 })
 window.addEventListener("load", function () {
-    $('form').on('submit', function () {
+    $('#addLike').on('submit', function () {
         $.ajax({
             url: './phps/addTourLike.php', // 要傳送的頁面
             method: 'POST',               // 使用 POST 方法傳送請求
@@ -440,9 +440,6 @@ var app = new Vue({
 
             setTimeout(() => {
                 this.$refs.submit.click();
-
-
-
             }, 1);
 
         },
