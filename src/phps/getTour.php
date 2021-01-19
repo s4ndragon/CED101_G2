@@ -18,7 +18,7 @@ try {
 	require_once("./connect.php");
 	$sql = "select *
 	from tour a join garden b on a.gard_id = b.gard_id 
-	where a.TOUR_STATUS = 1 and a.DEADLINE_DATE > $today and a.NUM_OF_PARTICIPANTS<a.TOUR_PEOPLE
+	where a.TOUR_STATUS = 1 and a.DEADLINE_DATE > $today and a.NUM_OF_PARTICIPANTS<=a.TOUR_PEOPLE
     order by TOUR_ID desc ";
 	$tours = $pdo->prepare($sql);
 	$tours->execute();
