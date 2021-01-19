@@ -316,7 +316,7 @@
 
                 sendScore(){
 
-                    if(this.memRows.MEM_NO == ''){
+                    if(this.memRows.length == 0){
                         alert('請先登入會員')
                     }else{
                         if(this.today == this.pastDate[0].VOTE_DATE){
@@ -411,7 +411,7 @@
 
                 sendComm(){
                     let words = document.getElementById("content")
-                    if(this.memRows.MEM_NO == ''){
+                    if(this.memRows.length == 0){
                         alert('請先登入會員')
                     }else{
                         if(words.value == ''){

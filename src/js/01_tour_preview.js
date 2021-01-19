@@ -11,7 +11,6 @@ window.addEventListener("load", function () {
             success: function (res) {       // 成功以後會執行這個方法
                 console.log('good');
                 preview.successBox = true;
-
             },
             error: function (err) {
                 alert('資料傳輸有誤!!');
@@ -66,7 +65,7 @@ let preview = new Vue({
     data: {
 
         gardId: "",
-        memNo: 1,
+
         hotelId: "",
         nowPeople: 0,
         previewImg: "",

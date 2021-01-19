@@ -6,7 +6,7 @@ window.addEventListener("load", function () {
             url: './phps/addTourLike.php', // 要傳送的頁面
             method: 'POST',               // 使用 POST 方法傳送請求
             dataType: 'text',             // 回傳資料會是 json 格式
-            data: $('form').serialize(),  // 將表單資料用打包起來送出去
+            data: $('#addLike').serialize(),  // 將表單資料用打包起來送出去
             success: function (res) {
                 if (res == 1) {
                     console.log('good');
@@ -30,8 +30,8 @@ window.addEventListener("load", function () {
     let tourRows;
     let xhr = new XMLHttpRequest();
     xhr.onload = function () {
-        app.tourRows = JSON.parse(xhr.responseText);
-        console.log(app.tourRows);
+        tourApp.tourRows = JSON.parse(xhr.responseText);
+        console.log(tourApp.tourRows);
     }
     xhr.open("get", "./phps/getTour.php", true);
     xhr.send(null);
@@ -39,8 +39,8 @@ window.addEventListener("load", function () {
     let locationRows;
     let xhr1 = new XMLHttpRequest();
     xhr1.onload = function () {
-        app.locationRows = JSON.parse(xhr1.responseText);
-        console.log(app.locationRows);
+        tourApp.locationRows = JSON.parse(xhr1.responseText);
+        console.log(tourApp.locationRows);
     }
     xhr1.open("get", "./phps/getNgarden.php", true);
     xhr1.send(null);
@@ -48,8 +48,8 @@ window.addEventListener("load", function () {
     let locationCRows;
     let xhr2 = new XMLHttpRequest();
     xhr2.onload = function () {
-        app.locationCRows = JSON.parse(xhr2.responseText);
-        console.log(app.locationCRows);
+        tourApp.locationCRows = JSON.parse(xhr2.responseText);
+        console.log(tourApp.locationCRows);
     }
     xhr2.open("get", "./phps/getCgarden.php", true);
     xhr2.send(null);
@@ -57,8 +57,8 @@ window.addEventListener("load", function () {
     let locationSRows;
     let xhr3 = new XMLHttpRequest();
     xhr3.onload = function () {
-        app.locationSRows = JSON.parse(xhr3.responseText);
-        console.log(app.locationSRows);
+        tourApp.locationSRows = JSON.parse(xhr3.responseText);
+        console.log(tourApp.locationSRows);
     }
     xhr3.open("get", "./phps/getSgarden.php", true);
     xhr3.send(null);
@@ -69,13 +69,13 @@ window.addEventListener("load", function () {
         if (xhr4.status == 200) {
             //modify here
             let FavortieList = JSON.parse(xhr4.responseText);
-            app.FavortieLists = FavortieList;
+            tourApp.FavortieLists = FavortieList;
 
         } else {
             alert(xhr4.status);
         }
     }
-    let memNo = '1';
+    let memNo = tourApp.memRows.MEM_NO;
     var url = "./phps/getTourFavoriteList.php?mem_no=" + memNo;
     xhr4.open("Get", url, true);
     xhr4.send(null);
@@ -84,7 +84,7 @@ window.addEventListener("load", function () {
 })
 
 Vue.component('all', {
-    props: ['tours'],
+    props: ['tours', 'members'],
 
     methods: {
 
@@ -135,20 +135,25 @@ Vue.component('all', {
     `,
     methods: {
         heart(index, tourId) {
-            if (this.$refs.like[index].title == "加入收藏") {
-                storage["tourId"] = tourId;
-                storage["case"] = 1;
-                this.$emit('sumit-form');
-                this.$refs.like[index].title = "取消收藏";
-                this.$refs.like[index].src = "./images/common/like.png";
+            if (this.members.length == 0) {
+                app2.lightbox = true;
             } else {
-                setTimeout(() => {
-                    this.$refs.like[index].title = "加入收藏";
-                    this.$refs.like[index].src = "./images/common/heart.png";
-                }, 100);
-                storage["tourId"] = tourId;
-                storage["case"] = 2;
-                this.$emit('sumit-form');
+                if (this.$refs.like[index].title == "加入收藏") {
+                    storage["tourId"] = tourId;
+                    storage["case"] = 1;
+                    this.$emit('sumit-form');
+                    this.$refs.like[index].title = "取消收藏";
+                    this.$refs.like[index].src = "./images/common/like.png";
+                } else {
+                    setTimeout(() => {
+                        this.$refs.like[index].title = "加入收藏";
+                        this.$refs.like[index].src = "./images/common/heart.png";
+                    }, 100);
+                    storage["tourId"] = tourId;
+                    storage["case"] = 2;
+                    this.$emit('sumit-form');
+                }
+
             }
         }
 
@@ -158,7 +163,7 @@ Vue.component('all', {
 })
 
 Vue.component('north', {
-    props: ['tours', 'filter'],
+    props: ['tours', 'filter', 'members'],
 
     methods: {
 
@@ -212,20 +217,25 @@ Vue.component('north', {
     `,
     methods: {
         heart(index, tourId) {
-            if (this.$refs.like[index].title == "加入收藏") {
-                storage["tourId"] = tourId;
-                storage["case"] = 1;
-                this.$emit('sumit-form');
-                this.$refs.like[index].title = "取消收藏";
-                this.$refs.like[index].src = "./images/common/like.png";
+            if (this.members.length == 0) {
+                app2.lightbox = true;
             } else {
-                setTimeout(() => {
-                    this.$refs.like[index].title = "加入收藏";
-                    this.$refs.like[index].src = "./images/common/heart.png";
-                }, 100);
-                storage["tourId"] = tourId;
-                storage["case"] = 2;
-                this.$emit('sumit-form');
+                if (this.$refs.like[index].title == "加入收藏") {
+                    storage["tourId"] = tourId;
+                    storage["case"] = 1;
+                    this.$emit('sumit-form');
+                    this.$refs.like[index].title = "取消收藏";
+                    this.$refs.like[index].src = "./images/common/like.png";
+                } else {
+                    setTimeout(() => {
+                        this.$refs.like[index].title = "加入收藏";
+                        this.$refs.like[index].src = "./images/common/heart.png";
+                    }, 100);
+                    storage["tourId"] = tourId;
+                    storage["case"] = 2;
+                    this.$emit('sumit-form');
+                }
+
             }
         }
 
@@ -235,7 +245,7 @@ Vue.component('north', {
 })
 
 Vue.component('type', {
-    props: ['tours', 'filter'],
+    props: ['tours', 'filter', 'members'],
 
     methods: {
 
@@ -286,22 +296,27 @@ Vue.component('type', {
     `,
     methods: {
         heart(index, tourId) {
-            if (this.$refs.like[index].title == "加入收藏") {
-                storage["tourId"] = tourId;
-                storage["case"] = 1;
-                this.$emit('sumit-form');
-                this.$refs.like[index].title = "取消收藏";
-                this.$refs.like[index].src = "./images/common/like.png";
+            if (this.members.length == 0) {
+                app2.lightbox = true;
             } else {
-                setTimeout(() => {
-                    this.$refs.like[index].title = "加入收藏";
-                    this.$refs.like[index].src = "./images/common/heart.png";
-                }, 100);
-                storage["tourId"] = tourId;
-                storage["case"] = 2;
-                this.$emit('sumit-form');
+                if (this.$refs.like[index].title == "加入收藏") {
+                    storage["tourId"] = tourId;
+                    storage["case"] = 1;
+                    this.$emit('sumit-form');
+                    this.$refs.like[index].title = "取消收藏";
+                    this.$refs.like[index].src = "./images/common/like.png";
+                } else {
+                    setTimeout(() => {
+                        this.$refs.like[index].title = "加入收藏";
+                        this.$refs.like[index].src = "./images/common/heart.png";
+                    }, 100);
+                    storage["tourId"] = tourId;
+                    storage["case"] = 2;
+                    this.$emit('sumit-form');
+                }
+
             }
-        },
+        }
 
 
 
@@ -310,7 +325,7 @@ Vue.component('type', {
 })
 
 Vue.component('price', {
-    props: ['tours', 'filter'],
+    props: ['tours', 'filter', 'members'],
 
     methods: {
 
@@ -363,20 +378,25 @@ Vue.component('price', {
     `,
     methods: {
         heart(index, tourId) {
-            if (this.$refs.like[index].title == "加入收藏") {
-                storage["tourId"] = tourId;
-                storage["case"] = 1;
-                this.$emit('sumit-form');
-                this.$refs.like[index].title = "取消收藏";
-                this.$refs.like[index].src = "./images/common/like.png";
+            if (this.members.length == 0) {
+                app2.lightbox = true;
             } else {
-                setTimeout(() => {
-                    this.$refs.like[index].title = "加入收藏";
-                    this.$refs.like[index].src = "./images/common/heart.png";
-                }, 100);
-                storage["tourId"] = tourId;
-                storage["case"] = 2;
-                this.$emit('sumit-form');
+                if (this.$refs.like[index].title == "加入收藏") {
+                    storage["tourId"] = tourId;
+                    storage["case"] = 1;
+                    this.$emit('sumit-form');
+                    this.$refs.like[index].title = "取消收藏";
+                    this.$refs.like[index].src = "./images/common/like.png";
+                } else {
+                    setTimeout(() => {
+                        this.$refs.like[index].title = "加入收藏";
+                        this.$refs.like[index].src = "./images/common/heart.png";
+                    }, 100);
+                    storage["tourId"] = tourId;
+                    storage["case"] = 2;
+                    this.$emit('sumit-form');
+                }
+
             }
         }
 
@@ -385,8 +405,8 @@ Vue.component('price', {
 
 })
 
-var app = new Vue({
-    el: "#app",
+let tourApp = new Vue({
+    el: "#tourApp",
     data: {
         content: "all",
         Ngardens: [],
@@ -402,9 +422,10 @@ var app = new Vue({
         locN: true,
         locC: true,
         locS: true,
-        memNO: 1,
+
         tourId: "",
         addCase: "",
+        memRows: '',
     },
     methods: {
         showAll() {
@@ -450,10 +471,25 @@ var app = new Vue({
                     showHeart.title = "取消收藏";
                 }
             }, 10);
-        }
+        },
+        getMem() {
+            let xhr = new XMLHttpRequest();
+            xhr.onload = function () {
+                if (xhr.status == 200) { //success
+                    tourApp.memRows = JSON.parse(xhr.responseText);
+                    console.log(tourApp.memRows);
+                } else {
+                    alert(xhr.status);
+                }
+            };
+            xhr.open("get", "./phps/member.php", true);
+            xhr.send(null);
+        },
 
     },
-
+    mounted() {
+        this.getMem();
+    },
     updated() {
         this.loadFavorite();
     },

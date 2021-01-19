@@ -18,7 +18,7 @@
     <div class="banner">
         <h2>茶園揪團</h2>
     </div>
-    <div id="app">
+    <div id="tourApp">
         <div class="choice_block">
             <div class="flex">
                 <div class="twMap">
@@ -96,11 +96,12 @@
                 </ul>
             </div>
 
-            <component :is="content" :tours="tourRows" :filter="filter" @sumit-form="sumit()"></component>
+            <component :is="content" :members="memRows" :tours="tourRows" :filter="filter" @sumit-form="sumit()">
+            </component>
         </div>
         <form id="addLike" ref="form" action="./phps/addTourLike.php" method="post">
             <input hidden type="text" name="addCase" v-model="addCase" />
-            <input hidden type="text" name="MEM_NO" v-model="memNO" />
+
             <input hidden type="text" name="TOUR_ID" v-model="tourId" />
             <input hidden ref="submit" type="submit" />
         </form>

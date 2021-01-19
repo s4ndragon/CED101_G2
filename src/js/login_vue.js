@@ -1,12 +1,12 @@
 $(document).ready(function () {
-    $(".memicon").click(function () {
-        $(".cover").css("display", "flex");
-        // console.log("hihi");
-    });
+    // $(".memicon").click(function () {
+    //     $(".cover").css("display", "flex");
+    //     // console.log("hihi");
+    // });
 
-    $(".cancel").click(function () {
-        $(".cover").css("display", "none");
-    });
+    // $(".cancel").click(function () {
+    //     $(".cover").css("display", "none");
+    // });
 
     $("p").on("click", function () {
         $("#login").css("display", "none");
@@ -15,9 +15,9 @@ $(document).ready(function () {
         $(".tab-group > li").removeClass("active");
     });
 
-    $(".btn.cancel").on("click", function () {
-        $(".cover").css("display", "none");
-    });
+    // $(".btn.cancel").on("click", function () {
+    //     $(".cover").css("display", "none");
+    // });
 });
 
 // new Vue({
@@ -91,7 +91,7 @@ Vue.component("log_reg", {
                     <p class="forgot"><a href="#">忘記密碼？</a></p>
                     <div class="btn_container">
                         <button @click="login" id="log-in" class="btn"/>登入</button>
-                        <button id="log-cancel" class="btn cancel"/>取消</button>
+                        <button @click="closeLogin()" id="log-cancel" class="btn cancel"/>取消</button>
                     </div>
                 </form>
             </div>
@@ -105,8 +105,8 @@ Vue.component("log_reg", {
                         <input type="email"required autocomplete="off" id="get_email" name="get_email"/>
                     </div>
                     <div class="btn_container">
-                        <button class="btn">取回密碼</button>
-                        <button id="get-cancel" class="btn cancel">取消</button>
+                        <button class="btn"/>取回密碼</button>
+                        <button @click="closeLogin()" id="get-cancel" class="btn cancel"/>取消</button>
                     </div>
                     
                 </form>
@@ -140,7 +140,7 @@ Vue.component("log_reg", {
                     </div>
                     <div class="btn_container">
                         <button type="submit" class="btn"/>註冊</button>
-                        <button id="reg-cancel" class="btn cancel"/>取消</button>
+                        <button @click="closeLogin()" id="reg-cancel" class="btn cancel"/>取消</button>
                     </div>
                 </form>
             </div>  
@@ -149,6 +149,10 @@ Vue.component("log_reg", {
     </div>
     `,
     methods: {
+        closeLogin() {
+            console.log(123);
+            this.$emit('close');
+        },
         login: function () {
             let xhr = new XMLHttpRequest();
             xhr.onload = function () {
@@ -195,6 +199,7 @@ Vue.component("log_reg", {
         },
     },
     mounted() {
+
         this.getLoginInfo();
         $(".form")
             .find("input, textarea")
@@ -236,6 +241,47 @@ Vue.component("log_reg", {
     },
 });
 
-var app = new Vue({
+var app2 = new Vue({
     el: "#nav",
+    data: {
+        lightbox: false,
+        memRows: '',
+    },
+    methods: {
+        closeLoginBox() {
+            this.lightbox = false;
+            console.log(123);
+        },
+        showLogin() {
+            this.lightbox = true;
+        },
+        addTourLogin() {
+
+
+            if (this.memRows.length == 0) {
+                this.lightbox = true;
+            } else {
+                window.location.href = './01_tourCreate.html';
+            }
+
+
+        },
+        getMem() {
+            let xhr = new XMLHttpRequest();
+            xhr.onload = function () {
+                if (xhr.status == 200) { //success
+                    app2.memRows = JSON.parse(xhr.responseText);
+                    console.log(app2.memRows);
+                } else {
+                    alert(xhr.status);
+                }
+            };
+            xhr.open("get", "./phps/member.php", true);
+            xhr.send(null);
+        },
+    },
+    mounted() {
+        this.getMem();
+
+    },
 });
