@@ -17,6 +17,7 @@ try {
     $sql = "update tour  
             set TOUR_STATUS=:TOUR_STATUS
             where TOUR_ID=:TOUR_ID
+            order by TOUR_ID ASC
             ";
 
     // $grouporddata = $pdo->query($sql);

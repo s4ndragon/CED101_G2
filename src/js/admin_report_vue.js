@@ -14,6 +14,9 @@ new Vue({
         AMR_STATUS:'',
         REP_NO:'',
         AR_STATUS:'',
+        lightBox_show: false,
+		inner_text:'',
+		inner_btn_text:'',
         
     },
 
@@ -153,18 +156,13 @@ new Vue({
 
         },
 
-        change_DisMegstatus(event, key) {
-            console.log(key)
-            this.diss_MegReports[key].AMR_STATUS = event.currentTarget.value
-        },
+     
         
+        change_GarMsgstatus(event,key){
+            this.gardens_MegReports[key].MSG_REP_STATUS = event.currentTarget.value
+        },
         edit_gardens_Meg: async function (MSG_REP_NO, key) {
-            // if (this.gardens_MegReports[key].ischecked == false) {
-            //     this.MSG_REP_STATUS = 1
-            // } else if (this.gardens_MegReports[key].ischecked == true) {
-            //     this.MSG_REP_STATUS = 2
-            // }
-
+           
             const res = await fetch('./phps/admin_UpdGardsMsg.php', {
                 method: 'POST',
                 mode: 'same-origin',
@@ -177,14 +175,21 @@ new Vue({
                     MSG_REP_STATUS: this.gardens_MegReports[key].MSG_REP_STATUS,
                 }),
             })
-
+            //燈箱
+            this.lightBox_show = true;
+            this.inner_text ="已修改完成";
+            this.inner_btn_text="資料已寫入，請安心關閉";
+            
+            //重新撈取更新後的全部資料
             this.get_gardens_MegReports()
+
         },
 
-        change_GarMsgstatus(event,key){
-            this.gardens_MegReports[key].MSG_REP_STATUS = event.currentTarget.value
-        },
        
+        change_DisMegstatus(event, key) {
+            console.log(key)
+            this.diss_MegReports[key].AMR_STATUS = event.currentTarget.value
+        },
 
         edit_diss_Meg: async function (MSG_REP_NO, key) {
             // if (this.diss_MegReports[key].ischecked == false) {
@@ -202,9 +207,14 @@ new Vue({
                 },
                 body: JSON.stringify({
                     MSG_REP_NO: MSG_REP_NO,
-                    AMR_STATUS: this.AMR_STATUS,
+                    AMR_STATUS: this.diss_MegReports[key].AMR_STATUS,
                 }),
             })
+
+              //燈箱
+              this.lightBox_show = true;
+              this.inner_text ="已修改完成";
+              this.inner_btn_text="資料已寫入，請安心關閉";
 
             this.get_diss_MegReports()
         },
@@ -229,9 +239,14 @@ new Vue({
                 },
                 body: JSON.stringify({
                     REP_NO: REP_NO,
-                    AR_STATUS: this.AR_STATUS,
+                    AR_STATUS: this.diss_ArtReports[key].AR_STATUS,
                 }),
             })
+
+             //燈箱
+             this.lightBox_show = true;
+             this.inner_text ="已修改完成";
+             this.inner_btn_text="資料已寫入，請安心關閉";
 
             this.get_diss_ArtReports()
         },

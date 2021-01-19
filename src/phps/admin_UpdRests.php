@@ -11,7 +11,6 @@ try {
     $RESTAURANT_NAME = $decoded["RESTAURANT_NAME"];
     $RESTAURANT_INFRO = $decoded["RESTAURANT_INFRO"];
     $RESTAURANT_STATUS = $decoded["RESTAURANT_STATUS"];
-    
 
   
     //接到之後要做的SQL指令
