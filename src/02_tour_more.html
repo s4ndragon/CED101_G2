@@ -159,10 +159,11 @@
         var app = new Vue({
             el: "#app",
             data: {
+                memRows:'',
                 showModal2: false,
                 dataRows:'',
                 dataTop:'',
-                memRows:'',
+                joinRows:'', //此會員有參加的所有揪團
                 hotelRows:'',
                 foodRows:'',
                 msgRows:'',
@@ -173,50 +174,67 @@
                 people_limit:'',
                 targetPageId:'',
                 nowURL:''
-                // imageSource:'./images/common/heart.png'
+                
             },
             methods: {
+
+                //抓會員登入資料
+                getMem(){
+                    let xhr = new XMLHttpRequest();
+                    xhr.onload = function () {
+                        if(xhr.status == 200){ //success
+                            app.memRows = JSON.parse(xhr.responseText);
+                            console.log(app.memRows);
+                        }else{
+                            alert(xhr.status);
+                        }
+                    };
+                    xhr.open("get", "./phps/member.php", true);
+                    xhr.send(null);
+                },
+
                 joinTour(TOUR_ID, NUM_OF_PARTICIPANTS, TOUR_PEOPLE){
                     this.tour_id = TOUR_ID;
                     this.people_now = NUM_OF_PARTICIPANTS;
                     this.people_limit = TOUR_PEOPLE;
 
-                    
-                    if(this.people_now == this.people_limit){
+                    if(this.memRows.MEM_NO == ''){
+                        alert('請先登入會員')
+                    }else{
+                        if(this.people_now == this.people_limit){
                         alert('報名額滿囉!')
                         console.log(this.people_now)
                         console.log(this.people_limit)
                     }else{
-                        for(let i=0; i < this.memRows.length; i++){
-                            if(this.memRows[i].TOUR_ID == this.tour_id){
+                        for(let i=0; i < this.joinRows.length; i++){
+                            if(this.joinRows[i].TOUR_ID == this.tour_id){
                                 alert('已經報名此團')
                                 return;
                             }else{
                             }
-                            console.log(this.memRows[i].TOUR_ID)
+                            console.log(this.joinRows[i].TOUR_ID)
                         }
 
-                        let xhr = new XMLHttpRequest();
-                        xhr.onload = function(){
-                            if(xhr.status == 200){ //success
-                                console.log('success')
-                            }else{
-                                alert(xhr.status);
+                            let xhr = new XMLHttpRequest();
+                            xhr.onload = function(){
+                                if(xhr.status == 200){ //success
+                                    console.log('success')
+                                }else{
+                                    alert(xhr.status);
+                                }
                             }
-                        }
-                        xhr.open("post", "./phps/join_tour.php", true);
-                        xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
-                        //送出資料
-                        let data_info = "TOUR_ID=" + this.targetPageId;
-                        xhr.send(data_info);
-                        alert('報名成功')
+                            xhr.open("post", "./phps/join_tour.php", true);
+                            xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+                            //送出資料
+                            let data_info = "TOUR_ID=" + this.targetPageId;
+                            xhr.send(data_info);
+                            alert('報名成功')
 
-                        this.get_data()
+                            this.get_data()
                         
+                        }
                     }
 
-                    // console.log(this.memRows.indexOf(this.tour_id) >= 0)
-                    // console.log(this.memRows.indexOf(0))
                 },
                 checktype(data){
                     if(data == 0){
@@ -245,22 +263,24 @@
                     if(xhr.status == 200){
                         app.dataRows = JSON.parse(xhr.responseText); 
                         app.dataTop = app.dataRows[0];
-                        app.memRows = app.dataRows[1];
+                        app.joinRows = app.dataRows[1];
                         app.hotelRows = app.dataRows[2];
                         app.foodRows = app.dataRows[3];
                         app.msgRows = app.dataRows[4];
+
                         app.loveRows = app.dataRows[5];
-                        
-
                         let array = []
-
                         for(let i =0 ; i < app.loveRows.length ; i++){
                             array.push(app.loveRows[i].TOUR_ID)
                         }
-
                         app.loveRows = array
 
                         app.savedLikes = app.dataRows[6];
+                        let array2 = []
+                        for(let i =0 ; i < app.savedLikes.length ; i++){
+                            array2.push(app.savedLikes[i].like_before)
+                        }
+                        app.savedLikes = array2
 
                     }else{
                         alert(xhr.status);
@@ -276,7 +296,11 @@
 
                 sendComm(){
                     let words = document.getElementById("content")
-                    if(words.value == ''){
+
+                    if(this.memRows.MEM_NO == ''){
+                        alert('請先登入會員')
+                    }else{
+                        if(words.value == ''){
                         alert('尚未輸入內容')
                     }else{
                         let xhr = new XMLHttpRequest();
@@ -287,23 +311,28 @@
                                 alert(xhr.status);
                             }
                         }
-                        xhr.open("post", "./phps/send_tour_msg.php", false);
-                        xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
-                        //送出資料
-                        let data_info = `TOUR_ID=${this.targetPageId}&MSG_CONTENT=${words.value}`;
-                        xhr.send(data_info);
+                            xhr.open("post", "./phps/send_tour_msg.php", false);
+                            xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+                            //送出資料
+                            let data_info = `TOUR_ID=${this.targetPageId}&MSG_CONTENT=${words.value}`;
+                            xhr.send(data_info);
 
-                        this.get_data()
-                        words.value = ''
+                            this.get_data()
+                            words.value = ''
                         
+                        }
                     }
+                   
                 },
 
                 
 
                 addFav(){
 
-                    if(this.loveRows.indexOf(this.tour_id) != -1){
+                    if(this.memRows.MEM_NO == ''){
+                        alert('請先登入會員')
+                    }else{
+                        if(this.loveRows.indexOf(this.tour_id) != -1){
                         console.log("有加入過收藏")
 
                             let xhr = new XMLHttpRequest();
@@ -341,10 +370,9 @@
 
                             this.get_data()
                             
+                        }
                     }
-
-                    
-                }
+                },
 
             },
 
@@ -353,7 +381,7 @@
                 // savedLikes == 1 代表此會員有收藏此揪團 imageSource就是true
                 //反之 代表此會員沒有收藏此揪團 imageSource就是false
                 imageSource(){
-                    if(this.savedLikes[0].like_before == 1){ 
+                    if(this.savedLikes[0] == 1){ 
                         return './images/common/like.png' //顯示實心
                     }else{
                         return './images/common/heart.png'
@@ -364,7 +392,7 @@
             mounted() {
             //============去server端拿資料
             this.get_data()
-            // this.imageSource()
+            this.getMem()
                 
             }
 
