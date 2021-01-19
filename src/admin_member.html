@@ -116,7 +116,7 @@
                                                 class="btn-delete"
                                                 type="button"
                                                 @click="edit_status(item.MEM_NO,key)"
-                                                value="確認停權"
+                                                value="確認修改"
                                             />
                                         </td>
                                     </tr>
@@ -127,6 +127,8 @@
                 </div>
             </div>
         </main>
+        <!-- footer -->
+        @@include('layout/footer.html')
         <script src="./js/vue.js"></script>
         <script src="js/admin_member_vue.js"></script>
     </body>
