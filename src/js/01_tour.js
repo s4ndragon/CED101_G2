@@ -1,7 +1,5 @@
 let storage = sessionStorage;
-window.addEventListener("afterrender", function () {
 
-})
 window.addEventListener("load", function () {
     $('#addLike').on('submit', function () {
         $.ajax({

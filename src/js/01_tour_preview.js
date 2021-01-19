@@ -2,7 +2,7 @@ let storage = sessionStorage;
 
 
 window.addEventListener("load", function () {
-    $('form').on('submit', function () {
+    $('#formSubmit').on('submit', function () {
         $.ajax({
             url: './phps/tourInsert.php', // 要傳送的頁面
             method: 'POST',               // 使用 POST 方法傳送請求
