@@ -6,6 +6,9 @@ new Vue({
         tour_id_search: '',
         TOUR_ID: '',
         TOUR_STATUS:'',
+        lightBox_show: false,
+        inner_text: '',
+        inner_btn_text: '',
     
   
     },
@@ -81,6 +84,11 @@ new Vue({
                     TOUR_STATUS: this.TOUR_STATUS,
                 }),
             })
+
+             //燈箱
+             this.lightBox_show = true
+             this.inner_text = '已修改完成'
+             this.inner_btn_text = '資料已寫入，請安心關閉'
 
             this.get_tour()
         },

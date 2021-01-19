@@ -16,11 +16,6 @@
             <a href="index.html">
                 <h1 id="logo"><img src="images/common/logo.png" alt="" /></h1>
             </a>
-
-            <!-- 會員icon放置區 -->
-            <a href="#">
-                <img class="memicon" src="images/common/user.png" alt="" />
-            </a>
         </nav>
 
         <aside class="aside">
@@ -76,7 +71,12 @@
                         <div class="tab tab1 -on">
                             茶園留言的檢舉管理
                             <form>
-                                <input type="text" v-model="gardMsgId" placeholder="欲查詢請輸入檢舉編號" />
+                                <input
+                                    onkeyup="value=value.replace(/[^\w\.\/]/ig,'')"
+                                    type="text"
+                                    v-model="gardMsgId"
+                                    placeholder="欲查詢請輸入檢舉編號"
+                                />
                                 <button id="g1" class="btn-confirm" type="button" @click="query_gardMsg_id">
                                     送出查詢
                                 </button>
@@ -129,7 +129,12 @@
                         <div class="tab tab2">
                             討論區留言管理
                             <form>
-                                <input type="text" v-model="DissMsgId" placeholder="欲查詢請輸入檢舉編號" />
+                                <input
+                                    onkeyup="value=value.replace(/[^\w\.\/]/ig,'')"
+                                    type="text"
+                                    v-model="DissMsgId"
+                                    placeholder="欲查詢請輸入檢舉編號"
+                                />
                                 <button class="btn-confirm" type="button" @click="query_DissMsg_id">送出查詢</button>
                                 <button class="btn-confirm" type="button" @click="get_diss_MegReports">回到列表</button>
                             </form>
@@ -174,7 +179,12 @@
                         <div class="tab tab3">
                             討論區文章檢舉管理
                             <form>
-                                <input type="text" v-model="DissArtId" placeholder="欲查詢請輸入檢舉編號" />
+                                <input
+                                    onkeyup="value=value.replace(/[^\w\.\/]/ig,'')"
+                                    type="text"
+                                    v-model="DissArtId"
+                                    placeholder="欲查詢請輸入檢舉編號"
+                                />
                                 <button class="btn-confirm" type="button" @click="query_DissArt_id">送出查詢</button>
                                 <button class="btn-confirm" type="button" @click="get_diss_ArtReports">回到列表</button>
                             </form>
@@ -216,6 +226,15 @@
                             </table>
                         </div>
                     </div>
+                </div>
+                <!-- 燈箱 -->
+                <div class="overlay" v-if="lightBox_show">
+                    <article>
+                        <h1>{{inner_text}}</h1>
+                        <button type="button" class="btn_modal_close" @click="lightBox_show = false">
+                            {{inner_btn_text}}
+                        </button>
+                    </article>
                 </div>
             </div>
         </main>

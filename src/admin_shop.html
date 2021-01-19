@@ -16,11 +16,6 @@
             <a href="index.html">
                 <h1 id="logo"><img src="images/common/logo.png" alt="" /></h1>
             </a>
-
-            <!-- 會員icon放置區 -->
-            <a href="#">
-                <img class="memicon" src="images/common/user.png" alt="" />
-            </a>
         </nav>
 
         <aside class="aside">
@@ -74,7 +69,12 @@
                     <div class="tab_contents">
                         <div class="tab tab1 -on">
                             <form>
-                                <input type="text" v-model="psn" placeholder="請在此輸入商品編號" />
+                                <input
+                                    onkeyup="value=value.replace(/[^\w\.\/]/ig,'')"
+                                    type="text"
+                                    v-model="psn"
+                                    placeholder="請在此輸入商品編號"
+                                />
                                 <button class="btn-confirm" type="button" @click="query_pro_psn">查詢</button>
                                 <button class="btn-confirm" type="button" @click="get_produs">回到列表</button>
                             </form>
@@ -168,6 +168,15 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <!-- 燈箱 -->
+                <div class="overlay" v-if="lightBox_show">
+                    <article>
+                        <h1>{{inner_text}}</h1>
+                        <button type="button" class="btn_modal_close" @click="lightBox_show = false">
+                            {{inner_btn_text}}
+                        </button>
+                    </article>
                 </div>
             </div>
         </main>
