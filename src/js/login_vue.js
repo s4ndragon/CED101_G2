@@ -245,6 +245,7 @@ var app2 = new Vue({
     el: "#nav",
     data: {
         lightbox: false,
+        memRows: '',
     },
     methods: {
         closeLoginBox() {
@@ -254,5 +255,33 @@ var app2 = new Vue({
         showLogin() {
             this.lightbox = true;
         },
+        addTourLogin() {
+
+
+            if (this.memRows.length == 0) {
+                this.lightbox = true;
+            } else {
+                window.location.href = './01_tourCreate.html';
+            }
+
+
+        },
+        getMem() {
+            let xhr = new XMLHttpRequest();
+            xhr.onload = function () {
+                if (xhr.status == 200) { //success
+                    app2.memRows = JSON.parse(xhr.responseText);
+                    console.log(app2.memRows);
+                } else {
+                    alert(xhr.status);
+                }
+            };
+            xhr.open("get", "./phps/member.php", true);
+            xhr.send(null);
+        },
+    },
+    mounted() {
+        this.getMem();
+
     },
 });

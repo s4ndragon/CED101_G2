@@ -7,6 +7,7 @@
 </head>
 <body>
 <?php
+session_start();
 $errMsg = "";
 $success="success";
 try {
@@ -16,7 +17,8 @@ try {
                             values(null, :GARD_ID, :MEM_NO, :HOTEL_ID, :TOUR_PEOPLE,:NUM_OF_PARTICIPANTS,:SETUP_DATE,:DEADLINE_DATE,:TOUR_SETOFFTIME,:TOUR_TITLE,:TOUR_INFRO,:TOUR_IMG,:TOUR_LEADER,:TOUR_ACTIVE,:TOUR_PS, :TOUR_STATUS )";
 			$tour = $pdo->prepare( $sql );
 			$tour -> bindValue(":GARD_ID", $_POST["GARD_ID"]);
-			$tour -> bindValue(":MEM_NO", $_POST["MEM_NO"]);
+			$MEM_NO = $_SESSION["MEM_NO"];
+            $tour -> bindValue(":MEM_NO", $MEM_NO);
 			$tour -> bindValue(":HOTEL_ID", $_POST["HOTEL_ID"]);
             $tour -> bindValue(":TOUR_PEOPLE", $_POST["TOUR_PEOPLE"]);
             $tour -> bindValue(":NUM_OF_PARTICIPANTS", $_POST["NUM_OF_PARTICIPANTS"]);

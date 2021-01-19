@@ -6,7 +6,7 @@ window.addEventListener("load", function () {
             url: './phps/addTourLike.php', // 要傳送的頁面
             method: 'POST',               // 使用 POST 方法傳送請求
             dataType: 'text',             // 回傳資料會是 json 格式
-            data: $('form').serialize(),  // 將表單資料用打包起來送出去
+            data: $('#addLike').serialize(),  // 將表單資料用打包起來送出去
             success: function (res) {
                 if (res == 1) {
                     console.log('good');
@@ -75,7 +75,7 @@ window.addEventListener("load", function () {
             alert(xhr4.status);
         }
     }
-    let memNo = '1';
+    let memNo = tourApp.memRows.MEM_NO;
     var url = "./phps/getTourFavoriteList.php?mem_no=" + memNo;
     xhr4.open("Get", url, true);
     xhr4.send(null);
@@ -84,7 +84,7 @@ window.addEventListener("load", function () {
 })
 
 Vue.component('all', {
-    props: ['tours'],
+    props: ['tours', 'members'],
 
     methods: {
 
@@ -135,22 +135,26 @@ Vue.component('all', {
     `,
     methods: {
         heart(index, tourId) {
-            app2.lightbox = true;
-            // if (this.$refs.like[index].title == "加入收藏") {
-            //     storage["tourId"] = tourId;
-            //     storage["case"] = 1;
-            //     this.$emit('sumit-form');
-            //     this.$refs.like[index].title = "取消收藏";
-            //     this.$refs.like[index].src = "./images/common/like.png";
-            // } else {
-            //     setTimeout(() => {
-            //         this.$refs.like[index].title = "加入收藏";
-            //         this.$refs.like[index].src = "./images/common/heart.png";
-            //     }, 100);
-            //     storage["tourId"] = tourId;
-            //     storage["case"] = 2;
-            //     this.$emit('sumit-form');
-            // }
+            if (this.members.length == 0) {
+                app2.lightbox = true;
+            } else {
+                if (this.$refs.like[index].title == "加入收藏") {
+                    storage["tourId"] = tourId;
+                    storage["case"] = 1;
+                    this.$emit('sumit-form');
+                    this.$refs.like[index].title = "取消收藏";
+                    this.$refs.like[index].src = "./images/common/like.png";
+                } else {
+                    setTimeout(() => {
+                        this.$refs.like[index].title = "加入收藏";
+                        this.$refs.like[index].src = "./images/common/heart.png";
+                    }, 100);
+                    storage["tourId"] = tourId;
+                    storage["case"] = 2;
+                    this.$emit('sumit-form');
+                }
+
+            }
         }
 
 
@@ -159,7 +163,7 @@ Vue.component('all', {
 })
 
 Vue.component('north', {
-    props: ['tours', 'filter'],
+    props: ['tours', 'filter', 'members'],
 
     methods: {
 
@@ -213,20 +217,25 @@ Vue.component('north', {
     `,
     methods: {
         heart(index, tourId) {
-            if (this.$refs.like[index].title == "加入收藏") {
-                storage["tourId"] = tourId;
-                storage["case"] = 1;
-                this.$emit('sumit-form');
-                this.$refs.like[index].title = "取消收藏";
-                this.$refs.like[index].src = "./images/common/like.png";
+            if (this.members.length == 0) {
+                app2.lightbox = true;
             } else {
-                setTimeout(() => {
-                    this.$refs.like[index].title = "加入收藏";
-                    this.$refs.like[index].src = "./images/common/heart.png";
-                }, 100);
-                storage["tourId"] = tourId;
-                storage["case"] = 2;
-                this.$emit('sumit-form');
+                if (this.$refs.like[index].title == "加入收藏") {
+                    storage["tourId"] = tourId;
+                    storage["case"] = 1;
+                    this.$emit('sumit-form');
+                    this.$refs.like[index].title = "取消收藏";
+                    this.$refs.like[index].src = "./images/common/like.png";
+                } else {
+                    setTimeout(() => {
+                        this.$refs.like[index].title = "加入收藏";
+                        this.$refs.like[index].src = "./images/common/heart.png";
+                    }, 100);
+                    storage["tourId"] = tourId;
+                    storage["case"] = 2;
+                    this.$emit('sumit-form');
+                }
+
             }
         }
 
@@ -236,7 +245,7 @@ Vue.component('north', {
 })
 
 Vue.component('type', {
-    props: ['tours', 'filter'],
+    props: ['tours', 'filter', 'members'],
 
     methods: {
 
@@ -287,22 +296,27 @@ Vue.component('type', {
     `,
     methods: {
         heart(index, tourId) {
-            if (this.$refs.like[index].title == "加入收藏") {
-                storage["tourId"] = tourId;
-                storage["case"] = 1;
-                this.$emit('sumit-form');
-                this.$refs.like[index].title = "取消收藏";
-                this.$refs.like[index].src = "./images/common/like.png";
+            if (this.members.length == 0) {
+                app2.lightbox = true;
             } else {
-                setTimeout(() => {
-                    this.$refs.like[index].title = "加入收藏";
-                    this.$refs.like[index].src = "./images/common/heart.png";
-                }, 100);
-                storage["tourId"] = tourId;
-                storage["case"] = 2;
-                this.$emit('sumit-form');
+                if (this.$refs.like[index].title == "加入收藏") {
+                    storage["tourId"] = tourId;
+                    storage["case"] = 1;
+                    this.$emit('sumit-form');
+                    this.$refs.like[index].title = "取消收藏";
+                    this.$refs.like[index].src = "./images/common/like.png";
+                } else {
+                    setTimeout(() => {
+                        this.$refs.like[index].title = "加入收藏";
+                        this.$refs.like[index].src = "./images/common/heart.png";
+                    }, 100);
+                    storage["tourId"] = tourId;
+                    storage["case"] = 2;
+                    this.$emit('sumit-form');
+                }
+
             }
-        },
+        }
 
 
 
@@ -311,7 +325,7 @@ Vue.component('type', {
 })
 
 Vue.component('price', {
-    props: ['tours', 'filter'],
+    props: ['tours', 'filter', 'members'],
 
     methods: {
 
@@ -364,20 +378,25 @@ Vue.component('price', {
     `,
     methods: {
         heart(index, tourId) {
-            if (this.$refs.like[index].title == "加入收藏") {
-                storage["tourId"] = tourId;
-                storage["case"] = 1;
-                this.$emit('sumit-form');
-                this.$refs.like[index].title = "取消收藏";
-                this.$refs.like[index].src = "./images/common/like.png";
+            if (this.members.length == 0) {
+                app2.lightbox = true;
             } else {
-                setTimeout(() => {
-                    this.$refs.like[index].title = "加入收藏";
-                    this.$refs.like[index].src = "./images/common/heart.png";
-                }, 100);
-                storage["tourId"] = tourId;
-                storage["case"] = 2;
-                this.$emit('sumit-form');
+                if (this.$refs.like[index].title == "加入收藏") {
+                    storage["tourId"] = tourId;
+                    storage["case"] = 1;
+                    this.$emit('sumit-form');
+                    this.$refs.like[index].title = "取消收藏";
+                    this.$refs.like[index].src = "./images/common/like.png";
+                } else {
+                    setTimeout(() => {
+                        this.$refs.like[index].title = "加入收藏";
+                        this.$refs.like[index].src = "./images/common/heart.png";
+                    }, 100);
+                    storage["tourId"] = tourId;
+                    storage["case"] = 2;
+                    this.$emit('sumit-form');
+                }
+
             }
         }
 
@@ -403,9 +422,10 @@ let tourApp = new Vue({
         locN: true,
         locC: true,
         locS: true,
-        memNO: 1,
+
         tourId: "",
         addCase: "",
+        memRows: '',
     },
     methods: {
         showAll() {
@@ -451,10 +471,25 @@ let tourApp = new Vue({
                     showHeart.title = "取消收藏";
                 }
             }, 10);
-        }
+        },
+        getMem() {
+            let xhr = new XMLHttpRequest();
+            xhr.onload = function () {
+                if (xhr.status == 200) { //success
+                    tourApp.memRows = JSON.parse(xhr.responseText);
+                    console.log(tourApp.memRows);
+                } else {
+                    alert(xhr.status);
+                }
+            };
+            xhr.open("get", "./phps/member.php", true);
+            xhr.send(null);
+        },
 
     },
-
+    mounted() {
+        this.getMem();
+    },
     updated() {
         this.loadFavorite();
     },
