@@ -13,14 +13,6 @@ try {
     $get_mine_cancel = $pdo->prepare($sql);
     $get_mine_cancel->bindValue(":MEM_NO", $_SESSION["MEM_NO"]);
 
-
-    //把接到的資料寫進SQL (要先經過PHP轉譯 所以不能直接寫入SQL指令內)
-    // $per_ord_data->bindValue(":ADMIN_NO", $add_no);
-    // $per_ord_data->bindValue(":ADMIN_ID", $add_id);
-    // $per_ord_data->bindValue(":ADMIN_NAME", $add_name);
-    // $per_ord_data->bindValue(":ADMIN_PW", $add_psw);
-
-
     $get_mine_cancel->execute();
 
     // echo "修改成功~!!";

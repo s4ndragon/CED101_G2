@@ -9,98 +9,28 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
-    <form action="./phps/sendROLE.php" id="gamep" method="POST" enctyped="multipart/form-data">
+    <form action="./phps/imgfile.php" id="gamep" method="POST" enctype="multipart/form-data">
                                 <button type="button" class="btn-confirm" id="addgame">新增</button>
-                                <Gamebox></Gamebox> 
+
                             <table  class="table table-striped table-bordered table-responsive game role " width="50%">
-                                <tr><th><input type="checkbox" name="" onclick="check_all(this,'ga')"></th>
-                                    <th class="text-nowrap">角色編號</th><th>圖片檔名</th><th>角色價錢</th><th>生命總值</th><th>初始生命</th><th>攻擊速度</th><th>攻擊</th><th>防禦</th>
-                                </tr>
                                 <tr>
-                                    <td><input type="checkbox" name="ga"  onclick="edit(this)" ></td>
-                                    <td><input type="number" value=""name=""></td>
-                                    <td><input type="file"   value=""min="0" name=""></td>
-                                    <td><input type="text" value=""min="0" name=""></td>
-                                    <td><input type="number"  value=""min="0" name=""></td>
-                                    <td><input type="number"  value=""min="0" name=""></td>
-                                    <td><input type="number"  value=""min="0" name=""></td>
-                                    <td><input type="number"  value=""min="0" name=""></td>
-                                    <td><input type="number" value=""min="0" name="" ></td>
-                                    <!-- <td><button type="button"  class="btn-confirm">編輯</button></td>onclick="delrole() onclick="setrole()"-->
+                                    <th class="text-nowrap">角色編號</th><th>圖片檔名</th>
+                                </tr>
+                                <tr>                                    
+                                    <td><input type="number"min="0"name="up_no"></td>
+                                    <td><input type="file"  name="upfile"></td>
+                                    
                                 </tr>
                             </table>
                             <div class="flex a_sb">
-                                <button type="submit" class="btn-confirm" name="remove">移除</button>
-                                <input type="submit"class="btn-confirm" value="送出" name="update" >
+                                <input type="submit" class="btn-confirm" name="remove">upfile</button>
+                                
                                 <div></div>
                             </div>  
-                            
+                            <img src="https://lh3.googleusercontent.com/u8ylEs1TFXSB9U55-6BJLkDi4ZuAZnDK2iTKO1L2SVd4mPc9xZqBJ3NCkQ8o9MQYZGFLLH54Pzk33P7KSaOMd1fwc0VCpvaWJkesVMk3RAzwdlk9Rzvs7Lj-uxNiEgL55VG6duxEdXP7_tH82qBH8e6Yntt73M6wKPggIhlW_pmrstoFzGZuc-0fxRwO95RmZb19885kuPbHXcs_1V_bBIwBW8tfhuaPxm0bPWs75-2NQDwx1aKN_jr9b8ZAhA4nT5qcImuaaSI0u55NxO4sFrVQgOXRkW8cfziuRLhppw_Qfm8lJ1fSvPsxVxQ-7sw8nGV3MN3IMhh9VQgqGIzWMNOqJIeKiCjLeQ-7PieZlQqHqkqnvzMWR5asj-Rv4-WES1kwH8yEXXHyG3bvgntavDn7Rrmgw2otdmLoiwm_RepfqQc_pXCYuzBmQPUC9Yt6vOOps2XYwckFeDECXQplEDltSJKnRIu6F5fjdoDNzoB2iOZrY9GrbQ9DuZJYjF5X4XNyiba69j0MForhVotpbO0TCZhY-zyGuweme1XJKDGWPdCr3hD7vLw42dw-DnrAvmozUbEw-iBd3Kfwq-_WI9TpedzMoDyKSDNIHk8Jed6IRQxC9oXa3uc1Oh-ukpdEMYUkn4sO9ar78n53kdn3Cj2ZVKGkhpjjXZMcB9ziQ9XUDJ5W18N75pv6CA35pA" alt="">
                         </form>   
                         <script>
-function edit(e){
-    var cl=$(e.parentNode.parentNode);
-     if ($(e).prop('checked') === true) {
-    cl.find('td:eq(1)>input').attr('name','role_no[]');             
-    cl.find('td:eq(2)>input').attr('name','pic[]');
-    cl.find('td:eq(3)>input').attr('name','star[]');
-    cl.find('td:eq(4)>input').attr('name','hp[]');
-    cl.find('td:eq(5)>input').attr('name','hps[]');
-    cl.find('td:eq(6)>input').attr('name','speed[]');
-    cl.find('td:eq(7)>input').attr('name','damage[]');
-    cl.find('td:eq(8)>input').attr('name','defense[]');
-    }else{
-        for(var i=1;i<9;i++){
-            cl.find(`td:eq(${i})>input`).attr('name','');
-        }
-    }
-}
-Vue.component('Gamebox',{
-    template:`
-    <div id="gamebox">
-        <form method="post" action="./phps/addROLE.php" encytype="multipart/form-data">
-            <div style="height:100px;"></div>
-        
-        <table style="    overflow-x: visible;overflow-y:auto;">
-            <tr>
-                <td>角色編號：</td><td><input type="text" required min="0" name="no"></td>
-            </tr>
-            <tr>
-                <td>圖片檔名：</td><td><input type="file" required min="0" name="pic"></td>
-            </tr>
-            <tr>
-                <td>初始生命：</td><td><input type="number" required min="0"name="hps"></td>
-            </tr>
-            <tr>
-                <td>生命總值：</td><td><input type="number" required min="0" name="hp"></td>
-            </tr>
-            <tr>
-                <td>防禦力：</td><td><input type="number" required min="0"name="defense"></td>
-            </tr>
-            <tr>
-                <td>攻擊力：</td><td><input type="number" required min="0"name="damage"></td>
-            </tr>
-            <tr>
-                <td>速度：</td><td><input type="number" required min="0"name="speed"></td>
-            </tr>            
-            <tr>
-                <td>角色價錢：</td><td><input type="number"  required min="0" name="star"></td>
-            </tr>
 
-
-        </table>
-        <div class="flex">
-            <input type="submit" value="送出" class="btn-confirm">
-            <button type="reset" class="btn-confirm" id="closegame" >取消</button>
-        </div>
-        </form>
-    </div><!-- gamebox -->
-    `});
-    new Vue({
-
-    });
-var xhr=new XMLHttpRequest(),formData = new FormData();
-xhr.open("POST","./phps/sendROLE.php",true);
-xhr.setRequestHeader("Content-Type","multipart/form-data");
 
 </script>
 </body>

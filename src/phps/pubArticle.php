@@ -1,4 +1,5 @@
 <?php
+//  session_start()
     $article_cate = isset($_POST["article_cate"])?$_POST["article_cate"]:""; 
     $title = isset($_POST["title"])?$_POST["title"]:"";
     $content = isset($_POST["content"])?$_POST["content"]:"";

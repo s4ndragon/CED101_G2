@@ -209,23 +209,22 @@
                                             <img class="cancel" src="images/vote/cancel.png">
                                         </div>
                                         <p class="welcome">請選取檢舉理由</p>
-                                        <p>留言編號: {{msgNo}}</p>
                                     <form>
-                                        
-                                            <input class="reason" type="radio" name="option" value="惡意中傷">惡意中傷
-                                        
+                                        <label>
+                                            <input class="reason" type="radio" name="option" value="惡意中傷">&ensp;惡意中傷
+                                        </label>
                                         <br>
-                                        
-                                            <input class="reason" type="radio" name="option" value="散布廣告">散布廣告
-                                        
+                                        <label>
+                                            <input class="reason" type="radio" name="option" value="散布廣告">&ensp;散布廣告
+                                        </label>
                                         <br>
-                                        
-                                            <input class="reason" type="radio" name="option" value="色情資訊">色情資訊
-                                        
+                                        <label>
+                                            <input class="reason" type="radio" name="option" value="色情資訊">&ensp;色情資訊
+                                        </label>
                                         <br>
-                                        
-                                            <input class="reason" type="radio" name="option" value="不雅字眼">不雅字眼
-                                        
+                                        <label>
+                                            <input class="reason" type="radio" name="option" value="不雅字眼">&ensp;不雅字眼
+                                        </label>
                                         <div @click="sendRepo_son" class="go" type="submit">送出</div>
                                     </form>
                                 </div>
@@ -253,6 +252,7 @@
         var app = new Vue({
             el: "#app",
             data: {
+                memRows:'',
                 dataRows:'',
                 gardenRows:'',
                 tourRows:'',
@@ -270,6 +270,20 @@
             },
 
             methods: {
+                //抓會員登入資料
+                getMem(){
+                    let xhr = new XMLHttpRequest();
+                    xhr.onload = function () {
+                        if(xhr.status == 200){ //success
+                            app.memRows = JSON.parse(xhr.responseText);
+                        }else{
+                            alert(xhr.status);
+                        }
+                    };
+                    xhr.open("get", "./phps/member.php", true);
+                    xhr.send(null);
+                },
+
                 show_lightbox(GARD_ID){
                     this.lightbox = true;
                     this.lightbox_GARD_ID = GARD_ID;
@@ -301,7 +315,11 @@
                 },
 
                 sendScore(){
-                    if(this.today == this.pastDate[0].VOTE_DATE){
+
+                    if(this.memRows.MEM_NO == ''){
+                        alert('請先登入會員')
+                    }else{
+                        if(this.today == this.pastDate[0].VOTE_DATE){
                         alert('一天只能評分一次喔!')
                         this.lightbox = false
                         this.rating = '您尚未評分'
@@ -314,16 +332,18 @@
                                 alert(xhr.status);
                             }
                         }
-                        xhr.open("post", "./phps/send_vote.php", true);
-                        xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
-                        //送出資料
-                        let data_info = "GARD_VOTE=" + this.sendRating + "&" + "GARD_ID=" + this.targetPageId;
-                        xhr.send(data_info);
+                            xhr.open("post", "./phps/send_vote.php", true);
+                            xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+                            //送出資料
+                            let data_info = "GARD_VOTE=" + this.sendRating + "&" + "GARD_ID=" + this.targetPageId;
+                            xhr.send(data_info);
 
-                        this.lightbox = false
-                        this.get_data()
-                        this.rating = '您尚未評分'
-                    }
+                            this.lightbox = false
+                            this.get_data()
+                            this.rating = '您尚未評分'
+                        }
+                    } 
+                    
                 },
 
                 get_data(){
@@ -391,7 +411,10 @@
 
                 sendComm(){
                     let words = document.getElementById("content")
-                    if(words.value == ''){
+                    if(this.memRows.MEM_NO == ''){
+                        alert('請先登入會員')
+                    }else{
+                        if(words.value == ''){
                         alert('尚未輸入內容')
                     }else{
                         let xhr = new XMLHttpRequest();
@@ -402,17 +425,17 @@
                                 alert(xhr.status);
                             }
                         }
-                        xhr.open("post", "./phps/send_words.php", false);
-                        xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
-                        //送出資料
-                        let data_info = `GARD_ID=${this.targetPageId}&MSG_CONTENT=${words.value}`;
-                        xhr.send(data_info);
+                            xhr.open("post", "./phps/send_words.php", false);
+                            xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+                            //送出資料
+                            let data_info = `GARD_ID=${this.targetPageId}&MSG_CONTENT=${words.value}`;
+                            xhr.send(data_info);
 
-                        this.get_data()
-                        words.value = ''
+                            this.get_data()
+                            words.value = ''
+                        }
                     }
                 }
-
             },
 
             mounted() {
@@ -420,6 +443,7 @@
                 //============去server端拿資料
                 this.get_data()
                 this.nowDate()
+                this.getMem()
                 
 
             },

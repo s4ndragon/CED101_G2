@@ -180,14 +180,23 @@
                     <label for="checke">
                         <input type="checkbox" class="checke" id="checkbox" value="pause" />
                     </label>
-                        <input type="hidden" name="" value="0" data-text="註解：放要上傳的分數提供商城折扣" />
+                        
                     </div>
+                    <form style="display:none;" id="send1" data-text="準備發送會員的折扣">
+                        <input type="hidden" value="" name="mem_no">
+                        <input type="hidden" value name="score" >
+                    </form>
                 </section>
             </div>
         </div>
+        @@include('layout/footer.html')
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
         <script src="./js/game (1).js"></script>
         <script src="./js/game2.js"></script>
+        
+<!-- 登入時顯示帳號密碼正確，啟動function(){從資料庫axios.get資料 memID game_point放入input:hidden.value} 
+遊戲結束時：偵測有沒有登入資料if(有){xhr送php傳資料庫}-->
+        
         <script>
             // var data=[{IMG:"https://tibamef2e.com/ced101/project/g2/images/game/4.gif",DATA_STAR:25,DATA_HPS:50,DATA_HP:50,DATA_DEFENSE:20,DATA_DAMAGE:10,DATA_SPEED:2},
             // {IMG:"https://tibamef2e.com/ced101/project/g2/images/game/Wallnut_body.png",DATA_STAR:50,DATA_HPS:100,DATA_HP:100,DATA_DEFENSE:90,DATA_DAMAGE:0,DATA_SPEED:0},
@@ -218,7 +227,5 @@
                 bomb.volume = vol.value;
                 }
         </script>
-
-        @@include('layout/footer.html')
     </body>
 </html>

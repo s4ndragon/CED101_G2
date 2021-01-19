@@ -2,7 +2,7 @@
  
 try {
 	require_once("./connect.php");
-	$sql = "select * , round(GARD_VOTE/GARD_CLICK,1) 'GARD_AVG' from garden order by GARD_AVG desc";
+	$sql = "select * , round(GARD_VOTE/GARD_CLICK,1) 'GARD_AVG' from garden where GARD_STATUS = 1 order by GARD_AVG desc";
 	$garden = $pdo->prepare($sql);
 	$garden->execute();
 	$gardenRows = $garden->fetchAll(PDO::FETCH_ASSOC);
