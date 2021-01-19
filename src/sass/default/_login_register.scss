@@ -20,8 +20,9 @@ $br: 5px;
     top: 0px;
     z-index: 10000;
     background-color: rgba($primary-typo-color, 0.3);
-    display: none;
+    display: flex;
 }
+
 .form {
     // display: none;
     // border: 1px solid red;
@@ -34,19 +35,23 @@ $br: 5px;
     border-radius: $border-radius-sml;
     box-shadow: 0 4px 10px 4px rgba($primary-typo-color, 0.3);
     height: fit-content;
+
     .close {
         @include close-icon;
         cursor: pointer;
     }
+
     .tab-group {
         list-style: none;
         padding: 0;
         margin: 0 0 40px 0;
+
         &:after {
             content: "";
             display: table;
             clear: both;
         }
+
         li a {
             display: block;
             text-decoration: none;
@@ -59,20 +64,24 @@ $br: 5px;
             text-align: center;
             cursor: pointer;
             transition: 0.5s ease;
+
             &:hover {
                 background: $main-dark;
                 color: $search-bar-bgColor;
             }
         }
+
         .active a {
             background: $main;
             color: $search-bar-bgColor;
         }
     }
-    .tab-content > div:last-child {
+
+    .tab-content>div:last-child {
         display: none;
     }
-    .tab-content > div {
+
+    .tab-content>div {
         h2 {
             text-align: center;
             color: $search-bar-bgColor;
@@ -80,10 +89,12 @@ $br: 5px;
             font-weight: $bold;
             margin: 0 0 40px;
         }
+
         form {
             .field-wrap {
                 position: relative;
                 margin-bottom: 40px;
+
                 label {
                     position: absolute;
                     transform: translateY(4px);
@@ -134,10 +145,12 @@ $br: 5px;
                     }
                 }
             }
+
             p {
                 margin-top: -20px;
                 margin-bottom: 20px;
                 text-align: right;
+
                 a {
                     text-decoration: none;
                     color: $main;
@@ -148,9 +161,11 @@ $br: 5px;
                     }
                 }
             }
+
             .btn_container {
                 display: flex;
                 justify-content: center;
+
                 button {
                     @include btn4;
                     display: block;
@@ -175,7 +190,7 @@ $br: 5px;
         clear: both;
     }
 
-    > div {
+    >div {
         float: left;
         width: 48%;
         margin-right: 4%;
