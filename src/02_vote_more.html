@@ -285,18 +285,8 @@
                 },
 
                 show_lightbox(GARD_ID){
-                    this.get_data()
-
-                    if(this.memRows.MEM_NO == ''){
-                        alert('請先登入會員')
-                    }else{
-                        if(this.today == this.pastDate[0].VOTE_DATE){
-                            alert('一天只能評分一次喔!')
-                        }else{
-                             this.lightbox = true;
-                             this.lightbox_GARD_ID = GARD_ID;
-                        }
-                    }
+                    this.lightbox = true;
+                    this.lightbox_GARD_ID = GARD_ID;
                 },
 
                 close_lightbox(){
@@ -326,6 +316,14 @@
 
                 sendScore(){
 
+                    if(this.memRows.length == 0){
+                        alert('請先登入會員')
+                    }else{
+                        if(this.today == this.pastDate[0].VOTE_DATE){
+                        alert('一天只能評分一次喔!')
+                        this.lightbox = false
+                        this.rating = '您尚未評分'
+                    }else{
                         let xhr = new XMLHttpRequest();
                         xhr.onload = function(){
                             if(xhr.status == 200){ //success
@@ -340,12 +338,11 @@
                             let data_info = "GARD_VOTE=" + this.sendRating + "&" + "GARD_ID=" + this.targetPageId;
                             xhr.send(data_info);
 
-                            
-                            this.get_data()
                             this.lightbox = false
+                            this.get_data()
                             this.rating = '您尚未評分'
-                        
-                    
+                        }
+                    } 
                     
                 },
 
@@ -414,7 +411,7 @@
 
                 sendComm(){
                     let words = document.getElementById("content")
-                    if(this.memRows.MEM_NO == ''){
+                    if(this.memRows.length == 0){
                         alert('請先登入會員')
                     }else{
                         if(words.value == ''){
