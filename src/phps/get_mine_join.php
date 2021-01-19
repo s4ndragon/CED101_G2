@@ -3,7 +3,7 @@ try {
     session_start();
     require_once("./connect.php");
 
-	$sql = "select t.TOUR_ID, t.TOUR_TITLE, t.TOUR_SETOFFTIME, t.NUM_OF_PARTICIPANTS, t.TOUR_PEOPLE, j.mem_no
+	$sql = "select t.TOUR_ID TOUR_ID, t.TOUR_TITLE TOUR_TITLE, t.TOUR_SETOFFTIME TOUR_SETOFFTIME, t.NUM_OF_PARTICIPANTS NUM_OF_PARTICIPANTS, t.TOUR_PEOPLE TOUR_PEOPLE, j.mem_no MEM_NO
             from tour t join tour_join J 
             on t.tour_id = j.tour_id 
             where j.mem_no = :MEM_NO

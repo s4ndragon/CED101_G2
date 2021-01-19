@@ -10,8 +10,9 @@ try {
   
     //接到之後要做的SQL指令
     //:後面+名字會變成一個變數 ->Php 寫sql的時候的寫法
-    $sql = "delete from tour_join
-            where TOUR_ID = :TOUR_ID and MEM_ID =:MEM_ID
+    $sql = "update tour_join
+            set TOUR_ADD = 0
+            where TOUR_ID = :TOUR_ID and MEM_NO = :MEM_NO
             ";
 
     // $grouporddata = $pdo->query($sql);

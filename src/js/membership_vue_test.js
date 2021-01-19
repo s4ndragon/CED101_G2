@@ -23,7 +23,7 @@ Vue.component("tour", {
                             <div class="tour_attendency">人數：<span class="attend attend_1">{{memTour.NUM_OF_PARTICIPANTS}}</span>／<span class="require require_1">{{memTour.TOUR_PEOPLE}}</span></div>
                             <div class="tour_status_bar">
                                 <div class="tour_status">未成團</div>
-                                <div class="tour_join" @click="cancel">取消</div>
+                                <div class="tour_join" @click="cancel(memTour.TOUR_ID, memTour.TOUR_STATUS)">取消</div>
                                 <div class="tour_check">
                                     <a v-bind:href="'https://tibamef2e.com/ced101/project/g2/02_tour_more.html?TOUR_ID=' + memTour.tour_id">
                                     查看
@@ -82,10 +82,10 @@ Vue.component("tour", {
                             <div class="tour_attendency">人數：<span class="attend attend_1">{{joinTour.NUM_OF_PARTICIPANTS}}</span>／<span class="require require_1">{{joinTour.TOUR_PEOPLE}}</span></div>
                             <div class="tour_status_bar">
                                 <div class="tour_status">未成團</div>
-                                <div class="tour_join">退出</div>
+                                <div class="tour_join" @click="quit(joinTour.TOUR_ID, joinTour.MEM_NO)">退出</div>
                                 <div class="tour_check">
-                                <a :href="'https://tibamef2e.com/ced101/project/g2/02_tour_more.html?TOUR_ID=' + joinTour.tour_no">
-                                查看</a>
+                                    <a :href="'https://tibamef2e.com/ced101/project/g2/02_tour_more.html?TOUR_ID=' + joinTour.tour_no">
+                                    查看</a>
                                 </div>
                             </div>
                         </div>
@@ -143,7 +143,25 @@ Vue.component("tour", {
                         </div>
                     </div>
                 </div>
+                <!-- 取消揪團燈箱 -->
+                <div v-if="cancel_lightbox" class="delete_confirm">
+                    是否確認取消？
+                    <div class="btn">
+                        <input type="button" @click="cancel(TOUR_ID, TOUR_STATUS)" id="btn_confirm" value="確認" />
+                        <input type="button"  @click="cancel_lightbox = false" id="btn_cancel" value="取消" />
+                    </div>
+                </div>
+                <!-- 退出揪團燈箱 -->
+                <div v-if="quit_lightbox" class="cancel_confirm">
+                    是否確認退出？
+                    <div class="btn">
+                        <input type="button" @click="quit(TOUR_ID, TOUR_STATUS, MEM_NO)" id="cancel_confirm_btn" value="確認" />
+                        <input type="button" @click="quit_lightbox = false" id="recall_cancel" value="取消" />
+                    </div>
+                </div>
             </div>
+            </div>
+            
                 `,
     data() {
         return {
@@ -154,6 +172,8 @@ Vue.component("tour", {
             joinTourOuts: "",
             joinTourCancels: "",
             joinTourQuits: "",
+            cancel_lightbox: false,
+            quit_lightbox: false,
         };
     },
     methods: {
@@ -234,7 +254,7 @@ Vue.component("tour", {
             // console.log(res);
             this.joinTourOuts = res;
         },
-        // 取得我參加 取消的揪團 //!!確認php檔案
+        // 取得我參加 取消的揪團
         get_join_cancel: async function () {
             const res = await fetch("./phps/get_join_cancel.php", {
                 method: "POST",
@@ -265,8 +285,7 @@ Vue.component("tour", {
             this.joinTourQuits = res;
         },
 
-        cancel: async function (TOUR_ID) {
-            console.log(TOUR_ID);
+        cancel: async function (TOUR_ID, TOUR_STATUS) {
             const res = await fetch("./phps/cancel_tour.php", {
                 method: "POST",
                 mode: "same-origin",
@@ -276,13 +295,14 @@ Vue.component("tour", {
                 },
                 body: JSON.stringify({
                     TOUR_ID: TOUR_ID,
+                    TOUR_STATUS: TOUR_STATUS,
                 }),
             });
+            this.cancel_lightbox = true;
             //重新撈取一次細項列表
-            this.get_mine_tour(this.TOUR_ID);
+            this.get_mine_tour();
         },
-        quit: async function (TOUR_ID) {
-            // console.log(TOUR_ID);
+        quit: async function (TOUR_ID, MEM_NO) {
             const res = await fetch("./phps/quit_tour.php", {
                 method: "POST",
                 mode: "same-origin",
@@ -292,10 +312,12 @@ Vue.component("tour", {
                 },
                 body: JSON.stringify({
                     TOUR_ID: TOUR_ID,
+                    MEM_NO: MEM_NO,
                 }),
             });
+            this.quit_lightbox = true;
             //重新撈取一次細項列表
-            this.get_mine_tour(this.TOUR_ID);
+            this.get_mine_join();
         },
     },
     mounted() {
@@ -305,6 +327,8 @@ Vue.component("tour", {
 
         this.get_mine_join();
         this.get_join_past();
+        this.get_join_cancel();
+        this.get_join_quit();
 
         $(".arrow").click(function () {
             // console.log('hihi')

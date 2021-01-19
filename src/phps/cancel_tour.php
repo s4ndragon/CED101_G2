@@ -11,7 +11,7 @@ try {
     //接到之後要做的SQL指令
     //:後面+名字會變成一個變數 ->Php 寫sql的時候的寫法
     $sql = "update from tour
-            set tour_status = 2
+            set tour_status = 0
             where TOUR_ID = :TOUR_ID
             ";
 
