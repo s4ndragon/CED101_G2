@@ -105,8 +105,8 @@ Vue.component("log_reg", {
                         <input type="email"required autocomplete="off" id="get_email" name="get_email"/>
                     </div>
                     <div class="btn_container">
-                        <button class="btn"/>取回密碼</button>
-                        <button id="get-cancel" class="btn cancel"/>取消</button>
+                        <button class="btn">取回密碼</button>
+                        <button id="get-cancel" class="btn cancel">取消</button>
                     </div>
                     
                 </form>

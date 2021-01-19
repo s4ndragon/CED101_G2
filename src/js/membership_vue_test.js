@@ -92,30 +92,13 @@ Vue.component("tour", {
                     </div>
                     <div id="join_out_of_date">
                         <h4>過往的揪團</h4>
-                        <div class="tour_detail outdated" v-for="joinTour in joinTours">
-                            <div class="tour_title">{{joinTour.TOUR_TITLE}}</div>
-                            <div class="arrow down"></div>
-                            <div class="tour_date">{{joinTour.TOUR_SETOFFTIME}}</div>
-                            <div class="tour_attendency">人數：<span class="attend attend_1">{{joinTour.NUM_OF_PARTICIPANTS}}</span>／<span class="require require_1">{{joinTour.TOUR_PEOPLE}}</span></div>
-                            <div class="tour_status_bar">
-                                <div class="tour_status">已過期</div>
-                                <div class="tour_join"></div>
-                                <div class="tour_check">
-                                <a :href="'https://tibamef2e.com/ced101/project/g2/02_tour_more.html?TOUR_ID=' + joinTour.tour_no">
-                                查看</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="join_cancel">
-                        <h4>取消的揪團</h4>
                         <div class="tour_detail outdated" v-for="joinTourOut in joinTourOuts">
                             <div class="tour_title">{{joinTourOut.TOUR_TITLE}}</div>
                             <div class="arrow down"></div>
                             <div class="tour_date">{{joinTourOut.TOUR_SETOFFTIME}}</div>
                             <div class="tour_attendency">人數：<span class="attend attend_1">{{joinTourOut.NUM_OF_PARTICIPANTS}}</span>／<span class="require require_1">{{joinTourOut.TOUR_PEOPLE}}</span></div>
                             <div class="tour_status_bar">
-                                <div class="tour_status">已取消</div>
+                                <div class="tour_status">已過期</div>
                                 <div class="tour_join"></div>
                                 <div class="tour_check">
                                 <a :href="'https://tibamef2e.com/ced101/project/g2/02_tour_more.html?TOUR_ID=' + joinTourOut.tour_no">
@@ -124,19 +107,37 @@ Vue.component("tour", {
                             </div>
                         </div>
                     </div>
-                    <div id="join_quit">
-                        <h4>退出的揪團</h4>
+                    <div id="join_cancel">
+                        <h4>取消的揪團</h4>
                         <div class="tour_detail outdated" v-for="joinTourCancel in joinTourCancels">
                             <div class="tour_title">{{joinTourCancel.TOUR_TITLE}}</div>
                             <div class="arrow down"></div>
                             <div class="tour_date">{{joinTourCancel.TOUR_SETOFFTIME}}</div>
                             <div class="tour_attendency">人數：<span class="attend attend_1">{{joinTourCancel.NUM_OF_PARTICIPANTS}}</span>／<span class="require require_1">{{joinTourCancel.TOUR_PEOPLE}}</span></div>
                             <div class="tour_status_bar">
-                                <div class="tour_status">已退出</div>
+                                <div class="tour_status">已取消</div>
                                 <div class="tour_join"></div>
                                 <div class="tour_check">
                                 <a :href="'https://tibamef2e.com/ced101/project/g2/02_tour_more.html?TOUR_ID=' + joinTourCancel.tour_no">
                                 查看</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="join_quit">
+                        <h4>退出的揪團</h4>
+                        <div class="tour_detail outdated" v-for="joinTourQuit in joinTourQuits">
+                            <div class="tour_title">{{joinTourQuit.TOUR_TITLE}}</div>
+                            <div class="arrow down"></div>
+                            <div class="tour_date">{{joinTourQuit.TOUR_SETOFFTIME}}</div>
+                            <div class="tour_attendency">人數：<span class="attend attend_1">{{joinTourQuit.NUM_OF_PARTICIPANTS}}</span>／<span class="require require_1">{{joinTourQuit.TOUR_PEOPLE}}</span></div>
+                            <div class="tour_status_bar">
+                                <div class="tour_status">已退出</div>
+                                <div class="tour_join"></div>
+                                <div class="tour_check">
+                                <a :href="'https://tibamef2e.com/ced101/project/g2/02_tour_more.html?TOUR_ID=' + joinTourQuit.tour_no">
+                                    查看
+                                </a>
                                 </div>
                             </div>
                         </div>
@@ -152,6 +153,7 @@ Vue.component("tour", {
             joinTours: "",
             joinTourOuts: "",
             joinTourCancels: "",
+            joinTourQuits: "",
         };
     },
     methods: {
@@ -230,9 +232,9 @@ Vue.component("tour", {
                 return data.json();
             });
             // console.log(res);
-            this.joinTours = res;
+            this.joinTourOuts = res;
         },
-        // 取得我參加 取消的揪團
+        // 取得我參加 取消的揪團 //!!確認php檔案
         get_join_cancel: async function () {
             const res = await fetch("./phps/get_join_cancel.php", {
                 method: "POST",
@@ -245,7 +247,7 @@ Vue.component("tour", {
                 return data.json();
             });
             // console.log(res);
-            this.joinTours = res;
+            this.joinTourCancels = res;
         },
         // 取得我參加 退出的揪團
         get_join_quit: async function () {
@@ -260,7 +262,7 @@ Vue.component("tour", {
                 return data.json();
             });
             // console.log(res);
-            this.joinTours = res;
+            this.joinTourQuits = res;
         },
 
         cancel: async function (TOUR_ID) {

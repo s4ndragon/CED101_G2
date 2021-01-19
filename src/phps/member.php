@@ -5,7 +5,7 @@ try {
     // $MEM_ID = $_POST["MEM_ID"];
     // $MEM_PW = $_POST["MEM_PW"];
     // $sql = "select * from member where MEM_ID = 'amin' and MEM_PW = '0000'";
-
+    if(isset($_SESSION["MEM_ID"])){
     $sql = "select * from member where MEM_ID=:MEM_ID and MEM_PW=:MEM_PW";
     $member = $pdo->prepare($sql);
 
@@ -24,6 +24,9 @@ try {
     //     $_SESSION["MEM_IMG"] = $memRows["MEM_IMG"];
 	    $result = array("MEM_NO"=>$_SESSION["MEM_NO"], "MEM_ID"=>$_SESSION["MEM_ID"], "MEM_NICNAME"=>$_SESSION["MEM_NICNAME"], "MEM_IMG"=>$_SESSION["MEM_IMG"]);
         echo json_encode($result);
+    } else {
+        echo "{}";
+    }
 } 
 catch (PDOException $e) {
     echo "錯誤原因 : ", $e->getMessage(), "<br>";
