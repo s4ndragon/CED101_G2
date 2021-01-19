@@ -1,8 +1,10 @@
 <?php
+echo $_FILES["file"]["error"];
 $errMsg = "";
 try {
 	require_once("./connect_g.php");
-    //.......確定是否上傳成功//決定檔案名稱    		
+    //.......確定是否上傳成功//決定檔案名稱    	
+       echo $_FILES["file"]["error"];
 		$fileInfoArr = pathinfo($_FILES["my_file"]["name"]);
 		$imageNo = uniqid();
 		$fileName = "{$imageNo}.{$fileInfoArr["extension"]}";  //312543544.gif

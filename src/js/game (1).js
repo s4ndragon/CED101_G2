@@ -387,5 +387,18 @@ var tween = TweenLite.to(demo,300,{
     });
   }
 }).pause();
-
-
+function member_get() {
+  axios.get("./phps/game_point.php").then(function (response) {
+    document.getElementsByName('score')[0].value = response.data[0].GAME_POINT;
+    document.getElementsByName('member_no')[0].value = response.data[0].MEM_NO;
+  });
+}
+function member_out() {
+  var xhr = new XMLHttpRequest(),
+   form1 = new Formdata(document.getElementById('send1')); ;  
+  xhr.open("GET", './phps/member_out.php');
+  xhr.onload = function () {
+    alert(xhr.responseText);
+  }
+  xhr.send(form1);
+}
