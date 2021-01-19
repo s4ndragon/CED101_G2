@@ -29,17 +29,14 @@ try {
 	$tourRows = $tour->fetchAll(PDO::FETCH_ASSOC);
 
 	//抓這個茶園的 留言 | 留言會員資料
-	if(isset($_SESSION["MEM_NO"])){
+
 		$sql = "select member.MEM_NICNAME, member.MEM_IMG, garden_msg.MSG_DATE, garden_msg.MSG_CONTENT, garden_msg.MSG_NO from
 				 member join garden_msg on member.MEM_NO = garden_msg.MEM_NO where garden_msg.GARD_ID = :GARD_ID";
 		$mem = $pdo->prepare($sql);
-		$MEM_NO = $_SESSION["MEM_NO"];
 		$mem->bindParam(":GARD_ID", $_POST["GARD_ID"]);
 		$mem->execute();
 		$msgRows = $mem->fetchAll(PDO::FETCH_ASSOC);
-	}else{
-		$msgRows = "{}";
-	}
+
 	
 
 	if(isset($_SESSION["MEM_NO"])){

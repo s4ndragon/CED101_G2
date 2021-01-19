@@ -4,7 +4,7 @@
 session_start();  //啟用session
 try {
 	require_once("./connect.php");
-  $sql = "insert into tour_join (TOUR_ID, MEM_NO) values (:TOUR_ID,:MEM_NO)"; //存入報名資料
+  $sql = "insert into tour_join (TOUR_ID, MEM_NO, TOUR_ADD) values (:TOUR_ID,:MEM_NO,1)"; //存入報名資料
   $jtour = $pdo->prepare($sql);
   //取得欲報名的揪團編號
   $jtour->bindValue(":TOUR_ID", $_POST["TOUR_ID"]);
