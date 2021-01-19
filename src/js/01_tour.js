@@ -30,8 +30,8 @@ window.addEventListener("load", function () {
     let tourRows;
     let xhr = new XMLHttpRequest();
     xhr.onload = function () {
-        app.tourRows = JSON.parse(xhr.responseText);
-        console.log(app.tourRows);
+        tourApp.tourRows = JSON.parse(xhr.responseText);
+        console.log(tourApp.tourRows);
     }
     xhr.open("get", "./phps/getTour.php", true);
     xhr.send(null);
@@ -39,8 +39,8 @@ window.addEventListener("load", function () {
     let locationRows;
     let xhr1 = new XMLHttpRequest();
     xhr1.onload = function () {
-        app.locationRows = JSON.parse(xhr1.responseText);
-        console.log(app.locationRows);
+        tourApp.locationRows = JSON.parse(xhr1.responseText);
+        console.log(tourApp.locationRows);
     }
     xhr1.open("get", "./phps/getNgarden.php", true);
     xhr1.send(null);
@@ -48,8 +48,8 @@ window.addEventListener("load", function () {
     let locationCRows;
     let xhr2 = new XMLHttpRequest();
     xhr2.onload = function () {
-        app.locationCRows = JSON.parse(xhr2.responseText);
-        console.log(app.locationCRows);
+        tourApp.locationCRows = JSON.parse(xhr2.responseText);
+        console.log(tourApp.locationCRows);
     }
     xhr2.open("get", "./phps/getCgarden.php", true);
     xhr2.send(null);
@@ -57,8 +57,8 @@ window.addEventListener("load", function () {
     let locationSRows;
     let xhr3 = new XMLHttpRequest();
     xhr3.onload = function () {
-        app.locationSRows = JSON.parse(xhr3.responseText);
-        console.log(app.locationSRows);
+        tourApp.locationSRows = JSON.parse(xhr3.responseText);
+        console.log(tourApp.locationSRows);
     }
     xhr3.open("get", "./phps/getSgarden.php", true);
     xhr3.send(null);
@@ -69,7 +69,7 @@ window.addEventListener("load", function () {
         if (xhr4.status == 200) {
             //modify here
             let FavortieList = JSON.parse(xhr4.responseText);
-            app.FavortieLists = FavortieList;
+            tourApp.FavortieLists = FavortieList;
 
         } else {
             alert(xhr4.status);
@@ -135,21 +135,22 @@ Vue.component('all', {
     `,
     methods: {
         heart(index, tourId) {
-            if (this.$refs.like[index].title == "加入收藏") {
-                storage["tourId"] = tourId;
-                storage["case"] = 1;
-                this.$emit('sumit-form');
-                this.$refs.like[index].title = "取消收藏";
-                this.$refs.like[index].src = "./images/common/like.png";
-            } else {
-                setTimeout(() => {
-                    this.$refs.like[index].title = "加入收藏";
-                    this.$refs.like[index].src = "./images/common/heart.png";
-                }, 100);
-                storage["tourId"] = tourId;
-                storage["case"] = 2;
-                this.$emit('sumit-form');
-            }
+            app2.lightbox = true;
+            // if (this.$refs.like[index].title == "加入收藏") {
+            //     storage["tourId"] = tourId;
+            //     storage["case"] = 1;
+            //     this.$emit('sumit-form');
+            //     this.$refs.like[index].title = "取消收藏";
+            //     this.$refs.like[index].src = "./images/common/like.png";
+            // } else {
+            //     setTimeout(() => {
+            //         this.$refs.like[index].title = "加入收藏";
+            //         this.$refs.like[index].src = "./images/common/heart.png";
+            //     }, 100);
+            //     storage["tourId"] = tourId;
+            //     storage["case"] = 2;
+            //     this.$emit('sumit-form');
+            // }
         }
 
 
@@ -385,8 +386,8 @@ Vue.component('price', {
 
 })
 
-var app = new Vue({
-    el: "#app",
+let tourApp = new Vue({
+    el: "#tourApp",
     data: {
         content: "all",
         Ngardens: [],
