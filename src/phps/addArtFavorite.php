@@ -1,4 +1,7 @@
 <?php
+
+    // session_start()
+    
     $arno = isset($_POST["arno"])?$_POST["arno"]:""; 
     
     //------------------
