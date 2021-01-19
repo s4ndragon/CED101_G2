@@ -31,8 +31,9 @@ try {
   $jtour->bindValue(":MEM_NO", $MEM_NO);
   $jtour->execute();
 
-  $sql = "update tour set NUM_OF_PARTICIPANTS = NUM_OF_PARTICIPANTS + 1"; //更改參加人數
+  $sql = "update tour set NUM_OF_PARTICIPANTS = NUM_OF_PARTICIPANTS + 1 where TOUR_ID = :TOUR_ID"; //更改參加人數
   $jointo = $pdo->prepare($sql);
+  $jointo->bindValue(":TOUR_ID", $_POST["TOUR_ID"]);
   $jointo->execute();
 
 
