@@ -285,7 +285,12 @@ query_gard_id: async function () {
         this.get_gards()
         this.get_rests()
         this.get_hotels()
-	},
+    },
+    mounted() {
+        // this.get_gards()
+        // this.get_rests()
+        // this.get_hotels()
+    },
 })
 
 
