@@ -3,12 +3,12 @@ try {
     session_start();
     require_once("./connect.php");
 
-	$sql = "select * 
-            from tour
-            where MEM_NO = :MEM_NO
-            and DEADLINE_DATE > CURRENT_DATE() 
-            and NUM_OF_PARTICIPANTS < TOUR_PEOPLE
-            and TOUR_STATUS = 1
+	$sql = "select t.TOUR_ID, t.TOUR_TITLE, t.TOUR_SETOFFTIME, t.NUM_OF_PARTICIPANTS, t.TOUR_PEOPLE, j.mem_no
+            from tour t join tour_join J 
+            on t.tour_id = j.tour_id 
+            where j.mem_no = :MEM_NO
+            and t.DEADLINE_DATE < t.CURRENT_DATE() 
+            and t.NUM_OF_PARTICIPANTS < t.TOUR_PEOPLE
             ";
 
     $get_mine_tour = $pdo->prepare($sql);

@@ -6,9 +6,7 @@ try {
 	$sql = "select * 
             from tour
             where MEM_NO = :MEM_NO
-            and DEADLINE_DATE > CURRENT_DATE() 
-            and NUM_OF_PARTICIPANTS < TOUR_PEOPLE
-            and TOUR_STATUS = 1
+            and DEADLINE_DATE < CURRENT_DATE() 
             ";
 
     $get_mine_tour = $pdo->prepare($sql);

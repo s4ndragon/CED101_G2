@@ -25,7 +25,9 @@ Vue.component("tour", {
                                 <div class="tour_status">未成團</div>
                                 <div class="tour_join" @click="cancel">取消</div>
                                 <div class="tour_check">
-                                    <a href="">查看</a>
+                                    <a v-bind:href="'https://tibamef2e.com/ced101/project/g2/02_tour_more.html?TOUR_ID=' + memTour.tour_id">
+                                    查看
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -40,7 +42,11 @@ Vue.component("tour", {
                             <div class="tour_status_bar">
                                 <div class="tour_status">已過期</div>
                                 <div class="tour_join"></div>
-                                <div class="tour_check">查看</div>
+                                <div class="tour_check">
+                                    <a :href="'https://tibamef2e.com/ced101/project/g2/02_tour_more.html?TOUR_ID=' + mineTourOut.tour_id">
+                                    查看
+                                    </a>
+                                </div>
                                 
                             </div>
                         </div>
@@ -55,8 +61,12 @@ Vue.component("tour", {
                             <div class="tour_status_bar">
                                 <div class="tour_status">已取消</div>
                                 <div class="tour_join"></div>
-                                <div class="tour_check">查看</div>
-                                <div class="arrow down"></div>
+                                <div class="tour_check">
+                                    <a :href="'https://tibamef2e.com/ced101/project/g2/02_tour_more.html?TOUR_ID=' + mineTourCancel.tour_no">
+                                    查看
+                                    </a>
+                                </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -65,73 +75,69 @@ Vue.component("tour", {
                     <h3>我參加</h3>
                     <div id="join_on_going">
                         <h4>揪團中的團</h4>
-                        <div class="tour_detail">
-                            <div class="tour_title">跨年茶園之旅</div>
+                        <div class="tour_detail" v-for="joinTour in joinTours">
+                            <div class="tour_title">{{joinTour.TOUR_TITLE}}</div>
                             <div class="arrow down"></div>
-                            <div class="tour_date">2020/12/31</div>
-                            <div class="tour_attendency">人數：<span class="attend attend_1">15</span>／<span class="require require_1">30</span></div>
+                            <div class="tour_date">{{joinTour.TOUR_SETOFFTIME}}</div>
+                            <div class="tour_attendency">人數：<span class="attend attend_1">{{joinTour.NUM_OF_PARTICIPANTS}}</span>／<span class="require require_1">{{joinTour.TOUR_PEOPLE}}</span></div>
                             <div class="tour_status_bar">
                                 <div class="tour_status">未成團</div>
                                 <div class="tour_join">退出</div>
-                                <div class="tour_check">查看</div>
-                                <div class="arrow down"></div>
-                            </div>
-                        </div>
-                        <div class="tour_detail">
-                            <div class="tour_title">12月例行揪團</div>
-                            <div class="arrow down"></div>
-                            <div class="tour_date">2020/12/20</div>
-                            <div class="tour_attendency">人數：<span class="attend attend_1">10</span>／<span class="require require_1">10</span></div>
-                            <div class="tour_status_bar">
-                                <div class="tour_status">已成團</div>
-                                <div class="tour_join"></div>
-                                <div class="tour_check">查看</div>
-                                <div class="arrow down"></div>
+                                <div class="tour_check">
+                                <a :href="'https://tibamef2e.com/ced101/project/g2/02_tour_more.html?TOUR_ID=' + joinTour.tour_no">
+                                查看</a>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div id="join_out_of_date">
                         <h4>過往的揪團</h4>
-                        <div class="tour_detail outdated">
-                            <div class="tour_title">11月例行揪團</div>
+                        <div class="tour_detail outdated" v-for="joinTour in joinTours">
+                            <div class="tour_title">{{joinTour.TOUR_TITLE}}</div>
                             <div class="arrow down"></div>
-                            <div class="tour_date">2020/11/20</div>
-                            <div class="tour_attendency">人數：<span class="attend attend_1">10</span>／<span class="require require_1">10</span></div>
+                            <div class="tour_date">{{joinTour.TOUR_SETOFFTIME}}</div>
+                            <div class="tour_attendency">人數：<span class="attend attend_1">{{joinTour.NUM_OF_PARTICIPANTS}}</span>／<span class="require require_1">{{joinTour.TOUR_PEOPLE}}</span></div>
                             <div class="tour_status_bar">
                                 <div class="tour_status">已過期</div>
                                 <div class="tour_join"></div>
-                                <div class="tour_check">查看</div>
-                                <div class="arrow down"></div>
+                                <div class="tour_check">
+                                <a :href="'https://tibamef2e.com/ced101/project/g2/02_tour_more.html?TOUR_ID=' + joinTour.tour_no">
+                                查看</a>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div id="join_cancel">
                         <h4>取消的揪團</h4>
-                        <div class="tour_detail outdated">
-                            <div class="tour_title">10月例行揪團</div>
+                        <div class="tour_detail outdated" v-for="joinTourOut in joinTourOuts">
+                            <div class="tour_title">{{joinTourOut.TOUR_TITLE}}</div>
                             <div class="arrow down"></div>
-                            <div class="tour_date">2020/10/20</div>
-                            <div class="tour_attendency">人數：<span class="attend attend_1">10</span>／<span class="require require_1">10</span></div>
+                            <div class="tour_date">{{joinTourOut.TOUR_SETOFFTIME}}</div>
+                            <div class="tour_attendency">人數：<span class="attend attend_1">{{joinTourOut.NUM_OF_PARTICIPANTS}}</span>／<span class="require require_1">{{joinTourOut.TOUR_PEOPLE}}</span></div>
                             <div class="tour_status_bar">
                                 <div class="tour_status">已取消</div>
                                 <div class="tour_join"></div>
-                                <div class="tour_check">查看</div>
-                                <div class="arrow down"></div>
+                                <div class="tour_check">
+                                <a :href="'https://tibamef2e.com/ced101/project/g2/02_tour_more.html?TOUR_ID=' + joinTourOut.tour_no">
+                                查看</a>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div id="join_quit">
                         <h4>退出的揪團</h4>
-                        <div class="tour_detail outdated">
-                            <div class="tour_title">1月例行揪團</div>
+                        <div class="tour_detail outdated" v-for="joinTourCancel in joinTourCancels">
+                            <div class="tour_title">{{joinTourCancel.TOUR_TITLE}}</div>
                             <div class="arrow down"></div>
-                            <div class="tour_date">2020/1/20</div>
-                            <div class="tour_attendency">人數：<span class="attend attend_1">10</span>／<span class="require require_1">10</span></div>
+                            <div class="tour_date">{{joinTourCancel.TOUR_SETOFFTIME}}</div>
+                            <div class="tour_attendency">人數：<span class="attend attend_1">{{joinTourCancel.NUM_OF_PARTICIPANTS}}</span>／<span class="require require_1">{{joinTourCancel.TOUR_PEOPLE}}</span></div>
                             <div class="tour_status_bar">
                                 <div class="tour_status">已退出</div>
                                 <div class="tour_join"></div>
-                                <div class="tour_check">查看</div>
-                                <div class="arrow down"></div>
+                                <div class="tour_check">
+                                <a :href="'https://tibamef2e.com/ced101/project/g2/02_tour_more.html?TOUR_ID=' + joinTourCancel.tour_no">
+                                查看</a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -140,13 +146,16 @@ Vue.component("tour", {
                 `,
     data() {
         return {
-            // mine_tour: "",
             memTours: "",
             mineTourOuts: "",
             mineTourCancels: "",
+            joinTours: "",
+            joinTourOuts: "",
+            joinTourCancels: "",
         };
     },
     methods: {
+        // 取得我主揪 揪團中的團
         get_mine_tour: async function () {
             const res = await fetch("./phps/get_mine_tour.php", {
                 method: "POST",
@@ -161,34 +170,99 @@ Vue.component("tour", {
             // console.log(res);
             this.memTours = res;
         },
-        // get_mine_out: async function () {
-        //     const res = await fetch("./phps/get_mine_out.php", {
-        //         method: "POST",
-        //         mode: "same-origin",
-        //         credentials: "same-origin",
-        //         headers: {
-        //             "Content-Type": "application/json",
-        //         },
-        //     }).then(function (data) {
-        //         return data.json();
-        //     });
-        //     // console.log(res);
-        //     this.mineTourOut = res;
-        // },
-        // get_mine_cancel: async function () {
-        //     const res = await fetch("./phps/get_mine_cancel.php", {
-        //         method: "POST",
-        //         mode: "same-origin",
-        //         credentials: "same-origin",
-        //         headers: {
-        //             "Content-Type": "application/json",
-        //         },
-        //     }).then(function (data) {
-        //         return data.json();
-        //     });
-        //     // console.log(res);
-        //     this.mineTourCancel = res;
-        // },
+        // 取得我主揪 過往的揪團
+        get_mine_past: async function () {
+            const res = await fetch("./phps/get_mine_past.php", {
+                method: "POST",
+                mode: "same-origin",
+                credentials: "same-origin",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            }).then(function (data) {
+                return data.json();
+            });
+            // console.log(res);
+            this.mineTourOuts = res;
+        },
+
+        // 取得我主揪 取消的揪團
+        get_mine_cancel: async function () {
+            const res = await fetch("./phps/get_mine_cancel.php", {
+                method: "POST",
+                mode: "same-origin",
+                credentials: "same-origin",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            }).then(function (data) {
+                return data.json();
+            });
+            // console.log(res);
+            this.mineTourCancels = res;
+        },
+
+        // 取得我參加 揪團中的團
+        get_mine_join: async function () {
+            const res = await fetch("./phps/get_mine_join.php", {
+                method: "POST",
+                mode: "same-origin",
+                credentials: "same-origin",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            }).then(function (data) {
+                return data.json();
+            });
+            // console.log(res);
+            this.joinTours = res;
+        },
+        // 取得我參加 過往的揪團
+        get_join_past: async function () {
+            const res = await fetch("./phps/get_join_past.php", {
+                method: "POST",
+                mode: "same-origin",
+                credentials: "same-origin",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            }).then(function (data) {
+                return data.json();
+            });
+            // console.log(res);
+            this.joinTours = res;
+        },
+        // 取得我參加 取消的揪團
+        get_join_cancel: async function () {
+            const res = await fetch("./phps/get_join_cancel.php", {
+                method: "POST",
+                mode: "same-origin",
+                credentials: "same-origin",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            }).then(function (data) {
+                return data.json();
+            });
+            // console.log(res);
+            this.joinTours = res;
+        },
+        // 取得我參加 退出的揪團
+        get_join_quit: async function () {
+            const res = await fetch("./phps/get_join_quit.php", {
+                method: "POST",
+                mode: "same-origin",
+                credentials: "same-origin",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            }).then(function (data) {
+                return data.json();
+            });
+            // console.log(res);
+            this.joinTours = res;
+        },
+
         cancel: async function (TOUR_ID) {
             console.log(TOUR_ID);
             const res = await fetch("./phps/cancel_tour.php", {
@@ -224,6 +298,12 @@ Vue.component("tour", {
     },
     mounted() {
         this.get_mine_tour();
+        this.get_mine_past();
+        this.get_mine_cancel();
+
+        this.get_mine_join();
+        this.get_join_past();
+
         $(".arrow").click(function () {
             // console.log('hihi')
             $(this).toggleClass("down").toggleClass("up");
