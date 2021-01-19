@@ -267,18 +267,20 @@
                         app.hotelRows = app.dataRows[2];
                         app.foodRows = app.dataRows[3];
                         app.msgRows = app.dataRows[4];
+
                         app.loveRows = app.dataRows[5];
-                        
-
                         let array = []
-
                         for(let i =0 ; i < app.loveRows.length ; i++){
                             array.push(app.loveRows[i].TOUR_ID)
                         }
-
                         app.loveRows = array
 
                         app.savedLikes = app.dataRows[6];
+                        let array2 = []
+                        for(let i =0 ; i < app.savedLikes.length ; i++){
+                            array2.push(app.savedLikes[i].like_before)
+                        }
+                        app.savedLikes = array2
 
                     }else{
                         alert(xhr.status);
@@ -379,7 +381,7 @@
                 // savedLikes == 1 代表此會員有收藏此揪團 imageSource就是true
                 //反之 代表此會員沒有收藏此揪團 imageSource就是false
                 imageSource(){
-                    if(this.savedLikes[0].like_before == 1){ 
+                    if(this.savedLikes[0] == 1){ 
                         return './images/common/like.png' //顯示實心
                     }else{
                         return './images/common/heart.png'

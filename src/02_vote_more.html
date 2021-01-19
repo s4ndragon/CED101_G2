@@ -210,15 +210,21 @@
                                         </div>
                                         <p class="welcome">請選取檢舉理由</p>
                                     <form>
-                                        
+                                        <label>
                                             <input class="reason" type="radio" name="option" value="惡意中傷">&ensp;惡意中傷
+                                        </label>
                                         <br>
+                                        <label>
                                             <input class="reason" type="radio" name="option" value="散布廣告">&ensp;散布廣告
+                                        </label>
                                         <br>
+                                        <label>
                                             <input class="reason" type="radio" name="option" value="色情資訊">&ensp;色情資訊
+                                        </label>
                                         <br>
+                                        <label>
                                             <input class="reason" type="radio" name="option" value="不雅字眼">&ensp;不雅字眼
-                                        
+                                        </label>
                                         <div @click="sendRepo_son" class="go" type="submit">送出</div>
                                     </form>
                                 </div>
@@ -270,7 +276,6 @@
                     xhr.onload = function () {
                         if(xhr.status == 200){ //success
                             app.memRows = JSON.parse(xhr.responseText);
-                            console.log(app.memRows);
                         }else{
                             alert(xhr.status);
                         }
