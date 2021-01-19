@@ -48,7 +48,7 @@
                         <div class="art_icons">
                             <!-- 加入收藏愛心 -->
                             <img class="memi addheart" title="add" :id=artRow.ART_NO src="./images/common/heart.png"
-                                alt="">
+                                alt="" @click="addheart">
                             <img class=" memi" src="./images/common/messenger.png" alt="">
                             <span class="com_num">{{artRow.msg}}</span>
                             <div class="excl" @click="showBox(artRow.ART_NO)">
@@ -86,6 +86,8 @@
 
 
     <script>
+
+
         Vue.component('art-reg', {
             props: ['artno'],
             template: ` <div><div class="overlay" style="display: none;">
@@ -171,69 +173,61 @@
                 // ILike(arno) {
                 // console.log(this.articlesRows[1][2].ART_NO)
                 // for (let i = 0; i < this.articlesRows[1].length; i++) {
-
                 // this.$emit('changeHeart');
                 // console.log(this.articlesRows[1][i].ART_NO)
 
                 // if (this.articlesRows[1][i].ART_NO == arno) {
-
                 //     document.getElementById(arno).src = './images/common/like.png';
                 // return './images/common/like.png' //顯示實心
-
-
-
                 // } else {
-
                 // return './images/common/heart.png'
-
                 //     }
                 // }
                 // },
 
-                // addheart(arno) {
-                //     $('.addheart').click(function () {
-                //         if (this.title == "add") {
-                //             this.title = "noadd";
-                //             this.src = "./images/common/like.png";
-                //             $.ajax({
-                //                 url: './phps/addArtFavorite.php', // 要傳送的頁面
-                //                 type: "POST",
-                //                 method: 'POST',
-                //                 dataType: 'text',             // 回傳資料
-                //                 data: { arno },                 // 將表單資料用打包起來送出去
-                //                 success: function (res) {       // 成功以後會執行這個方法
-                //                     console.log('good');
-                //                 },
-                //                 error: function (res) {
-                //                     console.log('not good');
-                //                 },
-                //             });
-                //         } else if (this.title == "noadd") {
-                //             this.title = "add";
-                //             this.src = "./images/common/heart.png";
-                //             $.ajax({
-                //                 url: './phps/deleteArtFav.php', // 要傳送的頁面
-                //                 type: "POST",
-                //                 method: 'POST',
-                //                 dataType: 'text',             // 回傳資料
-                //                 data: { arno },                 // 將表單資料用打包起來送出去
-                //                 success: function (res) {       // 成功以後會執行這個方法
-                //                     console.log('good');
-                //                 },
-                //                 error: function (res) {
-                //                     console.log('not good');
-                //                 },
-                //             });
-                //         }
-                //     });
-                // },
+                // 加入收藏愛心
+                addheart(arno) {
+                    $('.addheart').click(function () {
+                        if (this.title == "add") {
+                            this.title = "noadd";
+                            this.src = "./images/common/like.png";
+                            $.ajax({
+                                url: './phps/addArtFavorite.php', // 要傳送的頁面
+                                type: "POST",
+                                method: 'POST',
+                                dataType: 'text',             // 回傳資料
+                                data: { arno },                 // 將表單資料用打包起來送出去
+                                success: function (res) {       // 成功以後會執行這個方法
+                                    console.log('good');
+                                },
+                                error: function (res) {
+                                    console.log('not good');
+                                },
+                            });
+                        } else if (this.title == "noadd") {
+                            this.title = "add";
+                            this.src = "./images/common/heart.png";
+                            $.ajax({
+                                url: './phps/deleteArtFav.php', // 要傳送的頁面
+                                type: "POST",
+                                method: 'POST',
+                                dataType: 'text',             // 回傳資料
+                                data: { arno },                 // 將表單資料用打包起來送出去
+                                success: function (res) {       // 成功以後會執行這個方法
+                                    console.log('good');
+                                },
+                                error: function (res) {
+                                    console.log('not good');
+                                },
+                            });
+                        }
+                    });
+                },
                 showBox: function (ART_NO) {
                     let lightbox = document.querySelectorAll('.overlay')[0];
                     lightbox.style.display = '';
                     this.artno = ART_NO;
                 },
-            },
-            computed: {
             },
             mounted() {
                 let articlesRows;
@@ -264,6 +258,7 @@
                 });
 
             },
+
             updated() {
                 setTimeout(() => {
                     for (var i = 0; this.articlesRows[1].length; i++) {
@@ -271,7 +266,7 @@
                         console.log(list);
                         let showHeart = document.getElementById(list);
                         showHeart.src = "./images/common/like.png";
-                        showHeart.title = "取消收藏";
+                        showHeart.title = "noadd";
                     }
                 }, 10);
             },
