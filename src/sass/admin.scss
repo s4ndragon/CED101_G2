@@ -1,5 +1,4 @@
 @import './default/common';
-
 :root {
     --header-height: 60px;
     --aside-width: 240px;
@@ -7,6 +6,7 @@
 body {
     @include bg;
 }
+
 .clickleft {
     display: flex;
     align-items: center;
