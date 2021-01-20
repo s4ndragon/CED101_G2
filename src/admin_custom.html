@@ -94,7 +94,13 @@
                                         <tr>
                                             <td>{{item.GARD_ID}}</td>
                                             <td><input type="text" size="6" :value="item.GARD_NAME" @keyup="changeGARD_NAME($event,key)"/></td>
-                                            <td><input type="text" size="1" :value="item.GARD_TYPE" @keyup="changeGARD_TYPE($event,key)"/></td>
+                                            <td>
+                                                <select :value="item.GARD_TYPE" @change="changeGARD_TYPE($event,key)">
+                                                    <option value="0">(0)觀光型</option>
+                                                    <option value="1">(1)體驗型</option>
+                                                </select>
+    
+                                            </td>
                                             <td><input type="text" :value="item.GARD_ADDRESS" @keyup="changeGARD_ADDRESS($event,key)"/></td>
                                             <td><input type="text" size="1" :value="item.GARD_VOTE" @keyup="changeGARD_VOTE($event,key)"/></td>
                                             <td><input type="text" size="1" :value="item.GARD_CLICK" @keyup="changeGARD_CLICK($event,key)"/></td>

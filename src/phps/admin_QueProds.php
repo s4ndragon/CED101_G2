@@ -14,7 +14,7 @@ try {
     //:後面+名字會變成一個變數 ->Php 寫sql的時候的寫法
 	$sql = "select * 
             from product
-            where psn= :psn
+            where NAME like '%茶%'
             ";
 
     // $grouporddata = $pdo->query($sql);
@@ -35,6 +35,16 @@ try {
     } else { //找得到
         //取回一筆資料
         $per_ord_datarow = $per_ord_data->fetchAll(PDO::FETCH_ASSOC);
+
+        for($i=0;$i < count($per_ord_datarow);$i++){
+
+            if($per_ord_datarow[$i]["ONSALE"] == 0){
+                $per_ord_datarow[$i]["ischecked"] = false;
+            }else{
+                $per_ord_datarow[$i]["ischecked"] = true ;
+            };
+
+        };
 
         //送出json字串
         echo json_encode($per_ord_datarow);
