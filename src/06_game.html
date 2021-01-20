@@ -230,46 +230,43 @@
                 
         </script>
         <script>
-            var a=new Vue({
-                el='#send1',
-                data:{
-                    memid:"",
-                    memscore:0
-                },watch:{
-                    memsend:{
-                        handler:function(){
-                            if(this.memid!=""){
-                                if(this.memscore!=0){
-                                    axios.get("./phps/member_out.php").then(function(){
-                                        
-                                    })
-                                    var xhr=new XMLHttpRequest();
-                                    xhr.open("GET","./phps/member_out.php");
-                                    xhr.send(`mem_no=${document.getElementsByName('mem_no')[0]}&score=${document.getElementsByName('score')[0]}`)
-                                    xhr.onload=function(){}
-                                    document.getElementById("mem_no").value="";
-                                    document.getElementsById("_score").value=0;
-                                }
-                            }
-                        },immediate=true,
-                    }
-                },
-                mothods:{
-                    mem(){
-                        axios.get("./phps/game_point.php").then(response){
-                            document.getElementsById('mem_no').value=response.data.MEM_NO;
-                            document.getElementsById("score_tmp").value=response.data.GAME_POINT;
-                        }
-                    }
-                },
-                mounted() {
-                    mem();
+            // var a=new Vue({
+            //     el='#send1',
+            //     data:{
+            //         memid:"",
+            //         memscore:0
+            //     },watch:{
+            //         memsend:{
+            //             handler:function(){
+            //                 if(this.memid!=""){
+            //                     if(this.memscore!=0){
+            //                         var xhr=new XMLHttpRequest();
+            //                         xhr.open("GET","./phps/member_out.php");
+            //                         xhr.send(`mem_no=${document.getElementsByName('mem_no')[0]}&score=${document.getElementsByName('score')[0]}`)
+            //                         xhr.onload=function(){}
+            //                         document.getElementById("mem_no").value="";
+            //                         document.getElementsById("_score").value=0;
+            //                     }
+            //                 }
+            //             },immediate=true,
+            //         }
+            //     },
+            //     mothods:{
+            //         mem(){
+            //             axios.get("./phps/game_point.php").then(response){
+            //                 document.getElementsById('mem_no').value=response.data.MEM_NO;
+            //                 document.getElementsById("score_tmp").value=response.data.GAME_POINT;
+            //             }
+            //         }
+            //     },
+            // mounted() {
+            //     mem();
 
-                },
-                updated(){
-                    mem();
-                }
-            });
+            // },
+            // updated(){
+            //     mem();
+            // }
+            // });
                             
         </script>
     </body>

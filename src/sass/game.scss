@@ -605,9 +605,10 @@ img[src='./images/game/62720191121071129866.png'] {
 
 #teatxt-bar1 {
     height: 100px !important;
-    width: 100px;
+    width: 50px;
     position: relative;
-    top: 26px;
+    top: 30px;
+    left: 100%;
     cursor: pointer;
     writing-mode: vertical-lr;
     position: relative;
@@ -616,7 +617,7 @@ img[src='./images/game/62720191121071129866.png'] {
         font-size: 20px;
         position: relative;
         top: 55%;
-        left: 20%;
+        right: -20%;
         color: #fff;
         text-shadow: 0 0 3.2em #87e;
         -webkit-text-stroke-color: blue;
