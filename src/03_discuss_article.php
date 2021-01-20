@@ -59,10 +59,10 @@ try {
                 <?=$artsRow["ART_CONTENT"]?>
             </div>
 
-            <!-- ====留言===== -->
+            <!-- 留言 -->
             <div id="commandall">
                 <div class="com_title">文章留言</div>
-                <!-- ====一則留言開始==== -->
+                <!-- 一則留言開始 -->
                 <div class="command" v-for="item in comList">
                     <div class="nameall">
                         <div class="mem_photo"><img class="mem_photo" :src="item.MEM_IMG" alt=""></div>
@@ -73,15 +73,16 @@ try {
                             <div class="pub_text">{{item.MSG_CONTENT}}</div>
                             <div class="com_pub_time">發表於{{item.MSG_DATE}}</div>
                         </div>
+                        <!-- 檢舉 -->
                         <div class="excl">
-                            <img class="excl" src="./images/common/852019_exclamation_512x512.png" alt="" @click="showBox(item.MSG_NO)">
+                            <img class="excl" v-show="item.MEM_NO!=memRows.MEM_NO" src="./images/common/852019_exclamation_512x512.png" alt="" @click="showBox(item.MSG_NO)">
                         </div>
                     </div>                   
                 </div>
                 <div class="empty" v-show="comList.length==0">此文章尚無留言，歡迎留言。</ul>
             </div>
 
-            <!-- ====檢舉燈箱==== -->
+            <!-- 檢舉燈箱 -->
                 <art-reg :msgno="msgno"></art-reg>
 
             <form method="post">
@@ -194,6 +195,7 @@ try {
                     comList:[],
                     content:"",
                     msgno: "",
+                    memRows:[],
                 },
                 methods: {
                 showBox: function (MSG_NO) {
@@ -221,6 +223,15 @@ try {
                     });
                 },
                 mounted() {
+                // 抓會員資料
+                let memRows;
+                let xhr2 = new XMLHttpRequest();
+                xhr2.onload = function () {
+                    app.memRows = JSON.parse(xhr2.responseText);
+                    console.log(app.memRows);
+                };
+                xhr2.open("get", "./phps/member.php", true);
+                xhr2.send(null);
                                 
                     $('form').on('submit', function(){
                         $.ajax({
