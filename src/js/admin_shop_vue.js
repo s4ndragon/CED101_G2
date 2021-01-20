@@ -2,21 +2,22 @@ new Vue({
     el: '#app',
     data: {
         //放click 事件 和v-model後面的變數
-        selecteddealState:'',
+        selecteddealState: '',
         products: '',
         Delprodus: '',
         orders: '',
         // dealStates: ['0(未付款)', '1(已付款)', '2(未出貨)', '3(已出貨)'],
         ONSALE: '',
         psn: '',
-        add_NAME:'',
-        add_INFO:'',
-        add_PRICE:'',
-        ord_no:'',
-        ORDERS_NO:'',
-        
+        add_NAME: '',
+        add_INFO: '',
+        add_PRICE: '',
+        ord_no: '',
+        ORDERS_NO: '',
+        lightBox_show: false,
+        inner_text: '',
+        inner_btn_text: '',
     },
-  
 
     methods: {
         //函數放這裡
@@ -84,6 +85,11 @@ new Vue({
                     ONSALE: this.ONSALE,
                 }),
             })
+
+            //燈箱
+            this.lightBox_show = true
+            this.inner_text = '已修改完成'
+            this.inner_btn_text = '資料已寫入，請安心關閉'
 
             this.get_produs()
         },
@@ -153,7 +159,6 @@ new Vue({
             this.ord_no = ''
         },
 
-
         changeDELIVERY(event, key) {
             console.log(key)
             this.orders[key].DELIVERY = event.currentTarget.value
@@ -182,20 +187,14 @@ new Vue({
         changeRECEIVER_ADDRESS(event, key) {
             console.log(key)
             this.orders[key].RECEIVER_ADDRESS = event.currentTarget.value
-        },    
-        
+        },
+
         changeRECEIVER_TEL(event, key) {
             console.log(key)
             this.orders[key].RECEIVER_TEL = event.currentTarget.value
         },
 
         edit_orders: async function (ORDERS_NO, key) {
-            // if (this.orders[key].ischecked == false) {
-            //     this.ONSALE = 0
-            // } else if (this.orders[key].ischecked == true) {
-            //     this.ONSALE = 1
-            // }
-
             const res = await fetch('./phps/admin_UpdOrds.php', {
                 method: 'POST',
                 mode: 'same-origin',
@@ -216,6 +215,11 @@ new Vue({
                 }),
             })
 
+            //燈箱
+            this.lightBox_show = true
+            this.inner_text = '已修改完成'
+            this.inner_btn_text = '資料已寫入，請安心關閉'
+
             this.get_orders()
         },
     },
@@ -224,11 +228,11 @@ new Vue({
         this.get_produs()
         this.get_orders()
     },
-    
-    components:{
-        'orderdiv':{
-            props:['item'],
-            template:`    
+
+    components: {
+        orderdiv: {
+            props: ['item'],
+            template: `    
             <div>
                 <div><span>{{item.ORDERS_NO}}</span></div>
                 <div><span>{{item.MEMBER}}</span></div>
@@ -322,18 +326,16 @@ new Vue({
                     </span>
                 </div>
             </div>`,
-            data(){
-                return{
+            data() {
+                return {
                     dealStates: ['0(未付款)', '1(已付款)', '2(未出貨)', '3(已出貨)'],
-
-                };
-            },
-            computed:{
-                selecteddealState(){
-                    return this.item.DEL_STATE
                 }
-            }
-
-        }
-    }
+            },
+            computed: {
+                selecteddealState() {
+                    return this.item.DEL_STATE
+                },
+            },
+        },
+    },
 })

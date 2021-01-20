@@ -19,20 +19,22 @@
     @@include('layout/title.html',{'title':'商城首頁'})
     <div>
         <div class="shop_adv" id="shop_advs">
-            <a href="./04_product.html?psn=10001">
+            <a href="./04_product.html?psn=10006">
                 <img src="./images/shopping/adv.jpg" alt="">
             </a>
-            <a href="./04_product.html?psn=10001">
+            <a href="./04_product.html?psn=10006">
                 <img src="./images/shopping/adv.jpg" alt="">
             </a>
-            <a href="./04_product.html?psn=10001">
+            <a href="./04_product.html?psn=10006">
                 <img src="./images/shopping/adv.jpg" alt="">
             </a>
         </div>
     </div>
     <script>
         $(function () {
-            $('#shop_advs').slick()
+            $('#shop_advs').slick({
+                infinite: true,
+            })
         })
     </script>
     <div class="recommend">

@@ -90,7 +90,7 @@
         background-repeat: no-repeat;
     }
     &:checked:before{
-        border:2px solid rgb(180, 87, 26);
+        border:7px solid rgb(180, 87, 26);
         outline: rgb(238, 204, 153);
     }
 }
@@ -114,7 +114,57 @@
         background-repeat: no-repeat;
     }
     &:checked:before{
-        border:2px solid rgba(172, 115, 31, 0.911);
+        border:7px solid rgba(172, 115, 31, 0.911);
+        outline: rgb(238, 204, 153);
+
+    }
+}
+#Shroomball{
+    cursor: pointer;
+    position: relative;
+    left:0px;
+    -webkit-appearance: none;
+    font-size: 50px;
+    outline: none;
+        &:before{
+        position: absolute;
+        left: 185px;
+        top: 5px;
+        content: '';
+        width: 50px;
+        height: 30px;
+        transition: all 0.2s linear;
+        background-image: url('../images/game/ShroomBullet.gif');
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+    &:checked:before{
+        border:7px solid rgba(172, 115, 31, 0.911);
+        outline: rgb(238, 204, 153);
+
+    }
+}
+#SnowPeaball{
+    cursor: pointer;
+    position: relative;
+    left:0px;
+    -webkit-appearance: none;
+    font-size: 50px;
+    outline: none;
+        &:before{
+        position: absolute;
+        left: 275px;
+        top: 0px;
+        content: '';
+        width: 50px;
+        height: 30px;
+        transition: all 0.2s linear;
+        background-image: url('../images/game/SnowPeashooterBullet.gif');
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+    &:checked:before{
+        border:7px solid rgba(172, 115, 31, 0.911);
         outline: rgb(238, 204, 153);
 
     }
@@ -605,9 +655,10 @@ img[src='./images/game/62720191121071129866.png'] {
 
 #teatxt-bar1 {
     height: 100px !important;
-    width: 100px;
+    width: 50px;
     position: relative;
-    top: 26px;
+    top: 30px;
+    left: 100%;
     cursor: pointer;
     writing-mode: vertical-lr;
     position: relative;
@@ -616,7 +667,7 @@ img[src='./images/game/62720191121071129866.png'] {
         font-size: 20px;
         position: relative;
         top: 55%;
-        left: 20%;
+        right: -20%;
         color: #fff;
         text-shadow: 0 0 3.2em #87e;
         -webkit-text-stroke-color: blue;

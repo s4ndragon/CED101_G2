@@ -7,7 +7,7 @@ try {
     from tour t join tour_join J 
     on t.tour_id = j.tour_id 
     where j.mem_no = :MEM_NO
-    and t.TOUR_STATUS = 2
+    and j.TOUR_ADD = 0
     order by t.tour_id;
             ";
 

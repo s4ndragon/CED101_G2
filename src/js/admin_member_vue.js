@@ -5,6 +5,9 @@ new Vue({
         members: '',
         MEM_NO: '',
         MEM_STATUS: '',
+        lightBox_show: false,
+		inner_text:'',
+		inner_btn_text:'',
     },
 
     methods: {
@@ -18,7 +21,6 @@ new Vue({
                 headers: {
                     'Content-Type': 'application/json',
                 },
-       
             }).then(function (data) {
                 return data.json()
             })
@@ -50,9 +52,9 @@ new Vue({
 
         edit_status: async function (MEM_NO, key) {
             if (this.members[key].ischecked == false) {
-                this.MEM_STATUS = 1
-            } else if (this.members[key].ischecked == true) {
                 this.MEM_STATUS = 0
+            } else if (this.members[key].ischecked == true) {
+                this.MEM_STATUS = 1
             }
 
             const res = await fetch('./phps/admin_UpdMemStatus.php', {
@@ -63,10 +65,15 @@ new Vue({
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-					MEM_NO: MEM_NO,
-                     MEM_STATUS: this.MEM_STATUS,
+                    MEM_NO: MEM_NO,
+                    MEM_STATUS: this.MEM_STATUS,
                 }),
             })
+
+            //燈箱
+            this.lightBox_show = true
+            this.inner_text = '已修改完成'
+            this.inner_btn_text = '資料已寫入，請安心關閉'
 
             this.get_mems()
         },

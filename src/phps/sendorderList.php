@@ -41,27 +41,24 @@ try {
     //orderList增加
     require_once("./connect.php");
     $list=preg_split('/,/', $_POST['addItemList'], -1, PREG_SPLIT_NO_EMPTY);
-    $n=0;
+    // $n=0;
     for($i=0 ; $i<count($list) ; $i++){
-    $sql = "INSERT INTO orderlist (ODRDER_NO, PSN, QUANTITY) VALUES (:ODRDER_NO, :PSN, :QUANTITY)";
+    $sql = "INSERT INTO orderlist (ODRDER_NO, PSN, QUANTITY) VALUES (:ODRDER_NO, :PSN, :QUANTITY);
+    update product set sold=sold+ :QUANTITY where psn=:PSN";
     $product= $_POST[$list[$i]];
     $productInfo=preg_split('/,/', $product, -1, PREG_SPLIT_NO_EMPTY);
+    $QUANTITY=$productInfo[1];
     $orders = $pdo->prepare($sql);
     $orders->bindValue(":ODRDER_NO", $orderNo);
     $orders->bindValue(":PSN",  $list[$i]);
-    $orders->bindValue(":QUANTITY",  $productInfo[1]);
+    $orders->bindValue(":QUANTITY",  $QUANTITY);
     $orders->execute();
-    $n++;
-    };
-    // echo "成功異動了{$n}筆資料";
+    // $n++;
+};
+// echo "成功異動了{$n}筆資料";
     header("Location: ../04_orders.html?orders_no={$orderNo}");
     exit();
 } catch (PDOException $e) {
     echo  $e->getMessage() ;
 };
 ?>
-<!-- <script>
-    window.addEventListener('load', () => {
-        window.location.href = "../04_orders.html?orders_no=<?= $prodRow['ORDERS_NO'] ?>";
-    })
-</script> -->

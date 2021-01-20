@@ -13,7 +13,7 @@ try {
 
     if($member->rowCount()===0) { //rowCount()可取得這次select的總筆數
         // echo "error, plz <a href = '1204_pdo_login.html'>login</a> again";
-        echo "<script>alert('id & pw error'); location.href='index.html'</script>";
+        echo "<script>alert('id & pw error'); location.href='../homepage.html'</script>";
         echo "{}";
         } else {
             session_start();

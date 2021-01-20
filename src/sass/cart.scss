@@ -82,16 +82,35 @@ div.cart_content {
                 display: grid;
                 grid-template-columns: max-content max-content;
                 margin-top: 20px;
+                align-items: center;
 
                 &:first-of-type input {
                     width: 45px;
                 }
 
+                div.aboutNum {
+                    span {
+                        vertical-align: middle;
+                    }
+
+                    input.itemNum {
+                        text-align: center;
+                        padding: 5px;
+                        border-radius: 5px;
+                        width: 75px;
+                        font-size: 16px;
+                    }
+                }
+
+
                 div.price {
                     margin-left: 15px;
 
-                    input {
+                    input.itemPrice {
                         width: 100px;
+                        color: #3ddd31;
+                        font-size: 20px;
+                        font-weight: 100;
                     }
                 }
 
@@ -140,9 +159,18 @@ div.function {
 div#amount {
     border-radius: 5px;
     text-align: center;
+
+    span {
+        font-size: 20px;
+    }
 }
 
 input.itemPrice,
 #totalAmount {
     border: none;
+    color: #3ddd31;
+    font-size: 24px;
+    font-weight: 700;
+    padding: 15px;
+    border-radius: 10px;
 }

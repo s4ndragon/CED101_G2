@@ -35,7 +35,6 @@ function init() {
         loadcart();
     }
     if ($id('totalAmount')) {
-        console.log('aaaa')
         calcAmount();
     }
     //如果有總額
@@ -63,13 +62,17 @@ function getproducts(type, orderby) {
                     $id('pages').appendChild(newli);
                     newli.addEventListener('click', (e) => {
                         e.preventDefault();
+                        console.log(e.target);
+                        let a = $id('pages').querySelectorAll('a');
+                        for (let j = 0; j < a.length; j++) {
+                            a[j].setAttribute('class', '');
+                        }
+                        e.target.setAttribute('class', 'selected_a');
                         let n = e.target.innerText;
                         loadPerpageProduct(products, perpageNum, n)
-                    })
+                    });
                 }
-                // for (let i = 0; i < perpageNum; i++) {
-                //     $id('products_container').appendChild(addProduct(products[i]));
-                // };
+                $id('pages').querySelector('a').setAttribute('class', 'selected_a');
             } else {
                 $id('products_container').innerHTML = "<div style='padding: 120px;background: #fff;border-radius: 40px;'>此類別商品並無資料。</div>";
             }
@@ -203,8 +206,8 @@ function itemInnerhtml(itemNo) {
     <div class="aside">
         <a href="./04_product.html"><h3>${itemName}</h3></a>
         <div class="content">
-            <div>數量: <input type="number" name=""  value="${itemNum}" min='0' max='999' class='itemNum'></div>
-            <div class='price'>價格: </span><input type="number" name=""  disabled value="${itemPrice}" class='itemPrice'></div>
+            <div class="aboutNum"><span>數量：</span><input type="number" name=""  value="${itemNum}" min='0' max='999' class='itemNum'></div>
+            <div class='price'><span>價格：</span><input type="number" name=""  disabled value="${itemPrice}" class='itemPrice'></div>
             <input type="hidden" name="" value='${storage[`${itemNo}`]}' class='productInfo'>
         </div>
     </div>

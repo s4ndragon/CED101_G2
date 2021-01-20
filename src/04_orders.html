@@ -8,13 +8,14 @@
     <link rel="stylesheet" href="./css/shopping.css">
     <link rel="stylesheet" href="./css/checkout.css">
     <!-- <script src="./js/checkout.js"></script> -->
-    <script src="./js/vue.min.js"></script>
+    <script src="./js/vue.js"></script>
+
 </head>
 
 <body>
     @@include('layout/nav.html')
     @@include('layout/title.html',{'title':'訂單明細'})
-    <form action="" id='app'>
+    <form action="" id='orderInfo'>
         <div class="main" id='main'>
             <div class="orderNo">
                 <h3 class="partTitle">訂單編號 : </h3><input type="number" name="" disabled :value="orderInfo.ORDERS_NO">
@@ -58,6 +59,11 @@
                     <td>付款方式:</td>
                     <td><input type="text" name="pay" class="info" disabled :value='payMethod'></td>
                 </tr>
+                <tr v-if='orderInfo.PAY == 1'>
+                    <td>付款帳號: </td>
+                    <td><input type="text" value='00020384751' disabled></td>
+                </tr>
+
             </table>
         </div>
         <table>

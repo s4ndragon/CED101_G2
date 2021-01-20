@@ -347,10 +347,18 @@ $('#checkbox').on('click', function(){
       init_walk = setInterval("walk()", 60);//蟲子走路
   }
 });
-function gamestop() {
-  
+function gamestop(s=0) {
   document.getElementById('score-over').innerText = score;
-  document.getElementById('score-win').innerText = score+1000;
+  document.getElementById('score-win').innerText = score + s;
+  var score_tmp = document.getElementById('score_tmp').value;
+  var xhr=new XMLHttpRequest();
+  xhr.open("GET","./phps/member_out.php");
+  xhr.send(`score=${score + s}`)
+  xhr.onload = function () {
+    var res = xhr.responseText;
+    alert(res);
+  
+  }
   clearInterval(sp_);
   clearInterval(time_b_);
   clearInterval(bb__);
@@ -381,7 +389,7 @@ var tween = TweenLite.to(demo,300,{
   onUpdate(){
     // scoreDisplay.innerHTML = demo.score.toFixed(0);
   },onComplete:function(){
-    gamestop();
+    gamestop(1000);
     $(function () {
       $("div.gamewin").addClass("-on");
     });
