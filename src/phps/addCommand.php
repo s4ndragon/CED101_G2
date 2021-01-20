@@ -1,8 +1,8 @@
 <?php
-//  session_start()
+    session_start();
     $command = isset($_POST["command"])?$_POST["command"]:"";
     $artNo =   isset($_POST["artNo"])?$_POST["artNo"]:"";
-
+    $mem = $_SESSION["MEM_NO"];
 try{
     require_once("./connect.php");
     
@@ -14,7 +14,7 @@ try{
                 MSG_STATUS
             ) 
             VALUES(
-                1,
+                '$mem',
                 '$artNo',
                 '$command',
                 now(),

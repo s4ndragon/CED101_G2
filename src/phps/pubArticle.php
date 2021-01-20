@@ -1,5 +1,7 @@
 <?php
-//  session_start()
+    session_start();
+    
+    $mem = $_SESSION['MEM_NO'];
     $article_cate = isset($_POST["article_cate"])?$_POST["article_cate"]:""; 
     $title = isset($_POST["title"])?$_POST["title"]:"";
     $content = isset($_POST["content"])?$_POST["content"]:"";
@@ -18,7 +20,7 @@
             $to = "$dir/{$_FILES['img']['name']}";
             copy($from, $to);
         break;
-    }
+    };
 
 
     $article_cate = $_POST["article_cate"];
@@ -28,7 +30,7 @@
                 $category = "garden";
             } else {
                 $category = "leaf";
-            }
+            };
     //------------------
 try{
     require_once("./connect.php");
@@ -44,7 +46,7 @@ try{
                 FILTER
             ) 
             VALUES(
-                1,
+                '$mem',
                 '$article_cate',
                 '$title',
                 '$content',
@@ -56,8 +58,6 @@ try{
 
     $article = $pdo->prepare($sql);
     $article->execute(); 
-
-
 
 // -------------------------------------------------------------------------------------------------
 

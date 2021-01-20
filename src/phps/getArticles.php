@@ -40,19 +40,7 @@ try {
 	$articlesRows = $articles->fetchAll(PDO::FETCH_ASSOC);
 	$result2 = [$articlesRows];
 	echo json_encode($result2);
-
 	}
-
-	
-	// $sql = "select * from art_favorite where MEM_NO=2";
-	
-	// $sql = "select * from art_favorite where MEM_NO=:MEM_NO";
-	// $art_favorite = $pdo->prepare($sql);
-	// $art_favorite->bindValue(":MEM_NO", $_SESSION["MEM_NO"]);
-	// $art_favorite->execute();
-	// $art_favoriteRows = $art_favorite->fetchAll(PDO::FETCH_ASSOC);
-	// $result = [$articlesRows, $art_favoriteRows];
-	// echo json_encode($result);
 
 } catch (PDOException $e) {
 	echo "錯誤原因 : ", $e->getMessage(), "<br>";
