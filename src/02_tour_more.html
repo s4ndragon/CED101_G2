@@ -70,7 +70,7 @@
                 <p><span class="green">備註:</span> {{touritem.TOUR_PS}}</p>
 
                 <div class="btwrap">
-                    <button class="bt" @click="joinTour(touritem.TOUR_ID,touritem.NUM_OF_PARTICIPANTS,touritem.TOUR_PEOPLE,touritem.MEM_NO)">
+                    <button class="bt" id="changeText" @click="joinTour(touritem.TOUR_ID,touritem.NUM_OF_PARTICIPANTS,touritem.TOUR_PEOPLE,touritem.MEM_NO)">
                         我要參加
                     </button>
 
@@ -85,6 +85,21 @@
                 </div>
 
 
+            </div>
+        </div>
+
+        <div class="ok_wrap" v-if="confirm_box">
+            <div class="ok_box">
+                <p class="welcome">確定要報名嗎?</p>
+                <div @click="realJoin" class="yes">確定</div>
+                <div @click="confirm_box = false" class="yes">取消</div>
+            </div>
+        </div>
+
+        <div class="ok_wrap" v-if="good_box">
+            <div class="ok_box">
+                <p class="welcome">報名成功 !</p>
+                <div @click="good_box = false" class="yes">確定</div>
             </div>
         </div>
 
@@ -173,8 +188,9 @@
                 people_now:'',
                 people_limit:'',
                 targetPageId:'',
-                nowURL:''
-                
+                nowURL:'',
+                confirm_box: false,
+                good_box:false
             },
             methods: {
 
@@ -184,7 +200,7 @@
                     xhr.onload = function () {
                         if(xhr.status == 200){ //success
                             app.memRows = JSON.parse(xhr.responseText);
-                            console.log(app.memRows);
+                            // console.log(app.memRows);
                         }else{
                             alert(xhr.status);
                         }
@@ -212,10 +228,37 @@
                                 return;
                             }else{
                             }
-                            console.log(this.joinRows[i].TOUR_ID)
+                            
                         }
+                        
+                        //跳確認報名燈箱
+                        this.confirm_box = true
+                        
+                            // let xhr = new XMLHttpRequest();
+                            // xhr.onload = function(){
+                            //     if(xhr.status == 200){ //success
+                            //         console.log('success')
+                            //     }else{
+                            //         alert(xhr.status);
+                            //     }
+                            // }
+                            // xhr.open("post", "./phps/join_tour.php", true);
+                            // xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+                            // //送出資料
+                            // let data_info = "TOUR_ID=" + this.targetPageId;
+                            // xhr.send(data_info);
+                            // alert('報名成功')
 
-                            let xhr = new XMLHttpRequest();
+                            // this.get_data()
+                        
+                        }
+                    }
+
+                },
+
+                //寫入報名資料
+                realJoin(){
+                    let xhr = new XMLHttpRequest();
                             xhr.onload = function(){
                                 if(xhr.status == 200){ //success
                                     console.log('success')
@@ -223,19 +266,32 @@
                                     alert(xhr.status);
                                 }
                             }
-                            xhr.open("post", "./phps/join_tour.php", true);
+                            xhr.open("post", "./phps/join_tour.php", false);
                             xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
                             //送出資料
                             let data_info = "TOUR_ID=" + this.targetPageId;
                             xhr.send(data_info);
-                            alert('報名成功')
 
+                            this.confirm_box = false
+                            this.good_box = true
                             this.get_data()
-                        
-                        }
-                    }
-
                 },
+
+                //若已報名就把按鈕文字改成"已報名"
+                checkJoin(){
+                    console.log('qq')
+                    for(let i=0; i < this.joinRows.length; i++){
+                            if(this.joinRows[i].TOUR_ID == this.tour_id){
+                                document.getElementById("changeText").innerText = "已報名";
+                                
+                                console.log('哈哈')
+                                // return;
+                            }else{
+
+                            }
+                        }
+                },
+
                 checktype(data){
                     if(data == 0){
                         return "觀光型"
@@ -395,6 +451,7 @@
             //============去server端拿資料
             this.get_data()
             this.getMem()
+            this.checkJoin()
                 
             }
 
