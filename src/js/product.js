@@ -62,13 +62,17 @@ function getproducts(type, orderby) {
                     $id('pages').appendChild(newli);
                     newli.addEventListener('click', (e) => {
                         e.preventDefault();
+                        console.log(e.target);
+                        let a = $id('pages').querySelectorAll('a');
+                        for (let j = 0; j < a.length; j++) {
+                            a[j].setAttribute('class', '');
+                        }
+                        e.target.setAttribute('class', 'selected_a');
                         let n = e.target.innerText;
                         loadPerpageProduct(products, perpageNum, n)
-                    })
+                    });
                 }
-                // for (let i = 0; i < perpageNum; i++) {
-                //     $id('products_container').appendChild(addProduct(products[i]));
-                // };
+                $id('pages').querySelector('a').setAttribute('class', 'selected_a');
             } else {
                 $id('products_container').innerHTML = "<div style='padding: 120px;background: #fff;border-radius: 40px;'>此類別商品並無資料。</div>";
             }
