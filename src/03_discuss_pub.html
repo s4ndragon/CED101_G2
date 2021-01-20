@@ -90,7 +90,7 @@
                 },
 
                 send_data() {
-                    var form = $('form')[0];
+                    // var form = $('form')[0];
                     var formData = new FormData(form);
                     $.ajax({
                         url: './phps/pubArticle.php', // 要傳送的頁面
@@ -101,14 +101,14 @@
                         processData: false,
                         data: formData,  // 將表單資料用打包起來送出去
                         success: function (res) {       // 成功以後會執行這個方法
-                            // console.log('good');
-                            // console.log(res);
+                            console.log('good');
+                            console.log(res);
                             let lightbox = document.querySelectorAll('.overlay')[0];
                             lightbox.style.display = '';
                         },
                         error: function (res) {
-                            // console.log('not good');
-                            // console.log(res);
+                            console.log('not good');
+                            console.log(res);
                             let lightbox = document.querySelectorAll('.overlay')[0];
                             lightbox.style.display = '';
                         },

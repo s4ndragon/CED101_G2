@@ -458,7 +458,8 @@ function getFavortieList() {
     }
     //假登入
     let memNo = '1';
-    var url = "./phps/getFavoriteList.php?mem_no=" + memNo;
+    // var url = "./phps/getFavoriteList.php?mem_no=" + memNo;
+    var url = "./phps/getFavoriteList.php";
 
 
     xhr.open("Get", url, true);
@@ -475,7 +476,8 @@ function sendFavortieList() {
     xhr.open("POST", url, true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     let favoriteList = storage['FavortieList'];
-    let data_info = `mem_no=${memNo}&favoriteList=${favoriteList}`;
+    // let data_info = `mem_no=${memNo}&favoriteList=${favoriteList}`;
+    let data_info = `favoriteList=${favoriteList}`;
     xhr.send(data_info);
     // location.href = url;
     xhr.onload = function () {

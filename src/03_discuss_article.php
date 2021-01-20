@@ -38,8 +38,9 @@ try {
             </div>
         </div>
         <div class="allthings">
-            <button class="addtour">
-                <a href="03_discuss_pub.html">我要發文</a>
+            <button class="addtour" @click="pub">
+                <a>我要發文
+                </a>
                 <img class="dis_hand_pub" src="./images/discuss/hand_button.png" alt="">
             </button>
             <div id="art_information">
@@ -91,7 +92,7 @@ try {
                     <div class="create_command_container" >
                         <textarea class="create_command" name="command" v-model='content'></textarea>
                         <div class="com_btn_countainer">
-                            <button class="inner_btn" type="submit">
+                            <button class="inner_btn" type="button" @click="lmsg">
                                 送出
                             </button>
                         </div>
@@ -143,7 +144,7 @@ try {
                                 </form>
                             </div>
                         </div>
-                        <div class="overlay2" style="display: none;" >
+                        <div class="overlay2 overlay" style="display: none;" >
                             <div class="modal">
                                 <form method="post" >
                                     <p class="welcome">檢舉成功！</p>
@@ -157,30 +158,31 @@ try {
                     let lightbox = document.querySelectorAll('.overlay')[0];
                     lightbox.style.display = 'none';
                 },
-                check_radio() {
-
-                },
                 send_data() {
-                    $.ajax({
-                        url: './phps/addCommandReg.php', // 要傳送的頁面
-                        method: 'POST',               // 使用 POST 方法傳送請求
-                        dataType: 'text',             // 回傳資料會是 json 格式
-                        data: $('form').serialize(),  // 將表單資料用打包起來送出去
-                        success: function (res) {       // 成功以後會執行這個方法
-                            console.log('good');
-                            console.log(res);
-                            let lightbox = document.querySelectorAll('.overlay')[0];
-                            lightbox.style.display = 'none';
-                            let lightbox2 = document.querySelectorAll('.overlay2')[0];
-                            lightbox2.style.display = '';
-                        },
-                        error: function (res) {
-                            console.log('not good');
-                            console.log(res);
+                    if (app2.memRows.length == 0) {
+                        app2.lightbox = true;
+                    }else{
+                        $.ajax({
+                            url: './phps/addCommandReg.php', // 要傳送的頁面
+                            method: 'POST',               // 使用 POST 方法傳送請求
+                            dataType: 'text',             // 回傳資料會是 json 格式
+                            data: $('form').serialize(),  // 將表單資料用打包起來送出去
+                            success: function (res) {       // 成功以後會執行這個方法
+                                console.log('good');
+                                console.log(res);
+                                let lightbox = document.querySelectorAll('.overlay')[0];
+                                lightbox.style.display = 'none';
+                                let lightbox2 = document.querySelectorAll('.overlay2')[0];
+                                lightbox2.style.display = '';
+                            },
+                            error: function (res) {
+                                console.log('not good');
+                                console.log(res);
                         },
                     });
+                    }
                 },
-                                        close() {
+                        close() {
                             let lightbox2 = document.querySelectorAll('.overlay2')[0];
                             lightbox2.style.display = 'none';
                         },
@@ -202,7 +204,38 @@ try {
                     let lightbox = document.querySelectorAll('.overlay')[0];
                     lightbox.style.display = '';
                     this.msgno = MSG_NO;
-                },
+                    },
+
+                lmsg:function(){
+                        if (this.memRows.length == 0) {
+                        app2.lightbox = true;
+                    }else{
+                        $.ajax({
+                            url: './phps/addCommand.php', // 要傳送的頁面
+                            method: 'POST',               // 使用 POST 方法傳送請求
+                            dataType: 'json',             // 回傳資料會是 json 格式
+                            data: $('form').serialize(),  // 將表單資料用打包起來送出去
+                            success: function(res){       // 成功以後會執行這個方法
+                                console.log('good');
+                                console.log(res);
+                                app.comList = res;
+                                app.content = "";
+                            },
+                            error: function(res){    
+                                console.log('not good');
+                                console.log(res);
+                            },
+                        });
+                        return false;  // 阻止瀏覽器跳轉到 send.php，因為已經用 ajax 送出去了
+                        }
+                    },
+                        pub: function () {
+                        if (this.memRows.length == 0) {
+                            app2.lightbox = true;
+                        } else {
+                            location.href = '03_discuss_pub.html';
+                        }
+                    },
                 },
 
                 beforeCreate() {
@@ -233,29 +266,29 @@ try {
                 xhr2.open("get", "./phps/member.php", true);
                 xhr2.send(null);
                                 
-                    $('form').on('submit', function(){
-                        if (this.memRows.length == 0) {
-                        app2.lightbox = true;
-                    }else{
-                        $.ajax({
-                            url: './phps/addCommand.php', // 要傳送的頁面
-                            method: 'POST',               // 使用 POST 方法傳送請求
-                            dataType: 'json',             // 回傳資料會是 json 格式
-                            data: $('form').serialize(),  // 將表單資料用打包起來送出去
-                            success: function(res){       // 成功以後會執行這個方法
-                                console.log('good');
-                                console.log(res);
-                                app.comList = res;
-                                app.content = "";
-                            },
-                            error: function(res){    
-                                console.log('not good');
-                                console.log(res);
-                            },
-                        });
-                        return false;  // 阻止瀏覽器跳轉到 send.php，因為已經用 ajax 送出去了
-                        }
-                    });
+                    // $('form').on('submit', function(){
+                    //     if (this.memRows.length == 0) {
+                    //     app2.lightbox = true;
+                    // }else{
+                    //     $.ajax({
+                    //         url: './phps/addCommand.php', // 要傳送的頁面
+                    //         method: 'POST',               // 使用 POST 方法傳送請求
+                    //         dataType: 'json',             // 回傳資料會是 json 格式
+                    //         data: $('form').serialize(),  // 將表單資料用打包起來送出去
+                    //         success: function(res){       // 成功以後會執行這個方法
+                    //             console.log('good');
+                    //             console.log(res);
+                    //             app.comList = res;
+                    //             app.content = "";
+                    //         },
+                    //         error: function(res){    
+                    //             console.log('not good');
+                    //             console.log(res);
+                    //         },
+                    //     });
+                    //     return false;  // 阻止瀏覽器跳轉到 send.php，因為已經用 ajax 送出去了
+                    //     }
+                    // });
                 },
             });
 

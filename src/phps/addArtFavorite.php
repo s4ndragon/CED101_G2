@@ -1,19 +1,14 @@
 <?php
-
-    // session_start()
-    
-    $arno = isset($_POST["arno"])?$_POST["arno"]:""; 
-    
+    session_start();
     //------------------
 try{
     require_once("./connect.php");
-    $sql = "INSERT INTO art_favorite(
-                ART_NO,
-                MEM_NO
-            ) 
-            VALUES('$arno',2)";
-
+    $sql = "INSERT INTO art_favorite(ART_NO,MEM_NO) 
+        VALUES(:ART_NO,:MEM_NO)";
     $article = $pdo->prepare($sql);
+    $article->bindValue(":ART_NO", $_POST["arno"]);
+    $MEM_NO = $_SESSION["MEM_NO"];
+    $article->bindValue(":MEM_NO", $MEM_NO);
     $article->execute();
 // -------------------------------------------------------------------------------------------------
 

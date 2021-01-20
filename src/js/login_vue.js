@@ -163,6 +163,7 @@ Vue.component("log_reg", {
                         $(".cover").css("display", "none");
                     } else {
                         alert("帳密錯誤");
+                        location.href='../homepage.html';
                     }
                 } else {
                     alert(xhr.status);

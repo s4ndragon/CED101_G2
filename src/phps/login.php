@@ -1,10 +1,10 @@
 <?php 
 try {
     require_once("./connect.php");
-    
+
     $MEM_ID = $_POST["MEM_ID"];
     $MEM_PW = $_POST["MEM_PW"];
-    $sql = "select * from member where MEM_ID='$MEM_ID' and MEM_PW='$MEM_PW'";
+    $sql = "select * from member where MEM_ID='$MEM_ID' and MEM_PW='$MEM_PW' and MEM_STATUS = 1";
     // $sql = "select * from member where MEM_ID=:MEM_ID and MEM_PW=:MEM_PW";
     $member = $pdo->prepare($sql);
     // $member->bindValue(":MEM_ID", $_POST["MEM_ID"]);
@@ -13,8 +13,7 @@ try {
 
     if($member->rowCount()===0) { //rowCount()可取得這次select的總筆數
         // echo "error, plz <a href = '1204_pdo_login.html'>login</a> again";
-        echo "<script>alert('id & pw error'); location.href='../homepage.html'</script>";
-        echo "{}";
+        echo "<script>alert('帳號/密碼錯誤，請重試！'); location.href='../homepage.html'</script>";
         } else {
             session_start();
             $memRow = $member->fetch(PDO::FETCH_ASSOC);
@@ -34,7 +33,7 @@ try {
             // self.opener.location.reload();
             
             //     </script>';
-        }      
+        }     
 } 
 catch (PDOException $e) {
     echo "錯誤原因 : ", $e->getMessage(), "<br>";
