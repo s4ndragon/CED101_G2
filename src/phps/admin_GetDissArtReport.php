@@ -14,7 +14,8 @@ try {
     //接到之後要做的SQL指令
     //:後面+名字會變成一個變數 ->Php 寫sql的時候的寫法
 	$sql = "select * 
-			from ART_REP
+            from ART_REP
+            order by REP_NO desc
             ";
 
     // $grouporddata = $pdo->query($sql);

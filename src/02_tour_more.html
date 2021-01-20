@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./images/index/webIcon.png" type="image/x-icon" />
     <title>茶園揪團</title>
     <link rel="stylesheet" href="./css/tour_more.css">
 </head>
@@ -14,7 +15,7 @@
         <p class="fir">茶園揪團</p>
     </div>
 
-    <main id="app">
+    <main id="app" v-cloak>
         <div class="all" v-for="touritem in dataTop">
             <div class="tour">
                 <img class="tpic" :src="touritem.TOUR_IMG">
@@ -71,7 +72,7 @@
 
                 <div class="btwrap">
                     <button class="bt" id="changeText" @click="joinTour(touritem.TOUR_ID,touritem.NUM_OF_PARTICIPANTS,touritem.TOUR_PEOPLE,touritem.MEM_NO)">
-                        我要參加
+                        {{touritem.joined}}
                     </button>
 
                     <div class="date">
@@ -232,34 +233,24 @@
                         console.log(this.people_now)
                         console.log(this.people_limit)
                     }else{
-                        for(let i=0; i < this.joinRows.length; i++){
-                            if(this.joinRows[i].TOUR_ID == this.tour_id){
-                                alert('已經報名此團')
-                                return;
-                            }else{
-                            }
-                            
+                        if(this.dataTop[0].joined === "已報名"){
+                            alert('已經報名此團')
+                            return;
+                        }else{
+                            console.log("111")
+                            //跳確認報名燈箱
+                            this.confirm_box = true
                         }
-                        
-                        //跳確認報名燈箱
-                        this.confirm_box = true
-                        
-                            // let xhr = new XMLHttpRequest();
-                            // xhr.onload = function(){
-                            //     if(xhr.status == 200){ //success
-                            //         console.log('success')
-                            //     }else{
-                            //         alert(xhr.status);
-                            //     }
-                            // }
-                            // xhr.open("post", "./phps/join_tour.php", true);
-                            // xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
-                            // //送出資料
-                            // let data_info = "TOUR_ID=" + this.targetPageId;
-                            // xhr.send(data_info);
-                            // alert('報名成功')
 
-                            // this.get_data()
+                        // for(let i=0; i < this.joinRows.length; i++){
+                        //     if(this.joinRows[i].TOUR_ID == this.tour_id){
+                        //         alert('已經報名此團')
+                        //         return;
+                        //     }else{
+                        //     }
+                            
+                        // }
+                        
                         
                         }
                     }
@@ -285,21 +276,6 @@
                             this.confirm_box = false
                             this.good_box = true
                             this.get_data()
-                },
-
-                //若已報名就把按鈕文字改成"已報名"
-                checkJoin(){
-                    console.log('qq')
-                    for(let i=0; i < this.joinRows.length; i++){
-                            if(this.joinRows[i].TOUR_ID == this.tour_id){
-                                document.getElementById("changeText").innerText = "已報名";
-                                
-                                console.log('哈哈')
-                                // return;
-                            }else{
-
-                            }
-                        }
                 },
 
                 checktype(data){
@@ -407,7 +383,7 @@
                                 if(xhr.status == 200){ //success
                                     console.log('移除收藏成功')
                                 }else{
-                                    alert(xhr.status);
+                                    // alert(xhr.status);
                                 }
                             }
                             xhr.open("post", "./phps/del_fav_tour.php", false);
@@ -460,7 +436,6 @@
             //============去server端拿資料
             this.get_data()
             this.getMem()
-            this.checkJoin()
                 
             }
 

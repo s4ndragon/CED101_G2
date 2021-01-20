@@ -17,7 +17,13 @@ try {
 		$MEM_NO = $_SESSION["MEM_NO"];
 		$tour2->bindValue(":MEM_NO", $MEM_NO);
 		$tour2->execute();
-		$joinRows = $tour2->fetchAll(PDO::FETCH_ASSOC);
+		$joinRows_1 = $tour2->fetchAll(PDO::FETCH_ASSOC);
+		$joinRows = [];
+		for($k=0;$k < count($joinRows_1);$k++){
+			array_push($joinRows,$joinRows_1[$k]["TOUR_ID"]);
+		};
+
+
 	}else{
 		$joinRows = "{}";
 	}
@@ -68,6 +74,18 @@ try {
 		$savedLikes = "{}";
 	}
 	
+
+	if(isset($_SESSION["MEM_NO"])){
+		if(in_array($tourRows[0]["TOUR_ID"],$joinRows)){
+			$tourRows[0]["joined"] = "已報名";
+		}else{
+			$tourRows[0]["joined"] = "我要參加";
+		}
+	}else{
+		$tourRows[0]["joined"] =  "我要參加";
+	}
+	
+
 
 
 	$dataRows=[$tourRows,$joinRows,$hotelRows,$foodRows,$msgRows,$loveRows,$savedLikes];

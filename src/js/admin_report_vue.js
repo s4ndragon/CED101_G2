@@ -159,6 +159,7 @@ new Vue({
      
         
         change_GarMsgstatus(event,key){
+            // console.log("111")
             this.gardens_MegReports[key].MSG_REP_STATUS = event.currentTarget.value
         },
         edit_gardens_Meg: async function (MSG_REP_NO, key) {

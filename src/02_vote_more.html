@@ -5,6 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./images/index/webIcon.png" type="image/x-icon" />
     <title>茶園票選</title>
     <link rel="stylesheet" href="./css/vote_more.css">
     <script src="https://unpkg.com/vue-star-rating@1.5.1/dist/star-rating.min.js"></script>
@@ -97,13 +98,13 @@
             </div>
         </div>
 
-        <!-- 檢舉成功燈箱 -->
-        <!-- <div class="okbox_wrapper" v-if="judgeBox">
-            <div class="modal2">
-                    <p class="welcome">檢舉成功</p>
-                    <button @click="judgeBox = false" class="confirm">確認</button>
+        <!-- 收藏成功燈箱 -->
+        <div class="ok_wrap" v-if="like_box">
+            <div class="ok_box">
+                <p class="welcome">已加入收藏</p>
+                <div @click="like_box = false" class="yes">確定</div>
             </div>
-        </div> -->
+        </div>
 
 
         <div id="commandall">
@@ -156,7 +157,7 @@
                     <img :src="tourRow.TOUR_IMG">
                     <div class="love_share">
                         <div class="love">
-                            <img class="like" src="images/common/heart.png">
+                            <img @click="setFav(tourRow.TOUR_ID)" class="like" :src="tourRow.img">
                         </div>
                     </div>
                 </div>
@@ -191,9 +192,6 @@
                     </button>
                 </div>
             </div>
-
-            
-
         </div>
 
         <div class="btwrap">
@@ -304,6 +302,8 @@
                 lightbox_GARD_ID:'',
                 okbox: false,
                 timeBox: false,
+                likeTour:'',
+                like_box: false,
 
                 rating: '您尚未評分',
                 sendRating:'',
@@ -439,7 +439,12 @@
                 },
 
                 sendReport(i){
-                    let xhr = new XMLHttpRequest();
+                    if(this.memRows.length == 0){
+                        app2.lightbox = true
+                        let modal = document.querySelectorAll('.modal_wrapper');
+                        modal[i].style.display = 'none';
+                    }else{
+                        let xhr = new XMLHttpRequest();
                     // console.log(this.msgRows[i].MSG_NO)
                     // console.log(document.querySelector('input[name="option"]:checked').value)
                         xhr.onload = function(){
@@ -458,6 +463,8 @@
                         //送出資料
                         let data_info = `MSG_NO=${this.msgRows[i].MSG_NO}&MSG_REP_CONTENT=${document.querySelector('input[name="option"]:checked').value}`;
                         xhr.send(data_info);
+                    }
+                    
                 },
 
                 closeRepBox(i){
@@ -492,6 +499,70 @@
                         }
                     }
                 },
+
+                setFav(TOUR_ID){
+                    this.likeTour = TOUR_ID
+
+                    if(this.memRows.length == 0){
+                        app2.lightbox = true
+                    }else{
+                        if(this.likeRows.indexOf(this.likeTour) != -1){
+                            let xhr = new XMLHttpRequest();
+                            xhr.onload = function(){
+                                if(xhr.status == 200){ //success
+                                    console.log('移除收藏成功')
+                                    // let like = document.querySelectorAll('.like')
+                                    // for(i=0 ; i<like.length ; i++){
+                                    //     like.src = "images/common/heart.png";
+                                    // }
+                                    function changeHa(e) {
+                                        let obj = e.target;	
+                                        obj.src = "images/common/heart.png";
+                                    }
+                                }else{
+                                    // alert(xhr.status);
+                                }
+                            }
+                            xhr.open("post", "./phps/del_fav_tour.php", false);
+                            xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+                            //送出資料
+                            let data_info = `TOUR_ID=${this.likeTour}`;
+                            xhr.send(data_info);
+
+                            this.get_data()
+                            // alert('移除收藏成功')
+                        }else{
+                            let xhr = new XMLHttpRequest();
+                            xhr.onload = function(){
+                                if(xhr.status == 200){ //success
+                                    console.log('加入收藏成功')
+                                    // let like = document.querySelectorAll('.like')
+                                    // for(i=0 ; i<like.length ; i++){
+                                    //    like[i].src = "images/common/like.png";
+                                    // }
+                                    function changeHa(e) {
+                                        let obj = e.target;	
+                                        obj.src = "images/common/like.png";
+                                    }
+                                    
+                                }else{
+                                    // alert(xhr.status);
+                                }
+                            }
+                            xhr.open("post", "./phps/add_fav_tour.php", false);
+                            xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+                            //送出資料
+                            let data_info = `TOUR_ID=${this.likeTour}`;
+                            xhr.send(data_info);
+
+                            this.get_data()
+                            this.like_box = true
+                        }
+                    }
+
+                }
+
+                
             },
 
             mounted() {
