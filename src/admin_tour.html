@@ -118,6 +118,15 @@
                         </div>
                     </div>
                 </div>
+                <!-- 燈箱 -->
+                <div class="overlay" v-if="lightBox_show">
+                    <article>
+                        <h1>{{inner_text}}</h1>
+                        <button type="button" class="btn_modal_close" @click="lightBox_show = false">
+                            {{inner_btn_text}}
+                        </button>
+                    </article>
+                </div>
             </div>
         </main>
 
