@@ -432,7 +432,7 @@
                 sendComm(){
                     let words = document.getElementById("content")
                     if(this.memRows.length == 0){
-                        alert('請先登入會員')
+                        app2.lightbox = true
                     }else{
                         if(words.value == ''){
                         alert('尚未輸入內容')

@@ -198,8 +198,8 @@
                     this.people_now = NUM_OF_PARTICIPANTS;
                     this.people_limit = TOUR_PEOPLE;
 
-                    if(this.memRows.MEM_NO == ''){
-                        alert('請先登入會員')
+                    if(this.memRows.length == 0){
+                        app2.lightbox = true
                     }else{
                         if(this.people_now == this.people_limit){
                         alert('報名額滿囉!')
@@ -297,8 +297,8 @@
                 sendComm(){
                     let words = document.getElementById("content")
 
-                    if(this.memRows.MEM_NO == ''){
-                        alert('請先登入會員')
+                    if(this.memRows.length == 0){
+                        app2.lightbox = true
                     }else{
                         if(words.value == ''){
                         alert('尚未輸入內容')
@@ -307,6 +307,7 @@
                         xhr.onload = function(){
                             if(xhr.status == 200){ //success
                                 console.log('success')
+                                this.imageSource()
                             }else{
                                 alert(xhr.status);
                             }
@@ -330,7 +331,7 @@
                 addFav(){
 
                     if(this.memRows.length == 0){
-                        alert('請先登入會員')
+                        app2.lightbox = true
                     }else{
                         if(this.loveRows.indexOf(this.tour_id) != -1){
                         // console.log("有加入過收藏")
@@ -343,13 +344,14 @@
                                     alert(xhr.status);
                                 }
                             }
-                            xhr.open("post", "./phps/del_fav_tour.php", true);
+                            xhr.open("post", "./phps/del_fav_tour.php", false);
                             xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
                             //送出資料
                             let data_info = `TOUR_ID=${this.targetPageId}`;
                             xhr.send(data_info);
 
                             this.get_data()
+                            // alert('移除收藏成功')
 
                     }else{
                         // console.log("沒有加入過")
@@ -362,14 +364,14 @@
                                     // alert(xhr.status);
                                 }
                             }
-                            xhr.open("post", "./phps/add_fav_tour.php", true);
+                            xhr.open("post", "./phps/add_fav_tour.php", false);
                             xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
                             //送出資料
                             let data_info = `TOUR_ID=${this.targetPageId}`;
                             xhr.send(data_info);
 
                             this.get_data()
-                            
+                            alert('加入收藏成功')
                         }
                     }
                 },
