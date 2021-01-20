@@ -183,9 +183,10 @@
                         
                     </div>
                     <form style="display:none;" id="send1" data-text="準備發送會員的折扣">
-                        <input type="hidden" value="" name="mem_no">
-                        <input type="hidden" value name="score" >
+                        <input type="hidden" v-model="memid" value="" id="mem_no" name="mem_no">
+                        <input type="hidden" v-model="memscore" value="" id="_score" name="score" >
                     </form>
+                    <input type="hidden" name="" id="score_tmp">
                 </section>
             </div>
         </div>
@@ -198,34 +199,78 @@
 遊戲結束時：偵測有沒有登入資料if(有){xhr送php傳資料庫}-->
         
         <script>
-            // var data=[{IMG:"https://tibamef2e.com/ced101/project/g2/images/game/4.gif",DATA_STAR:25,DATA_HPS:50,DATA_HP:50,DATA_DEFENSE:20,DATA_DAMAGE:10,DATA_SPEED:2},
-            // {IMG:"https://tibamef2e.com/ced101/project/g2/images/game/Wallnut_body.png",DATA_STAR:50,DATA_HPS:100,DATA_HP:100,DATA_DEFENSE:90,DATA_DAMAGE:0,DATA_SPEED:0},
-            // {IMG:"https://tibamef2e.com/ced101/project/g2/images/game/TallNut.gif",DATA_STAR:75,DATA_HPS:150,DATA_HP:150,DATA_DEFENSE:90,DATA_DAMAGE:0,DATA_SPEED:0},];
-			// 	for(let i of data){
-            //     var li=document.createElement("li");
-			// 	li.innerHTML=`<img src="${i.IMG}" data-star="${i.DATA_STAR}" data-hps="${i.DATA_HPS}" data-hp="${i.DATA_HP}" data-defense="${i.DATA_DEFENSE}" data-damage="${i.DATA_DAMAGE}" data-speed="${i.DATA_SPEED}" class="plant" />
-			// 	<span>${i.DATA_STAR}</span>`;
-			// 	document.getElementById('props').appendChild(li);
-            //     }
-            //https://tibamef2e.com/ced101/project/g2/images/game/tanktea.gif
-            // https://tibamef2e.com/ced101/project/g2/images/game/4.gif
-               axios.get("./phps/getROLE.php").then(function(response){
-                let data=response.data;var props=$('#props');
+            var data=[{IMG:"https://tibamef2e.com/ced101/project/g2/images/game/4.gif",DATA_STAR:25,DATA_HPS:50,DATA_HP:50,DATA_DEFENSE:20,DATA_DAMAGE:10,DATA_SPEED:2},
+            {IMG:"https://tibamef2e.com/ced101/project/g2/images/game/Wallnut_body.png",DATA_STAR:50,DATA_HPS:100,DATA_HP:100,DATA_DEFENSE:90,DATA_DAMAGE:0,DATA_SPEED:0},
+            {IMG:"https://tibamef2e.com/ced101/project/g2/images/game/TallNut.gif",DATA_STAR:75,DATA_HPS:150,DATA_HP:150,DATA_DEFENSE:90,DATA_DAMAGE:0,DATA_SPEED:0},];
 				for(let i of data){
                 var li=document.createElement("li");
 				li.innerHTML=`<img src="${i.IMG}" data-star="${i.DATA_STAR}" data-hps="${i.DATA_HPS}" data-hp="${i.DATA_HP}" data-defense="${i.DATA_DEFENSE}" data-damage="${i.DATA_DAMAGE}" data-speed="${i.DATA_SPEED}" class="plant" />
 				<span>${i.DATA_STAR}</span>`;
 				document.getElementById('props').appendChild(li);
-			    }
-               }).catch(function(){
-                var li=document.createElement("li");
-				li.innerHTML=`<img src="./images/game/4.gif" data-star="25" data-hps="50" data-hp="${50}" data-defense="${20}" data-damage="${10}" data-speed="${2}" class="plant" />
-				<span>25</span>`;
-                document.getElementById('props').appendChild(li);
-               });         
+                }
+            //https://tibamef2e.com/ced101/project/g2/images/game/tanktea.gif
+            // https://tibamef2e.com/ced101/project/g2/images/game/4.gif
+            //    axios.get("./phps/getROLE.php").then(function(response){
+            //     let data=response.data;var props=$('#props');
+			// 	for(let i of data){
+            //     var li=document.createElement("li");
+			// 	li.innerHTML=`<img src="${i.IMG}" data-star="${i.DATA_STAR}" data-hps="${i.DATA_HPS}" data-hp="${i.DATA_HP}" data-defense="${i.DATA_DEFENSE}" data-damage="${i.DATA_DAMAGE}" data-speed="${i.DATA_SPEED}" class="plant" />
+			// 	<span>${i.DATA_STAR}</span>`;
+			// 	document.getElementById('props').appendChild(li);
+			//     }
+            //    }).catch(function(){
+            //     var li=document.createElement("li");
+			// 	li.innerHTML=`<img src="./images/game/4.gif" data-star="25" data-hps="50" data-hp="${50}" data-defense="${20}" data-damage="${10}" data-speed="${2}" class="plant" />
+			// 	<span>25</span>`;
+            //     document.getElementById('props').appendChild(li);
+            //    });         
                function sou(vol) {
                 bomb.volume = vol.value;
                 }
+                
+        </script>
+        <script>
+            var a=new Vue({
+                el='#send1',
+                data:{
+                    memid:"",
+                    memscore:0
+                },watch:{
+                    memsend:{
+                        handler:function(){
+                            if(this.memid!=""){
+                                if(this.memscore!=0){
+                                    axios.get("./phps/member_out.php").then(function(){
+                                        
+                                    })
+                                    var xhr=new XMLHttpRequest();
+                                    xhr.open("GET","./phps/member_out.php");
+                                    xhr.send(`mem_no=${document.getElementsByName('mem_no')[0]}&score=${document.getElementsByName('score')[0]}`)
+                                    xhr.onload=function(){}
+                                    document.getElementById("mem_no").value="";
+                                    document.getElementsById("_score").value=0;
+                                }
+                            }
+                        },immediate=true,
+                    }
+                },
+                mothods:{
+                    mem(){
+                        axios.get("./phps/game_point.php").then(response){
+                            document.getElementsById('mem_no').value=response.data.MEM_NO;
+                            document.getElementsById("score_tmp").value=response.data.GAME_POINT;
+                        }
+                    }
+                },
+                mounted() {
+                    mem();
+
+                },
+                updated(){
+                    mem();
+                }
+            });
+                            
         </script>
     </body>
 </html>
