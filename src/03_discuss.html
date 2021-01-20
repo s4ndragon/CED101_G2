@@ -129,7 +129,11 @@
                             </div>
                          </div></div>
                          `,
-
+            data() {
+                return {
+                    memRows: '',
+                }
+            },
 
             methods: {
                 closeBox: function () {
@@ -137,22 +141,26 @@
                     lightbox.style.display = 'none';
                 },
                 send_data() {
-                    $.ajax({
-                        url: './phps/articleReg.php', // 要傳送的頁面
-                        method: 'POST',               // 使用 POST 方法傳送請求
-                        dataType: 'text',             // 回傳資料會是 json 格式
-                        data: $('form').serialize(),  // 將表單資料用打包起來送出去
-                        success: function (res) {       // 成功以後會執行這個方法
-                            console.log('good');
-                            let lightbox = document.querySelectorAll('.overlay')[0];
-                            lightbox.style.display = 'none';
-                            let lightbox2 = document.querySelectorAll('.overlay2')[0];
-                            lightbox2.style.display = '';
-                        },
-                        error: function (res) {
-                            console.log('not good');
-                        },
-                    });
+                    if (this.memRows.length == 0) {
+                        app2.lightbox = true;
+                    } else {
+                        $.ajax({
+                            url: './phps/articleReg.php', // 要傳送的頁面
+                            method: 'POST',               // 使用 POST 方法傳送請求
+                            dataType: 'text',             // 回傳資料會是 json 格式
+                            data: $('form').serialize(),  // 將表單資料用打包起來送出去
+                            success: function (res) {       // 成功以後會執行這個方法
+                                console.log('good');
+                                let lightbox = document.querySelectorAll('.overlay')[0];
+                                lightbox.style.display = 'none';
+                                let lightbox2 = document.querySelectorAll('.overlay2')[0];
+                                lightbox2.style.display = '';
+                            },
+                            error: function (res) {
+                                console.log('not good');
+                            },
+                        });
+                    }
                 },
                 close() {
                     let lightbox2 = document.querySelectorAll('.overlay2')[0];
@@ -168,47 +176,50 @@
             data: {
                 artno: "",
                 articlesRows: [],
-                memRows: [],
+                memRows: '',
             },
 
             methods: {
                 // 加入收藏愛心
                 addheart(arno) {
-                    // if (this.memRows.length == 0) {
-                    //     app2.lightbox = true;
-                    // }
-                    if ($('#' + arno).attr('title') == "add") {
-                        $('#' + arno).attr('title', "noadd");
-                        $('#' + arno).attr('src', "./images/common/like.png");
-                        $.ajax({
-                            url: './phps/addArtFavorite.php', // 要傳送的頁面
-                            method: 'POST',
-                            dataType: 'text',             // 回傳資料
-                            data: { arno: arno },                 // 將表單資料用打包起來送出去
-                            success: function () {       // 成功以後會執行這個方法
-                                console.log('good');
-                            },
-                            error: function () {
-                                console.log('not good');
-                            }
-                        });
-                    } else if ($('#' + arno).attr('title') == "noadd") {
-                        $('#' + arno).attr('title', "add");
-                        $('#' + arno).attr('src', "./images/common/heart.png");
-                        // console.log()
-                        $.ajax({
-                            url: './phps/deleteArtFav.php', // 要傳送的頁面
-                            method: 'POST',
-                            dataType: 'text',             // 回傳資料
-                            data: { arno: arno },                 // 將表單資料用打包起來送出去
-                            success: function () {       // 成功以後會執行這個方法
-                                console.log('good');
-                            },
-                            error: function () {
-                                console.log('not good');
-                            },
-                        });
+                    if (this.memRows.length == 0) {
+                        app2.lightbox = true;
+                    } else {
+                        if ($('#' + arno).attr('title') == "add") {
+                            $('#' + arno).attr('title', "noadd");
+                            $('#' + arno).attr('src', "./images/common/like.png");
+                            $.ajax({
+                                url: './phps/addArtFavorite.php', // 要傳送的頁面
+                                method: 'POST',
+                                dataType: 'text',             // 回傳資料
+                                data: { arno: arno },                 // 將表單資料用打包起來送出去
+                                success: function () {       // 成功以後會執行這個方法
+                                    console.log('good');
+                                },
+                                error: function () {
+                                    console.log('not good');
+                                }
+                            });
+                        } else if ($('#' + arno).attr('title') == "noadd") {
+                            $('#' + arno).attr('title', "add");
+                            $('#' + arno).attr('src', "./images/common/heart.png");
+                            // console.log()
+                            $.ajax({
+                                url: './phps/deleteArtFav.php', // 要傳送的頁面
+                                method: 'POST',
+                                dataType: 'text',             // 回傳資料
+                                data: { arno: arno },                 // 將表單資料用打包起來送出去
+                                success: function () {       // 成功以後會執行這個方法
+                                    console.log('good');
+                                },
+                                error: function () {
+                                    console.log('not good');
+                                },
+                            });
+                        }
+
                     }
+
                 },
                 showBox: function (ART_NO) {
                     let lightbox = document.querySelectorAll('.overlay')[0];
