@@ -77,6 +77,15 @@
                             <div id="btnSendVote" class="go" @click="sendScore">送出</div>
                         </form>
                     </div>
+
+                    <!-- 檢舉成功燈箱 -->
+                    <div class="okbox_wrapper" v-if="okbox">
+                        <div class="modal2">
+                                <p class="welcome">評分成功</p>
+                                <button @click="close_okbox">確認</button>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -96,7 +105,10 @@
                                @close-box="closeModal(i)"
                                @send-repo="sendReport(i)">
             </comment-component>
-            <!--       留言+檢舉燈箱結束        -->
+            <!--    留言+檢舉燈箱結束    -->
+
+            
+            <!--    無留言時顯示         -->
             <div class="empty" v-show="msgRows.length==0">此茶園尚無留言，歡迎留言。</div>
 
 
@@ -247,7 +259,9 @@
                 }
                 
             },
-        })
+        });
+
+        
 
         var app = new Vue({
             el: "#app",
@@ -261,6 +275,7 @@
                 pastDate:'',
                 lightbox: false,
                 lightbox_GARD_ID:'',
+                okbox: false,
 
                 rating: '您尚未評分',
                 sendRating:'',
@@ -317,7 +332,8 @@
                 sendScore(){
 
                     if(this.memRows.length == 0){
-                        alert('請先登入會員')
+                        app2.lightbox = true
+                        this.lightbox = false
                     }else{
                         if(this.today == this.pastDate[0].VOTE_DATE){
                         alert('一天只能評分一次喔!')
@@ -341,7 +357,11 @@
                             this.lightbox = false
                             this.get_data()
                             this.rating = '您尚未評分'
+
+                            this.okbox = true
                         }
+
+                        
                     } 
                     
                 },
@@ -435,6 +455,10 @@
                             words.value = ''
                         }
                     }
+                },
+
+                close_okbox(){
+                    this.okbox = false
                 }
             },
 
