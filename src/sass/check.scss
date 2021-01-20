@@ -136,12 +136,22 @@ form {
         }
 
         #total {
+            padding-top: 30px;
+
             span {
                 padding: 10px;
             }
 
             input {
-                padding: 5px;
+                border: none;
+                color: #3ddd31;
+                font-size: 24px;
+                font-weight: 700;
+                padding: 15px;
+                border-radius: 10px;
+                width: 150px;
+                text-align: center;
+                border: #ccc 1px dotted;
 
                 @media screen and (max-width:600px) {
                     display: block;

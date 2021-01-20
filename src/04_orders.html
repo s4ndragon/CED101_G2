@@ -58,6 +58,11 @@
                     <td>付款方式:</td>
                     <td><input type="text" name="pay" class="info" disabled :value='payMethod'></td>
                 </tr>
+                <tr v-if='orderInfo.PAY == 1'>
+                    <td>付款帳號: </td>
+                    <td><input type="text" value='00020384751' disabled></td>
+                </tr>
+
             </table>
         </div>
         <table>

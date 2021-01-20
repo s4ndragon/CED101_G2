@@ -202,8 +202,8 @@ function itemInnerhtml(itemNo) {
     <div class="aside">
         <a href="./04_product.html"><h3>${itemName}</h3></a>
         <div class="content">
-            <div>數量: <input type="number" name=""  value="${itemNum}" min='0' max='999' class='itemNum'></div>
-            <div class='price'>價格: </span><input type="number" name=""  disabled value="${itemPrice}" class='itemPrice'></div>
+            <div class="aboutNum"><span>數量：</span><input type="number" name=""  value="${itemNum}" min='0' max='999' class='itemNum'></div>
+            <div class='price'><span>價格：</span><input type="number" name=""  disabled value="${itemPrice}" class='itemPrice'></div>
             <input type="hidden" name="" value='${storage[`${itemNo}`]}' class='productInfo'>
         </div>
     </div>
