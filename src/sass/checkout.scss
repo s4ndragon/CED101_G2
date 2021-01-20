@@ -59,9 +59,18 @@ body {
                         padding: 10px;
                     }
 
-                    input {
-                        padding: 5px;
+                    td {
+                        text-align: right;
                     }
+
+                    input {
+                        border: none;
+                        padding: 10px;
+                        outline: none;
+                    }
+
+
+
 
                     @media screen and (max-width:600px) {
                         display: block;
@@ -87,6 +96,7 @@ body {
 
                     input {
                         @include btn3;
+                        width: 120px
                     }
 
                     input[type=button] {
