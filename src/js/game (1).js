@@ -351,7 +351,14 @@ function gamestop(s=0) {
   document.getElementById('score-over').innerText = score;
   document.getElementById('score-win').innerText = score + s;
   var score_tmp = document.getElementById('score_tmp').value;
-
+  var xhr=new XMLHttpRequest();
+  xhr.open("GET","./phps/member_out.php");
+  xhr.send(`score=${score + s}`)
+  xhr.onload = function () {
+    var res = xhr.responseText;
+    alert(res);
+  }
+  }
   clearInterval(sp_);
   clearInterval(time_b_);
   clearInterval(bb__);
