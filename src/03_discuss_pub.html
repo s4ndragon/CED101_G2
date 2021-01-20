@@ -19,7 +19,7 @@
             </div>
         </div>
         <h2 id="pub_new">發表新文章</h2>
-
+        <!-- 發表文章表格 -->
         <form id="pub_article" action="./phps/pubArticle.php" method="post" enctype="multipart/form-data">
             <div class="pub_input_container">
                 <label class="input_type upimg_text">文章圖片：</label>
@@ -28,14 +28,14 @@
             </div>
             <div class="pub_input_container">
                 <label class="input_type">文章類別：</label>
-                <select class="slt" name="article_cate">
+                <select class="slt" name="article_cate" v-model="type">
                     　<option value="揪團心得">揪團心得</option>
                     　<option value="茶園討論">茶園討論</option>
                     　<option value="茶知識">茶知識</option>
                 </select>
             </div>
             <label class="input_type" maxlength="15">文章標題：</label>
-            <input type="text" name="title">
+            <input type="text" name="title" v-model="title">
             <div class="pub_input_container">
                 <label class="input_type">文章內文：</label>
                 <textarea class="article_input" name="content" maxlength="500" v-model="tex" @input="all"></textarea>
@@ -49,9 +49,9 @@
                     送出
                 </button>
             </div>
-            <!-- ====發表完成確認燈箱==== -->
+            <!-- 發表完成確認燈箱 -->
             <pub></pub>
-            <!-- ====隱藏value 用來存篩選分類==== -->
+            <!-- 隱藏value 用來存篩選分類 -->
             <input class="category" name="category" type="hidden" value="">
         </form>
 
@@ -83,6 +83,9 @@
             data: {
                 leftword: 500,
                 tex: "",
+                type: "",
+                title: "",
+
             },
             methods: {
                 all: function () {
@@ -90,8 +93,18 @@
                 },
 
                 send_data() {
-                    // var form = $('form')[0];
-                    var formData = new FormData(form);
+                    var form = $('form')[0];
+                    // var formData = new FormData(form);
+                    var formData = new FormData();
+                    let file = document.getElementById('upimg').files[0]
+                    formData.append("title", this.title)
+                    formData.append("type", this.type)
+
+                    formData.append("text", this.tex)
+                    formData.append("file", file)
+
+
+
                     $.ajax({
                         url: './phps/pubArticle.php', // 要傳送的頁面
                         method: 'POST',               // 使用 POST 方法傳送請求
