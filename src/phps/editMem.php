@@ -1,19 +1,20 @@
 <?php
 try {
-    session_start();
     require_once("./connect.php");
+    session_start();
 
     if(isset($_SESSION["MEM_ID"])){
-
-   
-
-	$sql = "select * 
-            from member
-            where MEM_NO = :MEM_NO
-            ";
+        $MEM_NICKNAME = $_POST["MEM_NICKNAME"];
+        $MEM_EMAIL = $_POST["MEM_EMAIL"];
+        $new_password = $_POST["new_password"];
+        $sql = 
+        "update member 
+        set MEM_NICKNAME = $MEM_NICKNAME, MEM_EMAIL = $MEM_EMAIL, MEM_PW = $MEM_PW
+        where MEM_ID='$MEM_ID' 
+        and MEM_PW='$MEM_PW' ";
 
     $get_mine_info = $pdo->prepare($sql);
-    $get_mine_info->bindValue(":MEM_NO", $_SESSION["MEM_NO"]);
+    $get_mine_info->bindValue(":MEM_ID", $_SESSION["MEM_ID"]);
 
     $get_mine_info->execute();
 
