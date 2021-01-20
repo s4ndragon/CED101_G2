@@ -234,6 +234,9 @@ try {
                 xhr2.send(null);
                                 
                     $('form').on('submit', function(){
+                        if (this.memRows.length == 0) {
+                        app2.lightbox = true;
+                    }else{
                         $.ajax({
                             url: './phps/addCommand.php', // 要傳送的頁面
                             method: 'POST',               // 使用 POST 方法傳送請求
@@ -251,6 +254,7 @@ try {
                             },
                         });
                         return false;  // 阻止瀏覽器跳轉到 send.php，因為已經用 ajax 送出去了
+                        }
                     });
                 },
             });
