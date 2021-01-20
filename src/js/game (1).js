@@ -357,7 +357,7 @@ function gamestop(s=0) {
   xhr.onload = function () {
     var res = xhr.responseText;
     alert(res);
-  }
+  
   }
   clearInterval(sp_);
   clearInterval(time_b_);
