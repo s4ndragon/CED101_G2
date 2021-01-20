@@ -96,10 +96,19 @@
             </div>
         </div>
 
+        <!-- 報名成功燈箱 -->
         <div class="ok_wrap" v-if="good_box">
             <div class="ok_box">
                 <p class="welcome">報名成功 !</p>
                 <div @click="good_box = false" class="yes">確定</div>
+            </div>
+        </div>
+
+        <!-- 收藏成功燈箱 -->
+        <div class="ok_wrap" v-if="like_box">
+            <div class="ok_box">
+                <p class="welcome">已加入收藏</p>
+                <div @click="like_box = false" class="yes">確定</div>
             </div>
         </div>
 
@@ -190,7 +199,8 @@
                 targetPageId:'',
                 nowURL:'',
                 confirm_box: false,
-                good_box:false
+                good_box:false,
+                like_box: false
             },
             methods: {
 
@@ -410,7 +420,6 @@
                             // alert('移除收藏成功')
 
                     }else{
-                        // console.log("沒有加入過")
                             
                             let xhr = new XMLHttpRequest();
                             xhr.onload = function(){
@@ -427,7 +436,7 @@
                             xhr.send(data_info);
 
                             this.get_data()
-                            alert('加入收藏成功')
+                            this.like_box = true
                         }
                     }
                 },
