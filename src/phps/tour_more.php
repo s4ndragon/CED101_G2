@@ -75,12 +75,16 @@ try {
 	}
 	
 
-	
-	if(in_array($tourRows[0]["TOUR_ID"],$joinRows)){
-		$tourRows[0]["joined"] = "已報名";
+	if(isset($_SESSION["MEM_NO"])){
+		if(in_array($tourRows[0]["TOUR_ID"],$joinRows)){
+			$tourRows[0]["joined"] = "已報名";
+		}else{
+			$tourRows[0]["joined"] = "我要參加";
+		}
 	}else{
-		$tourRows[0]["joined"] = "我要參加";
+		$tourRows[0]["joined"] =  "我要參加";
 	}
+	
 
 
 

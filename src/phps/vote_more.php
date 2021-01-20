@@ -54,15 +54,20 @@ try {
 	}
 	
 
+	
+		for($k=0;$k<count($tourRows);$k++){
+			if(isset($_SESSION["MEM_NO"])){
 
-	for($k=0;$k<count($tourRows);$k++){
-
-		if(in_array($tourRows[$k]["TOUR_ID"],$likeRows)){
-			$tourRows[$k]["img"] = "./images/common/like.png";
-		}else{
-			$tourRows[$k]["img"] = "images/common/heart.png";
+				if(in_array($tourRows[$k]["TOUR_ID"],$likeRows)){
+					$tourRows[$k]["img"] = "./images/common/like.png";
+				}else{
+					$tourRows[$k]["img"] = "images/common/heart.png";
+				}
+			}else{
+				$tourRows[$k]["img"] = "images/common/heart.png";
+			}
 		}
-	}
+	
 	
 
 
