@@ -16,11 +16,6 @@
             <a href="index.html">
                 <h1 id="logo"><img src="images/common/logo.png" alt="" /></h1>
             </a>
-            
-            <!-- 會員icon放置區 -->
-            <a href="#">
-                <img class="memicon" src="images/common/user.png" alt="" />
-            </a>
         </nav>
         
         <aside class="aside">
@@ -76,7 +71,7 @@
                         <div class="tab tab1 -on">
                             茶園管理
                             <form>
-                                <input type="text" v-model="GARD_ID" placeholder="請輸入茶園編號，從1開始" />
+                                <input onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" type="text" v-model="GARD_ID" placeholder="請輸入茶園編號，從1開始" />
                                 <button class="btn-confirm" type="button" @click="query_gard_id">送出查詢</button>
                                 <button class="btn-confirm" type="button" @click="get_gards">回到列表</button>
                             </form>
@@ -91,7 +86,7 @@
                                             <th>茶園地址</th>
                                             <th>茶園總得分</th>
                                             <th>茶園評分次數</th>
-                                            <th>茶園狀態</br>(0:上架 1:下架)</th>
+                                            <th>茶園狀態</br>(0:下架 1:上架)</th>
                                             <th>修改確認</th>
                                         </tr>
                                     </thead>
@@ -123,7 +118,7 @@
                         <div class="tab tab2">
                             餐廳管理
                             <form>
-                                <input type="text" v-model="RESTAURANT_ID" placeholder="請輸入餐廳編號，從1開始" />
+                                <input onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" type="text" v-model="RESTAURANT_ID" placeholder="請輸入餐廳編號，從1開始" />
                                 <button class="btn-confirm"  type="button" @click="query_rest_id" >送出查詢</button>
                                 <button class="btn-confirm" type="button" @click="get_rests">回到列表</button>
 
@@ -133,10 +128,10 @@
                                 上傳圖片:<input type="file" name="upFile"></br>
                                 <input type="text" name="RESTAURANT_NAME" placeholder="請輸入餐廳名稱">
                                 <input type="text" name="RESTAURANT_INFRO" placeholder="請輸入餐廳簡介">
-                                <input type="text" name="RESTAURANT_STATUS" placeholder="請輸入狀態(1:上架 2:下架)">
+                                <input type="text" name="RESTAURANT_STATUS" placeholder="請輸入狀態(1:上架 0:下架)">
                                 <input type="text" name="GARD_ID" placeholder="屬於哪一茶園(請輸入編號)">                               
                                 <!-- <input type="submit" placeholder="新增"> -->
-                                <button class="btn-confirm" type="submit">新增餐廳</button>
+                                <button class="btn-confirm" type="submit" >新增餐廳</button>
                             </form>
                             <table>
                                 <tr>
@@ -174,7 +169,7 @@
                         <div class="tab tab3">
                             旅館管理
                             <form>
-                                <input type="text" v-model="HOTEL_ID" placeholder="請輸入旅館編號，從1開始" />
+                                <input onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" type="text" v-model="HOTEL_ID" placeholder="請輸入旅館編號，從1開始" />
                                 <button class="btn-confirm" type="button" @click="query_hotel_id">送出查詢</button>
                                 <button class="btn-confirm" type="button" @click="get_hotels">回到列表</button>
 
@@ -184,7 +179,7 @@
                                 上傳圖片:<input type="file" name="upFile"></br>
                                 <input type="text" name="HOTEL_NAME" placeholder="請輸入旅館名稱">
                                 <input type="text" name="HOTEL_INFRO" placeholder="請輸入旅館簡介">
-                                <input type="text" name="HOTEL_STATUS" placeholder="請輸入狀態(1:上架 2:下架)">
+                                <input type="text" name="HOTEL_STATUS" placeholder="請輸入狀態(1:上架 0:下架)">
                                 <input type="text" name="GARD_ID" placeholder="屬於哪一茶園(請輸入編號)">                               
                                 <!-- <input type="submit" placeholder="新增"> -->
                                 <button class="btn-confirm" type="submit">新增旅館</button>
@@ -222,6 +217,13 @@
                         </div>
                     </div>
                 </div>
+                    <!-- 燈箱 -->
+                    <div class="overlay" v-if="lightBox_show">
+                        <article>
+                        <h1>{{inner_text}}</h1>
+                        <button type="button" class="btn_modal_close" @click="lightBox_show = false">{{inner_btn_text}}</button>
+                        </article>
+                    </div>
             </div>
         </main>
         

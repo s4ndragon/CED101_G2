@@ -18,10 +18,6 @@
                 <h1 id="logo"><img src="images/common/logo.png" alt="" /></h1>
             </a>
 
-            <!-- 會員icon放置區 -->
-            <a href="#">
-                <img class="memicon" src="images/common/user.png" alt="" />
-            </a>
         </nav>
         <aside class="aside">
             <ul class="nav_list">
@@ -75,16 +71,17 @@
                         <div class="tab tab1 -on">
                             <form>
                                 <!-- <input type="text" v-model="add_no" placeholder="請輸入管理者編號" /> -->
-                                <input type="text" v-model="add_id" placeholder="請輸入管理者帳號" />
-                                <input type="text" v-model="add_name" placeholder="請輸入管理者姓名" />
-                                <input type="text" v-model="add_psw" placeholder="請輸入管理者密碼" />
+                                <input onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" type="text" v-model="add_name" placeholder="請輸入姓名(英、數字)" />
+                                <input onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" type="text" v-model="add_id" placeholder="請輸入帳號(英、數字)" />
+                                <input onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" type="text" v-model="add_psw" placeholder="請輸入密碼(英、數字)" />
                                 <button type="button" class="btn-confirm" @click="insert_admins">新增管理員</div>
+                                
                             </form>
                             <table>
                                 <tr>
                                     <th>管理者編號#</th>
-                                    <th>管理者帳號</th>
                                     <th>管理者姓名</th>
+                                    <th>管理者帳號</th>
                                     <th>管理者密碼</th>
                                     <th>修改確認</th>
                                 </tr>
@@ -94,37 +91,34 @@
                                         <td>{{item.ADMIN_ID}}</td>
                                         <td>{{item.ADMIN_NAME}}</td>
                                         <td>{{item.ADMIN_PW}}</td>
-                                        <td><button class="btn-delete" type="button" @click="delete_admins(item.ADMIN_NO)">刪除</button></td>
+                                        <td>
+                                            <button class="btn-delete" type="button" @click="delete_admins(item.ADMIN_NO)">刪除</button>
+                                           
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>                                                  
                     </div>
+                     <!-- 燈箱 -->
+                    <div class="overlay" v-if="lightBox_show">
+                        <article>
+                        <h1>{{inner_text}}</h1>
+                        <button type="button" class="btn_modal_close" @click="lightBox_show = false">{{inner_btn_text}}</button>
+                        </article>
+                    </div>
                 </div>
             </div>
         </main>
+        <!-- footer -->
+        @@include('layout/footer.html')
         
-        <button type="button" class="btn_modal">開啟 Modal 彈跳視窗</button>
+      
 
-        <!-- 成功 -->
-        <div class="overlay">
-            <article>
-            <h1>已修改完成</h1>
-            <button type="button" class="btn_modal_close">資料已寫入，請安心關閉</button>
-            </article>
-        </div>
 
-        <!-- 失敗 -->
-        <div class="overlay">
-            <article>
-            <h1>無法修改</h1>
-            <button type="button" class="btn_modal_close">資料有誤，請重新輸入</button>
-            </article>
-        </div>
        
 
-        <!-- 燈箱 -->
- 
+       
 
         <script src="./js/vue.js"></script>
         <script src="js/admin_admin_vue.js"></script>
