@@ -18,8 +18,8 @@
                 <h1>找茶討論</h1>
             </div>
         </div>
-        <button class="addtour">
-            <a href="03_discuss_pub.html">我要發文
+        <button class="addtour" @click="pub">
+            <a>我要發文
             </a>
             <img class="dis_hand_pub" src="./images/discuss/hand_button.png" alt="">
         </button>
@@ -120,7 +120,7 @@
                                 </form>
                             </div>
                          </div>
-                         <div class="overlay2" style="display: none;" >
+                         <div class="overlay2 overlay" style="display: none;" >
                             <div class="modal">
                                 <form method="post" >
                                     <p class="welcome">檢舉成功！</p>
@@ -141,7 +141,7 @@
                     lightbox.style.display = 'none';
                 },
                 send_data() {
-                    if (this.memRows.length == 0) {
+                    if (app2.memRows.length == 0) {
                         app2.lightbox = true;
                     } else {
                         $.ajax({
@@ -220,6 +220,13 @@
 
                     }
 
+                },
+                pub: function () {
+                    if (this.memRows.length == 0) {
+                        app2.lightbox = true;
+                    } else {
+                        location.href = '03_discuss_pub.html';
+                    }
                 },
                 showBox: function (ART_NO) {
                     let lightbox = document.querySelectorAll('.overlay')[0];
