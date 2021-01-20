@@ -1,7 +1,8 @@
 <?php
+    session_start();    
     $reason = isset($_POST["size"])?$_POST["size"]:""; 
     $msgNo = isset($_POST["msg_reg"])?$_POST["msg_reg"]:""; 
-    
+    $mem = $_SESSION["MEM_NO"];
     //------------------
 try{
     require_once("./connect.php");
@@ -12,7 +13,7 @@ try{
                 AMR_CONTENT,
                 AMR_STATUS
             ) 
-            VALUES(1,'$msgNo',now(),'$reason',0)";
+            VALUES('$mem','$msgNo',now(),'$reason',0)";
 
     $article = $pdo->prepare($sql);
     $article->execute();

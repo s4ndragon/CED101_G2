@@ -14,7 +14,8 @@ try {
     //接到之後要做的SQL指令
     //:後面+名字會變成一個變數 ->Php 寫sql的時候的寫法
 	$sql = "select * 
-			from garden
+            from garden
+            order by GARD_ID desc
             ";
 
     // $grouporddata = $pdo->query($sql);
@@ -42,9 +43,9 @@ try {
         for($i=0;$i < count($per_ord_datarow);$i++){
 
             if($per_ord_datarow[$i]["GARD_STATUS"] == 0){
-                $per_ord_datarow[$i]["ischecked"] = true;
-            }else{
                 $per_ord_datarow[$i]["ischecked"] = false;
+            }else{
+                $per_ord_datarow[$i]["ischecked"] = true;
             };
 
         };

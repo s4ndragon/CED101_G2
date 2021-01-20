@@ -214,9 +214,9 @@ new Vue({
 
         edit_gardens: async function (GARD_ID, key) {
             if (this.gardens[key].ischecked == true) {
-                this.GARD_STATUS = 0
-            } else if (this.gardens[key].ischecked == false) {
                 this.GARD_STATUS = 1
+            } else if (this.gardens[key].ischecked == false) {
+                this.GARD_STATUS = 0
             }
 
             const res = await fetch('./phps/admin_UpdGardss.php', {

@@ -13,8 +13,9 @@ try {
   
     //接到之後要做的SQL指令
     //:後面+名字會變成一個變數 ->Php 寫sql的時候的寫法
-	$sql = "select * 
-			from GARDEN_MSG_REP
+	$sql = "select a.MSG_REP_NO MSG_REP_NO, a.MEM_NO MEM_NO, a.MSG_NO MSG_NO, b.MSG_CONTENT MSG_CONTENT, a.MSG_REP_DATE MSG_REP_DATE, a.MSG_REP_CONTENT MSG_REP_CONTENT, a.MSG_REP_STATUS MSG_REP_STATUS
+            from GARDEN_MSG_REP a join GARDEN_MSG b on a.MSG_NO=b.MSG_NO
+            order by MSG_REP_NO	desc
             ";
 
     // $grouporddata = $pdo->query($sql);
@@ -38,18 +39,7 @@ try {
         //取回一筆資料
         $per_ord_datarow = $per_ord_data->fetchAll(PDO::FETCH_ASSOC);
 
-        //有3種情形的寫法
-                //將取回的0或1轉回字串  傳回前台
-        for($i=0;$i < count($per_ord_datarow);$i++){
-
-            if($per_ord_datarow[$i]["MSG_REP_STATUS"] != 0){
-                $per_ord_datarow[$i]["ischecked"] = false;
-            }else{
-                $per_ord_datarow[$i]["ischecked"] = true ;
-            };
-
-        };
-        
+           
         //送出json字串
         echo json_encode($per_ord_datarow);
         // echo $managerdatarow;

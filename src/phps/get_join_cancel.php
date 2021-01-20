@@ -2,6 +2,8 @@
 try {
     session_start();
     require_once("./connect.php");
+    if(isset($_SESSION["MEM_ID"])){
+
 
 	$sql = "select t.TOUR_ID, t.TOUR_TITLE, t.TOUR_SETOFFTIME, t.NUM_OF_PARTICIPANTS, t.TOUR_PEOPLE, j.mem_no
             from tour t join tour_join J 
@@ -36,7 +38,9 @@ try {
         echo json_encode($get_mine_tour);
         // echo $managerdatarow;
     }
-
+    }else{
+        echo "[]";
+    }
 } catch (PDOException $e) {
     echo "系統錯誤, 請通知系維護人員~<br>";
     // echo "錯誤行號 : " . $e->getLine() . "<br>";

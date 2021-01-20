@@ -15,7 +15,7 @@ try {
     //:後面+名字會變成一個變數 ->Php 寫sql的時候的寫法
 	$sql = "select * 
             from tour
-            order by TOUR_ID asc
+            order by TOUR_ID desc
             ";
 
     // $grouporddata = $pdo->query($sql);

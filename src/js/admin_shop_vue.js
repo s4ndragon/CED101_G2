@@ -14,9 +14,7 @@ new Vue({
         add_PRICE: '',
         ord_no: '',
         ORDERS_NO: '',
-        lightBox_show: false,
-        inner_text: '',
-        inner_btn_text: '',
+     
     },
 
     methods: {
@@ -193,35 +191,6 @@ new Vue({
             console.log(key)
             this.orders[key].RECEIVER_TEL = event.currentTarget.value
         },
-
-        edit_orders: async function (ORDERS_NO, key) {
-            const res = await fetch('./phps/admin_UpdOrds.php', {
-                method: 'POST',
-                mode: 'same-origin',
-                credentials: 'same-origin',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    ORDERS_NO: ORDERS_NO,
-                    // dealState: this.orders[key].dealState,
-                    DELIVERY: this.orders[key].DELIVERY,
-                    PAY: this.orders[key].PAY,
-                    DISCOUNT: this.orders[key].DISCOUNT,
-                    TOTAL: this.orders[key].TOTAL,
-                    RECEIVER_NAME: this.orders[key].RECEIVER_NAME,
-                    RECEIVER_ADDRESS: this.orders[key].RECEIVER_ADDRESS,
-                    RECEIVER_TEL: this.orders[key].RECEIVER_TEL,
-                }),
-            })
-
-            //燈箱
-            this.lightBox_show = true
-            this.inner_text = '已修改完成'
-            this.inner_btn_text = '資料已寫入，請安心關閉'
-
-            this.get_orders()
-        },
     },
 
     created() {
@@ -231,6 +200,23 @@ new Vue({
 
     components: {
         orderdiv: {
+            data() {
+                return {
+                    dealStates: ['0(未付款)', '1(已付款)', '2(未出貨)', '3(已出貨)'],
+                    DELIVERY: '',
+                    PAY: '',
+                    DISCOUNT: '',
+                    TOTAL: '',
+                    RECEIVER_NAME: '',
+                    RECEIVER_ADDRESS: '',
+                    RECEIVER_TEL: '',
+                    ORDERS_NO: '',
+                    DEL_STATE:"",
+                    lightBox_show: false,
+                    inner_text: '',
+                    inner_btn_text: ''
+                }
+            },
             props: ['item'],
             template: `    
             <div>
@@ -238,7 +224,7 @@ new Vue({
                 <div><span>{{item.MEMBER}}</span></div>
                 <div>
                 <span>
-                    <select name="訂單狀態" v-model="selecteddealState">
+                    <select name="訂單狀態" v-model="DEL_STATE">
                         <option v-for="(dealState,index) in dealStates" :value="index">
                             {{dealState}}
                         </option>
@@ -251,8 +237,7 @@ new Vue({
                     <input
                         type="text"
                         size="4"
-                        :value="item.DELIVERY"
-                        @keyup="changeDELIVERY($event,key)"
+                        v-model="DELIVERY"
                     />
                     </span>
                 </div>
@@ -261,8 +246,7 @@ new Vue({
                     <input
                         type="text"
                         size="3"
-                        :value="item.PAY"
-                        @keyup="changePAY($event,key)"
+                        v-model="PAY"
                     />
                     </span>
                 </div>
@@ -271,8 +255,7 @@ new Vue({
                     <input
                         type="text"
                         size="1"
-                        :value="item.DISCOUNT"
-                        @keyup="changeDISCOUNT($event,key)"
+                        v-model="DISCOUNT"
                     />
                     </span>
                 </div>
@@ -280,9 +263,8 @@ new Vue({
                 <span>
                     <input
                         type="text"
-                        size="1"
-                        :value="item.TOTAL"
-                        @keyup="changeTOTAL($event,key)"
+                        size="3"
+                        v-model="TOTAL"
                     />
                     </span>
                 </div>
@@ -290,9 +272,8 @@ new Vue({
                 <span>
                     <input
                         type="text"
-                        size="1"
-                        :value="item.RECEIVER_NAME"
-                        @keyup="changeRECEIVER_NAME($event,key)"
+                        size="3"
+                       v-model="RECEIVER_NAME"
                     />
                     </span>
                 </div>
@@ -300,8 +281,7 @@ new Vue({
                 <span>
                     <input
                         type="text"
-                        :value="item.RECEIVER_ADDRESS"
-                        @keyup="changeRECEIVER_ADDRESS($event,key)"
+                        v-model="RECEIVER_ADDRESS"
                     />
                     </span>
                 </div>
@@ -309,9 +289,8 @@ new Vue({
                 <span>
                     <input
                         type="text"
-                        size="8"
-                        :value="item.RECEIVER_TEL "
-                        @keyup="changeRECEIVER_TEL($event,key)"
+                        size="10"
+                        v-model="RECEIVER_TEL"
                     />
                     </span>
                 </div>
@@ -320,21 +299,73 @@ new Vue({
                     <input
                         type="button"
                         class="btn-delete"
-                        @click="edit_orders(item.ORDERS_NO,key)"
+                        @click="edit_orders"
                         value="確認修改"
                     />
                     </span>
                 </div>
+                <!-- 燈箱 -->
+                <div class="overlay" v-if="lightBox_show">
+                    <article>
+                        <h1>{{inner_text}}</h1>
+                        <button type="button" class="btn_modal_close" @click="lightBox_show = false">
+                            {{inner_btn_text}}
+                        </button>
+                    </article>
+                </div>
             </div>`,
-            data() {
-                return {
-                    dealStates: ['0(未付款)', '1(已付款)', '2(未出貨)', '3(已出貨)'],
-                }
-            },
+            
             computed: {
-                selecteddealState() {
-                    return this.item.DEL_STATE
+                // selecteddealState() {
+                //     return this.item.DEL_STATE
+                // },
+            },
+
+            methods: {
+                edit_orders: async function () {
+                    // console.log('0000')
+                    const res = await fetch('./phps/admin_UpdOrds.php', {
+                        method: 'POST',
+                        mode: 'same-origin',
+                        credentials: 'same-origin',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            ORDERS_NO: this.ORDERS_NO,
+                            // dealState: this.orders[key].dealState,
+                            DELIVERY: this.DELIVERY,
+                            PAY: this.PAY,
+                            DISCOUNT: this.DISCOUNT,
+                            TOTAL: this.TOTAL,
+                            RECEIVER_NAME: this.RECEIVER_NAME,
+                            RECEIVER_ADDRESS: this.RECEIVER_ADDRESS,
+                            RECEIVER_TEL: this.RECEIVER_TEL,
+                            DEL_STATE: this.DEL_STATE
+
+                        }),
+                    })
+
+                    //燈箱
+                    this.lightBox_show = true
+                    this.inner_text = '已修改完成'
+                    this.inner_btn_text = '資料已寫入，請安心關閉'
+
+                    this.get_orders()
                 },
+            },
+            created() {
+            },
+            mounted() {
+                this.DELIVERY = this.item.DELIVERY
+                this.DEL_STATE= this.item.DEL_STATE
+                this.PAY = this.item.PAY
+                this.DISCOUNT = this.item.DISCOUNT
+                this.TOTAL = this.item.TOTAL
+                this.RECEIVER_NAME = this.item.RECEIVER_NAME
+                this.RECEIVER_ADDRESS = this.item.RECEIVER_ADDRESS
+                this.RECEIVER_TEL = this.item.RECEIVER_TEL
+                this.ORDERS_NO = this.item.ORDERS_NO
             },
         },
     },
