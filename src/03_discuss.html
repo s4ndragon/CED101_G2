@@ -51,8 +51,9 @@
                                 alt="" @click="addheart(artRow.ART_NO)">
                             <img class=" memi" src="./images/common/messenger.png" alt="">
                             <span class="com_num">{{artRow.msg}}</span>
+                            <!-- 檢舉 -->
                             <div class="excl" @click="showBox(artRow.ART_NO)">
-                                <img class="excl" v-if="artRow.ART_NO==34"
+                                <img class="excl" v-if="artRow.MEM_NO!=memRows.MEM_NO"
                                     src="./images/common/852019_exclamation_512x512.png" alt="">
                             </div>
                             <div class="fb-share-button"
@@ -167,27 +168,15 @@
             data: {
                 artno: "",
                 articlesRows: [],
+                memRows: [],
             },
 
             methods: {
-                // 有問題ㄉ迴圈有問題ㄉ迴圈有問題ㄉ迴圈有問題ㄉ迴圈有問題ㄉ迴圈有問題ㄉ迴圈有問題ㄉ迴圈有問題ㄉ迴圈有問題ㄉ迴圈有問題ㄉ迴圈有問題ㄉ迴圈有問題ㄉ迴圈有問題ㄉ迴圈有問題ㄉ迴圈有問題ㄉ迴圈
-                // ILike(arno) {
-                // console.log(this.articlesRows[1][2].ART_NO)
-                // for (let i = 0; i < this.articlesRows[1].length; i++) {
-                // this.$emit('changeHeart');
-                // console.log(this.articlesRows[1][i].ART_NO)
-
-                // if (this.articlesRows[1][i].ART_NO == arno) {
-                //     document.getElementById(arno).src = './images/common/like.png';
-                // return './images/common/like.png' //顯示實心
-                // } else {
-                // return './images/common/heart.png'
-                //     }
-                // }
-                // },
-
                 // 加入收藏愛心
                 addheart(arno) {
+                    // if (this.memRows.length == 0) {
+                    //     app2.lightbox = true;
+                    // }
                     if ($('#' + arno).attr('title') == "add") {
                         $('#' + arno).attr('title', "noadd");
                         $('#' + arno).attr('src', "./images/common/like.png");
@@ -197,10 +186,10 @@
                             dataType: 'text',             // 回傳資料
                             data: { arno: arno },                 // 將表單資料用打包起來送出去
                             success: function () {       // 成功以後會執行這個方法
-                                // console.log('good');
+                                console.log('good');
                             },
                             error: function () {
-                                // console.log('not good');
+                                console.log('not good');
                             }
                         });
                     } else if ($('#' + arno).attr('title') == "noadd") {
@@ -213,10 +202,10 @@
                             dataType: 'text',             // 回傳資料
                             data: { arno: arno },                 // 將表單資料用打包起來送出去
                             success: function () {       // 成功以後會執行這個方法
-                                // console.log('good');
+                                console.log('good');
                             },
                             error: function () {
-                                // console.log('not good');
+                                console.log('not good');
                             },
                         });
                     }
@@ -228,8 +217,8 @@
                 },
             },
             mounted() {
+                //抓文章資料
                 let articlesRows;
-                //============去server端拿資料
                 let xhr = new XMLHttpRequest();
                 xhr.onload = function () {
                     app.articlesRows = JSON.parse(xhr.responseText);
@@ -238,9 +227,17 @@
                 xhr.open("get", "./phps/getArticles.php", true);
                 xhr.send(null);
 
-                var nowmem = sessionStorage.getItem('2');
+                // 抓會員資料
+                let memRows;
+                let xhr2 = new XMLHttpRequest();
+                xhr2.onload = function () {
+                    app.memRows = JSON.parse(xhr2.responseText);
+                    console.log(app.memRows);
+                };
+                xhr2.open("get", "./phps/member.php", true);
+                xhr2.send(null);
 
-                // =====filter=====
+                // 篩選
                 $('.list').click(function () {
                     let value = $(this).attr('data-filter');
                     if (value == 'all') {
@@ -252,7 +249,7 @@
                     }
                 });
 
-                // ======filter change
+                // 篩選切換
                 $('.list').click(function () {
                     $(this).addClass('fit');
                     $('.list').not(this).removeClass('fit');

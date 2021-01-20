@@ -1,6 +1,7 @@
 <?php
-echo $_FILES["file"]["error"];
-$errMsg = "";
+// echo 123;die;
+var_dump($_FILES["upfile"]);die;
+// $errMsg = "";
 try {
 	require_once("./connect_g.php");
     //.......確定是否上傳成功//決定檔案名稱    	
