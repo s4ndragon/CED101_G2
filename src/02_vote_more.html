@@ -77,18 +77,33 @@
                             <div id="btnSendVote" class="go" @click="sendScore">送出</div>
                         </form>
                     </div>
-
-                    <!-- 檢舉成功燈箱 -->
-                    <div class="okbox_wrapper" v-if="okbox">
-                        <div class="modal2">
-                                <p class="welcome">評分成功</p>
-                                <button @click="close_okbox">確認</button>
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </div>
+
+        <!-- 評分成功燈箱 -->
+        <div class="okbox_wrapper" v-if="okbox">
+            <div class="modal2">
+                    <p class="welcome">評分成功</p>
+                    <button @click="okbox = false" class="confirm">確認</button>
+            </div>
+        </div>
+
+        <!-- 一天只能評分一次燈箱 -->
+        <div class="okbox_wrapper" v-if="timeBox">
+            <div class="modal2">
+                    <p class="welcome">一天只能評分一次喔 !</p>
+                    <button @click="timeBox = false" class="confirm">確認</button>
+            </div>
+        </div>
+
+        <!-- 檢舉成功燈箱 -->
+        <!-- <div class="okbox_wrapper" v-if="judgeBox">
+            <div class="modal2">
+                    <p class="welcome">檢舉成功</p>
+                    <button @click="judgeBox = false" class="confirm">確認</button>
+            </div>
+        </div> -->
 
 
         <div id="commandall">
@@ -103,7 +118,8 @@
                                :msg-no="msgRow.MSG_NO"
                                @show-box="showModal(i)"
                                @close-box="closeModal(i)"
-                               @send-repo="sendReport(i)">
+                               @send-repo="sendReport(i)"
+                               @close-repo="closeRepBox(i)">
             </comment-component>
             <!--    留言+檢舉燈箱結束    -->
 
@@ -241,11 +257,19 @@
                                     </form>
                                 </div>
                             </div>
+
+                            <div class="repook" style="display: none;">
+                                <div class="modal2">
+                                    <p class="welcome">檢舉成功</p>
+                                    <button @click="close_repo" class="repook_bt">確認</button>
+                                </div>
+                            </div>
     
                         </div>
                     </div>
                 </div>
             `,
+
             methods: {
                 showModal_son(){
                     // 此子組件發出emit事件至父層的自定義事件(show-box)
@@ -256,6 +280,9 @@
                 },
                 sendRepo_son(){
                     this.$emit('send-repo');
+                },
+                close_repo(){
+                    this.$emit('close-repo');
                 }
                 
             },
@@ -276,6 +303,7 @@
                 lightbox: false,
                 lightbox_GARD_ID:'',
                 okbox: false,
+                timeBox: false,
 
                 rating: '您尚未評分',
                 sendRating:'',
@@ -334,10 +362,11 @@
                     if(this.memRows.length == 0){
                         app2.lightbox = true
                         this.lightbox = false
+                        this.rating = '您尚未評分'
                     }else{
                         if(this.today == this.pastDate[0].VOTE_DATE){
-                        alert('一天只能評分一次喔!')
                         this.lightbox = false
+                        this.timeBox = true
                         this.rating = '您尚未評分'
                     }else{
                         let xhr = new XMLHttpRequest();
@@ -348,7 +377,7 @@
                                 alert(xhr.status);
                             }
                         }
-                            xhr.open("post", "./phps/send_vote.php", true);
+                            xhr.open("post", "./phps/send_vote.php", false);
                             xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
                             //送出資料
                             let data_info = "GARD_VOTE=" + this.sendRating + "&" + "GARD_ID=" + this.targetPageId;
@@ -417,7 +446,9 @@
                             if(xhr.status == 200){ //success
                                 let modal = document.querySelectorAll('.modal_wrapper');
                                 modal[i].style.display = 'none';
-                                alert('檢舉成功')
+                                
+                                let repook = document.querySelectorAll('.repook');
+                                repook[i].style.display = '';
                             }else{
                                 alert(xhr.status);
                             }
@@ -427,6 +458,11 @@
                         //送出資料
                         let data_info = `MSG_NO=${this.msgRows[i].MSG_NO}&MSG_REP_CONTENT=${document.querySelector('input[name="option"]:checked').value}`;
                         xhr.send(data_info);
+                },
+
+                closeRepBox(i){
+                    let repook = document.querySelectorAll('.repook');
+                    repook[i].style.display = 'none';
                 },
 
                 sendComm(){
@@ -456,10 +492,6 @@
                         }
                     }
                 },
-
-                close_okbox(){
-                    this.okbox = false
-                }
             },
 
             mounted() {

@@ -422,7 +422,7 @@ let tourApp = new Vue({
         locN: true,
         locC: true,
         locS: true,
-
+        memNO: 1,
         tourId: "",
         addCase: "",
         memRows: '',
@@ -469,8 +469,10 @@ let tourApp = new Vue({
                     let showHeart = document.getElementById(list);
                     showHeart.src = "./images/common/like.png";
                     showHeart.title = "取消收藏";
+
                 }
-            }, 10);
+                console.log(123);
+            }, 350);
         },
         getMem() {
             let xhr = new XMLHttpRequest();
@@ -485,12 +487,37 @@ let tourApp = new Vue({
             xhr.open("get", "./phps/member.php", true);
             xhr.send(null);
         },
+        getLikeTour() {
+            setTimeout(() => {
+                let xhr = new XMLHttpRequest();
+                xhr.onload = function () {
+                    if (xhr.status == 200) { //success
+                        tourApp.FavortieLists = JSON.parse(xhr.responseText);
+                        console.log(321);
+                        console.log(tourApp.FavortieLists);
+                    } else {
+                        alert(xhr.status);
+                    }
+                };
+                let memNo = this.memRows.MEM_NO;
+                var url = "./phps/getTourFavoriteList.php?mem_no=" + memNo;
+                xhr.open("Get", url, true);
+                xhr.send(null);
+
+            }, 100);
+        },
 
     },
     mounted() {
         this.getMem();
+
+    },
+    beforeUpdate() {
+
+
     },
     updated() {
+        this.getLikeTour();
         this.loadFavorite();
     },
 
