@@ -2,8 +2,8 @@
 try {
     //用來修改FEATURES資料的程式
     require_once("./connect.php");
-    $psn=26;
-    $IMG=6;                                                     ;
+    $psn=47;
+    $IMG=4;                                                     ;
     $FEATURES="";
     for ($i=1; $i <= $IMG; $i++) { 
         $FEATURES.="./images/shopping/$psn-$i.jpg|";
