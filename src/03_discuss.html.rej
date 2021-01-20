@@ -1,0 +1,12 @@
+diff a/src/03_discuss.html b/src/03_discuss.html	(rejected hunks)
+@@ -51,8 +51,9 @@
+                                 alt="" @click="addheart(artRow.ART_NO)">
+                             <img class=" memi" src="./images/common/messenger.png" alt="">
+                             <span class="com_num">{{artRow.msg}}</span>
++                            <!-- 檢舉 -->
+                             <div class="excl" @click="showBox(artRow.ART_NO)">
+-                                <img class="excl" v-if="artRow.ART_NO==34"
++                                <img class="excl" v-if="artRow.MEM_NO!=memRows.MEM_NO"
+                                     src="./images/common/852019_exclamation_512x512.png" alt="">
+                             </div>
+                             <div class="fb-share-button"
