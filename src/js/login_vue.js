@@ -159,16 +159,8 @@ Vue.component("log_reg", {
                 if (xhr.status == 200) {
                     //success
                     member = JSON.parse(xhr.responseText);
-                    // console.log(member);
                     if (member.MEM_ID) {
-                        //如果有回傳一個有會員資料的物件, 表示登入成功
-                        $("#spanLogin").innerHTML = "登出";
-                        // $id("memName").innerText = member.memName;
-                        //將登入表單上的資料清空，並隱藏起來
-                        // $id("lightBox").style.display = "none";
-                        // $id("MEM_ID").value = "";
-                        // $id("MEM_PW").value = "";
-                        $(".class").css("display", "none");
+                        $(".cover").css("display", "none");
                     } else {
                         alert("帳密錯誤");
                     }
@@ -177,9 +169,6 @@ Vue.component("log_reg", {
                 }
             };
             xhr.open("post", "./phps/login.php", true);
-            // xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
-            // let data_info = `MEM_ID=${$id("MEM_ID").value}&MEM_PW=${$id("MEM_PW").value}`;
-            // xhr.send(data_info);
             xhr.send(null);
         },
         getLoginInfo: function () {
@@ -191,7 +180,7 @@ Vue.component("log_reg", {
                     //如果有登入
                     // document.getElementById("MEM_NICKNAME").innerText = member.MEM_NICKNAME;
                     document.getElementById("spanLogin").innerText = "登出";
-                    $(".class").css("display", "none");
+                    // $(".class").css("display", "none");
                 }
             };
             xhr.open("get", "./phps/get_login_info.php", true);
