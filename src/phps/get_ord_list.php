@@ -3,6 +3,7 @@ try {
     session_start();
     require_once("./connect.php");
 
+    if(isset($_SESSION["MEM_ID"])){
 	$sql = "select * 
             from orders
             where MEMBER = :MEM_NO
@@ -33,6 +34,9 @@ try {
         echo json_encode($get_ord_list);
         // echo $managerdatarow;
     }
+} else {
+    echo "[]";
+}
 
 } catch (PDOException $e) {
     echo "系統錯誤, 請通知系維護人員~<br>";

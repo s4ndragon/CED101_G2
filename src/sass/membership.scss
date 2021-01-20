@@ -887,13 +887,9 @@ main {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.336);
 }
-#num_attendency {
-    display: none;
-}
+
 
 .num_attendency {
-    // border: 1px solid red;
-    // width: $main;
     display: fixed;
     flex-direction: column;
     align-items: center;
@@ -992,9 +988,9 @@ main {
 .delete_confirm,
 .cancel_confirm {
     // border: 1px solid black;
-    position: relative;
     display: flex;
     flex-direction: column;
+    align-self: center;
     align-items: center;
     justify-content: center;
     width: 300px;
@@ -1004,7 +1000,7 @@ main {
     vertical-align: middle;
     left: 50%;
     margin-left: -10%;
-    top: 50%;
+    top: 45%;
     height: 150px;
     z-index: 10000;
     border-radius: 25px;

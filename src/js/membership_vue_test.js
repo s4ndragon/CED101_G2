@@ -20,12 +20,12 @@ Vue.component("tour", {
                             <div class="tour_title">{{memTour.TOUR_TITLE}}</div>
                             <div class="arrow down"></div>
                             <div class="tour_date">{{memTour.TOUR_SETOFFTIME}}</div>
-                            <div class="tour_attendency">人數：<span class="attend attend_1">{{memTour.NUM_OF_PARTICIPANTS}}</span>／<span class="require require_1">{{memTour.TOUR_PEOPLE}}</span></div>
+                            <div class="tour_attendency" @click="showAttendency">人數：<span class="attend attend_1">{{memTour.NUM_OF_PARTICIPANTS}}</span>／<span class="require require_1">{{memTour.TOUR_PEOPLE}}</span></div>
                             <div class="tour_status_bar">
                                 <div class="tour_status">未成團</div>
-                                <div class="tour_join" @click="cancel(memTour.TOUR_ID, memTour.TOUR_STATUS)">取消</div>
+                                <div class="tour_join" @click="cancel_show(memTour.TOUR_ID)">取消</div>
                                 <div class="tour_check">
-                                    <a v-bind:href="'https://tibamef2e.com/ced101/project/g2/02_tour_more.html?TOUR_ID=' + memTour.tour_id">
+                                    <a v-bind:href="'https://tibamef2e.com/ced101/project/g2/02_tour_more.html?TOUR_ID=' + memTour.TOUR_ID">
                                     查看
                                     </a>
                                 </div>
@@ -43,7 +43,8 @@ Vue.component("tour", {
                                 <div class="tour_status">已過期</div>
                                 <div class="tour_join"></div>
                                 <div class="tour_check">
-                                    <a :href="'https://tibamef2e.com/ced101/project/g2/02_tour_more.html?TOUR_ID=' + mineTourOut.tour_id">
+                                    <a :href="'https://tibamef2e.com/ced101/project/g2/02_tour_more.html?TOUR_ID=' + mineTourOut.TOUR_ID
+                                    ">
                                     查看
                                     </a>
                                 </div>
@@ -57,7 +58,7 @@ Vue.component("tour", {
                             <div class="tour_title">{{mineTourCancel.TOUR_TITLE}}</div>
                             <div class="arrow down"></div>
                             <div class="tour_date">{{mineTourCancel.TOUR_SETOFFTIME}}</div>
-                            <div class="tour_attendency" @click="lightboxAttendency = true">人數：<span class="attend attend_1">{{mineTourCancel.NUM_OF_PARTICIPANTS}}</span>／<span class="require require_1">{{mineTourCancel.TOUR_PEOPLE}}</span></div>
+                            <div class="tour_attendency" @click="lightboxAttendency == true">人數：<span class="attend attend_1">{{mineTourCancel.NUM_OF_PARTICIPANTS}}</span>／<span class="require require_1">{{mineTourCancel.TOUR_PEOPLE}}</span></div>
                             <div class="tour_status_bar">
                                 <div class="tour_status">已取消</div>
                                 <div class="tour_join"></div>
@@ -82,7 +83,7 @@ Vue.component("tour", {
                             <div class="tour_attendency">人數：<span class="attend attend_1">{{joinTour.NUM_OF_PARTICIPANTS}}</span>／<span class="require require_1">{{joinTour.TOUR_PEOPLE}}</span></div>
                             <div class="tour_status_bar">
                                 <div class="tour_status">未成團</div>
-                                <div class="tour_join" @click="quit(joinTour.TOUR_ID, joinTour.MEM_NO)">退出</div>
+                                <div class="tour_join" @click="quit_show(joinTour.TOUR_ID) == true">退出</div>
                                 <div class="tour_check">
                                     <a :href="'https://tibamef2e.com/ced101/project/g2/02_tour_more.html?TOUR_ID=' + joinTour.tour_no">
                                     查看</a>
@@ -147,7 +148,7 @@ Vue.component("tour", {
                 <div v-if="cancel_lightbox" class="delete_confirm">
                     是否確認取消？
                     <div class="btn">
-                        <input type="button" @click="cancel(TOUR_ID, TOUR_STATUS)" id="btn_confirm" value="確認" />
+                        <input type="button" @click="cancel(TOUR_ID)" id="btn_confirm" value="確認" />
                         <input type="button"  @click="cancel_lightbox = false" id="btn_cancel" value="取消" />
                     </div>
                 </div>
@@ -155,8 +156,20 @@ Vue.component("tour", {
                 <div v-if="quit_lightbox" class="cancel_confirm">
                     是否確認退出？
                     <div class="btn">
-                        <input type="button" @click="quit(TOUR_ID, TOUR_STATUS, MEM_NO)" id="cancel_confirm_btn" value="確認" />
+                        <input type="button" @click="quit(TOUR_ID)" id="cancel_confirm_btn" value="確認" />
                         <input type="button" @click="quit_lightbox = false" id="recall_cancel" value="取消" />
+                    </div>
+                </div>
+                <!-- 人數燈箱 -->
+                <div class="bgd" v-if="lightboxAttendency" v-for="attendency in attendencys">
+                    <div class="num_attendency">
+                        <div class="close" @click="lightboxAttendency = false"></div>
+                        <div class="group">
+                            <div class="icon">
+                                <img :src="attendency.MEM_IMG" />
+                            </div>
+                            <div class="id">{{attendency.MEM_NICNAME}}</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -174,6 +187,10 @@ Vue.component("tour", {
             joinTourQuits: "",
             cancel_lightbox: false,
             quit_lightbox: false,
+            cancel_id: "",
+            quit_id: "",
+            lightboxAttendency: false,
+            attendencys: "",
         };
     },
     methods: {
@@ -284,8 +301,19 @@ Vue.component("tour", {
             // console.log(res);
             this.joinTourQuits = res;
         },
-
-        cancel: async function (TOUR_ID, TOUR_STATUS) {
+        cancel_show: function (TOUR_NO) {
+            this.cancel_lightbox = true;
+            this.cancel_id = TOUR_NO;
+        },
+        quit_show: function (TOUR_NO) {
+            this.quit_lightbox = true;
+            this.quit_id = TOUR_NO;
+        },
+        showAttendency: function () {
+            this.lightboxAttendency = true;
+        },
+        //取消揪團
+        cancel: async function () {
             const res = await fetch("./phps/cancel_tour.php", {
                 method: "POST",
                 mode: "same-origin",
@@ -294,15 +322,15 @@ Vue.component("tour", {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    TOUR_ID: TOUR_ID,
-                    TOUR_STATUS: TOUR_STATUS,
+                    TOUR: this.cancel_id,
                 }),
             });
-            this.cancel_lightbox = true;
+            this.cancel_lightbox = false;
             //重新撈取一次細項列表
             this.get_mine_tour();
         },
-        quit: async function (TOUR_ID, MEM_NO) {
+        //退出揪團
+        quit: async function () {
             const res = await fetch("./phps/quit_tour.php", {
                 method: "POST",
                 mode: "same-origin",
@@ -311,13 +339,29 @@ Vue.component("tour", {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    TOUR_ID: TOUR_ID,
-                    MEM_NO: MEM_NO,
+                    TOUR_id: this.quit_id,
                 }),
             });
-            this.quit_lightbox = true;
+            this.quit_lightbox = false;
             //重新撈取一次細項列表
             this.get_mine_join();
+        },
+        getAttendency: async function () {
+            const res = await fetch("./phps/getAttendency.php", {
+                method: "POST",
+                mode: "same-origin",
+                credentials: "same-origin",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    tourId: this.quit_id,
+                }),
+            }).then(function (data) {
+                return data.json();
+            });
+            // console.log(res);
+            this.attendencys = res;
         },
     },
     mounted() {
@@ -359,12 +403,12 @@ Vue.component("mine_fav", {
                             <div id="tour_list" class="fav_content">
                                 <div class="blog_container tour_blog" v-for="favTour in favTours">
                                     <img class="banner_img" :src="favTour.TOUR_IMG">
-                                    <div class="heart">
+                                    <div class="heart" @click="cancel_fav">
                                         <img class="like" src="./images/common/like.png" title="加入收藏" alt="">
                                     </div>
                                     <div class="blog_content_container">
                                         <div class="blog_title">
-                                            <a v-bind:href="'https://tibamef2e.com/ced101/project/g2/02_tour_more.html?TOUR_ID=' + favTour.tour_no">
+                                            <a v-bind:href="'https://tibamef2e.com/ced101/project/g2/02_tour_more.html?TOUR_ID=' + favTour.TOUR_ID">
                                             {{favTour.TOUR_TITLE}}
                                             </a>
                                         </div>
@@ -396,7 +440,7 @@ Vue.component("mine_fav", {
                         <div id="fav_product">
                             <div id="product_list" class="fav_content">
                                 <div class="blog_container product_blog" v-for="favProd in favProds">
-                                    <img class="banner_img" v-bind:src="'./images/shopping/' + favProd.img">
+                                    <img class="banner_img" :src="favProd.img">
                                     <div class="heart">
                                         <img class="like" src="./images/common/like.png" title="加入收藏" alt="">
                                     </div>
@@ -464,6 +508,20 @@ Vue.component("mine_fav", {
             // console.log(fav_prod);
             this.favProds = fav_prod;
         },
+        cancel_fav_tour: async function () {
+            const fav_prod = await fetch("./phps/cancel_fav_tour.php", {
+                method: "POST",
+                mode: "same-origin",
+                credentials: "same-origin",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            }).then(function (data) {
+                return data.json();
+            });
+            // console.log(fav_prod);
+            this.favProds = fav_prod;
+        },
     },
     mounted() {
         this.get_fav_tour();
@@ -496,8 +554,8 @@ Vue.component("mine_fav", {
             like[i].addEventListener("click", changeHeart);
         }
         function changeHeart() {
-            if (this.title == "加入收藏") {
-                this.title = "取消收藏";
+            if (this.title === "加入收藏") {
+                this.title === "取消收藏";
                 this.src = "./images/common/heart.png";
 
                 $(this).parent("div").parent("div").css({
@@ -523,11 +581,13 @@ Vue.component("mine_order", {
                                         <h5 class="order_date">下單時間</h5>
                                     </div> 
                                     <div class="order list_title" v-for="ordList in ordLists">
-                                        <h5 class="order_no">{{ordList.ORDERS_NO}}</h5>
-                                        <h5 class="order_status">{{ordList.DEL_STATE}}</h5>
-                                        <h5 class="order_payment">{{ordList.PAY}}</h5>
-                                        <h5 class="order_total">NT {{ordList.TOTAL}}</h5>
-                                        <h5 class="order_date">{{ordList.ORD_DATE}}</h5>
+                                        <a v-bind:href="'https://tibamef2e.com/ced101/project/g2/04_product.html?psn=' + ordList.ORDERS_NO">
+                                            <h5 class="order_no">{{ordList.ORDERS_NO}}</h5>
+                                            <h5 class="order_status">{{ordList.DEL_STATE}}</h5>
+                                            <h5 class="order_payment">{{ordList.PAY}}</h5>
+                                            <h5 class="order_total">NT {{ordList.TOTAL}}</h5>
+                                            <h5 class="order_date">{{ordList.ORD_DATE}}</h5>
+                                        </a>
                                     </div>                                 
                                 </div>
                             </div>
@@ -629,7 +689,7 @@ Vue.component("mine_profile", {
                                         <input type="text" name="confirm_new_pw" class="confirm_new_pw" />
                                     </div>
                                     <div class="btn_sent">
-                                        <button type="submit" class="button"/>送出</button>
+                                        <button type="submit" class="button">送出</button>
                                     </div>
                                 </form>
                             </div>

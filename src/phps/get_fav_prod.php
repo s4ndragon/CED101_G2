@@ -3,6 +3,9 @@ try {
     session_start();
     require_once("./connect.php");
 
+    if(isset($_SESSION["MEM_ID"])){
+
+
 	$sql = "select f.mem_no, p.name, p.info, p.img, p.psn
             from product_f f join product p
             on f.psn = p.psn
@@ -27,7 +30,9 @@ try {
         echo json_encode($get_fav_prod);
         // echo $managerdatarow;
     }
-
+    }else{
+        echo "[]";
+    }
 } catch (PDOException $e) {
     echo "系統錯誤, 請通知系維護人員~<br>";
     // echo "錯誤行號 : " . $e->getLine() . "<br>";

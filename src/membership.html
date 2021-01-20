@@ -8,6 +8,7 @@
         <!-- <script src="../node_modules/jquery/dist/jquery.js"></script> -->
         <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script> -->
         <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+        
         <!-- <script src="./js/membership.js"></script> -->
         <title>會員系統</title>
     </head>
@@ -47,59 +48,9 @@
                     <component :is="content"></component>
                 </div>
             </main>
-            <!-- 人數燈箱 -->
-            <!-- <component :is="lightbox"></component> -->
-            <!-- <div class="bgd"  v-if="lightboxAttendency" @click="lightboxAttendency = true"> </div> -->
-            <div id="num_attendency" v-if="lightboxAttendency">
-                <div class="close" @click="lightboxAttendency = false"></div>
-                <div class="num_1 group">
-                    <div id="num_1_icon" class="icon">
-                        <img src="./images/member/new_member.jpg" />
-                    </div>
-                    <div id="num_1_id" class="id">s4ndragon</div>
-                </div>
-                <div class="num_2 group">
-                    <div id="num_2_icon" class="icon">
-                        <img src="./images/member/new_member.jpg" />
-                    </div>
-                    <div id="num_2_id" class="id">wan</div>
-                </div>
-                <div class="num_3 group">
-                    <div id="num_3_icon" class="icon">
-                        <img src="./images/member/new_member.jpg" />
-                    </div>
-                    <div id="num_3_id" class="id">Tingting</div>
-                </div>
-                <div class="num_4 group">
-                    <div id="num_4_icon" class="icon">
-                        <img src="./images/member/new_member.jpg" />
-                    </div>
-                    <div id="num_4_id" class="id">guan</div>
-                </div>
-                <div class="num_5 group">
-                    <div id="num_5_icon" class="icon">
-                        <img src="./images/member/new_member.jpg" />
-                    </div>
-                    <div id="num_5_id" class="id">chieh</div>
-                </div>
-            </div>
+            
 
-            <!-- 刪除燈箱 -->
-            <!-- <div id="delete_confirm">
-                是否確認刪除？
-                <div class="btn">
-                    <input type="button" id="btn_confirm" value="確認" />
-                    <input type="button" id="btn_cancel" value="取消" />
-                </div>
-            </div> -->
-            <!-- 取消收藏燈箱 -->
-            <!-- <div id="cancel_confirm">
-                是否確認刪除？
-                <div class="btn">
-                    <input type="button" id="cancel_confirm_btn" value="確認" />
-                    <input type="button" id="recall_cancel" value="取消" />
-                </div>
-            </div> -->
+            
             <!-- @@include('layout/login_register.html')  -->
         </div>
         <!-- @@include('layout/member_main.html')  -->

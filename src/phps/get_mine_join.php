@@ -3,6 +3,10 @@ try {
     session_start();
     require_once("./connect.php");
 
+    if(isset($_SESSION["MEM_ID"])){
+
+   
+
 	$sql = "select t.TOUR_ID TOUR_ID, t.TOUR_TITLE TOUR_TITLE, t.TOUR_SETOFFTIME TOUR_SETOFFTIME, t.NUM_OF_PARTICIPANTS NUM_OF_PARTICIPANTS, t.TOUR_PEOPLE TOUR_PEOPLE, j.mem_no MEM_NO
             from tour t join tour_join J 
             on t.tour_id = j.tour_id 
@@ -38,6 +42,9 @@ try {
         echo json_encode($get_mine_join);
         // echo $managerdatarow;
     }
+}else{
+    echo "[]";
+}
 
 } catch (PDOException $e) {
     echo "系統錯誤, 請通知系維護人員~<br>";

@@ -6,12 +6,12 @@ try {
     $content = trim(file_get_contents("php://input")); 
     $decoded = json_decode($content, true);
 
-    $TOUR_ID = $decoded["TOUR_ID"]; //php叫物件內屬性的寫法
-  
+    $TOUR_ID = $decoded["TOUR"]; //php叫物件內屬性的寫法
+
     //接到之後要做的SQL指令
     //:後面+名字會變成一個變數 ->Php 寫sql的時候的寫法
-    $sql = "update from tour
-            set tour_status = 0
+    $sql = "update tour
+            set TOUR_STATUS = 0
             where TOUR_ID = :TOUR_ID
             ";
 
