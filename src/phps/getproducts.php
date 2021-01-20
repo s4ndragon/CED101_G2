@@ -6,9 +6,9 @@ try {
     $orderby =htmlspecialchars($orderby);
     if( strlen($orderby)<20){  
             if($_GET['type']=='所有商品'){
-            $sql = "select * from product  order by $orderby";
+            $sql = "select * from product  where ONSALE = 1 order by $orderby";
         }else{
-            $sql = "select * from product where type= :type order by $orderby";
+            $sql = "select * from product where type= :type and ONSALE = 1 order by $orderby";
         }
         
         $products = $pdo->prepare($sql);

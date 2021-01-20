@@ -35,7 +35,6 @@ function init() {
         loadcart();
     }
     if ($id('totalAmount')) {
-        console.log('aaaa')
         calcAmount();
     }
     //如果有總額
