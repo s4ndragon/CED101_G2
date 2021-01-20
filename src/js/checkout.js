@@ -87,9 +87,9 @@ function loaditems() {
                 <div class="img"><img src="${itemImg}" alt=""></div>
                 <div class='aside'>
                 <h4 class="prodtitle">${itemName}</h4>
-                <div>數量:<span>${itemNum}</span></div>
+                <div>數量：<span>${itemNum}</span></div>
                 <input type="hidden" name="${itemlist[i]}" value="${itemlist[i]},${itemNum},${itemPrice}">
-                <div>價格:<span>${itemPrice}</span></div>
+                <div>價格：<span>${itemPrice}</span></div>
                 </div>
                 `
             items.appendChild(newdiv);

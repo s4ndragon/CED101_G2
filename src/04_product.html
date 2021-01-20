@@ -26,8 +26,8 @@
 
                 <div class="info_content">
                     <div class="info">{{product.INFO}}</div>
-                    <div class="price">NT<span>{{product.PRICE}}</span></div>
-                    <div class="num">數量:
+                    <div class="price">NT <span>{{product.PRICE}}</span></div>
+                    <div class="num"><span>數量：</span>
                         <input type="number" v-model="itemNum" max='99' min='0' id="productNum">
                     </div><br><br>
                     <img :class="'addFavorite ' +product.PSN" src="./images/common/heart.png" alt="">

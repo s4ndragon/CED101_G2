@@ -32,9 +32,11 @@ $mainWidth: 90%;
     .product_img {
         overflow: hidden;
         width: 40%;
+        border-radius: 20px 0px 0 20px;
 
         @media all and (max-width: $small) {
             width: 100%;
+            border-radius: 20px 20px 0 0;
         }
 
         img {
@@ -44,7 +46,12 @@ $mainWidth: 90%;
 
     .info {
         text-align: center;
-        width: 60%;
+        width: 55%;
+        margin-left: 20px;
+
+        @media all and (max-width: $small) {
+            margin-left: 0;
+        }
 
         >h2 {
             margin-top: 40px;
@@ -65,6 +72,8 @@ $mainWidth: 90%;
             .price {
                 margin: 20px auto;
                 color: rgb(61, 221, 49);
+
+                font-size: 20px;
             }
 
             .num {
@@ -72,8 +81,8 @@ $mainWidth: 90%;
                 display: inline-block;
                 background-color: #fff;
 
-                select {
-                    vertical-align: text-bottom;
+                span {
+                    vertical-align: middle;
                 }
             }
 
@@ -83,6 +92,8 @@ $mainWidth: 90%;
 
 #productNum {
     text-align: center;
+    padding: 5px;
+    border-radius: 5px;
 }
 
 div.product_detail {
@@ -144,6 +155,7 @@ div.product_detail {
 
             td {
                 padding: 5px;
+                max-width: 250px;
             }
 
         }
