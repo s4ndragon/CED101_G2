@@ -1,9 +1,10 @@
 <?
+session_start();
 try {
     require_once("./connect.php");
     $sql = "select * from tour_collect where mem_no = :mem_no";
     $FavoriteList = $pdo->prepare($sql);
-    $FavoriteList->bindValue(":mem_no", $_GET['mem_no']);
+    $FavoriteList->bindValue(":mem_no", $_SESSION['MEM_NO']);
     $FavoriteList->execute();
     if ($FavoriteList->rowCount() == 0) { //找不到
         //傳回空的JSON字串

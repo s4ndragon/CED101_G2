@@ -93,8 +93,10 @@ Vue.component('all', {
 <div class="tour_browse" id="tourBrowseBlock">
     <div class="tour_block" id="tourBlock" v-for="(tourRow,index) in tours" >
         <div class="tour_img">
+        <div class="tour_img_text" >
             <p>{{tourRow.TOUR_TITLE}}</p>
             <p>{{tourRow.TOUR_SETOFFTIME}} 開團</p>
+        </div>
             <img :src="tourRow.TOUR_IMG" alt="">
             <div class="love_share">
                     <div class="love">
@@ -172,8 +174,10 @@ Vue.component('north', {
 <div class="tour_browse" id="tourBrowseBlock">
     <div class="tour_block" id="tourBlock" v-for="(tourRow,index) in tours" v-show="tourRow.GARD_LOCATE==filter">
         <div class="tour_img">
+        <div class="tour_img_text" >
             <p>{{tourRow.TOUR_TITLE}}</p>
             <p>{{tourRow.TOUR_SETOFFTIME}} 開團</p>
+            </div>
             <img :src="tourRow.TOUR_IMG" alt="">
             <div class="love_share">
                 <div class="love">
@@ -254,8 +258,10 @@ Vue.component('type', {
 <div class="tour_browse" id="tourBrowseBlock">
     <div class="tour_block" id="tourBlock" v-for="(tourRow,index) in tours" v-show="tourRow.GARD_TYPE==filter">
         <div class="tour_img">
+        <div class="tour_img_text" >
             <p>{{tourRow.TOUR_TITLE}}</p>
             <p>{{tourRow.TOUR_SETOFFTIME}} 開團</p>
+            </div>
             <img :src="tourRow.TOUR_IMG" alt="">
             <div class="love_share">
                 <div class="love">
@@ -334,8 +340,10 @@ Vue.component('price', {
 <div class="tour_browse" id="tourBrowseBlock">
     <div class="tour_block" id="tourBlock" v-for="(tourRow,index) in tours" v-show="tourRow.GARD_PRICE<=filter">
         <div class="tour_img">
+        <div class="tour_img_text" >
             <p>{{tourRow.TOUR_TITLE}}</p>
             <p>{{tourRow.TOUR_SETOFFTIME}} 開團</p>
+            </div>
             <img :src="tourRow.TOUR_IMG" alt="">
             <div class="love_share">
                 <div class="love">
