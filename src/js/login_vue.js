@@ -90,8 +90,8 @@ Vue.component("log_reg", {
                     </div>
                     <p class="forgot"><a href="#">忘記密碼？</a></p>
                     <div class="btn_container">
-                        <button @click="login" id="log-in" class="btn"/>登入</button>
-                        <button @click="closeLogin()" id="log-cancel" class="btn cancel"/>取消</button>
+                        <button @click="login" id="log-in" class="btn">登入</button>
+                        <button @click="closeLogin()" id="log-cancel" class="btn cancel">取消</button>
                     </div>
                 </form>
             </div>
@@ -105,8 +105,8 @@ Vue.component("log_reg", {
                         <input type="email"required autocomplete="off" id="get_email" name="get_email"/>
                     </div>
                     <div class="btn_container">
-                        <button class="btn"/>取回密碼</button>
-                        <button @click="closeLogin()" id="get-cancel" class="btn cancel"/>取消</button>
+                        <button class="btn">取回密碼</button>
+                        <button @click="closeLogin()" id="get-cancel" class="btn cancel">取消</button>
                     </div>
                     
                 </form>
@@ -139,8 +139,8 @@ Vue.component("log_reg", {
                         <input type="password"required autocomplete="off" id="re_memPw" name="re_memPw"/>
                     </div>
                     <div class="btn_container">
-                        <button type="submit" class="btn"/>註冊</button>
-                        <button @click="closeLogin()" id="reg-cancel" class="btn cancel"/>取消</button>
+                        <button type="submit" class="btn">註冊</button>
+                        <button @click="closeLogin()" id="reg-cancel" class="btn cancel">取消</button>
                     </div>
                 </form>
             </div>  
@@ -151,7 +151,7 @@ Vue.component("log_reg", {
     methods: {
         closeLogin() {
             console.log(123);
-            this.$emit('close');
+            this.$emit("close");
         },
         login: function () {
             let xhr = new XMLHttpRequest();
@@ -162,7 +162,7 @@ Vue.component("log_reg", {
                     // console.log(member);
                     if (member.MEM_ID) {
                         //如果有回傳一個有會員資料的物件, 表示登入成功
-                        $("#spanLogin").innerText = "登出";
+                        $("#spanLogin").innerHTML = "登出";
                         // $id("memName").innerText = member.memName;
                         //將登入表單上的資料清空，並隱藏起來
                         // $id("lightBox").style.display = "none";
@@ -199,7 +199,6 @@ Vue.component("log_reg", {
         },
     },
     mounted() {
-
         this.getLoginInfo();
         $(".form")
             .find("input, textarea")
@@ -245,7 +244,7 @@ var app2 = new Vue({
     el: "#nav",
     data: {
         lightbox: false,
-        memRows: '',
+        memRows: "",
     },
     methods: {
         closeLoginBox() {
@@ -253,23 +252,26 @@ var app2 = new Vue({
             console.log(123);
         },
         showLogin() {
-            this.lightbox = true;
-        },
-        addTourLogin() {
-
-
             if (this.memRows.length == 0) {
                 this.lightbox = true;
             } else {
-                window.location.href = './01_tourCreate.html';
+                this.lightbox = false;
+                window.location.href = "./membership.html";
             }
-
-
+        },
+        addTourLogin() {
+            if (this.memRows.length == 0) {
+                this.lightbox = true;
+            } else {
+                window.location.href = "./01_tourCreate.html";
+                // $("#spanLogin").css("display", "none");
+            }
         },
         getMem() {
             let xhr = new XMLHttpRequest();
             xhr.onload = function () {
-                if (xhr.status == 200) { //success
+                if (xhr.status == 200) {
+                    //success
                     app2.memRows = JSON.parse(xhr.responseText);
                     console.log(app2.memRows);
                 } else {
@@ -279,9 +281,23 @@ var app2 = new Vue({
             xhr.open("get", "./phps/member.php", true);
             xhr.send(null);
         },
+        logout() {
+            // console.log("logout");
+            let xhr = new XMLHttpRequest();
+            xhr.onload = function () {
+                document.getElementById("spanLogin").innerText = " ";
+                // if ((location.href = "https://tibamef2e.com/ced101/project/g2/membership.html")) {
+                if ((location.href = "http://localhost:8888/CED101_G2/dist/membership.html")) {
+                    window.location.href = "./homepage.html";
+                } else {
+                    window.history.go(0);
+                }
+            };
+            xhr.open("get", "./phps/logout.php", true);
+            xhr.send(null);
+        },
     },
     mounted() {
         this.getMem();
-
     },
 });
