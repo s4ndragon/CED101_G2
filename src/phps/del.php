@@ -28,6 +28,7 @@ try {
     // }else{
     //     echo "[]";
     // }
+    echo "hi";
 } catch (PDOException $e) {
     echo "系統錯誤, 請通知系維護人員~<br>";
     // echo "錯誤行號 : " . $e->getLine() . "<br>";
