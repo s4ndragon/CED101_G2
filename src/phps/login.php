@@ -2,6 +2,8 @@
 try {
     require_once("./connect.php");
 
+    if(isset($_SESSION["MEM_ID"])){
+    
     $MEM_ID = $_POST["MEM_ID"];
     $MEM_PW = $_POST["MEM_PW"];
     $sql = "select * from member where MEM_ID='$MEM_ID' and MEM_PW='$MEM_PW' and MEM_STATUS = 1";
@@ -33,7 +35,10 @@ try {
             // self.opener.location.reload();
             
             //     </script>';
-        }     
+        }    
+    } else{
+        echo "[]";
+    }
 } 
 catch (PDOException $e) {
     echo "錯誤原因 : ", $e->getMessage(), "<br>";

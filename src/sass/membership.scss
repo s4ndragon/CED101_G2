@@ -1036,6 +1036,10 @@ main {
         #recall_cancel {
             @include smallbtn3;
         }
+        #del_art_confirm,
+        #del_art_cancel {
+            @include smallbtn3;
+        }
     }
 }
 

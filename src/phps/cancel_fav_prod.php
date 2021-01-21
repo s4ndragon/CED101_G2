@@ -5,7 +5,7 @@ try {
 
     if(isset($_SESSION["MEM_ID"])){
 
-        //先接受前端送來的資料
+    //先接受前端送來的資料
     $content = trim(file_get_contents("php://input")); 
     $decoded = json_decode($content, true);
 
@@ -14,10 +14,12 @@ try {
 	$sql = "
             delete from product_f
             where PSN = :PSN
+            and MEM_NO = :MEM_NO
             ";
 
     $get_fav_prod = $pdo->prepare($sql);
     $get_fav_prod->bindValue(":PSN", $PSN);
+    $get_fav_prod->bindValue(":MEM_NO", $_SESSION["MEM_NO"]);
     // $get_fav_prod->bindValue(":MEM_ID", $_SESSION["MEM_ID"]);
 
     $get_fav_prod->execute();

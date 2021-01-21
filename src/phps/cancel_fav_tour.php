@@ -14,11 +14,12 @@ try {
 	$sql = "
             delete from tour_collect
             where TOUR_ID = :TOUR_ID
+            and MEM_NO = :MEM_NO
             ";
 
     $get_fav_prod = $pdo->prepare($sql);
     $get_fav_prod->bindValue(":TOUR_ID", $TOUR_ID);
-    // $get_fav_prod->bindValue(":MEM_ID", $_SESSION["MEM_ID"]);
+    $get_fav_prod->bindValue(":MEM_NO", $_SESSION["MEM_NO"]);
 
     $get_fav_prod->execute();
 
