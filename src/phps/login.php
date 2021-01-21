@@ -2,7 +2,6 @@
 try {
     require_once("./connect.php");
 
-    if(isset($_SESSION["MEM_ID"])){
     
     $MEM_ID = $_POST["MEM_ID"];
     $MEM_PW = $_POST["MEM_PW"];
@@ -36,9 +35,7 @@ try {
             
             //     </script>';
         }    
-    } else{
-        echo "[]";
-    }
+
 } 
 catch (PDOException $e) {
     echo "錯誤原因 : ", $e->getMessage(), "<br>";
