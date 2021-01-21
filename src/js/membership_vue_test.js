@@ -366,6 +366,17 @@ Vue.component("tour", {
         },
     },
     mounted() {
+        
+        $(".arrow").click(function () {
+            console.log("hihi");
+            $(this).toggleClass("down").toggleClass("up");
+            $(this).parent().toggleClass("extend");
+            $(this).siblings(".tour_date").toggle();
+            $(this).siblings(".tour_status_bar").toggle().css("width", "80%");
+            $(this).siblings(".tour_status_bar").children().toggle();
+            $(this).siblings(".tour_attendency").toggle().css("width", "80%");
+        });
+
         this.get_mine_tour();
         this.get_mine_past();
         this.get_mine_cancel();
@@ -374,16 +385,6 @@ Vue.component("tour", {
         this.get_join_past();
         this.get_join_cancel();
         this.get_join_quit();
-
-        $(".arrow").click(function () {
-            // console.log('hihi')
-            $(this).toggleClass("down").toggleClass("up");
-            $(this).parent().toggleClass("extend");
-            $(this).siblings(".tour_date").toggle();
-            $(this).siblings(".tour_status_bar").toggle().css("width", "80%");
-            $(this).siblings(".tour_status_bar").children().toggle();
-            $(this).siblings(".tour_attendency").toggle().css("width", "80%");
-        });
     },
 });
 
@@ -737,7 +738,6 @@ Vue.component("mine_article", {
         this.get_mine_art();
     },
 });
-
 
 Vue.component("mine_profile", {
     template: `
