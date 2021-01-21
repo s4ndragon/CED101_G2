@@ -129,7 +129,6 @@ function addworm(damage, defense, hp, speed,o){
   img.dataset.speed = speed;
   img.dataset.HP = hp;
   img.dataset.hp = hp;
-  img.dataset.speed = speed;
   o.appendChild(img);
   return img;
 }
