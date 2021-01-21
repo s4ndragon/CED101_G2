@@ -601,7 +601,7 @@ Vue.component("mine_order", {
                                     </div> 
                                     <div class="order list_title" v-for="ordList in ordLists">
                                             <h5 class="order_no"><a v-bind:href="'https://tibamef2e.com/ced101/project/g2/04_orders.html?orders_no=' + ordList.ORDERS_NO">{{ordList.ORDERS_NO}}</a></h5>
-                                            <h5 class="order_status status" @change="switch">{{ordList.DEL_STATE}}</h5>
+                                            <h5 class="order_status status">{{ordList.DEL_STATE}}</h5>
                                             <h5 class="order_payment">{{ordList.PAY}}</h5>
                                             <h5 class="order_total">NT {{ordList.TOTAL}}</h5>
                                             <h5 class="order_date">{{ordList.ORD_DATE}}</h5>
@@ -737,6 +737,7 @@ Vue.component("mine_article", {
         this.get_mine_art();
     },
 });
+
 
 Vue.component("mine_profile", {
     template: `
