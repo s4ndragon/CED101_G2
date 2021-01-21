@@ -1,12 +1,14 @@
-
-
 <?php 
  session_start();
+//  ini_set("session.use_trans_sid",1);
+//  phpinfo();
+//  var_dump($_SESSION);exit();
 try {
 	require_once("./connect.php");
 	$sql = "select * , round(GARD_VOTE/GARD_CLICK,1) 'GARD_AVG' from garden where GARD_ID = :GARD_ID order by GARD_AVG desc";
 	$garden = $pdo->prepare($sql);
 	$garden->bindValue(":GARD_ID", $_POST["GARD_ID"]);
+	// $garden->bindValue(":GARD_ID", 3);
 	$garden->execute();
 	$gardenRows = $garden->fetchAll(PDO::FETCH_ASSOC);
 	
@@ -25,6 +27,7 @@ try {
 	$sql = "select * from tour join garden on tour.GARD_ID = garden.GARD_ID where garden.GARD_ID = :GARD_ID or garden.GARD_ID = 6 limit 3";
 	$tour = $pdo->prepare($sql);
 	$tour->bindValue(":GARD_ID", $_POST["GARD_ID"]);
+	// $tour->bindValue(":GARD_ID", 3);
 	$tour->execute();
 	$tourRows = $tour->fetchAll(PDO::FETCH_ASSOC);
 
@@ -32,7 +35,8 @@ try {
 	$sql = "select member.MEM_NICNAME, member.MEM_IMG, garden_msg.MSG_DATE, garden_msg.MSG_CONTENT, garden_msg.MSG_NO from
 			 member join garden_msg on member.MEM_NO = garden_msg.MEM_NO where garden_msg.GARD_ID = :GARD_ID";
 	$mem = $pdo->prepare($sql);
-	$mem->bindParam(":GARD_ID", $_POST["GARD_ID"]);
+	$mem->bindValue(":GARD_ID", $_POST["GARD_ID"]);
+	// $tour->bindValue(":GARD_ID", 3);
 	$mem->execute();
 	$msgRows = $mem->fetchAll(PDO::FETCH_ASSOC);
 

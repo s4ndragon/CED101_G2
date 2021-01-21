@@ -13,13 +13,6 @@ try {
     $get_ord_list = $pdo->prepare($sql);
     $get_ord_list->bindValue(":MEM_NO", $_SESSION["MEM_NO"]);
 
-    //把接到的資料寫進SQL (要先經過PHP轉譯 所以不能直接寫入SQL指令內)
-    // $per_ord_data->bindValue(":ADMIN_NO", $add_no);
-    // $per_ord_data->bindValue(":ADMIN_ID", $add_id);
-    // $per_ord_data->bindValue(":ADMIN_NAME", $add_name);
-    // $per_ord_data->bindValue(":ADMIN_PW", $add_psw);
-
-
     $get_ord_list->execute();
 
     // echo "修改成功~!!";
@@ -30,6 +23,21 @@ try {
     } else { //找得到
         //取回一筆資料
         $get_ord_list = $get_ord_list->fetchAll(PDO::FETCH_ASSOC);
+
+        for($i=0;$i<count($get_ord_list);$i++){
+            if($get_ord_list[$i]["DEL_STATE"] == 0){
+                $get_ord_list[$i]["state"] = "未付款";
+            }else if($get_ord_list[$i]["DEL_STATE"] == 1){
+                $get_ord_list[$i]["state"] = "已付款";
+            };
+
+            if($get_ord_list[$i]["PAY"] == 0){
+                $get_ord_list[$i]["pay"] = "ATM付款";
+            }else if($get_ord_list[$i]["PAY"] == 1){
+                $get_ord_list[$i]["pay"] = "信用卡付款";
+            };
+            
+        }
 
         //送出json字串
         echo json_encode($get_ord_list);

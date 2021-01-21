@@ -192,8 +192,8 @@
                 hotelRows:'',
                 foodRows:'',
                 msgRows:'',
-                loveRows:'',
-                savedLikes:'',
+                loveRows:'', //找出這個會員收藏的所有揪團
+                savedLikes:'', //找此會員是否收藏過此揪團 
                 tour_id:'',
                 people_now:'',
                 people_limit:'',
@@ -349,7 +349,7 @@
                         xhr.onload = function(){
                             if(xhr.status == 200){ //success
                                 console.log('success')
-                                this.imageSource()
+                                // this.imageSource()
                             }else{
                                 alert(xhr.status);
                             }

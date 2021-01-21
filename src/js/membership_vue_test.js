@@ -366,6 +366,16 @@ Vue.component("tour", {
         },
     },
     mounted() {
+        $(".arrow").click(function () {
+            console.log("hihi");
+            $(this).toggleClass("down").toggleClass("up");
+            $(this).parent().toggleClass("extend");
+            $(this).siblings(".tour_date").toggle();
+            $(this).siblings(".tour_status_bar").toggle().css("width", "80%");
+            $(this).siblings(".tour_status_bar").children().toggle();
+            $(this).siblings(".tour_attendency").toggle().css("width", "80%");
+        });
+
         this.get_mine_tour();
         this.get_mine_past();
         this.get_mine_cancel();
@@ -374,16 +384,6 @@ Vue.component("tour", {
         this.get_join_past();
         this.get_join_cancel();
         this.get_join_quit();
-
-        $(".arrow").click(function () {
-            // console.log('hihi')
-            $(this).toggleClass("down").toggleClass("up");
-            $(this).parent().toggleClass("extend");
-            $(this).siblings(".tour_date").toggle();
-            $(this).siblings(".tour_status_bar").toggle().css("width", "80%");
-            $(this).siblings(".tour_status_bar").children().toggle();
-            $(this).siblings(".tour_attendency").toggle().css("width", "80%");
-        });
     },
 });
 
@@ -601,8 +601,8 @@ Vue.component("mine_order", {
                                     </div> 
                                     <div class="order list_title" v-for="ordList in ordLists">
                                             <h5 class="order_no"><a v-bind:href="'https://tibamef2e.com/ced101/project/g2/04_orders.html?orders_no=' + ordList.ORDERS_NO">{{ordList.ORDERS_NO}}</a></h5>
-                                            <h5 class="order_status status">{{ordList.DEL_STATE}}</h5>
-                                            <h5 class="order_payment">{{ordList.PAY}}</h5>
+                                            <h5 class="order_status status">{{ordList.state}}</h5>
+                                            <h5 class="order_payment">{{ordList.pay}}</h5>
                                             <h5 class="order_total">NT {{ordList.TOTAL}}</h5>
                                             <h5 class="order_date">{{ordList.ORD_DATE}}</h5>
                                         
@@ -630,13 +630,13 @@ Vue.component("mine_order", {
             // console.log(order_list);
             this.ordLists = order_list;
         },
-        switch() {
-            if (this.ordLists.DEL_STATE == 0) {
-                this.courTypeName = "未付款";
-            } else {
-                this.courTypeName = "已付款";
-            }
-        },
+        // switch() {
+        //     if (this.ordLists.DEL_STATE == 0) {
+        //         this.courTypeName = "未付款";
+        //     } else {
+        //         this.courTypeName = "已付款";
+        //     }
+        // },
         changename(event) {
             this.ordLists[this.edit_key].courseName = event.currentTarget.value;
         },
@@ -737,7 +737,6 @@ Vue.component("mine_article", {
         this.get_mine_art();
     },
 });
-
 
 Vue.component("mine_profile", {
     template: `
@@ -888,7 +887,7 @@ $("#mine_profile_btn").click(function () {
 // });
 $(".profile-pic").click(function () {
     $("#profile_pic_input").trigger("click");
-    $("#profile_pic_input_submit").trigger("click");
+    // $("#profile_pic_input_submit").trigger("click");
 });
 function readURL(input) {
     if (input.files && input.files[0]) {
