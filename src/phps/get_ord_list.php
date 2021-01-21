@@ -7,6 +7,7 @@ try {
 	$sql = "select * 
             from orders
             where MEMBER = :MEM_NO
+            order by orders_no desc
             ";
 
     $get_ord_list = $pdo->prepare($sql);

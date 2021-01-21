@@ -5,9 +5,10 @@ try {
 
     if(isset($_SESSION["MEM_ID"])){
 
-	$sql = "select art_title, art_img, art_content, art_no
-            from my_art 
-            where MEM_NO = :MEM_NO
+	$sql = "select f.art_no, f.mem_no, a.art_title, a.art_img, a.art_content
+            from art_favorite f join my_art a
+            on f.art_no = a.art_no
+            where f.MEM_NO = :MEM_NO
             ";    
 
     $get_fav_art = $pdo->prepare($sql);

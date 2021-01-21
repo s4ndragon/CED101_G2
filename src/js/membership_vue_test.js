@@ -83,7 +83,7 @@ Vue.component("tour", {
                             <div class="tour_attendency">人數：<span class="attend attend_1">{{joinTour.NUM_OF_PARTICIPANTS}}</span>／<span class="require require_1">{{joinTour.TOUR_PEOPLE}}</span></div>
                             <div class="tour_status_bar">
                                 <div class="tour_status">未成團</div>
-                                <div class="tour_join" @click="quit_show(joinTour.TOUR_ID) == true">退出</div>
+                                <!-- <div class="tour_join" @click="quit_show(joinTour.TOUR_ID) == true">退出</div> -->
                                 <div class="tour_check">
                                     <a :href="'https://tibamef2e.com/ced101/project/g2/02_tour_more.html?TOUR_ID=' + joinTour.tour_no">
                                     查看</a>
@@ -328,6 +328,7 @@ Vue.component("tour", {
             this.cancel_lightbox = false;
             //重新撈取一次細項列表
             this.get_mine_tour();
+            this.get_join_cancel();
         },
         //退出揪團
         quit: async function () {
@@ -403,7 +404,7 @@ Vue.component("mine_fav", {
                             <div id="tour_list" class="fav_content">
                                 <div class="blog_container tour_blog" v-for="favTour in favTours">
                                     <img class="banner_img" :src="favTour.TOUR_IMG">
-                                    <div class="heart" @click="cancel_fav">
+                                    <div class="heart" @click="cancel_fav_tour(favTour.TOUR_ID)">
                                         <img class="like" src="./images/common/like.png" title="加入收藏" alt="">
                                     </div>
                                     <div class="blog_content_container">
@@ -422,8 +423,8 @@ Vue.component("mine_fav", {
                             <div id="article_list" class="fav_content">
                                 <div class="blog_container article_blog" v-for="favArt in favArts">
                                     <img class="banner_img" :src="favArt.art_img">
-                                    <div class="heart">
-                                        <img class="like" src="./images/common/like.png" title="加入收藏" alt="">
+                                    <div class="heart" @click="cancel_fav_art(favArt.art_no)">
+                                        <img class="like" src="./images/common/like.png" title="noadd" :id=favArt.ART_NO alt="" >
                                     </div>
                                     <div class="blog_content_container">
                                         <div class="blog_title">
@@ -441,7 +442,7 @@ Vue.component("mine_fav", {
                             <div id="product_list" class="fav_content">
                                 <div class="blog_container product_blog" v-for="favProd in favProds">
                                     <img class="banner_img" :src="favProd.img">
-                                    <div class="heart">
+                                    <div class="heart" @click="cancel_fav_prod(favProd.psn)">
                                         <img class="like" src="./images/common/like.png" title="加入收藏" alt="">
                                     </div>
                                     <div class="blog_content_container">
@@ -463,6 +464,9 @@ Vue.component("mine_fav", {
             favTours: "",
             favArts: "",
             favProds: "",
+            unfavTours: "",
+            unfavArts: "",
+            unfavProds: "",
         };
     },
     methods: {
@@ -508,19 +512,53 @@ Vue.component("mine_fav", {
             // console.log(fav_prod);
             this.favProds = fav_prod;
         },
-        cancel_fav_tour: async function () {
-            const fav_prod = await fetch("./phps/cancel_fav_tour.php", {
+        cancel_fav_tour: async function (unfavTour) {
+            const unfav_tour = await fetch("./phps/cancel_fav_tour.php", {
                 method: "POST",
                 mode: "same-origin",
                 credentials: "same-origin",
                 headers: {
                     "Content-Type": "application/json",
                 },
-            }).then(function (data) {
-                return data.json();
+                body: JSON.stringify({
+                    unfav_tour: unfavTour,
+                }),
             });
-            // console.log(fav_prod);
-            this.favProds = fav_prod;
+            this.unfavTours = unfav_tour;
+            //重新撈取一次細項列表
+            this.get_fav_tour();
+        },
+        cancel_fav_art: async function (unfavArt) {
+            const unfav_art = await fetch("./phps/cancel_fav_art.php", {
+                method: "POST",
+                mode: "same-origin",
+                credentials: "same-origin",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    unfav_art: unfavArt,
+                }),
+            });
+            this.unfavArts = unfav_art;
+            //重新撈取一次細項列表
+            this.get_fav_art();
+        },
+        cancel_fav_prod: async function (unfavProd) {
+            const unfav_prod = await fetch("./phps/cancel_fav_prod.php", {
+                method: "POST",
+                mode: "same-origin",
+                credentials: "same-origin",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    unfav_prod: unfavProd,
+                }),
+            });
+            this.unfavProds = unfav_prod;
+            //重新撈取一次細項列表
+            this.get_fav_prod();
         },
     },
     mounted() {
@@ -547,25 +585,6 @@ Vue.component("mine_fav", {
             $(this).parent("#mine_fav_bar").siblings("#fav_container").children().hide();
             $(this).parent("#mine_fav_bar").siblings("#fav_container").children("#fav_product").show();
         });
-
-        //like
-        let like = document.getElementsByClassName("like");
-        for (var i = 0; i < like.length; i++) {
-            like[i].addEventListener("click", changeHeart);
-        }
-        function changeHeart() {
-            if (this.title === "加入收藏") {
-                this.title === "取消收藏";
-                this.src = "./images/common/heart.png";
-
-                $(this).parent("div").parent("div").css({
-                    display: "none",
-                });
-            } else {
-                this.title = "加入收藏";
-                this.src = "./images/common/like.png";
-            }
-        }
     },
 });
 
@@ -581,13 +600,12 @@ Vue.component("mine_order", {
                                         <h5 class="order_date">下單時間</h5>
                                     </div> 
                                     <div class="order list_title" v-for="ordList in ordLists">
-                                        <a v-bind:href="'https://tibamef2e.com/ced101/project/g2/04_product.html?psn=' + ordList.ORDERS_NO">
-                                            <h5 class="order_no">{{ordList.ORDERS_NO}}</h5>
-                                            <h5 class="order_status">{{ordList.DEL_STATE}}</h5>
+                                            <h5 class="order_no"><a v-bind:href="'https://tibamef2e.com/ced101/project/g2/04_orders.html?orders_no=' + ordList.ORDERS_NO">{{ordList.ORDERS_NO}}</a></h5>
+                                            <h5 class="order_status status" @change="switch">{{ordList.DEL_STATE}}</h5>
                                             <h5 class="order_payment">{{ordList.PAY}}</h5>
                                             <h5 class="order_total">NT {{ordList.TOTAL}}</h5>
                                             <h5 class="order_date">{{ordList.ORD_DATE}}</h5>
-                                        </a>
+                                        
                                     </div>                                 
                                 </div>
                             </div>
@@ -612,9 +630,35 @@ Vue.component("mine_order", {
             // console.log(order_list);
             this.ordLists = order_list;
         },
+        switch() {
+            if (this.ordLists.DEL_STATE == 0) {
+                this.courTypeName = "未付款";
+            } else {
+                this.courTypeName = "已付款";
+            }
+        },
+        changename(event) {
+            this.ordLists[this.edit_key].courseName = event.currentTarget.value;
+        },
     },
     mounted() {
         this.get_ord_list();
+        console.log(this.ordLists);
+
+        // switch (this.ordLists.DEL_STATE) {
+        //     case 0:
+        //         document.getElementsByClassName("status").innerText = "未付款";
+        //         break;
+        //     case 1:
+        //         document.getElementsByClassName("status").innerText = "已付款";
+        //         break;
+        //     case 2:
+        //         document.getElementsByClassName("status").innerText = "未出貨";
+        //         break;
+        //     case 3:
+        //         document.getElementsByClassName("status").innerText = "已出貨";
+        //         break;
+        // }
     },
 });
 
@@ -627,9 +671,22 @@ Vue.component("mine_article", {
                                         <div class="article_date">{{mineArt.ART_DATE}}</div>
                                         <div class="article_status_bar">
                                             <!-- <div class="article_status">分享</div> -->
-                                            <div class="article_join">查看</div>
-                                            <div class="article_check">刪除</div>
+                                            <div class="article_join">
+                                            <a v-bind:href="'https://tibamef2e.com/ced101/project/g2/03_discuss_article.php?ART_NO=' + mineArt.ART_NO">
+                                            查看
+                                            </a>
+
+                                            </div>
+                                            <div class="article_check" @click="del_show(mineArt.ART_NO)">刪除</div>
                                         </div>
+                                    </div>
+                                </div>
+                                <!-- 刪除文章燈箱 -->
+                                <div v-if="del_lightbox" class="cancel_confirm">
+                                    是否確認刪除？
+                                    <div class="btn">
+                                        <input type="button" @click="del(ART_NO)" id="del_art_confirm" value="確認" />
+                                        <input type="button" @click="del_lightbox = false" id="del_art_cancel" value="取消" />
                                     </div>
                                 </div>
                             </div>
@@ -637,9 +694,31 @@ Vue.component("mine_article", {
     data() {
         return {
             mineArts: "",
+            del_lightbox: false,
+            del_art: "",
         };
     },
     methods: {
+        del_show: function (ART_NO) {
+            this.del_lightbox = true;
+            this.del_art = ART_NO;
+        },
+        del: async function () {
+            const art_id = await fetch("./phps/del.php", {
+                method: "POST",
+                mode: "same-origin",
+                credentials: "same-origin",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    art_id: this.del_art,
+                }),
+            });
+            this.del_lightbox = false;
+            //重新撈取一次細項列表
+            this.get_mine_art();
+        },
         get_mine_art: async function () {
             const mine_art = await fetch("./phps/get_mine_art.php", {
                 method: "POST",
@@ -651,7 +730,6 @@ Vue.component("mine_article", {
             }).then(function (data) {
                 return data.json();
             });
-            // console.log(mine_art);
             this.mineArts = mine_art;
         },
     },
@@ -663,30 +741,30 @@ Vue.component("mine_article", {
 Vue.component("mine_profile", {
     template: `
                 <div id="mine_profile">
-                    <form action="" id="profile" method="POST">
+                    <form action="editMem.php" id="profile" method="POST" v-for="mineInfo in mineInfos">
                                     <div class="field-wrap">
                                         <label for="MEM_NICKNAME">暱稱</label>
-                                        <input type="text" name="MEM_NICKNAME" class="my_name">
+                                        <input type="text" name="MEM_NICKNAME" class="my_name" :value="mineInfo.MEM_NICNAME">
                                     </div>
                                     <div class="field-wrap">
                                         <label for="MEM_EMAIL">電子信箱</label>
-                                        <input type="email" name="MEM_EMAIL" class="email">
+                                        <input type="email" name="MEM_EMAIL" class="email" readonly :value="mineInfo.MEM_EMAIL">
                                     </div>
                                     <div class="field-wrap">
                                         <label for="MEM_ID">帳號</label>
-                                        <input type="text" name="MEM_ID" class="my_id">
+                                        <input type="text" name="MEM_ID" class="my_id" readonly :value="mineInfo.MEM_ID">
                                     </div>
                                     <div class="field-wrap">
                                         <label for="MEM_PW">舊密碼</label>
-                                        <input type="password" name="MEM_PW" class="pass_password" />
+                                        <input type="password" name="MEM_PW" class="pass_password">
                                     </div>
                                     <div class="field-wrap">
                                         <label for="new_password">新密碼</label>
-                                        <input type="password" name="new_password" class="new_password" />
+                                        <input type="password" name="new_password" class="new_password">
                                     </div>
                                     <div class="field-wrap">
                                         <label for="confirm_new_password">確認新密碼</label>
-                                        <input type="text" name="confirm_new_pw" class="confirm_new_pw" />
+                                        <input type="text" name="confirm_new_pw" class="confirm_new_pw">
                                     </div>
                                     <div class="btn_sent">
                                         <button type="submit" class="button">送出</button>
@@ -711,11 +789,14 @@ Vue.component("mine_profile", {
             }).then(function (data) {
                 return data.json();
             });
-            console.log(mine_info);
             this.mineInfos = mine_info;
         },
     },
     mounted() {
+        this.get_mine_info();
+        // if (new_password.value != confirm_new_password.value) {
+        //     alert("新密碼與確認新密碼不一樣");
+        // }
         //個人資料分頁
         $("form")
             .find("input, textarea")
@@ -786,4 +867,119 @@ $(".mine_profile").click(function () {
 });
 $("#mine_profile_btn").click(function () {
     $("#sub_menu").children("h3").removeClass("bg-color").addClass("select-color");
+});
+
+//change profile
+// $("changeImg").on("submit", function (e) {
+//     e.preventDefault();
+//     $.ajax({
+//         url: "changeImg.php",
+//         type: "POST",
+//         data: new FormData(this),
+//         contentType: false,
+//         cache: false,
+//         processData: false,
+//         success: function (data) {
+//             $("#targetLayer").html(data);
+//         },
+//         error: function () {},
+//     });
+// });
+$(".profile-pic").click(function () {
+    $("#profile_pic_input").trigger("click");
+    $("#profile_pic_input_submit").trigger("click");
+});
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            //animate profile picture
+            var profilePicTL = new TimelineMax();
+            profilePicTL
+                .set(".profile-pic", {
+                    transformOrigin: "50% 50%",
+                })
+                .to(".profile-pic", 2, {
+                    transform: "rotate(-15deg)",
+                    ease: Elastic.easeOut,
+                })
+                .to(
+                    ".profile-pic",
+                    0.8,
+                    {
+                        transform: "translateY(650px) rotate(20deg)",
+                        ease: Back.easeIn,
+                        onComplete: function () {
+                            $(".profile-pic img").attr("src", e.target.result);
+                            $(".profile-pic").css("opacity", "0");
+                        },
+                    },
+                    "-=1.2"
+                )
+                .set(".profile-pic", {
+                    transform: "translateY(-200px) rotate(0)",
+                    transformOrigin: "50% 50%",
+                    onComplete: function () {
+                        $(".profile-pic").css("opacity", "1");
+                    },
+                })
+                .to(".profile-pic", 0.2, {
+                    transform: "translateY(0)",
+                    opacity: 1,
+                    ease: Power2.easeIn,
+                })
+                .set(".profile-pic", {
+                    transformOrigin: "50% 100%",
+                })
+                .to(".profile-pic", 0.1, {
+                    transform: "scaleX(1.6) scaleY(.3)",
+                    ease: Power4.easeOut,
+                })
+                .to(".profile-pic", 0.8, {
+                    transform: "scaleX(1) scaleY(1)",
+                    opacity: 1,
+                    ease: Elastic.easeOut,
+                });
+            //animate card
+            var cardTL = new TimelineMax();
+            cardTL
+                .set(".card", {
+                    transformOrigin: "100% 100%",
+                })
+                .to(".card", 0.7, {
+                    transform: "rotate(15deg) skew(0)",
+                    ease: Back.easeOut,
+                })
+                .to(".card", 0.2, {
+                    transform: "rotate(-5deg) skewY(-10deg)",
+                    ease: Back.easeIn,
+                })
+                .to(".card", 1, {
+                    transform: "rotate(0) skew(0)",
+                    ease: Elastic.easeOut,
+                })
+                .set(".card", {
+                    transformOrigin: "50% 100%",
+                })
+                .to(
+                    ".card",
+                    0.2,
+                    {
+                        transform: "scaleX(1.1) scaleY(.9)",
+                        delay: 0.9,
+                        ease: Power4.easeIn,
+                    },
+                    "-=.7"
+                )
+                .to(".card", 0.8, {
+                    transform: "scale(1)",
+                    ease: Elastic.easeOut,
+                });
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+$("#profile_pic_input").change(function () {
+    readURL(this);
+    console.log(this);
 });

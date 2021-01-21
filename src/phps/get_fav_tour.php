@@ -5,9 +5,10 @@ try {
     if(isset($_SESSION["MEM_ID"])){
 
     
-	$sql = "select * 
-            from tour
-            where MEM_NO = :MEM_NO
+	$sql = "select t.TOUR_ID, t.TOUR_IMG, t.TOUR_TITLE, t.TOUR_INFRO, c.MEM_NO 
+    from tour t join tour_collect c
+    on t.TOUR_ID = c.TOUR_ID
+    where c.MEM_NO = :MEM_NO
             ";
 
     $get_fav_tour = $pdo->prepare($sql);

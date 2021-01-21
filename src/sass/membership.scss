@@ -143,6 +143,9 @@ main {
     #profile_pic_input {
         display: none;
     }
+    #profile_pic_input_submit {
+        display: none;
+    }
     .card-body > .mine_profile {
         @include smallbtn4;
         @media only screen and (min-width: 768px) {
@@ -430,7 +433,7 @@ main {
                 color: grey;
 
                 h4 {
-                    font-size: $h4;
+                    font-size: 20px;
                 }
 
                 .fav_tour,
@@ -535,12 +538,6 @@ main {
                 box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 
                 #list_title {
-                    // border-right: 2px solid $primary-typo-color;
-                    // border-top: 2px solid grey;
-                    // border-left: 2px solid $primary-typo-color;
-                    width: 100%;
-
-                    // margin: 5px;
                     h5 {
                         color: $darker;
                         font-weight: $bold;
@@ -553,7 +550,9 @@ main {
                     width: 100%;
                     padding: 10px 0px;
                     justify-content: space-evenly;
-
+                    .order_no {
+                        cursor: pointer;
+                    }
                     .order_no,
                     .order_status,
                     .order_total {
@@ -888,7 +887,6 @@ main {
     background-color: rgba(0, 0, 0, 0.336);
 }
 
-
 .num_attendency {
     display: fixed;
     flex-direction: column;
@@ -1036,6 +1034,10 @@ main {
         }
         #btn_cancel,
         #recall_cancel {
+            @include smallbtn3;
+        }
+        #del_art_confirm,
+        #del_art_cancel {
             @include smallbtn3;
         }
     }

@@ -113,7 +113,7 @@ Vue.component("log_reg", {
             </div>        
             <div id="signup">   
                 <h2>註冊會員</h2>
-                <form action="/" method="post">
+                <form action="./phps/mem_register.php" method="post">
                     <div class="field-wrap">
                         <label for="reg_email">
                         信箱<span class="req">*</span>

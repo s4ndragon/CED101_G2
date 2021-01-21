@@ -9,31 +9,30 @@ try {
     $content = trim(file_get_contents("php://input")); 
     $decoded = json_decode($content, true);
 
-    $TOUR_ID = $decoded["unfav_tour"]; //php叫物件內屬性的寫法
+    $ART_NO = $decoded["unfav_art"]; //php叫物件內屬性的寫法
 
 	$sql = "
-            delete from tour_collect
-            where TOUR_ID = :TOUR_ID
-            and MEM_NO = :MEM_NO
+            delete from art_favorite
+            where ART_NO = :ART_NO
             ";
 
-    $get_fav_prod = $pdo->prepare($sql);
-    $get_fav_prod->bindValue(":TOUR_ID", $TOUR_ID);
-    $get_fav_prod->bindValue(":MEM_NO", $_SESSION["MEM_NO"]);
+    $get_fav_art = $pdo->prepare($sql);
+    $get_fav_art->bindValue(":ART_NO", $ART_NO);
+    // $get_fav_prod->bindValue(":MEM_ID", $_SESSION["MEM_ID"]);
 
-    $get_fav_prod->execute();
+    $get_fav_art->execute();
 
     // echo "修改成功~!!";
-    if ($get_fav_prod->rowCount() == 0) { //找不到
+    if ($get_fav_art->rowCount() == 0) { //找不到
         //傳回空的JSON字串
         echo "{錯誤}";
 
     } else { //找得到
         //取回一筆資料
-        $get_fav_prod = $get_fav_prod->fetchAll(PDO::FETCH_ASSOC);
+        $get_fav_art = $get_fav_art->fetchAll(PDO::FETCH_ASSOC);
 
         //送出json字串
-        echo json_encode($get_fav_prod);
+        echo json_encode($get_fav_art);
         // echo $managerdatarow;
     }
     }else{
