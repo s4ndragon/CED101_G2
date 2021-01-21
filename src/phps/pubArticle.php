@@ -2,31 +2,31 @@
     session_start();
     
     $mem = $_SESSION['MEM_NO'];
-    $article_cate = isset($_POST["article_cate"])?$_POST["article_cate"]:""; 
+    $article_cate = isset($_POST["type"])?$_POST["type"]:""; 
     $title = isset($_POST["title"])?$_POST["title"]:"";
-    $content = isset($_POST["content"])?$_POST["content"]:"";
+    $content = isset($_POST["text"])?$_POST["text"]:"";
     $dirr = "./images/discuss";
-    $img = $_FILES['img']['name'];
+    $img = $_FILES['file']['name'];
+    // echo $_POST["test"];
 
-
-    switch ( $_FILES["img"]["error"]){
+    switch ( $_FILES["file"]["error"]){
         case 0:
             $dir = "../images/discuss";
             //檢查資夾是否存在
             if(file_exists($dir) === false){ //不存在
                 mkdir($dir);
             }
-            $from = $_FILES['img']['tmp_name']; //暫存區路徑
-            $to = "$dir/{$_FILES['img']['name']}";
+            $from = $_FILES['file']['tmp_name']; //暫存區路徑
+            $to = "$dir/{$_FILES['file']['name']}";
             copy($from, $to);
         break;
     };
 
 
-    $article_cate = $_POST["article_cate"];
-            if ($article_cate == "揪團心得") {
+    $type = $_POST["type"];
+            if ($type == "揪團心得") {
                 $category = "tour";
-            } else if ($article_cate == "茶園討論") {
+            } else if ($type == "茶園討論") {
                 $category = "garden";
             } else {
                 $category = "leaf";

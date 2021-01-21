@@ -1,12 +1,12 @@
 <?php 
 session_start();
 try {
-    // require_once("./connectBooks.php");
-	$dsn = "mysql:host=localhost;port=3306;dbname=ced101g2;charset=utf8";
-	$user = "root";
-	$password = "root";
-	$options = array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, PDO::ATTR_CASE => PDO::CASE_NATURAL);
-	$pdo = new PDO($dsn, $user, $password, $options);
+    require_once("./connect.php");
+	// $dsn = "mysql:host=localhost;port=3306;dbname=ced101g2;charset=utf8";
+	// $user = "root";
+	// $password = "root";
+	// $options = array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, PDO::ATTR_CASE => PDO::CASE_NATURAL);
+	// $pdo = new PDO($dsn, $user, $password, $options);
 
     $ADMIN_ID = $_POST["ADMIN_ID"];
     $ADMIN_PW = $_POST["ADMIN_PW"];
@@ -40,7 +40,7 @@ catch (PDOException $e) {
         $_SESSION["ADMIN_ID"] = $adminRow["ADMIN_ID"];
         $_SESSION["ADMIN_NAME"] = $adminRow["ADMIN_NAME"];
         $_SESSION["ADMIN_PW"] = $adminRow["ADMIN_PW"];
-    echo $adminRow["ADMIN_ID"], "您好~<br>";
+    echo $adminRow["ADMIN_ID"], "您好，即將跳轉<br>";
 	echo "<script>location.href='../admin_tea.html'</script>";
     }      
     ?>

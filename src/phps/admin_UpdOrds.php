@@ -8,7 +8,7 @@ try {
 
     //php叫物件內屬性的寫法
     $ORDERS_NO = $decoded["ORDERS_NO"]; 
-    // $dealState = $decoded["dealState"];
+    $DEL_STATE = $decoded["DEL_STATE"];
     $DELIVERY = $decoded["DELIVERY"];
     $PAY = $decoded["PAY"];
     $TOTAL = $decoded["TOTAL"];
@@ -20,11 +20,11 @@ try {
   
     //接到之後要做的SQL指令
     //:後面+名字會變成一個變數 ->Php 寫sql的時候的寫法
-    // dealState=:dealState
+    
     $sql = "update orders  
             set DELIVERY=:DELIVERY, PAY=:PAY ,DISCOUNT= :DISCOUNT,
                 RECEIVER_NAME=:RECEIVER_NAME , RECEIVER_ADDRESS=:RECEIVER_ADDRESS, 
-                RECEIVER_TEL=:RECEIVER_TEL , TOTAL=:TOTAL
+                RECEIVER_TEL=:RECEIVER_TEL , TOTAL=:TOTAL , DEL_STATE=:DEL_STATE
             where ORDERS_NO=:ORDERS_NO
             ";
 
@@ -33,7 +33,7 @@ try {
 
     //把接到的資料寫進SQL (要先經過PHP轉譯 所以不能直接寫入SQL指令內)
     $per_ord_data->bindValue(":ORDERS_NO", $ORDERS_NO);
-    // $per_ord_data->bindValue(":dealState", $dealState);
+    $per_ord_data->bindValue(":DEL_STATE", $DEL_STATE);
     $per_ord_data->bindValue(":DELIVERY", $DELIVERY);
     $per_ord_data->bindValue(":PAY", $PAY);
     $per_ord_data->bindValue(":TOTAL", $TOTAL);

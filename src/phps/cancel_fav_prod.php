@@ -9,15 +9,15 @@ try {
     $content = trim(file_get_contents("php://input")); 
     $decoded = json_decode($content, true);
 
-    $TOUR_ID = $decoded["unfav_tour"]; //php叫物件內屬性的寫法
+    $PSN = $decoded["unfav_prod"]; //php叫物件內屬性的寫法
 
 	$sql = "
-            delete from tour_collect
-            where TOUR_ID = :TOUR_ID
+            delete from product_f
+            where PSN = :PSN
             ";
 
     $get_fav_prod = $pdo->prepare($sql);
-    $get_fav_prod->bindValue(":TOUR_ID", $TOUR_ID);
+    $get_fav_prod->bindValue(":PSN", $PSN);
     // $get_fav_prod->bindValue(":MEM_ID", $_SESSION["MEM_ID"]);
 
     $get_fav_prod->execute();
