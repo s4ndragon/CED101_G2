@@ -191,6 +191,9 @@ main{
                     padding: 0 21px 10px;
                     text-align: left;
                     min-height: 358px;
+                    @media screen and (max-width: 768px){
+                        min-height: 0px;
+                    }
                 }
 
                 .hname{
@@ -474,6 +477,9 @@ main{
                     .hpic{
                         width: 100%;
                     }
+                    .hinfo{
+                        min-height: 0;
+                    }
                 }
             }
 
@@ -563,4 +569,12 @@ main{
         }
     }
     
+}
+
+@media screen and (max-width: 373px){
+    main{
+        .create_command {
+            width: 88vw !important;
+        }
+    }
 }

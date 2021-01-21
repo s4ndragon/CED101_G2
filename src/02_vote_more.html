@@ -152,8 +152,10 @@
         <div class="toursection">
             <div v-for="tourRow in tourRows" class="tour_block">
                 <div class="tour_img">
-                    <p>{{tourRow.TOUR_TITLE}}</p>
-                    <p>{{tourRow.TOUR_SETOFFTIME}} 出團</p>
+                    <div class="tour_img_text" >
+                        <p>{{tourRow.TOUR_TITLE}}</p>
+                        <p>{{tourRow.TOUR_SETOFFTIME}} 出團</p>
+                    </div>
                     <img :src="tourRow.TOUR_IMG">
                     <div class="love_share">
                         <div class="love">
@@ -161,7 +163,7 @@
                         </div>
                     </div>
                 </div>
-
+                
                 
 
                 <div class="tour_text">
@@ -359,24 +361,26 @@
 
                 sendScore(){
 
-                    if(this.memRows.length == 0){
+                    if(this.memRows.length == 0){ //not login
                         app2.lightbox = true
                         this.lightbox = false
                         this.rating = '您尚未評分'
-                    }else{
+                    }else{ 
+                        console.log("today : ", this.today);
+                        console.log("this.pastDate[0].VOTE_DATE :　", this.pastDate[0].VOTE_DATE)
                         if(this.today == this.pastDate[0].VOTE_DATE){
-                        this.lightbox = false
-                        this.timeBox = true
-                        this.rating = '您尚未評分'
-                    }else{
-                        let xhr = new XMLHttpRequest();
-                        xhr.onload = function(){
-                            if(xhr.status == 200){ //success
-                                console.log('success')
-                            }else{
-                                alert(xhr.status);
+                            this.lightbox = false
+                            this.timeBox = true
+                            this.rating = '您尚未評分'
+                        }else{ //can vote
+                            let xhr = new XMLHttpRequest();
+                            xhr.onload = function(){
+                                if(xhr.status == 200){ //success
+                                    console.log('success')
+                                }else{
+                                    alert(xhr.status);
+                                }
                             }
-                        }
                             xhr.open("post", "./phps/send_vote.php", false);
                             xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
                             //送出資料
@@ -574,6 +578,10 @@
                 
 
             },
+
+            // beforeUpdate() {
+            //     this.get_data()
+            // },
         });
 
     </script>
