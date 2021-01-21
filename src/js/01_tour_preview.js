@@ -93,7 +93,7 @@ let preview = new Vue({
         actRows: [],
         //-============successBox
         successBox: false,
-        memNO: "",
+
 
     },
     method: {
@@ -101,7 +101,7 @@ let preview = new Vue({
     },
 
     mounted() {
-        this.memNO = app2.memRows.MEM_NO;
+
         this.previewImg = storage.getItem('preview_img');
         this.tourName = storage.getItem('tourName');
         this.people = storage.getItem('people');
