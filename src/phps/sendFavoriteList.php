@@ -4,7 +4,8 @@ try {
     require_once("./connect.php");
     $sql = "DELETE FROM product_f WHERE MEM_NO = :mem_no ";
     $FavoriteList = $pdo->prepare($sql);
-    $FavoriteList->bindValue(":mem_no", $_SESSION['MEM_NO']);
+    // $FavoriteList->bindValue(":mem_no", $_SESSION['MEM_NO']);
+    $FavoriteList->bindValue(":mem_no", 2);
     $affectedRows=$FavoriteList->execute();
     echo "成功刪除了{$affectedRows}筆資料;";
 } catch (PDOException $e) {
