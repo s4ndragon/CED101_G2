@@ -16,8 +16,9 @@ try {
     $locations = $pdo->prepare($sql);
     $locations->bindValue(":MEM_NO", $mem_no);
     $locations->bindValue(":GAME_P", $_GET["score"]  + $par);
-	$locations->execute();
-	echo "已經獲得點數";
+    $locations->execute();
+    $ok=$_GET["score"]  + $par
+	echo "已經獲得點數，總共{$ok}點";
     }else{
     echo "您沒有登入，想要折扣請先登入。";
     }
