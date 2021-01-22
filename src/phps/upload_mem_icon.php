@@ -31,7 +31,11 @@ try {
 			$products -> execute();			
             echo "<script>location.href='../membership.html'</script>";
 		}else{
-			echo "失敗~";
+            // echo "失敗~";
+            echo "<script>history.go(-1);
+            alert('請重新上傳頭像！');
+            </script>";
+            
 		}
 
     } else {

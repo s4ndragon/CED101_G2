@@ -911,7 +911,6 @@ var app = new Vue({
             let xhr = new XMLHttpRequest();
             xhr.onload = function () {
                 if (xhr.status == 200) {
-                    // console.log(xhr.responseText)
                     alert("更改成功");
                 } else {
                     alert("更改失敗");
@@ -921,12 +920,9 @@ var app = new Vue({
             xhr.send(formData);
             if (xhr.status == 200) {
                 // console.log(xhr.responseText)
-                this.lightbox = true;
-                this.error_text = "新增商品成功";
+                alert("上傳成功！");
             } else {
-                this.lightbox = true;
-                this.error_text = "上傳照片失敗";
-                // alert(xhr.status)
+                alert("請重新上傳頭像！");
             }
         },
     },
