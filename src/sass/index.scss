@@ -411,6 +411,20 @@ div.menu {
     @include btn;
 }
 
+.stars {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+
+    .starr {
+        width: 50px;
+    }
+}
+
+.no3 {
+    color: rgb(133, 153, 4);
+}
+
 // 結束第三屏:茶園票選 =====================
 
 // 第四屏:商城 =====================
