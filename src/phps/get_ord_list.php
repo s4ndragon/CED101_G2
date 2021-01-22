@@ -24,16 +24,16 @@ try {
         //取回一筆資料
         $get_ord_list = $get_ord_list->fetchAll(PDO::FETCH_ASSOC);
 
-        for($i=0;$i<count($get_ord_list);$i++){
-            if($get_ord_list[$i]["DEL_STATE"] == 0){
+        for($i=0; $i < count($get_ord_list); $i++){
+            if ($get_ord_list[$i]["DEL_STATE"] == 0){
                 $get_ord_list[$i]["state"] = "未付款";
-            }else if($get_ord_list[$i]["DEL_STATE"] == 1){
+            } else if($get_ord_list[$i]["DEL_STATE"] == 1){
                 $get_ord_list[$i]["state"] = "已付款";
             };
 
-            if($get_ord_list[$i]["PAY"] == 0){
+            if ($get_ord_list[$i]["PAY"] == 0){
                 $get_ord_list[$i]["pay"] = "ATM付款";
-            }else if($get_ord_list[$i]["PAY"] == 1){
+            }else if ($get_ord_list[$i]["PAY"] == 1){
                 $get_ord_list[$i]["pay"] = "信用卡付款";
             };
             

@@ -144,7 +144,7 @@ main {
         display: none;
     }
     #profile_pic_input_submit {
-        display: none;
+        padding: 0
     }
     .card-body > .mine_profile {
         @include smallbtn4;
@@ -976,7 +976,6 @@ main {
         padding-left: 5px;
     }
 }
-
 
 .delete_confirm,
 .cancel_confirm {

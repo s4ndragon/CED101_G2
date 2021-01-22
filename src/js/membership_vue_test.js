@@ -1,13 +1,3 @@
-//抓抓抓
-let memRows;
-//============去server端拿資料
-let xhr = new XMLHttpRequest();
-xhr.onload = function () {
-    app.memRows = JSON.parse(xhr.responseText);
-    // console.log(app.memRows);
-};
-xhr.open("get", "./phps/member.php", true);
-xhr.send(null);
 //========== content ==========//
 Vue.component("tour", {
     template: `
@@ -815,7 +805,7 @@ Vue.component("mine_profile", {
             }
             if (this.old_mem_pw != this.mineInfos.MEM_PW) {
                 // console.log(this.mineInfos.MEM_PW);
-                alert("請輸入正確的密碼，請重試");
+                alert("舊密碼錯誤，請重試");
                 return;
             }
             if (this.new_password != this.confirm_new_pw) {
@@ -847,7 +837,7 @@ Vue.component("mine_profile", {
 
             // 完成修改後，重新撈取資料
             this.get_mine_info();
-            // app2.getLoginInfo();
+            // app.getLoginInfo();
         },
     },
     mounted() {
@@ -893,9 +883,43 @@ Vue.component("mine_profile", {
 var app = new Vue({
     el: "#app",
     data: {
-        memRows: [],
+        memRows: "",
         content: "tour",
         lightboxAttendency: false,
+        imgType: "",
+        icon_src: "",
+    },
+    methods: {
+        getinfo: async function () {
+            //抓抓抓
+            // let memRows;
+            //============去server端拿資料
+            let xhr = new XMLHttpRequest();
+            xhr.onload = function () {
+                app.memRows = JSON.parse(xhr.responseText);
+                // console.log(app.memRows);
+            };
+            xhr.open("get", "./phps/member.php", true);
+            xhr.send(null);
+        },
+        uploadImg() {
+            let xhr = new XMLHttpRequest();
+            xhr.onload = function () {
+                if (xhr.status == 200) {
+                    // console.log(xhr.responseText)
+                    // this.lightbox = true
+                    alert("成功");
+                } else {
+                    alert("失敗");
+
+                }
+            };
+            xhr.open("post", "./php/update_mem_icon.php");
+            xhr.send(null);
+        },
+    },
+    mounted() {
+        this.getinfo();
     },
 });
 
@@ -925,26 +949,11 @@ $("#mine_profile_btn").click(function () {
     $("#sub_menu").children("h3").removeClass("bg-color").addClass("select-color");
 });
 
-//change profile
-// $("changeImg").on("submit", function (e) {
-//     e.preventDefault();
-//     $.ajax({
-//         url: "changeImg.php",
-//         type: "POST",
-//         data: new FormData(this),
-//         contentType: false,
-//         cache: false,
-//         processData: false,
-//         success: function (data) {
-//             $("#targetLayer").html(data);
-//         },
-//         error: function () {},
-//     });
-// });
 $(".profile-pic").click(function () {
     $("#profile_pic_input").trigger("click");
     // $("#profile_pic_input_submit").trigger("click");
 });
+
 function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
@@ -1037,5 +1046,5 @@ function readURL(input) {
 }
 $("#profile_pic_input").change(function () {
     readURL(this);
-    console.log(this);
+    // console.log(this);
 });

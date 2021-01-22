@@ -24,7 +24,12 @@
                 <div id="changeImg" action="./phps/changeImg.php" class="card">
                     <div class="card-body">
                         <div class="profile-pic">
-                            <img id="MEM_IMG" class="rounded-circle" :src="memRows.MEM_IMG" />
+                            <img
+                                id="MEM_IMG"
+                                class="rounded-circle"
+                                :src="memRows.MEM_IMG"
+                                @change="changeIcon($event)"
+                            />
                         </div>
                         <h2 id="MEM_NICKNAME">{{memRows.MEM_NICNAME}}</h2>
                         <h6 id="MEM_ID" class="memId">@{{memRows.MEM_ID}}</h6>
@@ -34,8 +39,10 @@
                         </button>
                     </div>
                 </div>
-                <input type="file" id="profile_pic_input" name="profile_pic_input" accept="image/*" />
-                <!-- <input type="submit" id="profile_pic_input_submit" name="profile_pic_input" /> -->
+                <form action="./phps/upload_mem_icon.php">
+                    <input type="file" id="profile_pic_input" name="profile_pic_input" accept="image/*" />
+                    <input type="submit" id="profile_pic_input_submit" name="profile_pic_input" value="更改頭像" @click="uploadImg"/>
+                </form>
                 <!-- 主要內容 -->
                 <div id="main_container">
                     <!-- 主要內容的選單列 -->
