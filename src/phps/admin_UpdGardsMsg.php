@@ -9,13 +9,15 @@ try {
     //php叫物件內屬性的寫法
     $MSG_REP_NO = $decoded["MSG_REP_NO"];
     $MSG_REP_STATUS = $decoded["MSG_REP_STATUS"]; 
+    $MSG_NO = $decoded["MSG_NO"]; 
+
     
 
   
     //接到之後要做的SQL指令
     //:後面+名字會變成一個變數 ->Php 寫sql的時候的寫法
     $sql = "update garden_msg_rep  
-            set MSG_REP_STATUS=:MSG_REP_STATUS
+            set MSG_REP_STATUS=:MSG_REP_STATUS 
             where MSG_REP_NO=:MSG_REP_NO
             ";
 
@@ -26,8 +28,28 @@ try {
     $per_ord_data->bindValue(":MSG_REP_NO", $MSG_REP_NO);
     $per_ord_data->bindValue(":MSG_REP_STATUS", $MSG_REP_STATUS);
 
-
     $per_ord_data->execute();
+
+
+///////////////////////////////////////////////////////做第二件事
+    if($MSG_REP_STATUS == 1){
+        $MSG_CONTENT_STATUS = 0;
+    }else{
+        $MSG_CONTENT_STATUS = 1;
+    };
+
+    $sql = "update garden_msg  
+            set MSG_CONTENT_STATUS=:MSG_CONTENT_STATUS
+            where MSG_NO=:MSG_NO
+            ";
+    $per_ord_data = $pdo->prepare($sql);
+
+    //把接到的資料寫進SQL (要先經過PHP轉譯 所以不能直接寫入SQL指令內)
+    $per_ord_data->bindValue(":MSG_NO", $MSG_NO);
+    $per_ord_data->bindValue(":MSG_CONTENT_STATUS", $MSG_CONTENT_STATUS);
+             
+    $per_ord_data->execute();
+
 
     // echo "修改成功~!!";
     // if ($per_ord_data->rowCount() == 0) { //找不到
