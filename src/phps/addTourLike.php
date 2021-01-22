@@ -5,7 +5,6 @@ try {
 	require_once("./connect.php");
     //.......確定是否上傳成功
     if ( $_POST["addCase"]=="1") {
-               
             $sql = "INSERT INTO tour_collect(TOUR_ID,MEM_NO) 
                             values(:TOUR_ID, :MEM_NO )";
 	        $tour = $pdo->prepare( $sql );

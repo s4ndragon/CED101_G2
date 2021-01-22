@@ -69,8 +69,8 @@ var form = new Vue({
         warn() {
             if (this.people > 30) {
                 this.peopleAtt = "*人數最多30人";
-            } else if (this.people < 0) {
-                this.peopleAtt = "*人數不可以是負值";
+            } else if (this.people <= 0) {
+                this.peopleAtt = "*人數不可以是負值或0";
             } else {
                 this.peopleAtt = "";
             }
