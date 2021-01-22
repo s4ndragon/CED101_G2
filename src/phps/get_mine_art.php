@@ -6,11 +6,10 @@ try {
     if(isset($_SESSION["MEM_ID"])){
 
    
-	$sql = "select m.ART_DATE, f.ART_NO, m.ART_STATUS, m.ART_TITLE,  
-            from my_art m join art_favorite f
-            on f.ART_NO = m.ART_NO
-            where m.MEM_NO = :MEM_NO
-            and m.ART_STATUS = 1
+	$sql = "select *
+            from my_art
+            where MEM_NO = :MEM_NO
+            and ART_STATUS = 1
             ";
 
     $get_mine_art = $pdo->prepare($sql);
