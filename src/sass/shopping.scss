@@ -75,7 +75,7 @@ div.shop_adv {
     position: relative;
     width: 100%;
     max-width: $maxWidth;
-    overflow: hidden;
+    // overflow: hidden;
     margin: 0 auto;
 
     a {
@@ -123,7 +123,7 @@ div.product {
     text-align: center;
     padding-bottom: 15px;
     outline: none;
-    padding: 0 5px;
+    padding: 0 6px;
     margin: 0 5px;
 
     div.content {
@@ -371,8 +371,8 @@ div.products {
                 }
 
                 .selected_a {
-                    box-shadow: 0px 0px 0px 3px#467401;
-                    font-weight: 700;
+                    box-shadow: 0px 0px 0px 4px #467401;
+                    font-weight: 900;
                 }
             }
 

@@ -3,14 +3,17 @@
 * {
     box-sizing: $box-sizing;
 }
+
 nav {
     background-color: transparent;
 }
+
 div.menu {
     a {
         color: white;
     }
 }
+
 .main-title {
     position: fixed;
     top: 0;
@@ -19,6 +22,7 @@ div.menu {
     height: calc(320px + 100vh * 0.11458333);
     z-index: -1;
 }
+
 .container-main {
     * {
         transition: opacity 0.5s;
@@ -33,6 +37,7 @@ div.menu {
     background-image: url(../images/index/img_bg_yg_pc4.png);
     background-size: 100% auto;
     z-index: 1;
+
     .tour_title {
         margin-top: 25px;
         margin-bottom: 25px;
@@ -42,6 +47,7 @@ div.menu {
         letter-spacing: 0.1rem;
         text-align: center;
     }
+
     .tour_title_rwd {
         display: none;
     }
@@ -53,9 +59,11 @@ div.menu {
         letter-spacing: 0.1rem;
         line-height: 2.5;
     }
+
     .tour_txt_rwd {
         display: none;
     }
+
     .tour-head-img {
         position: absolute;
         top: 100px;
@@ -63,6 +71,7 @@ div.menu {
         transform: translate(-50%, -120px);
         z-index: -1;
     }
+
     .tour-pouring {
         display: block;
         position: absolute;
@@ -76,12 +85,14 @@ div.menu {
         @include btn2;
     }
 }
+
 .tour-list-line {
     position: absolute;
     top: -200px;
     z-index: -1;
     transform: rotate(-400deg);
 }
+
 .tour-list-line2 {
     position: absolute;
     top: -160px;
@@ -90,6 +101,7 @@ div.menu {
     right: 20px;
     width: 60%;
 }
+
 .tour-list-line3 {
     position: absolute;
     top: -150px;
@@ -98,6 +110,7 @@ div.menu {
     right: 90px;
     width: 60%;
 }
+
 .tour-list {
     li {
         p.head {
@@ -106,14 +119,17 @@ div.menu {
             font-size: 1.5rem;
             font-weight: bold;
             letter-spacing: 0.1rem;
+
             span {
                 display: inline-block;
                 vertical-align: middle;
             }
+
             span.head-sub {
                 color: #3f7735;
             }
         }
+
         &:before {
             content: '';
             display: block;
@@ -127,6 +143,7 @@ div.menu {
             border-radius: 72px;
             background-repeat: no-repeat;
         }
+
         position: relative;
         padding: 80px 30px 0;
         display: inline-block;
@@ -138,6 +155,7 @@ div.menu {
         box-shadow: 5px 6px 10px rgba(0, 0, 0, 0.2);
         background-position: center center;
         background-size: cover;
+
         .txt {
             color: #000;
             font-size: 1rem;
@@ -145,11 +163,13 @@ div.menu {
             line-height: 1.8;
             text-align: left;
         }
+
         + {
             li {
                 margin-left: 20px;
             }
         }
+
         .img {
             position: absolute;
             top: 0;
@@ -157,14 +177,17 @@ div.menu {
             transform: translate(-50%, -50%);
         }
     }
+
     position: relative;
     margin-top: 190px;
+
     ul {
         max-width: 1000px;
         margin: 0 auto;
         font-size: 0;
         margin-bottom: 80px;
     }
+
     .img-back {
         top: 25px;
         position: absolute;
@@ -173,8 +196,9 @@ div.menu {
         display: block;
         opacity: 0.9;
     }
+
     .img-front {
-        top: 90%;
+        top: 101%;
         width: 80%;
         left: 51.1% !important;
         position: absolute;
@@ -184,6 +208,7 @@ div.menu {
         opacity: 0.9;
     }
 }
+
 .events-none {
     pointer-events: none;
 }
@@ -263,7 +288,7 @@ div.menu {
     vertical-align: top;
 }
 
-.vote-list li + li {
+.vote-list li+li {
     margin-left: 30px;
 }
 
@@ -385,6 +410,7 @@ div.menu {
 .lg-btn-vote {
     @include btn;
 }
+
 // 結束第三屏:茶園票選 =====================
 
 // 第四屏:商城 =====================
@@ -974,6 +1000,7 @@ input[type='button'] {
         padding-top: 20px;
         padding-bottom: 20px;
     }
+
     .shop .shop-img-front {
         transform: translate(-50%, -100%);
         bottom: -1628.9px;
@@ -1009,6 +1036,7 @@ input[type='button'] {
     .shop-list li .txt-area .category-name {
         margin-top: 10px;
     }
+
     .shop-list li .txt-area .company {
         transform: translate(20%, -184.4%);
     }
@@ -1071,13 +1099,15 @@ input[type='button'] {
     .vote-list {
         margin-bottom: 0px;
     }
+
     .vote-list li {
         width: 90%;
     }
 
-    .vote-list li + li {
+    .vote-list li+li {
         margin-left: 0;
     }
+
     .vote-list li a .txt {
         margin-top: 0;
         font-size: $h4;
@@ -1133,6 +1163,7 @@ input[type='button'] {
         right: 1%;
         width: 20%;
     }
+
     .discuss .container {
         margin: 20px;
     }

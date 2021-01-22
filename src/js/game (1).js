@@ -22,7 +22,8 @@ var song = new Audio("https://tibamef2e.com/ced101/project/g2/yisell_sound_20080
   bomb=new Audio("https://tibamef2e.com/ced101/project/g2/pon.mp3");
 song.loop = true;
 var star = 25,
-  score=0,
+  score = 0,
+  score_out = document.getElementById('score');
   starTimer = 3000,
   map = document.getElementById("map"),
   road = document.getElementById("road"),
@@ -179,32 +180,28 @@ function bb_(){
           for(var j = 0; j < wormArr.length; j++) {
             //打到蟲子身上了 -30的原因是 圖片有空白
             if(bullet[i].offsetLeft + bullet[i].offsetWidth - 30 >= wormArr[j].offsetLeft) {
-              /*
-               * data-star 所需star數
-               * data-hp hp
+              /*  * data-star 所需star數               * data-hp hp
                * data-defense 防禦力
                * data-damage 攻擊力
-               * data-speed 攻速
-               */
+               * data-speed 攻速 */
               if(bullet[i].offsetLeft - wormArr[j].offsetLeft - wormArr[j].offsetWidth < 5) {
                 //計算傷害
                 calcDamage(wormArr[j], bullet[i], 'https://tibamef2e.com/ced101/project/g2/images/game/11-2.gif ');
                 //受傷狀態的
                 wormState(j, wormArr[j], wormArr);
-                //从地圖中删除
+                //從地圖中删除
                 road.removeChild(bullet[i]);
-                //从數组中删除
+                //從數组中删除
                 bullet.splice(i, 1);
                 break;
               }
-              //打到地圖外 删除子彈
-              
+              //打到地圖外 删除子彈              
             }
     }
             if (bullet[i].offsetLeft + bullet[i].offsetWidth > road.offsetWidth) {
               console.log(bullet[i].offsetLeft);
                         bullet[i].parentNode.removeChild(bullet[i]);
-                        //从數组中删除
+                        //從數组中删除
                         bullet.splice(i, 1);
                       }
         }}
@@ -215,6 +212,7 @@ function zom(){
     if (wormArr[i].offsetLeft + wormArr[i].offsetWidth < 0) {
     document.querySelector("div.gameover").classList.add("-on");
       gamestop();//停止遊戲
+      xhrout();
   }
   for(var j = 0; j < plantArr.length; j++) {
     //蟲子和植物碰上了
@@ -347,17 +345,19 @@ $('#checkbox').on('click', function(){
       init_walk = setInterval("walk()", 60);//蟲子走路
   }
 });
+function xhrout(s = 0) {
+  var xhr=new XMLHttpRequest(),out_s=parseInt(score_out.innerText);
+  xhr.open("POST","./phps/member_out.php");
+  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+  xhr.send(`score=${out_s+ s}`);
+  xhr.onload = function () {
+    var res = xhr.responseText;
+  alert(res);  
+  }
+}
 function gamestop(s=0) {
   document.getElementById('score-over').innerText = score;
   document.getElementById('score-win').innerText = score + s;
-  // var score_tmp = document.getElementById('score_tmp').value;
-  var xhr=new XMLHttpRequest();
-  xhr.open("GET","./phps/member_out.php");
-  xhr.send(`score=${score + s}`)
-  xhr.onload = function () {
-    var res = xhr.responseText;
-    alert(res);  
-  }
   clearInterval(sp_);
   clearInterval(time_b_);
   clearInterval(bb__);
@@ -389,6 +389,7 @@ var tween = TweenLite.to(demo,300,{
     // scoreDisplay.innerHTML = demo.score.toFixed(0);
   },onComplete:function(){
     gamestop(1000);
+    xhrout(1000);
     $(function () {
       $("div.gamewin").addClass("-on");
     });
