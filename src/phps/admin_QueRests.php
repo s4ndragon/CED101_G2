@@ -12,9 +12,9 @@ try {
   
     //接到之後要做的SQL指令
     //:後面+名字會變成一個變數 ->Php 寫sql的時候的寫法
-	$sql = "select * 
-            from restaurant
-            where RESTAURANT_ID= :RESTAURANT_ID
+	$sql = "select a.RESTAURANT_ID RESTAURANT_ID, a.RESTAURANT_NAME RESTAURANT_NAME, a.RESTAURANT_INFRO RESTAURANT_INFRO, a.RESTAURANT_STATUS RESTAURANT_STATUS, b.GARD_ID GARD_ID
+            from restaurant a join restaurant_list b on a.RESTAURANT_ID=b.RESTAURANT_ID
+            where a.RESTAURANT_ID= :RESTAURANT_ID
             ";
 
     // $grouporddata = $pdo->query($sql);
