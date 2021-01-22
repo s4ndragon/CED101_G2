@@ -29,7 +29,7 @@ try {
 			$products -> bindValue(":MEM_NO", $_SESSION["MEM_NO"]);
 			$products -> bindValue(":MEM_IMG", "./images/member/{$fileName}");
 			$products -> execute();			
-			echo "新增成功~";
+            echo "<script>location.href='../membership.html'</script>";
 		}else{
 			echo "失敗~";
 		}
