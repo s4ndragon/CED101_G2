@@ -38,7 +38,7 @@
                         >
                     </li>
                     <li class="li">
-                        <a href="#" data-target="custom"
+                        <a class="active" href="#" data-target="custom"
                         ><img class="navicon" src="images/common/nav_leaf.png" alt="" />客製化內容管理</a
                         >
                     </li>
@@ -86,7 +86,7 @@
                                             <th>茶園地址</th>
                                             <th>茶園總得分</th>
                                             <th>茶園評分次數</th>
-                                            <th>茶園狀態</br>(0:下架 1:上架)</th>
+                                            <th>茶園狀態</br></th>
                                             <th>修改確認</th>
                                         </tr>
                                     </thead>
@@ -106,12 +106,10 @@
                                             <td><input type="text" size="1" :value="item.GARD_CLICK" @keyup="changeGARD_CLICK($event,key)"/></td>
                                             <td>
                                                 <div class="form-group">
-                                                    下架
                                                     <label class="switch">
                                                         <input type="checkbox" v-model="item.ischecked" />
                                                         <span class="slider round"></span>
                                                     </label>
-                                                    上架
                                                 </div>
                                             </td>
                                             <td><input class="btn-delete" type="button" value="確認修改" @click="edit_gardens(item.GARD_ID,key)"  /></td>
@@ -158,12 +156,10 @@
                                   
                                         <td>
                                             <div class="form-group">
-                                                下架
                                                 <label class="switch">
                                                     <input type="checkbox" v-model="item.ischecked" />
                                                     <span class="slider round"></span>
                                                 </label>
-                                                上架
                                             </div>
                                         </td>
                                         <td><input type="button" class="btn-delete" value="確認修改" @click="edit_rests(item.RESTAURANT_ID,key)" /></td>
@@ -208,12 +204,10 @@
                                         <td>{{value.GARD_ID}}</td>
                                         <td>
                                             <div class="form-group">
-                                                下架
                                                 <label class="switch">
                                                     <input type="checkbox" v-model="value.ischecked" />
                                                     <span class="slider round"></span>
                                                 </label>
-                                                上架
                                             </div>
                                         </td>
                                         <td><input type="button" class="btn-delete" value="確認修改" @click="edit_hotels(value.HOTEL_ID,key)"  /></td>
@@ -224,13 +218,8 @@
                     </div>
                 </div>
                     <!-- 燈箱 -->
-                    <div class="overlay" v-if="lightBox_show">
-                        <article>
-                        <h1>{{inner_text}}</h1>
-                        <button type="button" class="btn_modal_close" @click="lightBox_show = false">{{inner_btn_text}}</button>
-                        </article>
-                    </div>
-            </div>
+                    <lightbox v-if="lightbox_show" @close_lightbox="close_lightbox"> </lightbox>
+                </div>
         </main>
         
         <script>

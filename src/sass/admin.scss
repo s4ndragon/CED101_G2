@@ -52,6 +52,10 @@ aside.aside > ul.nav_list {
         padding: 3px 10px;
         color: #0f470f;
     }
+    .active {
+        color: #104110;
+        font-weight: bold;
+    }
 }
 
 /* ==================== main 區域 ==================== */
@@ -382,7 +386,7 @@ input {
 
 #ord_management > div {
     display: grid;
-    grid-template-columns: repeat(2, 76px) repeat(1, 100px) repeat(1, 182px) repeat(5, 100px) repeat(1, 250px) repeat(
+    grid-template-columns: repeat(2, 76px) repeat(1, 100px) repeat(1, 182px) repeat(5, 140px) repeat(1, 250px) repeat(
             2,
             182px
         );
@@ -410,6 +414,9 @@ input {
 /* ==================== 燈箱 ==================== */
 button {
     cursor: pointer;
+}
+div.overlayindex {
+    z-index: 3;
 }
 div.overlay {
     position: fixed;

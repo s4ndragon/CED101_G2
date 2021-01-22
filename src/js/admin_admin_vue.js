@@ -6,9 +6,7 @@ new Vue({
         add_name: '',
         add_psw: '',
         admins: '',
-        lightBox_show: false,
-        inner_text: '',
-        inner_btn_text: '',
+        lightbox_show: false,
     },
 
     methods: {
@@ -21,12 +19,6 @@ new Vue({
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                // body: JSON.stringify({
-                // 	// add_no: this.add_no,
-                // 	add_id: this.add_id,
-                // 	add_name: this.add_name,
-                // 	add_psw: this.add_psw,
-                // }),
             }).then(function (data) {
                 return data.json()
             })
@@ -58,7 +50,7 @@ new Vue({
                 this.add_id = this.add_name = this.add_psw = ''
 
                 //燈箱
-                this.lightBox_show = true
+                this.lightbox_show = true
                 this.inner_text = '已修改完成'
                 this.inner_btn_text = '資料已寫入，請安心關閉'
 
@@ -68,7 +60,6 @@ new Vue({
         },
 
         delete_admins: async function (ADMIN_NO) {
-            
             console.log(ADMIN_NO)
             const res = await fetch('./phps/admin_DelAdmins.php', {
                 method: 'POST',
@@ -85,15 +76,45 @@ new Vue({
                 }),
             })
             //燈箱
-            this.lightBox_show = true
+            this.lightbox_show = true
             this.inner_text = '已修改完成'
             this.inner_btn_text = '資料已寫入，請安心關閉'
             //重新撈取一次細項列表
             this.get_admins(this.ADMIN_NO)
         },
+        close_lightbox() {
+            this.lightbox_show = false
+        },
     },
 
     created() {
         this.get_admins()
+    },
+
+    components: {
+        lightbox: {
+            data() {
+                return {
+                    // lightBox_show: false,
+                    inner_text: '已修改完成',
+                    inner_btn_text: '資料已寫入，請安心關閉',
+                }
+            },
+            props: [],
+            template: `
+          <div class="overlay" >
+            <article>
+                <h1>{{inner_text}}</h1>
+                <button type="button" class="btn_modal_close" @click="close_lightbox">
+                {{inner_btn_text}}
+                </button>
+            </article>
+            </div>`,
+            methods: {
+                close_lightbox() {
+                    this.$emit('close_lightbox')
+                },
+            },
+        },
     },
 })
