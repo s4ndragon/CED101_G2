@@ -439,26 +439,26 @@ div.menu a {
 
 .ga1 {
     z-index: 50;
-    bottom: -13%;
+    bottom: -40%;
     right: 8%;
 }
 
 .ga2 {
     z-index: 40;
-    bottom: -11%;
+    bottom: -45%;
     opacity: 0.97;
 }
 
 .ga4 {
     z-index: 20;
-    bottom: 9%;
+    bottom: -16%;
     opacity: 0.45;
 }
 
 .ga3 {
     z-index: 30;
     opacity: 0.8;
-    bottom: -12%;
+    bottom: -43%;
 }
 
 .ga5 {
@@ -494,24 +494,24 @@ div.menu a {
 @media screen and (max-width: 500px) {
     .ga1 {
         z-index: 50;
-        bottom: 0%;
+        bottom: -13%;
     }
 
     .ga2 {
         z-index: 40;
-        bottom: 3%;
+        bottom: -20%;
         opacity: 0.97;
     }
 
     .ga3 {
         z-index: 30;
         opacity: 0.8;
-        bottom: 0%;
+        bottom: -18%;
     }
 
     .ga4 {
         z-index: 20;
-        bottom: 8%;
+        bottom: 0%;
         opacity: 0.45;
     }
 

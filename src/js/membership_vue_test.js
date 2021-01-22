@@ -643,7 +643,7 @@ Vue.component("mine_order", {
     },
     mounted() {
         this.get_ord_list();
-        console.log(this.ordLists);
+        // console.log(this.ordLists);
 
         // switch (this.ordLists.DEL_STATE) {
         //     case 0:
@@ -741,42 +741,51 @@ Vue.component("mine_article", {
 Vue.component("mine_profile", {
     template: `
                 <div id="mine_profile">
-                    <form action="editMem.php" id="profile" method="POST" v-for="mineInfo in mineInfos">
+                    <form id="profile" method="POST">
                                     <div class="field-wrap">
                                         <label for="MEM_NICKNAME">暱稱</label>
-                                        <input type="text" name="MEM_NICKNAME" class="my_name" :value="mineInfo.MEM_NICNAME">
+                                        <input type="text" name="MEM_NICKNAME" class="my_name" v-model="new_nicname">
                                     </div>
                                     <div class="field-wrap">
                                         <label for="MEM_EMAIL">電子信箱</label>
-                                        <input type="email" name="MEM_EMAIL" class="email" readonly :value="mineInfo.MEM_EMAIL">
+                                        <input type="email" name="MEM_EMAIL" class="email" readonly v-model="mem_email">
                                     </div>
                                     <div class="field-wrap">
                                         <label for="MEM_ID">帳號</label>
-                                        <input type="text" name="MEM_ID" class="my_id" readonly :value="mineInfo.MEM_ID">
+                                        <input type="text" name="MEM_ID" class="my_id" readonly v-model="mem_id">
                                     </div>
                                     <div class="field-wrap">
                                         <label for="MEM_PW">舊密碼</label>
-                                        <input type="password" name="MEM_PW" class="pass_password">
+                                        <input type="password" name="MEM_PW" id="old_mem_pw" class="pass_password" v-model="old_mem_pw">
                                     </div>
                                     <div class="field-wrap">
                                         <label for="new_password">新密碼</label>
-                                        <input type="password" name="new_password" class="new_password">
+                                        <input type="password" name="new_password" id="new_password" class="new_password" v-model="new_password">
                                     </div>
                                     <div class="field-wrap">
                                         <label for="confirm_new_password">確認新密碼</label>
-                                        <input type="text" name="confirm_new_pw" class="confirm_new_pw">
+                                        <input type="password" name="confirm_new_pw" id="confirm_new_pw" class="confirm_new_pw" v-model="confirm_new_pw">
                                     </div>
                                     <div class="btn_sent">
-                                        <button type="submit" class="button">送出</button>
+                                        <button type="button" class="button" @click="update_info">送出</button>
                                     </div>
                                 </form>
                             </div>
                 `,
+    // props: "value",
     data() {
         return {
             mineInfos: "",
+            mem_no: "",
+            mem_id: "",
+            mem_email: "",
+            new_nicname: "",
+            old_mem_pw: "",
+            new_password: "",
+            confirm_new_pw: "",
         };
     },
+    // props: ["value"],
     methods: {
         get_mine_info: async function () {
             const mine_info = await fetch("./phps/get_mine_info.php", {
@@ -790,13 +799,60 @@ Vue.component("mine_profile", {
                 return data.json();
             });
             this.mineInfos = mine_info;
+
+            this.mem_no = this.mineInfos.MEM_NO;
+            this.mem_id = this.mineInfos.MEM_ID;
+            this.mem_email = this.mineInfos.MEM_EMAIL;
+            this.new_nicname = this.mineInfos.MEM_NICNAME;
+        },
+        update_info: async function () {
+            this.get_mine_info();
+
+            //暱稱判別
+            if (this.new_nicname.length > 10 || this.new_nicname.length < 1) {
+                alert("請輸入暱稱（1-10字），請重試");
+                return;
+            }
+            if (this.old_mem_pw != this.mineInfos.MEM_PW) {
+                // console.log(this.mineInfos.MEM_PW);
+                alert("請輸入正確的密碼，請重試");
+                return;
+            }
+            if (this.new_password != this.confirm_new_pw) {
+                alert("新密碼輸入不一致，請重試");
+                return;
+            }
+
+            const update_mem = await fetch("./phps/edit_mem_info.php", {
+                method: "POST",
+                mode: "same-origin",
+                credentials: "same-origin",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    mem_no: this.mineInfos.MEM_NO,
+                    old_mem_pw: this.mineInfos.MEM_PW,
+                    new_nicname: this.new_nicname,
+                    new_password: this.new_password,
+                }),
+            }).then(function (data) {
+                return data.text();
+            });
+            if (update_mem == "修改成功") {
+                alert("修改成功！");
+            } else if (update_mem == "修改失敗") {
+                alert("修改失敗！");
+            }
+
+            // 完成修改後，重新撈取資料
+            this.get_mine_info();
+            // app2.getLoginInfo();
         },
     },
     mounted() {
         this.get_mine_info();
-        // if (new_password.value != confirm_new_password.value) {
-        //     alert("新密碼與確認新密碼不一樣");
-        // }
+
         //個人資料分頁
         $("form")
             .find("input, textarea")

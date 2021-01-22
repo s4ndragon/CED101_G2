@@ -8,6 +8,8 @@ window.addEventListener("load", function (e){
 	let menuUl = document.querySelectorAll("ul.nav_list>li>a");
 	for(let i=0; i<menuUl.length;i++){
 		menuUl[i].onclick = function(){
+			// menuUl.className = ""
+			// menuUl[i].className = "active"
 			go(i);
 		}
 	}

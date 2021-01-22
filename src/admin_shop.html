@@ -43,7 +43,7 @@
                     >
                 </li>
                 <li class="li">
-                    <a href="#" data-target="shop"
+                    <a class="active" href="#" data-target="shop"
                         ><img class="navicon" src="images/common/nav_leaf.png" alt="" />商城管理</a
                     >
                 </li>
@@ -69,7 +69,7 @@
                     <div class="tab_contents">
                         <div class="tab tab1 -on">
                             <form>
-                                <input type="text" v-model="psn" placeholder="請在此輸入商品名稱" />
+                                <input type="text" name="search_pro" v-model="psn" placeholder="請在此輸入商品名稱" />
                                 <button class="btn-confirm" type="button" @click="query_pro_psn">查詢</button>
                                 <button class="btn-confirm" type="button" @click="get_produs">回到列表</button>
                             </form>
@@ -111,12 +111,10 @@
 
                                         <td>
                                             <div class="form-group">
-                                                下架
                                                 <label class="switch">
                                                     <input type="checkbox" v-model="item.ischecked" />
                                                     <span class="slider round"></span>
                                                 </label>
-                                                上架
                                             </div>
                                         </td>
                                         <td>
@@ -165,14 +163,7 @@
                     </div>
                 </div>
                 <!-- 燈箱 -->
-                <div class="overlay" v-if="lightBox_show">
-                    <article>
-                        <h1>{{inner_text}}</h1>
-                        <button type="button" class="btn_modal_close" @click="lightBox_show = false">
-                            {{inner_btn_text}}
-                        </button>
-                    </article>
-                </div>
+                <lightbox v-if="lightbox_show" @close_lightbox="close_lightbox"> </lightbox>
             </div>
         </main>
         <!-- footer -->

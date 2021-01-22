@@ -49,7 +49,7 @@
                 </li>
 
                 <li class="li">
-                    <a href="#" data-target="report"
+                    <a class="active" href="#" data-target="report"
                         ><img class="navicon" src="images/common/nav_leaf.png" alt="" />檢舉管理</a
                     >
                 </li>
@@ -90,9 +90,8 @@
                                         <th>茶園留言檢舉編號</th>
                                         <th>會員編號</th>
                                         <th>茶園留言編號</th>
-                                        <th>茶園留言內容</th>
                                         <th>茶園留言檢舉時間</th>
-                                        <th>茶園留言檢舉原因</th>
+                                        <th>茶園留言內容</th>
                                         <th>審核狀態</th>
                                         <th>修改確認</th>
                                     </tr>
@@ -102,7 +101,6 @@
                                         <td>{{item.MSG_REP_NO}}</td>
                                         <td>{{item.MEM_NO}}</td>
                                         <td>{{item.MSG_NO}}</td>
-                                        <td>{{item.MSG_CONTENT}}</td>
                                         <td>{{item.MSG_REP_DATE}}</td>
                                         <td>{{item.MSG_REP_CONTENT}}</td>
                                         <td>
@@ -145,7 +143,6 @@
                                     <th>留言檢舉編號</th>
                                     <th>會員編號</th>
                                     <th>文章留言編號</th>
-                                    <th>文章留言內容</th>
                                     <th>檢舉時間</th>
                                     <th>檢舉原因</th>
                                     <th>審核狀態</th>
@@ -157,7 +154,6 @@
                                         <td>{{item.MSG_REP_NO}}</td>
                                         <td>{{item.MEM_NO}}</td>
                                         <td>{{item.MSG_NO}}</td>
-                                        <td>{{item.MSG_CONTENT}}</td>
                                         <td>{{item.AMR_DATE}}</td>
                                         <td>{{item.AMR_CONTENT}}</td>
                                         <td>
@@ -232,14 +228,7 @@
                     </div>
                 </div>
                 <!-- 燈箱 -->
-                <div class="overlay" v-if="lightBox_show">
-                    <article>
-                        <h1>{{inner_text}}</h1>
-                        <button type="button" class="btn_modal_close" @click="lightBox_show = false">
-                            {{inner_btn_text}}
-                        </button>
-                    </article>
-                </div>
+                <lightbox v-if="lightbox_show" @close_lightbox="close_lightbox"> </lightbox>
             </div>
         </main>
         <!-- footer -->

@@ -16,7 +16,6 @@
 
 // ==========會員頭相框======
 .nameall {
-
     width: 100px;
     text-align: center;
     margin: 5px 30px;
@@ -31,7 +30,6 @@
     span {
         text-align: center;
     }
-
 }
 
 .nameall2 {
@@ -49,13 +47,11 @@
     span {
         text-align: center;
     }
-
 }
 
 // ==========以上是會員頭相框======
 
 #commandall {
-
     .command {
         display: flex;
         justify-content: center;
@@ -95,7 +91,6 @@
     width: 20px;
 }
 
-
 #article_text {
     padding: 30px 50px 50px;
     color: white;
@@ -112,11 +107,9 @@
     cursor: pointer;
 }
 
-
 #pub_title {
     margin: 20px 0 0 20px;
 }
-
 
 .input_container {
     border-bottom: 1px solid #ebebeb;
@@ -142,7 +135,6 @@
         }
 
         .com_btn_countainer {
-
             .inner_btn {
                 @include smallbtn4;
             }
@@ -150,12 +142,10 @@
     }
 }
 
-
 .text_excl {
     display: flex;
     justify-content: center;
 }
-
 
 .empty {
     color: white;
@@ -171,16 +161,13 @@
     }
 }
 
-
-
-
 @media screen and (max-width: 1100px) {
     .create_command {
         width: 500px !important;
     }
 
     .command_text {
-        width: 450px !important
+        width: 450px !important;
     }
 
     .text_excl {
@@ -236,7 +223,6 @@
             width: 40px;
             height: 40px;
         }
-
     }
 
     .nameall {
@@ -244,7 +230,6 @@
         display: flex;
         align-items: center;
         width: 200px;
-
 
         .pub_mem_name {
             width: 50px;
@@ -260,9 +245,8 @@
         font-size: 8px;
     }
 
-
     .command_text {
-        width: 350px !important
+        width: 350px !important;
     }
 
     .excl {
@@ -272,5 +256,4 @@
     #articles {
         margin-top: 50px;
     }
-
 }

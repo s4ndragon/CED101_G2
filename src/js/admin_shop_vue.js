@@ -14,7 +14,7 @@ new Vue({
         add_PRICE: '',
         ord_no: '',
         ORDERS_NO: '',
-     
+        lightbox_show: false,
     },
 
     methods: {
@@ -85,7 +85,7 @@ new Vue({
             })
 
             //燈箱
-            this.lightBox_show = true
+            this.lightbox_show = true
             this.inner_text = '已修改完成'
             this.inner_btn_text = '資料已寫入，請安心關閉'
 
@@ -191,6 +191,9 @@ new Vue({
             console.log(key)
             this.orders[key].RECEIVER_TEL = event.currentTarget.value
         },
+        close_lightbox() {
+            this.lightbox_show = false
+        },
     },
 
     created() {
@@ -199,6 +202,30 @@ new Vue({
     },
 
     components: {
+        lightbox: {
+            data() {
+                return {
+                    // lightBox_show: false,
+                    inner_text: '已修改完成',
+                    inner_btn_text: '資料已寫入，請安心關閉',
+                }
+            },
+            props: [],
+            template: `
+          <div class="overlay" >
+            <article>
+                <h1>{{inner_text}}</h1>
+                <button type="button" class="btn_modal_close" @click="close_lightbox">
+                {{inner_btn_text}}
+                </button>
+            </article>
+            </div>`,
+            methods: {
+                close_lightbox() {
+                    this.$emit('close_lightbox')
+                },
+            },
+        },
         orderdiv: {
             data() {
                 return {
@@ -211,10 +238,8 @@ new Vue({
                     RECEIVER_ADDRESS: '',
                     RECEIVER_TEL: '',
                     ORDERS_NO: '',
-                    DEL_STATE:"",
-                    lightBox_show: false,
-                    inner_text: '',
-                    inner_btn_text: ''
+                    DEL_STATE: '',
+                    lightBox_show: '',
                 }
             },
             props: ['item'],
@@ -233,12 +258,11 @@ new Vue({
                 </div>
                 <div><span>{{item.ORD_DATE}}</span></div>
                 <div>
-                <span>
-                    <input
-                        type="text"
-                        size="4"
-                        v-model="DELIVERY"
-                    />
+                <span>               
+                    <select v-model="DELIVERY">
+                    <option value="0">(0)宅配</option>
+                    <option value="1">(1)7-11店到店</option>
+                    </select>
                     </span>
                 </div>
                 <div>
@@ -314,7 +338,7 @@ new Vue({
                     </article>
                 </div>
             </div>`,
-            
+
             computed: {
                 // selecteddealState() {
                 //     return this.item.DEL_STATE
@@ -341,8 +365,7 @@ new Vue({
                             RECEIVER_NAME: this.RECEIVER_NAME,
                             RECEIVER_ADDRESS: this.RECEIVER_ADDRESS,
                             RECEIVER_TEL: this.RECEIVER_TEL,
-                            DEL_STATE: this.DEL_STATE
-
+                            DEL_STATE: this.DEL_STATE,
                         }),
                     })
 
@@ -354,11 +377,10 @@ new Vue({
                     this.get_orders()
                 },
             },
-            created() {
-            },
+            created() {},
             mounted() {
                 this.DELIVERY = this.item.DELIVERY
-                this.DEL_STATE= this.item.DEL_STATE
+                this.DEL_STATE = this.item.DEL_STATE
                 this.PAY = this.item.PAY
                 this.DISCOUNT = this.item.DISCOUNT
                 this.TOTAL = this.item.TOTAL

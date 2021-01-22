@@ -342,7 +342,6 @@ let tourCreate = new Vue({
             this.content = 'hotel';
             storage.removeItem('hotel');
             this.hotelList = "";
-
             this.nextBtn = false;
             this.title = "選擇住宿";
             this.color2 = "#4c6e39";

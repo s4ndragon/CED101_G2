@@ -5,9 +5,7 @@ new Vue({
         members: '',
         MEM_NO: '',
         MEM_STATUS: '',
-        lightBox_show: false,
-		inner_text:'',
-		inner_btn_text:'',
+        lightbox_show: false,
     },
 
     methods: {
@@ -71,15 +69,47 @@ new Vue({
             })
 
             //燈箱
-            this.lightBox_show = true
+            // this.overlayclass = "overlayindex"
+            this.lightbox_show = true
             this.inner_text = '已修改完成'
             this.inner_btn_text = '資料已寫入，請安心關閉'
 
             this.get_mems()
         },
+
+        close_lightbox() {
+            this.lightbox_show = false
+        },
     },
 
     created() {
         this.get_mems()
+    },
+
+    components: {
+        lightbox: {
+            data() {
+                return {
+                    // lightBox_show: false,
+                    inner_text: '已修改完成',
+                    inner_btn_text: '資料已寫入，請安心關閉',
+                }
+            },
+            props: [],
+            template: `
+          <div class="overlay" >
+            <article>
+                <h1>{{inner_text}}</h1>
+                <button type="button" class="btn_modal_close" @click="close_lightbox">
+                {{inner_btn_text}}
+                </button>
+            </article>
+            </div>`,
+            methods: {
+                close_lightbox() {
+                    this.$emit('close_lightbox')
+                },
+            },
+        },
     },
 })

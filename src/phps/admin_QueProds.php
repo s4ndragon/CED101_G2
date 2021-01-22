@@ -12,16 +12,21 @@ try {
   
     //接到之後要做的SQL指令
     //:後面+名字會變成一個變數 ->Php 寫sql的時候的寫法
+	// $sql = "select * 
+    //         from product
+    //         where NAME = :N like '%茶葉%' or NAME like'%茶壺%' or NAME like'%茶具%' or NAME like'%茶杯%' or '%茶罐%'
+    //         ";
 	$sql = "select * 
             from product
-            where NAME like '%茶%'
+            where NAME like '%$psn%'
             ";
 
     // $grouporddata = $pdo->query($sql);
     $per_ord_data = $pdo->prepare($sql);
 
     //把接到的資料寫進SQL (要先經過PHP轉譯 所以不能直接寫入SQL指令內)
-    $per_ord_data->bindValue(":psn", $psn);
+    // $per_ord_data->bindValue(":psn", $psn);
+    // $per_ord_data->bindValue(":N", $psn);
     
 
 

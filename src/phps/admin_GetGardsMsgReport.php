@@ -14,9 +14,10 @@ try {
     //接到之後要做的SQL指令
     //:後面+名字會變成一個變數 ->Php 寫sql的時候的寫法
 	$sql = "select a.MSG_REP_NO MSG_REP_NO, a.MEM_NO MEM_NO, a.MSG_NO MSG_NO, b.MSG_CONTENT MSG_CONTENT, a.MSG_REP_DATE MSG_REP_DATE, a.MSG_REP_CONTENT MSG_REP_CONTENT, a.MSG_REP_STATUS MSG_REP_STATUS
-            from GARDEN_MSG_REP a join GARDEN_MSG b on a.MSG_NO=b.MSG_NO
+            from garden_msg_rep a join garden_msg b on a.MSG_NO=b.MSG_NO
             order by MSG_REP_NO	desc
             ";
+  
 
     // $grouporddata = $pdo->query($sql);
     $per_ord_data = $pdo->prepare($sql);

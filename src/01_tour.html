@@ -68,29 +68,29 @@
             <h1>瀏覽揪團</h1>
             <div class="choice_list">
                 <ul>
-                    <li @click="content='all'">
+                    <li @click="filterAll()" :class="{changeColor:colorAll}">
                         <h2>全部揪團</h2>
                     </li>
-                    <li class="mini_choice">
+                    <li class=" mini_choice" :class="{changeColor:colorLocation}">
                         <h2>揪團地區 <i class="fas fa-angle-down" fa-4x></i></h2>
                         <ul>
-                            <li @click="content='north';filter='北部'">北部</li>
-                            <li @click="content='north';filter='中部'">中部</li>
-                            <li @click="content='north';filter='南部'">南部</li>
+                            <li @click="filterNorth()" :class="{changeColor:colorNorth}">北部</li>
+                            <li @click="filterCenter()" :class="{changeColor:colorCenter}">中部</li>
+                            <li @click="filterSouth()" :class="{changeColor:colorSouth}">南部</li>
                         </ul>
                     </li>
-                    <li>
-                        <h2>茶園類型 <i class="fas fa-angle-down" fa-4x></i></h2>
+                    <li :class="{changeColor:colorType}">
+                        <h2>茶園類型 <i class=" fas fa-angle-down" fa-4x></i></h2>
                         <ul>
-                            <li @click="content='type';filter=0">觀光型</li>
-                            <li @click="content='type';filter=1">體驗型</li>
+                            <li @click="filterType0()" :class="{changeColor:colorType0}">觀光型</li>
+                            <li @click=" filterType1()" :class="{changeColor:colorType1}">體驗型</li>
                         </ul>
                     </li>
-                    <li>
-                        <h2>預估費用 <i class="fas fa-angle-down" fa-4x></i></h2>
+                    <li :class="{changeColor:colorPrice}">
+                        <h2>預估費用 <i class=" fas fa-angle-down" fa-4x></i></h2>
                         <ul>
-                            <li @click="content='price';filter=2000">2000以下</li>
-                            <li @click="content='price';filter=3000">3000以下</li>
+                            <li @click="filterPrice2000()" :class="{changeColor:colorPrice2000}">2000以下</li>
+                            <li @click="filterPrice3000()" :class="{changeColor:colorPrice3000}">3000以下</li>
                         </ul>
                     </li>
                 </ul>
@@ -102,7 +102,6 @@
         <form id="addLike" ref="form" action="./phps/addTourLike.php" method="post">
             <input hidden type="text" name="addCase" v-model="addCase" />
             <input hidden type="text" name="TOUR_ID" v-model="tourId" />
-            <input hidden type="text" name="MEM_NO" v-model="memRows.MEM_NO" />
             <input hidden ref="submit" type="submit" />
         </form>
     </div>

@@ -14,7 +14,7 @@ try {
     //接到之後要做的SQL指令
     //:後面+名字會變成一個變數 ->Php 寫sql的時候的寫法
 	$sql = "select a.MSG_REP_NO MSG_REP_NO, a.MEM_NO MEM_NO, a.MSG_NO MSG_NO, a.AMR_DATE AMR_DATE, a.AMR_CONTENT AMR_CONTENT , a.AMR_STATUS AMR_STATUS ,b.MSG_CONTENT MSG_CONTENT
-            from ART_MSG_REP a join ART_MSG b on a.MSG_NO=b.MSG_NO
+            from art_msg_rep a join art_msg b on a.MSG_NO=b.MSG_NO
             order by MSG_REP_NO desc
             ";
 

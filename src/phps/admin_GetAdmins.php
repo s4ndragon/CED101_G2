@@ -17,6 +17,9 @@ try {
             from admin
             order by ADMIN_NO ASC
             ";
+    // $sql = "select * 
+    // from TOUR
+    // ";
 
     // $grouporddata = $pdo->query($sql);
     $per_ord_data = $pdo->prepare($sql);
