@@ -112,6 +112,7 @@
             <!--       留言+檢舉燈箱開始        -->
             <!-- 接收子組件傳來的事件show-box後執行showModal(i)函式  -->
             <comment-component v-for="(msgRow, i) in msgRows"
+                               :key="msgRow.MSG_NO"
                                :mem-pic="msgRow.MEM_IMG"
                                :mem-name="msgRow.MEM_NICNAME"
                                :msg-con="msgRow.MSG_CONTENT"
@@ -190,7 +191,7 @@
 
                 <div class="tourBtn">
                     <button type="button">
-                        <a :href="'02_tour_more.html?TOUR_ID=' + tourRow.TOUR_ID"> 立即報名</a>
+                        <a :href="'02_tour_more.html?TOUR_ID=' + tourRow.TOUR_ID">查看更多</a>
                     </button>
                 </div>
             </div>
