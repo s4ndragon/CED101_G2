@@ -2,6 +2,7 @@
 try {
     require_once("./connect.php");
 
+    
     $MEM_ID = $_POST["MEM_ID"];
     $MEM_PW = $_POST["MEM_PW"];
     $sql = "select * from member where MEM_ID='$MEM_ID' and MEM_PW='$MEM_PW' and MEM_STATUS = 1";
@@ -23,6 +24,7 @@ try {
             $_SESSION["MEM_PW"] = $memRow["MEM_PW"];
             $_SESSION["MEM_EMAIL"] = $memRow["MEM_EMAIL"];
             $_SESSION["MEM_IMG"] = $memRow["MEM_IMG"];
+            // var_dump($_SESSION);exit();
         // echo $_SESSION["MEM_NICNAME"], "您好~<br>", $_SESSION["MEM_EMAIL"];
             $result = array("MEM_NO"=>$_SESSION["MEM_NO"], "MEM_ID"=>$_SESSION["MEM_ID"], "MEM_NICNAME"=>$_SESSION["MEM_NICNAME"], "MEM_EMAIL"=>$_SESSION["MEM_EMAIL"], "MEM_IMG"=>$_SESSION["MEM_IMG"]);
             echo "<script>location.href='../membership.html'</script>";
@@ -33,7 +35,8 @@ try {
             // self.opener.location.reload();
             
             //     </script>';
-        }     
+        }    
+
 } 
 catch (PDOException $e) {
     echo "錯誤原因 : ", $e->getMessage(), "<br>";

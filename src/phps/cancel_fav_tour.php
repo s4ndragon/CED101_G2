@@ -5,13 +5,20 @@ try {
 
     if(isset($_SESSION["MEM_ID"])){
 
-	$sql = "select f.mem_no, p.name, p.info, p.img, p.psn
-            from product_f f join product p
-            on f.psn = p.psn
-            where f.MEM_NO = :MEM_NO
+        //先接受前端送來的資料
+    $content = trim(file_get_contents("php://input")); 
+    $decoded = json_decode($content, true);
+
+    $TOUR_ID = $decoded["unfav_tour"]; //php叫物件內屬性的寫法
+
+	$sql = "
+            delete from tour_collect
+            where TOUR_ID = :TOUR_ID
+            and MEM_NO = :MEM_NO
             ";
 
     $get_fav_prod = $pdo->prepare($sql);
+    $get_fav_prod->bindValue(":TOUR_ID", $TOUR_ID);
     $get_fav_prod->bindValue(":MEM_NO", $_SESSION["MEM_NO"]);
 
     $get_fav_prod->execute();

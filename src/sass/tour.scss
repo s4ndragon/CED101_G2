@@ -521,6 +521,10 @@ img {
             margin: 0px 5px;
         }
 
+        .changeColor {
+            color: #386641;
+            background-color: white;
+        }
 
         li {
             // display: inline-block;
@@ -623,7 +627,7 @@ img {
 
             div {
 
-                width: 50px;
+                width: 30px;
 
                 img {
                     width: 100%;
@@ -636,29 +640,37 @@ img {
             }
         }
 
+        .tour_img_text {
+            position: absolute;
+            padding: 10px;
+            bottom: 8px;
+            background-color: rgba($color: #000000, $alpha: .3);
+            width: 100%;
+            text-align: left;
 
-        p {
-            &:nth-child(1) {
-                position: absolute;
-                bottom: 55px;
-                left: 20px;
-                color: #fff;
-                font-size: 24px;
-                letter-spacing: 3px;
-                // background-color: rgba($color: #000000, $alpha: .4);
-                text-shadow: 0px 0px 5px black;
+            p {
+                &:nth-child(1) {
+
+                    color: #fff;
+                    font-size: 24px;
+                    letter-spacing: 3px;
+                    // background-color: rgba($color: #000000, $alpha: .4);
+                    text-shadow: 0px 0px 5px black;
+                }
+
+                &:nth-child(2) {
+
+                    color: #fff;
+                    font-size: 16px;
+                    letter-spacing: 3px;
+                    text-shadow: 0px 0px 5px black;
+                }
             }
 
-            &:nth-child(2) {
-                position: absolute;
-                bottom: 22px;
-                left: 24px;
-                color: #fff;
-                font-size: 16px;
-                letter-spacing: 3px;
-                text-shadow: 0px 0px 5px black;
-            }
+
         }
+
+
 
         img {
             width: 100%;

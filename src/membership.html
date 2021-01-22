@@ -8,7 +8,7 @@
         <!-- <script src="../node_modules/jquery/dist/jquery.js"></script> -->
         <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script> -->
         <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
-        
+
         <!-- <script src="./js/membership.js"></script> -->
         <title>會員系統</title>
     </head>
@@ -21,7 +21,7 @@
             </div>
             <main>
                 <!-- 側邊欄 -->
-                <div class="card">
+                <div id="changeImg" action="./phps/changeImg.php" class="card">
                     <div class="card-body">
                         <div class="profile-pic">
                             <img id="MEM_IMG" class="rounded-circle" :src="memRows.MEM_IMG" />
@@ -35,6 +35,7 @@
                     </div>
                 </div>
                 <input type="file" id="profile_pic_input" name="profile_pic_input" accept="image/*" />
+                <!-- <input type="submit" id="profile_pic_input_submit" name="profile_pic_input" /> -->
                 <!-- 主要內容 -->
                 <div id="main_container">
                     <!-- 主要內容的選單列 -->
@@ -48,9 +49,7 @@
                     <component :is="content"></component>
                 </div>
             </main>
-            
 
-            
             <!-- @@include('layout/login_register.html')  -->
         </div>
         <!-- @@include('layout/member_main.html')  -->

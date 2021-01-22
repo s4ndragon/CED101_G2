@@ -6,9 +6,10 @@ try {
     if(isset($_SESSION["MEM_ID"])){
 
    
-	$sql = "select * 
+	$sql = "select *
             from my_art
             where MEM_NO = :MEM_NO
+            and ART_STATUS = 1
             ";
 
     $get_mine_art = $pdo->prepare($sql);

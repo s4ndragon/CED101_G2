@@ -7,6 +7,7 @@ function $id(id) { //尋找id
 }
 
 function init() {
+
     if (storage['addItemList'] == null) {
         storage['addItemList'] = '';
     }
@@ -18,17 +19,20 @@ function init() {
         getproducts('所有商品', 'PSN_DESC');
         classifyBtnsSelect();
         orderBtn();
-        getFavortieList()
+        // getFavortieList()
     };
     //如果有推薦商品
     if ($id('recommends')) {
         getRecommends(1);
         addcartalert();
+        if (app2.memRows.MEM_ID) { //如果有登入
+            getFavortieList();
+        }
     }
     //如果是產品頁面
     if ($id('add_cart')) {
         productPageBtn();
-        $id('productInfo').querySelector('.addFavorite').addEventListener('click', addFavorite)
+        $id('productInfo').querySelector('.addFavorite').addEventListener('click', addFavorite);
     }
     //如果是有購物車清單
     if ($id('cart_content')) {
@@ -127,7 +131,7 @@ function addProduct(product) {
 
     newproduct.getElementsByClassName('add_cart')[0].addEventListener('click', addItem);
     newproduct.getElementsByClassName('addFavorite')[0].addEventListener('click', addFavorite);
-    loadFavorite()
+    loadFavorite();
     return newproduct;
 }
 
@@ -425,6 +429,7 @@ function addFavorite(e) {
         storage['FavortieList'] = FavortieList;
         alertLB('已取消我的最愛');
     };
+    sendFavortieList()
 }
 
 function loadFavorite() {
@@ -466,7 +471,7 @@ function getFavortieList() {
     xhr.send(null);
 }
 
-window.addEventListener('unload', sendFavortieList)
+// window.addEventListener('unload', sendFavortieList)
 
 function sendFavortieList() {
     let xhr = new XMLHttpRequest();

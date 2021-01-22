@@ -2,7 +2,7 @@
 try {
     require_once("./connect.php");
     $sql = "select * from product where sold > :sold";
-    $sql = "SELECT * FROM `product` ORDER BY `product`.`PSN` DESC";
+    $sql = "SELECT * FROM `product` ORDER BY `product`.`PSN` DESC limit 15";
     $recommends = $pdo->prepare($sql);
     $recommends->bindValue(":sold", $_GET['sold']);
     $recommends->execute();

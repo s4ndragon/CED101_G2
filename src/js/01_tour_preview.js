@@ -63,9 +63,7 @@ window.addEventListener("load", function () {
 let preview = new Vue({
     el: "#preview",
     data: {
-
         gardId: "",
-
         hotelId: "",
         nowPeople: 0,
         previewImg: "",
@@ -96,12 +94,14 @@ let preview = new Vue({
         //-============successBox
         successBox: false,
 
+
     },
     method: {
 
     },
 
     mounted() {
+
         this.previewImg = storage.getItem('preview_img');
         this.tourName = storage.getItem('tourName');
         this.people = storage.getItem('people');

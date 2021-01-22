@@ -71,12 +71,10 @@ window.addEventListener("load", function () {
             let FavortieList = JSON.parse(xhr4.responseText);
             tourApp.FavortieLists = FavortieList;
 
-        } else {
-            alert(xhr4.status);
         }
     }
-    let memNo = tourApp.memRows.MEM_NO;
-    var url = "./phps/getTourFavoriteList.php?mem_no=" + memNo;
+
+    var url = "./phps/getTourFavoriteList.php";
     xhr4.open("Get", url, true);
     xhr4.send(null);
 
@@ -93,8 +91,10 @@ Vue.component('all', {
 <div class="tour_browse" id="tourBrowseBlock">
     <div class="tour_block" id="tourBlock" v-for="(tourRow,index) in tours" >
         <div class="tour_img">
+        <div class="tour_img_text" >
             <p>{{tourRow.TOUR_TITLE}}</p>
             <p>{{tourRow.TOUR_SETOFFTIME}} 開團</p>
+        </div>
             <img :src="tourRow.TOUR_IMG" alt="">
             <div class="love_share">
                     <div class="love">
@@ -125,7 +125,7 @@ Vue.component('all', {
         </div>
         <div class="tourBtn">
             <button type="button">
-                <a :href="'02_tour_more.html?TOUR_ID=' + tourRow.TOUR_ID"> 立即報名</a>
+                <a :href="'02_tour_more.html?TOUR_ID=' + tourRow.TOUR_ID"> 查看更多</a>
             </button>
         </div>
 
@@ -172,8 +172,10 @@ Vue.component('north', {
 <div class="tour_browse" id="tourBrowseBlock">
     <div class="tour_block" id="tourBlock" v-for="(tourRow,index) in tours" v-show="tourRow.GARD_LOCATE==filter">
         <div class="tour_img">
+        <div class="tour_img_text" >
             <p>{{tourRow.TOUR_TITLE}}</p>
             <p>{{tourRow.TOUR_SETOFFTIME}} 開團</p>
+            </div>
             <img :src="tourRow.TOUR_IMG" alt="">
             <div class="love_share">
                 <div class="love">
@@ -207,7 +209,7 @@ Vue.component('north', {
         </div>
         <div class="tourBtn">
             <button type="button">
-                <a :href="'02_tour_more.html?TOUR_ID=' + tourRow.TOUR_ID"> 立即報名</a>
+                <a :href="'02_tour_more.html?TOUR_ID=' + tourRow.TOUR_ID"> 查看更多</a>
             </button>
         </div>
 
@@ -254,8 +256,10 @@ Vue.component('type', {
 <div class="tour_browse" id="tourBrowseBlock">
     <div class="tour_block" id="tourBlock" v-for="(tourRow,index) in tours" v-show="tourRow.GARD_TYPE==filter">
         <div class="tour_img">
+        <div class="tour_img_text" >
             <p>{{tourRow.TOUR_TITLE}}</p>
             <p>{{tourRow.TOUR_SETOFFTIME}} 開團</p>
+            </div>
             <img :src="tourRow.TOUR_IMG" alt="">
             <div class="love_share">
                 <div class="love">
@@ -286,7 +290,7 @@ Vue.component('type', {
         </div>
         <div class="tourBtn">
             <button type="button">
-                <a :href="'02_tour_more.html?TOUR_ID=' + tourRow.TOUR_ID"> 立即報名</a>
+                <a :href="'02_tour_more.html?TOUR_ID=' + tourRow.TOUR_ID">查看更多</a>
             </button>
         </div>
 
@@ -334,8 +338,10 @@ Vue.component('price', {
 <div class="tour_browse" id="tourBrowseBlock">
     <div class="tour_block" id="tourBlock" v-for="(tourRow,index) in tours" v-show="tourRow.GARD_PRICE<=filter">
         <div class="tour_img">
+        <div class="tour_img_text" >
             <p>{{tourRow.TOUR_TITLE}}</p>
             <p>{{tourRow.TOUR_SETOFFTIME}} 開團</p>
+            </div>
             <img :src="tourRow.TOUR_IMG" alt="">
             <div class="love_share">
                 <div class="love">
@@ -368,7 +374,7 @@ Vue.component('price', {
         </div>
         <div class="tourBtn">
             <button type="button">
-                <a :href="'02_tour_more.html?TOUR_ID=' + tourRow.TOUR_ID"> 立即報名</a>
+                <a :href="'02_tour_more.html?TOUR_ID=' + tourRow.TOUR_ID">查看更多</a>
             </button>
         </div>
 
@@ -426,8 +432,139 @@ let tourApp = new Vue({
         tourId: "",
         addCase: "",
         memRows: '',
+        colorAll: true,
+        colorLocation: false,
+        colorNorth: false,
+        colorCenter: false,
+        colorSouth: false,
+        colorType: false,
+        colorType0: false,
+        colorType1: false,
+        colorPrice: false,
+        colorPrice2000: false,
+        colorPrice3000: false,
     },
     methods: {
+        filterAll() {
+            this.content = "all";
+            this.colorAll = true;
+            this.colorLocation = false;
+            this.colorNorth = false;
+            this.colorCenter = false;
+            this.colorSouth = false;
+            this.colorType = false;
+            this.colorType0 = false;
+            this.colorType1 = false;
+            this.colorPrice = false;
+            this.colorPrice2000 = false;
+            this.colorPrice3000 = false;
+        },
+        filterNorth() {
+            this.content = "north";
+            this.filter = '北部';
+            this.colorLocation = true;
+            this.colorAll = false;
+            this.colorNorth = true;
+            this.colorCenter = false;
+            this.colorSouth = false;
+            this.colorType = false;
+            this.colorType0 = false;
+            this.colorType1 = false;
+            this.colorPrice = false;
+            this.colorPrice2000 = false;
+            this.colorPrice3000 = false;
+
+        },
+        filterCenter() {
+            this.content = "north";
+            this.filter = '中部';
+            this.colorLocation = true;
+            this.colorAll = false;
+            this.colorNorth = false;
+            this.colorCenter = true;
+            this.colorSouth = false;
+            this.colorType = false;
+            this.colorType0 = false;
+            this.colorType1 = false;
+            this.colorPrice = false;
+            this.colorPrice2000 = false;
+            this.colorPrice3000 = false;
+        },
+        filterSouth() {
+            this.content = "north";
+            this.filter = '南部';
+            this.colorLocation = true;
+            this.colorAll = false;
+            this.colorNorth = false;
+            this.colorCenter = false;
+            this.colorSouth = true;
+            this.colorType = false;
+            this.colorType0 = false;
+            this.colorType1 = false;
+            this.colorPrice = false;
+            this.colorPrice2000 = false;
+            this.colorPrice3000 = false;
+        },
+        filterType0() {
+            this.content = "type";
+            this.filter = 0;
+            this.colorType = true;
+            this.colorType0 = true;
+            this.colorType1 = false;
+            this.colorAll = false;
+            this.colorLocation = false;
+            this.colorNorth = false;
+            this.colorCenter = false;
+            this.colorSouth = false;
+            this.colorPrice = false;
+            this.colorPrice2000 = false;
+            this.colorPrice3000 = false;
+        },
+        filterType1() {
+            this.content = "type";
+            this.filter = 1;
+            this.colorType = true;
+            this.colorType0 = false;
+            this.colorType1 = true;
+            this.colorAll = false;
+            this.colorLocation = false;
+            this.colorNorth = false;
+            this.colorCenter = false;
+            this.colorSouth = false;
+            this.colorPrice = false;
+            this.colorPrice2000 = false;
+            this.colorPrice3000 = false;
+        },
+        filterPrice2000() {
+            this.content = "price";
+            this.filter = 2000;
+            this.colorPrice = true;
+            this.colorPrice2000 = true;
+            this.colorPrice3000 = false;
+            this.colorAll = false;
+            this.colorLocation = false;
+            this.colorNorth = false;
+            this.colorCenter = false;
+            this.colorSouth = false;
+            this.colorType = false;
+            this.colorType0 = false;
+            this.colorType1 = false;
+        },
+        filterPrice3000() {
+            this.content = "price";
+            this.filter = 3000;
+            this.colorPrice = true;
+            this.colorPrice2000 = false;
+            this.colorPrice3000 = true;
+            this.colorAll = false;
+            this.colorLocation = false;
+            this.colorNorth = false;
+            this.colorCenter = false;
+            this.colorSouth = false;
+            this.colorType = false;
+            this.colorType0 = false;
+            this.colorType1 = false;
+        },
         showAll() {
             this.locN = true;
             this.locC = true;
@@ -480,8 +617,6 @@ let tourApp = new Vue({
                 if (xhr.status == 200) { //success
                     tourApp.memRows = JSON.parse(xhr.responseText);
                     console.log(tourApp.memRows);
-                } else {
-                    alert(xhr.status);
                 }
             };
             xhr.open("get", "./phps/member.php", true);
@@ -495,15 +630,11 @@ let tourApp = new Vue({
                         tourApp.FavortieLists = JSON.parse(xhr.responseText);
                         console.log(321);
                         console.log(tourApp.FavortieLists);
-                    } else {
-                        alert(xhr.status);
                     }
                 };
-                let memNo = this.memRows.MEM_NO;
-                var url = "./phps/getTourFavoriteList.php?mem_no=" + memNo;
+                var url = "./phps/getTourFavoriteList.php";
                 xhr.open("Get", url, true);
                 xhr.send(null);
-
             }, 100);
         },
 

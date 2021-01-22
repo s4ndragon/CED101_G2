@@ -1,11 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-
-<title>Examples</title>
-</head>
-<body>
 <?php
 session_start();
 $errMsg = "";
@@ -18,7 +10,8 @@ try {
 			$tour = $pdo->prepare( $sql );
 			$tour -> bindValue(":GARD_ID", $_POST["GARD_ID"]);
 			$MEM_NO = $_SESSION["MEM_NO"];
-            $tour -> bindValue(":MEM_NO", $MEM_NO);
+			$tour -> bindValue(":MEM_NO", $MEM_NO);
+			// $tour -> bindValue(":MEM_NO", $_POST["MEM_NO"]);
 			$tour -> bindValue(":HOTEL_ID", $_POST["HOTEL_ID"]);
             $tour -> bindValue(":TOUR_PEOPLE", $_POST["TOUR_PEOPLE"]);
             $tour -> bindValue(":NUM_OF_PARTICIPANTS", $_POST["NUM_OF_PARTICIPANTS"]);
@@ -57,5 +50,3 @@ try {
 
 
 ?>    
-</body>
-</html>

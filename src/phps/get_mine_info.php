@@ -14,14 +14,6 @@ try {
 
     $get_mine_info = $pdo->prepare($sql);
     $get_mine_info->bindValue(":MEM_NO", $_SESSION["MEM_NO"]);
-
-    //把接到的資料寫進SQL (要先經過PHP轉譯 所以不能直接寫入SQL指令內)
-    // $per_ord_data->bindValue(":ADMIN_NO", $add_no);
-    // $per_ord_data->bindValue(":ADMIN_ID", $add_id);
-    // $per_ord_data->bindValue(":ADMIN_NAME", $add_name);
-    // $per_ord_data->bindValue(":ADMIN_PW", $add_psw);
-
-
     $get_mine_info->execute();
 
     // echo "修改成功~!!";
@@ -31,7 +23,7 @@ try {
 
     } else { //找得到
         //取回一筆資料
-        $get_mine_info = $get_mine_info->fetchAll(PDO::FETCH_ASSOC);
+        $get_mine_info = $get_mine_info->fetch(PDO::FETCH_ASSOC);
 
         //送出json字串
         echo json_encode($get_mine_info);

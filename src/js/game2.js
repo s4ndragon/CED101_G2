@@ -129,7 +129,6 @@ function addworm(damage, defense, hp, speed,o){
   img.dataset.speed = speed;
   img.dataset.HP = hp;
   img.dataset.hp = hp;
-  img.dataset.speed = speed;
   o.appendChild(img);
   return img;
 }
@@ -147,7 +146,7 @@ function walk(){//蟲子走路
       if (path.wormArr[k][i].offsetLeft + path.wormArr[k][i].offsetWidth < 0) {
         document.querySelector("div.gameover").classList.add("-on");
         gamestop();
-
+        xhrout();
     }
     for(var j = 0; j < path.plantArr[k].length; j++) {
       //蟲子和植物碰上了
