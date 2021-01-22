@@ -902,20 +902,32 @@ var app = new Vue({
             xhr.open("get", "./phps/member.php", true);
             xhr.send(null);
         },
-        uploadImg() {
+        uploadImg: async function () {
+            let newIcon = document.getElementById("profilePicInput").files[0];
+            let formData = new FormData();
+            formData.append("profilePicInput", newIcon);
+
+            // =====ajax
             let xhr = new XMLHttpRequest();
             xhr.onload = function () {
                 if (xhr.status == 200) {
                     // console.log(xhr.responseText)
-                    // this.lightbox = true
-                    alert("成功");
+                    alert("更改成功");
                 } else {
-                    alert("失敗");
-
+                    alert("更改失敗");
                 }
             };
-            xhr.open("post", "./php/update_mem_icon.php");
-            xhr.send(null);
+            xhr.open("post", "./php/upload_mem_icon.php");
+            xhr.send(formData);
+            if (xhr.status == 200) {
+                // console.log(xhr.responseText)
+                this.lightbox = true;
+                this.error_text = "新增商品成功";
+            } else {
+                this.lightbox = true;
+                this.error_text = "上傳照片失敗";
+                // alert(xhr.status)
+            }
         },
     },
     mounted() {
@@ -957,6 +969,7 @@ $(".profile-pic").click(function () {
 function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
+
         reader.onload = function (e) {
             //animate profile picture
             var profilePicTL = new TimelineMax();
@@ -1046,5 +1059,23 @@ function readURL(input) {
 }
 $("#profile_pic_input").change(function () {
     readURL(this);
-    // console.log(this);
 });
+
+// function uploadImg() {
+//     var file_data = $("#profile_pic_input").prop("files")[0];
+//     var form_data = new FormData();
+//     form_data.append("file", file_data);
+
+//     $.ajax({
+//         url: "upload_mem_icon.php",
+//         dataType: "image/*", // what to expect back from the PHP script, if anything
+//         cache: false,
+//         contentType: false,
+//         processData: false,
+//         data: form_data,
+//         type: "post",
+//         success: function (result) {
+//             alert(result);
+//         },
+//     });
+// }
