@@ -96,20 +96,7 @@
 
 	<script src="./js/vue.js"></script>
 	<script>
-		window.addEventListener("load", function (){
-			let gardenRows;
-			//============去server端拿資料
-			let xhr = new XMLHttpRequest();
-			xhr.onload = function(){  //step3
-				app.gardenRows = JSON.parse(xhr.responseText); 
-				app.gardenRowsTop = app.gardenRows.slice(0,3);
-				app.gardenRowsEnd = app.gardenRows.slice(3);
-				// console.log(app.gardenRows);
-				// console.log(app.gardenRowsEnd);
-			}
-			xhr.open("get","./phps/vote.php", true); //step1
-			xhr.send(null); //step2
-		});
+		
 
 		Vue.component("star-rating", VueStarRating.default, {
 			methods: {
@@ -131,11 +118,29 @@
 				gardenRowsTop:[],
 				gardenRowsEnd:[]
 			},
-			computed:{
-				// grade(){
-				// 	return this.books[0].psn;
-				// },
-			}
+
+			methods: {
+				get_data(){
+					window.addEventListener("load", function (){
+						let gardenRows;
+						//============去server端拿資料
+						let xhr = new XMLHttpRequest();
+						xhr.onload = function(){  //step3
+							app.gardenRows = JSON.parse(xhr.responseText); 
+							app.gardenRowsTop = app.gardenRows.slice(0,3);
+							app.gardenRowsEnd = app.gardenRows.slice(3);
+							// console.log(app.gardenRows);
+							// console.log(app.gardenRowsEnd);
+						}
+						xhr.open("get","./phps/vote.php", true); //step1
+						xhr.send(null); //step2
+					});
+				}
+			},
+
+			mounted() {
+				this.get_data()
+			},
 		});
 
 		

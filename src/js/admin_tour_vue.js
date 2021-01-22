@@ -2,15 +2,11 @@ new Vue({
     el: '#app',
     data: {
         //放click 事件 和v-model後面的變數
-        tours:'',
+        tours: '',
         tour_id_search: '',
         TOUR_ID: '',
-        TOUR_STATUS:'',
-        lightBox_show: false,
-        inner_text: '',
-        inner_btn_text: '',
-    
-  
+        TOUR_STATUS: '',
+        lightbox_show: false,
     },
 
     methods: {
@@ -53,18 +49,6 @@ new Vue({
             this.tour_id_search = ''
         },
 
-   
-        // changeNAME(event, key) {
-        //     console.log(key)
-        //     this.products[key].NAME = event.currentTarget.value
-        // },
-        // changeINFO(event, key) {
-        //     this.products[key].INFO = event.currentTarget.value
-        // },
-        // changePRICE(event, key) {
-        //     this.products[key].PRICE = event.currentTarget.value
-        // },
-
         edit_tours: async function (TOUR_ID, key) {
             if (this.tours[key].ischecked == false) {
                 this.TOUR_STATUS = 0
@@ -85,20 +69,47 @@ new Vue({
                 }),
             })
 
-             //燈箱
-             this.lightBox_show = true
-             this.inner_text = '已修改完成'
-             this.inner_btn_text = '資料已寫入，請安心關閉'
+            //燈箱
+            this.lightbox_show = true
+            this.inner_text = '已修改完成'
+            this.inner_btn_text = '資料已寫入，請安心關閉'
 
             this.get_tour()
         },
 
-     
-
+        close_lightbox() {
+            this.lightbox_show = false
+        },
     },
 
     created() {
         this.get_tour()
-       
+    },
+
+    components: {
+        lightbox: {
+            data() {
+                return {
+                    // lightBox_show: false,
+                    inner_text: '已修改完成',
+                    inner_btn_text: '資料已寫入，請安心關閉',
+                }
+            },
+            props: [],
+            template: `
+          <div class="overlay" >
+            <article>
+                <h1>{{inner_text}}</h1>
+                <button type="button" class="btn_modal_close" @click="close_lightbox">
+                {{inner_btn_text}}
+                </button>
+            </article>
+            </div>`,
+            methods: {
+                close_lightbox() {
+                    this.$emit('close_lightbox')
+                },
+            },
+        },
     },
 })

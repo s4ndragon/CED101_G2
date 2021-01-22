@@ -14,7 +14,7 @@ try {
     //接到之後要做的SQL指令
     //:後面+名字會變成一個變數 ->Php 寫sql的時候的寫法
 	$sql = "select a.MSG_REP_NO MSG_REP_NO, a.MEM_NO MEM_NO, a.MSG_NO MSG_NO, a.AMR_DATE AMR_DATE, a.AMR_CONTENT AMR_CONTENT , a.AMR_STATUS AMR_STATUS ,b.MSG_CONTENT MSG_CONTENT
-            from ART_MSG_REP a join ART_MSG b on a.MSG_NO=b.MSG_NO
+            from art_msg_rep a join art_msg b on a.MSG_NO=b.MSG_NO
             order by MSG_REP_NO desc
             ";
 
@@ -41,15 +41,15 @@ try {
         
         // 有3種情形的寫法
         //將取回的0或1轉回字串  傳回前台
-        for($i=0;$i < count($per_ord_datarow);$i++){
+    //     for($i=0;$i < count($per_ord_datarow);$i++){
 
-        if($per_ord_datarow[$i]["AMR_STATUS"] != 0){
-            $per_ord_datarow[$i]["ischecked"] = false;
-        }else{
-            $per_ord_datarow[$i]["ischecked"] = true;
-        };
+    //     if($per_ord_datarow[$i]["MSG_STATUS"] != 0){
+    //         $per_ord_datarow[$i]["ischecked"] = false;
+    //     }else{
+    //         $per_ord_datarow[$i]["ischecked"] = true;
+    //     };
 
-    };
+    // };
         //送出json字串
         echo json_encode($per_ord_datarow);
         // echo $managerdatarow;

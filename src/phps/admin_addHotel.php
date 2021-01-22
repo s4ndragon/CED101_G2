@@ -27,7 +27,7 @@ try {
         $sql = "INSERT INTO `hotel` (`HOTEL_ID`,`HOTEL_IMG`, `HOTEL_NAME`, `HOTEL_INFRO`, `HOTEL_STATUS`) 
                             values(null, :HOTEL_IMG, :HOTEL_NAME, :HOTEL_INFRO,:HOTEL_STATUS)";
             $tour = $pdo->prepare( $sql );	
-            $tour -> bindValue(":HOTEL_IMG", "./images/tour/HOTEL/$fileName");		
+            $tour -> bindValue(":HOTEL_IMG", "./images/tour/hotel/$fileName");		
 			
 			$tour -> bindValue(":HOTEL_NAME", $_POST["HOTEL_NAME"]);
             $tour -> bindValue(":HOTEL_INFRO", $_POST["HOTEL_INFRO"]);

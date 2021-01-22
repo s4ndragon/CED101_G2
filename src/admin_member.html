@@ -28,7 +28,7 @@
                     >
                 </li>
                 <li class="li">
-                    <a href="#" data-target="member">
+                    <a class="active" href="#" data-target="member">
                         <img class="navicon" src="images/common/nav_leaf.png" alt="" />會員管理</a
                     >
                 </li>
@@ -103,12 +103,10 @@
                                         <!-- <td><input type="text" :value="item.GAME_POINT" /></td> -->
                                         <td>
                                             <div class="form-group">
-                                                停權(0)
                                                 <label class="switch">
                                                     <input type="checkbox" v-model="item.ischecked" />
                                                     <span class="slider round"></span>
                                                 </label>
-                                                正常(1)
                                             </div>
                                         </td>
                                         <td>
@@ -126,14 +124,7 @@
                     </div>
                 </div>
                 <!-- 燈箱 -->
-                <div class="overlay" v-if="lightBox_show">
-                    <article>
-                        <h1>{{inner_text}}</h1>
-                        <button type="button" class="btn_modal_close" @click="lightBox_show = false">
-                            {{inner_btn_text}}
-                        </button>
-                    </article>
-                </div>
+                <lightbox v-if="lightbox_show" @close_lightbox="close_lightbox"> </lightbox>
             </div>
         </main>
         <!-- footer -->

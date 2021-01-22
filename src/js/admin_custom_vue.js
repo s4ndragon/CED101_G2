@@ -11,9 +11,7 @@ new Vue({
         HOTEL_STATUS: '',
         GARD_STATUS: '',
         RESTAURANT_STATUS: '',
-        lightBox_show: false,
-        inner_text: '',
-        inner_btn_text: '',
+        lightbox_show: false,
     },
 
     methods: {
@@ -27,13 +25,6 @@ new Vue({
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                // body: JSON.stringify({
-                // 	add_no: this.add_no,
-                // 	add_id: this.add_id,
-                // 	add_name: this.add_name,
-                // 	add_psw: this.add_psw,
-
-                // }),
             }).then(function (data) {
                 return data.json()
             })
@@ -49,13 +40,6 @@ new Vue({
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                // body: JSON.stringify({
-                // 	add_no: this.add_no,
-                // 	add_id: this.add_id,
-                // 	add_name: this.add_name,
-                // 	add_psw: this.add_psw,
-
-                // }),
             }).then(function (data) {
                 return data.json()
             })
@@ -71,13 +55,6 @@ new Vue({
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                // body: JSON.stringify({
-                // 	add_no: this.add_no,
-                // 	add_id: this.add_id,
-                // 	add_name: this.add_name,
-                // 	add_psw: this.add_psw,
-
-                // }),
             }).then(function (data) {
                 return data.json()
             })
@@ -184,7 +161,7 @@ new Vue({
             })
 
             //燈箱
-            this.lightBox_show = true
+            this.lightbox_show = true
             this.inner_text = '已修改完成'
             this.inner_btn_text = '資料已寫入，請安心關閉'
 
@@ -238,7 +215,7 @@ new Vue({
             })
 
             //燈箱
-            this.lightBox_show = true
+            this.lightbox_show = true
             this.inner_text = '已修改完成'
             this.inner_btn_text = '資料已寫入，請安心關閉'
 
@@ -255,13 +232,12 @@ new Vue({
         },
 
         edit_rests: async function (RESTAURANT_ID, key) {
-            var ONSHELF;
+            var ONSHELF
             if (this.rests[key].ischecked == true) {
-                ONSHELF = "1"; //上架
-            } else  {
-                ONSHELF = "0"; //下架
+                ONSHELF = '1' //上架
+            } else {
+                ONSHELF = '0' //下架
             }
-            
 
             const res = await fetch('./phps/admin_UpdRests.php', {
                 method: 'POST',
@@ -279,11 +255,14 @@ new Vue({
             })
 
             //燈箱
-            this.lightBox_show = true
+            this.lightbox_show = true
             this.inner_text = '已修改完成'
             this.inner_btn_text = '資料已寫入，請安心關閉'
 
             this.get_rests()
+        },
+        close_lightbox() {
+            this.lightbox_show = false
         },
     },
 
@@ -296,5 +275,32 @@ new Vue({
         // this.get_gards()
         // this.get_rests()
         // this.get_hotels()
+    },
+
+    components: {
+        lightbox: {
+            data() {
+                return {
+                    // lightbox_show: false,
+                    inner_text: '已修改完成',
+                    inner_btn_text: '資料已寫入，請安心關閉',
+                }
+            },
+            props: [],
+            template: `
+          <div class="overlay" >
+            <article>
+                <h1>{{inner_text}}</h1>
+                <button type="button" class="btn_modal_close" @click="close_lightbox">
+                {{inner_btn_text}}
+                </button>
+            </article>
+            </div>`,
+            methods: {
+                close_lightbox() {
+                    this.$emit('close_lightbox')
+                },
+            },
+        },
     },
 })
