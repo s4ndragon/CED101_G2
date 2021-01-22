@@ -1,6 +1,6 @@
 <?php 
-try {
     session_start();
+try {
     require_once("./connect.php");
 
     if ($_FILES["upFile"]["error"] == UPLOAD_ERR_OK) {
@@ -17,21 +17,22 @@ try {
             mkdir($dir, 0777, true); //make directory
         }
         //將檔案copy到要放的路徑
-        $from = $_FILES["upFile"]["tmp_name"];
-        $to = "{$dir}/$fileName";
-        if (copy($from, $to) === true) {
-
+		$from = $_FILES["profile_pic_input"]["tmp_name"];
+        $to = "$dir/$fileName";
+        
+		if (copy($from, $to) ===true) {
             $sql = "update member
-            set MEM_IMG = :imgSrc
-            where MEM_NO = :MEM_NO";
-            $products = $pdo->prepare($sql);
-            $products->bindValue(":MEM_NO", $_SESSION["MEM_NO"]);
-            $products->bindValue(":imgSrc", "./Images/member/{$fileName}");
-            $products->execute();
-
-        } else {
-            echo "失敗~";
-        }
+            set MEM_IMG = :MEM_IMG
+            where MEM_NO = :MEM_NO
+            ";
+            $products = $pdo->prepare( $sql );
+			$products -> bindValue(":MEM_NO", $_SESSION["MEM_NO"]);
+			$products -> bindValue(":MEM_IMG", "./images/member/{$fileName}");
+			$products -> execute();			
+			echo "新增成功~";
+		}else{
+			echo "失敗~";
+		}
 
     } else {
         echo "錯誤代碼 : {$_FILES["upFile"]["error"]} <br>";
