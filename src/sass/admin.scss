@@ -465,5 +465,3 @@ div.overlay.-opacity-zero {
     /* 關閉 Modal 時，先讓 opacity設定0，就會慢慢變成完全透明，但這時會擋到後面的元素，所以要再移除 -on 及 -opacity-zero 這兩個 class */
     opacity: 0;
 }
-
-/* ==================== input Tool Tip ==================== */
