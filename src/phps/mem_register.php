@@ -2,27 +2,26 @@
 try {
     require_once "./connect.php";
 
-    $content = trim(file_get_contents("php://input"));
-    $decoded = json_decode($content, true);
+    // $content = trim(file_get_contents("php://input"));
+    // $decoded = json_decode($content, true);
 
     $reg_email = $_POST["reg_email"];
     $reg_memId = $_POST["reg_memId"];
     $reg_memPw = $_POST["reg_memPw"];
 
     $sql = "insert into member(MEM_NO, MEM_ID, MEM_NICNAME, MEM_PW, MEM_EMAIL, MEM_IMG, MEM_STATUS, VOTE_DATE, GAME_POINT)
-            values (30, :MEM_ID, :MEM_ID, :MEM_PW, :MEM_EMAIL, ./images/member/new_member.jpg, 1, '2021-01-04', 0);
+            values (33, :MEM_ID, :MEM_ID, :MEM_PW, :MEM_EMAIL, './images/member/new_member.jpg', 1, '2021-01-04', 0);
             ";
 
     $reg_mem = $pdo->prepare($sql);
     // $reg_mem->bindValue(":MEM_NO", $MEM_NO);
     $reg_mem->bindValue(":MEM_ID", $reg_memId);
-    // $reg_mem->bindValue(":MEM_NICNAME", $MEM_NICNAME);
     $reg_mem->bindValue(":MEM_PW", $reg_memPw);
     $reg_mem->bindValue(":MEM_EMAIL", $reg_email);
     $reg_mem->execute();
 
     // echo "註冊成功~!!";
-    echo "<script>alert('註冊成功！'); location.href='../homepage.html'</script>";
+    echo "<script>location.href='../homepage.html'</script>";
     // if ($per_ord_data->rowCount() == 0) { //找不到
         //傳回空的JSON字串
         // echo "{}";
