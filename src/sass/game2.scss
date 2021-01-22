@@ -1,3 +1,6 @@
+*{
+    list-style: none;
+}
 .setpanel{
     position: absolute;
     background: url("../images/game/13868995569383.png");
@@ -28,3 +31,71 @@
     width:100px;
     height:35px;
 }
+.help{
+    position: absolute;
+    top:70px;
+    display: none;
+    padding:40px;
+    width:300px;
+    height:200px;
+    background: url("../images/game/help.png");
+    background-size:contain;
+    background-repeat: no-repeat;
+    font-weight: bolder;
+    &>img{
+        width:32px;
+        height:26px;
+    }
+}
+.star-back,
+#config,
+.tea_ency,
+.ho1,
+.ho2,
+.ho3{
+    position:relative;
+}
+.star-back:hover>.help,
+#config:hover>.help,
+.tea_ency:hover>.help,
+.ho1:hover>.help,
+.ho2:hover>.help,
+.ho3:hover>.help{
+display:block;
+z-index:500;
+}
+.nav_ency{
+    position:absolute;
+    bottom:10%; 
+    left: 11%;
+    width: 77%;
+}
+#tea_eprev{
+cursor: pointer;
+background: url("../images/game/Button_Previous.png");
+background-size:contain;
+background-repeat: no-repeat;
+font-weight: bolder;
+height:40px;
+width:40px;
+}
+#tea_enext{
+cursor: pointer;
+background: url("../images/game/Button_Next.png");
+background-size:contain;
+background-repeat: no-repeat;
+font-weight: bolder;
+height:40px;
+width:40px;
+}
+#sliderBoard{
+    width:800px;
+    height:400px;
+    position: relative;
+    left: -5px;
+    overflow: hidden;
+}
+#teabar_content{
+    position: relative;
+}
+    
