@@ -1,6 +1,6 @@
 <?php 
-try {
     session_start();
+try {
     require_once("./connect.php");
     
     //.......確定是否上傳成功
@@ -20,13 +20,13 @@ try {
 		}
         //將檔案copy到要放的路徑
 		$from = $_FILES["profile_pic_input"]["tmp_name"];
-        $to = "$dir/{$_FILES['profile_pic_input']['name']}";
+        $to = "$dir/$fileName";
         
-		if (copy($from, $to) === true) {
+		if (copy($from, $to) ===true) {
             $sql = "update member
             set MEM_IMG = :MEM_IMG
             where MEM_NO = :MEM_NO
-            )";
+            ";
             $products = $pdo->prepare( $sql );
 			$products -> bindValue(":MEM_NO", $_SESSION["MEM_NO"]);
 			$products -> bindValue(":MEM_IMG", "./images/member/{$fileName}");
