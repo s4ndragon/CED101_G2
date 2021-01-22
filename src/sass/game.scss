@@ -559,6 +559,7 @@ img[src='./images/game/62720191121071129866.png'] {
     background: url('../images/game/62720191121071129866.png');
     background-size: contain;
     background-repeat: no-repeat;
+    position:relative;
 }
 
 /*星星數量*/
@@ -654,12 +655,12 @@ img[src='./images/game/62720191121071129866.png'] {
 #teatxt-bar1 {
     height: 100px !important;
     width: 50px;
-    position: relative;
-    top: 30px;
-    left: 100%;
+    top: 128px;
+    left: 85%;
     cursor: pointer;
+    font-weight: bolder;
     writing-mode: vertical-lr;
-    position: relative;
+    position: absolute;
     span {
         writing-mode: vertical-lr;
         font-size: 20px;
@@ -667,8 +668,8 @@ img[src='./images/game/62720191121071129866.png'] {
         top: 55%;
         right: -20%;
         color: #fff;
-        text-shadow: 0 0 3.2em #87e;
-        -webkit-text-stroke-color: blue;
-        -webkit-text-stroke-width: 0.7px;
+        text-shadow: 0 0 3.2em #104db5;
+        -webkit-text-stroke-color: #104db5;
+        -webkit-text-stroke-width: 0.8px;
     }
 }
