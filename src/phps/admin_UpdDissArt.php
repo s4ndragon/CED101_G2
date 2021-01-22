@@ -9,6 +9,7 @@ try {
     //php叫物件內屬性的寫法
     $REP_NO = $decoded["REP_NO"];
     $AR_STATUS = $decoded["AR_STATUS"]; 
+    $ART_NO = $decoded["ART_NO"]; 
     
 
   
@@ -27,6 +28,25 @@ try {
     $per_ord_data->bindValue(":AR_STATUS", $AR_STATUS);
 
 
+    $per_ord_data->execute();
+
+     ///////////////////////////////////////////////////////做第二件事
+     if($AR_STATUS == 1){
+        $ART_STATUS = 0;
+    }else{
+        $ART_STATUS = 1;
+    };
+
+    $sql = "update my_art 
+            set ART_STATUS = :ART_STATUS
+            where ART_NO = :ART_NO
+            ";
+    $per_ord_data = $pdo->prepare($sql);
+
+    //把接到的資料寫進SQL (要先經過PHP轉譯 所以不能直接寫入SQL指令內)
+    $per_ord_data->bindValue(":ART_NO", $ART_NO);
+    $per_ord_data->bindValue(":ART_STATUS", $ART_STATUS);
+             
     $per_ord_data->execute();
 
     // echo "修改成功~!!";
