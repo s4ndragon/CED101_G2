@@ -35,10 +35,14 @@ $br: 5px;
     border-radius: $border-radius-sml;
     box-shadow: 0 4px 10px 4px rgba($primary-typo-color, 0.3);
     height: fit-content;
-    max-height: 568px;
-    @media only screen and (max-width: 320px) {
-        // height: 100vh;
+    @media only screen and (min-width: 376px) and (max-width: 414px) {
         top: 0;
+    }
+    @media only screen and (min-width: 321px) and (max-width: 376px) {
+        top: -20px;
+    }
+    @media only screen and (max-width: 321px) {
+        top: -60px;
     }
 
     .close {
@@ -174,6 +178,10 @@ $br: 5px;
                 button {
                     @include btn4;
                     display: block;
+
+                    @media only screen and (max-width: 480px) {
+                        margin: 0 15px;
+                    }
                 }
             }
         }
