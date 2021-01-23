@@ -19,7 +19,7 @@
     @@include('layout/nav.html')
     @@include('layout/title.html',{'title':'購物車'})
     <div class="main">
-        <form action="./04_check.html">
+        <form action="./04_check.html" id='cart_form'>
             <div class="cart_content" id="cart_content">
                 <div id="amount">
                     <hr style="margin: 30px 0;background-color:gray">
@@ -31,8 +31,19 @@
                     <a href="./04_shopping.html">繼續購物</a>
                 </button>
                 <input type="submit" value="結帳" id='checkout'>
-
             </div>
+            <script>
+                document.getElementById('checkout').addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (!app2.memRows.MEM_ID) {
+                        alert('請登入後結帳。');
+                        app2.lightbox = true;
+                        // document.getElementsByClassName('cover')[0].setAttribute('style', 'display:block;');
+                    } else {
+                        document.getElementById('cart_form').submit();
+                    }
+                })
+            </script>
         </form>
     </div>
     <div class="recommend">
