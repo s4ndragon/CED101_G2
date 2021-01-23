@@ -19,7 +19,7 @@ catch (PDOException $e) {
      // echo "系統錯誤, 請通知系統維護人員<br>";
 }
 ?>
-
+<!-- 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,7 +27,7 @@ catch (PDOException $e) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>登入/註冊</title>
 </head>
-<body>
+<body> -->
     <?php
     if($admin->rowCount()===0) { //rowCount()可取得這次select的總筆數
 	// echo "error, plz <a href = '1204_pdo_login.html'>login</a> again";

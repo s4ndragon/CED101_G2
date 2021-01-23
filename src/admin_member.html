@@ -95,7 +95,16 @@
                                         <td>{{item.MEM_NO}}</td>
                                         <td>{{item.MEM_ID}}</td>
                                         <td>{{item.MEM_NICNAME}}</td>
-                                        <td>{{item.MEM_PW}}</td>
+                                        <!-- <td>{{item.MEM_PW}}</td> -->
+                                        <td>
+                                            <input
+                                                type="password"
+                                                class="psw_input"
+                                                id=""
+                                                :value="item.MEM_PW"
+                                                readonly
+                                            />
+                                        </td>
                                         <td>{{item.MEM_EMAIL}}</td>
                                         <td>{{item.VOTE_DATE}}</td>
                                         <td>{{item.GAME_POINT}}</td>
