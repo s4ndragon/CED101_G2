@@ -3,7 +3,7 @@ try {
     //order增加
     require_once("./connect.php");
     $sql = "INSERT INTO orders (ORDERS_NO ,MEMBER ,DEL_STATE ,ORD_DATE, DELIVERY, PAY, DISCOUNT ,TOTAL, RECEIVER_NAME ,RECEIVER_ADDRESS ,RECEIVER_TEL)
-            VALUES (NULL,:MEMBER, 0, :ORD_DATE, :DELIVERY, :PAY, :DISCOUNT, :TOTAL, :RECEIVER_NAME, :RECEIVER_ADDRESS, :RECEIVER_TEL)";
+            VALUES (NULL,:MEMBER, 0, :ORD_DATE, :DELIVERY, :PAY, :DISCOUNT, :TOTAL, :RECEIVER_NAME, :RECEIVER_ADDRESS, :RECEIVER_TEL);";
     $orderList = $pdo->prepare($sql);
     if($_POST['delivery']=='宅配'){
         $DELIVERY=0;
@@ -30,6 +30,16 @@ try {
     // echo "成功異動了{$affectedRows}筆資料";
     $orderNo = $pdo->lastInsertId();
 
+
+
+
+    
+    require_once("./connect.php");
+    $sql ="UPDATE member SET GAME_POINT =GAME_POINT - :DISCOUNT WHERE MEM_NO = :MEMBER;";
+    $DISCOUNTUPDATE = $pdo->prepare($sql);
+    $DISCOUNTUPDATE->bindValue(":MEMBER",  $_POST['mem_no']);
+    $DISCOUNTUPDATE->bindValue(":DISCOUNT",  $_POST['discount']);
+    $DISCOUNTUPDATE->execute();
      //搜尋訂單編號
     //  require_once("./connect.php");
     //  $sql = "select * from ORDERS where MEMBER = :MEMBER ORDER BY 1 DESC LIMIT 1";
