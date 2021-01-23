@@ -39,7 +39,8 @@ try {
 	$food->execute();
 	$foodRows = $food->fetchAll(PDO::FETCH_ASSOC);
 
-	$sql = "select * from  tour_msg join member on tour_msg.MEM_NO = member.MEM_NO where tour_msg.TOUR_ID = :TOUR_ID";
+	//抓留言
+	$sql = "select * from  tour_msg join member on tour_msg.MEM_NO = member.MEM_NO where tour_msg.TOUR_ID = :TOUR_ID and tour_msg.MSG_CONTENT_STATUS = 1";
 	$msg = $pdo->prepare($sql);
 	$msg->bindValue(":TOUR_ID", $_POST["TOUR_ID"]);
 	$msg->execute();

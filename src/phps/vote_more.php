@@ -33,7 +33,7 @@ try {
 
 	//抓這個茶園的 留言 | 留言會員資料
 	$sql = "select member.MEM_NICNAME, member.MEM_IMG, garden_msg.MSG_DATE, garden_msg.MSG_CONTENT, garden_msg.MSG_NO from
-			 member join garden_msg on member.MEM_NO = garden_msg.MEM_NO where garden_msg.GARD_ID = :GARD_ID";
+			 member join garden_msg on member.MEM_NO = garden_msg.MEM_NO where garden_msg.GARD_ID = :GARD_ID and garden_msg.MSG_CONTENT_STATUS = 1";
 	$mem = $pdo->prepare($sql);
 	$mem->bindValue(":GARD_ID", $_POST["GARD_ID"]);
 	// $tour->bindValue(":GARD_ID", 3);

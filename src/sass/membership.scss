@@ -164,9 +164,9 @@ main {
         #profile_pic_input {
             display: none;
         }
-        #profile_pic_input_submit {
+        // #profile_pic_input_submit {
             // padding: 0;
-        }
+        // }
         .card-body > .mine_profile {
             @include smallbtn4;
             @media only screen and (min-width: 768px) {
