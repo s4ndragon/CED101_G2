@@ -43,7 +43,8 @@ function init() {
     }
     //如果有總額
     if ($id('totalBtn')) {
-        dicountBtn()
+        loadDisPoint();
+        dicountBtn();
     }
 };
 
@@ -257,6 +258,26 @@ function changeNum(e) {
     if ($id('totalAmount')) {
         calcAmount();
     }
+}
+
+function loadDisPoint() {
+    var xhr = new XMLHttpRequest();
+    xhr.onload = function () {
+        if (xhr.status == 200) {
+            //modify here
+            let DisPoint = JSON.parse(xhr.responseText)[0].GAME_POINT;
+            console.log(DisPoint)
+            $id('myPoint').value = DisPoint;
+
+        } else {
+            alert(xhr.status);
+        }
+        dealDisPoint();
+        maxDis();
+    }
+    var url = "./phps/getDisPoint.php";
+    xhr.open("Get", url, true);
+    xhr.send(null);
 }
 
 
