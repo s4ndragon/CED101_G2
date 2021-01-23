@@ -1,4 +1,3 @@
-let divWidth = $('#sliderBoard').width(),teabar_content=$('#teabar_content').width();
 function mover(e) {
     var lef = document.getElementById('teabar_content').offsetLeft,
         lefwidth = document.getElementById('teabar_content').offsetWidth;

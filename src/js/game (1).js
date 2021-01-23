@@ -19,7 +19,8 @@
  * score 計分 初始值0
  */
 var song = new Audio("https://tibamef2e.com/ced101/project/g2/yisell_sound_2008041015324213582_88011.mp3"),
-  bomb=new Audio("https://tibamef2e.com/ced101/project/g2/pon.mp3");
+  bomb = new Audio("https://tibamef2e.com/ced101/project/g2/pon.mp3"),
+  keydown=new Audio("https://tibamef2e.com/ced101/project/g2/download-complete.wav");
 song.loop = true;
 var star = 25,
   score = 0,
@@ -143,9 +144,7 @@ function sp(){				//創建一个img標籤
         map.appendChild(img);
         //随機生成img的水平位置 而且不能超出地圖
         img.style.left = Math.random() * (map.offsetWidth - img.offsetWidth) + 'px';
-
         // leaf_i++;
-
         leaf[leaf.length]=setInterval(function(){
           let objs = document.querySelectorAll('img[src="https://tibamef2e.com/ced101/project/g2/images/game/leaf.gif"]');
           for(var img of objs){
@@ -154,14 +153,6 @@ function sp(){				//創建一个img標籤
                 map.removeChild(img);
               }
           }},100);
-
-        // leaf=setInterval(function() {
-        //   img.style.top = img.offsetTop + 5 + "px";
-        //   // 碰到地圖边界 删除img
-        //   if(img.offsetTop >= map.offsetHeight - img.offsetHeight) {
-        //     map.removeChild(img);
-        //   }
-        // }, 100);
       }
 // 間隔一段時間生成子彈
 function time_b(){
@@ -217,13 +208,8 @@ function zom(){
   for(var j = 0; j < plantArr.length; j++) {
     //蟲子和植物碰上了
     if(wormArr[i].offsetLeft <= plantArr[j].offsetLeft + plantArr[j].offsetWidth) {
-      /*
-       * data-star 所需star數
-       * data-hp hp
-       * data-defense 防御力
-       * data-damage 攻擊力
-       * data-speed 攻速
-       */
+      /*       * data-star 所需star數       * data-hp hp       * data-defense 防御力       * data-damage 攻擊力
+       * data-speed 攻速       */
       //植物在蟲子之后时 不卡主蟲子
       if(plantArr[j].offsetLeft + plantArr[j].offsetWidth - wormArr[i].offsetLeft < 5) {
         //讓蟲子止步
@@ -238,10 +224,7 @@ function zom(){
 
 //計算真實傷害
 function calcDamage(keep, attack) {
-  /*
-   * kepp 被攻擊方
-   * attack 攻擊方
-   */
+  /*   * kepp 被攻擊方   * attack 攻擊方   */
   //計算减免的傷害值 百分比*傷害
   var breaks = keep.dataset.defense / 100 * attack.dataset.damage;
 				//减血
@@ -320,11 +303,12 @@ function ballstyle(path) {
   ballimg[0] = path.value;
 }
 function config() {
-        $("div.setpanel").addClass("-opacity-zero");
+    $("div.setpanel").addClass("-opacity-zero");
     // 設定隔一秒後，移除相關 class
     setTimeout(function(){
       $("div.setpanel").removeClass("-on -opacity-zero");
     }, 1000); // 關閉 Modal
+  keydown.play();
 }
 var pause = document.getElementById('checkbox');
 $('#checkbox').on('click', function(){

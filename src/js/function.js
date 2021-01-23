@@ -45,3 +45,7 @@ function allowsend(e, i, j, arr) {
         }
     }
 }
+function del(arr,item) {
+    var acc = arr.indexOf(item);
+    arr.splice(acc, 1);
+}
