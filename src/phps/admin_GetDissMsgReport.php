@@ -41,15 +41,15 @@ try {
         
         // 有3種情形的寫法
         //將取回的0或1轉回字串  傳回前台
-        for($i=0;$i < count($per_ord_datarow);$i++){
+    //     for($i=0;$i < count($per_ord_datarow);$i++){
 
-        if($per_ord_datarow[$i]["AMR_STATUS"] != 0){
-            $per_ord_datarow[$i]["ischecked"] = false;
-        }else{
-            $per_ord_datarow[$i]["ischecked"] = true;
-        };
+    //     if($per_ord_datarow[$i]["MSG_STATUS"] != 0){
+    //         $per_ord_datarow[$i]["ischecked"] = false;
+    //     }else{
+    //         $per_ord_datarow[$i]["ischecked"] = true;
+    //     };
 
-    };
+    // };
         //送出json字串
         echo json_encode($per_ord_datarow);
         // echo $managerdatarow;

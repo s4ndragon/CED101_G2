@@ -12,6 +12,7 @@
         <!-- <script src="./js/membership.js"></script> -->
         <title>會員系統</title>
     </head>
+
     <body>
         @@include('layout/nav.html')
         <div id="app">
@@ -21,21 +22,28 @@
             </div>
             <main>
                 <!-- 側邊欄 -->
-                <div id="changeImg" action="./phps/changeImg.php" class="card">
-                    <div class="card-body">
-                        <div class="profile-pic">
-                            <img id="MEM_IMG" class="rounded-circle" :src="memRows.MEM_IMG" />
+                <form class="side_col" action="./phps/upload_mem_icon.php" method="post" enctype="multipart/form-data">
+                    <div id="changeImg" class="card">
+                        <div class="card-body">
+                            <div class="profile-pic">
+                                <img
+                                    id="MEM_IMG"
+                                    class="rounded-circle"
+                                    :src="memRows.MEM_IMG"
+                                    @change="changeIcon($event)"
+                                />
+                            </div>
+                            <h2 id="MEM_NICKNAME">{{memRows.MEM_NICNAME}}</h2>
+                            <h6 id="MEM_ID" class="memId">@{{memRows.MEM_ID}}</h6>
+                            <!-- <input type="text" class="input-profile" name="profile" value="熱愛程式及茶園的男子"> -->
+                            <!-- <button id="mine_profile_btn" class="mine_profile" @click="content = 'mine_profile'">
+                                個人資料
+                            </button> -->
                         </div>
-                        <h2 id="MEM_NICKNAME">{{memRows.MEM_NICNAME}}</h2>
-                        <h6 id="MEM_ID" class="memId">@{{memRows.MEM_ID}}</h6>
-                        <!-- <input type="text" class="input-profile" name="profile" value="熱愛程式及茶園的男子"> -->
-                        <button id="mine_profile_btn" class="mine_profile" @click="content = 'mine_profile'">
-                            個人資料
-                        </button>
                     </div>
-                </div>
-                <input type="file" id="profile_pic_input" name="profile_pic_input" accept="image/*" />
-                <!-- <input type="submit" id="profile_pic_input_submit" name="profile_pic_input" /> -->
+                    <input type="file" id="profile_pic_input" name="profile_pic_input" accept="image/*" />
+                    <input type="submit" id="profile_pic_input_submit" value="確認更改頭像" />
+                </form>
                 <!-- 主要內容 -->
                 <div id="main_container">
                     <!-- 主要內容的選單列 -->
@@ -61,8 +69,5 @@
 
         <!-- vue相關 -->
         <script src="./js/membership_vue_test.js"></script>
-        <!-- login  -->
-        <!-- <script src="./js/member_login_register.js"></script> -->
-        <!-- <script src="./js/login.js"></script> -->
     </body>
 </html>

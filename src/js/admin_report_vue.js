@@ -14,6 +14,7 @@ new Vue({
         REP_NO: '',
         AR_STATUS: '',
         lightbox_show: false,
+        // MSG_CONTENT_STATUS: '',
     },
 
     methods: {
@@ -152,6 +153,11 @@ new Vue({
             this.gardens_MegReports[key].MSG_REP_STATUS = event.currentTarget.value
         },
         edit_gardens_Meg: async function (MSG_REP_NO, key) {
+            // if (this.get_gardens_MegReports[key].ischecked == false) {
+            //     this.MSG_CONTENT_STATUS = 0
+            // } else if (this.get_gardens_MegReports[key].ischecked == true) {
+            //     this.MSG_CONTENT_STATUS = 1
+            // }
             const res = await fetch('./phps/admin_UpdGardsMsg.php', {
                 method: 'POST',
                 mode: 'same-origin',
@@ -162,6 +168,7 @@ new Vue({
                 body: JSON.stringify({
                     MSG_REP_NO: MSG_REP_NO,
                     MSG_REP_STATUS: this.gardens_MegReports[key].MSG_REP_STATUS,
+                    MSG_NO: this.gardens_MegReports[key].MSG_NO,
                 }),
             })
             //燈箱
@@ -178,13 +185,13 @@ new Vue({
             this.diss_MegReports[key].AMR_STATUS = event.currentTarget.value
         },
 
-        edit_diss_Meg: async function (MSG_REP_NO, key) {
+        edit_diss_Meg: async function (MSG_REP_NO, MSG_NO, key) {
             // if (this.diss_MegReports[key].ischecked == false) {
             //     this.AMR_STATUS = 1
             // } else if (this.diss_MegReports[key].ischecked == true) {
             //     this.AMR_STATUS = 2
             // }
-
+            console.log(MSG_NO)
             const res = await fetch('./phps/admin_UpdDissMeg.php ', {
                 method: 'POST',
                 mode: 'same-origin',
@@ -195,6 +202,7 @@ new Vue({
                 body: JSON.stringify({
                     MSG_REP_NO: MSG_REP_NO,
                     AMR_STATUS: this.diss_MegReports[key].AMR_STATUS,
+                    MSG_NO: MSG_NO,
                 }),
             })
 
@@ -227,6 +235,7 @@ new Vue({
                 body: JSON.stringify({
                     REP_NO: REP_NO,
                     AR_STATUS: this.diss_ArtReports[key].AR_STATUS,
+                    ART_NO: this.diss_ArtReports[key].ART_NO,
                 }),
             })
 

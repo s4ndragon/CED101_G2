@@ -87,12 +87,14 @@
                             <table>
                                 <thead>
                                     <tr>
-                                        <th>茶園留言檢舉編號</th>
+                                        <th>檢舉編號</th>
                                         <th>會員編號</th>
-                                        <th>茶園留言編號</th>
+                                        <th>留言編號</th>
                                         <th>茶園留言檢舉時間</th>
-                                        <th>茶園留言內容</th>
+                                        <th>茶園留言檢舉原因</th>
+                                        <th>茶園留言檢舉內容</th>
                                         <th>審核狀態</th>
+                                        <!-- <th>留言狀態</th> -->
                                         <th>修改確認</th>
                                     </tr>
                                 </thead>
@@ -103,6 +105,7 @@
                                         <td>{{item.MSG_NO}}</td>
                                         <td>{{item.MSG_REP_DATE}}</td>
                                         <td>{{item.MSG_REP_CONTENT}}</td>
+                                        <td>{{item.MSG_CONTENT}}</td>
                                         <td>
                                             <select
                                                 :value="item.MSG_REP_STATUS"
@@ -113,6 +116,14 @@
                                                 <option value="2">(2)審核未通過</option>
                                             </select>
                                         </td>
+                                        <!-- <td>
+                                            <div class="form-group">
+                                                <label class="switch">
+                                                    <input type="checkbox" v-model="item.ischecked" />
+                                                    <span class="slider round"></span>
+                                                </label>
+                                            </div>
+                                        </td> -->
                                         <td>
                                             <input
                                                 type="button"
@@ -168,7 +179,7 @@
                                                 type="button"
                                                 class="btn-delete"
                                                 value="確認修改"
-                                                @click="edit_diss_Meg(item.MSG_REP_NO,key)"
+                                                @click="edit_diss_Meg(item.MSG_REP_NO, item.MSG_NO,key)"
                                             />
                                         </td>
                                     </tr>

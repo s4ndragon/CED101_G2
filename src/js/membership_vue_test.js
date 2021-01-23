@@ -1,13 +1,3 @@
-//抓抓抓
-let memRows;
-//============去server端拿資料
-let xhr = new XMLHttpRequest();
-xhr.onload = function () {
-    app.memRows = JSON.parse(xhr.responseText);
-    // console.log(app.memRows);
-};
-xhr.open("get", "./phps/member.php", true);
-xhr.send(null);
 //========== content ==========//
 Vue.component("tour", {
     template: `
@@ -815,7 +805,7 @@ Vue.component("mine_profile", {
             }
             if (this.old_mem_pw != this.mineInfos.MEM_PW) {
                 // console.log(this.mineInfos.MEM_PW);
-                alert("請輸入正確的密碼，請重試");
+                alert("舊密碼錯誤，請重試");
                 return;
             }
             if (this.new_password != this.confirm_new_pw) {
@@ -847,7 +837,7 @@ Vue.component("mine_profile", {
 
             // 完成修改後，重新撈取資料
             this.get_mine_info();
-            // app2.getLoginInfo();
+            // app.getLoginInfo();
         },
     },
     mounted() {
@@ -893,9 +883,51 @@ Vue.component("mine_profile", {
 var app = new Vue({
     el: "#app",
     data: {
-        memRows: [],
+        memRows: "",
         content: "tour",
         lightboxAttendency: false,
+        imgType: "",
+        icon_src: "",
+    },
+    methods: {
+        getinfo: async function () {
+            //抓抓抓
+            // let memRows;
+            //============去server端拿資料
+            let xhr = new XMLHttpRequest();
+            xhr.onload = function () {
+                app.memRows = JSON.parse(xhr.responseText);
+                // console.log(app.memRows);
+            };
+            xhr.open("get", "./phps/member.php", true);
+            xhr.send(null);
+        },
+        uploadImg: async function () {
+            let newIcon = document.getElementById("profilePicInput").files[0];
+            let formData = new FormData();
+            formData.append("profilePicInput", newIcon);
+
+            // =====ajax
+            let xhr = new XMLHttpRequest();
+            xhr.onload = function () {
+                if (xhr.status == 200) {
+                    alert("更改成功");
+                } else {
+                    alert("更改失敗");
+                }
+            };
+            xhr.open("post", "./php/upload_mem_icon.php");
+            xhr.send(formData);
+            if (xhr.status == 200) {
+                // console.log(xhr.responseText)
+                alert("上傳成功！");
+            } else {
+                alert("請重新上傳頭像！");
+            }
+        },
+    },
+    mounted() {
+        this.getinfo();
     },
 });
 
@@ -925,29 +957,15 @@ $("#mine_profile_btn").click(function () {
     $("#sub_menu").children("h3").removeClass("bg-color").addClass("select-color");
 });
 
-//change profile
-// $("changeImg").on("submit", function (e) {
-//     e.preventDefault();
-//     $.ajax({
-//         url: "changeImg.php",
-//         type: "POST",
-//         data: new FormData(this),
-//         contentType: false,
-//         cache: false,
-//         processData: false,
-//         success: function (data) {
-//             $("#targetLayer").html(data);
-//         },
-//         error: function () {},
-//     });
-// });
 $(".profile-pic").click(function () {
     $("#profile_pic_input").trigger("click");
     // $("#profile_pic_input_submit").trigger("click");
 });
+
 function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
+
         reader.onload = function (e) {
             //animate profile picture
             var profilePicTL = new TimelineMax();
@@ -1037,5 +1055,23 @@ function readURL(input) {
 }
 $("#profile_pic_input").change(function () {
     readURL(this);
-    console.log(this);
 });
+
+// function uploadImg() {
+//     var file_data = $("#profile_pic_input").prop("files")[0];
+//     var form_data = new FormData();
+//     form_data.append("file", file_data);
+
+//     $.ajax({
+//         url: "upload_mem_icon.php",
+//         dataType: "image/*", // what to expect back from the PHP script, if anything
+//         cache: false,
+//         contentType: false,
+//         processData: false,
+//         data: form_data,
+//         type: "post",
+//         success: function (result) {
+//             alert(result);
+//         },
+//     });
+// }

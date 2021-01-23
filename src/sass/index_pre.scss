@@ -26,7 +26,7 @@ animation circle 回る玉 ~4s
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: #3a6e9a;
+    background: #709B5E;
 }
 
 .circle div {
@@ -207,17 +207,17 @@ animation big 広がる玉 4s~5.6s
 }
 
 .big div:nth-child(1) {
-    background: #fffcee;
+    background: #70D6BF;
     animation: big .5s 4s forwards;
 }
 
 .big div:nth-child(2) {
-    background: #bd8e99;
+    background: #D2DD2E;
     animation: big .5s 4.5s forwards;
 }
 
 .big div:nth-child(3) {
-    background: #9e3f57;
+    background: #FDC689;
     animation: big .5s 5s forwards;
 }
 
@@ -396,7 +396,7 @@ animation end
     left: calc((50% - 100px));
     width: 200px;
     height: 200px;
-    font-size: 70px;
+    font-size: 63px;
     color: #fff;
     line-height: 100px;
     text-align: center;
@@ -421,4 +421,43 @@ img {
     100% {
         opacity: 1;
     }
+}
+
+
+.fk {
+    color: white;
+
+    &:hover {
+        color: black;
+    }
+}
+
+.logo {
+    color: black !important;
+}
+
+
+
+
+@media screen and (max-width: 500px) {
+    .te1 {
+        top: 50%;
+        left: 50%;
+    }
+
+    .te2 {
+        left: calc((11% - 150px));
+        top: 50%;
+    }
+
+    .te3 {
+        top: 59% !important;
+        left: 75% !important;
+    }
+
+    .te4 {
+        left: -27% !important;
+        top: 59% !important;
+    }
+
 }
