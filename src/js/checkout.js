@@ -7,7 +7,8 @@ function $id(id) { //尋找id
 
 function init() {
     if ($id('getinfo')) {
-        $id('getinfo').addEventListener('click', storeInfo);
+        // $id('getinfo').addEventListener('click', storeInfo);
+        window.addEventListener('unload', storeInfo)
     }
     if (storage['addItemList'] != "" && storage['addItemList']) {
         let pay = $id('pay');
