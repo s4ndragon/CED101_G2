@@ -27,7 +27,7 @@ $br: 5px;
     // display: none;
     // border: 1px solid red;
     position: relative;
-    top: 10%;
+    top: 55px;
     background-color: $primary-typo-color;
     padding: 40px;
     max-width: 600px;
@@ -35,6 +35,11 @@ $br: 5px;
     border-radius: $border-radius-sml;
     box-shadow: 0 4px 10px 4px rgba($primary-typo-color, 0.3);
     height: fit-content;
+    max-height: 568px;
+    @media only screen and (max-width: 320px) {
+        // height: 100vh;
+        top: 0;
+    }
 
     .close {
         @include close-icon;
@@ -77,11 +82,11 @@ $br: 5px;
         }
     }
 
-    .tab-content>div:last-child {
+    .tab-content > div:last-child {
         display: none;
     }
 
-    .tab-content>div {
+    .tab-content > div {
         h2 {
             text-align: center;
             color: $search-bar-bgColor;
@@ -190,7 +195,7 @@ $br: 5px;
         clear: both;
     }
 
-    >div {
+    > div {
         float: left;
         width: 48%;
         margin-right: 4%;

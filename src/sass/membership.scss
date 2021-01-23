@@ -96,6 +96,7 @@ main {
         }
         #profile_pic_input_submit {
             @include smallbtn3;
+            margin: 15px 0;
             display: flex;
             justify-content: center;
             position: absolute;
@@ -165,7 +166,7 @@ main {
             display: none;
         }
         // #profile_pic_input_submit {
-            // padding: 0;
+        // padding: 0;
         // }
         .card-body > .mine_profile {
             @include smallbtn4;
