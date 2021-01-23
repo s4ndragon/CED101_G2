@@ -5,7 +5,7 @@ try {
 
     if ($_FILES["upFile"]["error"] == UPLOAD_ERR_OK) {
         // 設定要存照片的路徑(以php檔案為出發點)
-        $dir = "../Images/member";
+        $dir = "../images/member";
         //取出檔案副檔名(.PNG ...等等)
         $fileInfoArr = pathinfo($_FILES["upFile"]["name"]);
         // 創造不會重複的亂碼
