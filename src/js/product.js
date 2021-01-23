@@ -487,8 +487,9 @@ function addFavorite(e) {
             alertLB('已取消我的最愛');
         };
         sendFavortieList()
+    } else {
+        alert('登入後才能加入我的最愛')
     }
-    alert('登入後才能加入我的最愛')
 }
 
 function loadFavorite() {
