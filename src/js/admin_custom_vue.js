@@ -16,6 +16,30 @@ new Vue({
 
     methods: {
         //函數放這裡
+        //朝廷寫法:created時不撈資料 判斷完才執行get_gards
+        checked_admin() {
+            let that = this
+            const res = fetch('./phps/admin_checked_admin.php ', {
+                method: 'POST',
+                mode: 'same-origin',
+                credentials: 'same-origin',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+                .then(function (data) {
+                    return data.json()
+                })
+                .then((data) => {
+                    if (data.ADMIN_ID) {
+                        console.log('有')
+                        that.get_gards()
+                    } else {
+                        console.log('沒有')
+                        location.href = 'admin_login.html'
+                    }
+                })
+        },
 
         get_gards: async function () {
             const res = await fetch('./phps/admin_GetGards.php', {
@@ -267,7 +291,8 @@ new Vue({
     },
 
     created() {
-        this.get_gards()
+        // this.get_gards()
+        this.checked_admin()
         this.get_rests()
         this.get_hotels()
     },

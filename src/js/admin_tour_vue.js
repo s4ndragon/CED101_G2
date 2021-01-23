@@ -86,6 +86,29 @@ new Vue({
         this.get_tour()
     },
 
+    beforeCreate() {
+        let that = this
+        const res = fetch('./phps/admin_checked_admin.php ', {
+            method: 'POST',
+            mode: 'same-origin',
+            credentials: 'same-origin',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then(function (data) {
+                return data.json()
+            })
+            .then((data) => {
+                if (data.ADMIN_ID) {
+                    console.log('有')
+                    that.get_tour()
+                } else {
+                    console.log('沒有')
+                    location.href = 'admin_login.html'
+                }
+            })
+    },
     components: {
         lightbox: {
             data() {
