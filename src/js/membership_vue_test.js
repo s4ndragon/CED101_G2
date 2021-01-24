@@ -356,16 +356,6 @@ Vue.component("tour", {
         },
     },
     mounted() {
-        $(".arrow").click(function () {
-            console.log("hihi");
-            $(this).toggleClass("down").toggleClass("up");
-            $(this).parent().toggleClass("extend");
-            $(this).siblings(".tour_date").toggle();
-            $(this).siblings(".tour_status_bar").toggle().css("width", "80%");
-            $(this).siblings(".tour_status_bar").children().toggle();
-            $(this).siblings(".tour_attendency").toggle().css("width", "80%");
-        });
-
         this.get_mine_tour();
         this.get_mine_past();
         this.get_mine_cancel();
@@ -374,6 +364,16 @@ Vue.component("tour", {
         this.get_join_past();
         this.get_join_cancel();
         this.get_join_quit();
+
+        $(".arrow").click(function () {
+            // console.log("hihi");
+            $(this).toggleClass("down").toggleClass("up");
+            $(this).parent().toggleClass("extend");
+            $(this).siblings(".tour_date").toggle();
+            $(this).siblings(".tour_status_bar").toggle().css("width", "80%");
+            $(this).siblings(".tour_status_bar").children().toggle();
+            $(this).siblings(".tour_attendency").toggle().css("width", "80%");
+        });
     },
 });
 
@@ -957,9 +957,9 @@ $("#mine_profile_btn").click(function () {
     $("#sub_menu").children("h3").removeClass("bg-color").addClass("select-color");
 });
 
+
 $(".profile-pic").click(function () {
     $("#profile_pic_input").trigger("click");
-    // $("#profile_pic_input_submit").trigger("click");
 });
 
 function readURL(input) {
@@ -1056,22 +1056,3 @@ function readURL(input) {
 $("#profile_pic_input").change(function () {
     readURL(this);
 });
-
-// function uploadImg() {
-//     var file_data = $("#profile_pic_input").prop("files")[0];
-//     var form_data = new FormData();
-//     form_data.append("file", file_data);
-
-//     $.ajax({
-//         url: "upload_mem_icon.php",
-//         dataType: "image/*", // what to expect back from the PHP script, if anything
-//         cache: false,
-//         contentType: false,
-//         processData: false,
-//         data: form_data,
-//         type: "post",
-//         success: function (result) {
-//             alert(result);
-//         },
-//     });
-// }

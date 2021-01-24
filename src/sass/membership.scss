@@ -194,7 +194,7 @@ main {
             text-align: center;
             cursor: pointer;
 
-            @media only screen and (max-width: 767px) {
+            @media only screen and (max-width: 768px) {
                 width: 100%;
             }
 
@@ -313,7 +313,7 @@ main {
                             // }
                         }
                         .extend {
-                            height: 200px;
+                            height: 230px;
                         }
 
                         .tour_title,
@@ -1014,6 +1014,16 @@ main {
     animation-iteration-count: 1;
     animation-timing-function: ease-in;
     animation-duration: 0.5s;
+    
+    @media only screen and (min-width: 414px) and (max-width: 576px) {
+        left: 24%;
+    }
+    @media only screen and (min-width: 320px) and (max-width: 414px) {
+        left: 20%;
+    }
+    @media only screen and (max-width: 320px) {
+        left: 0%;
+    }
 
     @keyframes fadeInOpacity {
         0% {
