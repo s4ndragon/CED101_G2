@@ -53,9 +53,9 @@ Vue.component("tour", {
                                 <div class="tour_status">已取消</div>
                                 <div class="tour_join"></div>
                                 <div class="tour_check">
-                                    <a :href="'https://tibamef2e.com/ced101/project/g2/02_tour_more.html?TOUR_ID=' + mineTourCancel.tour_no">
+                                <!-- <a :href="'https://tibamef2e.com/ced101/project/g2/02_tour_more.html?TOUR_ID=' + mineTourCancel.tour_no">
                                     查看
-                                    </a>
+                                    </a> -->
                                 </div>
                                 
                             </div>
@@ -109,12 +109,13 @@ Vue.component("tour", {
                                 <div class="tour_status">已取消</div>
                                 <div class="tour_join"></div>
                                 <div class="tour_check">
-                                <a :href="'https://tibamef2e.com/ced101/project/g2/02_tour_more.html?TOUR_ID=' + joinTourCancel.tour_no">
-                                查看</a>
-                                </div>
+                                <!-- <a :href="'https://tibamef2e.com/ced101/project/g2/02_tour_more.html?TOUR_ID=' + joinTourCancel.tour_no">
+                                查看</a> -->
+                                </div> 
                             </div>
                         </div>
                     </div>
+                    <!-- 
                     <div id="join_quit">
                         <h4>退出的揪團</h4>
                         <div class="tour_detail outdated" v-for="joinTourQuit in joinTourQuits">
@@ -134,6 +135,7 @@ Vue.component("tour", {
                         </div>
                     </div>
                 </div>
+                -->
                 <!-- 取消揪團燈箱 -->
                 <div v-if="cancel_lightbox" class="delete_confirm">
                     是否確認取消？
