@@ -87,9 +87,9 @@ new Vue({
         },
     },
 
-    created() {
-        this.get_admins()
-    },
+    // created() {
+    //     this.get_admins()
+    // },
 
     beforeCreate() {
         let that = this
