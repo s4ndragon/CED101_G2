@@ -5,7 +5,7 @@ window.addEventListener("load", function () {
     let xhr = new XMLHttpRequest();
     xhr.onload = function () {
         tourCreate.locationRows = JSON.parse(xhr.responseText);
-        console.log(tourCreate.locationRows);
+
     }
     xhr.open("get", "./phps/getLocation.php", true);
     xhr.send(null);
@@ -14,7 +14,7 @@ window.addEventListener("load", function () {
     let xhrHotel = new XMLHttpRequest();
     xhrHotel.onload = function () {
         tourCreate.hotelRows = JSON.parse(xhrHotel.responseText);
-        console.log(tourCreate.hotelRows);
+
     }
     xhrHotel.open("get", "./phps/getHotel.php", true);
     xhrHotel.send(null);
@@ -23,7 +23,7 @@ window.addEventListener("load", function () {
     let xhrRest = new XMLHttpRequest();
     xhrRest.onload = function () {
         tourCreate.restRows = JSON.parse(xhrRest.responseText);
-        console.log(tourCreate.restRows);
+
     }
     xhrRest.open("get", "./phps/getRest.php", true);
     xhrRest.send(null);
@@ -32,7 +32,7 @@ window.addEventListener("load", function () {
     let xhrAct = new XMLHttpRequest();
     xhrAct.onload = function () {
         tourCreate.actRows = JSON.parse(xhrAct.responseText);
-        console.log(tourCreate.actRows);
+
     }
     xhrAct.open("get", "./phps/getAct.php", true);
     xhrAct.send(null);

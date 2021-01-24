@@ -31,7 +31,7 @@ window.addEventListener("load", function () {
     let xhr = new XMLHttpRequest();
     xhr.onload = function () {
         tourApp.tourRows = JSON.parse(xhr.responseText);
-        console.log(tourApp.tourRows);
+
     }
     xhr.open("get", "./phps/getTour.php", true);
     xhr.send(null);
@@ -40,7 +40,7 @@ window.addEventListener("load", function () {
     let xhr1 = new XMLHttpRequest();
     xhr1.onload = function () {
         tourApp.locationRows = JSON.parse(xhr1.responseText);
-        console.log(tourApp.locationRows);
+
     }
     xhr1.open("get", "./phps/getNgarden.php", true);
     xhr1.send(null);
@@ -49,7 +49,7 @@ window.addEventListener("load", function () {
     let xhr2 = new XMLHttpRequest();
     xhr2.onload = function () {
         tourApp.locationCRows = JSON.parse(xhr2.responseText);
-        console.log(tourApp.locationCRows);
+
     }
     xhr2.open("get", "./phps/getCgarden.php", true);
     xhr2.send(null);
@@ -58,7 +58,7 @@ window.addEventListener("load", function () {
     let xhr3 = new XMLHttpRequest();
     xhr3.onload = function () {
         tourApp.locationSRows = JSON.parse(xhr3.responseText);
-        console.log(tourApp.locationSRows);
+
     }
     xhr3.open("get", "./phps/getSgarden.php", true);
     xhr3.send(null);
@@ -608,7 +608,7 @@ let tourApp = new Vue({
                     showHeart.title = "取消收藏";
 
                 }
-                console.log(123);
+
             }, 350);
         },
         getMem() {
@@ -616,7 +616,7 @@ let tourApp = new Vue({
             xhr.onload = function () {
                 if (xhr.status == 200) { //success
                     tourApp.memRows = JSON.parse(xhr.responseText);
-                    console.log(tourApp.memRows);
+
                 }
             };
             xhr.open("get", "./phps/member.php", true);
@@ -628,8 +628,7 @@ let tourApp = new Vue({
                 xhr.onload = function () {
                     if (xhr.status == 200) { //success
                         tourApp.FavortieLists = JSON.parse(xhr.responseText);
-                        console.log(321);
-                        console.log(tourApp.FavortieLists);
+
                     }
                 };
                 var url = "./phps/getTourFavoriteList.php";

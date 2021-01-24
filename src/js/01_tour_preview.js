@@ -9,12 +9,12 @@ window.addEventListener("load", function () {
             dataType: 'text',             // 回傳資料會是 json 格式
             data: $('form').serialize(),  // 將表單資料用打包起來送出去
             success: function (res) {       // 成功以後會執行這個方法
-                console.log('good');
+
                 preview.successBox = true;
             },
             error: function (err) {
                 alert('資料傳輸有誤!!');
-                console.log('not good');
+
 
 
             },
@@ -26,7 +26,7 @@ window.addEventListener("load", function () {
     let xhr = new XMLHttpRequest();
     xhr.onload = function () {
         preview.locationRows = JSON.parse(xhr.responseText);
-        console.log(preview.locationRows);
+
     }
     xhr.open("get", "./phps/getLocation.php", true);
     xhr.send(null);
@@ -35,7 +35,7 @@ window.addEventListener("load", function () {
     let xhrHotel = new XMLHttpRequest();
     xhrHotel.onload = function () {
         preview.hotelRows = JSON.parse(xhrHotel.responseText);
-        console.log(preview.hotelRows);
+
     }
     xhrHotel.open("get", "./phps/getHotel.php", true);
     xhrHotel.send(null);
@@ -44,7 +44,7 @@ window.addEventListener("load", function () {
     let xhrRest = new XMLHttpRequest();
     xhrRest.onload = function () {
         preview.restRows = JSON.parse(xhrRest.responseText);
-        console.log(preview.restRows);
+
     }
     xhrRest.open("get", "./phps/getRest.php", true);
     xhrRest.send(null);
@@ -53,7 +53,7 @@ window.addEventListener("load", function () {
     let xhrAct = new XMLHttpRequest();
     xhrAct.onload = function () {
         preview.actRows = JSON.parse(xhrAct.responseText);
-        console.log(preview.actRows);
+
     }
     xhrAct.open("get", "./phps/getAct.php", true);
     xhrAct.send(null);
