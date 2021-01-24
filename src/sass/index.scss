@@ -288,7 +288,7 @@ div.menu {
     vertical-align: top;
 }
 
-.vote-list li+li {
+.vote-list li + li {
     margin-left: 30px;
 }
 
@@ -1118,7 +1118,7 @@ input[type='button'] {
         width: 90%;
     }
 
-    .vote-list li+li {
+    .vote-list li + li {
         margin-left: 0;
     }
 
@@ -1154,7 +1154,7 @@ input[type='button'] {
     .tour .tour_title_rwd {
         padding: 10px;
         margin: 17px 0 0 0;
-        font-size: 24px;
+        font-size: 22px;
         color: #fff;
         display: block;
     }
