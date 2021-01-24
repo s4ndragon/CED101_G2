@@ -2,22 +2,20 @@
     session_start();
 try {
     require_once("./connect.php");
-    
-    //.......確定是否上傳成功
-	if ($_FILES["profile_pic_input"]["error"] == UPLOAD_ERR_OK) {
 
+    if ($_FILES["upFile"]["error"] == UPLOAD_ERR_OK) {
+        // 設定要存照片的路徑(以php檔案為出發點)
         $dir = "../images/member";
-		//決定檔案名稱
-        $fileInfoArr = pathinfo($_FILES["profile_pic_input"]["name"]);
-        
+        //取出檔案副檔名(.PNG ...等等)
+        $fileInfoArr = pathinfo($_FILES["upFile"]["name"]);
+        // 創造不會重複的亂碼
         $imageNo = uniqid();
-        
-		$fileName = "{$imageNo}.{$fileInfoArr["extension"]}";  //312543544.gif
-        
+        //決定檔案名稱
+        $fileName = "{$imageNo}.{$fileInfoArr["extension"]}"; //312543544.gif
         //先檢查images資料夾存不存在
-		if( file_exists($dir) === false){
-			mkdir($dir);
-		}
+        if (file_exists($dir) == false) {
+            mkdir($dir, 0777, true); //make directory
+        }
         //將檔案copy到要放的路徑
 		$from = $_FILES["profile_pic_input"]["tmp_name"];
         $to = "$dir/$fileName";
@@ -31,18 +29,20 @@ try {
 			$products -> bindValue(":MEM_NO", $_SESSION["MEM_NO"]);
 			$products -> bindValue(":MEM_IMG", "./images/member/{$fileName}");
 			$products -> execute();			
-			echo "新增成功~";
+            echo "<script>location.href='../membership.html'</script>";
 		}else{
-			echo "失敗~";
+            // echo "失敗~";
+            echo "<script>history.go(-1);
+            alert('請重新上傳頭像！');
+            </script>";
+            
 		}
 
-	}else{
-		echo "錯誤代碼 : {$_FILES["profile_pic_input"]["error"]} <br>";
-		// echo "新增失敗<br>";
-	}
+    } else {
+        echo "錯誤代碼 : {$_FILES["upFile"]["error"]} <br>";
+        // echo "新增失敗<br>";
+    }
 } catch (PDOException $e) {
-	$pdo->rollBack();
-	$errMsg .= "錯誤原因 : ".$e -> getMessage(). "<br>";
-	$errMsg .= "錯誤行號 : ".$e -> getLine(). "<br>";	
+    echo "修改失敗~!!";
 }
 ?>

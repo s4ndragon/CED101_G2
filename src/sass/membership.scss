@@ -80,15 +80,13 @@ main {
         align-items: center;
     }
 
-    .card {
-        margin: 5rem auto 1rem;
-        background-color: #eff2c7;
+    .side_col {
+        // border: 1px solid red;
         width: 20%;
-        height: 200px;
+        margin: 5rem auto 1rem;
         display: flex;
-        justify-content: center;
-        text-align: center;
-        color: black;
+        flex-direction: column;
+        align-items: center;
         @media only screen and (min-width: 576px) and (max-width: 768px) {
             width: 40%;
         }
@@ -96,73 +94,85 @@ main {
             width: 75%;
             margin: 10rem auto 1rem;
         }
-    }
-    .card-body {
-        @media only screen and (max-width: 768px) {
-            // border: 1px solid black;
+        #profile_pic_input_submit {
+            @include smallbtn3;
+            margin: 15px 0;
             display: flex;
-            flex-direction: column;
-            align-items: center;
+            justify-content: center;
+            position: absolute;
+            top: 280px;
+            @media only screen and (min-width: 576px) and (max-width: 768px) {
+                top: 280px;
+            }
+            @media only screen and (max-width: 576px) {
+                top: 360px;
+            }
         }
-    }
-    .profile-pic img {
-        height: 144px;
-        width: 144px;
-        max-width: 144px;
-        background: #fff;
-        border: 0.3rem solid #fff;
-        object-fit: cover;
-        margin: -5.8rem auto 0.5rem auto;
-        box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
-        border-radius: 50%;
-    }
-    .profile-pic:hover {
-        cursor: pointer;
-    }
-    input {
-        border: none;
-        // text-align: center;
-    }
-    input:focus {
-        outline: none;
-    }
-    .input-name {
-        font-weight: 600;
-        font-size: 1.5rem;
-        width: 17rem;
-        margin-bottom: -0.5rem;
-    }
-    .input-username {
-        font-size: 0.9rem;
-        color: rgb(134, 142, 150);
-        margin-bottom: 1rem;
-    }
-    .card-text {
-        line-height: 1.4;
-    }
-    #profile_pic_input {
-        display: none;
-    }
-    #profile_pic_input_submit {
-        padding: 0
-    }
-    .card-body > .mine_profile {
-        @include smallbtn4;
-        @media only screen and (min-width: 768px) {
+        .card {
+            // border: 1px solid blue;
+            margin: 5rem auto 0;
+            background-color: #eff2c7;
+            width: 100%;
+            height: 200px;
+            // display: flex;
+            justify-content: center;
+            text-align: center;
+            color: black;
+        }
+        .card-body {
+            @media only screen and (max-width: 768px) {
+                // border: 1px solid black;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        .profile-pic img {
+            height: 144px;
+            width: 144px;
+            max-width: 144px;
+            background: #fff;
+            border: 0.3rem solid #fff;
+            object-fit: cover;
+            margin: -5.8rem auto 0.5rem auto;
+            box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+        }
+        .profile-pic:hover {
+            cursor: pointer;
+        }
+        input {
+            border: none;
+            // text-align: center;
+        }
+        input:focus {
+            outline: none;
+        }
+        .input-name {
+            font-weight: 600;
+            font-size: 1.5rem;
+            width: 17rem;
+            margin-bottom: -0.5rem;
+        }
+        .input-username {
+            font-size: 0.9rem;
+            color: rgb(134, 142, 150);
+            margin-bottom: 1rem;
+        }
+        .card-text {
+            line-height: 1.4;
+        }
+        #profile_pic_input {
             display: none;
         }
-    }
-
-    .side_content {
-        .mine_profile {
+        // #profile_pic_input_submit {
+        // padding: 0;
+        // }
+        .card-body > .mine_profile {
             @include smallbtn4;
-
             @media only screen and (min-width: 768px) {
                 display: none;
             }
-        }
-        #profile_picture_upload {
-            display: none;
         }
     }
 
@@ -188,11 +198,11 @@ main {
                 width: 100%;
             }
 
-            .mine_profile {
-                @media only screen and (max-width: 767px) {
-                    display: none;
-                }
-            }
+            // .mine_profile {
+            //     @media only screen and (max-width: 767px) {
+            //         display: none;
+            //     }
+            // }
 
             h3 {
                 display: inline-block;

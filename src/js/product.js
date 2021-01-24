@@ -11,7 +11,7 @@ function init() {
     if (storage['addItemList'] == null) {
         storage['addItemList'] = '';
     }
-    if (storage['FavortieList'] == null) {
+    if (!app2.memRows.MEM_ID) {
         storage['FavortieList'] = '';
     }
     //如果是商城首頁的話
@@ -19,7 +19,7 @@ function init() {
         getproducts('所有商品', 'PSN_DESC');
         classifyBtnsSelect();
         orderBtn();
-        // getFavortieList()
+        getAdvProduct();
     };
     //如果有推薦商品
     if ($id('recommends')) {
@@ -43,12 +43,13 @@ function init() {
     }
     //如果有總額
     if ($id('totalBtn')) {
-        dicountBtn()
+        loadDisPoint();
+        dicountBtn();
     }
 };
 
 function getproducts(type, orderby) {
-    var xhr = new XMLHttpRequest();
+    let xhr = new XMLHttpRequest();
     let url;
     xhr.onload = function () {
         if (xhr.status == 200) {
@@ -88,6 +89,41 @@ function getproducts(type, orderby) {
     xhr.open("Get", url, true);
     xhr.send(null);
 
+}
+
+function getAdvProduct() {
+
+    let xhr = new XMLHttpRequest();
+    let url;
+    xhr.onload = function () {
+        if (xhr.status == 200) {
+            let advs = JSON.parse(xhr.responseText);
+            console.log(advs)
+            for (let i = 0; i < advs.length; i++) {
+                let newA = document.createElement('a');
+                newA.innerHTML = `
+               <img src="${advs[i].IMG}" alt="">`
+                newA.setAttribute('href', `./04_product.html?psn=${advs[i].PSN}`);
+                $id('shop_advs').appendChild(newA);
+            }
+            $('#shop_advs').slick({
+                arrows: false,
+                autoplay: true,
+                autoplaySpeed: 2000,
+                infinite: true,
+                dots: true,
+                slidesToScroll: 1,
+                slidesToShow: 1,
+            })
+
+
+        } else {
+            alert(xhr.status);
+        }
+    }
+    url = `./phps/getShppingAdv.php`;
+    xhr.open("Get", url, true);
+    xhr.send(null);
 }
 
 function loadPerpageProduct(products, perpageNum, n) {
@@ -259,6 +295,26 @@ function changeNum(e) {
     }
 }
 
+function loadDisPoint() {
+    let xhr = new XMLHttpRequest();
+    xhr.onload = function () {
+        if (xhr.status == 200) {
+            //modify here
+            let DisPoint = JSON.parse(xhr.responseText)[0].GAME_POINT;
+            console.log(DisPoint)
+            $id('myPoint').value = DisPoint;
+
+        } else {
+            alert(xhr.status);
+        }
+        dealDisPoint();
+        maxDis();
+    }
+    var url = "./phps/getDisPoint.php";
+    xhr.open("Get", url, true);
+    xhr.send(null);
+}
+
 
 function dealDisPoint() {
     var costPoint = document.getElementById('costPoint'),
@@ -345,7 +401,7 @@ function alertLB(text) {
 
 
 function getRecommends(sold) {
-    var xhr = new XMLHttpRequest();
+    let xhr = new XMLHttpRequest();
     xhr.onload = function () {
         if (xhr.status == 200) {
             //modify here
@@ -403,33 +459,37 @@ function orderBtn() {
 
 
 function addFavorite(e) {
-    let img = e.target.src.split('/');
-    let src;
-    if (img[img.length - 1] == 'heart.png') {
+    if (app2.memRows.MEM_ID) {
+        let img = e.target.src.split('/');
+        let src;
+        if (img[img.length - 1] == 'heart.png') {
 
-        src = './images/common/like.png';
+            src = './images/common/like.png';
 
-        storage['FavortieList'] += e.target.className.split(' ')[1] + ',';
-        let t = document.getElementsByClassName(`${e.target.className.split(' ')[1]}`);
-        for (let i = 0; i < t.length; i++) {
-            t[i].src = src;
-        }
-        alertLB('已加入我的最愛');
+            storage['FavortieList'] += e.target.className.split(' ')[1] + ',';
+            let t = document.getElementsByClassName(`${e.target.className.split(' ')[1]}`);
+            for (let i = 0; i < t.length; i++) {
+                t[i].src = src;
+            }
+            alertLB('已加入我的最愛');
 
+        } else {
+            src = './images/common/heart.png';
+
+            let t = document.getElementsByClassName(`${e.target.className.split(' ')[1]}`);
+            for (let i = 0; i < t.length; i++) {
+                t[i].src = src;
+            }
+            let FavortieList = storage['FavortieList'].split(','),
+                index = FavortieList.indexOf(e.target.className.split(' ')[1]);
+            FavortieList.splice(index, 1);
+            storage['FavortieList'] = FavortieList;
+            alertLB('已取消我的最愛');
+        };
+        sendFavortieList()
     } else {
-        src = './images/common/heart.png';
-
-        let t = document.getElementsByClassName(`${e.target.className.split(' ')[1]}`);
-        for (let i = 0; i < t.length; i++) {
-            t[i].src = src;
-        }
-        let FavortieList = storage['FavortieList'].split(','),
-            index = FavortieList.indexOf(e.target.className.split(' ')[1]);
-        FavortieList.splice(index, 1);
-        storage['FavortieList'] = FavortieList;
-        alertLB('已取消我的最愛');
-    };
-    sendFavortieList()
+        alert('登入後才能加入我的最愛')
+    }
 }
 
 function loadFavorite() {
@@ -445,7 +505,10 @@ function loadFavorite() {
 }
 
 function getFavortieList() {
-    var xhr = new XMLHttpRequest();
+    if (storage['FavortieList'] == null) {
+        storage['FavortieList'] = '';
+    }
+    let xhr = new XMLHttpRequest();
     xhr.onload = function () {
         if (xhr.status == 200) {
             //modify here
@@ -461,9 +524,7 @@ function getFavortieList() {
             alert(xhr.status);
         }
     }
-    //假登入
-    let memNo = '1';
-    // var url = "./phps/getFavoriteList.php?mem_no=" + memNo;
+
     var url = "./phps/getFavoriteList.php";
 
 

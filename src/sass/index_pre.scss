@@ -436,10 +436,21 @@ img {
     color: black !important;
 }
 
+.foo {
+    margin-left: 50px !important;
+}
+
+.bkk {
+    margin-right: 20px !important;
+}
 
 
 
 @media screen and (max-width: 500px) {
+    .foo .bkk {
+        margin: 0px;
+    }
+
     .te1 {
         top: 50%;
         left: 50%;

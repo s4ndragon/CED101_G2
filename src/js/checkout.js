@@ -6,25 +6,27 @@ function $id(id) { //尋找id
 }
 
 function init() {
-    if ($id('getinfo')) {
-        $id('getinfo').addEventListener('click', storeInfo);
-    }
-    if (storage['addItemList'] != "" && storage['addItemList']) {
-        let pay = $id('pay');
-        if (pay) {
-            payDisplay();
-            pay.addEventListener('change', payDisplay);
+    if (app2.memRows.MEM_ID) {
+        if ($id('getinfo')) {
+            // $id('getinfo').addEventListener('click', storeInfo);
+            window.addEventListener('unload', storeInfo)
+        }
+        if (storage['addItemList'] != "" && storage['addItemList']) {
+            let pay = $id('pay');
+            if (pay) {
+                payDisplay();
+                pay.addEventListener('change', payDisplay);
 
-        }
-        loaditems();
-        loadinfo();
-        if ($id('submitBtn')) {
-            $id('submitBtn').addEventListener('click', submitForm)
-        }
-    } else {
-        if ($id('orderform')) {
-            $id('orderform').innerHTML =
-                `<p style="padding:80px ;text-align:center;">訂單已送出或是購物車內沒有商品。請返回購物車重新操作。<p/>
+            }
+            loaditems();
+            loadinfo();
+            if ($id('submitBtn')) {
+                $id('submitBtn').addEventListener('click', submitForm)
+            }
+        } else {
+            if ($id('orderform')) {
+                $id('orderform').innerHTML =
+                    `<p style="padding:80px ;text-align:center;">訂單已送出或是購物車內沒有商品。請返回購物車重新操作。<p/>
         <table>
         <tr>
             <td colspan=" 2" class="btn">
@@ -33,7 +35,11 @@ function init() {
             </td>
         </tr>
     </table>`;
+            }
         }
+    } else {
+        alert('請登入後結帳');
+        location.href = "./04_cart.html";
     }
 }
 

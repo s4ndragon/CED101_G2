@@ -495,7 +495,24 @@ ul {
     list-style: none;
     text-align: center;
 }
-
+#props:after{
+    content:'請選擇角色放置道路上';
+    background: url("../images/game/PointerLeft.gif");
+    background-color: rgb(243, 228, 93);
+    background-repeat: no-repeat;
+    background-size: 40px;
+    border-radius:20px;
+    font-size: 21px;
+    padding-top: 5px;
+    width:240px;
+    height: 35px;
+    position:absolute;
+    display:none;
+    padding-left:30px;
+    }
+#props:hover:after{
+    display:inline;
+}
 #props li {
     position: relative;
     display: inline-block;

@@ -17,32 +17,7 @@
     @@include('layout/leaf.html')
     @@include('layout/nav.html')
     @@include('layout/title.html',{'title':'商城首頁'})
-    <div>
-        <div class="shop_adv" id="shop_advs">
-            <a href="./04_product.html?psn=10006">
-                <img src="./images/shopping/adv.jpg" alt="">
-            </a>
-            <a href="./04_product.html?psn=10006">
-                <img src="./images/shopping/adv.jpg" alt="">
-            </a>
-            <a href="./04_product.html?psn=10006">
-                <img src="./images/shopping/adv.jpg" alt="">
-            </a>
-        </div>
-    </div>
-    <script>
-        $(function () {
-            $('#shop_advs').slick({
-                arrows: false,
-                autoplay: true,
-                autoplaySpeed: 2000,
-                infinite: true,
-                dots: true,
-                slidesToScroll: 1,
-                slidesToShow: 1,
-            })
-        })
-    </script>
+    <div class="shop_adv" id="shop_advs"></div>
     <div class="recommend">
         <h2>推薦商品</h2>
         <div class="recommend_products" id="recommends">

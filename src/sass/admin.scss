@@ -32,7 +32,7 @@ aside.aside {
     left: 0;
     height: calc(100% - var(--header-height));
     width: var(--aside-width);
-    background-color: #ffeb3b5c;
+    background-color: #8b80225c;
     overflow-y: auto;
     padding: 80px 40px;
     transition: all 1s;
@@ -192,9 +192,16 @@ tr:nth-of-type(odd) {
 }
 
 th {
-    background: #8bc34a;
+    background: #466128;
     color: white;
     font-weight: bold;
+}
+
+.psw_input {
+    border: none;
+    outline: none;
+    background: #eee;
+    text-align: center;
 }
 
 td,
