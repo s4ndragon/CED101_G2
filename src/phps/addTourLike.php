@@ -9,13 +9,8 @@ try {
                             values(:TOUR_ID, :MEM_NO )";
 	        $tour = $pdo->prepare( $sql );
             $tour -> bindValue(":TOUR_ID", $_POST["TOUR_ID"]);
-        // $tour -> bindValue(":TOUR_ID", 40);
-        //     $MEM_NO = 1;
-            // $tour -> bindValue(":MEM_NO", $_POST["MEM_NO"]);
             $tour -> bindValue(":MEM_NO",$_SESSION["MEM_NO"]);
-            $tour -> execute();	
-            // echo $MEM_NO ;
-            // echo $_POST["TOUR_ID"];
+            $tour -> execute();	 
             echo 1;
             
            
@@ -25,19 +20,13 @@ try {
                     WHERE TOUR_ID =:TOUR_ID and MEM_NO = :MEM_NO";
             $tour = $pdo->prepare( $sql );
             $tour -> bindValue(":TOUR_ID", $_POST["TOUR_ID"]);
-            // $tour -> bindValue(":MEM_NO", $_POST["MEM_NO"]);
-        //     $tour -> bindValue(":TOUR_ID", 40);
-        //     $MEM_NO = 1;
             $MEM_NO = $_SESSION["MEM_NO"];
             $tour -> bindValue(":MEM_NO", $MEM_NO);
             $tour -> execute();	
             echo 2;
         }
           
-           
-			
-			
-			
+        		
 			
 } catch (PDOException $e) {
 	$pdo->rollBack();

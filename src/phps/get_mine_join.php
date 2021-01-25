@@ -13,7 +13,8 @@ try {
             where j.mem_no = :MEM_NO
             and t.DEADLINE_DATE > CURRENT_DATE() 
             and t.NUM_OF_PARTICIPANTS < t.TOUR_PEOPLE
-            and t.TOUR_STATUS = 1;
+            and t.TOUR_STATUS = 1
+            and j.tour_add = 1;
             ";
 
     $get_mine_join = $pdo->prepare($sql);

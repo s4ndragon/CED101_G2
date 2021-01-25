@@ -437,18 +437,31 @@ img {
 }
 
 .foo {
-    margin-left: 50px !important;
+    margin-left: 50px;
 }
 
 .bkk {
-    margin-right: 20px !important;
+    margin-right: 20px;
 }
+
+.copyright {
+    transform: translateX(0px) !important;
+    transform: translateY(100px) !important;
+    font-size: 10px !important;
+    line-height: 25px !important;
+    color: gray !important;
+}
+
 
 
 
 @media screen and (max-width: 500px) {
-    .foo .bkk {
-        margin: 0px;
+    .foo {
+        margin-left: 0px !important;
+    }
+
+    .bkk {
+        margin-right: -18px;
     }
 
     .te1 {
@@ -469,6 +482,12 @@ img {
     .te4 {
         left: -27% !important;
         top: 59% !important;
+    }
+
+    .copyright {
+        top: calc(50% - -97px) !important;
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 10px;
     }
 
 }

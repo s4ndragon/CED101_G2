@@ -9,8 +9,8 @@ try {
     $reg_memId = $_POST["reg_memId"];
     $reg_memPw = $_POST["reg_memPw"];
 
-    $sql = "insert into member(MEM_NO, MEM_ID, MEM_NICNAME, MEM_PW, MEM_EMAIL, MEM_IMG, MEM_STATUS, VOTE_DATE, GAME_POINT)
-            values (33, :MEM_ID, :MEM_ID, :MEM_PW, :MEM_EMAIL, './images/member/new_member.jpg', 1, '2021-01-04', 0);
+    $sql = "insert into member(MEM_ID, MEM_NICNAME, MEM_PW, MEM_EMAIL, MEM_IMG, MEM_STATUS, VOTE_DATE, GAME_POINT)
+            values (:MEM_ID, :MEM_ID, :MEM_PW, :MEM_EMAIL, './images/member/new_member.jpg', 1, '2021-01-04', 0);
             ";
 
     $reg_mem = $pdo->prepare($sql);

@@ -76,7 +76,7 @@ var form = new Vue({
             }
         },
         checkText() {
-            console.log(this.intro.length);
+
             this.intrText = 100 - this.intro.length;
 
 
@@ -101,7 +101,7 @@ var form = new Vue({
     watch: {
         deadDate: {
             handler(newdeadDate, olddeadDate) {
-                // console.log(`num: ${olddeadDate} ---> ${newdeadDate}`);
+
                 if (this.deadDate < this.today) {
                     this.deadDateAtt = "*截止日期不可小於發起日期"
                 } else {
@@ -114,7 +114,7 @@ var form = new Vue({
         },
         activeDate: {
             handler(newdeadDate, olddeadDate) {
-                // console.log(`num: ${olddeadDate} ---> ${newdeadDate}`);
+
                 if (this.activeDate < this.deadDate) {
                     this.activeDateAtt = "*出團日期不可小於截止日期"
                 } else {
