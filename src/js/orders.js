@@ -1,6 +1,6 @@
 Vue.config.devtools = true;
 
-vue = new Vue({
+orderInfo = new Vue({
     el: '#orderInfo',
     data: {
         orderInfo: {},
@@ -11,42 +11,36 @@ vue = new Vue({
 
 
     },
-    beforeMount() {
-        Vue.config.devtools = true;
-        let xhr = new XMLHttpRequest(),
-            searchURL = window.location.search.split("="),
-            orderNo = searchURL[searchURL.length - 1];
-        //寫入收藏列表
-        let url = "./phps/getOrderInfo.php";
-        xhr.open("POST", url, true);
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    mounted() {
+        setTimeout(() => {
+            let xhr = new XMLHttpRequest(),
+                searchURL = window.location.search.split("="),
+                orderNo = searchURL[searchURL.length - 1];
+            let url = "./phps/getOrderInfo.php";
+            xhr.open("POST", url, true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
-        //假登入資料
-        let memNo = '1';
-        let data_info = `orderNo=${orderNo}&memNo=${memNo}`;
-        xhr.send(data_info);
-        xhr.onload = function () {
-            if (xhr.status == 200) {
-                if (xhr.responseText == '無權限') {
-                    document.getElementById('app').innerHTML =
-                        `<p style="padding:80px ;text-align:center;">您沒有讀取這張訂單的權限，請確認是否登入或是訂單號碼是否正確。<p/>
-                           <table>
-                           <tr>
-                               <td colspan=" 2" class="btn">
-                                   <input type="submit" value="回商城" onClick="location.href= './04_shopping.html';return false;">
-                               </td>
-                           </tr>
-                       </table>`;
+            //假登入資料
+            // let memNo = '1';
+            let memNo = app2.memRows.MEM_NO;
+            let data_info = `orderNo=${orderNo}&memNo=${memNo}`;
+            xhr.send(data_info);
+            xhr.onload = function () {
+                if (xhr.status == 200) {
+                    if (xhr.responseText == '無權限') {
+                        orderInfo.orderInfo = '無權限';
+                    } else {
+                        //  console.log(JSON.parse(xhr.responseText)[0]); //讀取json
+                        //    console.log(xhr.responseText); //讀取字串
+                        orderInfo.orderInfo = JSON.parse(xhr.responseText)[0][0];
+                        orderInfo.products = JSON.parse(xhr.responseText)[1];
+                    }
                 } else {
-                    //  console.log(JSON.parse(xhr.responseText)[0]); //讀取json
-                    //    console.log(xhr.responseText); //讀取字串
-                    vue.orderInfo = JSON.parse(xhr.responseText)[0][0];
-                    vue.products = JSON.parse(xhr.responseText)[1];
+                    alert(xhr.status);
                 }
-            } else {
-                alert(xhr.status);
             }
-        }
+        }, 1000);
+
     },
     computed: {
         payMethod() {

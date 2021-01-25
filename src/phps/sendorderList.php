@@ -1,5 +1,7 @@
 <?
 try {
+    session_start();
+    $mem_no=$_SESSION['MEM_NO'];
     //order增加
     require_once("./connect.php");
     $sql = "INSERT INTO orders (ORDERS_NO ,MEMBER ,DEL_STATE ,ORD_DATE, DELIVERY, PAY, DISCOUNT ,TOTAL, RECEIVER_NAME ,RECEIVER_ADDRESS ,RECEIVER_TEL)
@@ -17,7 +19,7 @@ try {
     elseif ($_POST['pay']=='ATM付款') {
         $PAY=1;
     };
-    $orderList->bindValue(":MEMBER",  $_POST['mem_no']);
+    $orderList->bindValue(":MEMBER",  $mem_no);
     $orderList->bindValue(":ORD_DATE",  date('Y/m/d/H/i'));
     $orderList->bindValue(":DELIVERY",  $DELIVERY);
     $orderList->bindValue(":PAY",  $PAY);

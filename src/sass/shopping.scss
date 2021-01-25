@@ -328,7 +328,11 @@ div.products {
         transition-duration: .2s;
         margin-bottom: 15px;
 
-        @media all and (max-width: $small) {
+        @media all and (max-width: 850px) {
+            width: 45%;
+        }
+
+        @media all and (max-width: 572px) {
             width: 90%;
         }
 
