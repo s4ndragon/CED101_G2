@@ -1,9 +1,9 @@
 <?
 try {
-    require_once("./connect.php");
+    require_once("../connect.php");
     // $sql = "select * from product where sold > :sold";
     $orderby= $_GET['orderby'];
-    $sql = "SELECT * FROM `product` ORDER BY $orderby  DESC limit 15";
+    $sql = "SELECT * FROM `product` ORDER BY $orderby  DESC,PSN DESC limit 15";
     $recommends = $pdo->prepare($sql);
     $recommends->execute();
     if ($recommends->rowCount() == 0) { //找不到

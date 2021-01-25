@@ -4,7 +4,7 @@ if(isset($_SESSION['MEM_NO'])){
    $MEM_NO= $_SESSION['MEM_NO'];
 //    $MEM_NO= 1;
 try {
-    require_once("./connect.php");
+    require_once("../connect.php");
     $sql = "select PSN from product_f where mem_no = :mem_no";
     $FavoriteList = $pdo->prepare($sql);
     $FavoriteList->bindValue(":mem_no", $MEM_NO);

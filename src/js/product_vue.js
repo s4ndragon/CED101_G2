@@ -66,7 +66,7 @@ Vue.component('product-card', {
     computed: { //組合input的value
         hiddenValue() {
             let product = this.product;
-            let value = product.PSN + '|' + product.NAME + '|' + product.IMG + '|' + product.PRICE + '||1|0';
+            let value = product.PSN + '|' + product.NAME + '|' + product.IMG + '|' + product.PRICE + '|1|0';
             return value;
         },
         favorite() {

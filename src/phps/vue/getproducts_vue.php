@@ -1,6 +1,6 @@
 <?
 try {
-    require_once("./connect.php");
+    require_once("../connect.php");
     $orderby =htmlspecialchars($_GET['orderby']);
     if(strlen($orderby)<20){
         $sql = "select * from product  where ONSALE = 1 order by $orderby";

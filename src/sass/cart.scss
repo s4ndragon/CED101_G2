@@ -173,4 +173,11 @@ input.itemPrice,
     font-weight: 700;
     padding: 15px;
     border-radius: 10px;
+
+}
+
+@media screen and (max-width: 600px) {
+    #totalAmount {
+        width: 100%;
+    }
 }

@@ -1,6 +1,6 @@
 <?
 try {
-    require_once("./connect.php");
+    require_once("../connect.php");
     $sql = "select * from shopping_adv";
     $advs = $pdo->prepare($sql);
     $advs->execute();
