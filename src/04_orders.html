@@ -16,8 +16,8 @@
     @@include('layout/nav.html')
     @@include('layout/title.html',{'title':'訂單明細'})
     <form action="" id='orderInfo'>
-        <div v-if="orderInfo=='無權限'">
-            <p style="padding:80px ;text-align:center;">您沒有讀取這張訂單的權限，請確認是否登入或是訂單號碼是否正確。
+        <div v-if=" orderInfo=='無權限'">
+            <p style=" padding:80px ;text-align:center;">您沒有讀取這張訂單的權限，請確認是否登入或是訂單號碼是否正確。
             </p>
         </div>
         <div class="main" id='main' v-if="orderInfo.ORDERS_NO">
@@ -25,6 +25,7 @@
                 <h3 class="partTitle">訂單編號 : </h3><input type="number" name="" disabled :value="orderInfo.ORDERS_NO">
             </div>
             <h3 class="partTitle">訂單內容</h3>
+
             <ul id="items">
                 <item v-for="product in products" v-bind='product'></item>
             </ul>

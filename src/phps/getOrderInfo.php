@@ -1,7 +1,7 @@
 <?
 try {
-    // exit($_POST['orderNo']);
     session_start();
+    if(isset($_SESSION['MEM_NO'])){
     $mem_no=$_SESSION['MEM_NO'];
     require_once("./connect.php");
     $sql = "select * from orders where ORDERS_NO = :orderNo";
@@ -24,8 +24,11 @@ try {
             $products=$orderList->fetchAll(PDO::FETCH_ASSOC);
             $v=[$info,$products];
             echo json_encode($v);
-        }else{echo '無權限';};
-    }
+            }else{echo '無權限';};
+        }
+    }else{
+        echo '無權限';
+    };
 } catch (PDOException $e) {
     echo  $e->getMessage() ;
 };?>
