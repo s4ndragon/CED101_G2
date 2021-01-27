@@ -1,12 +1,16 @@
 var storage = sessionStorage;
-window.addEventListener('load', init);
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        init()
+    }, 1000)
+});
 
 function $id(id) { //尋找id
     return document.getElementById(`${id}`);
 }
 
 function init() {
-    if (app2.memRows.MEM_ID) {
+    if (app2.memRows.MEM_NO) {
         if ($id('getinfo')) {
             // $id('getinfo').addEventListener('click', storeInfo);
             window.addEventListener('unload', storeInfo)
