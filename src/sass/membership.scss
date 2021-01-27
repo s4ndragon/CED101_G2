@@ -334,7 +334,7 @@ main {
 
                         .tour_attendency {
                             width: 20%;
-                            cursor: pointer;
+                            // cursor: pointer;
                             &:hover {
                                 text-shadow: 0.5px 0.5px $primary-typo-color;
                             }
@@ -349,13 +349,13 @@ main {
                             display: flex;
                             justify-content: space-between;
                             @media only screen and (max-width: 576px) {
-                                display: none;
+                                // display: none;
                             }
                             .tour_join,
                             .tour_check {
                                 cursor: pointer;
                                 @media only screen and (max-width: 576px) {
-                                    display: none;
+                                    // display: none;
                                 }
                             }
 
@@ -385,7 +385,7 @@ main {
                             border-right: 10px solid transparent;
                             border-top: 10px solid $primary-typo-color;
                             cursor: pointer;
-
+                            transition-timing-function: ease-out;
                             // &:hover {
                             //     border-top: 10px solid $lighter;
                             // }
@@ -1014,7 +1014,7 @@ main {
     animation-iteration-count: 1;
     animation-timing-function: ease-in;
     animation-duration: 0.5s;
-    
+
     @media only screen and (min-width: 414px) and (max-width: 576px) {
         left: 24%;
     }

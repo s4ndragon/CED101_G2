@@ -8,7 +8,7 @@ Vue.component("tour", {
                         <h4>揪團中的團</h4> 
                         <div class="tour_detail" v-for="memTour in memTours">
                             <div class="tour_title">{{memTour.TOUR_TITLE}}</div>
-                            <div class="arrow down"></div>
+                            <!-- <div class="arrow down"></div> -->
                             <div class="tour_date">{{memTour.TOUR_SETOFFTIME}}</div>
                             <div class="tour_attendency" @click="showAttendency">人數：<span class="attend attend_1">{{memTour.NUM_OF_PARTICIPANTS}}</span>／<span class="require require_1">{{memTour.TOUR_PEOPLE}}</span></div>
                             <div class="tour_status_bar">

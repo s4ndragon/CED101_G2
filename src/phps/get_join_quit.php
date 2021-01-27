@@ -7,10 +7,10 @@ try {
     
 	$sql = "select t.TOUR_ID, t.TOUR_TITLE, t.TOUR_SETOFFTIME, t.NUM_OF_PARTICIPANTS, t.TOUR_PEOPLE, j.mem_no 
     from tour t join tour_join J 
-    on t.tour_id = j.tour_id 
-    where j.mem_no = :MEM_NO
+    on t.TOUR_ID = j.TOUR_ID 
+    where j.MEM_NO = :MEM_NO
     and j.TOUR_ADD = 0
-    order by t.tour_id;
+    order by t.TOUR_ID;
             ";
 
     $get_mine_tour = $pdo->prepare($sql);
