@@ -7,12 +7,11 @@ function $id(id) { //尋找id
 }
 
 function init() {
-
-    if (storage['addItemList'] == null) {
-        storage['addItemList'] = '';
-    }
-    if (!app2.memRows.MEM_ID) {
+    if (!storage['FavortieList']) {
         storage['FavortieList'] = '';
+    }
+    if (!storage['addItemList']) {
+        storage['addItemList'] = '';
     }
     //如果是商城首頁的話
     if ($id('products')) {
@@ -25,9 +24,14 @@ function init() {
     if ($id('recommends')) {
         getRecommends(1);
         addcartalert();
-        if (app2.memRows.MEM_ID) { //如果有登入
-            getFavortieList();
-        }
+        setTimeout(() => {
+            if (app2.memRows.MEM_ID) { //如果有登入
+                getFavortieList();
+                console.log('啟動取得最愛')
+            } else {
+                storage['FavortieList'] = '';
+            }
+        }, 500);
     }
     //如果是產品頁面
     if ($id('add_cart')) {
@@ -421,12 +425,20 @@ function getRecommends(sold) {
             slidesToShow: 3,
             slidesToScroll: 3,
             responsive: [{
-                breakpoint: 721,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
+                    breakpoint: 850,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 2,
+                    }
+                },
+                {
+                    breakpoint: 572,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                    }
                 }
-            }],
+            ],
         });
 
     }
@@ -505,31 +517,32 @@ function loadFavorite() {
 }
 
 function getFavortieList() {
-    if (storage['FavortieList'] == null) {
+    console.log('開始取得最愛')
+    if (storage['FavortieList'] == undefined) {
         storage['FavortieList'] = '';
-    }
-    let xhr = new XMLHttpRequest();
-    xhr.onload = function () {
-        if (xhr.status == 200) {
-            //modify here
-            let FavortieList = JSON.parse(xhr.responseText);
-            storage['FavortieList'] = '';
-            for (let i = 0; i < FavortieList.length; i++) {
-                storage['FavortieList'] += FavortieList[i].PSN + ',';
+    } else {
+        let xhr = new XMLHttpRequest();
+        xhr.onload = function () {
+            if (xhr.status == 200) {
+                //modify here
+                let FavortieList = JSON.parse(xhr.responseText);
+                FavortieListValue = '';
+                for (let i = 0; i < FavortieList.length; i++) {
+                    FavortieListValue += FavortieList[i].PSN + ',';
+                }
+                storage['FavortieList'] = FavortieListValue;
+                console.log('開始取得最愛結束')
 
+                loadFavorite()
+
+            } else {
+                alert(xhr.status);
             }
-            loadFavorite()
-
-        } else {
-            alert(xhr.status);
         }
+        let url = "./phps/getFavoriteList.php";
+        xhr.open("Get", url, true);
+        xhr.send(null);
     }
-
-    var url = "./phps/getFavoriteList.php";
-
-
-    xhr.open("Get", url, true);
-    xhr.send(null);
 }
 
 // window.addEventListener('unload', sendFavortieList)

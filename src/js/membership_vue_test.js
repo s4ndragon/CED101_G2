@@ -8,7 +8,7 @@ Vue.component("tour", {
                         <h4>揪團中的團</h4> 
                         <div class="tour_detail" v-for="memTour in memTours">
                             <div class="tour_title">{{memTour.TOUR_TITLE}}</div>
-                            <div class="arrow down"></div>
+                            <!-- <div class="arrow down"></div> -->
                             <div class="tour_date">{{memTour.TOUR_SETOFFTIME}}</div>
                             <div class="tour_attendency" @click="showAttendency">人數：<span class="attend attend_1">{{memTour.NUM_OF_PARTICIPANTS}}</span>／<span class="require require_1">{{memTour.TOUR_PEOPLE}}</span></div>
                             <div class="tour_status_bar">
@@ -53,9 +53,9 @@ Vue.component("tour", {
                                 <div class="tour_status">已取消</div>
                                 <div class="tour_join"></div>
                                 <div class="tour_check">
-                                    <a :href="'https://tibamef2e.com/ced101/project/g2/02_tour_more.html?TOUR_ID=' + mineTourCancel.tour_no">
+                                <!-- <a :href="'https://tibamef2e.com/ced101/project/g2/02_tour_more.html?TOUR_ID=' + mineTourCancel.tour_no">
                                     查看
-                                    </a>
+                                    </a> -->
                                 </div>
                                 
                             </div>
@@ -109,12 +109,13 @@ Vue.component("tour", {
                                 <div class="tour_status">已取消</div>
                                 <div class="tour_join"></div>
                                 <div class="tour_check">
-                                <a :href="'https://tibamef2e.com/ced101/project/g2/02_tour_more.html?TOUR_ID=' + joinTourCancel.tour_no">
-                                查看</a>
-                                </div>
+                                <!-- <a :href="'https://tibamef2e.com/ced101/project/g2/02_tour_more.html?TOUR_ID=' + joinTourCancel.tour_no">
+                                查看</a> -->
+                                </div> 
                             </div>
                         </div>
                     </div>
+                    <!-- 
                     <div id="join_quit">
                         <h4>退出的揪團</h4>
                         <div class="tour_detail outdated" v-for="joinTourQuit in joinTourQuits">
@@ -134,6 +135,7 @@ Vue.component("tour", {
                         </div>
                     </div>
                 </div>
+                -->
                 <!-- 取消揪團燈箱 -->
                 <div v-if="cancel_lightbox" class="delete_confirm">
                     是否確認取消？
@@ -356,16 +358,6 @@ Vue.component("tour", {
         },
     },
     mounted() {
-        $(".arrow").click(function () {
-            console.log("hihi");
-            $(this).toggleClass("down").toggleClass("up");
-            $(this).parent().toggleClass("extend");
-            $(this).siblings(".tour_date").toggle();
-            $(this).siblings(".tour_status_bar").toggle().css("width", "80%");
-            $(this).siblings(".tour_status_bar").children().toggle();
-            $(this).siblings(".tour_attendency").toggle().css("width", "80%");
-        });
-
         this.get_mine_tour();
         this.get_mine_past();
         this.get_mine_cancel();
@@ -374,6 +366,16 @@ Vue.component("tour", {
         this.get_join_past();
         this.get_join_cancel();
         this.get_join_quit();
+
+        $(".arrow").click(function () {
+            // console.log("hihi");
+            $(this).toggleClass("down").toggleClass("up");
+            $(this).parent().toggleClass("extend");
+            $(this).siblings(".tour_date").toggle();
+            $(this).siblings(".tour_status_bar").toggle().css("width", "80%");
+            $(this).siblings(".tour_status_bar").children().toggle();
+            $(this).siblings(".tour_attendency").toggle().css("width", "80%");
+        });
     },
 });
 
@@ -957,9 +959,9 @@ $("#mine_profile_btn").click(function () {
     $("#sub_menu").children("h3").removeClass("bg-color").addClass("select-color");
 });
 
+
 $(".profile-pic").click(function () {
     $("#profile_pic_input").trigger("click");
-    // $("#profile_pic_input_submit").trigger("click");
 });
 
 function readURL(input) {
@@ -1056,22 +1058,3 @@ function readURL(input) {
 $("#profile_pic_input").change(function () {
     readURL(this);
 });
-
-// function uploadImg() {
-//     var file_data = $("#profile_pic_input").prop("files")[0];
-//     var form_data = new FormData();
-//     form_data.append("file", file_data);
-
-//     $.ajax({
-//         url: "upload_mem_icon.php",
-//         dataType: "image/*", // what to expect back from the PHP script, if anything
-//         cache: false,
-//         contentType: false,
-//         processData: false,
-//         data: form_data,
-//         type: "post",
-//         success: function (result) {
-//             alert(result);
-//         },
-//     });
-// }

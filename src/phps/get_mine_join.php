@@ -7,13 +7,14 @@ try {
 
    
 
-	$sql = "select t.TOUR_ID TOUR_ID, t.TOUR_TITLE TOUR_TITLE, t.TOUR_SETOFFTIME TOUR_SETOFFTIME, t.NUM_OF_PARTICIPANTS NUM_OF_PARTICIPANTS, t.TOUR_PEOPLE TOUR_PEOPLE, j.mem_no MEM_NO
-            from tour t join tour_join J 
-            on t.tour_id = j.tour_id 
-            where j.mem_no = :MEM_NO
+	$sql = "select t.TOUR_ID TOUR_ID, t.TOUR_TITLE TOUR_TITLE, t.TOUR_SETOFFTIME TOUR_SETOFFTIME, t.NUM_OF_PARTICIPANTS NUM_OF_PARTICIPANTS, t.TOUR_PEOPLE TOUR_PEOPLE, j.MEM_NO MEM_NO
+            from tour t join tour_join j
+            on t.TOUR_ID = j.TOUR_ID 
+            where j.MEM_NO = :MEM_NO
             and t.DEADLINE_DATE > CURRENT_DATE() 
             and t.NUM_OF_PARTICIPANTS < t.TOUR_PEOPLE
-            and t.TOUR_STATUS = 1;
+            and t.TOUR_STATUS = 1
+            and j.TOUR_ADD = 1;
             ";
 
     $get_mine_join = $pdo->prepare($sql);
