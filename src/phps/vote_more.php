@@ -24,7 +24,7 @@ try {
 	}
 	
 
-	$sql = "select * from tour join garden on tour.GARD_ID = garden.GARD_ID where garden.GARD_ID = :GARD_ID or garden.GARD_ID = 6 limit 3";
+	$sql = "select * from tour join garden on tour.GARD_ID = garden.GARD_ID where (garden.GARD_ID = :GARD_ID or garden.GARD_ID = 6) and tour.TOUR_STATUS = 1 limit 3";
 	$tour = $pdo->prepare($sql);
 	$tour->bindValue(":GARD_ID", $_POST["GARD_ID"]);
 	// $tour->bindValue(":GARD_ID", 3);
